@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~dragula/dist/dragula.css";
+
+.container {
+  border: solid 1px #000;
+  padding: 20px;
+}
+
+.handle {
+  padding: 5px;
+  background-color: blue;
+  color: #fff;
+  margin: 5px;
+}
+
+.widget {
+  margin-bottom: 5px;
+}

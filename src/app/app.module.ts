@@ -4,15 +4,19 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import {DragulaModule} from "ng2-dragula";
+import { MyNewComponentComponent } from './my-new-component/my-new-component.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MyNewComponentComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    DragulaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
