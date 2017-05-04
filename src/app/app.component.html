@@ -10,12 +10,15 @@
     <div class="widget" *ngFor="let widget of widgets">
       <span class="edit" (click)="editWidget(widget)">Edit</span>
       <span class="handle">drag</span> You can move these elements between these two containers</div>
+
+      {{ widget | json }}
+
     </div>
   </div>
 </div>
 
 <div *ngIf="editing">
-  <sf-form class="col-md-6" [schema]="schema" [model]="activeWidgetx.settings" (onChange)="val=$event.value"></sf-form>
+  <sf-form class="col-md-6" [schema]="schema" [model]="activeWidget.settings" (onChange)="activeWidget.settings=$event.value"></sf-form>
 </div>
 
 <ng-template widget-edit></ng-template>
