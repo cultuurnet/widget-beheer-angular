@@ -5,20 +5,44 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import {DragulaModule} from "ng2-dragula";
-import { MyNewComponentComponent } from './my-new-component/my-new-component.component';
+import {WidgetEditComponent} from "./widget-edit.component";
+import {WidgetEditDirective} from "./widget-edit.directive";
+
+import {
+  SchemaFormModule,
+  DefaultWidgetRegistry,
+  WidgetRegistry
+} from 'angular2-schema-form';
+import {WidgetSettingsWidget} from "./widget-settings.widget";
+import {WidgetService} from "./widget.service";
+
+//import {SearchFormWidgetEditComponent} from "./search-form-widget-edit.component";
+//import {SearchResultsWidgetEditComponent} from "./search-results-widget-edit.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyNewComponentComponent
+    WidgetEditComponent,
+      WidgetEditDirective,
+      WidgetSettingsWidget
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    DragulaModule
+    DragulaModule,
+    SchemaFormModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{provide: WidgetRegistry, useClass: DefaultWidgetRegistry}, WidgetService],
+  bootstrap: [AppComponent],
+  //entryComponents: [ SearchFormWidgetEditComponent, SearchResultsWidgetEditComponent ]
+  entryComponents: [ WidgetEditComponent, WidgetSettingsWidget ]
 })
-export class AppModule { }
+
+export class AppModule {
+
+  constructor(widgetRegistry: WidgetRegistry) {
+    widgetRegistry.register('widget-settings', WidgetSettingsWidget);
+  }
+
+}
