@@ -2,47 +2,37 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
 import { AppComponent } from './app.component';
-import {DragulaModule} from "ng2-dragula";
-import {WidgetEditComponent} from "./widget-edit.component";
-import {WidgetEditDirective} from "./widget-edit.directive";
-
-import {
-  SchemaFormModule,
-  DefaultWidgetRegistry,
-  WidgetRegistry
-} from 'angular2-schema-form';
-import {WidgetSettingsWidget} from "./widget-settings.widget";
-import {WidgetService} from "./widget.service";
-
-//import {SearchFormWidgetEditComponent} from "./search-form-widget-edit.component";
-//import {SearchResultsWidgetEditComponent} from "./search-results-widget-edit.component";
+import {WidgetRegistry} from 'angular2-schema-form';
+import {WidgetSettingsWidget} from './widget-builder/widget-settings.widget';
+import {WidgetBuilderModule} from './widget-builder/widget-builder.module';
+import {WidgetTypeRegistry} from './shared/services/widget-type-registry.service';
+import {SearchFormWidget} from './widgets/search-form-widget/search-form-widget.widget';
+import {SearchResultsWidget} from './widgets/search-results-widget/search-results-widget.widget';
+import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    WidgetEditComponent,
-      WidgetEditDirective,
-      WidgetSettingsWidget
+    AppComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    DragulaModule,
-    SchemaFormModule
+    WidgetBuilderModule,
+    NgbModule.forRoot(),
+    NgbDropdownModule
   ],
-  providers: [{provide: WidgetRegistry, useClass: DefaultWidgetRegistry}, WidgetService],
   bootstrap: [AppComponent],
-  //entryComponents: [ SearchFormWidgetEditComponent, SearchResultsWidgetEditComponent ]
-  entryComponents: [ WidgetEditComponent, WidgetSettingsWidget ]
+  providers: [WidgetTypeRegistry]
 })
 
 export class AppModule {
 
-  constructor(widgetRegistry: WidgetRegistry) {
+  constructor(widgetRegistry: WidgetRegistry, widgetTypeRegistry: WidgetTypeRegistry) {
     widgetRegistry.register('widget-settings', WidgetSettingsWidget);
+    widgetTypeRegistry.register('search-form', SearchFormWidget, 'Search form');
+    widgetTypeRegistry.register('search-results', SearchResultsWidget, 'Search results');
   }
 
 }

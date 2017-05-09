@@ -1,40 +1,38 @@
-import { Injectable }           from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import {Widget} from "./widget";
-import {Config} from "./config";
+import {SearchFormWidget} from './widgets/search-form-widget/search-form-widget.widget';
+import {SearchResultsWidget} from './widgets/search-results-widget/search-results-widget.widget';
+import {WidgetTypeRegistry} from './shared/services/widget-type-registry.service';
 
 @Injectable()
 export class WidgetService {
+
+    constructor(private widgetTypeRegistry: WidgetTypeRegistry) {
+    }
+
     getWidgets() {
-        return [
-            new Widget('search_form', {
-                'student': {
-                    'firstName': 'first widget',
-                    'lastName': 'Doe'
-                },
-                'placeOfBirth': {
-                    'city': 'La gran Bilbao',
-                    'country': 'belgium'
-                },
-                'mother': {
-                    'firstName': 'Ana'
-                },
-                'sameAddress': true,
-            }),
-            new Widget('search_results', {
-                'student': {
-                    'firstName': 'Second widget',
-                    'lastName': 'Doe'
-                },
-                'placeOfBirth': {
-                    'city': 'La gran Bilbao',
-                    'country': 'belgium'
-                },
-                'mother': {
-                    'firstName': 'Ana'
-                },
-                'sameAddress': true,
-            }),
+
+        let widgetOne = {
+            type: 'search-form',
+            settings: {
+                'setting1': true,
+                'setting2': false
+            }
+        };
+
+        let widgetTwo = {
+            type: 'search-results',
+            settings: {
+                'setting3': true,
+                'setting4': false
+            }
+        };
+
+        let widgets = [
+            this.widgetTypeRegistry.getInstance(widgetOne),
+            this.widgetTypeRegistry.getInstance(widgetTwo)
         ];
+
+        return widgets.filter(function(n) { return n !== undefined; });
     }
 }

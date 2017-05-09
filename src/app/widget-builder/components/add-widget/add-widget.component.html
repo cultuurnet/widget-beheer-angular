@@ -1,0 +1,22 @@
+<div class="component-add">
+  <span class="dropdown" ngbDropdown>
+    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" ngbDropdownToggle>
+      Blok toevoegen
+    </button>
+    <div class="dropdown-menu">
+
+        <a *ngFor="let widgetType of widgetTypes" (click)="addWidget(widgetType)" class="dropdown-item">
+
+          <div class="media">
+            <div class="media-left">
+              <img src="/assets/widgets/{{ widgetType.type }}-widget.svg" class="component-icon">
+            </div>
+            <div class="media-body">
+              <p class="component-label">{{ widgetType.label }}</p>
+            </div>
+          </div>
+        </a>
+
+    </div>
+  </span>
+</div>
