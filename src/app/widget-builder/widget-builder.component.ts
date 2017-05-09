@@ -1,11 +1,12 @@
 import {Component, ComponentFactoryResolver, OnInit, ViewChild} from '@angular/core';
-import {WidgetEditDirective} from './widget-edit.directive';
+import {WidgetEditDirective} from './directives/widget-edit.directive';
 import {DragulaService} from 'ng2-dragula';
 import {WidgetRegistry} from 'angular2-schema-form';
-import {WidgetService} from '../widget.service';
 import {Widget} from '../shared/widget';
 import {Config} from '../config';
 import {WidgetEditComponent} from './widget-edit.component';
+import {WidgetService} from '../widget.service';
+import {WidgetTypeRegistry} from '../shared/services/widget-type-registry.service';
 
 @Component({
   selector: 'app-widget-builder',
@@ -16,8 +17,7 @@ export class WidgetBuilderComponent implements OnInit {
 
   private widgets;
   public activeWidget;
-  public schema: any;
-  public model: any;
+  public editingPage;
   public editing;
   public showSidebar = true;
 
@@ -29,7 +29,7 @@ export class WidgetBuilderComponent implements OnInit {
    * @param registry
    * @param widgetService
    */
-  constructor(private dragulaService: DragulaService, private _componentFactoryResolver: ComponentFactoryResolver, registry: WidgetRegistry, private widgetService: WidgetService) {
+  constructor(private dragulaService: DragulaService, private _componentFactoryResolver: ComponentFactoryResolver, private widgetService: WidgetService, private widgetTypeRegistry: WidgetTypeRegistry) {
 
     // Only allow dragging when using the move span.
     dragulaService.setOptions('widget-container', {
@@ -41,6 +41,7 @@ export class WidgetBuilderComponent implements OnInit {
 
   ngOnInit() {
     this.widgets = this.widgetService.getWidgets();
+    this.editingPage = Config.EXAMPLE_PAGE;
   }
 
   /**
@@ -49,17 +50,19 @@ export class WidgetBuilderComponent implements OnInit {
    */
   public editWidget(widget:Widget) {
 
+      // For POC: build instance here. For end product, instance is build when retrieving the page.
+      let widgetInstance = this.widgetTypeRegistry.getInstance(widget);
+console.log(widgetInstance);
+console.log(widget);
     this.editing = true;
-    this.schema = Config.SCHEMA_SEARCH_FORM;
-    this.activeWidget = widget;
+    this.activeWidget = widgetInstance;
 
-    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(widget.editComponent);
-
+    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(widgetInstance.editComponent);
     let viewContainerRef = this.editForm.viewContainerRef;
     viewContainerRef.clear();
 
     let componentRef = viewContainerRef.createComponent(componentFactory);
-    (<WidgetEditComponent>componentRef.instance).settings = widget.settings;
+    (<WidgetEditComponent>componentRef.instance).settings = widgetInstance.settings;
   }
 
   /**
