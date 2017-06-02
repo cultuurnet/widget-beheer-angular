@@ -1,7 +1,6 @@
 import {Component, ComponentFactoryResolver, OnInit, ViewChild} from '@angular/core';
 import {WidgetEditDirective} from './directives/widget-edit.directive';
 import {DragulaService} from 'ng2-dragula';
-import {WidgetRegistry} from 'angular2-schema-form';
 import {Widget} from '../shared/widget';
 import {Config} from '../config';
 import {WidgetEditComponent} from './widget-edit.component';
