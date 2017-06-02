@@ -13,6 +13,7 @@ import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 import {RowPreviewComponent} from './components/row-preview/row-preview.component';
 import {RowLayoutDirective} from 'app/widget-builder/directives/row-layout.directive';
 import {TwoColSidebarLeftComponent} from '../layouts/2col-sidebar-left/2col-sidebar-left.component';
+import {FullWidthRowLayoutComponent} from "../layouts/full-width/full-width.component";
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import {TwoColSidebarLeftComponent} from '../layouts/2col-sidebar-left/2col-side
         WidgetBuilderComponent,
         AddWidgetComponent,
         RowPreviewComponent,
-        TwoColSidebarLeftComponent
+        TwoColSidebarLeftComponent,
+        FullWidthRowLayoutComponent
     ],
     exports: [
         WidgetBuilderComponent
