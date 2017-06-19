@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-
-import {SearchFormWidget} from './widgets/search-form-widget/search-form-widget.widget';
-import {SearchResultsWidget} from './widgets/search-results-widget/search-results-widget.widget';
 import {WidgetTypeRegistry} from './shared/services/widget-type-registry.service';
+
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class WidgetService {
@@ -11,6 +10,8 @@ export class WidgetService {
     }
 
     getWidgets() {
+
+        console.log(environment.apiUrl);
 
         let widgetOne = {
             type: 'search-form',

@@ -1,4 +1,8 @@
+/**
+ * Configuration for development.
+ */
+
 export const environment = {
-  production: true,
+  production: false,
   apiUrl: 'http://projectaanvraag-api.dev'
 };
