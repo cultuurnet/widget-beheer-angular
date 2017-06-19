@@ -6,6 +6,7 @@ import {Config} from '../config';
 import {WidgetEditComponent} from './widget-edit.component';
 import {WidgetService} from '../widget.service';
 import {WidgetTypeRegistry} from '../shared/services/widget-type-registry.service';
+import {WidgetBuilderService} from "./services/widget-builder.service";
 
 @Component({
   selector: 'app-widget-builder',
@@ -28,13 +29,18 @@ export class WidgetBuilderComponent implements OnInit {
    * @param registry
    * @param widgetService
    */
-  constructor(private dragulaService: DragulaService, private _componentFactoryResolver: ComponentFactoryResolver, private widgetService: WidgetService, private widgetTypeRegistry: WidgetTypeRegistry) {
+  constructor(private dragulaService: DragulaService, private _componentFactoryResolver: ComponentFactoryResolver, private widgetService: WidgetService, private widgetTypeRegistry: WidgetTypeRegistry, private widgetBuilderService: WidgetBuilderService) {
 
     // Only allow dragging when using the move span.
     dragulaService.setOptions('widget-container', {
       moves: function (el, container, handle) {
         return handle.classList.contains('drag');
       }
+    });
+
+    widgetBuilderService.widgetSelected$.subscribe(
+       widget => {
+         this.editWidget(widget)
     });
   }
 
