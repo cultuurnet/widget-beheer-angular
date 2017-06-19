@@ -14,6 +14,7 @@ import {RowPreviewComponent} from './components/row-preview/row-preview.componen
 import {RowLayoutDirective} from 'app/widget-builder/directives/row-layout.directive';
 import {TwoColSidebarLeftComponent} from '../layouts/2col-sidebar-left/2col-sidebar-left.component';
 import {FullWidthRowLayoutComponent} from "../layouts/full-width/full-width.component";
+import {WidgetBuilderService} from "./services/widget-builder.service";
 
 @NgModule({
     declarations: [
@@ -25,7 +26,7 @@ import {FullWidthRowLayoutComponent} from "../layouts/full-width/full-width.comp
         AddWidgetComponent,
         RowPreviewComponent,
         TwoColSidebarLeftComponent,
-        FullWidthRowLayoutComponent
+        FullWidthRowLayoutComponent,
     ],
     exports: [
         WidgetBuilderComponent
@@ -36,7 +37,7 @@ import {FullWidthRowLayoutComponent} from "../layouts/full-width/full-width.comp
         DragulaModule,
         NgbDropdownModule
     ],
-    providers: [WidgetService],
+    providers: [WidgetService, WidgetBuilderService],
     entryComponents: [SearchFormWidgetEditComponent, SearchResultsWidgetEditComponent, TwoColSidebarLeftComponent]
 })
 
