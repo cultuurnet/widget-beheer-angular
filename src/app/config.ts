@@ -20,7 +20,7 @@ export class Config {
                                         'body': 'Header text'
                                     }
                                 }
-                            }
+                            },
                         ]
                     },
                     'content': {

@@ -14,23 +14,13 @@ export class RowPreviewComponent implements OnInit {
 
     @ViewChild(RowLayoutDirective) preview: RowLayoutDirective;
     @Input() row: any;
-    @Output() widgetSelected = new EventEmitter<Widget>();
 
     /**
      * Construct the row preview.
      *
-     * @param dragulaService
-     * @param _componentFactoryResolver
-     * @param registry
-     * @param widgetService
+     * @param {ComponentFactoryResolver} _componentFactoryResolver
      */
-    constructor(private _componentFactoryResolver: ComponentFactoryResolver) {
-
-    }
-
-    public updateSelectedWidget(widget) {
-        this.widgetSelected.emit(widget);
-    }
+    constructor(private _componentFactoryResolver: ComponentFactoryResolver) {}
 
     ngOnInit() {
         let componentFactory = this._componentFactoryResolver.resolveComponentFactory(TwoColSidebarLeftComponent);
@@ -40,8 +30,6 @@ export class RowPreviewComponent implements OnInit {
         let componentRef = viewContainerRef.createComponent(componentFactory);
 
         (<TwoColSidebarLeftComponent>componentRef.instance).regions = this.row.regions;
-
-        componentRef.instance.updateSelectedWidget.subscribe((data => this.updateSelectedWidget(data)));
     }
 
 }

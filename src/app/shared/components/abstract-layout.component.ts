@@ -7,8 +7,6 @@ export abstract class AbstractLayoutComponent implements OnInit {
 
     @Input() regions: any;
 
-    @Output() updateSelectedWidget = new EventEmitter<Widget>();
-
     public widgetTypes = [];
 
     public selectedWidget;
@@ -46,7 +44,6 @@ export abstract class AbstractLayoutComponent implements OnInit {
      * @param widget
      */
     public editWidget(widget: Widget) {
-        this.selectedWidget = widget;
         this.widgetBuilderService.selectWidget(widget);
     }
 
