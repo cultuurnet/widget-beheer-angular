@@ -1,13 +1,22 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { AppComponent } from './app.component';
-import {WidgetBuilderModule} from './widget-builder/widget-builder.module';
-import {WidgetTypeRegistry} from './shared/services/widget-type-registry.service';
-import {SearchFormWidget} from './widgets/search-form-widget/search-form-widget.widget';
-import {SearchResultsWidget} from './widgets/search-results-widget/search-results-widget.widget';
-import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { Http, HttpModule } from "@angular/http";
+import { AppComponent } from "./app.component";
+import { WidgetBuilderModule } from "./widget-builder/widget-builder.module";
+import { WidgetTypeRegistry } from "./shared/services/widget-type-registry.service";
+import { SearchFormWidget } from "./widgets/search-form-widget/search-form-widget.widget";
+import { SearchResultsWidget } from "./widgets/search-results-widget/search-results-widget.widget";
+import { NgbDropdownModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+
+/**
+ * AoT requires an exported function for factories
+ */
+export function HttpLoaderFactory(http: Http) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -17,6 +26,13 @@ import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     FormsModule,
     HttpModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [Http]
+      }
+    }),
     WidgetBuilderModule,
     NgbModule.forRoot(),
     NgbDropdownModule

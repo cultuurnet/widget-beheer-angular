@@ -1,3 +1,4 @@
+
 <div class="builder" [ngClass]="{ 'no-sidebar' : !showSidebar }">
   <div class='preview'>
 
@@ -52,6 +53,8 @@
       </div>
 
       <div class="tip" *ngIf="!editing">
+
+        <h2>{{ 'TRANSLATION_DEMO' | translate }}</h2>
 
         <p>Stel je widget samen in drie stappen:</p>
 

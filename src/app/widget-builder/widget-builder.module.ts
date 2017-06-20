@@ -15,6 +15,7 @@ import {RowLayoutDirective} from 'app/widget-builder/directives/row-layout.direc
 import {TwoColSidebarLeftComponent} from '../layouts/2col-sidebar-left/2col-sidebar-left.component';
 import {FullWidthRowLayoutComponent} from "../layouts/full-width/full-width.component";
 import {WidgetBuilderService} from "./services/widget-builder.service";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import {WidgetBuilderService} from "./services/widget-builder.service";
         CommonModule,
         FormsModule,
         DragulaModule,
-        NgbDropdownModule
+        NgbDropdownModule,
+        TranslateModule,
     ],
     providers: [WidgetService, WidgetBuilderService],
     entryComponents: [SearchFormWidgetEditComponent, SearchResultsWidgetEditComponent, TwoColSidebarLeftComponent]
