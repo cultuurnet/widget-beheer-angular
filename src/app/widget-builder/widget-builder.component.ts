@@ -7,6 +7,7 @@ import {WidgetEditComponent} from './widget-edit.component';
 import {WidgetService} from '../widget.service';
 import {WidgetTypeRegistry} from '../shared/services/widget-type-registry.service';
 import {WidgetBuilderService} from "./services/widget-builder.service";
+import { PageTemplateRegistry } from "../shared/services/page-template-registry.service";
 
 @Component({
   selector: 'app-widget-builder',
@@ -29,7 +30,7 @@ export class WidgetBuilderComponent implements OnInit {
    * @param registry
    * @param widgetService
    */
-  constructor(private dragulaService: DragulaService, private _componentFactoryResolver: ComponentFactoryResolver, private widgetService: WidgetService, private widgetTypeRegistry: WidgetTypeRegistry, private widgetBuilderService: WidgetBuilderService) {
+  constructor(private dragulaService: DragulaService, private _componentFactoryResolver: ComponentFactoryResolver, private widgetService: WidgetService, private widgetTypeRegistry: WidgetTypeRegistry, private widgetBuilderService: WidgetBuilderService, private pageTemplateRegistry: PageTemplateRegistry) {
 
     // Only allow dragging when using the move span.
     dragulaService.setOptions('widget-container', {
@@ -46,7 +47,7 @@ export class WidgetBuilderComponent implements OnInit {
 
   ngOnInit() {
     this.widgets = this.widgetService.getWidgets();
-    this.editingPage = Config.EXAMPLE_PAGE;
+    this.editingPage = this.pageTemplateRegistry.get('my-template').configuration;
   }
 
   /**
@@ -54,11 +55,9 @@ export class WidgetBuilderComponent implements OnInit {
    * @param widget
    */
   public editWidget(widget:Widget) {
+    // For POC: build instance here. For end product, instance is build when retrieving the page.
+    let widgetInstance = this.widgetTypeRegistry.getInstance(widget);
 
-      // For POC: build instance here. For end product, instance is build when retrieving the page.
-      let widgetInstance = this.widgetTypeRegistry.getInstance(widget);
-console.log(widgetInstance);
-console.log(widget);
     this.editing = true;
     this.activeWidget = widgetInstance;
 
