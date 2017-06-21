@@ -51,7 +51,7 @@ export class AppModule {
     widgetTypeRegistry.register('search-results', SearchResultsWidget, 'Search results');
 
     // Register page templates
-    pageTemplateRegistry.register('my-template', MyTemplate);
+    pageTemplateRegistry.register('my-template', new MyTemplate());
   }
 
 }

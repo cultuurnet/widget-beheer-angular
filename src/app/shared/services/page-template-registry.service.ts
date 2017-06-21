@@ -11,8 +11,8 @@ export class PageTemplateRegistry {
    * @param id
    * @param pageTemplate
    */
-  public register(id, pageTemplate: Type<PageTemplate>) {
-    this.pageTemplates[id] = new pageTemplate();
+  public register(id, pageTemplate: PageTemplate) {
+    this.pageTemplates[id] = pageTemplate;
   }
 
   /**
