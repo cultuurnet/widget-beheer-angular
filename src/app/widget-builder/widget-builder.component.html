@@ -1,85 +1,92 @@
-
 <div class="builder" [ngClass]="{ 'no-sidebar' : !showSidebar }">
-  <div class='preview'>
+    <div class='preview'>
 
-    <div class="switcher">
-      <div class="device-switcher">
-        <div class="btn-group">
-          <button type="button" class="btn btn-default navbar-btn active" ng-click="viewmode='desktop'" ng-class="{ 'active': viewmode=='desktop'}">
-            <i class="fa fa-desktop" aria-hidden="true"></i>
-            <span>Desktop</span>
-          </button>
+        <div class="switcher">
+            <div class="device-switcher">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default navbar-btn active" ng-click="viewmode='desktop'"
+                            ng-class="{ 'active': viewmode=='desktop'}">
+                        <i class="fa fa-desktop" aria-hidden="true"></i>
+                        <span>Desktop</span>
+                    </button>
 
-          <button type="button" class="btn btn-default navbar-btn" ng-click="viewmode='tablet'" ng-class="{ 'active': viewmode=='tablet'}">
-            <i class="fa fa-tablet" aria-hidden="true"></i>
-            <span>Tablet</span>
-          </button>
+                    <button type="button" class="btn btn-default navbar-btn" ng-click="viewmode='tablet'"
+                            ng-class="{ 'active': viewmode=='tablet'}">
+                        <i class="fa fa-tablet" aria-hidden="true"></i>
+                        <span>Tablet</span>
+                    </button>
 
-          <button type="button" class="btn btn-default navbar-btn" ng-click="viewmode='mobile'" ng-class="{ 'active': viewmode=='mobile'}">
-            <i class="fa fa-mobile" aria-hidden="true"></i>
-            <span>Mobiel</span>
-          </button>
-        </div>
-      </div>
+                    <button type="button" class="btn btn-default navbar-btn" ng-click="viewmode='mobile'"
+                            ng-class="{ 'active': viewmode=='mobile'}">
+                        <i class="fa fa-mobile" aria-hidden="true"></i>
+                        <span>Mobiel</span>
+                    </button>
+                </div>
+            </div>
 
-    </div>
-
-    <div class="preview-inner">
-
-      <div class="page">
-        <div class="page-inner">
-          <app-row-preview *ngFor="let row of editingPage.rows" [row]="row" (widgetSelected)="editWidget($event)"></app-row-preview>
         </div>
 
-      </div>
-    </div>
+        <div class="preview-inner">
 
-  </div>
+            <div class="page">
+                <div class="page-inner">
+                    <app-row-preview *ngFor="let row of editingPage.rows" [row]="row"
+                                     (widgetSelected)="editWidget($event)"></app-row-preview>
+                </div>
 
-  <div class="sidebar">
-    <div class="sidebar-switcher">
-      <div class="btn-group">
-        <button type="button" class="btn btn-default navbar-btn" (click)="toggleSidebar()">
-          <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          <span>Sidebar</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="sidebar-inner">
-
-      <div [ngClass]="{ 'hidden' : !editing }">
-        <ng-template widget-edit></ng-template>
-      </div>
-
-      <div class="tip" *ngIf="!editing">
-
-        <h2>{{ 'TRANSLATION_DEMO' | translate }}</h2>
-
-        <p>Stel je widget samen in drie stappen:</p>
-
-        <ol>
-          <li>
-            <strong>Voeg een rij toe</strong>. Hiermee bouw je de lay-out van de pagina. Je hebt keuze uit meerdere kolomstructuren. Je kan ook meerdere rijen toevoegen.
-          </li>
-
-          <li>
-            <strong>Voeg een blok toe</strong> in de passende kolom. Je hebt keuze uit meerdere soorten blokken: zo kan je je resultaten op je pagina plaatsen.
-          </li>
-
-          <li>
-            <strong>Configureer elke component</strong> door erop te klikken en de eigenschappen in deze rechterkolom aan te passen.
-          </li>
-
-        </ol>
-
-        <p>Klaar met je widget te configureren?<br>Klik op 'Publiceren' en plak deze code in op je eigen website.</p>
-
-        <p>Wil je deze pagina opmaken?<br>Klik op de knop 'CSS' en voeg je eigen stijlregels toe.</p>
-
-      </div>
+            </div>
+        </div>
 
     </div>
 
-  </div>
+    <div class="sidebar">
+        <div class="sidebar-switcher">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default navbar-btn" (click)="toggleSidebar()">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <span>Sidebar</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="sidebar-inner">
+
+            <div [ngClass]="{ 'hidden' : !editing }">
+                <ng-template widget-edit></ng-template>
+            </div>
+
+            <div class="tip" *ngIf="!editing">
+
+                <h2>{{ 'TRANSLATION_DEMO' | translate }}</h2>
+
+                <p>Stel je widget samen in drie stappen:</p>
+
+                <ol>
+                    <li>
+                        <strong>Voeg een rij toe</strong>. Hiermee bouw je de lay-out van de pagina. Je hebt keuze uit
+                        meerdere kolomstructuren. Je kan ook meerdere rijen toevoegen.
+                    </li>
+
+                    <li>
+                        <strong>Voeg een blok toe</strong> in de passende kolom. Je hebt keuze uit meerdere soorten
+                        blokken: zo kan je je resultaten op je pagina plaatsen.
+                    </li>
+
+                    <li>
+                        <strong>Configureer elke component</strong> door erop te klikken en de eigenschappen in deze
+                        rechterkolom aan te passen.
+                    </li>
+
+                </ol>
+
+                <p>Klaar met je widget te configureren?<br>Klik op 'Publiceren' en plak deze code in op je eigen
+                    website.</p>
+
+                <p>Wil je deze pagina opmaken?<br>Klik op de knop 'CSS' en voeg je eigen stijlregels toe.</p>
+
+            </div>
+
+        </div>
+
+    </div>
 </div>

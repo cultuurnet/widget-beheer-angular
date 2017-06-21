@@ -1,3 +1,3 @@
 export interface WidgetEditComponent {
-    settings: any;
+  settings: any;
 }

@@ -1,12 +1,12 @@
-import {Component, ComponentFactoryResolver, OnInit, ViewChild} from '@angular/core';
-import {WidgetEditDirective} from './directives/widget-edit.directive';
-import {DragulaService} from 'ng2-dragula';
-import {Widget} from '../shared/widget';
-import {Config} from '../config';
-import {WidgetEditComponent} from './widget-edit.component';
-import {WidgetService} from '../widget.service';
-import {WidgetTypeRegistry} from '../shared/services/widget-type-registry.service';
-import {WidgetBuilderService} from "./services/widget-builder.service";
+import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
+import { WidgetEditDirective } from './directives/widget-edit.directive';
+import { DragulaService } from 'ng2-dragula';
+import { WidgetEditComponent } from './widget-edit.component';
+import { WidgetService } from '../widget.service';
+import { WidgetBuilderService } from "./services/widget-builder.service";
+import { WidgetTypeRegistry } from "../widget/services/widget-type-registry.service";
+import { Widget } from "../widget/widget";
+
 
 @Component({
   selector: 'app-widget-builder',
@@ -22,12 +22,12 @@ export class WidgetBuilderComponent implements OnInit {
   public showSidebar = true;
 
   /**
-   * Construct the widget builder.
-   *
+   * WidgetBuilder constructor.
    * @param dragulaService
    * @param _componentFactoryResolver
-   * @param registry
    * @param widgetService
+   * @param widgetTypeRegistry
+   * @param widgetBuilderService
    */
   constructor(private dragulaService: DragulaService, private _componentFactoryResolver: ComponentFactoryResolver, private widgetService: WidgetService, private widgetTypeRegistry: WidgetTypeRegistry, private widgetBuilderService: WidgetBuilderService) {
 
@@ -39,26 +39,24 @@ export class WidgetBuilderComponent implements OnInit {
     });
 
     widgetBuilderService.widgetSelected$.subscribe(
-       widget => {
-         this.editWidget(widget)
-    });
+      widget => {
+        this.editWidget(widget)
+      });
   }
 
   ngOnInit() {
     this.widgets = this.widgetService.getWidgets();
-    this.editingPage = Config.EXAMPLE_PAGE;
+    this.editingPage = this.widgetService.getWidgetPage('my-page');
   }
 
   /**
    * Start editing the given widget.
    * @param widget
    */
-  public editWidget(widget:Widget) {
+  public editWidget(widget: Widget) {
+    // For POC: build instance here. For end product, instance is build when retrieving the page.
+    let widgetInstance = this.widgetTypeRegistry.getInstance(widget);
 
-      // For POC: build instance here. For end product, instance is build when retrieving the page.
-      let widgetInstance = this.widgetTypeRegistry.getInstance(widget);
-console.log(widgetInstance);
-console.log(widget);
     this.editing = true;
     this.activeWidget = widgetInstance;
 

@@ -1,39 +1,56 @@
 import { Injectable } from '@angular/core';
-import {WidgetTypeRegistry} from './shared/services/widget-type-registry.service';
-
 import { environment } from '../environments/environment';
+import { Config } from "./config";
+import { WidgetPageFactory } from "./widget/factories/widget-page.factory";
+import { WidgetTypeRegistry } from "app/widget/services/widget-type-registry.service";
 
 @Injectable()
 export class WidgetService {
 
-    constructor(private widgetTypeRegistry: WidgetTypeRegistry) {
-    }
+  /**
+   * WidgetService constructor.
+   * @param widgetTypeRegistry
+   * @param widgetpageFactory
+   */
+  constructor(private widgetTypeRegistry: WidgetTypeRegistry, private widgetpageFactory: WidgetPageFactory) {
+  }
 
-    getWidgets() {
+  /**
+   * Get a widget page by id
+   * @param id
+   * @returns {WidgetPage}
+   */
+  getWidgetPage(id: string) {
+    return this.widgetpageFactory.create(Config.EXAMPLE_PAGE);
+  }
 
-        console.log(environment.apiUrl);
+  getWidgets() {
 
-        let widgetOne = {
-            type: 'search-form',
-            settings: {
-                'setting1': true,
-                'setting2': false
-            }
-        };
+    console.log(environment.apiUrl);
 
-        let widgetTwo = {
-            type: 'search-results',
-            settings: {
-                'setting3': true,
-                'setting4': false
-            }
-        };
+    let widgetOne = {
+      type: 'search-form',
+      settings: {
+        'setting1': true,
+        'setting2': false
+      }
+    };
 
-        let widgets = [
-            this.widgetTypeRegistry.getInstance(widgetOne),
-            this.widgetTypeRegistry.getInstance(widgetTwo)
-        ];
+    let widgetTwo = {
+      type: 'search-results',
+      settings: {
+        'setting3': true,
+        'setting4': false
+      }
+    };
 
-        return widgets.filter(function(n) { return n !== undefined; });
-    }
+    let widgets = [
+      this.widgetTypeRegistry.getInstance(widgetOne),
+      this.widgetTypeRegistry.getInstance(widgetTwo)
+    ];
+
+    return widgets.filter(function (n) {
+      return n !== undefined;
+    });
+  }
 }

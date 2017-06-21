@@ -4,12 +4,14 @@ import { FormsModule } from "@angular/forms";
 import { Http, HttpModule } from "@angular/http";
 import { AppComponent } from "./app.component";
 import { WidgetBuilderModule } from "./widget-builder/widget-builder.module";
-import { WidgetTypeRegistry } from "./shared/services/widget-type-registry.service";
-import { SearchFormWidget } from "./widgets/search-form-widget/search-form-widget.widget";
-import { SearchResultsWidget } from "./widgets/search-results-widget/search-results-widget.widget";
 import { NgbDropdownModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { LayoutModule } from "./layout/layout.module";
+import { WidgetTypeRegistry } from "./widget/services/widget-type-registry.service";
+import { SearchFormWidget } from "./widget/widgets/search-form-widget/search-form-widget.widget";
+import { SearchResultsWidget } from "./widget/widgets/search-results-widget/search-results-widget.widget";
+import { WidgetModule } from "./widget/widget.module";
 
 /**
  * AoT requires an exported function for factories
@@ -33,12 +35,13 @@ export function HttpLoaderFactory(http: Http) {
         deps: [Http]
       }
     }),
+    WidgetModule,
     WidgetBuilderModule,
+    LayoutModule,
     NgbModule.forRoot(),
     NgbDropdownModule
   ],
   bootstrap: [AppComponent],
-  providers: [WidgetTypeRegistry]
 })
 
 export class AppModule {
