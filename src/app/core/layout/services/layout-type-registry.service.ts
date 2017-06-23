@@ -26,7 +26,7 @@ export class LayoutTypeRegistry {
    */
   public getLayoutType(type: string) {
     if (this.layoutTypes.hasOwnProperty(type)) {
-      return new this.layoutTypes[type];
+      return this.layoutTypes[type];
     }
   }
 
@@ -37,7 +37,7 @@ export class LayoutTypeRegistry {
    */
   public getInstance(type: string) {
     if (this.layoutTypes.hasOwnProperty(type)) {
-      return new this.layoutTypes[type].layout();
+      return new this.layoutTypes[type].layout(type);
     }
   }
 }
