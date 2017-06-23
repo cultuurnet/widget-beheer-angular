@@ -1,9 +1,9 @@
 <div class="md">
 
-    <div [dragula]='"widget-container"' style="border: solid 1px red; padding: 5px;">
+    <div [dragula]='"widget-container"' style="border: solid 1px red; padding: 5px;" [dragulaModel]='regions.sidebar_left.widgets'>
 
         <div class="component" [ngClass]="{ 'selected' : widget === selectedWidget }"
-             *ngFor="let widget of regions?.sidebar_left?.widgets" (click)="editWidget(widget)">
+             *ngFor="let widget of regions.sidebar_left.widgets" (click)="editWidget(widget)">
 
             <div class="actions-bar actions-bar--component">
                 <ul class="actions-list">
@@ -21,16 +21,16 @@
 
     </div>
 
-    <app-add-widget></app-add-widget>
+    <app-add-widget [region]="regions.sidebar_left"></app-add-widget>
 
 </div>
 
 <div class="sm">
 
-    <div [dragula]='"widget-container"'>
+    <div [dragula]='"widget-container"' [dragulaModel]='regions.content.widgets'>
 
         <div class="component" [ngClass]="{ 'selected' : widget === selectedWidget }"
-             *ngFor="let widget of regions?.content?.widgets" (click)="editWidget(widget)">
+             *ngFor="let widget of regions.content.widgets" (click)="editWidget(widget)">
 
             <div class="actions-bar actions-bar--component">
                 <ul class="actions-list">
@@ -48,6 +48,6 @@
 
     </div>
 
-    <app-add-widget></app-add-widget>
+    <app-add-widget [region]="regions.content"></app-add-widget>
 
 </div>

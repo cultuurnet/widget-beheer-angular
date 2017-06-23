@@ -1,9 +1,6 @@
-import {
-  AfterViewInit, Component, ComponentFactoryResolver, EventEmitter, Input, OnInit, Output,
-  ViewChild
-} from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild } from '@angular/core';
 import { RowLayoutDirective } from '../../directives/row-layout.directive';
-import { TwoColSidebarLeftComponent } from "../../../layout/layouts/2col-sidebar-left/2col-sidebar-left.component";
+import { AbstractLayoutComponent } from "../../../core/layout/components/abstract-layout.component";
 
 @Component({
   'selector': 'app-row-preview',
@@ -23,13 +20,12 @@ export class RowPreviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(TwoColSidebarLeftComponent);
+    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.row.component);
     let viewContainerRef = this.preview.viewContainerRef;
     viewContainerRef.clear();
 
     let componentRef = viewContainerRef.createComponent(componentFactory);
-
-    (<TwoColSidebarLeftComponent>componentRef.instance).regions = this.row.regions;
+    (<AbstractLayoutComponent>componentRef.instance).regions = this.row.regions;
   }
 
 }

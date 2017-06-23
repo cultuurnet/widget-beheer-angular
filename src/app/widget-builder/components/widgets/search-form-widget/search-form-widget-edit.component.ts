@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { WidgetEditComponent } from "../../../widget-builder/widget-edit.component";
+import { WidgetEditComponent } from "../../widget-edit.component";
 
 @Component({
   templateUrl: './search-form-widget-edit.component.html'

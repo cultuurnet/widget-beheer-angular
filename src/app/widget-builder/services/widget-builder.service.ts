@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from "rxjs/Subject";
-import { Widget } from "../../widget/widget";
+import { Widget } from "../../core/widget/widget";
 
 @Injectable()
 export class WidgetBuilderService {

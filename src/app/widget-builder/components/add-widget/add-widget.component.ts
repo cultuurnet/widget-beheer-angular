@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { WidgetTypeRegistry } from "../../../widget/services/widget-type-registry.service";
+import { Component, Input, OnInit } from '@angular/core';
+import { WidgetTypeRegistry } from "../../../core/widget/services/widget-type-registry.service";
+import { Region } from "../../../core/layout/region";
 
 @Component({
   selector: 'app-add-widget',
@@ -8,6 +9,8 @@ import { WidgetTypeRegistry } from "../../../widget/services/widget-type-registr
 export class AddWidgetComponent implements OnInit {
 
   public widgetTypes = [];
+
+  @Input() region: Region;
 
   /**
    * AddWidgetComponent constructor.
@@ -24,6 +27,10 @@ export class AddWidgetComponent implements OnInit {
         type: key
       });
     }
+  }
+
+  addWidget(widget): void{
+    this.region.addWidget(this.widgetTypeRegistry.getInstance(widget));
   }
 
 }

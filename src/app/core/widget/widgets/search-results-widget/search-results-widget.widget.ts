@@ -1,5 +1,5 @@
 import { Widget } from "../../widget";
-import { SearchResultsWidgetEditComponent } from "./search-results-widget-edit.component";
+import { SearchResultsWidgetEditComponent } from "../../../../widget-builder/components/widgets/search-results-widget/search-results-widget-edit.component";
 
 /**
  * Provide a search results widget.

@@ -1,5 +1,5 @@
-import { SearchFormWidgetEditComponent } from './search-form-widget-edit.component';
 import { Widget } from "../../widget";
+import { SearchFormWidgetEditComponent } from "../../../../widget-builder/components/widgets/search-form-widget/search-form-widget-edit.component";
 
 /**
  * Provide a search form widget.

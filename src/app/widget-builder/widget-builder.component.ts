@@ -1,12 +1,11 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
 import { WidgetEditDirective } from './directives/widget-edit.directive';
 import { DragulaService } from 'ng2-dragula';
-import { WidgetEditComponent } from './widget-edit.component';
 import { WidgetService } from '../widget.service';
 import { WidgetBuilderService } from "./services/widget-builder.service";
-import { WidgetTypeRegistry } from "../widget/services/widget-type-registry.service";
-import { Widget } from "../widget/widget";
-
+import { WidgetTypeRegistry } from "../core/widget/services/widget-type-registry.service";
+import { Widget } from "app/core/widget/widget";
+import { WidgetEditComponent } from "./components/widget-edit.component";
 
 @Component({
   selector: 'app-widget-builder',
@@ -54,18 +53,15 @@ export class WidgetBuilderComponent implements OnInit {
    * @param widget
    */
   public editWidget(widget: Widget) {
-    // For POC: build instance here. For end product, instance is build when retrieving the page.
-    let widgetInstance = this.widgetTypeRegistry.getInstance(widget);
-
     this.editing = true;
-    this.activeWidget = widgetInstance;
+    this.activeWidget = widget;
 
-    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(widgetInstance.editComponent);
+    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(widget.editComponent);
     let viewContainerRef = this.editForm.viewContainerRef;
     viewContainerRef.clear();
 
     let componentRef = viewContainerRef.createComponent(componentFactory);
-    (<WidgetEditComponent>componentRef.instance).settings = widgetInstance.settings;
+    (<WidgetEditComponent>componentRef.instance).settings = widget.settings;
   }
 
   /**

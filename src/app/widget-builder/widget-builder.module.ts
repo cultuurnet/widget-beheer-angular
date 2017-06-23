@@ -11,10 +11,10 @@ import { RowPreviewComponent } from './components/row-preview/row-preview.compon
 import { RowLayoutDirective } from 'app/widget-builder/directives/row-layout.directive';
 import { WidgetBuilderService } from "./services/widget-builder.service";
 import { TranslateModule } from "@ngx-translate/core";
-import { TwoColSidebarLeftComponent } from "../layout/layouts/2col-sidebar-left/2col-sidebar-left.component";
-import { FullWidthRowLayoutComponent } from "../layout/layouts/full-width/full-width.component";
-import { SearchFormWidgetEditComponent } from "../widget/widgets/search-form-widget/search-form-widget-edit.component";
-import { SearchResultsWidgetEditComponent } from "../widget/widgets/search-results-widget/search-results-widget-edit.component";
+import { TwoColSidebarLeftLayoutComponent } from "./components/layouts/2col-sidebar-left/2col-sidebar-left-layout.component";
+import { FullWidthLayoutComponent } from "./components/layouts/full-width/full-width-layout.component";
+import { SearchFormWidgetEditComponent } from "./components/widgets/search-form-widget/search-form-widget-edit.component";
+import { SearchResultsWidgetEditComponent } from "app/widget-builder/components/widgets/search-results-widget/search-results-widget-edit.component";
 
 @NgModule({
   declarations: [
@@ -25,8 +25,8 @@ import { SearchResultsWidgetEditComponent } from "../widget/widgets/search-resul
     WidgetBuilderComponent,
     AddWidgetComponent,
     RowPreviewComponent,
-    TwoColSidebarLeftComponent,
-    FullWidthRowLayoutComponent,
+    FullWidthLayoutComponent,
+    TwoColSidebarLeftLayoutComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -39,7 +39,12 @@ import { SearchResultsWidgetEditComponent } from "../widget/widgets/search-resul
     TranslateModule,
   ],
   providers: [WidgetService, WidgetBuilderService],
-  entryComponents: [SearchFormWidgetEditComponent, SearchResultsWidgetEditComponent, TwoColSidebarLeftComponent]
+  entryComponents: [
+    SearchFormWidgetEditComponent,
+    SearchResultsWidgetEditComponent,
+    TwoColSidebarLeftLayoutComponent,
+    FullWidthLayoutComponent
+  ]
 })
 
 export class WidgetBuilderModule {

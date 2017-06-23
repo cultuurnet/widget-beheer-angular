@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { Config } from "./config";
-import { WidgetPageFactory } from "./widget/factories/widget-page.factory";
-import { WidgetTypeRegistry } from "app/widget/services/widget-type-registry.service";
+import { WidgetTypeRegistry } from "./core/widget/services/widget-type-registry.service";
+import { WidgetPageFactory } from "./core/widget/factories/widget-page.factory";
 
 @Injectable()
 export class WidgetService {
