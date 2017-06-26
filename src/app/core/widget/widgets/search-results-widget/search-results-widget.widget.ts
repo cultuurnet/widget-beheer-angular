@@ -1,18 +1,16 @@
 import { Widget } from "../../widget";
-import { SearchResultsWidgetEditComponent } from "../../../../widget-builder/components/widgets/search-results-widget/search-results-widget-edit.component";
 
 /**
  * Provide a search results widget.
  */
 export class SearchResultsWidget implements Widget {
 
-  public editComponent = SearchResultsWidgetEditComponent;
-
   /**
    * SearchResultsWidget constructor.
+   * @param type
    * @param settings
    */
-  constructor(public settings: any) {
+  constructor(public type: string, public settings: any) {
   }
 
 }

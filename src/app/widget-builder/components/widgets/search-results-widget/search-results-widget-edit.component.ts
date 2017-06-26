@@ -1,10 +1,10 @@
 import { Component, Input } from "@angular/core";
-import { WidgetEditComponent } from "../../widget-edit.component";
+import { AbstractWidgetEditComponent } from "../../../../core/widget/components/abstract-widget-edit-component";
 
 @Component({
   templateUrl: './search-results-widget-edit.component.html'
 })
 
-export class SearchResultsWidgetEditComponent implements WidgetEditComponent {
+export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponent {
   @Input() settings: any;
 }

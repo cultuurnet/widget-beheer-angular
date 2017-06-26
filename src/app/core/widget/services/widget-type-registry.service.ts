@@ -1,5 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { Widget } from '../widget';
+import { AbstractWidgetEditComponent } from "../components/abstract-widget-edit-component";
 
 @Injectable()
 export class WidgetTypeRegistry {
@@ -9,24 +10,37 @@ export class WidgetTypeRegistry {
   /**
    * Register a new widget type.
    * @param id
-   * @param widgetType
    * @param label
+   * @param widgetType
+   * @param editComponent
    */
-  public register(id, widgetType: Type<Widget>, label: string) {
+  public register(id, label: string, widgetType: Type<Widget>, editComponent: Type<AbstractWidgetEditComponent>) {
     this.widgetTypes[id] = {
       widget: widgetType,
-      label: label
+      label: label,
+      editComponent: editComponent
     };
   }
 
   /**
+   * Get the widget type from the registry.
+   * @param type
+   */
+  public getWidgetType(type: string) {
+    if (this.widgetTypes.hasOwnProperty(type)) {
+      return this.widgetTypes[type];
+    }
+  }
+
+  /**
    * Get an instance of given widget type.
-   * @param widget
+   * @param type
+   * @param settings
    * @returns {Widget}
    */
-  public getInstance(widget: any) {
-    if (this.widgetTypes.hasOwnProperty(widget.type)) {
-      return new this.widgetTypes[widget.type].widget(widget.settings);
+  public getInstance(type: string, settings: any) {
+    if (this.widgetTypes.hasOwnProperty(type)) {
+      return new this.widgetTypes[type].widget(type, settings);
     }
   }
 }

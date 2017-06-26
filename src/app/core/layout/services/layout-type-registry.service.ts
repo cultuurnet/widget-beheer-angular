@@ -10,11 +10,13 @@ export class LayoutTypeRegistry {
   /**
    * Register a new layout type.
    * @param id
+   * @param label
    * @param layoutType
    * @param layoutComponent
    */
-  public register(id, layoutType: Type<Layout>, layoutComponent: Type<AbstractLayoutComponent>) {
+  public register(id, label, layoutType: Type<Layout>, layoutComponent: Type<AbstractLayoutComponent>) {
     this.layoutTypes[id] = {
+      label: label,
       layout: layoutType,
       component: layoutComponent
     };

@@ -1,30 +1,3 @@
-<div class="sm">
-
-    <div [dragula]='"widget-container"' style="border: solid 1px red; padding: 5px;" [dragulaModel]='regions.sidebar_left.widgets'>
-
-        <div class="component" [ngClass]="{ 'selected' : widget === selectedWidget }"
-             *ngFor="let widget of regions.sidebar_left.widgets" (click)="editWidget(widget)">
-
-            <div class="actions-bar actions-bar--component">
-                <ul class="actions-list">
-                    <li class="move"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-arrows drag"
-                                                                                   aria-hidden="true"></i><span>Verplaatsen</span></a>
-                    </li>
-                    <li><a href="#" class="btn btn-default btn-sm"><i
-                            class="fa fa-trash"></i><span>Verwijderen</span></a></li>
-                </ul>
-            </div>
-
-            {{ widget | json }}
-
-        </div>
-
-    </div>
-
-    <app-add-widget [region]="regions.sidebar_left"></app-add-widget>
-
-</div>
-
 <div class="md">
 
     <div [dragula]='"widget-container"' style="border: solid 1px red; padding: 5px;" [dragulaModel]='regions.content.widgets'>
@@ -49,5 +22,32 @@
     </div>
 
     <app-add-widget [region]="regions.content"></app-add-widget>
+
+</div>
+
+<div class="sm">
+
+    <div [dragula]='"widget-container"' style="border: solid 1px red; padding: 5px;" [dragulaModel]='regions.sidebar_right.widgets'>
+
+        <div class="component" [ngClass]="{ 'selected' : widget === selectedWidget }"
+             *ngFor="let widget of regions.sidebar_right.widgets" (click)="editWidget(widget)">
+
+            <div class="actions-bar actions-bar--component">
+                <ul class="actions-list">
+                    <li class="move"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-arrows drag"
+                                                                                   aria-hidden="true"></i><span>Verplaatsen</span></a>
+                    </li>
+                    <li><a href="#" class="btn btn-default btn-sm"><i
+                            class="fa fa-trash"></i><span>Verwijderen</span></a></li>
+                </ul>
+            </div>
+
+            {{ widget | json }}
+
+        </div>
+
+    </div>
+
+    <app-add-widget [region]="regions.sidebar_right"></app-add-widget>
 
 </div>

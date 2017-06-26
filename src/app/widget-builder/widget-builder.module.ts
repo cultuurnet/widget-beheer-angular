@@ -15,6 +15,9 @@ import { TwoColSidebarLeftLayoutComponent } from "./components/layouts/2col-side
 import { FullWidthLayoutComponent } from "./components/layouts/full-width/full-width-layout.component";
 import { SearchFormWidgetEditComponent } from "./components/widgets/search-form-widget/search-form-widget-edit.component";
 import { SearchResultsWidgetEditComponent } from "app/widget-builder/components/widgets/search-results-widget/search-results-widget-edit.component";
+import { TwoColSidebarRightLayoutComponent } from "./components/layouts/2col-sidebar-right/2col-sidebar-right-layout.component";
+import { ThreeColDoubleSidebarLayoutComponent } from "./components/layouts/3col-double-sidebar/3col-double-sidebar-layout.component";
+import { AddRowComponent } from "./components/add-row/add-row.component";
 
 @NgModule({
   declarations: [
@@ -24,9 +27,12 @@ import { SearchResultsWidgetEditComponent } from "app/widget-builder/components/
     SearchResultsWidgetEditComponent,
     WidgetBuilderComponent,
     AddWidgetComponent,
+    AddRowComponent,
     RowPreviewComponent,
     FullWidthLayoutComponent,
-    TwoColSidebarLeftLayoutComponent
+    TwoColSidebarLeftLayoutComponent,
+    TwoColSidebarRightLayoutComponent,
+    ThreeColDoubleSidebarLayoutComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -43,6 +49,8 @@ import { SearchResultsWidgetEditComponent } from "app/widget-builder/components/
     SearchFormWidgetEditComponent,
     SearchResultsWidgetEditComponent,
     TwoColSidebarLeftLayoutComponent,
+    TwoColSidebarRightLayoutComponent,
+    ThreeColDoubleSidebarLayoutComponent,
     FullWidthLayoutComponent
   ]
 })

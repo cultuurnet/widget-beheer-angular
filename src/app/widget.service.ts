@@ -25,9 +25,6 @@ export class WidgetService {
   }
 
   getWidgets() {
-
-    console.log(environment.apiUrl);
-
     let widgetOne = {
       type: 'search-form',
       settings: {
@@ -45,8 +42,8 @@ export class WidgetService {
     };
 
     let widgets = [
-      this.widgetTypeRegistry.getInstance(widgetOne),
-      this.widgetTypeRegistry.getInstance(widgetTwo)
+      this.widgetTypeRegistry.getInstance(widgetOne.type, widgetOne.settings),
+      this.widgetTypeRegistry.getInstance(widgetTwo.type, widgetTwo.settings)
     ];
 
     return widgets.filter(function (n) {

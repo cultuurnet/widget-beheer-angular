@@ -33,6 +33,8 @@
                 <div class="page-inner">
                     <app-row-preview *ngFor="let row of editingPage.rows" [row]="row"
                                      (widgetSelected)="editWidget($event)"></app-row-preview>
+
+                    <app-add-row [page]="editingPage"></app-add-row>
                 </div>
 
             </div>

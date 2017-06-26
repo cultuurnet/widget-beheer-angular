@@ -19,6 +19,9 @@ export class AddWidgetComponent implements OnInit {
   constructor(private widgetTypeRegistry: WidgetTypeRegistry) {
   }
 
+  /**
+   * @inheritDoc
+   */
   ngOnInit(): void {
     const keys = Object.keys(this.widgetTypeRegistry.widgetTypes);
     for (const key of keys) {
@@ -29,8 +32,12 @@ export class AddWidgetComponent implements OnInit {
     }
   }
 
-  addWidget(widget): void{
-    this.region.addWidget(this.widgetTypeRegistry.getInstance(widget));
+  /**
+   * Add a widget to the region.
+   * @param widget
+   */
+  addWidget(widget: any): void{
+    this.region.addWidget(this.widgetTypeRegistry.getInstance(widget.type, widget.settings));
   }
 
 }

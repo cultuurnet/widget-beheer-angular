@@ -5,7 +5,7 @@ import { WidgetService } from '../widget.service';
 import { WidgetBuilderService } from "./services/widget-builder.service";
 import { WidgetTypeRegistry } from "../core/widget/services/widget-type-registry.service";
 import { Widget } from "app/core/widget/widget";
-import { WidgetEditComponent } from "./components/widget-edit.component";
+import { AbstractWidgetEditComponent } from "../core/widget/components/abstract-widget-edit-component";
 
 @Component({
   selector: 'app-widget-builder',
@@ -56,12 +56,14 @@ export class WidgetBuilderComponent implements OnInit {
     this.editing = true;
     this.activeWidget = widget;
 
-    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(widget.editComponent);
+    let widgetType = this.widgetTypeRegistry.getWidgetType(widget.type);
+    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(widgetType.editComponent);
+
     let viewContainerRef = this.editForm.viewContainerRef;
     viewContainerRef.clear();
 
     let componentRef = viewContainerRef.createComponent(componentFactory);
-    (<WidgetEditComponent>componentRef.instance).settings = widget.settings;
+    (<AbstractWidgetEditComponent>componentRef.instance).settings = widget.settings;
   }
 
   /**

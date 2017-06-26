@@ -1,0 +1,20 @@
+<div class="row-add">
+  <span class="dropdown" ngbDropdown>
+    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" ngbDropdownToggle>
+      Rij toevoegen
+    </button>
+    <div class="dropdown-menu">
+        <a *ngFor="let layoutType of layoutTypes" (click)="addRow(layoutType)" class="dropdown-item">
+
+          <div class="media">
+            <div class="media-left">
+              <img src="/assets/layouts/{{ layoutType.type }}.svg" class="component-icon">
+            </div>
+            <div class="media-body">
+              <p class="component-label">{{ layoutType.label }}</p>
+            </div>
+          </div>
+        </a>
+    </div>
+  </span>
+</div>

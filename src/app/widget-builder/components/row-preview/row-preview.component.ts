@@ -26,7 +26,7 @@ export class RowPreviewComponent implements OnInit {
     let componentFactory = this._componentFactoryResolver.resolveComponentFactory(componentType.component);
     let viewContainerRef = this.preview.viewContainerRef;
     viewContainerRef.clear();
-    
+
     let componentRef = viewContainerRef.createComponent(componentFactory);
     (<AbstractLayoutComponent>componentRef.instance).regions = this.row.regions;
   }

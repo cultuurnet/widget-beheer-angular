@@ -16,6 +16,12 @@ import { TwoColSidebarLeftLayoutComponent } from "./widget-builder/components/la
 import { FullWidthLayoutComponent } from "./widget-builder/components/layouts/full-width/full-width-layout.component";
 import { FullWidthLayout } from "./core/layout/layouts/full-width/full-width.layout";
 import { CoreModule } from "./core/core.module";
+import { SearchFormWidgetEditComponent } from "./widget-builder/components/widgets/search-form-widget/search-form-widget-edit.component";
+import { SearchResultsWidgetEditComponent } from "./widget-builder/components/widgets/search-results-widget/search-results-widget-edit.component";
+import { TwoColSidebarRightayout } from "./core/layout/layouts/2col-sidebar-right/2col-sidebar-right.layout";
+import { TwoColSidebarRightLayoutComponent } from "./widget-builder/components/layouts/2col-sidebar-right/2col-sidebar-right-layout.component";
+import { ThreeColDoubleSidebarLayout } from "./core/layout/layouts/3col-double-sidebar/3col-double-sidebar.layout";
+import { ThreeColDoubleSidebarLayoutComponent } from "./widget-builder/components/layouts/3col-double-sidebar/3col-double-sidebar-layout.component";
 
 /**
  * AoT requires an exported function for factories
@@ -41,8 +47,7 @@ export function HttpLoaderFactory(http: Http) {
     }),
     CoreModule,
     WidgetBuilderModule,
-    NgbModule.forRoot(),
-    NgbDropdownModule
+    NgbModule.forRoot()
   ],
   bootstrap: [AppComponent],
 })
@@ -50,12 +55,14 @@ export function HttpLoaderFactory(http: Http) {
 export class AppModule {
 
   constructor(widgetTypeRegistry: WidgetTypeRegistry, layoutTypeRegistry: LayoutTypeRegistry) {
-    widgetTypeRegistry.register('search-form', SearchFormWidget, 'Search form');
-    widgetTypeRegistry.register('search-results', SearchResultsWidget, 'Search results');
+    widgetTypeRegistry.register('search-form', 'Search form', SearchFormWidget, SearchFormWidgetEditComponent);
+    widgetTypeRegistry.register('search-results', 'Search results', SearchResultsWidget, SearchResultsWidgetEditComponent);
 
     // Register layouts
-    layoutTypeRegistry.register('2col-sidebar-left', TwoColSidebarLeftLayout, TwoColSidebarLeftLayoutComponent);
-    layoutTypeRegistry.register('full-width', FullWidthLayout, FullWidthLayoutComponent);
+    layoutTypeRegistry.register('2col-sidebar-left', 'Two col sidebar left', TwoColSidebarLeftLayout, TwoColSidebarLeftLayoutComponent);
+    layoutTypeRegistry.register('2col-sidebar-right', 'Two col sidebar right', TwoColSidebarRightayout, TwoColSidebarRightLayoutComponent);
+    layoutTypeRegistry.register('3col-double-sidebar', 'Three col double sidebar', ThreeColDoubleSidebarLayout, ThreeColDoubleSidebarLayoutComponent);
+    layoutTypeRegistry.register('full-width', 'Full width', FullWidthLayout, FullWidthLayoutComponent);
   }
 
 }
