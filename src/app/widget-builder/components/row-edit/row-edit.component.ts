@@ -15,6 +15,10 @@ export class RowEditComponent implements OnInit {
   public static readonly ROW_DIRECTION_DOWN = 1;
 
   @Input() row: Layout;
+
+  /**
+   * Reference to the widget page.
+   */
   private widgetPage: WidgetPage;
 
   /**
@@ -63,7 +67,7 @@ export class RowEditComponent implements OnInit {
 
   /**
    * Move a layout row up the page.
-   * @param row
+   * @param: row
    */
   moveRowUp(row: Layout) {
     this.moveRow(row);
