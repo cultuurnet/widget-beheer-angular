@@ -46,6 +46,9 @@ export class WidgetBuilderComponent implements OnInit {
   ngOnInit() {
     this.widgets = this.widgetService.getWidgets();
     this.editingPage = this.widgetService.getWidgetPage('my-page');
+
+    // Set the current page on the widget builder service
+    this.widgetBuilderService.widgetPage = this.editingPage;
   }
 
   /**

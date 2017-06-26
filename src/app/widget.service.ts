@@ -3,6 +3,7 @@ import { environment } from '../environments/environment';
 import { Config } from "./config";
 import { WidgetTypeRegistry } from "./core/widget/services/widget-type-registry.service";
 import { WidgetPageFactory } from "./core/widget/factories/widget-page.factory";
+import { WidgetPage } from "./core/widget/widget-page";
 
 @Injectable()
 export class WidgetService {

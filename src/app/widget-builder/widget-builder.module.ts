@@ -18,6 +18,8 @@ import { SearchResultsWidgetEditComponent } from "app/widget-builder/components/
 import { TwoColSidebarRightLayoutComponent } from "./components/layouts/2col-sidebar-right/2col-sidebar-right-layout.component";
 import { ThreeColDoubleSidebarLayoutComponent } from "./components/layouts/3col-double-sidebar/3col-double-sidebar-layout.component";
 import { AddRowComponent } from "./components/add-row/add-row.component";
+import { RowEditComponent } from "./components/row-edit/row-edit.component";
+import { CoreModule } from "../core/core.module";
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { AddRowComponent } from "./components/add-row/add-row.component";
     AddWidgetComponent,
     AddRowComponent,
     RowPreviewComponent,
+    RowEditComponent,
     FullWidthLayoutComponent,
     TwoColSidebarLeftLayoutComponent,
     TwoColSidebarRightLayoutComponent,
@@ -43,6 +46,7 @@ import { AddRowComponent } from "./components/add-row/add-row.component";
     DragulaModule,
     NgbDropdownModule,
     TranslateModule,
+    CoreModule
   ],
   providers: [WidgetService, WidgetBuilderService],
   entryComponents: [
