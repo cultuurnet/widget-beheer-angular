@@ -67,7 +67,7 @@ export class RowEditComponent implements OnInit {
 
   /**
    * Move a layout row up the page.
-   * @param: row
+   * @param row
    */
   moveRowUp(row: Layout) {
     this.moveRow(row);
