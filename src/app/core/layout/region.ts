@@ -20,4 +20,15 @@ export class Region {
     this.widgets.push(widget);
   }
 
+  /**
+   * Remove a widget from the region.
+   * @param widget
+   */
+  removeWidget(widget: Widget) {
+    let index = this.widgets.indexOf(widget);
+    if (index > -1) {
+      this.widgets.splice(index, 1);
+    }
+  }
+
 }
