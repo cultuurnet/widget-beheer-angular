@@ -35,7 +35,7 @@ export class ViewModeSwitcherComponent implements OnInit {
    * View mode changed event emitter.
    * @type {EventEmitter}
    */
-  @Output() viewModeChanged = new EventEmitter();
+  @Output() viewModeChanged: EventEmitter<string> = new EventEmitter();
 
   /**
    * @inheritDoc
