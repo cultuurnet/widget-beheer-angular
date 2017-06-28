@@ -4,7 +4,7 @@ import { WidgetPage } from "../../../core/widget/widget-page";
 import { WidgetBuilderService } from "../../services/widget-builder.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationModalComponent } from "../../../core/modal/components/confirmation-modal.component";
-import { Observable, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-row-edit',
@@ -15,6 +15,9 @@ export class RowEditComponent implements OnInit {
   public static readonly ROW_DIRECTION_UP = -1;
   public static readonly ROW_DIRECTION_DOWN = 1;
 
+  /**
+   * The row layout
+   */
   @Input() row: Layout;
 
   /**

@@ -2,7 +2,6 @@ import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild } from '@
 import { RowLayoutDirective } from '../../directives/row-layout.directive';
 import { AbstractLayoutComponent } from "../../../core/layout/components/abstract-layout.component";
 import { LayoutTypeRegistry } from "../../../core/layout/services/layout-type-registry.service";
-import { WidgetPage } from "../../../core/widget/widget-page";
 
 @Component({
   'selector': 'app-row-preview',

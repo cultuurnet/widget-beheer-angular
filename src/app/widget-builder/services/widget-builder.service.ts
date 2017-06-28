@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Subject } from "rxjs/Subject";
 import { Widget } from "../../core/widget/widget";
 import { WidgetPage } from "../../core/widget/widget-page";
-import { Region } from "../../core/layout/region";
 import { Observable } from "rxjs";
 import { Layout } from "../../core/layout/layout";
 

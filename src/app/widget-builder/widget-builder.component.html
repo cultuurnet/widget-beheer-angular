@@ -1,30 +1,7 @@
 <div class="builder" [ngClass]="{ 'no-sidebar' : !showSidebar }">
-    <div class='preview'>
+    <div class='preview' ngClass="{{ viewMode }}">
 
-        <div class="switcher">
-            <div class="device-switcher">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default navbar-btn active" ng-click="viewmode='desktop'"
-                            ng-class="{ 'active': viewmode=='desktop'}">
-                        <i class="fa fa-desktop" aria-hidden="true"></i>
-                        <span>Desktop</span>
-                    </button>
-
-                    <button type="button" class="btn btn-default navbar-btn" ng-click="viewmode='tablet'"
-                            ng-class="{ 'active': viewmode=='tablet'}">
-                        <i class="fa fa-tablet" aria-hidden="true"></i>
-                        <span>Tablet</span>
-                    </button>
-
-                    <button type="button" class="btn btn-default navbar-btn" ng-click="viewmode='mobile'"
-                            ng-class="{ 'active': viewmode=='mobile'}">
-                        <i class="fa fa-mobile" aria-hidden="true"></i>
-                        <span>Mobiel</span>
-                    </button>
-                </div>
-            </div>
-
-        </div>
+        <app-view-mode-switcher (viewModeChanged)="handleViewModeChanged($event)"></app-view-mode-switcher>
 
         <div class="preview-inner">
 

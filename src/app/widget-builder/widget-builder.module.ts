@@ -20,6 +20,7 @@ import { ThreeColDoubleSidebarLayoutComponent } from "./components/layouts/3col-
 import { AddRowComponent } from "./components/add-row/add-row.component";
 import { RowEditComponent } from "./components/row-edit/row-edit.component";
 import { CoreModule } from "../core/core.module";
+import { ViewModeSwitcherComponent } from "./components/view-mode-switcher/view-mode-switcher.component";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CoreModule } from "../core/core.module";
     FullWidthLayoutComponent,
     TwoColSidebarLeftLayoutComponent,
     TwoColSidebarRightLayoutComponent,
-    ThreeColDoubleSidebarLayoutComponent
+    ThreeColDoubleSidebarLayoutComponent,
+    ViewModeSwitcherComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -55,7 +57,8 @@ import { CoreModule } from "../core/core.module";
     TwoColSidebarLeftLayoutComponent,
     TwoColSidebarRightLayoutComponent,
     ThreeColDoubleSidebarLayoutComponent,
-    FullWidthLayoutComponent
+    FullWidthLayoutComponent,
+    ViewModeSwitcherComponent
   ]
 })
 

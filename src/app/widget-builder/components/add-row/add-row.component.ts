@@ -15,6 +15,7 @@ export class AddRowComponent implements OnInit {
   /**
    * AddRowComponent constructor.
    * @param layoutTypeRegistry
+   * @param widgetBuilderService
    */
   constructor(private layoutTypeRegistry: LayoutTypeRegistry, private widgetBuilderService: WidgetBuilderService) {
   }

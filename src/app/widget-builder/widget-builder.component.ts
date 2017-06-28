@@ -19,6 +19,7 @@ export class WidgetBuilderComponent implements OnInit {
   public editingPage;
   public editing;
   public showSidebar = true;
+  public viewMode;
 
   /**
    * WidgetBuilder constructor.
@@ -74,6 +75,13 @@ export class WidgetBuilderComponent implements OnInit {
    */
   public toggleSidebar() {
     this.showSidebar = !this.showSidebar;
+  }
+
+  /**
+   * Change the current view mode
+   */
+  public handleViewModeChanged(viewMode: string) {
+    this.viewMode = viewMode;
   }
 
 }
