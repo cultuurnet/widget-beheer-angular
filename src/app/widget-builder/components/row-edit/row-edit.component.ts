@@ -70,9 +70,8 @@ export class RowEditComponent implements OnInit {
 
   /**
    * Remove a layout row from the page.
-   * @param row
    */
-  removeRow(row: Layout): void{
+  removeRow(): void{
     let modal = this.modalService.open(ConfirmationModalComponent);
     let modalInstance = modal.componentInstance;
 
@@ -81,7 +80,7 @@ export class RowEditComponent implements OnInit {
 
     // Remove row on confirmation
     modal.result.then(() => {
-      this.widgetPage.removeRow(row);
+      this.widgetPage.removeRow(this.row);
       this.updateObservableWigetPageRows();
     });
   }

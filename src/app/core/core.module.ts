@@ -5,6 +5,9 @@ import { WidgetTypeRegistry } from "./widget/services/widget-type-registry.servi
 import { WidgetPageFactory } from "./widget/factories/widget-page.factory";
 import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationModalComponent } from "./modal/components/confirmation-modal.component";
+import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
+import { HttpLoaderFactory } from "../app.module";
+import { Http } from "@angular/http";
 
 @NgModule({
   providers: [
@@ -14,6 +17,13 @@ import { ConfirmationModalComponent } from "./modal/components/confirmation-moda
     WidgetPageFactory
   ],
   imports: [
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [Http]
+      }
+    }),
     NgbModalModule
   ],
   exports: [

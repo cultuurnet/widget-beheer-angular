@@ -1,7 +1,7 @@
 <div class="row-add">
   <span class="dropdown" ngbDropdown>
     <button class="btn btn-default btn-sm dropdown-toggle" type="button" ngbDropdownToggle>
-      Rij toevoegen
+      {{ "BUTTON_ADD_ROW" | translate}}
     </button>
     <div class="dropdown-menu">
         <a *ngFor="let layoutType of layoutTypes" (click)="addRow(layoutType)" class="dropdown-item">
@@ -11,7 +11,7 @@
               <img src="/assets/layouts/{{ layoutType.type }}.svg" class="component-icon">
             </div>
             <div class="media-body">
-              <p class="component-label">{{ layoutType.label }}</p>
+              <p class="component-label">{{ layoutType.label | translate }}</p>
             </div>
           </div>
         </a>
