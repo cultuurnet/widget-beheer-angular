@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LayoutTypeRegistry } from "../../../core/layout/services/layout-type-registry.service";
 import { WidgetPage } from "../../../core/widget/widget-page";
+import { WidgetBuilderService } from "../../services/widget-builder.service";
 
 @Component({
   selector: 'app-add-row',
@@ -15,7 +16,7 @@ export class AddRowComponent implements OnInit {
    * AddRowComponent constructor.
    * @param layoutTypeRegistry
    */
-  constructor(private layoutTypeRegistry: LayoutTypeRegistry) {
+  constructor(private layoutTypeRegistry: LayoutTypeRegistry, private widgetBuilderService: WidgetBuilderService) {
   }
 
   /**
@@ -36,7 +37,11 @@ export class AddRowComponent implements OnInit {
    * @param layout
    */
   addRow(layout: any): void{
-    this.page.addRow(this.layoutTypeRegistry.getInstance(layout.type));
+    let row = this.layoutTypeRegistry.getInstance(layout.type);
+    this.page.addRow(row);
+
+    // Update row observable
+    this.widgetBuilderService.updateWidgetPageRows(row);
   }
 
 }

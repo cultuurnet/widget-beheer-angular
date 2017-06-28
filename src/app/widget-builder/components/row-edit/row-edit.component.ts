@@ -4,6 +4,7 @@ import { WidgetPage } from "../../../core/widget/widget-page";
 import { WidgetBuilderService } from "../../services/widget-builder.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationModalComponent } from "../../../core/modal/components/confirmation-modal.component";
+import { Observable, Subscription } from "rxjs";
 
 @Component({
   selector: 'app-row-edit',
@@ -22,6 +23,26 @@ export class RowEditComponent implements OnInit {
   private widgetPage: WidgetPage;
 
   /**
+   * Subscription widgetPageRows
+   */
+  private widgetPageRows: Subscription;
+
+  /**
+   * Keep track of the index of the row
+   */
+  public index: number;
+
+  /**
+   * Indicates if the current row is the first in the page
+   */
+  public first: boolean;
+
+  /**
+   * Indicates if the current row is the last in the page
+   */
+  public last: boolean;
+
+  /**
    * WidgetBuilder constructor.
    * @param widgetBuilderService
    * @param modalService
@@ -34,6 +55,14 @@ export class RowEditComponent implements OnInit {
    */
   ngOnInit() {
     this.widgetPage = this.widgetBuilderService.widgetPage;
+
+    // Track the index of the current row
+    this.updateIndex();
+
+    // Subscribe to the widgetPageRows observable
+    this.widgetPageRows = this.widgetBuilderService.getWidgetPageRows().subscribe(rows => {
+      this.updateIndex();
+    });
   }
 
   /**
@@ -50,35 +79,51 @@ export class RowEditComponent implements OnInit {
     // Remove row on confirmation
     modal.result.then(() => {
       this.widgetPage.removeRow(row);
+      this.updateObservableWigetPageRows();
     });
   }
 
   /**
    * Move a layout row up or down the page.
-   * @param row
    * @param direction
    */
-  moveRow(row: Layout, direction: number = RowEditComponent.ROW_DIRECTION_UP) {
-    let index = this.widgetPage.rows.indexOf(row);
-    if (index > -1) {
-      this.widgetPage.rows.splice(index + direction, 0, this.widgetPage.rows.splice(index, 1)[0]);
+  moveRow(direction: number = RowEditComponent.ROW_DIRECTION_UP) {
+    if (this.index > -1) {
+      this.widgetPage.rows.splice(this.index + direction, 0, this.widgetPage.rows.splice(this.index, 1)[0]);
     }
+
+    this.updateObservableWigetPageRows();
   }
 
   /**
    * Move a layout row up the page.
-   * @param row
    */
-  moveRowUp(row: Layout) {
-    this.moveRow(row);
+  moveRowUp() {
+    this.moveRow();
   }
 
   /**
    * Move a layout row up the page.
-   * @param row
    */
-  moveRowDown(row: Layout) {
-    this.moveRow(row, RowEditComponent.ROW_DIRECTION_DOWN)
+  moveRowDown() {
+    this.moveRow(RowEditComponent.ROW_DIRECTION_DOWN)
+  }
+
+  /**
+   * Update the current component row index
+   */
+  private updateIndex() {
+    // Update the index
+    this.index = this.widgetPage.rows.indexOf(this.row);
+    this.first = this.index == 0;
+    this.last = this.index == this.widgetPage.rows.length - 1;
+  }
+
+  /**
+   * Update observable rows
+   */
+  private updateObservableWigetPageRows() {
+    this.widgetBuilderService.updateWidgetPageRows(this.row);
   }
 
 }
