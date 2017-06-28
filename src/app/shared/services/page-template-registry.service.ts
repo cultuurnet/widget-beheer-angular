@@ -1,10 +1,18 @@
-import { Injectable, Type } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { PageTemplate } from '../pageTemplate';
 
+/**
+ * Page template registry service.
+ * Used for registering available widget page templates in the application.
+ */
 @Injectable()
 export class PageTemplateRegistry {
 
-  public pageTemplates = {};
+  /**
+   * Collection of registered page templates.
+   * @type any
+   */
+  public pageTemplates: any = {};
 
   /**
    * Register a new page template.
