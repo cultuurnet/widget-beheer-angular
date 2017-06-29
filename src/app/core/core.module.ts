@@ -8,6 +8,7 @@ import { ConfirmationModalComponent } from "./modal/components/confirmation-moda
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { HttpLoaderFactory } from "../app.module";
 import { Http } from "@angular/http";
+import { ClickOutsideDirective } from "./directives/click-outside.directive";
 
 @NgModule({
   providers: [
@@ -27,9 +28,11 @@ import { Http } from "@angular/http";
     NgbModalModule
   ],
   exports: [
+    ClickOutsideDirective,
     ConfirmationModalComponent
   ],
   declarations: [
+    ClickOutsideDirective,
     ConfirmationModalComponent
   ],
   entryComponents: [

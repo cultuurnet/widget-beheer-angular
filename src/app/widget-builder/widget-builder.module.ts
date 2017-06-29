@@ -21,6 +21,7 @@ import { AddRowComponent } from "./components/add-row/add-row.component";
 import { RowEditComponent } from "./components/row-edit/row-edit.component";
 import { CoreModule } from "../core/core.module";
 import { ViewModeSwitcherComponent } from "./components/view-mode-switcher/view-mode-switcher.component";
+import { WidgetPreviewComponent } from "./components/widgets/widget-preview.component";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ViewModeSwitcherComponent } from "./components/view-mode-switcher/view-
     TwoColSidebarLeftLayoutComponent,
     TwoColSidebarRightLayoutComponent,
     ThreeColDoubleSidebarLayoutComponent,
-    ViewModeSwitcherComponent
+    ViewModeSwitcherComponent,
+    WidgetPreviewComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -58,7 +60,8 @@ import { ViewModeSwitcherComponent } from "./components/view-mode-switcher/view-
     TwoColSidebarRightLayoutComponent,
     ThreeColDoubleSidebarLayoutComponent,
     FullWidthLayoutComponent,
-    ViewModeSwitcherComponent
+    ViewModeSwitcherComponent,
+    WidgetPreviewComponent
   ]
 })
 

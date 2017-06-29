@@ -63,7 +63,7 @@ export class WidgetBuilderComponent implements OnInit {
    */
   constructor(private dragulaService: DragulaService, private _componentFactoryResolver: ComponentFactoryResolver, private widgetService: WidgetService, private widgetTypeRegistry: WidgetTypeRegistry, private widgetBuilderService: WidgetBuilderService) {
     widgetBuilderService.widgetSelected$.subscribe(widget => {
-      this.editWidget(widget)
+      this.editWidget(widget);
     });
 
     this.editingPage = this.widgetService.getWidgetPage('my-page');

@@ -80,7 +80,7 @@ export class RowEditComponent implements OnInit {
     let modalInstance = modal.componentInstance;
 
     modalInstance.title = 'Remove row';
-    modalInstance.message = 'Are you sure you want tot remove this row and all its content?';
+    modalInstance.message = 'Are you sure you want to remove this row and all its content?';
 
     // Remove row on confirmation
     modal.result.then(() => {
