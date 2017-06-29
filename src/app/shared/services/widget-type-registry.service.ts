@@ -8,9 +8,9 @@ export class WidgetTypeRegistry {
 
     /**
      * Register a new widget type.
+     * @param id
      * @param widgetType
-     * @param widget
-     * @param string label
+     * @param label
      */
     public register(id, widgetType: Type<Widget>, label: string) {
         this.widgetTypes[id] = {
@@ -29,7 +29,5 @@ export class WidgetTypeRegistry {
             return new this.widgetTypes[widget.type].widget(widget.settings);
         }
     }
-
-
 
 }
