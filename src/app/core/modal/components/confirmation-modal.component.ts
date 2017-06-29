@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
 /**
- * Confirmation modal component
+ * Confirmation modal component.
  */
 @Component({
   selector: 'app-confirmation-modal',

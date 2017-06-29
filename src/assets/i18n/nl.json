@@ -1,3 +1,9 @@
 {
-  "TRANSLATION_DEMO": "Demo vertalingen"
+  "TRANSLATION_DEMO": "Demo vertalingen",
+  "BUTTON_ADD_WIDGET": "Blok toevoegen",
+  "BUTTON_ADD_ROW": "Rij toevoegen",
+  "Remove row": "Rij verwijderen",
+  "Are you sure you want tot remove this row and all its content?": "Ben je zeker dat je deze rij en al zijn inhoud wil verwijderen?",
+  "Yes": "Ja",
+  "No": "Nee"
 }

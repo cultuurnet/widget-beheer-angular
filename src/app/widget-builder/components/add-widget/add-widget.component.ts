@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { WidgetTypeRegistry } from "../../../core/widget/services/widget-type-registry.service";
 import { Region } from "../../../core/layout/region";
 
+/**
+ * Component used for adding new widgets to the widget page rows.
+ */
 @Component({
   selector: 'app-add-widget',
   templateUrl: './add-widget.component.html',

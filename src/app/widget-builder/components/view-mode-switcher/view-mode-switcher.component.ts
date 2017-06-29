@@ -1,5 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 
+/**
+ * The view mode switcher component allows for toggling
+ * of different view modes (eg. desktop, tablet, mobile,...)
+ */
 @Component({
   selector: 'app-view-mode-switcher',
   templateUrl: './view-mode-switcher.component.html',

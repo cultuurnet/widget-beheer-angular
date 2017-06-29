@@ -6,6 +6,10 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationModalComponent } from "../../../core/modal/components/confirmation-modal.component";
 import { Subscription } from "rxjs";
 
+/**
+ * The row edit component contains the actions (move up, move down, remove,...)
+ * that can be performed on a widget page row.
+ */
 @Component({
   selector: 'app-row-edit',
   templateUrl: './row-edit.component.html',
@@ -26,22 +30,22 @@ export class RowEditComponent implements OnInit {
   private widgetPage: WidgetPage;
 
   /**
-   * Subscription widgetPageRows
+   * Subscription widgetPageRows.
    */
   private widgetPageRows: Subscription;
 
   /**
-   * Keep track of the index of the row
+   * Keep track of the index of the row.
    */
   public index: number;
 
   /**
-   * Indicates if the current row is the first in the page
+   * Indicates if the current row is the first in the page.
    */
   public first: boolean;
 
   /**
-   * Indicates if the current row is the last in the page
+   * Indicates if the current row is the last in the page.
    */
   public last: boolean;
 
@@ -112,7 +116,7 @@ export class RowEditComponent implements OnInit {
   }
 
   /**
-   * Update the current component row index
+   * Update the current component row index.
    */
   private updateIndex() {
     // Update the index
@@ -122,7 +126,7 @@ export class RowEditComponent implements OnInit {
   }
 
   /**
-   * Update observable rows
+   * Update observable rows.
    */
   private updateObservableWigetPageRows() {
     this.widgetBuilderService.updateWidgetPageRows(this.row);

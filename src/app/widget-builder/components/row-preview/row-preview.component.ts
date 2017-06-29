@@ -3,6 +3,9 @@ import { RowLayoutDirective } from '../../directives/row-layout.directive';
 import { AbstractLayoutComponent } from "../../../core/layout/components/abstract-layout.component";
 import { LayoutTypeRegistry } from "../../../core/layout/services/layout-type-registry.service";
 
+/**
+ * Resolves to, and previews the needed layout component.
+ */
 @Component({
   'selector': 'app-row-preview',
   'templateUrl': './row-preview.component.html'

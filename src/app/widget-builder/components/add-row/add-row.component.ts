@@ -3,6 +3,9 @@ import { LayoutTypeRegistry } from "../../../core/layout/services/layout-type-re
 import { WidgetPage } from "../../../core/widget/widget-page";
 import { WidgetBuilderService } from "../../services/widget-builder.service";
 
+/**
+ * Component used for adding new rows to the widget page.
+ */
 @Component({
   selector: 'app-add-row',
   templateUrl: './add-row.component.html',

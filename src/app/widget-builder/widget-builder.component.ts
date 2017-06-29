@@ -7,6 +7,9 @@ import { WidgetTypeRegistry } from "../core/widget/services/widget-type-registry
 import { Widget } from "app/core/widget/widget";
 import { AbstractWidgetEditComponent } from "../core/widget/components/abstract-widget-edit-component";
 
+/**
+ * The widget builder component is used for editing a widget page.
+ */
 @Component({
   selector: 'app-widget-builder',
   templateUrl: './widget-builder.component.html',
