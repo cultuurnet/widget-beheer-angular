@@ -6,6 +6,8 @@ import { WidgetBuilderService } from "./services/widget-builder.service";
 import { WidgetTypeRegistry } from "../core/widget/services/widget-type-registry.service";
 import { Widget } from "app/core/widget/widget";
 import { AbstractWidgetEditComponent } from "../core/widget/components/abstract-widget-edit-component";
+import * as autoScroll from 'dom-autoscroller';
+import { WidgetPage } from "../core/widget/widget-page";
 
 /**
  * The widget builder component is used for editing a widget page.
@@ -15,14 +17,41 @@ import { AbstractWidgetEditComponent } from "../core/widget/components/abstract-
   templateUrl: './widget-builder.component.html',
 })
 export class WidgetBuilderComponent implements OnInit {
+
+  /**
+   * Widget edit form
+   */
   @ViewChild(WidgetEditDirective) editForm: WidgetEditDirective;
 
-  private widgets;
-  public activeWidget;
-  public editingPage;
-  public editing;
-  public showSidebar = true;
-  public viewMode;
+  /**
+   * The currently active widget
+   */
+  public activeWidget: Widget;
+
+  /**
+   * The widget page currently being edited
+   */
+  public editingPage: WidgetPage;
+
+  /**
+   * Indicates if a widget is being edited or not
+   */
+  public editing: boolean;
+
+  /**
+   * Indicatis if the sidebar is being shown or not
+   */
+  public showSidebar: boolean = true;
+
+  /**
+   * View mode of the widget builder (eg. desktop, tablet,..)
+   */
+  public viewMode: string;
+
+  /**
+   * Reference to the dom autoscroller
+   */
+  public scroll: any;
 
   /**
    * WidgetBuilder constructor.
@@ -33,26 +62,41 @@ export class WidgetBuilderComponent implements OnInit {
    * @param widgetBuilderService
    */
   constructor(private dragulaService: DragulaService, private _componentFactoryResolver: ComponentFactoryResolver, private widgetService: WidgetService, private widgetTypeRegistry: WidgetTypeRegistry, private widgetBuilderService: WidgetBuilderService) {
+    widgetBuilderService.widgetSelected$.subscribe(widget => {
+      this.editWidget(widget)
+    });
 
-    // Only allow dragging when using the move span.
-    dragulaService.setOptions('widget-container', {
+    this.editingPage = this.widgetService.getWidgetPage('my-page');
+
+    // Set the current page on the widget builder service
+    this.widgetBuilderService.widgetPage = this.editingPage;
+  }
+
+  /**
+   * @inheritDoc
+   */
+  ngOnInit() {
+    // Set the dragula options
+    this.dragulaService.setOptions('widget-container', {
       moves: function (el, container, handle) {
         return handle.classList.contains('drag');
       }
     });
 
-    widgetBuilderService.widgetSelected$.subscribe(
-      widget => {
-        this.editWidget(widget)
-      });
-  }
+    // Get a reference to the widget-container drake
+    let drake = this.dragulaService.find('widget-container');
 
-  ngOnInit() {
-    this.widgets = this.widgetService.getWidgets();
-    this.editingPage = this.widgetService.getWidgetPage('my-page');
+    // Init the autoscroll
+    this.scroll = autoScroll(document.querySelector('#widget-builder-preview'), {
+      margin: 30,
+      maxSpeed: 25,
+      scrollWhenOutside: true,
 
-    // Set the current page on the widget builder service
-    this.widgetBuilderService.widgetPage = this.editingPage;
+      // Only scroll when drake is dragging
+      autoScroll: function () {
+        return this.down && drake.drake.dragging;
+      }
+    });
   }
 
   /**

@@ -1,5 +1,5 @@
 <div class="builder" [ngClass]="{ 'no-sidebar' : !showSidebar }">
-    <div class='preview {{ viewMode }}'>
+    <div id="widget-builder-preview" class='preview {{ viewMode }}'>
         <app-view-mode-switcher (viewModeChanged)="handleViewModeChanged($event)"></app-view-mode-switcher>
         <div class="preview-inner">
             <div class="page">
