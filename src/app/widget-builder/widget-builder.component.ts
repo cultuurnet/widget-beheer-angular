@@ -133,9 +133,15 @@ export class WidgetBuilderComponent implements OnInit {
     this.viewMode = viewMode;
   }
 
-  public click($event) {
-    let target = $event.currentTarget;
-    //this.widgetBuilderService.selectWidget();
+  /**
+   * Deselect a widget
+   * @param $event
+   */
+  public deselectWidget($event) {
+    // Only deselect the widget when allowed by the event
+    if (!$event.stopWidgetDeselect) {
+      this.widgetBuilderService.selectWidget();
+    }
   }
 
 }

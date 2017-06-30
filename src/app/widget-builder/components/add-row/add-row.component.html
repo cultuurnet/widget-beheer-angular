@@ -1,11 +1,10 @@
 <div class="row-add">
   <span class="dropdown" ngbDropdown>
-    <button class="btn btn-default btn-sm dropdown-toggle" type="button" ngbDropdownToggle>
+    <button class="btn btn-default btn-sm dropdown-toggle" type="button" ngbDropdownToggle (click)="dropToggleClick($event)">
       {{ "BUTTON_ADD_ROW" | translate}}
     </button>
     <div class="dropdown-menu">
-        <a *ngFor="let layoutType of layoutTypes" (click)="addRow(layoutType)" class="dropdown-item">
-
+        <a *ngFor="let layoutType of layoutTypes" (click)="addRow($event, layoutType)" class="dropdown-item">
           <div class="media">
             <div class="media-left">
               <img src="/assets/layouts/{{ layoutType.type }}.svg" class="component-icon">

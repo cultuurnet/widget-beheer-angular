@@ -91,8 +91,17 @@ export class RowEditComponent implements OnInit {
     modalInstance.title = 'Remove row';
     modalInstance.message = 'Are you sure you want to remove this row and all its content?';
 
-    // Remove row on confirmation
     modal.result.then(() => {
+      // If the active widget is in the current row we are removing, deselect it
+      for (let regionId in this.row.regions) {
+        if (this.row.regions.hasOwnProperty(regionId)) {
+          if (this.row.regions[regionId].widgets.indexOf(this.activeWidget) > -1) {
+            this.widgetBuilderService.selectWidget();
+          }
+        }
+      }
+
+      // Remove the row and update the observable
       this.widgetPage.removeRow(this.row);
       this.updateObservableWigetPageRows();
     });

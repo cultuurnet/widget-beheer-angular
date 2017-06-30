@@ -34,7 +34,7 @@ export class WidgetPreviewComponent {
    * @param widget
    */
   public editWidget($event, widget: Widget) {
-    $event.stopPropagation();
+    $event.stopWidgetDeselect = true;
     this.widgetBuilderService.selectWidget(widget);
   }
 

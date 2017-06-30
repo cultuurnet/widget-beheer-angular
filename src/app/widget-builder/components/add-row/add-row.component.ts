@@ -38,14 +38,27 @@ export class AddRowComponent implements OnInit {
 
   /**
    * Add a layout to the page.
+   * @param $event
    * @param layout
    */
-  addRow(layout: any): void{
+  addRow($event, layout: any): void{
+    // Stop the builder from deselecting the active widget
+    $event.stopWidgetDeselect = true;
+
+    // Add the row to the page
     let row = this.layoutTypeRegistry.getInstance(layout.type);
     this.page.addRow(row);
 
     // Update row observable
     this.widgetBuilderService.updateWidgetPageRows(row);
+  }
+
+  /**
+   * Catch the click on the droptoggle
+   * @param $event
+   */
+  public dropToggleClick($event) {
+    $event.stopWidgetDeselect = true;
   }
 
 }

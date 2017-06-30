@@ -12,13 +12,20 @@ import { WidgetBuilderService } from "../../services/widget-builder.service";
 })
 export class AddWidgetComponent implements OnInit {
 
+  /**
+   * Available widget types
+   */
   public widgetTypes = [];
 
+  /**
+   * The region
+   */
   @Input() region: Region;
 
   /**
    * AddWidgetComponent constructor.
    * @param widgetTypeRegistry
+   * @param widgetBuilderService
    */
   constructor(private widgetTypeRegistry: WidgetTypeRegistry, private widgetBuilderService: WidgetBuilderService) {
   }
@@ -41,14 +48,22 @@ export class AddWidgetComponent implements OnInit {
    * @param $event
    * @param widgetType
    */
-  addWidget($event, widgetType: any): void{
+  public addWidget($event, widgetType: any): void{
+    $event.stopWidgetDeselect = true;
+
     let widget = this.widgetTypeRegistry.getInstance(widgetType.type, widgetType.settings);
     this.region.addWidget(widget);
+
+    // Select the widget
     this.widgetBuilderService.selectWidget(widget);
   }
 
-  click($event) {
-    $event.stopPropagation();
+  /**
+   * Catch the click on the droptoggle
+   * @param $event
+   */
+  public dropToggleClick($event) {
+    $event.stopWidgetDeselect = true;
   }
 
 }
