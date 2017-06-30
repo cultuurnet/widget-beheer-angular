@@ -83,8 +83,13 @@ export class RowEditComponent implements OnInit {
 
   /**
    * Remove a layout row from the page.
+   * @param $event
    */
-  removeRow(): void{
+  removeRow($event): void{
+    // Stop widget deselect
+    $event.stopWidgetDeselect = true;
+
+    // Show the confirmation modal
     let modal = this.modalService.open(ConfirmationModalComponent);
     let modalInstance = modal.componentInstance;
 
@@ -121,15 +126,19 @@ export class RowEditComponent implements OnInit {
 
   /**
    * Move a layout row up the page.
+   * @param $event
    */
-  moveRowUp() {
+  moveRowUp($event) {
+    $event.stopWidgetDeselect = true;
     this.moveRow();
   }
 
   /**
    * Move a layout row up the page.
+   * @param $event
    */
-  moveRowDown() {
+  moveRowDown($event) {
+    $event.stopWidgetDeselect = true;
     this.moveRow(RowEditComponent.ROW_DIRECTION_DOWN)
   }
 
