@@ -14,20 +14,33 @@ export class WidgetBuilderService {
   public widgetPage: WidgetPage;
 
   /**
-   * Wiget page rows subject
+   * Widget page rows subject
    * @type {Subject<any>}
    */
   private widgetPageRows = new Subject<any>();
 
-  // Observable string sources
-  private widgetSelectedSource = new Subject<Widget>();
+  /**
+   * Widget selected subject
+   * @type {Subject<Widget>}
+   */
+  private widgetSelected = new Subject<Widget>();
 
-  // Observable string streams
-  widgetSelected$ = this.widgetSelectedSource.asObservable();
+  /**
+   * Observable selected widget
+   */
+  public widgetSelected$ = this.widgetSelected.asObservable();
 
-  // Service message commands
+  /**
+   * Observable widget page rows
+   */
+  public widgetPageRows$ = this.widgetPageRows.asObservable();
+
+  /**
+   * Update the widget selected subject with the selected widget.
+   * @param widget
+   */
   selectWidget(widget: Widget) {
-    this.widgetSelectedSource.next(widget);
+    this.widgetSelected.next(widget);
   }
 
   /**
@@ -36,14 +49,6 @@ export class WidgetBuilderService {
    */
   updateWidgetPageRows(row: Layout) {
     this.widgetPageRows.next(row);
-  }
-
-  /**
-   * Returns the widget page rows as observable
-   * @returns {Observable<any>}
-   */
-  getWidgetPageRows(): Observable<any> {
-    return this.widgetPageRows.asObservable();
   }
 
 }

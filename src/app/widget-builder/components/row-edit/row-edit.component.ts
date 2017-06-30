@@ -67,7 +67,7 @@ export class RowEditComponent implements OnInit {
     this.updateIndex();
 
     // Subscribe to the widgetPageRows observable
-    this.widgetPageRows = this.widgetBuilderService.getWidgetPageRows().subscribe(row => {
+    this.widgetPageRows = this.widgetBuilderService.widgetPageRows$.subscribe(row => {
       this.updateIndex();
     });
   }

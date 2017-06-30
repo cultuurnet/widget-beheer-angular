@@ -201,11 +201,16 @@ body {
   color: #333333;
   border: 1px solid #DDD;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
   padding: 0;
   margin: 0;
   line-height: 30px; }
+
+.actions-bar .btn i {
+  display: block;
+  width: 30px;
+  height: 30px;
+  line-height:30px;
+}
 
 .actions-bar--component {
   background-color: #004F94;

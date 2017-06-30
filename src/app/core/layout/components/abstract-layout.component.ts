@@ -4,8 +4,15 @@ import { Widget } from "../../widget/widget";
 
 export abstract class AbstractLayoutComponent {
 
+  /**
+   * The Layout regions
+   */
   @Input() regions: any;
-  public selectedWidget;
+
+  /**
+   * The selected widget
+   */
+  public selectedWidget: Widget;
 
   /**
    * Construct the row preview.
@@ -16,7 +23,6 @@ export abstract class AbstractLayoutComponent {
       widget => {
         this.selectedWidget = widget
       });
-
   }
 
   /**

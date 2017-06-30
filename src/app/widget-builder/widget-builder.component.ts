@@ -39,7 +39,7 @@ export class WidgetBuilderComponent implements OnInit {
   public editing: boolean;
 
   /**
-   * Indicatis if the sidebar is being shown or not
+   * Indicates the sidebar is being shown or not
    */
   public showSidebar: boolean = true;
 
@@ -49,7 +49,7 @@ export class WidgetBuilderComponent implements OnInit {
   public viewMode: string;
 
   /**
-   * Reference to the dom autoscroller
+   * Reference to dom-autoscroller
    */
   public scroll: any;
 
