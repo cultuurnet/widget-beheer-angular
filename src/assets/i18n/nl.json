@@ -3,6 +3,8 @@
   "BUTTON_ADD_WIDGET": "Blok toevoegen",
   "BUTTON_ADD_ROW": "Rij toevoegen",
   "Remove row": "Rij verwijderen",
+  "Remove widget": "Widget verwijderen",
+  "Are you sure you want to remove this widget?": "Ben je zeker dat je deze widget wil verwijderen?",
   "Are you sure you want to remove this row and all its content?": "Ben je zeker dat je deze rij en al zijn inhoud wil verwijderen?",
   "Yes": "Ja",
   "No": "Nee"
