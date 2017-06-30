@@ -39,7 +39,7 @@ export class WidgetBuilderService {
    * Update the widget selected subject with the selected widget.
    * @param widget
    */
-  selectWidget(widget: Widget) {
+  selectWidget(widget?: Widget) {
     this.widgetSelected.next(widget);
   }
 

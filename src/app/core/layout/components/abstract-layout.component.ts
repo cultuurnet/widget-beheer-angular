@@ -19,18 +19,9 @@ export abstract class AbstractLayoutComponent {
    * @param widgetBuilderService
    */
   constructor(protected widgetBuilderService: WidgetBuilderService) {
-    widgetBuilderService.widgetSelected$.subscribe(
-      widget => {
+    widgetBuilderService.widgetSelected$.subscribe(widget => {
         this.selectedWidget = widget
-      });
-  }
-
-  /**
-   * Start editing the given widget.
-   * @param widget
-   */
-  public editWidget(widget: Widget) {
-    this.widgetBuilderService.selectWidget(widget);
+    });
   }
 
 }

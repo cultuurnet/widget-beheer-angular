@@ -103,18 +103,20 @@ export class WidgetBuilderComponent implements OnInit {
    * Start editing the given widget.
    * @param widget
    */
-  public editWidget(widget: Widget) {
-    this.editing = true;
+  public editWidget(widget?: Widget) {
     this.activeWidget = widget;
-
-    let widgetType = this.widgetTypeRegistry.getWidgetType(widget.type);
-    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(widgetType.editComponent);
 
     let viewContainerRef = this.editForm.viewContainerRef;
     viewContainerRef.clear();
 
-    let componentRef = viewContainerRef.createComponent(componentFactory);
-    (<AbstractWidgetEditComponent>componentRef.instance).settings = widget.settings;
+    // Render the widget edit component
+    if (widget) {
+      let widgetType = this.widgetTypeRegistry.getWidgetType(widget.type);
+      let componentFactory = this._componentFactoryResolver.resolveComponentFactory(widgetType.editComponent);
+
+      let componentRef = viewContainerRef.createComponent(componentFactory);
+      (<AbstractWidgetEditComponent>componentRef.instance).settings = widget.settings;
+    }
   }
 
   /**
@@ -129,6 +131,11 @@ export class WidgetBuilderComponent implements OnInit {
    */
   public handleViewModeChanged(viewMode: string) {
     this.viewMode = viewMode;
+  }
+
+  public click($event) {
+    let target = $event.currentTarget;
+    //this.widgetBuilderService.selectWidget();
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="builder" [ngClass]="{ 'no-sidebar' : !showSidebar }">
-    <div id="widget-builder-preview" class='preview {{ viewMode }}'>
+    <div (click)="click($event)" id="widget-builder-preview" class='preview {{ viewMode }}'>
         <app-view-mode-switcher (viewModeChanged)="handleViewModeChanged($event)"></app-view-mode-switcher>
         <div class="preview-inner">
             <div class="page">
@@ -20,10 +20,10 @@
             </div>
         </div>
         <div class="sidebar-inner">
-            <div [ngClass]="{ 'hidden' : !editing }">
+            <div [ngClass]="{ 'hidden' : !activeWidget }">
                 <ng-template widget-edit></ng-template>
             </div>
-            <div class="tip" *ngIf="!editing">
+            <div class="tip" *ngIf="!activeWidget">
                 <h2>{{ 'TRANSLATION_DEMO' | translate }}</h2>
                 <p>Stel je widget samen in drie stappen:</p>
                 <ol>

@@ -5,6 +5,7 @@ import { WidgetBuilderService } from "../../services/widget-builder.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationModalComponent } from "../../../core/modal/components/confirmation-modal.component";
 import { Subscription } from "rxjs";
+import { Widget } from "../../../core/widget/widget";
 
 /**
  * The row edit component contains the actions (move up, move down, remove,...)
@@ -23,6 +24,11 @@ export class RowEditComponent implements OnInit {
    * The row layout
    */
   @Input() row: Layout;
+
+  /**
+   * The active widget;
+   */
+  private activeWidget: Widget;
 
   /**
    * Reference to the widget page.
@@ -55,6 +61,9 @@ export class RowEditComponent implements OnInit {
    * @param modalService
    */
   constructor(private widgetBuilderService: WidgetBuilderService, private modalService: NgbModal) {
+    widgetBuilderService.widgetSelected$.subscribe(widget => {
+      this.activeWidget = widget;
+    });
   }
 
   /**

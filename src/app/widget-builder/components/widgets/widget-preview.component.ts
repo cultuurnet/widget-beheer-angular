@@ -29,13 +29,13 @@ export class WidgetPreviewComponent {
   }
 
   /**
-   * Respond to a click outside the current component.
-   * @param event
+   * Start editing the given widget.
+   * @param $event
+   * @param widget
    */
-  public onClickOutside(event:Object) {
-    if(event && event['value'] === true) {
-      console.log(event);
-    }
+  public editWidget($event, widget: Widget) {
+    $event.stopPropagation();
+    this.widgetBuilderService.selectWidget(widget);
   }
 
   /**
@@ -52,6 +52,9 @@ export class WidgetPreviewComponent {
     // Remove row on confirmation
     modal.result.then(() => {
       this.widgetBuilderService.widgetPage.removeWidget(widget);
+
+      // Remove active widget
+      this.widgetBuilderService.selectWidget();
     });
   }
 }

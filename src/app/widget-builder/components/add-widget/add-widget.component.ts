@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { WidgetTypeRegistry } from "../../../core/widget/services/widget-type-registry.service";
 import { Region } from "../../../core/layout/region";
+import { WidgetBuilderService } from "../../services/widget-builder.service";
 
 /**
  * Component used for adding new widgets to the widget page rows.
@@ -19,7 +20,7 @@ export class AddWidgetComponent implements OnInit {
    * AddWidgetComponent constructor.
    * @param widgetTypeRegistry
    */
-  constructor(private widgetTypeRegistry: WidgetTypeRegistry) {
+  constructor(private widgetTypeRegistry: WidgetTypeRegistry, private widgetBuilderService: WidgetBuilderService) {
   }
 
   /**
@@ -37,10 +38,17 @@ export class AddWidgetComponent implements OnInit {
 
   /**
    * Add a widget to the region.
-   * @param widget
+   * @param $event
+   * @param widgetType
    */
-  addWidget(widget: any): void{
-    this.region.addWidget(this.widgetTypeRegistry.getInstance(widget.type, widget.settings));
+  addWidget($event, widgetType: any): void{
+    let widget = this.widgetTypeRegistry.getInstance(widgetType.type, widgetType.settings);
+    this.region.addWidget(widget);
+    this.widgetBuilderService.selectWidget(widget);
+  }
+
+  click($event) {
+    $event.stopPropagation();
   }
 
 }
