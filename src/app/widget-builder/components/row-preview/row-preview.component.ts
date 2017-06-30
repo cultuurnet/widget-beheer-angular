@@ -4,7 +4,7 @@ import { AbstractLayoutComponent } from "../../../core/layout/components/abstrac
 import { LayoutTypeRegistry } from "../../../core/layout/services/layout-type-registry.service";
 
 /**
- * Resolves to, and previews the needed layout component.
+ * Provides a row preview component.
  */
 @Component({
   'selector': 'app-row-preview',

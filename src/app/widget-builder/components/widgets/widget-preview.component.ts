@@ -13,8 +13,6 @@ import { ConfirmationModalComponent } from "../../../core/modal/components/confi
 })
 export class WidgetPreviewComponent {
 
-  public listen: boolean;
-
   /**
    * The widget being previewed
    */
