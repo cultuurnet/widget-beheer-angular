@@ -51,9 +51,14 @@ export class ViewModeSwitcherComponent implements OnInit {
 
   /**
    * Toggle the active view mode.
+   * @param $event
    * @param device
    */
-  public toggleViewMode(device: string) {
+  public toggleViewMode($event, device: string) {
+    // Stop the builder from deselecting the active widget
+    $event.stopWidgetDeselect = true;
+
+    // set the current active view mode
     this.activeViewMode = device;
 
     // Emit event

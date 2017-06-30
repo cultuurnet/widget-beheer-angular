@@ -1,7 +1,7 @@
 <div class="switcher">
   <div class="device-switcher">
     <div class="btn-group">
-      <button *ngFor="let viewMode of viewModes" type="button" class="btn btn-default navbar-btn" (click)="toggleViewMode(viewMode.type)" [ngClass]="{'active': activeViewMode === viewMode.type}">
+      <button *ngFor="let viewMode of viewModes" type="button" class="btn btn-default navbar-btn" (click)="toggleViewMode($event, viewMode.type)" [ngClass]="{'active': activeViewMode === viewMode.type}">
         <i class="fa fa-{{ viewMode.type }}" aria-hidden="true"></i>
         <span>{{ viewMode.label | translate }}</span>
       </button>
