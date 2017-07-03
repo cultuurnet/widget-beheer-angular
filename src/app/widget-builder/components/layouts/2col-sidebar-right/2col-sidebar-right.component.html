@@ -1,16 +1,18 @@
-<div class="md">
-    <div [dragula]='"widget-container"' style="border: solid 1px red; padding: 5px;" [dragulaModel]='regions.content.widgets'>
-        <app-widget-preview [widget]="widget" class="component" [ngClass]="{ 'selected' : widget === selectedWidget }"
-                            *ngFor="let widget of regions.content.widgets">
-        </app-widget-preview>
+<div class="row">
+    <div class="md">
+        <div [dragula]='"widget-container"' class="layout--region" [dragulaModel]='regions.content.widgets'>
+            <app-widget-preview [widget]="widget" class="component" [ngClass]="{ 'selected' : widget === selectedWidget }"
+                                *ngFor="let widget of regions.content.widgets">
+            </app-widget-preview>
+        </div>
+        <app-add-widget [region]="regions.content"></app-add-widget>
     </div>
-    <app-add-widget [region]="regions.content"></app-add-widget>
-</div>
-<div class="sm">
-    <div [dragula]='"widget-container"' style="border: solid 1px red; padding: 5px;" [dragulaModel]='regions.sidebar_right.widgets'>
-        <app-widget-preview [widget]="widget" class="component" [ngClass]="{ 'selected' : widget === selectedWidget }"
-                            *ngFor="let widget of regions.sidebar_right.widgets">
-        </app-widget-preview>
+    <div class="sm">
+        <div [dragula]='"widget-container"' class="layout--region" [dragulaModel]='regions.sidebar_right.widgets'>
+            <app-widget-preview [widget]="widget" class="component" [ngClass]="{ 'selected' : widget === selectedWidget }"
+                                *ngFor="let widget of regions.sidebar_right.widgets">
+            </app-widget-preview>
+        </div>
+        <app-add-widget [region]="regions.sidebar_right"></app-add-widget>
     </div>
-    <app-add-widget [region]="regions.sidebar_right"></app-add-widget>
 </div>
