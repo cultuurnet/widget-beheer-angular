@@ -18,6 +18,28 @@ export class Config {
                   'search_query': 'q=mysearch',
                   'header': {
                     'body': 'Header text'
+                  },
+                  'fields': {
+                    'what': {
+                      'keyword_search': {
+                        'show' : true,
+                        'label': 'Wat',
+                        'placeholder': 'Bv. concert, Bart Peeters,...',
+                      },
+                      'group_filters': [
+                        {
+                          'label': 'Label',
+                          'placeholder': 'Some placeholder',
+                          'type': 'select',
+                          'options': [
+                            {
+                              'label': 'Gent',
+                              'query': 'zip=9000'
+                            },
+                          ]
+                        }
+                      ]
+                    }
                   }
                 }
               },
