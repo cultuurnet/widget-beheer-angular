@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { WidgetBuilderService } from "../../../services/widget-builder.service";
+import { Component } from "@angular/core";
 import { AbstractLayoutComponent } from "../../../../core/layout/components/abstract-layout.component";
 
 /**
@@ -10,12 +9,4 @@ import { AbstractLayoutComponent } from "../../../../core/layout/components/abst
   'templateUrl': './2col-sidebar-left.component.html',
 })
 export class TwoColSidebarLeftLayoutComponent extends AbstractLayoutComponent {
-
-  /**
-   * Construct the row preview.
-   */
-  constructor(protected widgetBuilderService: WidgetBuilderService) {
-    super(widgetBuilderService);
-  }
-
 }
