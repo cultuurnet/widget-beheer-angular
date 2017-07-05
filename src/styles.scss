@@ -145,6 +145,7 @@ body {
   color: #777; }
 
 .component {
+  display: block;
   text-align: left;
   margin: 5px;
   padding: 5px;
@@ -200,11 +201,16 @@ body {
   color: #333333;
   border: 1px solid #DDD;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
   padding: 0;
   margin: 0;
   line-height: 30px; }
+
+.actions-bar .btn i {
+  display: block;
+  width: 30px;
+  height: 30px;
+  line-height:30px;
+}
 
 .actions-bar--component {
   background-color: #004F94;
@@ -391,17 +397,6 @@ fieldset {
   margin-bottom: 7.5px;
   width: 100%;
   padding: 0 5px; }
-
-.outer-row {
-  border: 1px dotted #ccc;
-  padding: 5px 5px 5px 30px;
-  margin-left: 15px;
-  position: relative; }
-
-.component-add {
-  text-align: center;
-  margin: 5px 0;
-  cursor: pointer; }
 
 .row-add {
   margin: 5px 0;
@@ -639,4 +634,36 @@ fieldset {
   color: #777620; }
 
 .template .panel-body {
-  min-height: 240px; }
+  min-height: 240px;
+}
+
+.outer-row {
+  margin: 0 30px 10px 30px;
+  padding: 5px;
+  position: relative;
+  border: 1px dotted #ccc;
+}
+
+.layout--region {
+  padding: 5px 5px 50px 5px;
+  border: 1px dotted #ccc;
+}
+
+app-add-row{
+  display: block;
+  text-align: center;
+}
+
+.component-add {
+  text-align: center;
+  margin: -40px 0 5px 0;
+  cursor: pointer;
+}
+
+.layout--preview {
+  padding: 2px 20px 10px 20px;
+}
+
+.layout--preview > :first-child {
+  width: 100%;
+}

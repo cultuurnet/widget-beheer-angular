@@ -1,35 +1,37 @@
-import {
-    AfterViewInit, Component, ComponentFactoryResolver, EventEmitter, Input, OnInit, Output,
-    ViewChild
-} from '@angular/core';
-import {RowLayoutDirective} from '../../directives/row-layout.directive';
-import {TwoColSidebarLeftComponent} from '../../../layouts/2col-sidebar-left/2col-sidebar-left.component';
-import {Widget} from '../../../shared/widget';
+import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild } from '@angular/core';
+import { RowLayoutDirective } from '../../directives/row-layout.directive';
+import { AbstractLayoutComponent } from "../../../core/layout/components/abstract-layout.component";
+import { LayoutTypeRegistry } from "../../../core/layout/services/layout-type-registry.service";
 
+/**
+ * Provides a row preview component.
+ */
 @Component({
-    'selector': 'app-row-preview',
-    'templateUrl': './row-preview.component.html'
+  'selector': 'app-row-preview',
+  'templateUrl': './row-preview.component.html'
 })
 export class RowPreviewComponent implements OnInit {
 
-    @ViewChild(RowLayoutDirective) preview: RowLayoutDirective;
-    @Input() row: any;
+  @ViewChild(RowLayoutDirective) preview: RowLayoutDirective;
+  @Input() row: any;
 
-    /**
-     * Construct the row preview.
-     *
-     * @param {ComponentFactoryResolver} _componentFactoryResolver
-     */
-    constructor(private _componentFactoryResolver: ComponentFactoryResolver) {}
+  /**
+   * Construct the row preview.
+   *
+   * @param {ComponentFactoryResolver} _componentFactoryResolver
+   * @param layoutTypeRegistry
+   */
+  constructor(private _componentFactoryResolver: ComponentFactoryResolver, private layoutTypeRegistry: LayoutTypeRegistry) {
+  }
 
-    ngOnInit() {
-        let componentFactory = this._componentFactoryResolver.resolveComponentFactory(TwoColSidebarLeftComponent);
-        let viewContainerRef = this.preview.viewContainerRef;
-        viewContainerRef.clear();
+  ngOnInit() {
+    let componentType = this.layoutTypeRegistry.getLayoutType(this.row.type);
+    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(componentType.component);
+    let viewContainerRef = this.preview.viewContainerRef;
+    viewContainerRef.clear();
 
-        let componentRef = viewContainerRef.createComponent(componentFactory);
-
-        (<TwoColSidebarLeftComponent>componentRef.instance).regions = this.row.regions;
-    }
+    let componentRef = viewContainerRef.createComponent(componentFactory);
+    (<AbstractLayoutComponent>componentRef.instance).regions = this.row.regions;
+  }
 
 }

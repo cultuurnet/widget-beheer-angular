@@ -4,14 +4,26 @@ import { FormsModule } from "@angular/forms";
 import { Http, HttpModule } from "@angular/http";
 import { AppComponent } from "./app.component";
 import { WidgetBuilderModule } from "./widget-builder/widget-builder.module";
-import { WidgetTypeRegistry } from "./shared/services/widget-type-registry.service";
-import { SearchFormWidget } from "./widgets/search-form-widget/search-form-widget.widget";
-import { SearchResultsWidget } from "./widgets/search-results-widget/search-results-widget.widget";
-import { NgbDropdownModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
-import { PageTemplateRegistry } from "./shared/services/page-template-registry.service";
-import { MyTemplate } from "./page-templates/my-template";
+import { WidgetTypeRegistry } from "./core/widget/services/widget-type-registry.service";
+import { LayoutTypeRegistry } from "./core/layout/services/layout-type-registry.service";
+import { SearchFormWidget } from "./core/widget/widgets/search-form-widget/search-form-widget.widget";
+import { SearchResultsWidget } from "./core/widget/widgets/search-results-widget/search-results-widget.widget";
+import { TwoColSidebarLeftLayout } from "./core/layout/layouts/2col-sidebar-left/2col-sidebar-left.layout";
+import { TwoColSidebarLeftLayoutComponent } from "./widget-builder/components/layouts/2col-sidebar-left/2col-sidebar-left-layout.component";
+import { FullWidthLayoutComponent } from "./widget-builder/components/layouts/full-width/full-width-layout.component";
+import { FullWidthLayout } from "./core/layout/layouts/full-width/full-width.layout";
+import { CoreModule } from "./core/core.module";
+import { SearchFormWidgetEditComponent } from "./widget-builder/components/widgets/search-form-widget/search-form-widget-edit.component";
+import { SearchResultsWidgetEditComponent } from "./widget-builder/components/widgets/search-results-widget/search-results-widget-edit.component";
+import { TwoColSidebarRightayout } from "./core/layout/layouts/2col-sidebar-right/2col-sidebar-right.layout";
+import { TwoColSidebarRightLayoutComponent } from "./widget-builder/components/layouts/2col-sidebar-right/2col-sidebar-right-layout.component";
+import { ThreeColDoubleSidebarLayout } from "./core/layout/layouts/3col-double-sidebar/3col-double-sidebar.layout";
+import { ThreeColDoubleSidebarLayoutComponent } from "./widget-builder/components/layouts/3col-double-sidebar/3col-double-sidebar-layout.component";
+import { PageTemplateRegistry } from "./core/template/services/page-template-registry.service";
+import { MyTemplate } from "./core/template/page-templates/my-template";
 
 /**
  * AoT requires an exported function for factories
@@ -35,20 +47,25 @@ export function HttpLoaderFactory(http: Http) {
         deps: [Http]
       }
     }),
+    CoreModule,
     WidgetBuilderModule,
-    NgbModule.forRoot(),
-    NgbDropdownModule
+    NgbModule.forRoot()
   ],
   bootstrap: [AppComponent],
-  providers: [WidgetTypeRegistry, PageTemplateRegistry]
 })
 
 export class AppModule {
 
-  constructor(widgetTypeRegistry: WidgetTypeRegistry, pageTemplateRegistry: PageTemplateRegistry) {
+  constructor(widgetTypeRegistry: WidgetTypeRegistry, layoutTypeRegistry: LayoutTypeRegistry, pageTemplateRegistry: PageTemplateRegistry) {
     // Register widget types
-    widgetTypeRegistry.register('search-form', SearchFormWidget, 'Search form');
-    widgetTypeRegistry.register('search-results', SearchResultsWidget, 'Search results');
+    widgetTypeRegistry.register('search-form', 'Search form', SearchFormWidget, SearchFormWidgetEditComponent);
+    widgetTypeRegistry.register('search-results', 'Search results', SearchResultsWidget, SearchResultsWidgetEditComponent);
+
+    // Register layouts
+    layoutTypeRegistry.register('2col-sidebar-left', 'Two col sidebar left', TwoColSidebarLeftLayout, TwoColSidebarLeftLayoutComponent);
+    layoutTypeRegistry.register('2col-sidebar-right', 'Two col sidebar right', TwoColSidebarRightayout, TwoColSidebarRightLayoutComponent);
+    layoutTypeRegistry.register('3col-double-sidebar', 'Three col double sidebar', ThreeColDoubleSidebarLayout, ThreeColDoubleSidebarLayoutComponent);
+    layoutTypeRegistry.register('full-width', 'Full width', FullWidthLayout, FullWidthLayoutComponent);
 
     // Register page templates
     pageTemplateRegistry.register('my-template', new MyTemplate());

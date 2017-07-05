@@ -4,10 +4,10 @@
   "uid": "uid uitid user",
   "rows": [
     {
-      "type" : "2col-sidebar-left",
+      "type": "2col-sidebar-left",
       "regions": {
         "sidebar_left": {
-          "widgets" : [
+          "widgets": [
             {
               "type": "search-form",
               "settings": {
@@ -76,7 +76,7 @@
       }
     },
     {
-      "type" : "full-width",
+      "type": "full-width",
       "regions": {
         "content": {
           "widgets": [

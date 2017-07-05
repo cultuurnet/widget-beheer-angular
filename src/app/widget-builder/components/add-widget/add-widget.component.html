@@ -1,22 +1,19 @@
 <div class="component-add">
   <span class="dropdown" ngbDropdown>
-    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" ngbDropdownToggle>
-      Blok toevoegen
+    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" ngbDropdownToggle (click)="dropToggleClick($event)">
+      {{ "BUTTON_ADD_WIDGET" | translate }}
     </button>
     <div class="dropdown-menu">
-
-        <a *ngFor="let widgetType of widgetTypes" (click)="addWidget(widgetType)" class="dropdown-item">
-
+        <a *ngFor="let widgetType of widgetTypes" (click)="addWidget($event, widgetType)" class="dropdown-item">
           <div class="media">
             <div class="media-left">
               <img src="/assets/widgets/{{ widgetType.type }}-widget.svg" class="component-icon">
             </div>
             <div class="media-body">
-              <p class="component-label">{{ widgetType.label }}</p>
+              <p class="component-label">{{ widgetType.label | translate }}</p>
             </div>
           </div>
         </a>
-
     </div>
   </span>
 </div>

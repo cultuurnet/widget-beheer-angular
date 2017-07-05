@@ -1,26 +1,69 @@
-import {Component, OnInit} from '@angular/core';
-import {WidgetTypeRegistry} from '../../../shared/services/widget-type-registry.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { WidgetTypeRegistry } from "../../../core/widget/services/widget-type-registry.service";
+import { Region } from "../../../core/layout/region";
+import { WidgetBuilderService } from "../../services/widget-builder.service";
 
+/**
+ * Component used for adding new widgets to the widget page rows.
+ */
 @Component({
-    selector: 'app-add-widget',
-    templateUrl: './add-widget.component.html',
+  selector: 'app-add-widget',
+  templateUrl: './add-widget.component.html',
 })
 export class AddWidgetComponent implements OnInit {
 
-    public widgetTypes = [];
+  /**
+   * Available widget types
+   */
+  public widgetTypes = [];
 
-    constructor(private widgetTypeRegistry: WidgetTypeRegistry) {}
+  /**
+   * The region
+   */
+  @Input() region: Region;
 
-    ngOnInit(): void {
+  /**
+   * AddWidgetComponent constructor.
+   * @param widgetTypeRegistry
+   * @param widgetBuilderService
+   */
+  constructor(private widgetTypeRegistry: WidgetTypeRegistry, private widgetBuilderService: WidgetBuilderService) {
+  }
 
-        const keys = Object.keys(this.widgetTypeRegistry.widgetTypes);
-        for (const key of keys) {
-            this.widgetTypes.push({
-                label: this.widgetTypeRegistry.widgetTypes[key].label,
-                type: key
-            });
-        }
-
-        console.log(this.widgetTypes);
+  /**
+   * @inheritDoc
+   */
+  ngOnInit(): void {
+    const keys = Object.keys(this.widgetTypeRegistry.widgetTypes);
+    for (const key of keys) {
+      this.widgetTypes.push({
+        label: this.widgetTypeRegistry.widgetTypes[key].label,
+        type: key
+      });
     }
+  }
+
+  /**
+   * Add a widget to the region.
+   * @param $event
+   * @param widgetType
+   */
+  public addWidget($event, widgetType: any): void{
+    $event.stopWidgetDeselect = true;
+
+    let widget = this.widgetTypeRegistry.getInstance(widgetType.type, widgetType.settings);
+    this.region.addWidget(widget);
+
+    // Select the widget
+    this.widgetBuilderService.selectWidget(widget);
+  }
+
+  /**
+   * Catch the click on the droptoggle
+   * @param $event
+   */
+  public dropToggleClick($event) {
+    $event.stopWidgetDeselect = true;
+  }
+
 }
