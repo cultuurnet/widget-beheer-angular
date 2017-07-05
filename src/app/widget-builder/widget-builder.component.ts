@@ -8,6 +8,7 @@ import { Widget } from "app/core/widget/widget";
 import { AbstractWidgetEditComponent } from "../core/widget/components/abstract-widget-edit-component";
 import * as autoScroll from 'dom-autoscroller';
 import { WidgetPage } from "../core/widget/widget-page";
+import { PageTemplateRegistry } from "../core/template/services/page-template-registry.service";
 
 /**
  * The widget builder component is used for editing a widget page.
@@ -61,7 +62,7 @@ export class WidgetBuilderComponent implements OnInit {
    * @param widgetTypeRegistry
    * @param widgetBuilderService
    */
-  constructor(private dragulaService: DragulaService, private _componentFactoryResolver: ComponentFactoryResolver, private widgetService: WidgetService, private widgetTypeRegistry: WidgetTypeRegistry, private widgetBuilderService: WidgetBuilderService) {
+  constructor(private dragulaService: DragulaService, private _componentFactoryResolver: ComponentFactoryResolver, private widgetService: WidgetService, private widgetTypeRegistry: WidgetTypeRegistry, private widgetBuilderService: WidgetBuilderService, private pageTemplateRegistry: PageTemplateRegistry) {
     widgetBuilderService.widgetSelected$.subscribe(widget => {
       this.editWidget(widget);
     });

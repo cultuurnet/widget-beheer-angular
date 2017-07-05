@@ -8,13 +8,15 @@ import { ConfirmationModalComponent } from "./modal/components/confirmation-moda
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { HttpLoaderFactory } from "../app.module";
 import { Http } from "@angular/http";
+import { PageTemplateRegistry } from "./template/services/page-template-registry.service";
 
 @NgModule({
   providers: [
     LayoutFactory,
     LayoutTypeRegistry,
     WidgetTypeRegistry,
-    WidgetPageFactory
+    WidgetPageFactory,
+    PageTemplateRegistry
   ],
   imports: [
     TranslateModule.forRoot({
