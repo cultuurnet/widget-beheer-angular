@@ -22,8 +22,8 @@ import { TwoColSidebarRightayout } from "./core/layout/layouts/2col-sidebar-righ
 import { TwoColSidebarRightLayoutComponent } from "./widget-builder/components/layouts/2col-sidebar-right/2col-sidebar-right-layout.component";
 import { ThreeColDoubleSidebarLayout } from "./core/layout/layouts/3col-double-sidebar/3col-double-sidebar.layout";
 import { ThreeColDoubleSidebarLayoutComponent } from "./widget-builder/components/layouts/3col-double-sidebar/3col-double-sidebar-layout.component";
-import { MyTemplate } from "./page-templates/my-template";
 import { PageTemplateRegistry } from "./core/template/services/page-template-registry.service";
+import { MyTemplate } from "./core/template/page-templates/my-template";
 
 /**
  * AoT requires an exported function for factories

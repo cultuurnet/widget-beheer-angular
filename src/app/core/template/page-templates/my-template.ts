@@ -1,4 +1,4 @@
-import { PageTemplate } from "../core/template/pageTemplate";
+import { PageTemplate } from "../pageTemplate";
 
 export class MyTemplate implements PageTemplate {
   public title: string = 'My template';
