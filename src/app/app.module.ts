@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { Http, HttpModule } from "@angular/http";
 import { AppComponent } from "./app.component";
 import { WidgetBuilderModule } from "./widget-builder/widget-builder.module";
-import { NgbDropdownModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { WidgetTypeRegistry } from "./core/widget/services/widget-type-registry.service";
@@ -22,6 +22,8 @@ import { TwoColSidebarRightayout } from "./core/layout/layouts/2col-sidebar-righ
 import { TwoColSidebarRightLayoutComponent } from "./widget-builder/components/layouts/2col-sidebar-right/2col-sidebar-right-layout.component";
 import { ThreeColDoubleSidebarLayout } from "./core/layout/layouts/3col-double-sidebar/3col-double-sidebar.layout";
 import { ThreeColDoubleSidebarLayoutComponent } from "./widget-builder/components/layouts/3col-double-sidebar/3col-double-sidebar-layout.component";
+import { PageTemplateRegistry } from "./core/template/services/page-template-registry.service";
+import { MyTemplate } from "./core/template/page-templates/my-template";
 
 /**
  * AoT requires an exported function for factories
@@ -54,7 +56,8 @@ export function HttpLoaderFactory(http: Http) {
 
 export class AppModule {
 
-  constructor(widgetTypeRegistry: WidgetTypeRegistry, layoutTypeRegistry: LayoutTypeRegistry) {
+  constructor(widgetTypeRegistry: WidgetTypeRegistry, layoutTypeRegistry: LayoutTypeRegistry, pageTemplateRegistry: PageTemplateRegistry) {
+    // Register widget types
     widgetTypeRegistry.register('search-form', 'Search form', SearchFormWidget, SearchFormWidgetEditComponent);
     widgetTypeRegistry.register('search-results', 'Search results', SearchResultsWidget, SearchResultsWidgetEditComponent);
 
@@ -63,6 +66,9 @@ export class AppModule {
     layoutTypeRegistry.register('2col-sidebar-right', 'Two col sidebar right', TwoColSidebarRightayout, TwoColSidebarRightLayoutComponent);
     layoutTypeRegistry.register('3col-double-sidebar', 'Three col double sidebar', ThreeColDoubleSidebarLayout, ThreeColDoubleSidebarLayoutComponent);
     layoutTypeRegistry.register('full-width', 'Full width', FullWidthLayout, FullWidthLayoutComponent);
+
+    // Register page templates
+    pageTemplateRegistry.register('my-template', new MyTemplate());
   }
 
 }
