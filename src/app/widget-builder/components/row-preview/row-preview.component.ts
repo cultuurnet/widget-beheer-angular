@@ -37,7 +37,7 @@ export class RowPreviewComponent implements OnInit {
   @Input() index: number;
 
   /**
-   * The currently active widget
+   * The currently active
    */
   public activeWidget: Widget;
 

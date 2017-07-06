@@ -26,30 +26,33 @@ export class Config {
                         'label': 'Wat',
                         'placeholder': 'Bv. concert, Bart Peeters,...',
                       },
-                      'group_filters': [
-                        {
-                          'label': 'Group filter label',
-                          'placeholder': 'Some placeholder',
-                          'type': 'select_single',
-                          'options': [
-                            {
-                              'label': 'Gent',
-                              'query': 'zip=9000'
-                            },
-                          ]
-                        },
-                        {
-                          'label': 'Some custom label',
-                          'placeholder': 'Some placeholder',
-                          'type': 'select_multiple',
-                          'options': [
-                            {
-                              'label': 'Gent',
-                              'query': 'zip=9000'
-                            },
-                          ]
-                        }
-                      ]
+                      'group_filters': {
+                        'enabled': true,
+                        'filters': [
+                          {
+                            'label': 'Group filter label',
+                            'placeholder': 'Some placeholder',
+                            'type': 'select_single',
+                            'options': [
+                              {
+                                'label': 'Gent',
+                                'query': 'zip=9000'
+                              },
+                            ]
+                          },
+                          {
+                            'label': 'Some custom label',
+                            'placeholder': 'Some placeholder',
+                            'type': 'select_multiple',
+                            'options': [
+                              {
+                                'label': 'Gent',
+                                'query': 'zip=9000'
+                              },
+                            ]
+                          }
+                        ]
+                      }
                     }
                   }
                 }

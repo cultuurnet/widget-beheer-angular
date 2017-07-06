@@ -6,6 +6,8 @@
   "REMOVE_WIDGET_MODAL_MESSAGE": "Ben je zeker dat je deze widget wil verwijderen?",
   "REMOVE_ROW_MODAL_TITLE": "Rij verwijderen",
   "REMOVE_ROW_MODAL_MESSAGE": "Ben je zeker dat je deze rij en al zijn inhoud wil verwijderen?",
+  "LABEL_CHECKBOX_EXTRA_GROUP_FILTERS": "Extra groepfilters",
+  "LABEL_GROUP_FILTERS": "Groepen",
   "LABEL_GROUP_FILTER_LABEL": "Label",
   "LABEL_GROUP_FILTER_PLACEHOLDER": "Suggestie",
   "LABEL_GROUP_FILTER_TYPE": "Weergave",

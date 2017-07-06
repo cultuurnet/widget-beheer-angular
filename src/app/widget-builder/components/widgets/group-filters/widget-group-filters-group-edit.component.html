@@ -1,4 +1,4 @@
-<div>
+<div class="widget-group-filters-group-edit">
     <app-row-edit [rows]="groupFilters" [index]="index"></app-row-edit>
     <form>
         <div>
@@ -19,7 +19,7 @@
         <div>
             <fieldset class="card">
                 <legend>Filters</legend>
-                <app-widget-group-filters-group-option-edit *ngFor="let option of settings.options" [option]="option"></app-widget-group-filters-group-option-edit>
+                <app-widget-group-filters-group-option-edit *ngFor="let option of settings.options; let i = index" [options]="settings.options" [option]="option" [index]="i"></app-widget-group-filters-group-option-edit>
                 <button class="btn btn-primary btn-sm" type="button" (click)="addOption()">{{ "BUTTON_ADD_GROUP_FILTER_FILTER_OPTION" | translate }}</button>
             </fieldset>
         </div>

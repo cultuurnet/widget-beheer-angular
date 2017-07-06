@@ -180,11 +180,21 @@ body {
   margin: 0;
   padding: 0; }
 
+.widget-group-filters-group-edit .actions-list {
+  float:right;
+  width: 75%;
+  text-align: right;
+}
+
+.widget-group-filters-group-edit .actions-list li {
+  display: inline-block;
+}
+
 .outer-row:hover .actions-bar--row {
   opacity: 1;
   transform: translate(0, 0); }
 
-.actions-bar--row {
+.outer-row .actions-bar--row {
   position: absolute;
   left: -15px;
   top: 0;
@@ -192,7 +202,7 @@ body {
   transition: all 0.25s ease;
   transform: translate(0, -4px); }
 
-.actions-bar {
+.outer-row .actions-bar {
   margin: 0;
   padding: 0;
   z-index: 980; }

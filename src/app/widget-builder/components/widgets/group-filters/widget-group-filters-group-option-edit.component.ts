@@ -15,4 +15,15 @@ export class WidgetGroupFiltersGroupOptionEditComponent {
    */
   @Input() option: any;
 
+  /**
+   * The filter options
+   * @type {Array}
+   */
+  @Input() options: any = [];
+
+  /**
+   * The index of the current filter option
+   */
+  @Input() index: number;
+
 }

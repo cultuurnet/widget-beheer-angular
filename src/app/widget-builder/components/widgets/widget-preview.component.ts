@@ -21,7 +21,7 @@ export class WidgetPreviewComponent {
   /**
    * Keep track of the active widget
    */
-  private activeWidget: Widget;
+  public activeWidget: Widget;
 
   /**
    * WidgetPreviewComponent constructor.
@@ -29,9 +29,11 @@ export class WidgetPreviewComponent {
    * @param modalService
    */
   constructor(private widgetBuilderService: WidgetBuilderService, private modalService: NgbModal) {
-    widgetBuilderService.widgetSelected$.subscribe(widget => {
-      this.activeWidget = widget
+    this.widgetBuilderService.widgetSelected$.subscribe(widget => {
+      this.activeWidget = widget;
     });
+
+    this.activeWidget = widgetBuilderService.getActiveWidget();
   }
 
   /**

@@ -1,9 +1,9 @@
+<app-row-edit [rows]="options" [index]="index"></app-row-edit>
 <form>
     <div>
         <label><strong>{{ "LABEL_GROUP_FILTER_OPTION_LABEL" | translate }}</strong> <span>{{ "LABEL_GROUP_FILTER_OPTION_LABEL_INFO" | translate }}</span></label>
         <input type="text" [(ngModel)]="option.label" name="label">
     </div>
-
     <div>
         <label><strong>{{ "LABEL_GROUP_FILTER_OPTION_QUERY" | translate }}</strong> <span>{{ "LABEL_GROUP_FILTER_OPTION_QUERY_INFO" | translate }}</span></label>
         <input type="text" [(ngModel)]="option.query" name="query">
