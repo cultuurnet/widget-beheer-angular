@@ -13,7 +13,7 @@ export class WidgetGroupFiltersEditComponent {
   /**
    * The group filters
    */
-  @Input() groupFilters: any = [];
+  @Input() groupFilters: any;
 
   /**
    * The default filter type
@@ -36,7 +36,7 @@ export class WidgetGroupFiltersEditComponent {
    * Add a group filter
    */
   public addGroupFilter() {
-    this.groupFilters.push({
+    this.groupFilters.filters.push({
       type: this.defaultFilterType.type,
     });
   }

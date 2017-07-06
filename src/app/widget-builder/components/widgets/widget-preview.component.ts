@@ -43,7 +43,11 @@ export class WidgetPreviewComponent {
    */
   public editWidget($event, widget: Widget) {
     $event.stopWidgetDeselect = true;
-    this.widgetBuilderService.selectWidget(widget);
+
+    if (this.activeWidget !== widget) {
+      this.widgetBuilderService.selectWidget(widget);
+    }
+
   }
 
   /**

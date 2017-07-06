@@ -1,7 +1,6 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
 import { WidgetEditDirective } from './directives/widget-edit.directive';
 import { DragulaService } from 'ng2-dragula';
-import { WidgetService } from '../widget.service';
 import { WidgetBuilderService } from "./services/widget-builder.service";
 import { WidgetTypeRegistry } from "../core/widget/services/widget-type-registry.service";
 import { Widget } from "app/core/widget/widget";
@@ -9,6 +8,9 @@ import { AbstractWidgetEditComponent } from "../core/widget/components/abstract-
 import * as autoScroll from 'dom-autoscroller';
 import { WidgetPage } from "../core/widget/widget-page";
 import { PageTemplateRegistry } from "../core/template/services/page-template-registry.service";
+import { WidgetService } from "../core/widget/services/widget.service";
+import { WidgetPageFactory } from "../core/widget/factories/widget-page.factory";
+import { Config } from "../config";
 
 /**
  * The widget builder component is used for editing a widget page.
@@ -61,13 +63,21 @@ export class WidgetBuilderComponent implements OnInit {
    * @param widgetService
    * @param widgetTypeRegistry
    * @param widgetBuilderService
+   * @param widgetPageFactory
    */
-  constructor(private dragulaService: DragulaService, private _componentFactoryResolver: ComponentFactoryResolver, private widgetService: WidgetService, private widgetTypeRegistry: WidgetTypeRegistry, private widgetBuilderService: WidgetBuilderService, private pageTemplateRegistry: PageTemplateRegistry) {
+  constructor(
+    private dragulaService: DragulaService,
+    private _componentFactoryResolver: ComponentFactoryResolver,
+    private widgetTypeRegistry: WidgetTypeRegistry,
+    private widgetBuilderService: WidgetBuilderService,
+    private widgetPageFactory: WidgetPageFactory
+  ) {
     widgetBuilderService.widgetSelected$.subscribe(widget => {
       this.editWidget(widget);
     });
 
-    this.editingPage = this.widgetService.getWidgetPage('my-page');
+    // @todo: Get the widget page from silex and have the service pass it through the widgetPageFactory
+    this.editingPage = this.widgetPageFactory.create(Config.EXAMPLE_PAGE);
 
     // Set the current page on the widget builder service
     this.widgetBuilderService.widgetPage = this.editingPage;

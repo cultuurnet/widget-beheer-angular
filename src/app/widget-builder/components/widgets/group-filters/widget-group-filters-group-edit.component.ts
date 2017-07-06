@@ -13,7 +13,7 @@ export class WidgetGroupFiltersGroupEditComponent {
   /**
    * The group settings
    */
-  @Input() settings: any = {};
+  @Input() settings: any;
 
   /**
    * The group filter rows
@@ -31,15 +31,36 @@ export class WidgetGroupFiltersGroupEditComponent {
   public groupFilterTypes: any = group_filter_types;
 
   /**
+   * Indicates if the options are valid
+   * @type {boolean}
+   */
+  public validOptions: boolean = false;
+
+  /**
    * Add a filter option to the filter group
    */
   public addOption() {
-    if(!this.settings.hasOwnProperty('options')) {
+    if (!this.settings.hasOwnProperty('options')) {
       this.settings.options = [];
     }
 
     // Push an empty filter option on the stack
     this.settings.options.push({});
+  }
+
+  /**
+   * Validate the options
+   */
+  private validateOptions() {
+    for (let key in this.settings.options) {
+      if (this.settings.options.hasOwnProperty(key)) {
+        let option = this.settings.options[key];
+        if (!option.label || !option.query) {
+          this.validOptions = false;
+        }
+      }
+    }
+    this.validOptions = true;
   }
 
 }

@@ -24,6 +24,7 @@ import { ThreeColDoubleSidebarLayout } from "./core/layout/layouts/3col-double-s
 import { ThreeColDoubleSidebarLayoutComponent } from "./widget-builder/components/layouts/3col-double-sidebar/3col-double-sidebar-layout.component";
 import { PageTemplateRegistry } from "./core/template/services/page-template-registry.service";
 import { MyTemplate } from "./core/template/page-templates/my-template";
+import { WidgetService } from "./core/widget/services/widget.service";
 
 /**
  * AoT requires an exported function for factories
@@ -56,7 +57,13 @@ export function HttpLoaderFactory(http: Http) {
 
 export class AppModule {
 
-  constructor(widgetTypeRegistry: WidgetTypeRegistry, layoutTypeRegistry: LayoutTypeRegistry, pageTemplateRegistry: PageTemplateRegistry) {
+  /**
+   * AppModule constructor.
+   * @param widgetTypeRegistry
+   * @param layoutTypeRegistry
+   * @param pageTemplateRegistry
+   */
+  constructor(private widgetTypeRegistry: WidgetTypeRegistry, private widgetService: WidgetService, private layoutTypeRegistry: LayoutTypeRegistry, private pageTemplateRegistry: PageTemplateRegistry) {
     // Register widget types
     widgetTypeRegistry.register('search-form', 'Search form', SearchFormWidget, SearchFormWidgetEditComponent);
     widgetTypeRegistry.register('search-results', 'Search results', SearchResultsWidget, SearchResultsWidgetEditComponent);
@@ -69,6 +76,17 @@ export class AppModule {
 
     // Register page templates
     pageTemplateRegistry.register('my-template', new MyTemplate());
+
+
+    // Invoke the after init method
+    this.afterInit();
+  }
+
+  /**
+   * Tasks to be run after the app has initialized
+   */
+  private afterInit() {
+    this.widgetTypeRegistry.loadWidgetDefaultSettings();
   }
 
 }

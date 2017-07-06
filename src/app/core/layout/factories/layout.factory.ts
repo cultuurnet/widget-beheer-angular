@@ -3,6 +3,9 @@ import { Layout } from "../layout";
 import { WidgetTypeRegistry } from "../../widget/services/widget-type-registry.service";
 import { LayoutTypeRegistry } from "../services/layout-type-registry.service";
 
+/**
+ * The Layout factory is used for creating Layout objects from json strings
+ */
 @Injectable()
 export class LayoutFactory {
 

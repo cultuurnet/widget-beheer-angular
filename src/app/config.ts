@@ -26,6 +26,7 @@ export class Config {
                         'label': 'Wat',
                         'placeholder': 'Bv. concert, Bart Peeters,...',
                       },
+                      'property': 'overridden',
                       'group_filters': {
                         'enabled': true,
                         'filters': [

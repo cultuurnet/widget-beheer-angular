@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DragulaModule } from 'ng2-dragula';
 import { WidgetEditDirective } from './directives/widget-edit.directive';
-import { WidgetService } from 'app/widget.service';
 import { WidgetBuilderComponent } from './widget-builder.component';
 import { CommonModule } from '@angular/common';
 import { AddWidgetComponent } from './components/add-widget/add-widget.component';
@@ -19,7 +18,6 @@ import { TwoColSidebarRightLayoutComponent } from "./components/layouts/2col-sid
 import { ThreeColDoubleSidebarLayoutComponent } from "./components/layouts/3col-double-sidebar/3col-double-sidebar-layout.component";
 import { AddRowComponent } from "./components/add-row/add-row.component";
 import { RowEditComponent } from "./components/row-edit/row-edit.component";
-import { CoreModule } from "../core/core.module";
 import { ViewModeSwitcherComponent } from "./components/view-mode-switcher/view-mode-switcher.component";
 import { WidgetPreviewComponent } from "./components/widgets/widget-preview.component";
 import { WidgetGroupFiltersEditComponent } from "./components/widgets/group-filters/widget-group-filters-edit.component";
@@ -56,11 +54,10 @@ import { WidgetGroupFiltersGroupOptionEditComponent } from "./components/widgets
     DragulaModule,
     NgbDropdownModule,
     TranslateModule,
-    CoreModule,
     NgbAccordionModule,
     NgbTabsetModule
   ],
-  providers: [WidgetService, WidgetBuilderService],
+  providers: [WidgetBuilderService],
   entryComponents: [
     SearchFormWidgetEditComponent,
     SearchResultsWidgetEditComponent,

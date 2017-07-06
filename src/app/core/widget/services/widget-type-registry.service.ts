@@ -1,11 +1,25 @@
 import { Injectable, Type } from '@angular/core';
 import { Widget } from '../widget';
 import { AbstractWidgetEditComponent } from "../components/abstract-widget-edit-component";
+import { WidgetService } from "./widget.service";
 
+/**
+ * The widget type registry allows for registering of widget types
+ * and linking them to their components
+ */
 @Injectable()
 export class WidgetTypeRegistry {
 
-  public widgetTypes = {};
+  /**
+   * The available widget types
+   */
+  public widgetTypes: any = {};
+
+  /**
+   * WidgetTypeRegistry constructor
+   */
+  constructor(private widgetService: WidgetService) {
+  }
 
   /**
    * Register a new widget type.
@@ -18,8 +32,22 @@ export class WidgetTypeRegistry {
     this.widgetTypes[id] = {
       widget: widgetType,
       label: label,
-      editComponent: editComponent
+      editComponent: editComponent,
+      defaultSettings: {'default_settings': 'hello world'}
     };
+  }
+
+  /**
+   * Load the widget default settings onto the registered widgets
+   */
+  public loadWidgetDefaultSettings() {
+    let defaultSettings = this.widgetService.getWidgetDefaultSettings(Object.keys(this.widgetTypes));
+
+    for (let widgetType in defaultSettings) {
+      if (defaultSettings.hasOwnProperty(widgetType) &&  this.widgetTypes.hasOwnProperty(widgetType)) {
+        this.widgetTypes[widgetType].defaultSettings = defaultSettings[widgetType];
+      }
+    }
   }
 
   /**
@@ -38,8 +66,15 @@ export class WidgetTypeRegistry {
    * @param settings
    * @returns {Widget}
    */
-  public getInstance(type: string, settings: any) {
+  public getInstance(type: string, settings?: any) {
     if (this.widgetTypes.hasOwnProperty(type)) {
+
+      // Return an instance of the requested Widget type with default settings if no settings are provided
+      let defaultSettings = this.widgetTypes[type].defaultSettings;
+      if (!settings) {
+        settings = defaultSettings;
+      }
+
       return new this.widgetTypes[type].widget(type, settings);
     }
   }
