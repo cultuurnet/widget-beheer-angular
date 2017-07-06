@@ -1,0 +1,4 @@
+<div>
+    <app-widget-group-filters-group-edit *ngFor="let settings of groupFilters; let i = index" [settings]="settings" [groupFilters]="groupFilters" [index]="i"></app-widget-group-filters-group-edit>
+    <button class="btn btn-primary btn-sm" type="button" (click)="addGroupFilter()">{{ "BUTTON_ADD_GROUP_FILTER" | translate }}</button>
+</div>

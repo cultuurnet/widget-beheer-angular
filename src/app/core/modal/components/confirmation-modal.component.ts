@@ -23,12 +23,12 @@ export class ConfirmationModalComponent {
   /**
    * The confirmation modal confirm button text
    */
-  confirmButtonText: string = 'Yes';
+  confirmButtonText: string = 'CONFIRMATION_MODAL_CONFIRM';
 
   /**
    * The confirmation modal dismiss/cancel button text
    */
-  dismissButtonText: string = 'No';
+  dismissButtonText: string = 'CONFIRMATION_MODAL_DISMISS';
 
   /**
    * ConfirmationModalComponent constructor.

@@ -28,9 +28,20 @@ export class Config {
                       },
                       'group_filters': [
                         {
-                          'label': 'Label',
+                          'label': 'Group filter label',
                           'placeholder': 'Some placeholder',
-                          'type': 'select',
+                          'type': 'select_single',
+                          'options': [
+                            {
+                              'label': 'Gent',
+                              'query': 'zip=9000'
+                            },
+                          ]
+                        },
+                        {
+                          'label': 'Some custom label',
+                          'placeholder': 'Some placeholder',
+                          'type': 'select_multiple',
                           'options': [
                             {
                               'label': 'Gent',

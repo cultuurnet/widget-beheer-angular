@@ -52,8 +52,8 @@ export class WidgetPreviewComponent {
     let modal = this.modalService.open(ConfirmationModalComponent);
     let modalInstance = modal.componentInstance;
 
-    modalInstance.title = 'Remove widget';
-    modalInstance.message = 'Are you sure you want to remove this widget?';
+    modalInstance.title = 'REMOVE_WIDGET_MODAL_TITLE';
+    modalInstance.message = 'REMOVE_WIDGET_MODAL_MESSAGE';
 
     // Remove row on confirmation
     modal.result.then(() => {
