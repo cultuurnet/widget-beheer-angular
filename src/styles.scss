@@ -677,3 +677,14 @@ app-add-row{
 .layout--preview > :first-child {
   width: 100%;
 }
+
+.widget-code-preview {
+  font-size: 12px;
+  margin-top: 10px;
+  opacity: 0.5;
+  transition: opacity 200ms;
+}
+
+.widget-code-preview:hover, .selected .widget-code-preview {
+  opacity: 1;
+}
