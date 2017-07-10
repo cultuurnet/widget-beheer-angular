@@ -22,11 +22,15 @@ import { RowEditComponent } from "./components/row-edit/row-edit.component";
 import { CoreModule } from "../core/core.module";
 import { ViewModeSwitcherComponent } from "./components/view-mode-switcher/view-mode-switcher.component";
 import { WidgetPreviewComponent } from "./components/widgets/widget-preview.component";
+import { SearchResultsWidgetPreviewComponent } from "./components/widgets/search-results-widget/search-results-widget-preview.component";
+import { SearchFormWidgetPreviewComponent } from "./components/widgets/search-form-widget/search-form-widget-preview.component";
+import { WidgetPreviewDirective } from "./directives/widget-preview.directive";
 
 @NgModule({
   declarations: [
     WidgetEditDirective,
     RowLayoutDirective,
+      WidgetPreviewDirective,
     SearchFormWidgetEditComponent,
     SearchResultsWidgetEditComponent,
     WidgetBuilderComponent,
@@ -39,7 +43,9 @@ import { WidgetPreviewComponent } from "./components/widgets/widget-preview.comp
     TwoColSidebarRightLayoutComponent,
     ThreeColDoubleSidebarLayoutComponent,
     ViewModeSwitcherComponent,
-    WidgetPreviewComponent
+    WidgetPreviewComponent,
+    SearchResultsWidgetPreviewComponent,
+    SearchFormWidgetPreviewComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -61,7 +67,9 @@ import { WidgetPreviewComponent } from "./components/widgets/widget-preview.comp
     ThreeColDoubleSidebarLayoutComponent,
     FullWidthLayoutComponent,
     ViewModeSwitcherComponent,
-    WidgetPreviewComponent
+    WidgetPreviewComponent,
+    SearchResultsWidgetPreviewComponent,
+    SearchFormWidgetPreviewComponent
   ]
 })
 
