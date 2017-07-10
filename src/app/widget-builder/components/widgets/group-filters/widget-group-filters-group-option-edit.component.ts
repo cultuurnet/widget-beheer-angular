@@ -17,7 +17,17 @@ export class WidgetGroupFiltersGroupOptionEditComponent {
   @Input() option: FormGroup;
 
   /**
-   * Build a new option formgroup item
+   * The option rows
+   */
+  @Input() rows: any;
+
+  /**
+   * The index of the current option
+   */
+  @Input() index: number;
+
+  /**
+   * Build a new option item
    * @param label
    * @param query
    * @returns {FormGroup}
@@ -27,6 +37,15 @@ export class WidgetGroupFiltersGroupOptionEditComponent {
       label: new FormControl(label, Validators.required),
       query: new FormControl(query, Validators.required)
     });
+  }
+
+  /**
+   * Handle the row changed event
+   * @param change
+   */
+  public handleRowChanged(change: any) {
+    // Update the form
+    this.option.updateValueAndValidity();
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
 import { WidgetGroupFiltersGroupEditComponent } from "./widget-group-filters-group-edit.component";
 
@@ -9,7 +9,7 @@ import { WidgetGroupFiltersGroupEditComponent } from "./widget-group-filters-gro
   selector: 'app-widget-group-filters-edit',
   templateUrl: './widget-group-filters-edit.component.html'
 })
-export class WidgetGroupFiltersEditComponent implements OnInit {
+export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
 
   /**
    * The group filters model
@@ -20,6 +20,11 @@ export class WidgetGroupFiltersEditComponent implements OnInit {
    * The group filter form
    */
   public groupFilterForm: FormGroup;
+
+  /**
+   * Subscription to the filter form values
+   */
+  private formSubscription;
 
   /**
    * WidgetGroupFiltersFilterEditComponent constructor
@@ -35,9 +40,17 @@ export class WidgetGroupFiltersEditComponent implements OnInit {
     this.buildForm();
 
     // Subscribe to changes in the form and reflect them on the widget groupFilters model
-    this.groupFilterForm.valueChanges.subscribe(values => {
+    this.formSubscription = this.groupFilterForm.valueChanges.subscribe(values => {
       this.groupFilters.filters = values.filters
     });
+  }
+
+  /**
+   * @inheritDoc
+   */
+  ngOnDestroy() {
+    // Unsubscribe from the form value changes
+    this.formSubscription.unsubscribe();
   }
 
   /**

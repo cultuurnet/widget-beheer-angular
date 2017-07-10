@@ -1,4 +1,5 @@
 <div [formGroup]="option">
+    <app-row-edit [rows]="rows" [index]="index" (rowChanged)="handleRowChanged($event)"></app-row-edit>
     <div>
         <label><strong>{{ "LABEL_GROUP_FILTER_OPTION_LABEL" | translate }}</strong> <span>{{ "LABEL_GROUP_FILTER_OPTION_LABEL_INFO" | translate }}</span></label>
         <input type="text" formControlName="label">

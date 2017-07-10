@@ -58,7 +58,7 @@ export class RowEditComponent {
       originalEvent: $event
     });
 
-    modal.result.then(() => {
+    modal.result.then((result) => {
       // Remove the current row from the rows
       this.rows.splice(index, 1);
 
@@ -67,6 +67,8 @@ export class RowEditComponent {
         type: 'remove',
         originalEvent: $event
       });
+    }, (reason) => {
+      // Do nothing on dismiss, because the row hasn't changed
     });
   }
 

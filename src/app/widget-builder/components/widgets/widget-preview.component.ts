@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnDestroy } from "@angular/core";
 import { Widget } from "../../../core/widget/widget";
 import { WidgetBuilderService } from "../../services/widget-builder.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -11,7 +11,7 @@ import { ConfirmationModalComponent } from "../../../core/modal/components/confi
   selector: 'app-widget-preview',
   templateUrl: './widget-preview.component.html'
 })
-export class WidgetPreviewComponent {
+export class WidgetPreviewComponent implements OnDestroy {
 
   /**
    * The widget being previewed
@@ -24,16 +24,28 @@ export class WidgetPreviewComponent {
   public activeWidget: Widget;
 
   /**
+   * Subscription to the widget selected observable
+   */
+  private widgetSelectedSubscription;
+
+  /**
    * WidgetPreviewComponent constructor.
    * @param widgetBuilderService
    * @param modalService
    */
   constructor(private widgetBuilderService: WidgetBuilderService, private modalService: NgbModal) {
-    this.widgetBuilderService.widgetSelected$.subscribe(widget => {
+    this.widgetSelectedSubscription = this.widgetBuilderService.widgetSelected$.subscribe(widget => {
       this.activeWidget = widget;
     });
 
     this.activeWidget = widgetBuilderService.getActiveWidget();
+  }
+
+  /**
+   * @inheritDoc
+   */
+  ngOnDestroy(): void {
+    this.widgetSelectedSubscription.unsubscribe();
   }
 
   /**
@@ -47,7 +59,6 @@ export class WidgetPreviewComponent {
     if (this.activeWidget !== widget) {
       this.widgetBuilderService.selectWidget(widget);
     }
-
   }
 
   /**
@@ -62,11 +73,13 @@ export class WidgetPreviewComponent {
     modalInstance.message = 'REMOVE_WIDGET_MODAL_MESSAGE';
 
     // Remove row on confirmation
-    modal.result.then(() => {
+    modal.result.then((result) => {
       this.widgetBuilderService.widgetPage.removeWidget(widget);
 
       // Remove active widget
       this.widgetBuilderService.selectWidget();
+    }, (reason) => {
+      // Do nothing on cancel because the widget hasn't changed
     });
   }
 }

@@ -18,6 +18,16 @@ export class WidgetGroupFiltersGroupEditComponent {
   @Input() groupFilter: FormGroup;
 
   /**
+   * The group rows
+   */
+  @Input() rows: any;
+
+  /**
+   * The index of the current group
+   */
+  @Input() index: number;
+
+  /**
    * The available filter types
    */
   public filterTypes: any;
@@ -73,6 +83,15 @@ export class WidgetGroupFiltersGroupEditComponent {
       type: new FormControl(type, Validators.required),
       options: new FormArray(filterOptions)
     });
+  }
+
+  /**
+   * Handle the row changed event
+   * @param change
+   */
+  public handleRowChanged(change: any) {
+    // Update the form
+    this.groupFilter.updateValueAndValidity();
   }
 
 }

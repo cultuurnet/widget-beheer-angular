@@ -1,4 +1,5 @@
 <div [formGroup]="groupFilter">
+    <app-row-edit [rows]="rows" [index]="index" (rowChanged)="handleRowChanged($event)"></app-row-edit>
     <div>
         <label><strong>{{ "LABEL_GROUP_FILTER_LABEL" | translate }}</strong></label>
         <input type="text" formControlName="label">
@@ -15,8 +16,8 @@
         </label>
     </div>
     <div formArrayName="options">
-        <div [formGroupName]="x" *ngFor="let option of groupFilter.controls.options.controls; let x=index">
-            <app-widget-group-filters-group-option-edit [option]="option"></app-widget-group-filters-group-option-edit>
+        <div [formGroupName]="i" *ngFor="let option of groupFilter.controls.options.controls; let i=index">
+            <app-widget-group-filters-group-option-edit [option]="option" [index]="i" [rows]="groupFilter.controls.options.controls"></app-widget-group-filters-group-option-edit>
         </div>
     </div>
     <button class="btn btn-primary btn-sm" type="button" (click)="addOption()" [disabled]="!groupFilter.controls.options.valid">{{ "BUTTON_ADD_GROUP_FILTER_FILTER_OPTION" | translate }}</button>

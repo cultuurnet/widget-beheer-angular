@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, OnInit, ViewChild } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { WidgetEditDirective } from './directives/widget-edit.directive';
 import { DragulaService } from 'ng2-dragula';
 import { WidgetBuilderService } from "./services/widget-builder.service";
@@ -17,7 +17,7 @@ import { Config } from "../config";
   selector: 'app-widget-builder',
   templateUrl: './widget-builder.component.html',
 })
-export class WidgetBuilderComponent implements OnInit {
+export class WidgetBuilderComponent implements OnInit, OnDestroy {
 
   /**
    * Widget edit form
@@ -55,10 +55,14 @@ export class WidgetBuilderComponent implements OnInit {
   public scroll: any;
 
   /**
+   * Subscription to the widget selected observable
+   */
+  private widgetSelectedSubscription;
+
+  /**
    * WidgetBuilder constructor.
    * @param dragulaService
    * @param _componentFactoryResolver
-   * @param widgetService
    * @param widgetTypeRegistry
    * @param widgetBuilderService
    * @param widgetPageFactory
@@ -70,7 +74,7 @@ export class WidgetBuilderComponent implements OnInit {
     private widgetBuilderService: WidgetBuilderService,
     private widgetPageFactory: WidgetPageFactory
   ) {
-    widgetBuilderService.widgetSelected$.subscribe(widget => {
+    this.widgetSelectedSubscription = widgetBuilderService.widgetSelected$.subscribe(widget => {
       this.editWidget(widget);
     });
 
@@ -106,6 +110,13 @@ export class WidgetBuilderComponent implements OnInit {
         return this.down && drake.drake.dragging;
       }
     });
+  }
+
+  /**
+   * @inheritDoc
+   */
+  ngOnDestroy() {
+    this.widgetSelectedSubscription.unsubscribe();
   }
 
   /**

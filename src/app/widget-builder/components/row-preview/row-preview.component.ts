@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ComponentFactoryResolver, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { RowLayoutDirective } from '../../directives/row-layout.directive';
 import { AbstractLayoutComponent } from "../../../core/layout/components/abstract-layout.component";
 import { LayoutTypeRegistry } from "../../../core/layout/services/layout-type-registry.service";
@@ -13,7 +13,7 @@ import { Widget } from "../../../core/widget/widget";
   'selector': 'app-row-preview',
   'templateUrl': './row-preview.component.html'
 })
-export class RowPreviewComponent implements OnInit {
+export class RowPreviewComponent implements OnInit, OnDestroy {
 
   /**
    * The row Layout preview
@@ -42,6 +42,11 @@ export class RowPreviewComponent implements OnInit {
   public activeWidget: Widget;
 
   /**
+   * Subscription to the widget selected observable
+   */
+  private widgetSelectedSubscription;
+
+  /**
    * Construct the row preview.
    *
    * @param {ComponentFactoryResolver} _componentFactoryResolver
@@ -49,7 +54,7 @@ export class RowPreviewComponent implements OnInit {
    * @param widgetBuilderService
    */
   constructor(private _componentFactoryResolver: ComponentFactoryResolver, private layoutTypeRegistry: LayoutTypeRegistry, private widgetBuilderService: WidgetBuilderService) {
-    widgetBuilderService.widgetSelected$.subscribe(widget => {
+    this.widgetSelectedSubscription = widgetBuilderService.widgetSelected$.subscribe(widget => {
       this.activeWidget = widget;
     });
   }
@@ -65,6 +70,13 @@ export class RowPreviewComponent implements OnInit {
 
     let componentRef = viewContainerRef.createComponent(componentFactory);
     (<AbstractLayoutComponent>componentRef.instance).regions = this.row.regions;
+  }
+
+  /**
+   * @inheritDoc
+   */
+  ngOnDestroy() {
+    this.widgetSelectedSubscription.unsubscribe();
   }
 
   /**

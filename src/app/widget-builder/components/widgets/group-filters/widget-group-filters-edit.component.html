@@ -8,7 +8,7 @@
         <div formArrayName="filters">
             <div *ngFor="let groupFilter of groupFilterForm.controls.filters.controls; let i=index">
                 <div [formGroupName]="i">
-                    <app-widget-group-filters-group-edit [groupFilter]="groupFilter"></app-widget-group-filters-group-edit>
+                    <app-widget-group-filters-group-edit [groupFilter]="groupFilter" [rows]="groupFilterForm.controls.filters.controls" [index]="i"></app-widget-group-filters-group-edit>
                 </div>
             </div>
         </div>
