@@ -2,6 +2,7 @@ import { Injectable, Type } from '@angular/core';
 import { Widget } from '../widget';
 import { AbstractWidgetEditComponent } from "../components/abstract-widget-edit-component";
 import { WidgetService } from "./widget.service";
+import * as deepmerge from 'deepmerge';
 
 /**
  * The widget type registry allows for registering of widget types
@@ -66,16 +67,12 @@ export class WidgetTypeRegistry {
    * @param settings
    * @returns {Widget}
    */
-  public getInstance(type: string, settings?: any) {
+  public getInstance(type: string, settings: any = {}) {
     if (this.widgetTypes.hasOwnProperty(type)) {
 
       // Return an instance of the requested Widget type with default settings if no settings are provided
       let defaultSettings = this.widgetTypes[type].defaultSettings;
-      if (!settings) {
-        settings = defaultSettings;
-      }
-
-      return new this.widgetTypes[type].widget(type, settings);
+      return new this.widgetTypes[type].widget(type, deepmerge.all([defaultSettings, settings], {clone: true}));
     }
   }
 }

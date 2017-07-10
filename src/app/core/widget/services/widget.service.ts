@@ -16,20 +16,16 @@ export class WidgetService {
         'fields': {
           'what': {
             'keyword_search': {
-              'show' : true,
+              'enabled' : true,
               'label': 'Wat',
               'placeholder': 'Bv. concert, Bart Peeters,...',
             },
-            'property': 'pipikakadefault',
             'group_filters': {
               'enabled': false,
-              'filters': [
-              ]
             }
           }
         }
       }
     }
   }
-
 }

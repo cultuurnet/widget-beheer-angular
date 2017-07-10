@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DragulaModule } from 'ng2-dragula';
 import { WidgetEditDirective } from './directives/widget-edit.directive';
 import { WidgetBuilderComponent } from './widget-builder.component';
@@ -55,7 +55,8 @@ import { WidgetGroupFiltersGroupOptionEditComponent } from "./components/widgets
     NgbDropdownModule,
     TranslateModule,
     NgbAccordionModule,
-    NgbTabsetModule
+    NgbTabsetModule,
+    ReactiveFormsModule
   ],
   providers: [WidgetBuilderService],
   entryComponents: [

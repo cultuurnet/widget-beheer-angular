@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component } from "@angular/core";
 import { AbstractWidgetEditComponent } from "../../../../core/widget/components/abstract-widget-edit-component";
 
 /**
@@ -8,7 +8,4 @@ import { AbstractWidgetEditComponent } from "../../../../core/widget/components/
   templateUrl: './search-form-widget-edit.component.html'
 })
 export class SearchFormWidgetEditComponent extends AbstractWidgetEditComponent {
-
-  @Input() settings: any;
-
 }

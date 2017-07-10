@@ -1,5 +1,6 @@
-import { Component, Input } from "@angular/core";
-import { group_filter_types } from "../../../constants/group-filters";
+import { Component, Input, OnInit } from "@angular/core";
+import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
+import { WidgetGroupFiltersGroupEditComponent } from "./widget-group-filters-group-edit.component";
 
 /**
  * Widget group filters edit component.
@@ -8,37 +9,72 @@ import { group_filter_types } from "../../../constants/group-filters";
   selector: 'app-widget-group-filters-edit',
   templateUrl: './widget-group-filters-edit.component.html'
 })
-export class WidgetGroupFiltersEditComponent {
+export class WidgetGroupFiltersEditComponent implements OnInit {
 
   /**
-   * The group filters
+   * The group filters model
    */
   @Input() groupFilters: any;
 
   /**
-   * The default filter type
+   * The group filter form
    */
-  public defaultFilterType: any;
+  public groupFilterForm: FormGroup;
 
   /**
-   * WidgetGroupFiltersFilterEditComponent constructor.
+   * WidgetGroupFiltersFilterEditComponent constructor
    */
-  constructor() {
-    // Set the default filter type (useful when adding a new filter)
-    for (let type of group_filter_types) {
-      if (type.default) {
-        this.defaultFilterType = type;
-      }
-    }
+  constructor(private formBuilder: FormBuilder) {
   }
 
   /**
-   * Add a group filter
+   * @inheritDoc
    */
-  public addGroupFilter() {
-    this.groupFilters.filters.push({
-      type: this.defaultFilterType.type,
+  ngOnInit() {
+    // Initialize the form
+    this.buildForm();
+
+    // Subscribe to changes in the form and reflect them on the widget groupFilters model
+    this.groupFilterForm.valueChanges.subscribe(values => {
+      this.groupFilters.filters = values.filters
     });
+  }
+
+  /**
+   * Build the initial form
+   */
+  private buildForm() {
+    let items = [];
+
+    // Create the group edit form components for the group filters already on the model
+    if (this.groupFilters.hasOwnProperty('filters')) {
+      for (let groupFilter of this.groupFilters.filters) {
+        items.push(WidgetGroupFiltersGroupEditComponent.buildItem(
+            groupFilter.label,
+            groupFilter.placeholder,
+            groupFilter.type,
+            groupFilter.options
+        ));
+      }
+    }
+
+    // Add an empty option if needed
+    if (!items.length) {
+      items.push(WidgetGroupFiltersGroupEditComponent.buildItem());
+    }
+
+    // Initialize the form
+    this.groupFilterForm = this.formBuilder.group({
+      filters: this.formBuilder.array(items)
+    });
+  }
+
+  /**
+   * Add a group filter formgroup
+   */
+  private addGroup() {
+    let control = <FormArray>this.groupFilterForm.controls['filters'];
+    control.push(WidgetGroupFiltersGroupEditComponent.buildItem());
   }
 
 }

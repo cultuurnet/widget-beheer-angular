@@ -7,8 +7,6 @@ import { Widget } from "app/core/widget/widget";
 import { AbstractWidgetEditComponent } from "../core/widget/components/abstract-widget-edit-component";
 import * as autoScroll from 'dom-autoscroller';
 import { WidgetPage } from "../core/widget/widget-page";
-import { PageTemplateRegistry } from "../core/template/services/page-template-registry.service";
-import { WidgetService } from "../core/widget/services/widget.service";
 import { WidgetPageFactory } from "../core/widget/factories/widget-page.factory";
 import { Config } from "../config";
 

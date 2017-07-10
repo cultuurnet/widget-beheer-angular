@@ -1,10 +1,17 @@
-<form>
-    <label>
-        <input type="checkbox" name="favoriteColors" [(ngModel)]="groupFilters.enabled"> <span>{{ "LABEL_CHECKBOX_EXTRA_GROUP_FILTERS" | translate }}</span>
-    </label>
+<label>
+    <input type="checkbox" name="groupFiltersEnabled" [(ngModel)]="groupFilters.enabled"> <span>{{ "LABEL_CHECKBOX_EXTRA_GROUP_FILTERS" | translate }}</span>
+</label>
+<form *ngIf="groupFilters.enabled" [formGroup]="groupFilterForm" novalidate>
+    <fieldset>
+        <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
+        <!-- list of groupFilters -->
+        <div formArrayName="filters">
+            <div *ngFor="let groupFilter of groupFilterForm.controls.filters.controls; let i=index">
+                <div [formGroupName]="i">
+                    <app-widget-group-filters-group-edit [groupFilter]="groupFilter"></app-widget-group-filters-group-edit>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-sm" type="button" (click)="addGroup()" [disabled]="!groupFilterForm.controls.filters.valid">{{ "BUTTON_ADD_GROUP_FILTER" | translate }}</button>
+    </fieldset>
 </form>
-<fieldset *ngIf="groupFilters.enabled">
-    <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
-    <app-widget-group-filters-group-edit *ngFor="let filters of groupFilters.filters; let i = index" [settings]="filters" [groupFilters]="groupFilters.filters" [index]="i"></app-widget-group-filters-group-edit>
-    <button class="btn btn-primary btn-sm" type="button" (click)="addGroupFilter()">{{ "BUTTON_ADD_GROUP_FILTER" | translate }}</button>
-</fieldset>

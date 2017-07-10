@@ -1,27 +1,23 @@
-<div class="widget-group-filters-group-edit">
-    <app-row-edit [rows]="groupFilters" [index]="index"></app-row-edit>
-    <form>
-        <div>
-            <label><strong>{{ "LABEL_GROUP_FILTER_LABEL" | translate }}</strong></label>
-            <input type="text" [(ngModel)]="settings.label" name="label">
+<div [formGroup]="groupFilter">
+    <div>
+        <label><strong>{{ "LABEL_GROUP_FILTER_LABEL" | translate }}</strong></label>
+        <input type="text" formControlName="label">
+    </div>
+    <div>
+        <label><strong>{{ "LABEL_GROUP_FILTER_PLACEHOLDER" | translate }}</strong></label>
+        <input type="text" formControlName="placeholder">
+    </div>
+    <div>
+        <label><strong>{{ "LABEL_GROUP_FILTER_TYPE" | translate }}</strong></label>
+        <label *ngFor="let filterType of filterTypes">
+            <input type="radio" [value]="filterType.type" formControlName="type">
+            <span>{{ filterType.label | translate }}</span>
+        </label>
+    </div>
+    <div formArrayName="options">
+        <div [formGroupName]="x" *ngFor="let option of groupFilter.controls.options.controls; let x=index">
+            <app-widget-group-filters-group-option-edit [option]="option"></app-widget-group-filters-group-option-edit>
         </div>
-        <div>
-            <label><strong>{{ "LABEL_GROUP_FILTER_PLACEHOLDER" | translate }}</strong></label>
-            <input type="text" [(ngModel)]="settings.placeholder" name="placeholder">
-        </div>
-        <div>
-            <label><strong>{{ "LABEL_GROUP_FILTER_TYPE" | translate }}</strong></label>
-            <label *ngFor="let filter_type of groupFilterTypes">
-                <input [(ngModel)]="settings.type" type="radio" name="group_filter_filter_types" [value]="filter_type.type">
-                <span>{{ filter_type.label | translate }}</span>
-            </label>
-        </div>
-        <div>
-            <fieldset class="card">
-                <legend>Filters</legend>
-                <app-widget-group-filters-group-option-edit *ngFor="let option of settings.options; let i = index" [options]="settings.options" [option]="option" [index]="i"></app-widget-group-filters-group-option-edit>
-                <button class="btn btn-primary btn-sm" type="button" (click)="addOption()">{{ "BUTTON_ADD_GROUP_FILTER_FILTER_OPTION" | translate }}</button>
-            </fieldset>
-        </div>
-    </form>
+    </div>
+    <button class="btn btn-primary btn-sm" type="button" (click)="addOption()" [disabled]="!groupFilter.controls.options.valid">{{ "BUTTON_ADD_GROUP_FILTER_FILTER_OPTION" | translate }}</button>
 </div>
