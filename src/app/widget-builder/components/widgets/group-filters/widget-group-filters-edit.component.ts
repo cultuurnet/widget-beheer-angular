@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
 import { WidgetGroupFiltersGroupEditComponent } from "./widget-group-filters-group-edit.component";
+import { Subscription } from "rxjs";
 
 /**
  * Widget group filters edit component.
@@ -24,7 +25,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   /**
    * Subscription to the filter form values
    */
-  private formSubscription;
+  private formSubscription: Subscription;
 
   /**
    * WidgetGroupFiltersFilterEditComponent constructor
@@ -41,7 +42,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
 
     // Subscribe to changes in the form and reflect them on the widget groupFilters model
     this.formSubscription = this.groupFilterForm.valueChanges.subscribe(values => {
-      this.groupFilters.filters = values.filters
+      this.groupFilters.filters = values.filters;
     });
   }
 
