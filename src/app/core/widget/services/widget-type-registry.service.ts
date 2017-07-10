@@ -34,7 +34,7 @@ export class WidgetTypeRegistry {
       widget: widgetType,
       label: label,
       editComponent: editComponent,
-      defaultSettings: {'default_settings': 'hello world'}
+      defaultSettings: {}
     };
   }
 

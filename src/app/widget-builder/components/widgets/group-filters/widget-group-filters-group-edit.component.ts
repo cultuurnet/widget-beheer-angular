@@ -43,6 +43,7 @@ export class WidgetGroupFiltersGroupEditComponent {
    * @param placeholder
    * @param type
    * @param options
+   * @returns {FormGroup}
    */
   static buildItem(label: string = '', placeholder: string = '', type?: string, options: any = []) {
     let filterOptions = [];

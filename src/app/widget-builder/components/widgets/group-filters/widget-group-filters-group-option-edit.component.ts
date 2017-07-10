@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 /**
@@ -9,25 +9,12 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
   selector: 'app-widget-group-filters-group-option-edit',
   templateUrl: './widget-group-filters-group-option-edit.component.html'
 })
-export class WidgetGroupFiltersGroupOptionEditComponent implements OnInit {
+export class WidgetGroupFiltersGroupOptionEditComponent {
 
   /**
    * The form group
    */
   @Input() option: FormGroup;
-
-  /**
-   * WidgetGroupFiltersGroupOptionEditComponent constructor
-   */
-  constructor() {
-  }
-
-  /**
-   * @inheritDoc
-   */
-  ngOnInit() {
-
-  }
 
   /**
    * Build a new option formgroup item
