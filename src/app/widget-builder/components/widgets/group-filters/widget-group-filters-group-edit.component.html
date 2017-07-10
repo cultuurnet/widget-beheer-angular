@@ -1,5 +1,5 @@
 <div [formGroup]="groupFilter">
-    <app-row-edit [rows]="rows" [index]="index" (rowChanged)="handleRowChanged($event)"></app-row-edit>
+    <app-row-edit [rows]="rows" [index]="index" [modalTitle]="'GROUP_FILTER_REMOVE_MODAL_TITLE'" [modalMessage]="'GROUP_FILTER_REMOVE_MODAL_MESSAGE'" (rowChanged)="handleRowChanged($event)"></app-row-edit>
     <div>
         <label><strong>{{ "LABEL_GROUP_FILTER_LABEL" | translate }}</strong></label>
         <input type="text" formControlName="label">

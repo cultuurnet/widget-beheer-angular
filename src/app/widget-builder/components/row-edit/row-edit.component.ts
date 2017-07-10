@@ -26,6 +26,16 @@ export class RowEditComponent {
   @Input() index: number;
 
   /**
+   * Modal title
+   */
+  @Input() modalTitle: string = 'REMOVE_ROW_DEFAULT_MODAL_TITLE';
+
+  /**
+   * Modal message
+   */
+  @Input() modalMessage: string = 'REMOVE_ROW_DEFAULT_MODAL_MESSAGE';
+
+  /**
    * Row changed event emitter.
    * @type {EventEmitter}
    */
@@ -48,8 +58,8 @@ export class RowEditComponent {
     let modal = this.modalService.open(ConfirmationModalComponent);
     let modalInstance = modal.componentInstance;
 
-    modalInstance.title = 'REMOVE_ROW_MODAL_TITLE';
-    modalInstance.message = 'REMOVE_ROW_MODAL_MESSAGE';
+    modalInstance.title = this.modalTitle;
+    modalInstance.message = this.modalMessage;
 
     // Emit the change event so the original event can bubble
     // This is needed here so we can stop the widget from being deselected
