@@ -23,11 +23,15 @@ import { WidgetPreviewComponent } from "./components/widgets/widget-preview.comp
 import { WidgetGroupFiltersEditComponent } from "./components/widgets/group-filters/widget-group-filters-edit.component";
 import { WidgetGroupFiltersGroupEditComponent } from "./components/widgets/group-filters/widget-group-filters-group-edit.component";
 import { WidgetGroupFiltersGroupOptionEditComponent } from "./components/widgets/group-filters/widget-group-filters-group-option-edit.component";
+import { SearchResultsWidgetPreviewComponent } from "./components/widgets/search-results-widget/search-results-widget-preview.component";
+import { SearchFormWidgetPreviewComponent } from "./components/widgets/search-form-widget/search-form-widget-preview.component";
+import { WidgetPreviewDirective } from "./directives/widget-preview.directive";
 
 @NgModule({
   declarations: [
     WidgetEditDirective,
     RowLayoutDirective,
+    WidgetPreviewDirective,
     SearchFormWidgetEditComponent,
     SearchResultsWidgetEditComponent,
     WidgetBuilderComponent,
@@ -43,7 +47,9 @@ import { WidgetGroupFiltersGroupOptionEditComponent } from "./components/widgets
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
     WidgetGroupFiltersGroupEditComponent,
-    WidgetGroupFiltersGroupOptionEditComponent
+    WidgetGroupFiltersGroupOptionEditComponent,
+    SearchResultsWidgetPreviewComponent,
+    SearchFormWidgetPreviewComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -70,7 +76,9 @@ import { WidgetGroupFiltersGroupOptionEditComponent } from "./components/widgets
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
     WidgetGroupFiltersGroupEditComponent,
-    WidgetGroupFiltersGroupOptionEditComponent
+    WidgetGroupFiltersGroupOptionEditComponent,
+    SearchResultsWidgetPreviewComponent,
+    SearchFormWidgetPreviewComponent
   ]
 })
 

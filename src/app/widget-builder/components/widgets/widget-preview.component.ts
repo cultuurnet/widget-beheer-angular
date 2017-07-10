@@ -1,8 +1,11 @@
-import { Component, Input, OnDestroy } from "@angular/core";
+import { Component, ComponentFactoryResolver, Input, OnInit, OnDestroy, ViewChild } from "@angular/core";
 import { Widget } from "../../../core/widget/widget";
 import { WidgetBuilderService } from "../../services/widget-builder.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationModalComponent } from "../../../core/modal/components/confirmation-modal.component";
+import { SearchFormWidgetPreviewComponent } from "./search-form-widget/search-form-widget-preview.component";
+import { SearchResultsWidgetPreviewComponent } from "./search-results-widget/search-results-widget-preview.component";
+import { WidgetPreviewDirective } from "../../directives/widget-preview.directive";
 
 /**
  * A generic widget preview component.
@@ -11,12 +14,21 @@ import { ConfirmationModalComponent } from "../../../core/modal/components/confi
   selector: 'app-widget-preview',
   templateUrl: './widget-preview.component.html'
 })
-export class WidgetPreviewComponent implements OnDestroy {
+
+/**
+ * Component used for previewing a widget
+ */
+export class WidgetPreviewComponent implements OnInit, OnDestroy {
 
   /**
    * The widget being previewed
    */
   @Input() widget: Widget;
+
+  /**
+   * The widget preview directive to replace with the rendered widget preview component
+   */
+  @ViewChild(WidgetPreviewDirective) preview: WidgetPreviewDirective;
 
   /**
    * Keep track of the active widget
@@ -32,8 +44,9 @@ export class WidgetPreviewComponent implements OnDestroy {
    * WidgetPreviewComponent constructor.
    * @param widgetBuilderService
    * @param modalService
+   * @param _componentFactoryResolver
    */
-  constructor(private widgetBuilderService: WidgetBuilderService, private modalService: NgbModal) {
+  constructor(private widgetBuilderService: WidgetBuilderService, private modalService: NgbModal, private _componentFactoryResolver: ComponentFactoryResolver) {
     this.widgetSelectedSubscription = this.widgetBuilderService.widgetSelected$.subscribe(widget => {
       this.activeWidget = widget;
     });
@@ -46,6 +59,26 @@ export class WidgetPreviewComponent implements OnDestroy {
    */
   ngOnDestroy(): void {
     this.widgetSelectedSubscription.unsubscribe();
+  }
+
+  /**
+   * Temp on init code for the preview.
+   */
+  ngOnInit(): void {
+    // Temp preview code.
+    // @todo: Remove when no longer needed
+    let previewComponent = null;
+    if (this.widget.type == 'search-form') {
+      previewComponent = SearchFormWidgetPreviewComponent;
+    } else if (this.widget.type == 'search-results') {
+      previewComponent = SearchResultsWidgetPreviewComponent;
+    }
+
+    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(previewComponent);
+
+    let viewContainerRef = this.preview.viewContainerRef;
+    viewContainerRef.clear();
+    viewContainerRef.createComponent(componentFactory);
   }
 
   /**
