@@ -51,7 +51,7 @@ export class AddWidgetComponent implements OnInit {
   public addWidget($event, widgetType: any): void{
     $event.stopWidgetDeselect = true;
 
-    let widget = this.widgetTypeRegistry.getInstance(widgetType.type, widgetType.settings);
+    let widget = this.widgetTypeRegistry.getInstance(widgetType.type);
     this.region.addWidget(widget);
 
     // Select the widget

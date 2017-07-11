@@ -1,5 +1,5 @@
 <div class="outer-row">
-    <app-row-edit [row]="row"></app-row-edit>
+    <app-row-edit [rows]="rows" [index]="index" (rowChanged)="handleRowChanged($event)"></app-row-edit>
     <div class="row layout--preview">
         <ng-template row-layout></ng-template>
     </div>

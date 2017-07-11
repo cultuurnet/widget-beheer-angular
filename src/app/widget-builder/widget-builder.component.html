@@ -4,7 +4,7 @@
         <div class="preview-inner">
             <div class="page">
                 <div class="page-inner">
-                    <app-row-preview *ngFor="let row of editingPage.rows" [row]="row" (widgetSelected)="editWidget($event)"></app-row-preview>
+                    <app-row-preview *ngFor="let row of editingPage.rows; let i = index" [rows]="editingPage.rows" [index]="i" [row]="row" (widgetSelected)="editWidget($event)"></app-row-preview>
                     <app-add-row [page]="editingPage"></app-add-row>
                 </div>
             </div>

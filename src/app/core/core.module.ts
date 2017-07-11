@@ -9,14 +9,16 @@ import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { HttpLoaderFactory } from "../app.module";
 import { Http } from "@angular/http";
 import { PageTemplateRegistry } from "./template/services/page-template-registry.service";
+import { WidgetService } from "./widget/services/widget.service";
 
 @NgModule({
   providers: [
     LayoutFactory,
     LayoutTypeRegistry,
-    WidgetTypeRegistry,
+    PageTemplateRegistry,
     WidgetPageFactory,
-    PageTemplateRegistry
+    WidgetService,
+    WidgetTypeRegistry,
   ],
   imports: [
     TranslateModule.forRoot({
