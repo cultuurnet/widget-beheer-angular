@@ -90,7 +90,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   /**
    * Add a group filter formgroup
    */
-  private addGroup() {
+  public addGroup() {
     let control = <FormArray>this.groupFilterForm.controls['filters'];
     control.push(WidgetGroupFiltersGroupEditComponent.buildItem());
   }

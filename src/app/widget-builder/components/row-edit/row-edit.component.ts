@@ -64,7 +64,7 @@ export class RowEditComponent {
     // Emit the change event so the original event can bubble
     // This is needed here so we can stop the widget from being deselected
     this.rowChanged.emit({
-      type: 'modal',
+      action: 'confirm',
       originalEvent: $event
     });
 
@@ -74,7 +74,7 @@ export class RowEditComponent {
 
       // Emit the change (remove) event
       this.rowChanged.emit({
-        type: 'remove',
+        action: 'remove',
         originalEvent: $event
       });
     }, (reason) => {
@@ -93,7 +93,7 @@ export class RowEditComponent {
 
     // Emit the change (move) event
     this.rowChanged.emit({
-      type: 'move',
+      action: 'move',
       originalEvent: $originalEvent
     });
   }

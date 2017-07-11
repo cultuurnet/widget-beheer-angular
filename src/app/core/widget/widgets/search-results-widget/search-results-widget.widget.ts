@@ -6,7 +6,7 @@ import { Widget } from "../../widget";
 export class SearchResultsWidget implements Widget {
 
   /**
-   * SearchFormWidget constructor.
+   * SearchResultsWidget constructor.
    * @param type
    * @param settings
    */

@@ -13,12 +13,12 @@ import { WidgetService } from "./widget/services/widget.service";
 
 @NgModule({
   providers: [
-    WidgetService,
-    WidgetTypeRegistry,
     LayoutFactory,
     LayoutTypeRegistry,
+    PageTemplateRegistry,
     WidgetPageFactory,
-    PageTemplateRegistry
+    WidgetService,
+    WidgetTypeRegistry,
   ],
   imports: [
     TranslateModule.forRoot({
