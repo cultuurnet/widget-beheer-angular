@@ -14,9 +14,8 @@ export class WidgetService {
     return {
       'search-form': {
         'general': {
-          'result_page_url': '',
           'new_window': false,
-          'search_button_label': 'Zoeken'
+          'button_label': 'Zoeken'
         },
         'fields': {
           'what': {

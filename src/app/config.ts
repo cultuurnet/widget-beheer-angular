@@ -12,10 +12,12 @@ export class Config {
               {
                 'type': 'search-form',
                 'settings': {
-                  'destination': 'https://www.uitinvlaanderen.be/agenda/search',
-                  'new_window': false,
-                  'button_label': 'Zoeken',
-                  'search_query': 'q=mysearch',
+                  'general': {
+                    'destination': 'https://www.uitinvlaanderen.be/agenda/search',
+                    'new_window': false,
+                    'button_label': 'Zoeken',
+                    'search_query': 'q=mysearch',
+                  },
                   'header': {
                     'body': 'Header text'
                   },
