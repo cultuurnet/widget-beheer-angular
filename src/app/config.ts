@@ -118,7 +118,7 @@ export class Config {
           'content': {
             'widgets': [
               {
-                'type': 'search-results',
+                'type': 'search-form',
                 'settings': {
                   'header': {
                     'body': 'Header text'
