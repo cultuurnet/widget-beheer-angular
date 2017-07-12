@@ -36,7 +36,7 @@
                     <ngb-panel id="header" formGroupName="header">
                         <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_HEADER" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
-                            <ckeditor formControlName="body" [debounce]="200" [config]="ckeditorConfig.basic_html"></ckeditor>
+                            <ckeditor formControlName="body" [config]="ckeditorConfig.basic_html"></ckeditor>
                         </ng-template>
                     </ngb-panel>
                     <ngb-panel id="type" formGroupName="type">
@@ -65,7 +65,7 @@
                             </fieldset>
                         </ng-template>
                     </ngb-panel>
-                    <ngb-panel id="where" formGroupName="place">
+                    <ngb-panel id="place" formGroupName="place">
                         <ng-template ngbPanelTitle>Plaats</ng-template>
                         <ng-template ngbPanelContent>
                             <fieldset formGroupName="keyword_search">
@@ -91,23 +91,46 @@
                             </fieldset>
                         </ng-template>
                     </ngb-panel>
-                    <ngb-panel id="when">
+                    <ngb-panel id="time" formGroupName="time">
                         <ng-template ngbPanelTitle>Tijd</ng-template>
                         <ng-template ngbPanelContent>
-                            TIJD
+                            <fieldset formGroupName="date_search">
+                                <legend>Algemeen</legend>
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>Zoeken op datum</span>
+                                </label>
+                                <div *ngIf="settings.fields.time.date_search.enabled">
+                                    <div>
+                                        <label>Label</label>
+                                        <input type="text" formControlName="label">
+                                    </div>
+                                    <div>
+                                        <label>Suggestie</label>
+                                        <input type="text" formControlName="placeholder">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset *ngIf="settings.fields.time.group_filters">
+                                <legend>Groepfilters</legend>
+                                <app-widget-group-filters-edit [groupFilters]="settings.fields.time.group_filters"></app-widget-group-filters-edit>
+                            </fieldset>
                         </ng-template>
                     </ngb-panel>
                     <ngb-panel id="extra">
                         <ng-template ngbPanelTitle>Extra opties</ng-template>
                         <ng-template ngbPanelContent>
-                            EXTRA OPTIES
+                            <fieldset *ngIf="settings.fields.extra.group_filters">
+                                <legend>Groepfilters</legend>
+                                <app-widget-group-filters-edit [groupFilters]="settings.fields.extra.group_filters"></app-widget-group-filters-edit>
+                            </fieldset>
                         </ng-template>
                     </ngb-panel>
 
                     <ngb-panel id="footer" formGroupName="footer">
                         <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_FOOTER" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
-                            <ckeditor formControlName="body" [debounce]="200" [config]="ckeditorConfig.basic_html"></ckeditor>
+                            <ckeditor formControlName="body" [config]="ckeditorConfig.basic_html"></ckeditor>
                         </ng-template>
                     </ngb-panel>
                 </ngb-accordion>

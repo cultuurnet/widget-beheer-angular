@@ -52,10 +52,30 @@ export class SearchFormWidgetEditComponent extends AbstractWidgetEditComponent {
           placeholder: [_.get(this.settings, 'fields.place.keyword_search.placeholder')]
         })
       }),
+      time: this.formBuilder.group({
+        date_search: this.formBuilder.group({
+          enabled: [_.get(this.settings, 'fields.time.date_search.enabled')],
+          label: [_.get(this.settings, 'fields.time.date_search.label')],
+          placeholder: [_.get(this.settings, 'fields.time.date_search.placeholder')]
+        })
+      }),
       footer: this.formBuilder.group({
         body: [_.get(this.settings, 'footer.body')]
       })
     });
   }
 
+  /**
+   * @inheritDoc
+   */
+  protected applyValuesToModel(values: any) {
+    // Apply all values to the model
+    // Groupfilter values are applied to the model and taken care of in their own component
+    _.set(this.settings, 'general', _.get(values, 'general'));
+    _.set(this.settings, 'header', _.get(values, 'header'));
+    _.set(this.settings, 'fields.type.keyword_search', _.get(values, 'type.keyword_search'));
+    _.set(this.settings, 'fields.place.keyword_search', _.get(values, 'place.keyword_search'));
+    _.set(this.settings, 'fields.time.date_search', _.get(values, 'time.date_search'));
+    _.set(this.settings, 'footer', _.get(values, 'footer'));
+  }
 }

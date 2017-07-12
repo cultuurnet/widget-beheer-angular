@@ -1,6 +1,7 @@
 import { Input, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs";
+import * as deepmerge from 'deepmerge';
 
 /**
  * Abstract implementation of a widget edit component
@@ -41,12 +42,8 @@ export class AbstractWidgetEditComponent implements OnInit, OnDestroy {
       // @todo: Decide if the cleanup of the empty/null values should be done here or server-side
       this.deleteEmptyProperties(values, true);
 
-      // Set all top-level properties, so we keep the original settings object and its pointer
-      for (let key in values) {
-        if (values.hasOwnProperty(key)) {
-          this.settings[key] = values[key];
-        }
-      }
+      // Apply the values to the model
+      this.applyValuesToModel(values);
     });
   }
 
@@ -63,6 +60,19 @@ export class AbstractWidgetEditComponent implements OnInit, OnDestroy {
   protected buildForm() {
     // Initialize the form
     this.widgetEditForm = this.formBuilder.group({});
+  }
+
+  /**
+   * Apply the values from the form to the input model
+   * @param values
+   */
+  protected applyValuesToModel(values: any) {
+    // As a default, all top-level properties are applied to the model
+    for (let key in values) {
+      if (values.hasOwnProperty(key)) {
+        this.settings[key] = values[key];
+      }
+    }
   }
 
   /**

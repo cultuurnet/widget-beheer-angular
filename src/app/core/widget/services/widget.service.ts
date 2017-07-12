@@ -38,7 +38,20 @@ export class WidgetService {
               'placeholder': 'Bv. concert, Bart Peeters,...',
             },
             'group_filters': {
-              'enabled': false,
+              'enabled': false
+            }
+          },
+          'time': {
+            'date_search': {
+              'enabled' : true
+            },
+            'group_filters': {
+              'enabled': false
+            }
+          },
+          'extra': {
+            'group_filters': {
+              'enabled': false
             }
           }
         },
