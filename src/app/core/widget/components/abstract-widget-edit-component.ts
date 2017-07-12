@@ -1,7 +1,6 @@
 import { Input, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs";
-import * as _ from "lodash";
 
 /**
  * Abstract implementation of a widget edit component

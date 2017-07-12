@@ -36,41 +36,78 @@
                     <ngb-panel id="header" formGroupName="header">
                         <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_HEADER" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
-                            <fieldset>
-                                <legend>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_HEADER" | translate }}</legend>
-                                <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_HEADER_BODY" | translate }}</label>
-                                <ckeditor formControlName="body" [debounce]="200" [config]="ckeditorConfig.basic_html"></ckeditor>
+                            <ckeditor formControlName="body" [debounce]="200" [config]="ckeditorConfig.basic_html"></ckeditor>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="type" formGroupName="type">
+                        <ng-template ngbPanelTitle>Soort</ng-template>
+                        <ng-template ngbPanelContent>
+                            <fieldset formGroupName="keyword_search">
+                                <legend>Vrije zoekterm</legend>
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>Zoeken op trefwoord</span>
+                                </label>
+                                <div *ngIf="settings.fields.type.keyword_search.enabled">
+                                    <div>
+                                        <label>Label</label>
+                                        <input type="text" formControlName="label">
+                                    </div>
+                                    <div>
+                                        <label>Suggestie</label>
+                                        <input type="text" formControlName="placeholder">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset *ngIf="settings.fields.type.group_filters">
+                                <legend>Groepfilters</legend>
+                                <app-widget-group-filters-edit [groupFilters]="settings.fields.type.group_filters"></app-widget-group-filters-edit>
                             </fieldset>
                         </ng-template>
                     </ngb-panel>
-                    <ngb-panel id="what">
-                        <ng-template ngbPanelTitle>Wat</ng-template>
+                    <ngb-panel id="where" formGroupName="place">
+                        <ng-template ngbPanelTitle>Plaats</ng-template>
                         <ng-template ngbPanelContent>
-                            <app-widget-group-filters-edit *ngIf="settings.fields.what.group_filters" [groupFilters]="settings.fields.what.group_filters"></app-widget-group-filters-edit>
-                        </ng-template>
-                    </ngb-panel>
-                    <ngb-panel id="where">
-                        <ng-template ngbPanelTitle>Waar</ng-template>
-                        <ng-template ngbPanelContent>
-                            WAAR
+                            <fieldset formGroupName="keyword_search">
+                                <legend>Vrije zoekterm</legend>
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>Zoeken op trefwoord</span>
+                                </label>
+                                <div *ngIf="settings.fields.place.keyword_search.enabled">
+                                    <div>
+                                        <label>Label</label>
+                                        <input type="text" formControlName="label">
+                                    </div>
+                                    <div>
+                                        <label>Suggestie</label>
+                                        <input type="text" formControlName="placeholder">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset *ngIf="settings.fields.type.group_filters">
+                                <legend>Groepfilters</legend>
+                                <app-widget-group-filters-edit [groupFilters]="settings.fields.type.group_filters"></app-widget-group-filters-edit>
+                            </fieldset>
                         </ng-template>
                     </ngb-panel>
                     <ngb-panel id="when">
-                        <ng-template ngbPanelTitle>Wanneer</ng-template>
+                        <ng-template ngbPanelTitle>Tijd</ng-template>
                         <ng-template ngbPanelContent>
-                            WANNEER
+                            TIJD
                         </ng-template>
                     </ngb-panel>
-                    <ngb-panel id="language">
-                        <ng-template ngbPanelTitle>Taal</ng-template>
+                    <ngb-panel id="extra">
+                        <ng-template ngbPanelTitle>Extra opties</ng-template>
                         <ng-template ngbPanelContent>
-                            TAAL
+                            EXTRA OPTIES
                         </ng-template>
                     </ngb-panel>
-                    <ngb-panel id="footer">
-                        <ng-template ngbPanelTitle>Footer</ng-template>
+
+                    <ngb-panel id="footer" formGroupName="footer">
+                        <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_FOOTER" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
-                            FOOTER
+                            <ckeditor formControlName="body" [debounce]="200" [config]="ckeditorConfig.basic_html"></ckeditor>
                         </ng-template>
                     </ngb-panel>
                 </ngb-accordion>

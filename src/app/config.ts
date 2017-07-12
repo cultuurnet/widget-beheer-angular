@@ -22,9 +22,9 @@ export class Config {
                     'body': 'Header text'
                   },
                   'fields': {
-                    'what': {
+                    'type': {
                       'keyword_search': {
-                        'show' : true,
+                        'enabled' : true,
                         'label': 'Wat',
                         'placeholder': 'Bv. concert, Bart Peeters,...',
                       },

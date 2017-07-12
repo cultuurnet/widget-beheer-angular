@@ -17,8 +17,21 @@ export class WidgetService {
           'new_window': false,
           'button_label': 'Zoeken'
         },
+        'header': {
+          'body': '<p>Uit in ...</p>',
+        },
         'fields': {
-          'what': {
+          'type': {
+            'keyword_search': {
+              'enabled' : true,
+              'label': 'Wat',
+              'placeholder': 'Bv. concert, Bart Peeters,...',
+            },
+            'group_filters': {
+              'enabled': false,
+            }
+          },
+          'place': {
             'keyword_search': {
               'enabled' : true,
               'label': 'Wat',
@@ -28,6 +41,9 @@ export class WidgetService {
               'enabled': false,
             }
           }
+        },
+        'footer': {
+          'body': '<a href="http://www.uitinvlaanderen.be" target="_blank"><img border="0" class="cultuurnet-logo-uiv" src="http://tools.uitdatabank.be/sites/all/modules/cul_widgets_server/images/uiv-btn.jpg" alt="Meer tips op UiTinVlaanderen.be" /></a>'
         }
       }
     }

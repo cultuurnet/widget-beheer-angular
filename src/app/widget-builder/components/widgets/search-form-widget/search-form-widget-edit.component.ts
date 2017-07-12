@@ -37,6 +37,23 @@ export class SearchFormWidgetEditComponent extends AbstractWidgetEditComponent {
       }),
       header: this.formBuilder.group({
         body: [_.get(this.settings, 'header.body')]
+      }),
+      type: this.formBuilder.group({
+        keyword_search: this.formBuilder.group({
+          enabled: [_.get(this.settings, 'fields.type.keyword_search.enabled')],
+          label: [_.get(this.settings, 'fields.type.keyword_search.label')],
+          placeholder: [_.get(this.settings, 'fields.type.keyword_search.placeholder')]
+        })
+      }),
+      place: this.formBuilder.group({
+        keyword_search: this.formBuilder.group({
+          enabled: [_.get(this.settings, 'fields.place.keyword_search.enabled')],
+          label: [_.get(this.settings, 'fields.place.keyword_search.label')],
+          placeholder: [_.get(this.settings, 'fields.place.keyword_search.placeholder')]
+        })
+      }),
+      footer: this.formBuilder.group({
+        body: [_.get(this.settings, 'footer.body')]
       })
     });
   }
