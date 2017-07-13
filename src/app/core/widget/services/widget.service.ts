@@ -31,7 +31,7 @@ export class WidgetService {
               'enabled': false,
             }
           },
-          'place': {
+          'location': {
             'keyword_search': {
               'enabled' : true,
               'label': 'Wat',

@@ -65,7 +65,7 @@
                             </fieldset>
                         </ng-template>
                     </ngb-panel>
-                    <ngb-panel id="place" formGroupName="place">
+                    <ngb-panel id="location" formGroupName="location">
                         <ng-template ngbPanelTitle>Plaats</ng-template>
                         <ng-template ngbPanelContent>
                             <fieldset formGroupName="keyword_search">
@@ -74,7 +74,7 @@
                                     <input type="checkbox" formControlName="enabled">
                                     <span>Zoeken op trefwoord</span>
                                 </label>
-                                <div *ngIf="settings.fields.place.keyword_search.enabled">
+                                <div *ngIf="settings.fields.location.keyword_search.enabled">
                                     <div>
                                         <label>Label</label>
                                         <input type="text" formControlName="label">
@@ -85,9 +85,9 @@
                                     </div>
                                 </div>
                             </fieldset>
-                            <fieldset *ngIf="settings.fields.type.group_filters">
+                            <fieldset *ngIf="settings.fields.location.group_filters">
                                 <legend>Groepfilters</legend>
-                                <app-widget-group-filters-edit [groupFilters]="settings.fields.type.group_filters"></app-widget-group-filters-edit>
+                                <app-widget-group-filters-edit [groupFilters]="settings.fields.location.group_filters"></app-widget-group-filters-edit>
                             </fieldset>
                         </ng-template>
                     </ngb-panel>

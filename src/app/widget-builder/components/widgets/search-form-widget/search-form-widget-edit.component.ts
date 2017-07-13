@@ -45,11 +45,11 @@ export class SearchFormWidgetEditComponent extends AbstractWidgetEditComponent {
           placeholder: [_.get(this.settings, 'fields.type.keyword_search.placeholder')]
         })
       }),
-      place: this.formBuilder.group({
+      location: this.formBuilder.group({
         keyword_search: this.formBuilder.group({
-          enabled: [_.get(this.settings, 'fields.place.keyword_search.enabled')],
-          label: [_.get(this.settings, 'fields.place.keyword_search.label')],
-          placeholder: [_.get(this.settings, 'fields.place.keyword_search.placeholder')]
+          enabled: [_.get(this.settings, 'fields.location.keyword_search.enabled')],
+          label: [_.get(this.settings, 'fields.location.keyword_search.label')],
+          placeholder: [_.get(this.settings, 'fields.location.keyword_search.placeholder')]
         })
       }),
       time: this.formBuilder.group({
@@ -74,7 +74,7 @@ export class SearchFormWidgetEditComponent extends AbstractWidgetEditComponent {
     _.set(this.settings, 'general', _.get(values, 'general'));
     _.set(this.settings, 'header', _.get(values, 'header'));
     _.set(this.settings, 'fields.type.keyword_search', _.get(values, 'type.keyword_search'));
-    _.set(this.settings, 'fields.place.keyword_search', _.get(values, 'place.keyword_search'));
+    _.set(this.settings, 'fields.location.keyword_search', _.get(values, 'location.keyword_search'));
     _.set(this.settings, 'fields.time.date_search', _.get(values, 'time.date_search'));
     _.set(this.settings, 'footer', _.get(values, 'footer'));
   }
