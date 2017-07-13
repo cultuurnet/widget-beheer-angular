@@ -736,6 +736,7 @@ fieldset {
   padding: 5px;
   position: relative;
   border: 1px dotted #ccc;
+  margin-bottom: 1rem;
 }
 
 .layout--region {
@@ -776,8 +777,9 @@ app-add-row{
 
 .layout--region {
 
-  border: 1px dotted #ccc;
+  border-rightn: 1px dotted #ccc;
 }
+
 
 body.gu-unselectable {
 .layout--region {
@@ -785,6 +787,9 @@ body.gu-unselectable {
   border: 1px dotted $cnw_color-blueLight;
   min-height: 50px;
 }
+  .outer-row {
+    border: 1px dotted $cnw_color-blueLight;
+  }
 }
 
 .actions-bar .btn {
@@ -792,4 +797,9 @@ body.gu-unselectable {
     background-color: $cnw_color-red;
     color: white;
   }
+}
+
+
+.widget-code-preview {
+  display: none;
 }
