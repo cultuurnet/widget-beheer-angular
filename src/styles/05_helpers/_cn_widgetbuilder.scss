@@ -19,7 +19,9 @@
 
 body {
   background-color: $cnw_color-grayLight;
-  padding-top: $cnw_navbar-height;
+  background-color: white;
+ // padding-top: $cnw_navbar-height;
+  color:$gray;
    }
 
 .uit-logo {
@@ -44,8 +46,9 @@ body {
 
 .preview {
   position: absolute;
-  right: 280px;
-  top: $cnw_builder-top;
+  right: 500px;
+  //top: $cnw_builder-top;
+  top: 230px;
   bottom: 0;
   left: 0;
 
@@ -70,14 +73,15 @@ body {
   position: fixed;
   right: 24px;
   bottom: 0;
-  top: 56px;
+  //top: 56px;
+  top:0;
   transition: all 0.2s;
   background-color: #fafdff;
+  background-color: white;
 
   border-left: 1px solid $cnw_color-grayLight;
   height: auto;
   overflow-x: scroll;
-
 
   -webkit-box-shadow: 22px -22px 13px 26px rgba(213, 226, 236, 0.69);
   box-shadow: 22px -22px 13px 26px rgba(213, 226, 236, 0.69);
@@ -90,8 +94,8 @@ body {
 
 .sidebar-inner {
 
-
 }
+
 .sidebar {
   .nav-tabs {
     .nav-link {
@@ -105,16 +109,29 @@ body {
         border: 0px;
         border-radius: 0;
       }
+      .card-block {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+      }
       .card-header {
         padding:0;
         a {
           display: block;
-          background-color: $cnw_color-grayLight;
+          background-color: #f9f9f9;
           padding:0.75rem 1.25rem;
           text-decoration: none;
+          color: $gray-light;
+          text-transform: uppercase;
+
         }
         &.active {
-          a { background-color: $cnw_color-blueLight2;}
+          a {
+            //background-color: #d5dde4;
+            background-color:  $cnw_color-blueHeader;
+            color:white;
+            box-shadow: 0px 4px 7px 0px rgba(136, 146, 154, 0.23);
+            border-bottom: 0;
+          }
+
         }
         &:first-child {
           border-radius: 0;
@@ -182,7 +199,7 @@ body {
   margin: 5px;
   padding: 5px;
   margin-bottom: 10px;
-
+  border: 1px solid #d5dde4;
   position: relative;
   transition: box-shadow 0.25s ease;
 
@@ -211,115 +228,13 @@ body {
   //border: 1px solid #004F94;
   box-shadow: -1px -1px 17px 1px rgba(212,212,212,1);
 
-  .actions-bar {
-    background-color: #e5eef5;
-  }
+
 
 }
 .selected .selector {
-  height: 0; }
-.selected .actions-bar--component {
-  padding: 5px;
-  opacity: 1;
-  transform: translate(0, 0);
-  height: inherit;
-
+  height: 0;
 }
 
-.actions-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0; }
-
-.widget-group-filters-group-edit .actions-list {
-  float:right;
-  width: 75%;
-  text-align: right;
-}
-
-.widget-group-filters-group-edit .actions-list li {
-  display: inline-block;
-}
-
-.outer-row:hover .actions-bar--row {
-  opacity: 1;
-  transform: translate(0, 0); }
-
-.outer-row .actions-bar--row {
-  position: absolute;
-  left: 0px;
-  top: 0;
-  opacity: 0;
-  transition: all 0.25s ease;
-  transform: translate(0, -4px); }
-
-.outer-row .actions-bar {
-  margin: 0;
-  padding: 0;
-  z-index: 980; }
-.actions-bar .btn {
-  background-color: #FFF;
-  color: #333333;
-  border: 1px solid #DDD;
-  border-radius: 50%;
-  padding: 0;
-  margin: 0;
-  line-height: 30px; }
-
-.actions-bar .btn i {
-  display: block;
-  width: 30px;
-  height: 30px;
-  line-height:30px;
-}
-
-.actions-bar--component {
- // background-color: #004F94;
-  display: block;
-  overflow: hidden;
-  list-style-type: none;
-  opacity: 0;
-  transition: all 0.25s ease;
-  margin-bottom: 5px;
-  margin-left: -6px;
-  margin-right: -6px;
-  margin-top: -6px;
-  height: 0; }
-.actions-bar--component .btn {
-  background-color: $cnw_color-blueLight;
-  color: #FFF;
-  border-radius: 50%;
-  padding: 0;
-  margin: 6px;
-
-
-  background-color: #b6c4d0;
-  color: #FFF;
-  border-radius: 0;
-  padding: 0;
-  margin: 5px;
-  border: 0px;
-  margin-left: 5px;
-
-}
-
-.actions-bar--component li {
-  display: inline;
-  //float: right;
-  margin-right: 5px; }
-
-.actions-bar--component li.move {
-  float: left;
-
-}
-
-
-
-.actions-bar--row li {
-  margin-bottom: 5px; }
-
-.actions-bar a span {
-  display: none; }
 
 .page {
   position: relative;
@@ -486,7 +401,7 @@ fieldset {
   text-align: left; }
 
 .component-label {
-  margin: 0;
+  margin: 0 0 0 1rem;
   line-height: 40px;
   white-space: nowrap; }
 
@@ -739,20 +654,10 @@ fieldset {
   margin-bottom: 1rem;
 }
 
-.layout--region {
-  //padding: 5px 5px 50px 5px;
- //border: 1px dotted #ccc;
-}
 
-app-add-row{
-  display: block;
-  text-align: center;
-}
-
-.component-add {
-  text-align: center;
-  margin: -40px 0 5px 0;
-  cursor: pointer;
+.btn, .btn-primary:focus, .btn-primary.focus {
+  outline: none;
+  box-shadow: none;
 }
 
 .layout--preview {
@@ -775,10 +680,6 @@ app-add-row{
 }
 
 
-.layout--region {
-
-  border-rightn: 1px dotted #ccc;
-}
 
 
 body.gu-unselectable {
@@ -792,12 +693,6 @@ body.gu-unselectable {
   }
 }
 
-.actions-bar .btn {
-  &.bnt-cnw-action--remove {
-    background-color: $cnw_color-red;
-    color: white;
-  }
-}
 
 
 .widget-code-preview {
