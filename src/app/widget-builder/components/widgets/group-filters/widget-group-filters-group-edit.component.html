@@ -1,24 +1,30 @@
 <div [formGroup]="groupFilter">
     <app-row-edit [rows]="rows" [index]="index" [modalTitle]="'GROUP_FILTER_REMOVE_MODAL_TITLE'" [modalMessage]="'GROUP_FILTER_REMOVE_MODAL_MESSAGE'" (rowChanged)="handleRowChanged($event)"></app-row-edit>
-    <div>
+    <div class="form-group">
         <label><strong>{{ "LABEL_GROUP_FILTER_LABEL" | translate }}</strong></label>
-        <input type="text" formControlName="label">
+        <input type="text" formControlName="label" class="form-control">
     </div>
-    <div>
+    <div class="form-group">
         <label><strong>{{ "LABEL_GROUP_FILTER_PLACEHOLDER" | translate }}</strong></label>
-        <input type="text" formControlName="placeholder">
+        <input type="text" formControlName="placeholder" class="form-control">
     </div>
-    <div>
-        <label><strong>{{ "LABEL_GROUP_FILTER_TYPE" | translate }}</strong></label>
-        <label *ngFor="let filterType of filterTypes">
-            <input type="radio" [value]="filterType.type" formControlName="type">
+
+    <h5>{{ "LABEL_GROUP_FILTER_TYPE" | translate }}</h5>
+    <div class="form-check">
+        <label *ngFor="let filterType of filterTypes"  class="form-check-label">
+            <input type="radio" [value]="filterType.type" formControlName="type" class="form-check-input">
             <span>{{ filterType.label | translate }}</span>
         </label>
     </div>
-    <div formArrayName="options">
+
+    <div formArrayName="options" >
         <div [formGroupName]="i" *ngFor="let option of groupFilter.controls.options.controls; let i=index">
             <app-widget-group-filters-group-option-edit [option]="option" [index]="i" [rows]="groupFilter.controls.options.controls"></app-widget-group-filters-group-option-edit>
         </div>
     </div>
-    <button class="btn btn-primary btn-sm" type="button" (click)="addOption()" [disabled]="!groupFilter.controls.options.valid">{{ "BUTTON_ADD_GROUP_FILTER_FILTER_OPTION" | translate }}</button>
+
+    <button class="btn btn-primary btn-sm btn-cnw-filtergroup--add" type="button" (click)="addOption()" [disabled]="!groupFilter.controls.options.valid">
+        <i aria-hidden="true" class="fa fa-plus-square-o fa-1x"></i>
+        {{ "BUTTON_ADD_GROUP_FILTER_FILTER_OPTION" | translate }}
+    </button>
 </div>
