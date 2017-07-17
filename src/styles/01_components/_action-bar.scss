@@ -74,13 +74,13 @@
     //transition: all 0.25s ease;
     //transform: translate(0, -4px);
 
-
+    margin: 5px 0 0 0 ;
     -webkit-transform: translate(0, -4px);
     background-color: #eff1f3;
   }
 
   .actions-bar {
-    margin: 5px 0 0 0;
+
     padding: 0;
     z-index: 980;
   }
@@ -93,17 +93,17 @@
 
 .edit-searchfilters--group,
 .layout--region .selected {
- > .actions-bar--component {
-    display: block;
-    overflow: hidden;
-    list-style-type: none;
-    transition: all 0.25s ease;
-  }
+   > .actions-bar--component {
+      display: block;
+      overflow: hidden;
+      list-style-type: none;
+      transition: all 0.25s ease;
+    }
 
-  ul.actions-list {
-    min-height: 36px;
+    ul.actions-list {
+      min-height: 36px;
+    }
   }
-}
   .actions-bar--row a.btn,
   .actions-bar--row .btn,
   .actions-bar--component .btn {
@@ -158,3 +158,6 @@
 
 
 
+.selected .actions-bar--component {
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,108 @@
+
+.sidebar {
+  width: 480px;
+  position: fixed;
+  right: 24px;
+  bottom: 0;
+  //top: 56px;
+  top: 0;
+  transition: all 0.2s;
+  background-color: #fafdff;
+  background-color: white;
+
+  border-left: 1px solid $cnw_color-grayLight;
+  height: auto;
+  overflow-x: scroll;
+
+  -webkit-box-shadow: 22px -22px 13px 26px rgba(213, 226, 236, 0.69);
+  box-shadow: 22px -22px 13px 26px rgba(213, 226, 236, 0.69);
+
+  z-index: 200;
+}
+
+
+.sidebar hr {
+  border-color: #DDD;
+  margin-bottom: 15px; }
+
+.sidebar-inner {
+
+}
+
+.sidebar {
+  .nav-tabs {
+    .nav-link {
+      border-radius: 0px;
+    }
+
+    border-bottom: 0px;
+  }
+  .tab-content {
+    .card {
+      border: 0px;
+      border-radius: 0;
+    }
+    .card-block {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    }
+    .card-header {
+      padding:0;
+      a {
+        display: block;
+        background-color: #f9f9f9;
+        padding:0.75rem 1.25rem;
+        text-decoration: none;
+        color: $gray-light;
+        text-transform: uppercase;
+
+      }
+      &.active {
+        a {
+          //background-color: #d5dde4;
+          background-color:  $cnw_color-blueHeader;
+          color:white;
+          box-shadow: 0px 4px 7px 0px rgba(136, 146, 154, 0.23);
+          border-bottom: 0;
+        }
+
+      }
+      &:first-child {
+        border-radius: 0;
+      }
+    }
+  }
+}
+.sidebar .nav-tabs .fa {
+  display: block;
+  font-size: 1.2em;
+  margin-bottom: 0.25em;
+  text-align: center; }
+
+.sidebar .tab-content {
+  background-color: #FFF;
+  padding: 0;
+  border: 0; }
+
+.sidebar .panel-title {
+  font-weight: bold;
+  font-size: 1em; }
+
+
+
+.sidebar .panel {
+  box-shadow: none; }
+
+.sidebar .panel-default > .panel-heading {
+  background-color: transparent;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0; }
+
+.sidebar .panel-default {
+  border: 0px;
+  border-radius: 0; }
+
+.sidebar .panel-heading {
+  padding: 10px 0; }
+
+.sidebar .panel-body {
+  padding: 10px 0; }
