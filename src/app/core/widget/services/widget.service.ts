@@ -43,7 +43,16 @@ export class WidgetService {
           },
           'time': {
             'date_search': {
-              'enabled' : true
+              'enabled' : true,
+              'options': {
+                'today': true,
+                'tomorrow': true,
+                'weekend': true,
+                'days_7': true,
+                'days_14': true,
+                'days_30': true,
+                'custom_date': true
+              }
             },
             'group_filters': {
               'enabled': false

@@ -109,6 +109,51 @@
                                         <label>Suggestie</label>
                                         <input type="text" formControlName="placeholder">
                                     </div>
+                                    <div formGroupName="options">
+                                        <label>Opties</label>
+                                        <div>
+                                            <label>
+                                                <input type="checkbox" formControlName="today" />
+                                                <span>Vandaag</span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <input type="checkbox" formControlName="tomorrow" />
+                                                <span>Morgen</span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <input type="checkbox" formControlName="weekend" />
+                                                <span>Dit weekend</span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <input type="checkbox" formControlName="days_7" />
+                                                <span>Volgende 7 dagen</span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <input type="checkbox" formControlName="days_14" />
+                                                <span>Volgende 14 dagen</span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <input type="checkbox" formControlName="days_30" />
+                                                <span>Volgende 30 dagen</span>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <input type="checkbox" formControlName="custom_date" />
+                                                <span>Specifieke datum</span>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </fieldset>
                             <fieldset *ngIf="settings.fields.time.group_filters">

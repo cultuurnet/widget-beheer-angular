@@ -56,7 +56,16 @@ export class SearchFormWidgetEditComponent extends AbstractWidgetEditComponent {
         date_search: this.formBuilder.group({
           enabled: [_.get(this.settings, 'fields.time.date_search.enabled')],
           label: [_.get(this.settings, 'fields.time.date_search.label')],
-          placeholder: [_.get(this.settings, 'fields.time.date_search.placeholder')]
+          placeholder: [_.get(this.settings, 'fields.time.date_search.placeholder')],
+          options: this.formBuilder.group({
+            today: [_.get(this.settings, 'fields.time.date_search.options.today')],
+            tomorrow: [_.get(this.settings, 'fields.time.date_search.options.tomorrow')],
+            weekend: [_.get(this.settings, 'fields.time.date_search.options.weekend')],
+            days_7: [_.get(this.settings, 'fields.time.date_search.options.days_7')],
+            days_14: [_.get(this.settings, 'fields.time.date_search.options.days_14')],
+            days_30: [_.get(this.settings, 'fields.time.date_search.options.days_30')],
+            custom_date: [_.get(this.settings, 'fields.time.date_search.options.custom_date')]
+          })
         })
       }),
       footer: this.formBuilder.group({

@@ -10,6 +10,7 @@ export class Config {
           'sidebar_left': {
             'widgets': [
               {
+                'id': 'd1ae67d3-60a3-8f74-d64f-9c97c3afe6b6',
                 'type': 'search-form',
                 'settings': {
                   'general': {
@@ -64,6 +65,7 @@ export class Config {
           'content': {
             'widgets': [
               {
+                'id': 'c039e4b6-3d61-1c2a-d028-4606fa56c4c9',
                 'type': 'search-results',
                 'settings': {
                   'header': {
@@ -120,6 +122,7 @@ export class Config {
           'content': {
             'widgets': [
               {
+                'id': '4fb36e4c-d2f3-55c6-b923-31bed556936b',
                 'type': 'search-results',
                 'settings': {
                   'header': {
