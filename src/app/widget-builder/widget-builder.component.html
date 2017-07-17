@@ -4,8 +4,7 @@
 
 
 
-<nav class="navbar navbar-toggleable-sm  main-nav">
-
+<nav class="navbar navbar-toggleable-sm   main-nav">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -15,29 +14,40 @@
     <div class="container">
         <ul class="nav navbar-nav">
             <li class="nav-item active">
-                <a href="#" editable-text="page.title" ng-bind="page.title" class="ng-binding ng-scope editable editable-click">UiTagenda builder</a>
+                <a href="#" editable-text="page.title" ng-bind="page.title" class="ng-binding ng-scope editable editable-click ">UiTagenda builder</a>
             </li>
-            <li  class="nav-item" ><a href="#" data-toggle="modal" data-target="#css"  class="nav-link" >CSS</a></li>
-            <li  class="nav-item" ><a href="#" data-toggle="modal" data-target="#publish" class="nav-link">Publiceren</a></li>
+
         </ul>
         <ul class="nav navbar-nav mx-auto">
             <li class="nav-item">
                 <app-view-mode-switcher (viewModeChanged)="handleViewModeChanged($event)"></app-view-mode-switcher>
 
             </li>
-            <li class="nav-item">
+            <li class="nav-item topnav-acties topnav-acties--instellingen">
                 <button type="button" class="btn btn-default navbar-btn btn--instelingen " (click)="toggleSidebar()">
                     <i class="fa  fa-cogs" aria-hidden="true"></i>
                     <span>Instellingen</span>
                 </button>
+            </li>
 
+            <li  class="nav-item  topnav-acties topnav-acties--css" >
+                <a href="#" data-toggle="modal" data-target="#css"  class="btn btn-default navbar-btn btn--css  nav-link" >
+                    <i class="fa fa-css3" aria-hidden="true"></i>
+                    CSS</a>
+            </li>
+
+            <li  class="nav-item  topnav-acties topnav-acties--publiceren" >
+                <a href="#" data-toggle="modal" data-target="#publish" class="btn btn-default navbar-btn btn--css  nav-link">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    Publiceren
+                </a>
             </li>
 
         </ul>
         <ul class="nav navbar-nav">
             <li class="nav-item">
                 <div class="btn-group ">
-                    <button type="button" class="btn btn-default dropdown-toggle ng-binding" data-toggle="dropdown"
+                    <button type="button" class="btn btn-default dropdown-toggle ng-binding topnav-acties--user" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false"><span class="caret">Welkom, Naam</span></button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href="#" >Afmelden</a></li>
@@ -51,37 +61,70 @@
 
 
 
+<div class="builder--wrapper">
+    <div class="builder" [ngClass]="{ 'no-sidebar' : !showSidebar }">
+        <div (click)="deselectWidget($event)" id="widget-builder-preview" class='preview {{ viewMode }}'>
 
-<div class="builder" [ngClass]="{ 'no-sidebar' : !showSidebar }">
-    <div (click)="deselectWidget($event)" id="widget-builder-preview" class='preview {{ viewMode }}'>
+            <div class="preview-inner">
+                <div class="page">
+                    <div class="page-inner">
+                        <app-row-preview *ngFor="let row of editingPage.rows; let i = index" [rows]="editingPage.rows" [index]="i" [row]="row" (widgetSelected)="editWidget($event)"></app-row-preview>
+                        <app-add-row [page]="editingPage"></app-add-row>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar ">
 
-        <div class="preview-inner">
-            <div class="page">
-                <div class="page-inner">
-                    <app-row-preview *ngFor="let row of editingPage.rows; let i = index" [rows]="editingPage.rows" [index]="i" [row]="row" (widgetSelected)="editWidget($event)"></app-row-preview>
-                    <app-add-row [page]="editingPage"></app-add-row>
+            <div class="sidebar-inner">
+                <div [ngClass]="{ 'hidden' : !activeWidget }">
+                    <ng-template widget-edit></ng-template>
+                </div>
+                <div class="tip p-4" *ngIf="!activeWidget">
+                    <h2>{{ 'TRANSLATION_DEMO' | translate }}</h2>
+
+                    <p>Stel je widget samen in drie stappen:</p>
+                    <ol>
+                        <li><strong>Voeg een rij toe</strong>. Hiermee bouw je de lay-out van de pagina. Je hebt keuze uit meerdere kolomstructuren. Je kan ook meerdere rijen toevoegen.</li>
+                        <li><strong>Voeg een blok toe</strong> in de passende kolom. Je hebt keuze uit meerdere soorten blokken: zo kan je je resultaten op je pagina plaatsen.</li>
+                        <li><strong>Configureer elke component</strong> door erop te klikken en de eigenschappen in deze rechterkolom aan te passen.</li>
+                    </ol>
+                    <p>Klaar met je widget te configureren?<br>Klik op 'Publiceren' en plak deze code in op je eigen website.</p>
+                    <p>Wil je deze pagina opmaken?<br>Klik op de knop 'CSS' en voeg je eigen stijlregels toe.</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="sidebar ">
+</div>
 
-        <div class="sidebar-inner">
-            <div [ngClass]="{ 'hidden' : !activeWidget }">
-                <ng-template widget-edit></ng-template>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-4"><p class="block-title">Info</p>
+                <ul>
+                    <li><a href="/#!/integrations">Alle mogelijkheden</a></li>
+                    <!--<li><a href="cultuurnet.zendesk.be" target="_blank">Help</a></li>-->
+                    <li><a href="#">Tarieven en voorwaarden</a></li>
+                </ul>
             </div>
-            <div class="tip p-4" *ngIf="!activeWidget">
-                <h2>{{ 'TRANSLATION_DEMO' | translate }}</h2>
-
-                <p>Stel je widget samen in drie stappen:</p>
-                <ol>
-                    <li><strong>Voeg een rij toe</strong>. Hiermee bouw je de lay-out van de pagina. Je hebt keuze uit meerdere kolomstructuren. Je kan ook meerdere rijen toevoegen.</li>
-                    <li><strong>Voeg een blok toe</strong> in de passende kolom. Je hebt keuze uit meerdere soorten blokken: zo kan je je resultaten op je pagina plaatsen.</li>
-                    <li><strong>Configureer elke component</strong> door erop te klikken en de eigenschappen in deze rechterkolom aan te passen.</li>
-                </ol>
-                <p>Klaar met je widget te configureren?<br>Klik op 'Publiceren' en plak deze code in op je eigen website.</p>
-                <p>Wil je deze pagina opmaken?<br>Klik op de knop 'CSS' en voeg je eigen stijlregels toe.</p>
+            <div class="col-xs-12 col-md-4"><p class="block-title">Documentatie</p>
+                <ul>
+                    <li><a href="http://documentatie.uitdatabank.be/content/omgevingen/latest/index.html"
+                           target="_blank">Overzicht van de omgevingen</a></li>
+                    <li><a href="http://documentatie.uitdatabank.be/content/authenticatie-autorisatie/latest/index.html"
+                           target="_blank">Authentificatie en autorisatie</a></li>
+                    <!--<li><a href="#">Hoe vraag ik een project aan?</a></li>--> </ul>
             </div>
+            <div class="col-xs-12 col-md-4"><p class="block-title">Contact</p>
+                <div class="clearfix well"><img src="/images/julie.jpg" class="img-responsive pull-right"
+                                                alt="Julie Meiresonne">
+                    <p>Julie Meiresonne</p>
+                    <p>Ondersteuning nodig? Een organisatie met een hart voor cultuur en vrije tijd? Dan werken we graag
+                        een voorstel op maat uit.</p> <a class="btn btn-default" href="mailto:julie@cultuurnet.be">Contacteer
+                        ons</a></div>
+            </div>
+            <div class="col-xs-12"><p class="text-muted">Een initiatief van Cultuurnet met de steun van de Vlaamse
+                overheid</p></div>
         </div>
     </div>
-</div>
+</footer>

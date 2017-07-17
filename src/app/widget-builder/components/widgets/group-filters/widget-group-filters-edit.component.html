@@ -14,6 +14,8 @@
                 </div>
             </div>
 
-        <button class="btn btn-primary btn-sm" type="button" (click)="addGroup()" [disabled]="!groupFilterForm.controls.filters.valid">{{ "BUTTON_ADD_GROUP_FILTER" | translate }}</button>
+        <button class="btn btn-primary btn-sm btn-cnw-filtergroup--add" type="button" (click)="addGroup()" [disabled]="!groupFilterForm.controls.filters.valid">
+            <i aria-hidden="true" class="fa fa-plus-square-o fa-1x"></i>
+            {{ "BUTTON_ADD_GROUP_FILTER" | translate }}</button>
     </fieldset>
 </form>
