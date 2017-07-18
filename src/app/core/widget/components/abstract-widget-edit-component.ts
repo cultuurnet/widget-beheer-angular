@@ -1,6 +1,7 @@
 import { Input, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs";
+import { Widget } from "../widget";
 
 /**
  * Abstract implementation of a widget edit component
@@ -13,9 +14,14 @@ export class AbstractWidgetEditComponent implements OnInit, OnDestroy {
   public widgetEditForm: FormGroup;
 
   /**
-   * The widget edit component settings
+   * The widget
    */
-  @Input() settings: any;
+  @Input() widget: Widget;
+
+  /**
+   * The widget settings
+   */
+  public settings: any = {};
 
   /**
    * Subscription to the widget edit form values
@@ -32,6 +38,9 @@ export class AbstractWidgetEditComponent implements OnInit, OnDestroy {
    * @inheritDoc
    */
   ngOnInit(): void {
+    // Create a reference to the widget settings
+    this.settings = this.widget.settings;
+
     // Initialize the form
     this.buildForm();
 
@@ -69,7 +78,7 @@ export class AbstractWidgetEditComponent implements OnInit, OnDestroy {
     // As a default, all top-level properties are applied to the model
     for (let key in values) {
       if (values.hasOwnProperty(key)) {
-        this.settings[key] = values[key];
+        this.widget.settings[key] = values[key];
       }
     }
   }
@@ -87,22 +96,6 @@ export class AbstractWidgetEditComponent implements OnInit, OnDestroy {
           this.deleteEmptyProperties(obj[key], resursive);
         }
       }
-    }
-  }
-
-  /**
-   * Change a checkbox value (true/false) back to its original string value
-   * @param $event
-   */
-  public onCheckboxChange($event) {
-    //We want to get back what the name of the checkbox represents, so I'm intercepting the event and
-    //manually changing the value from true to the name of what is being checked.
-
-    //check if the value is true first, if it is then change it to the name of the value
-    //this way when it's set to false it will skip over this and make it false, thus un-checking
-    //the box
-    if(this.widgetEditForm.get($event.target.id).value) {
-      this.widgetEditForm.patchValue({[$event.target.id] : $event.target.id});
     }
   }
 

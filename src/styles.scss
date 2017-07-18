@@ -688,3 +688,25 @@ app-add-row{
 .widget-code-preview:hover, .selected .widget-code-preview {
   opacity: 1;
 }
+
+.widget-preview {
+  display: block;
+  position: relative;
+  float: left;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background: #fff;
+}
+
+.preview-throbber {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left :0;
+  background: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+}
