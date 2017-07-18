@@ -7,6 +7,7 @@ import { SearchFormWidgetPreviewComponent } from "./search-form-widget/search-fo
 import { SearchResultsWidgetPreviewComponent } from "./search-results-widget/search-results-widget-preview.component";
 import { WidgetPreviewDirective } from "../../directives/widget-preview.directive";
 import * as _ from "lodash";
+import { HtmlWidgetPreviewComponent } from "./html-widget/html-widget-preview.component";
 
 /**
  * A generic widget preview component.
@@ -99,10 +100,19 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
     // Temp preview code.
     // @todo: Remove when no longer needed
     let previewComponent = null;
-    if (this.widget.type == 'search-form') {
-      previewComponent = SearchFormWidgetPreviewComponent;
-    } else if (this.widget.type == 'search-results') {
-      previewComponent = SearchResultsWidgetPreviewComponent;
+    switch (this.widget.type) {
+      case 'search-form':
+        previewComponent = SearchFormWidgetPreviewComponent;
+        break;
+      case 'search-results':
+        previewComponent = SearchResultsWidgetPreviewComponent;
+        break;
+      case 'html':
+        previewComponent = HtmlWidgetPreviewComponent;
+        break;
+      default:
+        previewComponent = SearchFormWidgetPreviewComponent;
+        break;
     }
 
     let componentFactory = this._componentFactoryResolver.resolveComponentFactory(previewComponent);

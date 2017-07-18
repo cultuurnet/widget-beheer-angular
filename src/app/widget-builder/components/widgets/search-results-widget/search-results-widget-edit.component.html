@@ -1,14 +1,7 @@
 <h2>Search results edit</h2>
-<div class="selected-element">
-    <p>Je selecteerde: <br>
-        <i class="fa fa-crosshairs"></i>
-        <code>#zoekbox-13</code>
-    </p>
-</div>
-
 <ngb-tabset>
     <ngb-tab>
-        <ng-template ngbTabTitle>Eigenschappen</ng-template>
+        <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
         <ng-template ngbTabContent>
             <ngb-accordion [closeOthers]="true">
                 <ngb-panel id="general">
