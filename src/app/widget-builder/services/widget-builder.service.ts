@@ -118,7 +118,7 @@ export class WidgetBuilderService {
       }).catch((ex) => {
         console.error('Error saving the widget page', ex);
       });
-    });/
+    });
   }
 
   /**
