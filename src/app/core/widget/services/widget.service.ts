@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { WidgetPage } from "../widget-page";
 import * as _ from "lodash";
+import { Http } from "@angular/http";
+import { Observable } from "rxjs/Observable";
+import { environment } from "../../../../environments/environment";
 
 /**
  * Temporary service that mimics calls that should go to Silex
@@ -11,6 +14,9 @@ export class WidgetService {
   private cache: any = {
     renderedWidgets: {}
   };
+
+  constructor (private http: Http) {
+  }
 
   /**
    * /**
@@ -101,67 +107,9 @@ export class WidgetService {
 
   /**
    * Get the default settings for the given widget types.
-   *
-   * @param widgetTypes
    */
-  public getWidgetDefaultSettings(widgetTypes: any) {
-    return {
-      'search-form': {
-        'general': {
-          'new_window': false,
-          'button_label': 'Zoeken'
-        },
-        'header': {
-          'body': '<p>Uit in ...</p>',
-        },
-        'fields': {
-          'type': {
-            'keyword_search': {
-              'enabled' : true,
-              'label': 'Wat',
-              'placeholder': 'Bv. concert, Bart Peeters,...',
-            },
-            'group_filters': {
-              'enabled': false,
-            }
-          },
-          'location': {
-            'keyword_search': {
-              'enabled' : true,
-              'label': 'Wat',
-              'placeholder': 'Bv. concert, Bart Peeters,...',
-            },
-            'group_filters': {
-              'enabled': false
-            }
-          },
-          'time': {
-            'date_search': {
-              'enabled' : true,
-              'options': {
-                'today': true,
-                'tomorrow': true,
-                'weekend': true,
-                'days_7': true,
-                'days_14': true,
-                'days_30': true,
-                'custom_date': true
-              }
-            },
-            'group_filters': {
-              'enabled': false
-            }
-          },
-          'extra': {
-            'group_filters': {
-              'enabled': false
-            }
-          }
-        },
-        'footer': {
-          'body': '<a href="http://www.uitinvlaanderen.be" target="_blank"><img border="0" class="cultuurnet-logo-uiv" src="http://tools.uitdatabank.be/sites/all/modules/cul_widgets_server/images/uiv-btn.jpg" alt="Meer tips op UiTinVlaanderen.be" /></a>'
-        }
-      }
-    }
+  public getWidgetDefaultSettings(): Observable<Object> {
+    return this.http.get(environment.apiUrl + 'widget-types')
+        .map(res => res.json());
   }
 }

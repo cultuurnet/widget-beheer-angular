@@ -43,13 +43,15 @@ export class WidgetTypeRegistry {
    * Load the widget default settings onto the registered widgets
    */
   public loadWidgetDefaultSettings() {
-    let defaultSettings = this.widgetService.getWidgetDefaultSettings(Object.keys(this.widgetTypes));
-
-    for (let widgetType in defaultSettings) {
-      if (defaultSettings.hasOwnProperty(widgetType) &&  this.widgetTypes.hasOwnProperty(widgetType)) {
-        this.widgetTypes[widgetType].defaultSettings = defaultSettings[widgetType];
-      }
-    }
+    this.widgetService.getWidgetDefaultSettings().subscribe(
+        defaultSettings => {
+          for (let widgetType in defaultSettings) {
+            if (defaultSettings.hasOwnProperty(widgetType) &&  this.widgetTypes.hasOwnProperty(widgetType)) {
+              this.widgetTypes[widgetType].defaultSettings = defaultSettings[widgetType];
+            }
+          }
+      },
+    );
   }
 
   /**
