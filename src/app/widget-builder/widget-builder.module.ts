@@ -27,6 +27,8 @@ import { SearchResultsWidgetPreviewComponent } from "./components/widgets/search
 import { SearchFormWidgetPreviewComponent } from "./components/widgets/search-form-widget/search-form-widget-preview.component";
 import { WidgetPreviewDirective } from "./directives/widget-preview.directive";
 import { CKEditorModule } from "ng2-ckeditor";
+import { HtmlWidgetPreviewComponent } from "./components/widgets/html-widget/html-widget-preview.component";
+import { HtmlWidgetWidgetEditComponent } from "./components/widgets/html-widget/html-widget-edit.component";
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { CKEditorModule } from "ng2-ckeditor";
     WidgetGroupFiltersGroupEditComponent,
     WidgetGroupFiltersGroupOptionEditComponent,
     SearchResultsWidgetPreviewComponent,
-    SearchFormWidgetPreviewComponent
+    SearchFormWidgetPreviewComponent,
+    HtmlWidgetWidgetEditComponent,
+    HtmlWidgetPreviewComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -80,7 +84,9 @@ import { CKEditorModule } from "ng2-ckeditor";
     WidgetGroupFiltersGroupEditComponent,
     WidgetGroupFiltersGroupOptionEditComponent,
     SearchResultsWidgetPreviewComponent,
-    SearchFormWidgetPreviewComponent
+    SearchFormWidgetPreviewComponent,
+    HtmlWidgetWidgetEditComponent,
+    HtmlWidgetPreviewComponent
   ]
 })
 

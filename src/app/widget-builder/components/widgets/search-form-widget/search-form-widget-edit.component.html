@@ -1,15 +1,8 @@
-<h2>Search form edit</h2>
-<div class="selected-element">
-    <p>Je selecteerde: <br>
-        <i class="fa fa-crosshairs"></i>
-        <code>#zoekbox-13</code>
-    </p>
-</div>
-
+<h2>{{ "TITLE_SEARCH_FORM_EDIT_FORM" | translate }}</h2>
 <ngb-tabset>
     <ngb-tab>
         <form [formGroup]="widgetEditForm" novalidate>
-            <ng-template ngbTabTitle>Eigenschappen</ng-template>
+            <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
             <ng-template ngbTabContent>
                 <ngb-accordion [closeOthers]="true">
                     <ngb-panel id="general" formGroupName="general">
