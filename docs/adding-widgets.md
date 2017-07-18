@@ -19,7 +19,7 @@ These elements are tied together by registering the widget in the widgetTypeRegi
  An icon should be placed in the `assets/widgets` folder and named in the following pattern: [widget-type]-widget.svg`
 
 ## Registering the widget
- All the above elements are tied together in the application by registering the new widget type in the `WidgetTypeRegistry` in the AppModule file.
+ All the above elements are tied together in the application by registering the new widget type in the `WidgetTypeRegistry` in the AppModule constructor.
  
  When registering the widget type, provide the following parameters:
  - type
