@@ -24,7 +24,6 @@ import { ThreeColDoubleSidebarLayout } from "./core/layout/layouts/3col-double-s
 import { ThreeColDoubleSidebarLayoutComponent } from "./widget-builder/components/layouts/3col-double-sidebar/3col-double-sidebar-layout.component";
 import { PageTemplateRegistry } from "./core/template/services/page-template-registry.service";
 import { MyTemplate } from "./core/template/page-templates/my-template";
-import { WidgetService } from "./core/widget/services/widget.service";
 import { HtmlWidget } from "./core/widget/widgets/html-widget/html-widget.widget";
 import { HtmlWidgetWidgetEditComponent } from "./widget-builder/components/widgets/html-widget/html-widget-edit.component";
 
