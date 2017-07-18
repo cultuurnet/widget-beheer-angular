@@ -25,6 +25,8 @@ import { ThreeColDoubleSidebarLayoutComponent } from "./widget-builder/component
 import { PageTemplateRegistry } from "./core/template/services/page-template-registry.service";
 import { MyTemplate } from "./core/template/page-templates/my-template";
 import { WidgetService } from "./core/widget/services/widget.service";
+import { HtmlWidget } from "./core/widget/widgets/html-widget/html-widget.widget";
+import { HtmlWidgetWidgetEditComponent } from "./widget-builder/components/widgets/html-widget/html-widget-edit.component";
 
 /**
  * AoT requires an exported function for factories
@@ -67,6 +69,7 @@ export class AppModule {
     // Register widget types
     widgetTypeRegistry.register('search-form', 'Search form', SearchFormWidget, SearchFormWidgetEditComponent);
     widgetTypeRegistry.register('search-results', 'Search results', SearchResultsWidget, SearchResultsWidgetEditComponent);
+    widgetTypeRegistry.register('html', 'HTML', HtmlWidget, HtmlWidgetWidgetEditComponent);
 
     // Register layouts
     layoutTypeRegistry.register('2col-sidebar-left', 'Two col sidebar left', TwoColSidebarLeftLayout, TwoColSidebarLeftLayoutComponent);

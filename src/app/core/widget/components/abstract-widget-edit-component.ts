@@ -46,10 +46,6 @@ export class AbstractWidgetEditComponent implements OnInit, OnDestroy {
 
     // Subscribe to changes in the form and reflect them on the widget model
     this.formSubscription = this.widgetEditForm.valueChanges.subscribe(values => {
-      // Remove all null values from the form values
-      // @todo: Decide if the cleanup of the empty/null values should be done here or server-side
-      this.deleteEmptyProperties(values, true);
-
       // Apply the values to the model
       this.applyValuesToModel(values);
     });
@@ -79,22 +75,6 @@ export class AbstractWidgetEditComponent implements OnInit, OnDestroy {
     for (let key in values) {
       if (values.hasOwnProperty(key)) {
         this.widget.settings[key] = values[key];
-      }
-    }
-  }
-
-  /**
-   * Delete all null (or undefined) or empty properties from an object.
-   * Set 'recursive' to true if you also want to delete properties in nested objects.
-   */
-  private deleteEmptyProperties(obj, resursive = false) {
-    for (let key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        if (obj[key] === null || obj[key] === '') {
-          delete obj[key];
-        } else if (resursive && typeof obj[key] === 'object') {
-          this.deleteEmptyProperties(obj[key], resursive);
-        }
       }
     }
   }
