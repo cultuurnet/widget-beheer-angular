@@ -40,133 +40,133 @@
                         </ng-template>
                     </ngb-panel>
                     <ngb-panel id="type" formGroupName="type">
-                        <ng-template ngbPanelTitle>Soort</ng-template>
+                        <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_TYPE" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
                             <fieldset formGroupName="keyword_search">
-                                <legend>Vrije zoekterm</legend>
+                                <legend>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TYPE_KEYWORD_SEARCH" | translate }}</legend>
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>Zoeken op trefwoord</span>
+                                    <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TYPE_KEYWORD_SEARCH_SEARCH_BY_TERM" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.fields.type.keyword_search.enabled">
                                     <div>
-                                        <label>Label</label>
+                                        <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TYPE_KEYWORD_SEARCH_LABEL" | translate }}</label>
                                         <input type="text" formControlName="label">
                                     </div>
                                     <div>
-                                        <label>Suggestie</label>
+                                        <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TYPE_KEYWORD_SEARCH_PLACEHOLDER" | translate }}</label>
                                         <input type="text" formControlName="placeholder">
                                     </div>
                                 </div>
                             </fieldset>
                             <fieldset *ngIf="settings.fields.type.group_filters">
-                                <legend>Groepfilters</legend>
+                                <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
                                 <app-widget-group-filters-edit [groupFilters]="settings.fields.type.group_filters"></app-widget-group-filters-edit>
                             </fieldset>
                         </ng-template>
                     </ngb-panel>
                     <ngb-panel id="location" formGroupName="location">
-                        <ng-template ngbPanelTitle>Plaats</ng-template>
+                        <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_PLACE" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
                             <fieldset formGroupName="keyword_search">
-                                <legend>Vrije zoekterm</legend>
+                                <legend>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH" | translate }}</legend>
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>Zoeken op trefwoord</span>
+                                    <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH_SEARCH_BY_TERM" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.fields.location.keyword_search.enabled">
                                     <div>
-                                        <label>Label</label>
+                                        <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH_LABEL" | translate }}</label>
                                         <input type="text" formControlName="label">
                                     </div>
                                     <div>
-                                        <label>Suggestie</label>
+                                        <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH_PLACEHOLDER" | translate }}</label>
                                         <input type="text" formControlName="placeholder">
                                     </div>
                                 </div>
                             </fieldset>
                             <fieldset *ngIf="settings.fields.location.group_filters">
-                                <legend>Groepfilters</legend>
+                                <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
                                 <app-widget-group-filters-edit [groupFilters]="settings.fields.location.group_filters"></app-widget-group-filters-edit>
                             </fieldset>
                         </ng-template>
                     </ngb-panel>
                     <ngb-panel id="time" formGroupName="time">
-                        <ng-template ngbPanelTitle>Tijd</ng-template>
+                        <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_TIME" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
                             <fieldset formGroupName="date_search">
-                                <legend>Algemeen</legend>
+                                <legend>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL" | translate }}</legend>
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>Zoeken op datum</span>
+                                    <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.fields.time.date_search.enabled">
                                     <div>
-                                        <label>Label</label>
+                                        <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_LABEL" | translate }}</label>
                                         <input type="text" formControlName="label">
                                     </div>
                                     <div>
-                                        <label>Suggestie</label>
+                                        <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_PLACEHOLDER" | translate }}</label>
                                         <input type="text" formControlName="placeholder">
                                     </div>
                                     <div formGroupName="options">
-                                        <label>Opties</label>
+                                        <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS" | translate }}</label>
                                         <div>
                                             <label>
                                                 <input type="checkbox" formControlName="today" />
-                                                <span>Vandaag</span>
+                                                <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_TODAY" | translate }}</span>
                                             </label>
                                         </div>
                                         <div>
                                             <label>
                                                 <input type="checkbox" formControlName="tomorrow" />
-                                                <span>Morgen</span>
+                                                <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_TOMORROW" | translate }}</span>
                                             </label>
                                         </div>
                                         <div>
                                             <label>
                                                 <input type="checkbox" formControlName="weekend" />
-                                                <span>Dit weekend</span>
+                                                <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_WEEKEND" | translate }}</span>
                                             </label>
                                         </div>
                                         <div>
                                             <label>
                                                 <input type="checkbox" formControlName="days_7" />
-                                                <span>Volgende 7 dagen</span>
+                                                <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_7" | translate }}</span>
                                             </label>
                                         </div>
                                         <div>
                                             <label>
                                                 <input type="checkbox" formControlName="days_14" />
-                                                <span>Volgende 14 dagen</span>
+                                                <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_14" | translate }}</span>
                                             </label>
                                         </div>
                                         <div>
                                             <label>
                                                 <input type="checkbox" formControlName="days_30" />
-                                                <span>Volgende 30 dagen</span>
+                                                <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_30" | translate }}</span>
                                             </label>
                                         </div>
                                         <div>
                                             <label>
                                                 <input type="checkbox" formControlName="custom_date" />
-                                                <span>Specifieke datum</span>
+                                                <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_CUSTOM_DATE" | translate }}</span>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
                             <fieldset *ngIf="settings.fields.time.group_filters">
-                                <legend>Groepfilters</legend>
+                                <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
                                 <app-widget-group-filters-edit [groupFilters]="settings.fields.time.group_filters"></app-widget-group-filters-edit>
                             </fieldset>
                         </ng-template>
                     </ngb-panel>
                     <ngb-panel id="extra">
-                        <ng-template ngbPanelTitle>Extra opties</ng-template>
+                        <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_EXTRA_OPTIONS" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
                             <fieldset *ngIf="settings.fields.extra.group_filters">
-                                <legend>Groepfilters</legend>
+                                <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
                                 <app-widget-group-filters-edit [groupFilters]="settings.fields.extra.group_filters"></app-widget-group-filters-edit>
                             </fieldset>
                         </ng-template>

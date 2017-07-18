@@ -3,7 +3,7 @@
         <input type="checkbox" formControlName="enabled"> <span>{{ "LABEL_CHECKBOX_EXTRA_GROUP_FILTERS" | translate }}</span>
     </label>
     <fieldset *ngIf="groupFilters.enabled">
-        <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
+        <legend>{{ "LABEL_GROUP_FILTERS_GROUPS" | translate }}</legend>
         <!-- list of groupFilters -->
         <div formArrayName="filters">
             <div *ngFor="let groupFilter of groupFilterForm.controls.filters.controls; let i=index">

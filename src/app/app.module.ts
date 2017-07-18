@@ -63,7 +63,7 @@ export class AppModule {
    * @param layoutTypeRegistry
    * @param pageTemplateRegistry
    */
-  constructor(private widgetTypeRegistry: WidgetTypeRegistry, private widgetService: WidgetService, private layoutTypeRegistry: LayoutTypeRegistry, private pageTemplateRegistry: PageTemplateRegistry) {
+  constructor(private widgetTypeRegistry: WidgetTypeRegistry, private layoutTypeRegistry: LayoutTypeRegistry, private pageTemplateRegistry: PageTemplateRegistry) {
     // Register widget types
     widgetTypeRegistry.register('search-form', 'Search form', SearchFormWidget, SearchFormWidgetEditComponent);
     widgetTypeRegistry.register('search-results', 'Search results', SearchResultsWidget, SearchResultsWidgetEditComponent);
@@ -77,8 +77,7 @@ export class AppModule {
     // Register page templates
     pageTemplateRegistry.register('my-template', new MyTemplate());
 
-
-    // Invoke the after init method
+    // Invoke the afterInit method
     this.afterInit();
   }
 
