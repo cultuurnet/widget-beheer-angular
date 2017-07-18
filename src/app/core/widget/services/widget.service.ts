@@ -161,7 +161,7 @@ export class WidgetService {
         'footer': {
           'body': '<a href="http://www.uitinvlaanderen.be" target="_blank"><img border="0" class="cultuurnet-logo-uiv" src="http://tools.uitdatabank.be/sites/all/modules/cul_widgets_server/images/uiv-btn.jpg" alt="Meer tips op UiTinVlaanderen.be" /></a>'
         }
-      }
+      },
     }
   }
 }

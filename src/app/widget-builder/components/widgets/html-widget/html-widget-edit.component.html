@@ -1,60 +1,19 @@
-<h2>Search results edit</h2>
-<div class="selected-element">
-    <p>Je selecteerde: <br>
-        <i class="fa fa-crosshairs"></i>
-        <code>#zoekbox-13</code>
-    </p>
-</div>
-
+<h2>{{ "TITLE_HTML_EDIT_FORM" | translate }}</h2>
 <ngb-tabset>
     <ngb-tab>
-        <ng-template ngbTabTitle>Eigenschappen</ng-template>
-        <ng-template ngbTabContent>
-            <ngb-accordion [closeOthers]="true">
-                <ngb-panel id="general">
-                    <ng-template ngbPanelTitle>Algemeen</ng-template>
-                    <ng-template ngbPanelContent>
-                        ALGEMEEN
-                    </ng-template>
-                </ngb-panel>
-                <ngb-panel id="header">
-                    <ng-template ngbPanelTitle>Header</ng-template>
-                    <ng-template ngbPanelContent>
-                        HEADER
-                    </ng-template>
-                </ngb-panel>
-                <ngb-panel id="what">
-                    <ng-template ngbPanelTitle>Wat</ng-template>
-                    <ng-template ngbPanelContent>
-                        WAT
-                    </ng-template>
-                </ngb-panel>
-                <ngb-panel id="where">
-                    <ng-template ngbPanelTitle>Waar</ng-template>
-                    <ng-template ngbPanelContent>
-                        WAAR
-                    </ng-template>
-                </ngb-panel>
-                <ngb-panel id="when">
-                    <ng-template ngbPanelTitle>Wanneer</ng-template>
-                    <ng-template ngbPanelContent>
-                        WANNEER
-                    </ng-template>
-                </ngb-panel>
-                <ngb-panel id="language">
-                    <ng-template ngbPanelTitle>Taal</ng-template>
-                    <ng-template ngbPanelContent>
-                        TAAL
-                    </ng-template>
-                </ngb-panel>
-                <ngb-panel id="footer">
-                    <ng-template ngbPanelTitle>Footer</ng-template>
-                    <ng-template ngbPanelContent>
-                        FOOTER
-                    </ng-template>
-                </ngb-panel>
-            </ngb-accordion>
-        </ng-template>
+        <form [formGroup]="widgetEditForm" novalidate>
+            <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
+            <ng-template ngbTabContent>
+                <ngb-accordion [closeOthers]="true" [activeIds]="'content'">
+                    <ngb-panel id="content" formGroupName="content">
+                        <ng-template ngbPanelTitle>{{ "LABEL_HTML_EDIT_FORM_PANEL_TITLE_CONTENT" | translate }}</ng-template>
+                        <ng-template ngbPanelContent>
+                            <ckeditor formControlName="body" [config]="ckeditorConfig.basic_html"></ckeditor>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </ng-template>
+        </form>
     </ngb-tab>
     <ngb-tab>
         <ng-template ngbTabTitle>JSON</ng-template>
