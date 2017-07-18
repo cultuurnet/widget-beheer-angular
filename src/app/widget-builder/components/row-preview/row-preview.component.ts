@@ -84,10 +84,11 @@ export class RowPreviewComponent implements OnInit, OnDestroy {
    * @param change
    */
   public handleRowChanged(change: any) {
+
     // Stop the widget from being deselected on the original event
     change.originalEvent.stopWidgetDeselect = true;
 
-    if (change.type === 'remove') {
+    if (change.action === 'remove') {
       // If the active widget is in the current row we are removing, deselect it
       for (let regionId in this.row.regions) {
         if (this.row.regions.hasOwnProperty(regionId)) {

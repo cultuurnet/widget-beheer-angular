@@ -42,7 +42,7 @@ export class WidgetGroupFiltersGroupEditComponent {
   /**
    * Add an empty option form component to the form
    */
-  private addOption() {
+  public addOption() {
     let control = <FormArray>this.groupFilter.controls['options'];
     control.push(WidgetGroupFiltersGroupOptionEditComponent.buildItem());
   }
@@ -70,10 +70,9 @@ export class WidgetGroupFiltersGroupEditComponent {
 
     // Set the default filter type if none is provided
     if (!type) {
-      for (let filterType of group_filter_types) {
-        if (filterType.default) {
-          type = filterType.type;
-        }
+      let defaultFieldType = group_filter_types.find(filterType => filterType.default === true);
+      if (defaultFieldType) {
+        type = defaultFieldType.type;
       }
     }
 

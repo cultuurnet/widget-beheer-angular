@@ -42,7 +42,11 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
 
     // Subscribe to changes in the form and reflect them on the widget groupFilters model
     this.formSubscription = this.groupFilterForm.valueChanges.subscribe(values => {
-      this.groupFilters.filters = values.filters;
+      for (let key in values) {
+        if (values.hasOwnProperty(key)) {
+          this.groupFilters[key] = values[key];
+        }
+      }
     });
   }
 
@@ -79,6 +83,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
 
     // Initialize the form
     this.groupFilterForm = this.formBuilder.group({
+      enabled: this.groupFilters.enabled,
       filters: this.formBuilder.array(items)
     });
   }
@@ -86,7 +91,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   /**
    * Add a group filter formgroup
    */
-  private addGroup() {
+  public addGroup() {
     let control = <FormArray>this.groupFilterForm.controls['filters'];
     control.push(WidgetGroupFiltersGroupEditComponent.buildItem());
   }
