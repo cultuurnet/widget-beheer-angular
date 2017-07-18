@@ -32,7 +32,7 @@ export class LayoutFactory {
           // Parse widgets and add to the region
           for (let item in jsonObject.regions[regionId].widgets) {
             if (jsonObject.regions[regionId].widgets.hasOwnProperty(item)) {
-              layout.regions[regionId].addWidget(this.widgetTypeRegistry.getInstance(jsonObject.regions[regionId].widgets[item].type, jsonObject.regions[regionId].widgets[item].settings));
+              layout.regions[regionId].addWidget(this.widgetTypeRegistry.getInstance(jsonObject.regions[regionId].widgets[item]), jsonObject.regions[regionId].widgets[item].id);
             }
           }
         }

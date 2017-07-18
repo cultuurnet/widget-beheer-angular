@@ -1,0 +1,24 @@
+<h2>{{ "TITLE_HTML_EDIT_FORM" | translate }}</h2>
+<ngb-tabset>
+    <ngb-tab>
+        <form [formGroup]="widgetEditForm" novalidate>
+            <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
+            <ng-template ngbTabContent>
+                <ngb-accordion [closeOthers]="true" [activeIds]="'content'">
+                    <ngb-panel id="content" formGroupName="content">
+                        <ng-template ngbPanelTitle>{{ "LABEL_HTML_EDIT_FORM_PANEL_TITLE_CONTENT" | translate }}</ng-template>
+                        <ng-template ngbPanelContent>
+                            <ckeditor formControlName="body" [config]="ckeditorConfig.basic_html"></ckeditor>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </ng-template>
+        </form>
+    </ngb-tab>
+    <ngb-tab>
+        <ng-template ngbTabTitle>JSON</ng-template>
+        <ng-template ngbTabContent>
+            <p>You can't handle the JSON!<p>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>

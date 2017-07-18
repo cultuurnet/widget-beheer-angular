@@ -6,6 +6,8 @@ import { ConfirmationModalComponent } from "../../../core/modal/components/confi
 import { SearchFormWidgetPreviewComponent } from "./search-form-widget/search-form-widget-preview.component";
 import { SearchResultsWidgetPreviewComponent } from "./search-results-widget/search-results-widget-preview.component";
 import { WidgetPreviewDirective } from "../../directives/widget-preview.directive";
+import * as _ from "lodash";
+import { HtmlWidgetPreviewComponent } from "./html-widget/html-widget-preview.component";
 
 /**
  * A generic widget preview component.
@@ -20,6 +22,7 @@ import { WidgetPreviewDirective } from "../../directives/widget-preview.directiv
  */
 export class WidgetPreviewComponent implements OnInit, OnDestroy {
 
+
   /**
    * The widget being previewed
    */
@@ -29,6 +32,17 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
    * The widget preview directive to replace with the rendered widget preview component
    */
   @ViewChild(WidgetPreviewDirective) preview: WidgetPreviewDirective;
+
+  /**
+   * Rendered widget preview
+   */
+  public widgetPreview: string;
+
+  /**
+   * Indicates if the preview is rendering or not
+   * @type {boolean}
+   */
+  public isRendering: boolean = true;
 
   /**
    * Keep track of the active widget
@@ -41,37 +55,64 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
   private widgetSelectedSubscription;
 
   /**
+   * Subscription to the widget preview observable
+   */
+  private widgetPreviewSubscription;
+
+  /**
    * WidgetPreviewComponent constructor.
    * @param widgetBuilderService
    * @param modalService
    * @param _componentFactoryResolver
    */
   constructor(private widgetBuilderService: WidgetBuilderService, private modalService: NgbModal, private _componentFactoryResolver: ComponentFactoryResolver) {
-    this.widgetSelectedSubscription = this.widgetBuilderService.widgetSelected$.subscribe(widget => {
-      this.activeWidget = widget;
-    });
-
-    this.activeWidget = widgetBuilderService.getActiveWidget();
-  }
-
-  /**
-   * @inheritDoc
-   */
-  ngOnDestroy(): void {
-    this.widgetSelectedSubscription.unsubscribe();
   }
 
   /**
    * Temp on init code for the preview.
    */
   ngOnInit(): void {
+    // Subscribe to the selected widget
+    this.widgetSelectedSubscription = this.widgetBuilderService.widgetSelected$.subscribe(widget => {
+      this.activeWidget = widget;
+    });
+
+    // Set the current active widget
+    this.activeWidget = this.widgetBuilderService.getActiveWidget();
+
+    // Subscribe to the widget preview observable
+    this.widgetPreviewSubscription = this.widgetBuilderService.widgetPreview$.subscribe(widgetPreview => {
+      if (widgetPreview.widgetId === this.widget.id) {
+        // If the content is empty, show the throbber and leave the old content (if any) as-is
+        if (_.isEmpty(widgetPreview.content)) {
+          this.isRendering = true;
+        } else {
+          // Rendering done, replace the content
+          this.widgetPreview = widgetPreview.content;
+          this.isRendering = false;
+        }
+      }
+    });
+
+    // Render the current widget
+    this.widgetBuilderService.renderWidget(this.widget.id);
+
     // Temp preview code.
     // @todo: Remove when no longer needed
     let previewComponent = null;
-    if (this.widget.type == 'search-form') {
-      previewComponent = SearchFormWidgetPreviewComponent;
-    } else if (this.widget.type == 'search-results') {
-      previewComponent = SearchResultsWidgetPreviewComponent;
+    switch (this.widget.type) {
+      case 'search-form':
+        previewComponent = SearchFormWidgetPreviewComponent;
+        break;
+      case 'search-results':
+        previewComponent = SearchResultsWidgetPreviewComponent;
+        break;
+      case 'html':
+        previewComponent = HtmlWidgetPreviewComponent;
+        break;
+      default:
+        previewComponent = SearchFormWidgetPreviewComponent;
+        break;
     }
 
     let componentFactory = this._componentFactoryResolver.resolveComponentFactory(previewComponent);
@@ -79,6 +120,14 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
     let viewContainerRef = this.preview.viewContainerRef;
     viewContainerRef.clear();
     viewContainerRef.createComponent(componentFactory);
+  }
+
+  /**
+   * @inheritDoc
+   */
+  ngOnDestroy(): void {
+    this.widgetSelectedSubscription.unsubscribe();
+    this.widgetPreviewSubscription.unsubscribe();
   }
 
   /**
@@ -109,8 +158,11 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
     modal.result.then((result) => {
       this.widgetBuilderService.widgetPage.removeWidget(widget);
 
-      // Remove active widget
+      // Deselect active widget
       this.widgetBuilderService.selectWidget();
+
+      // Save the widget page
+      this.widgetBuilderService.saveWigetPage();
     }, (reason) => {
       // Do nothing on cancel because the widget hasn't changed
     });

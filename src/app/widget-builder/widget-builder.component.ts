@@ -99,7 +99,6 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     // Get a reference to the widget-container drake
     let drake = this.dragulaService.find('widget-container');
 
-    // Init the autoscroll
     this.scroll = autoScroll(document.querySelector('#widget-builder-preview'), {
       margin: 30,
       maxSpeed: 25,
@@ -135,7 +134,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
       let componentFactory = this._componentFactoryResolver.resolveComponentFactory(widgetType.editComponent);
 
       let componentRef = viewContainerRef.createComponent(componentFactory);
-      (<AbstractWidgetEditComponent>componentRef.instance).settings = widget.settings;
+      (<AbstractWidgetEditComponent>componentRef.instance).widget = widget;
     }
   }
 
