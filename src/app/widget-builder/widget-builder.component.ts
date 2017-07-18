@@ -59,8 +59,6 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    */
   private widgetSelectedSubscription;
 
-  private drake;
-
   /**
    * WidgetBuilder constructor.
    * @param dragulaService

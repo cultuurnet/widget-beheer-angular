@@ -3,7 +3,7 @@ import { UUID } from "angular2-uuid";
 import * as _ from "lodash";
 
 /**
- * Provide a search form widget.
+ * Provide an abstract widget.
  */
 export abstract class AbstractWidget implements Widget {
 
@@ -23,7 +23,7 @@ export abstract class AbstractWidget implements Widget {
   public settings: any;
 
   /**
-   * SearchFormWidget constructor.
+   * AbstractWidget constructor.
    * @param values
    */
   constructor(values: any = {}) {
