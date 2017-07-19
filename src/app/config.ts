@@ -10,19 +10,22 @@ export class Config {
           'sidebar_left': {
             'widgets': [
               {
+                'id': 'd1ae67d3-60a3-8f74-d64f-9c97c3afe6b6',
                 'type': 'search-form',
                 'settings': {
-                  'destination': 'https://www.uitinvlaanderen.be/agenda/search',
-                  'new_window': false,
-                  'button_label': 'Zoeken',
-                  'search_query': 'q=mysearch',
+                  'general': {
+                    'destination': 'https://www.uitinvlaanderen.be/agenda/search',
+                    'new_window': false,
+                    'button_label': 'Zoeken',
+                    'search_query': 'q=mysearch',
+                  },
                   'header': {
                     'body': 'Header text'
                   },
                   'fields': {
-                    'what': {
+                    'type': {
                       'keyword_search': {
-                        'show' : true,
+                        'enabled' : true,
                         'label': 'Wat',
                         'placeholder': 'Bv. concert, Bart Peeters,...',
                       },
@@ -62,6 +65,7 @@ export class Config {
           'content': {
             'widgets': [
               {
+                'id': 'c039e4b6-3d61-1c2a-d028-4606fa56c4c9',
                 'type': 'search-results',
                 'settings': {
                   'header': {
@@ -118,7 +122,8 @@ export class Config {
           'content': {
             'widgets': [
               {
-                'type': 'search-form',
+                'id': '4fb36e4c-d2f3-55c6-b923-31bed556936b',
+                'type': 'search-results',
                 'settings': {
                   'header': {
                     'body': 'Header text'

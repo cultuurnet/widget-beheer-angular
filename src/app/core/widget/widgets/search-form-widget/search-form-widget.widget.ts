@@ -1,16 +1,7 @@
-import { Widget } from "../../widget";
+import { AbstractWidget } from "../abstract-widget";
 
 /**
- * Provide a search form widget.
+ * Provides a search form widget.
  */
-export class SearchFormWidget implements Widget {
-
-  /**
-   * SearchFormWidget constructor.
-   * @param type
-   * @param settings
-   */
-  constructor(public type: string, public settings: any) {
-  }
-
+export class SearchFormWidget extends AbstractWidget {
 }

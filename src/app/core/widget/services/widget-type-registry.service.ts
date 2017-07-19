@@ -3,6 +3,7 @@ import { Widget } from '../widget';
 import { AbstractWidgetEditComponent } from "../components/abstract-widget-edit-component";
 import { WidgetService } from "./widget.service";
 import * as deepmerge from 'deepmerge';
+import * as _ from "lodash";
 
 /**
  * The widget type registry allows for registering of widget types
@@ -42,13 +43,15 @@ export class WidgetTypeRegistry {
    * Load the widget default settings onto the registered widgets
    */
   public loadWidgetDefaultSettings() {
-    let defaultSettings = this.widgetService.getWidgetDefaultSettings(Object.keys(this.widgetTypes));
-
-    for (let widgetType in defaultSettings) {
-      if (defaultSettings.hasOwnProperty(widgetType) &&  this.widgetTypes.hasOwnProperty(widgetType)) {
-        this.widgetTypes[widgetType].defaultSettings = defaultSettings[widgetType];
-      }
-    }
+    this.widgetService.getWidgetDefaultSettings().subscribe(
+        defaultSettings => {
+          for (let widgetType in defaultSettings) {
+            if (defaultSettings.hasOwnProperty(widgetType) &&  this.widgetTypes.hasOwnProperty(widgetType)) {
+              this.widgetTypes[widgetType].defaultSettings = defaultSettings[widgetType];
+            }
+          }
+      },
+    );
   }
 
   /**
@@ -62,17 +65,28 @@ export class WidgetTypeRegistry {
   }
 
   /**
-   * Get an instance of given widget type.
-   * @param type
-   * @param settings
+   * Get an instance of given widget type with default settings applied.
+   * @param values
+   *  Allowed properties:
+   *   - id
+   *   - type (required)
+   *   - settings
    * @returns {Widget}
    */
-  public getInstance(type: string, settings: any = {}) {
-    if (this.widgetTypes.hasOwnProperty(type)) {
+  public getInstance(values: any) {
+    if (values.hasOwnProperty('type')) {
+      let type = values.type;
 
-      // Return an instance of the requested Widget type with default settings if no settings are provided
-      let defaultSettings = this.widgetTypes[type].defaultSettings;
-      return new this.widgetTypes[type].widget(type, deepmerge.all([defaultSettings, settings], {clone: true}));
+      if (this.widgetTypes.hasOwnProperty(type)) {
+        // Return an instance of the requested Widget type with default settings if no settings are provided
+        let defaultSettings = this.widgetTypes[type].defaultSettings;
+
+        return new this.widgetTypes[type].widget({
+          id: _.get(values, 'id'),
+          type: type,
+          settings: deepmerge.all([defaultSettings, _.get(values, 'settings', {})], {clone: true})
+        });
+      }
     }
   }
 }

@@ -26,6 +26,9 @@ import { WidgetGroupFiltersGroupOptionEditComponent } from "./components/widgets
 import { SearchResultsWidgetPreviewComponent } from "./components/widgets/search-results-widget/search-results-widget-preview.component";
 import { SearchFormWidgetPreviewComponent } from "./components/widgets/search-form-widget/search-form-widget-preview.component";
 import { WidgetPreviewDirective } from "./directives/widget-preview.directive";
+import { CKEditorModule } from "ng2-ckeditor";
+import { HtmlWidgetPreviewComponent } from "./components/widgets/html-widget/html-widget-preview.component";
+import { HtmlWidgetWidgetEditComponent } from "./components/widgets/html-widget/html-widget-edit.component";
 
 @NgModule({
   declarations: [
@@ -49,7 +52,9 @@ import { WidgetPreviewDirective } from "./directives/widget-preview.directive";
     WidgetGroupFiltersGroupEditComponent,
     WidgetGroupFiltersGroupOptionEditComponent,
     SearchResultsWidgetPreviewComponent,
-    SearchFormWidgetPreviewComponent
+    SearchFormWidgetPreviewComponent,
+    HtmlWidgetWidgetEditComponent,
+    HtmlWidgetPreviewComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -62,7 +67,8 @@ import { WidgetPreviewDirective } from "./directives/widget-preview.directive";
     TranslateModule,
     NgbAccordionModule,
     NgbTabsetModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CKEditorModule
   ],
   providers: [WidgetBuilderService],
   entryComponents: [
@@ -78,7 +84,9 @@ import { WidgetPreviewDirective } from "./directives/widget-preview.directive";
     WidgetGroupFiltersGroupEditComponent,
     WidgetGroupFiltersGroupOptionEditComponent,
     SearchResultsWidgetPreviewComponent,
-    SearchFormWidgetPreviewComponent
+    SearchFormWidgetPreviewComponent,
+    HtmlWidgetWidgetEditComponent,
+    HtmlWidgetPreviewComponent
   ]
 })
 
