@@ -69,6 +69,18 @@ body {
   border: 1px solid #004F94;
 }
 
+
+
+@keyframes bg-pulse {
+  0% {
+    background-color:#d5dde4;
+  }
+  100% {
+    background-color: lighten($green,10);
+  }
+}
+
+
 .selected {
  // border: 1px solid #004F94;
   background-color: #e1f1ff;
@@ -78,6 +90,15 @@ body {
   //padding: 0;
   //border: 1px solid #004F94;
   box-shadow: -1px -1px 17px 1px rgba(212,212,212,1);
+
+  &.component--preview-throbber  {
+    border: 1px solid $green;
+    background-color: lighten($green, 40);
+    .actions-bar {
+      animation: bg-pulse 0.8s infinite normal;
+    }
+
+  }
 
 
 

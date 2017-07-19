@@ -130,12 +130,18 @@
       float: right;
     }
 
+    &.bnt-cnw-action--loading {
+      background-color: transparent;
+    }
+
     &:hover {
       box-shadow: 1px 1px 1px 1px #d4d4d4;
 
     }
 
   }
+
+
 
 
   .actions-bar--row li,
