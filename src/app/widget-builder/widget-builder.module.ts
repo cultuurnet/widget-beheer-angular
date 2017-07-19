@@ -11,7 +11,6 @@ import { RowLayoutDirective } from 'app/widget-builder/directives/row-layout.dir
 import { WidgetBuilderService } from "./services/widget-builder.service";
 import { TranslateModule } from "@ngx-translate/core";
 import { TwoColSidebarLeftLayoutComponent } from "./components/layouts/2col-sidebar-left/2col-sidebar-left-layout.component";
-import { FullWidthLayoutComponent } from "./components/layouts/full-width/full-width-layout.component";
 import { SearchFormWidgetEditComponent } from "./components/widgets/search-form-widget/search-form-widget-edit.component";
 import { SearchResultsWidgetEditComponent } from "app/widget-builder/components/widgets/search-results-widget/search-results-widget-edit.component";
 import { TwoColSidebarRightLayoutComponent } from "./components/layouts/2col-sidebar-right/2col-sidebar-right-layout.component";
@@ -29,6 +28,7 @@ import { WidgetPreviewDirective } from "./directives/widget-preview.directive";
 import { CKEditorModule } from "ng2-ckeditor";
 import { HtmlWidgetPreviewComponent } from "./components/widgets/html-widget/html-widget-preview.component";
 import { HtmlWidgetWidgetEditComponent } from "./components/widgets/html-widget/html-widget-edit.component";
+import { OneColLayoutComponent } from "./components/layouts/one-col/one-col-layout.component";
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { HtmlWidgetWidgetEditComponent } from "./components/widgets/html-widget/
     AddRowComponent,
     RowPreviewComponent,
     RowEditComponent,
-    FullWidthLayoutComponent,
+    OneColLayoutComponent,
     TwoColSidebarLeftLayoutComponent,
     TwoColSidebarRightLayoutComponent,
     ThreeColDoubleSidebarLayoutComponent,
@@ -77,7 +77,7 @@ import { HtmlWidgetWidgetEditComponent } from "./components/widgets/html-widget/
     TwoColSidebarLeftLayoutComponent,
     TwoColSidebarRightLayoutComponent,
     ThreeColDoubleSidebarLayoutComponent,
-    FullWidthLayoutComponent,
+    OneColLayoutComponent,
     ViewModeSwitcherComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,

@@ -117,7 +117,7 @@ export class Config {
         }
       },
       {
-        'type': 'full-width',
+        'type': 'one-col',
         'regions': {
           'content': {
             'widgets': [

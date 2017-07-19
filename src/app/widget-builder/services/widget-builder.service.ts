@@ -93,11 +93,12 @@ export class WidgetBuilderService {
     }
 
     this.debounceWidgetPageSave(widgetId).then(response => {
+      console.log(response);
       // Update the widget preview with the new render response
       if (widgetId) {
         _self.widgetPreview.next({
           widgetId: widgetId,
-          content: response['content']
+          content: response['preview']
         });
       }
     }).catch((ex) => {
@@ -113,11 +114,12 @@ export class WidgetBuilderService {
   private widgetPageSaveDebounced(widgetId?: string) {
     return new Promise((resolve, reject) => {
       // Debounce the widget page save
-      this.widgetService.saveWidgetPage(this.widgetPage, widgetId).then(response => {
-        resolve(response);
-      }).catch((ex) => {
-        console.error('Error saving the widget page', ex);
-      });
+      this.widgetService.saveWidgetPage(this.widgetPage, widgetId).subscribe(
+        response => {
+          resolve(response);
+        },
+        error => console.error('Error saving the widget page', error)
+      );
     });
   }
 

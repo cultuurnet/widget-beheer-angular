@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { WidgetPage } from "../widget-page";
 import * as _ from "lodash";
-import { Http } from "@angular/http";
+import { Http, RequestOptions, URLSearchParams } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import { environment } from "../../../../environments/environment";
+import { WidgetSaveResponse } from "../widget-save-response";
 
 /**
  * Temporary service that mimics calls that should go to Silex
@@ -19,7 +20,6 @@ export class WidgetService {
   }
 
   /**
-   * /**
    * Performs a save of the widget page.
    * Provide an optional triggering widget id to do a partial render.
    *
@@ -29,24 +29,16 @@ export class WidgetService {
    * @param widgetId
    * @return {Promise<T>}
    */
-  public saveWidgetPage(widgetPage: WidgetPage, widgetId?: string) {
-    console.log('save');
-    // @todo: Implement the save request
-    let _self = this;
-    return new Promise((resolve, reject) => {
-      if (widgetId) {
-        // If the widget page save is triggered by a widget, we can expect the rendered widget in the response
-        // Set the response in the renderedWidgets cache
-        setTimeout(function() {
-          let response = _self.fakeRenderResponse(widgetId);
-          _.set(_self.cache.renderedWidgets, [widgetPage.id, widgetId], response);
+  public saveWidgetPage(widgetPage: WidgetPage, widgetId?: string) : Observable<WidgetSaveResponse> {
 
-          resolve({content: response});
-        }, _.random(1000, 3000));
-      } else {
-        resolve();
-      }
-    });
+    let requestOptions = new RequestOptions();
+    requestOptions.params = new URLSearchParams();
+    if (widgetId) {
+      requestOptions.params.set('render', widgetId);
+    }
+
+    return this.http.put(environment.apiUrl + 'test', widgetPage, requestOptions)
+        .map(res => res.json());
   }
 
   /**

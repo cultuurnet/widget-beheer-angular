@@ -13,8 +13,6 @@ import { SearchFormWidget } from "./core/widget/widgets/search-form-widget/searc
 import { SearchResultsWidget } from "./core/widget/widgets/search-results-widget/search-results-widget.widget";
 import { TwoColSidebarLeftLayout } from "./core/layout/layouts/2col-sidebar-left/2col-sidebar-left.layout";
 import { TwoColSidebarLeftLayoutComponent } from "./widget-builder/components/layouts/2col-sidebar-left/2col-sidebar-left-layout.component";
-import { FullWidthLayoutComponent } from "./widget-builder/components/layouts/full-width/full-width-layout.component";
-import { FullWidthLayout } from "./core/layout/layouts/full-width/full-width.layout";
 import { CoreModule } from "./core/core.module";
 import { SearchFormWidgetEditComponent } from "./widget-builder/components/widgets/search-form-widget/search-form-widget-edit.component";
 import { SearchResultsWidgetEditComponent } from "./widget-builder/components/widgets/search-results-widget/search-results-widget-edit.component";
@@ -26,6 +24,8 @@ import { PageTemplateRegistry } from "./core/template/services/page-template-reg
 import { MyTemplate } from "./core/template/page-templates/my-template";
 import { HtmlWidget } from "./core/widget/widgets/html-widget/html-widget.widget";
 import { HtmlWidgetWidgetEditComponent } from "./widget-builder/components/widgets/html-widget/html-widget-edit.component";
+import { OneCollLayout } from "./core/layout/layouts/one-col/one-col.layout";
+import { OneColLayoutComponent } from "./widget-builder/components/layouts/one-col/one-col-layout.component";
 
 /**
  * AoT requires an exported function for factories
@@ -74,7 +74,7 @@ export class AppModule {
     layoutTypeRegistry.register('2col-sidebar-left', 'Two col sidebar left', TwoColSidebarLeftLayout, TwoColSidebarLeftLayoutComponent);
     layoutTypeRegistry.register('2col-sidebar-right', 'Two col sidebar right', TwoColSidebarRightayout, TwoColSidebarRightLayoutComponent);
     layoutTypeRegistry.register('3col-double-sidebar', 'Three col double sidebar', ThreeColDoubleSidebarLayout, ThreeColDoubleSidebarLayoutComponent);
-    layoutTypeRegistry.register('full-width', 'Full width', FullWidthLayout, FullWidthLayoutComponent);
+    layoutTypeRegistry.register('one-col', 'Full width', OneCollLayout, OneColLayoutComponent);
 
     // Register page templates
     pageTemplateRegistry.register('my-template', new MyTemplate());

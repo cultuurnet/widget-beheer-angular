@@ -7,9 +7,10 @@ import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationModalComponent } from "./modal/components/confirmation-modal.component";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { HttpLoaderFactory } from "../app.module";
-import { Http } from "@angular/http";
+import { Http, RequestOptions } from "@angular/http";
 import { PageTemplateRegistry } from "./template/services/page-template-registry.service";
 import { WidgetService } from "./widget/services/widget.service";
+import { ApiRequestOptions } from "./api-request-options";
 
 @NgModule({
   providers: [
@@ -19,6 +20,7 @@ import { WidgetService } from "./widget/services/widget.service";
     WidgetPageFactory,
     WidgetService,
     WidgetTypeRegistry,
+    { provide: RequestOptions, useClass: ApiRequestOptions }
   ],
   imports: [
     TranslateModule.forRoot({

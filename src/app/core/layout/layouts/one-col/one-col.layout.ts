@@ -2,9 +2,9 @@ import { Layout } from "../../layout";
 import { Region } from "../../region";
 
 /**
- * Provides a full width layout.
+ * Provides a one col layout.
  */
-export class FullWidthLayout extends Layout {
+export class OneCollLayout extends Layout {
 
   type: string;
   regions: any = {

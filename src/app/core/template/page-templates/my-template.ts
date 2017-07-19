@@ -78,7 +78,7 @@ export class MyTemplate implements PageTemplate {
         }
       },
       {
-        'type': 'full-width',
+        'type': 'one-col',
         'regions': {
           'content': {
             'widgets': [
