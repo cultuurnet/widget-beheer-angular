@@ -16,9 +16,9 @@
         </label>
     </div>
     <div formArrayName="options">
-        <div [formGroupName]="i" *ngFor="let option of groupFilter.controls.options.controls; let i=index">
-            <app-widget-group-filters-group-option-edit [option]="option" [index]="i" [rows]="groupFilter.controls.options.controls"></app-widget-group-filters-group-option-edit>
+        <div [formGroupName]="i" *ngFor="let option of groupFilter['controls'].options['controls']; let i=index">
+            <app-widget-group-filters-group-option-edit [option]="option" [index]="i" [rows]="groupFilter['controls'].options['controls']"></app-widget-group-filters-group-option-edit>
         </div>
     </div>
-    <button class="btn btn-primary btn-sm" type="button" (click)="addOption()" [disabled]="!groupFilter.controls.options.valid">{{ "BUTTON_ADD_GROUP_FILTER_FILTER_OPTION" | translate }}</button>
+    <button class="btn btn-primary btn-sm" type="button" (click)="addOption()" [disabled]="!groupFilter['controls'].options.valid">{{ "BUTTON_ADD_GROUP_FILTER_FILTER_OPTION" | translate }}</button>
 </div>

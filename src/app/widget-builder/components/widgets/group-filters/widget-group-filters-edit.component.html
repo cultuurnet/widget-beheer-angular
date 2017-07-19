@@ -6,12 +6,12 @@
         <legend>{{ "LABEL_GROUP_FILTERS_GROUPS" | translate }}</legend>
         <!-- list of groupFilters -->
         <div formArrayName="filters">
-            <div *ngFor="let groupFilter of groupFilterForm.controls.filters.controls; let i=index">
+            <div *ngFor="let groupFilter of groupFilterForm['controls'].filters.controls; let i=index">
                 <div [formGroupName]="i">
-                    <app-widget-group-filters-group-edit [groupFilter]="groupFilter" [rows]="groupFilterForm.controls.filters.controls" [index]="i"></app-widget-group-filters-group-edit>
+                    <app-widget-group-filters-group-edit [groupFilter]="groupFilter" [rows]="groupFilterForm['controls'].filters.controls" [index]="i"></app-widget-group-filters-group-edit>
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary btn-sm" type="button" (click)="addGroup()" [disabled]="!groupFilterForm.controls.filters.valid">{{ "BUTTON_ADD_GROUP_FILTER" | translate }}</button>
+        <button class="btn btn-primary btn-sm" type="button" (click)="addGroup()" [disabled]="!groupFilterForm['controls'].filters.valid">{{ "BUTTON_ADD_GROUP_FILTER" | translate }}</button>
     </fieldset>
 </form>
