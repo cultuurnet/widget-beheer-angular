@@ -8,6 +8,20 @@
     border-bottom: 1px solid gray;
   }
 
+  fieldset {
+    margin: 0 0 1.5rem 0;
+  }
+
+  .widget-group-filters-edit  fieldset {
+    margin: 1.5rem 0 0 0;
+    legend {
+      font-size: 1.3rem;
+
+      font-weight: 200;
+    }
+  }
+
+
 }
 
 .edit-searchfilters--group {
@@ -17,11 +31,17 @@
   margin-bottom: 2.5rem;
 
    .actions-bar {
+     margin-bottom: 0.8rem;
       .action-list li  {
        float: left;
       }
    }
-
+  h5 {
+    margin-top: 3rem;
+    border-bottom: 1px solid gray;
+    padding-bottom: 1rem;
+    font-weight: 300;
+  }
  .form-check   label.form-check-label {
     display: block;
     width: 100%;

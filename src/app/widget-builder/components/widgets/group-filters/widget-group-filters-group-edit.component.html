@@ -1,5 +1,7 @@
+
 <div [formGroup]="groupFilter">
     <app-row-edit [rows]="rows" [index]="index" [modalTitle]="'GROUP_FILTER_REMOVE_MODAL_TITLE'" [modalMessage]="'GROUP_FILTER_REMOVE_MODAL_MESSAGE'" (rowChanged)="handleRowChanged($event)"></app-row-edit>
+    <div class="widget-group-filters-group-edit">
     <div class="form-group">
         <label><strong>{{ "LABEL_GROUP_FILTER_LABEL" | translate }}</strong></label>
         <input type="text" formControlName="label" class="form-control">
@@ -27,4 +29,5 @@
         <i aria-hidden="true" class="fa fa-plus-square-o fa-1x"></i>
         {{ "BUTTON_ADD_GROUP_FILTER_FILTER_OPTION" | translate }}
     </button>
+    </div>
 </div>

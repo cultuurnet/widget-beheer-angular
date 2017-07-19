@@ -30,6 +30,7 @@
 .layout--region {
   .actions-bar {
     background-color: #eff1f3;
+    min-height: 42px;
   }
   .actions-bar--component {
     padding: 5px;
@@ -102,6 +103,7 @@
 
     ul.actions-list {
       min-height: 36px;
+      padding-top: 3px;
     }
   }
   .actions-bar--row a.btn,
