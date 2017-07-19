@@ -8,6 +8,7 @@ import { SearchResultsWidgetPreviewComponent } from "./search-results-widget/sea
 import { WidgetPreviewDirective } from "../../directives/widget-preview.directive";
 import * as _ from "lodash";
 import { HtmlWidgetPreviewComponent } from "./html-widget/html-widget-preview.component";
+import { TipsWidgetPreviewComponent } from "./tips-widget/tips-widget-preview.component";
 
 /**
  * A generic widget preview component.
@@ -109,6 +110,9 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
         break;
       case 'html':
         previewComponent = HtmlWidgetPreviewComponent;
+        break;
+      case 'tips':
+        previewComponent = TipsWidgetPreviewComponent;
         break;
       default:
         previewComponent = SearchFormWidgetPreviewComponent;

@@ -1,0 +1,24 @@
+<h2>{{ "TITLE_TIPS_EDIT_FORM" | translate }}</h2>
+<ngb-tabset>
+    <ngb-tab>
+        <form [formGroup]="widgetEditForm" novalidate>
+            <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
+            <ng-template ngbTabContent>
+                <ngb-accordion [closeOthers]="true">
+                    <ngb-panel id="general" formGroupName="general">
+                        <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_GENERAL" | translate }}</ng-template>
+                        <ng-template ngbPanelContent>
+                            <input type="number" formControlName="elements" step="1" min="1" max="20" />
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </ng-template>
+        </form>
+    </ngb-tab>
+    <ngb-tab>
+        <ng-template ngbTabTitle>JSON</ng-template>
+        <ng-template ngbTabContent>
+            <p>You can't handle the JSON!<p>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>

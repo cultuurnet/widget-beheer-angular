@@ -29,6 +29,8 @@ import { CKEditorModule } from "ng2-ckeditor";
 import { HtmlWidgetPreviewComponent } from "./components/widgets/html-widget/html-widget-preview.component";
 import { HtmlWidgetWidgetEditComponent } from "./components/widgets/html-widget/html-widget-edit.component";
 import { OneColLayoutComponent } from "./components/layouts/one-col/one-col-layout.component";
+import { TipsWidgetWidgetEditComponent } from "./components/widgets/tips-widget/tips-widget-edit.component";
+import { TipsWidgetPreviewComponent } from "./components/widgets/tips-widget/tips-widget-preview.component";
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { OneColLayoutComponent } from "./components/layouts/one-col/one-col-layo
     SearchResultsWidgetPreviewComponent,
     SearchFormWidgetPreviewComponent,
     HtmlWidgetWidgetEditComponent,
-    HtmlWidgetPreviewComponent
+    HtmlWidgetPreviewComponent,
+    TipsWidgetWidgetEditComponent,
+    TipsWidgetPreviewComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -86,7 +90,9 @@ import { OneColLayoutComponent } from "./components/layouts/one-col/one-col-layo
     SearchResultsWidgetPreviewComponent,
     SearchFormWidgetPreviewComponent,
     HtmlWidgetWidgetEditComponent,
-    HtmlWidgetPreviewComponent
+    HtmlWidgetPreviewComponent,
+    TipsWidgetWidgetEditComponent,
+    TipsWidgetPreviewComponent
   ]
 })
 
