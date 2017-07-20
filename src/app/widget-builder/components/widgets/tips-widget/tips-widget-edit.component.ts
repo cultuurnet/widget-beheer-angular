@@ -18,6 +18,9 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
    */
   public ckeditorConfig: any = ckeditorConfig;
 
+  /**
+   * The available image positions for the list items
+   */
   public imagePositions: any = [
     {
       label: 'Left',
@@ -96,6 +99,17 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
         }),
       })
     });
+  }
+
+  /**
+   * @inheritDoc
+   */
+  protected applyValuesToModel(values: any) {
+    // Apply all values to the model
+    _.set(this.settings, 'general', _.get(values, 'general', {}));
+    _.set(this.settings, 'items', _.get(values, 'items', {}));
+
+    this.widgetBuilderService.saveWigetPage(this.widget.id);
   }
 
 }

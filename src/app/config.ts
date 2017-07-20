@@ -154,7 +154,7 @@ export class Config {
                       'width': 100,
                       'height': 80,
                       'default_image': true,
-                      'position': 'left',
+                      'position': 'left'
                     },
                     'labels': {
                       'enabled': false,
