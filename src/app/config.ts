@@ -68,48 +68,50 @@ export class Config {
                 'id': 'c039e4b6-3d61-1c2a-d028-4606fa56c4c9',
                 'type': 'search-results',
                 'settings': {
-                  'header': {
-                    'body': 'Header text'
-                  },
-                  'icon_vlieg': {
-                    'show': true,
-                    'label': 'Vlieg'
-                  },
-                  'icon_uitpas': {
-                    'show': true,
-                    'label': 'UitPas'
-                  },
-                  'description': {
-                    'show': true,
-                    'characters': 200
-                  },
-                  'when': {
-                    'show': true,
-                    'label': 'Wanneer'
-                  },
-                  'where': {
-                    'show': true,
-                    'label': 'Waar'
-                  },
-                  'age': {
-                    'show': true,
-                    'label': 'Leeftijd'
-                  },
-                  'language_icons': {
-                    'show': true
-                  },
-                  'image': {
-                    'show': true,
-                    'width': 100,
-                    'height': 80,
-                    'show_default': true,
-                    'position': 'left'
-                  },
-                  'read_more': {
-                    'show': true,
-                    'label': 'Lees verder'
-                  },
-                  'allowed_labels': 'Label 1, Label 2'
+                  'items': {
+                    'icon_vlieg': {
+                      'enabled': true
+                    },
+                    'icon_uitpas': {
+                      'enabled': true
+                    },
+                    'description': {
+                      'enabled': true,
+                      'characters': 200
+                    },
+                    'when': {
+                      'enabled': false,
+                      'label': 'Wanneer'
+                    },
+                    'where': {
+                      'enabled': true,
+                      'label': 'Waar'
+                    },
+                    'age': {
+                      'enabled': true,
+                      'label': 'Leeftijd'
+                    },
+                    'language_icons': {
+                      'enabled': false
+                    },
+                    'image': {
+                      'enabled': true,
+                      'width': 100,
+                      'height': 80,
+                      'default_image': true,
+                      'position': 'left'
+                    },
+                    'labels': {
+                      'enabled': false,
+                      'limit_labels': {
+                        'enabled': false,
+                      }
+                    },
+                    'read_more': {
+                      'enabled': true,
+                      'label': 'Lees verder'
+                    },
+                  }
                 }
               },
               {
