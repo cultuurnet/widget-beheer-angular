@@ -149,7 +149,7 @@
                                             <input type="checkbox" formControlName="enabled">
                                             <span>{{ "LABEL_TIPS_EDIT_FORM_LABELS_SHOW_ONLY_ALLOWED_LABELS" | translate }}</span>
                                         </label>
-                                        <div>
+                                        <div *ngIf="settings.items.labels.limit_labels.enabled">
                                             <label>{{ "LABEL_TIPS_EDIT_FORM_LABELS_ALLOWED_LABELS" | translate }}</label>
                                             <input type="text" formControlName="labels">
                                         </div>
