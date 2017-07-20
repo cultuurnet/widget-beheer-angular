@@ -141,16 +141,16 @@
                             <div formGroupName="labels">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>Labels</span>
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_LABELS" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.items.labels.enabled">
                                     <div formGroupName="limit_labels">
                                         <label>
                                             <input type="checkbox" formControlName="enabled">
-                                            <span>Toon enkel specifieke labels</span>
+                                            <span>{{ "LABEL_TIPS_EDIT_FORM_LABELS_SHOW_ONLY_ALLOWED_LABELS" | translate }}</span>
                                         </label>
                                         <div>
-                                            <label>Labels</label>
+                                            <label>{{ "LABEL_TIPS_EDIT_FORM_LABELS_ALLOWED_LABELS" | translate }}</label>
                                             <input type="text" formControlName="labels">
                                         </div>
                                     </div>
@@ -159,17 +159,17 @@
                             <div formGroupName="read_more">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>Leeslink</span>
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_READ_MORE_LINK" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.items.read_more.enabled">
-                                    <label>Label</label>
+                                    <label>{{ "LABEL_TIPS_EDIT_FORM_READ_MORE_LINK_LABEL" | translate }}</label>
                                     <input type="text" formControlName="label">
                                 </div>
                             </div>
                         </ng-template>
                     </ngb-panel>
                     <ngb-panel id="extra_parameters">
-                        <ng-template ngbPanelTitle>Extra zoekparameters</ng-template>
+                        <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_EXTRA_PARAMETERS" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
                             <!-- todo: Add querybuilder -->
                             Querybuilder
