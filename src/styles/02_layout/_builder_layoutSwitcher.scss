@@ -1,8 +1,5 @@
 
-.lg,
-.md,
-.sm,
-.xs {
+.preview-col {
   float: left;
   position: relative;
   min-height: 1px;
@@ -12,14 +9,17 @@
 .lg {
   width: 100%; }
 
-.md {
+.md-2 {
   width: 70%; }
 
-.sm {
+.sm-2 {
   width: 30%; }
 
-.xs {
-  width: 15%; }
+.xs-3 {
+  width: 25%; }
+
+.md-3 {
+  width: 50%; }
 
 /* */
 .w-label {
