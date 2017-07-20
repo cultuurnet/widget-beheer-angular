@@ -68,6 +68,9 @@ export class Config {
                 'id': 'c039e4b6-3d61-1c2a-d028-4606fa56c4c9',
                 'type': 'search-results',
                 'settings': {
+                  'general': {
+                    'current_search': true,
+                  },
                   'items': {
                     'icon_vlieg': {
                       'enabled': true
@@ -111,6 +114,52 @@ export class Config {
                       'enabled': true,
                       'label': 'Lees verder'
                     },
+                  },
+                  'detail_page': {
+                    'price_information': true,
+                    'share_buttons': true,
+                    'back_button': {
+                      'enabled': true,
+                      'label': 'Volledig aanbod'
+                    },
+                    'icon_vlieg': {
+                      'enabled': true
+                    },
+                    'icon_uitpas': {
+                      'enabled': true
+                    },
+                    'description': {
+                      'enabled': true,
+                      'characters': 200
+                    },
+                    'when': {
+                      'enabled': false,
+                      'label': 'Wanneer'
+                    },
+                    'where': {
+                      'enabled': true,
+                      'label': 'Waar'
+                    },
+                    'age': {
+                      'enabled': true,
+                      'label': 'Leeftijd'
+                    },
+                    'language_icons': {
+                      'enabled': false
+                    },
+                    'image': {
+                      'enabled': true,
+                      'width': 100,
+                      'height': 80,
+                      'default_image': true,
+                      'position': 'left'
+                    },
+                    'labels': {
+                      'enabled': false,
+                      'limit_labels': {
+                        'enabled': false,
+                      }
+                    }
                   }
                 }
               },
