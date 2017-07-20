@@ -48,7 +48,7 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
         current_search: [_.get(this.settings, 'general.current_search')]
       }),
       header: this.formBuilder.group({
-        body: [_.get(this.settings, 'header.body')]
+        body: [_.get(this.settings, 'header.body', '')]
       }),
       items: this.formBuilder.group({
         icon_vlieg: this.formBuilder.group({

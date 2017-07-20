@@ -71,9 +71,6 @@ export class Config {
                   'general': {
                     'current_search': true,
                   },
-                  'header': {
-                    'body': '',
-                  },
                   'items': {
                     'icon_vlieg': {
                       'enabled': true
