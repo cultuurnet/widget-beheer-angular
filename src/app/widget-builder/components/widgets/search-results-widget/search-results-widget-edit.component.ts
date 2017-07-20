@@ -3,6 +3,7 @@ import { AbstractWidgetEditComponent } from "../../../../core/widget/components/
 import { FormBuilder } from "@angular/forms";
 import { ckeditorConfig } from "../../../constants/ckeditor-config";
 import * as _ from "lodash";
+import { WidgetBuilderService } from "../../../services/widget-builder.service";
 
 /**
  * Search results widget edit form component.
@@ -34,7 +35,7 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
   /**
    * SearchResultsWidgetEditComponent constructor
    */
-  constructor(public formBuilder: FormBuilder) {
+  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
     super(formBuilder);
   }
 
@@ -112,11 +113,6 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
         icon_uitpas: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.icon_uitpas.enabled', '')]
         }),
-        description: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'detail_page.description.enabled', '')],
-          label: [_.get(this.widget.settings, 'detail_page.description.label', '')],
-          characters: [_.get(this.widget.settings, 'detail_page.description.characters', '')]
-        }),
         when: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.when.enabled', '')],
           label: [_.get(this.widget.settings, 'detail_page.when.label', '')]
@@ -148,6 +144,19 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
         }),
       })
     });
+  }
+
+  /**
+   * @inheritDoc
+   */
+  protected applyValuesToModel(values: any) {
+    // Apply all values to the model
+    _.set(this.settings, 'general', _.get(values, 'general', {}));
+    _.set(this.settings, 'header', _.get(values, 'header', {}));
+    _.set(this.settings, 'items', _.get(values, 'items', {}));
+    _.set(this.settings, 'detail_page', _.get(values, 'detail_page', {}));
+
+    this.widgetBuilderService.saveWigetPage(this.widget.id);
   }
 
 }

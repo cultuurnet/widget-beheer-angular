@@ -122,16 +122,16 @@
                             <div formGroupName="labels">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_LABELS" | translate }}</span>
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_LABELS" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.items.labels.enabled">
                                     <div formGroupName="limit_labels">
                                         <label>
                                             <input type="checkbox" formControlName="enabled">
-                                            <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_LABELS_SHOW_ONLY_ALLOWED_LABELS" | translate }}</span>
+                                            <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_LABELS_SHOW_ONLY_ALLOWED_LABELS" | translate }}</span>
                                         </label>
                                         <div *ngIf="settings.items.labels.limit_labels.enabled">
-                                            <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_LABELS_ALLOWED_LABELS" | translate }}</label>
+                                            <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_LABELS_ALLOWED_LABELS" | translate }}</label>
                                             <input type="text" formControlName="labels">
                                         </div>
                                     </div>
@@ -140,50 +140,50 @@
                             <div formGroupName="read_more">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_READ_MORE_LINK" | translate }}</span>
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_READ_MORE_LINK" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.items.read_more.enabled">
-                                    <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_READ_MORE_LINK_LABEL" | translate }}</label>
+                                    <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_READ_MORE_LINK_LABEL" | translate }}</label>
                                     <input type="text" formControlName="label">
                                 </div>
                             </div>
                         </ng-template>
                     </ngb-panel>
                     <ngb-panel id="detail_page" formGroupName="detail_page">
-                        <ng-template ngbPanelTitle>Detailpagina</ng-template>
+                        <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_PANEL_TITLE_DETAIL_PAGE" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
                             <label>
                                 <input type="checkbox" formControlName="map">
-                                <span>Google Maps kaart</span>
+                                <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_MAP" | translate }}</span>
                             </label>
                             <label>
                                 <input type="checkbox" formControlName="price_information">
-                                <span>Prijsinformation</span>
+                                <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_PRICE_INFORMATION" | translate }}</span>
                             </label>
                             <label>
                                 <input type="checkbox" formControlName="language_switcher">
-                                <span>Taalwisselaar</span>
+                                <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_LANGUAGE_SWITCHER" | translate }}</span>
                             </label>
                             <label>
                                 <input type="checkbox" formControlName="uitpas_benefits">
-                                <span>UitPas-voordelen</span>
+                                <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_UITPAS_BENEFITS" | translate }}</span>
                             </label>
                             <label>
                                 <input type="checkbox" formControlName="share_buttons">
-                                <span>Deelknoppen</span>
+                                <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_SHARE_BUTTONS" | translate }}</span>
                             </label>
                             <div formGroupName="back_button">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>Terug naar resultaat</span>
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_BACK_BUTTON" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.detail_page.back_button.enabled">
                                     <div>
-                                        <label>label</label>
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_BACK_BUTTON_LABEL" | translate }}</label>
                                         <input type="text" formControlName="label">
                                     </div>
                                     <div>
-                                        <label>Url</label>
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_BACK_BUTTON_URL" | translate }}</label>
                                         <input type="text" formControlName="url">
                                     </div>
                                 </div>
@@ -191,39 +191,23 @@
                             <div formGroupName="icon_vlieg">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_ICON_VLIEG" | translate }}</span>
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_ICON_VLIEG" | translate }}</span>
                                 </label>
                             </div>
                             <div formGroupName="icon_uitpas">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_ICON_UITPAS" | translate }}</span>
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_ICON_UITPAS" | translate }}</span>
                                 </label>
-                            </div>
-                            <div formGroupName="description">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_DESCRIPTION" | translate }}</span>
-                                </label>
-                                <div *ngIf="settings.detail_page.description.enabled">
-                                    <div>
-                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_DESCRIPTION_LABEL" | translate }}</label>
-                                        <input type="text" formControlName="label">
-                                    </div>
-                                    <div>
-                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_DESCRIPTION_NUM_CHARACTERS" | translate }}</label>
-                                        <input type="number" formControlName="characters" step="1" />
-                                    </div>
-                                </div>
                             </div>
                             <div formGroupName="when">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_WHEN" | translate }}</span>
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_WHEN" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.detail_page.when.enabled">
                                     <div>
-                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_WHEN_LABEL" | translate }}</label>
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_WHEN_LABEL" | translate }}</label>
                                         <input type="text" formControlName="label">
                                     </div>
                                 </div>
@@ -231,11 +215,11 @@
                             <div formGroupName="where">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_WHERE" | translate }}</span>
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_WHERE" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.detail_page.where.enabled">
                                     <div>
-                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_WHERE_LABEL" | translate }}</label>
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_WHERE_LABEL" | translate }}</label>
                                         <input type="text" formControlName="label">
                                     </div>
                                 </div>
@@ -243,11 +227,11 @@
                             <div formGroupName="age">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_AGE" | translate }}</span>
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_AGE" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.detail_page.age.enabled">
                                     <div>
-                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_AGE_LABEL" | translate }}</label>
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_AGE_LABEL" | translate }}</label>
                                         <input type="text" formControlName="label">
                                     </div>
                                 </div>
@@ -255,29 +239,29 @@
                             <div formGroupName="language_icons">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_LANGUAGE_ICONS" | translate }}</span>
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_LANGUAGE_ICONS" | translate }}</span>
                                 </label>
                             </div>
                             <div formGroupName="image">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_IMAGE" | translate }}</span>
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_IMAGE" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.detail_page.image.enabled">
                                     <div>
-                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_IMAGE_WIDTH" | translate }}</label>
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_IMAGE_WIDTH" | translate }}</label>
                                         <input type="number" formControlName="width" step="1" />
                                     </div>
                                     <div>
-                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_IMAGE_HEIGHT" | translate }}</label>
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_IMAGE_HEIGHT" | translate }}</label>
                                         <input type="number" formControlName="height" step="1" />
                                     </div>
                                     <label>
                                         <input type="checkbox" formControlName="default_image">
-                                        <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_IMAGE_DEFAULT_IMAGE" | translate }}</span>
+                                        <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_IMAGE_DEFAULT_IMAGE" | translate }}</span>
                                     </label>
                                     <div>
-                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_IMAGE_POSITION" | translate }}</label>
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_IMAGE_POSITION" | translate }}</label>
                                         <select formControlName="position">
                                             <option *ngFor="let position of imagePositions" [value]="position.value">{{ ("LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_IMAGE_POSITION_OPTION_" + position.label |  uppercase) | translate }}</option>
                                         </select>
@@ -287,16 +271,16 @@
                             <div formGroupName="labels">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_LABELS" | translate }}</span>
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_LABELS" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.detail_page.labels.enabled">
                                     <div formGroupName="limit_labels">
                                         <label>
                                             <input type="checkbox" formControlName="enabled">
-                                            <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_LABELS_SHOW_ONLY_ALLOWED_LABELS" | translate }}</span>
+                                            <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_LABELS_SHOW_ONLY_ALLOWED_LABELS" | translate }}</span>
                                         </label>
                                         <div *ngIf="settings.detail_page.labels.limit_labels.enabled">
-                                            <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_LABELS_ALLOWED_LABELS" | translate }}</label>
+                                            <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_LABELS_ALLOWED_LABELS" | translate }}</label>
                                             <input type="text" formControlName="labels">
                                         </div>
                                     </div>
