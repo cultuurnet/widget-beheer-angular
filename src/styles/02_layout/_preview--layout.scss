@@ -43,6 +43,20 @@
 
 }
 
+
+html   .preview   .cnw_sideCol {
+  @for $i from 1 through $grid-columns {
+    .cnw_col-#{$i} {
+      @include make-col(12);
+    }
+  }
+  .cnw_flex-md-last {
+    -webkit-box-ordinal-group: initial;
+    -ms-flex-order: initial;
+    order: initial;
+  }
+}
+
 .main-nav {
   background-color: white;
   float: left;
