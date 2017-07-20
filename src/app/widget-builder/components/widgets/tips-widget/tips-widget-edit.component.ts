@@ -18,6 +18,17 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
    */
   public ckeditorConfig: any = ckeditorConfig;
 
+  public imagePositions: any = [
+    {
+      label: 'Left',
+      value: 'left'
+    },
+    {
+      label: 'Right',
+      value: 'right',
+    }
+  ];
+
   /**
    * HtmlWidgetEditComponent constructor
    */
@@ -31,16 +42,60 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
   protected buildForm() {
     this.widgetEditForm = this.formBuilder.group({
       general: this.formBuilder.group({
-        elements: [_.get(this.widget.settings, 'general.elements', 3)],
+        items: [_.get(this.widget.settings, 'general.items', 3)],
+        detail_link: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'general.detail_link.enabled', '')],
+          url: [_.get(this.widget.settings, 'general.detail_link.url', '')],
+          cbdid: [_.get(this.widget.settings, 'general.detail_link.cbdid', '')],
+        })
+      }),
+      items: this.formBuilder.group({
+        icon_vlieg: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.icon_vlieg.enabled', '')]
+        }),
+        icon_uitpas: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.icon_uitpas.enabled', '')]
+        }),
+        description: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.description.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.description.label', '')],
+          characters: [_.get(this.widget.settings, 'items.description.characters', '')]
+        }),
+        when: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.when.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.when.label', '')]
+        }),
+        where: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.where.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.where.label', '')]
+        }),
+        age: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.age.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.age.label', '')]
+        }),
+        language_icons: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.language_icons.enabled', '')]
+        }),
+        image: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.image.enabled', '')],
+          width: [_.get(this.widget.settings, 'items.image.width', '')],
+          height: [_.get(this.widget.settings, 'items.image.height', '')],
+          default_image: [_.get(this.widget.settings, 'items.image.default_image', '')],
+          position: [_.get(this.widget.settings, 'items.image.position', '')]
+        }),
+        labels: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.labels.enabled', '')],
+          limit_labels: this.formBuilder.group({
+            enabled: [_.get(this.widget.settings, 'items.limit_labels.enabled', '')],
+            labels: [_.get(this.widget.settings, 'items.limit_labels.labels', '')]
+          }),
+        }),
+        read_more: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.read_more.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.read_more.label', '')]
+        }),
       })
     });
-  }
-
-  /**
-   * @inheritDoc
-   */
-  protected applyValuesToModel(values: any) {
-
   }
 
 }

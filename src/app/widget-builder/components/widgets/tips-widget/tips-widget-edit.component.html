@@ -8,7 +8,164 @@
                     <ngb-panel id="general" formGroupName="general">
                         <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_GENERAL" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
-                            <input type="number" formControlName="elements" step="1" min="1" max="20" />
+                            <fieldset>
+                                <label>Aantal elementen</label>
+                                <input type="number" formControlName="items" step="1" min="1" max="20" />
+                                <div formGroupName="detail_link">
+                                    <label>
+                                        <input type="checkbox" formControlName="enabled">
+                                        <span>Linken naar detailpagina</span>
+                                    </label>
+                                    <div *ngIf="settings.general.detail_link.enabled">
+                                        <div>
+                                            <label>Url</label>
+                                            <input type="text" formControlName="url">
+                                        </div>
+                                        <div>
+                                            <label>Opties</label>
+                                            <div>
+                                                <label>
+                                                    <input type="radio" value="query_string" name="cbdid" formControlName="cbdid">
+                                                    Cdbid toevoegen aan querystring
+                                                </label>
+                                                <label>
+                                                    <input type="radio" value="url" name="cbdid" formControlName="cbdid">
+                                                    Cbdid toevoegen aan url
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="items" formGroupName="items">
+                        <ng-template ngbPanelTitle>Tipselementen</ng-template>
+                        <ng-template ngbPanelContent>
+                            <div formGroupName="icon_vlieg">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>Vlieg-icoon</span>
+                                </label>
+                            </div>
+                            <div formGroupName="icon_uitpas">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>Uitpas-icoon</span>
+                                </label>
+                            </div>
+                            <div formGroupName="description">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>Beschrijving</span>
+                                </label>
+                                <div *ngIf="settings.items.description.enabled">
+                                    <div>
+                                        <label>Label</label>
+                                        <input type="text" formControlName="label">
+                                    </div>
+                                    <div>
+                                        <label>Aantal karakters</label>
+                                        <input type="number" formControlName="characters" step="1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div formGroupName="when">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>Wanneer</span>
+                                </label>
+                                <div *ngIf="settings.items.when.enabled">
+                                    <div>
+                                        <label>Label</label>
+                                        <input type="text" formControlName="label">
+                                    </div>
+                                </div>
+                            </div>
+                            <div formGroupName="where">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>Waar</span>
+                                </label>
+                                <div *ngIf="settings.items.where.enabled">
+                                    <div>
+                                        <label>Label</label>
+                                        <input type="text" formControlName="label">
+                                    </div>
+                                </div>
+                            </div>
+                            <div formGroupName="age">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>Leeftijd</span>
+                                </label>
+                                <div *ngIf="settings.items.age.enabled">
+                                    <div>
+                                        <label>Label</label>
+                                        <input type="text" formControlName="label">
+                                    </div>
+                                </div>
+                            </div>
+                            <div formGroupName="language_icons">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>Taaliconen</span>
+                                </label>
+                            </div>
+                            <div formGroupName="image">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>Afbeelding</span>
+                                </label>
+                                <div *ngIf="settings.items.image.enabled">
+                                    <div>
+                                        <label>Breedte</label>
+                                        <input type="number" formControlName="width" step="1" />
+                                    </div>
+                                    <div>
+                                        <label>Hoogte</label>
+                                        <input type="number" formControlName="height" step="1" />
+                                    </div>
+                                    <label>
+                                        <input type="checkbox" formControlName="default_image">
+                                        <span>Standaardafbeelding</span>
+                                    </label>
+                                    <div>
+                                        <label>Positie</label>
+                                        <select formControlName="position">
+                                            <option *ngFor="let position of imagePositions" [value]="position.value">{{ position.label }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div formGroupName="labels">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>Labels</span>
+                                </label>
+                                <div *ngIf="settings.items.labels.enabled">
+                                    <div formGroupName="limit_labels">
+                                        <label>
+                                            <input type="checkbox" formControlName="enabled">
+                                            <span>Toon enkel specifieke labels</span>
+                                        </label>
+                                        <div>
+                                            <label>Labels</label>
+                                            <input type="text" formControlName="labels">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div formGroupName="read_more">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>Leeslink</span>
+                                </label>
+                                <div *ngIf="settings.items.read_more.enabled">
+                                    <label>Label</label>
+                                    <input type="text" formControlName="label">
+                                </div>
+                            </div>
                         </ng-template>
                     </ngb-panel>
                 </ngb-accordion>
