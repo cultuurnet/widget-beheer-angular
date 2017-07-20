@@ -141,16 +141,16 @@
                             <div formGroupName="labels">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_LABELS" | translate }}</span>
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_LABELS" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.items.labels.enabled">
                                     <div formGroupName="limit_labels">
                                         <label>
                                             <input type="checkbox" formControlName="enabled">
-                                            <span>{{ "LABEL_TIPS_EDIT_FORM_LABELS_SHOW_ONLY_ALLOWED_LABELS" | translate }}</span>
+                                            <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_LABELS_SHOW_ONLY_ALLOWED_LABELS" | translate }}</span>
                                         </label>
                                         <div *ngIf="settings.items.labels.limit_labels.enabled">
-                                            <label>{{ "LABEL_TIPS_EDIT_FORM_LABELS_ALLOWED_LABELS" | translate }}</label>
+                                            <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_LABELS_ALLOWED_LABELS" | translate }}</label>
                                             <input type="text" formControlName="labels">
                                         </div>
                                     </div>
@@ -159,10 +159,10 @@
                             <div formGroupName="read_more">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_READ_MORE_LINK" | translate }}</span>
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_READ_MORE_LINK" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.items.read_more.enabled">
-                                    <label>{{ "LABEL_TIPS_EDIT_FORM_READ_MORE_LINK_LABEL" | translate }}</label>
+                                    <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_READ_MORE_LINK_LABEL" | translate }}</label>
                                     <input type="text" formControlName="label">
                                 </div>
                             </div>
