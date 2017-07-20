@@ -1,9 +1,7 @@
-
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
-//$font-family-sans-serif:  -apple-system, system-ui, BlinkMacSystemFont,  "Open Sans", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
 $font-family-sans-serif: "Open Sans";
-//$font-family-base : $font-family-sans-serif;
-//$font-family-base : "Open Sans";
+
+
 
 // override with cnw_ styles
 @import "00_base/variables";
@@ -23,15 +21,16 @@ $font-family-sans-serif: "Open Sans";
 
 @import "01_components/components";
 @import "02_layout/layout";
+
+
+//  CNW builder styles
+@import "02_layout/builder_components-grid";
+
+@import '05_helpers/keyframes';
 @import "02_layout/header";
-
-
 @import "06_vendors/projectaanvraag/base/footer";
 @import "05_helpers/cnwBuilder-mixins";
 @import "02_layout/preview--layout";
-
-
-
 @import "02_layout/sidebar";
 @import "01_components/builder_components";
 @import "01_components/topnav";
@@ -40,6 +39,7 @@ $font-family-sans-serif: "Open Sans";
 @import "01_components/addComponent--buttons";
 
 @import "02_layout/builder_layoutSwitcher";
+
 
 
 body {

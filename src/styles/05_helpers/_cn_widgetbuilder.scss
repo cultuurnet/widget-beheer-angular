@@ -1,30 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import "~dragula/dist/dragula.css";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.min.css";
 
-
-
-.handle {
-  padding: 5px;
-  background-color: blue;
-  color: #fff;
-  margin: 5px;
-}
-
-.widget {
-  margin-bottom: 5px;
-}
-
 body {
   background-color: white;
-  color:$gray;
-   }
+  color: $gray;
+}
 
 .uit-logo {
   font-family: "Archivo Black";
-  font-size: 20px; }
+  font-size: 20px;
+}
 
 .uit {
   background-image: url(/img/uit.svg);
@@ -32,304 +19,112 @@ body {
   text-indent: -9999px;
   display: inline-block;
   height: 28px;
-  width: 46px; }
+  width: 46px;
+}
 
 .static-img {
   width: 100%;
   height: auto;
-  display: block; }
-
-.rendered {
-
-  }
-
-.preview {
-  padding-top: 90px;
-  padding-bottom: 100px;
-  transition: all 0.2s;
-  border-right: 1px solid #e0e0e0; }
-
-.preview-inner {
-  padding: 5px;
-  margin: 0 auto;
-  transition: all 1s;
-
+  display: block;
 }
-
-
-.selector {
-  position: absolute;
-  top: -1px;
-  bottom: -1px;
-  right: -1px;
-  left: -1px;
-  z-index: 980;
-  cursor: pointer; }
-.selector:hover {
-  border: 1px solid #004F94;
-}
-
-
-
-@keyframes bg-pulse {
-  0% {
-    background-color:#d5dde4;
-  }
-  100% {
-    background-color: lighten($green,10);
-  }
-}
-
-
-.selected {
- // border: 1px solid #004F94;
-  background-color: #e1f1ff;
-  background-color: $cnw_color-blueLight;
-  background-color: white;
-  border:1px solid $cnw_color-blueLight;
-  //padding: 0;
-  //border: 1px solid #004F94;
-  box-shadow: -1px -1px 17px 1px rgba(212,212,212,1);
-
-  &.component--preview-throbber  {
-    border: 1px solid $green;
-    background-color: lighten($green, 40);
-    .actions-bar {
-      animation: bg-pulse 0.8s infinite normal;
-    }
-
-  }
-
-
-
-}
-.selected .selector {
-  height: 0;
-}
-
-
-.page {
-  position: relative;
-  /*background-color: #FFF;
-  box-shadow: 1px 1px 2px #CCC;
-  padding-top: 40px;*/ }
 
 .sortable {
   border: 1px dotted #ccc;
-  padding: 15px 0; }
+  padding: 15px 0;
+}
 
 .page-settings {
   position: absolute;
   right: 10px;
-  top: 10px; }
+  top: 10px;
+}
 
 .page-settings > .btn {
-  padding: 2px 6px; }
+  padding: 2px 6px;
+}
 
 .add {
   background-color: #EDEDED;
   padding: 25px;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 legend {
   margin-top: 0.75em;
   font-size: 1em;
   line-height: 1.2em;
   padding-bottom: 0.75em;
-  margin-bottom: 0.5em; }
+  margin-bottom: 0.5em;
+}
 
 .fieldset-legend {
-  color: #777; }
+  color: #777;
+}
 
 fieldset {
-  margin-bottom: 1em; }
-
-
-
+  margin-bottom: 1em;
+}
 
 .state-open {
-  display: none; }
+  display: none;
+}
 
 .open .state-open {
-  display: block; }
+  display: block;
+}
+
 .open .state-closed {
-  display: none; }
+  display: none;
+}
+
 .open .btn-add {
-  background-color: #EDEDED; }
+  background-color: #EDEDED;
+}
+
 .open .btn-add .plus-icon {
   -ms-transform: rotate(45deg);
   /* IE 9 */
   -webkit-transform: rotate(45deg);
   /* Safari */
   transform: rotate(45deg);
-  color: #004F94; }
-
-
-
-.components-group,
-.layouts-group {
-  opacity: 0;
-  height: 0;
-  transition: all 0.5s ease;
-  position: absolute;
-  z-index: 980;
-  background-color: #004F94;
-  width: 300px;
-  margin: 0 auto;
-  left: 50%;
-  margin-left: -150px;
-  padding: 10px 5px 0 5px;
-  display: none; }
-
-.components-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  width: 100%;
-  overflow: hidden; }
-
-.components-listitem {
-  margin-bottom: 7.5px;
-  width: 100%;
-  padding: 0 5px; }
-
-.row-add {
-  margin: 5px 0;
-  display: inline-block; }
+  color: #004F94;
+}
 
 .dropdown-menu .media {
   padding: 0 10px;
-  text-align: left; }
-
-.component-label {
-  margin: 0 0 0 1rem;
-  line-height: 40px;
-  white-space: nowrap; }
-
-.component-icon {
-  width: 40px;
-  height: 40px;
-  display: block; }
+  text-align: left;
+}
 
 .open {
-  background-color: #EDEDED; }
+  background-color: #EDEDED;
+}
+
 .open .components-group,
 .open .layouts-group {
   display: block;
   opacity: 1;
   height: auto;
   margin-top: 10px;
-  transition: all 0.25s ease; }
+  transition: all 0.25s ease;
+}
 
 .empty {
   height: 40px;
   border: 1px dotted #ccc;
-  margin-bottom: 30px; }
-
+  margin-bottom: 30px;
+}
 
 .btn--css,
 .btn--instelingen {
   background-color: $cnw_color-blueLight;
   &.active {
-    background-color: darken( $cnw_color-blueLight, 10);
+    background-color: darken($cnw_color-blueLight, 10);
   }
 }
 
 .tip ol li {
-  margin-bottom: 1rem; }
-
-.block-title {
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-bottom: 1px solid #DDD;
-  margin-bottom: 5px; }
-
-.styleresults ul {
-  margin: 0;
-  padding: 0;
-  list-style: none; }
-.styleresults ul li {
-  line-height: 30px;
-  margin-bottom: 5px;
-  border-bottom: 1px solid #ddd;
-  padding-top: 5px; }
-.styleresults .copy {
-  float: right; }
-
-.colour-bg {
-  width: 1em;
-  height: 1em;
-  display: inline-block;
-  margin-right: 5px; }
-
-.colour-text {
-  display: inline-block;
-  margin-right: 5px; }
-
-.sidebar .properties {
-  display: none; }
-
-.selection .sidebar .properties {
-  display: block; }
-.selection .sidebar .tip {
-  display: none; }
-
-.no-sidebar .preview {
-  right: 0;
-}
-.no-sidebar .sidebar {
-  margin-right: -280px;
-  display: none;}
-
-.sidebar-switcher {
-  position: absolute;
-  top: 0;
-  left: -35px; }
-.sidebar-switcher .btn {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-right: 0px; }
-
-
-
-.page-title .editable-click, .page-title a.editable-click {
-  text-decoration: none;
-  color: #004F94;
-  margin-top: 15px;
-  display: inline-block;
-  border-bottom: 0px;
-  font-size: 16px; }
-.page-title .editable-click:after, .page-title a.editable-click:after {
-  content: "\f040";
-  font-family: "FontAwesome";
-  margin-left: 5px;
-  color: #777; }
-.page-title .editable-click:hover, .page-title a.editable-click:hover {
-  color: #00192e;
-  border-bottom: 1px solid #ccc; }
-.page-title .editable-wrap {
-  margin-top: 7px; }
-
-.ui-state-highlight {
-  height: 1.5em;
-  line-height: 1.2em;
-  border: 1px solid #dad55e;
-  background: #fffa90;
-  color: #777620; }
-
-.template .panel-body {
-  min-height: 240px;
-}
-
-.outer-row {
- // margin: 0 30px 10px 30px;
-  padding: 5px;
-  position: relative;
-  border: 1px dotted #ccc;
   margin-bottom: 1rem;
 }
-
 
 .btn-primary:focus, .btn-primary.focus {
   outline: none;
@@ -355,34 +150,27 @@ fieldset {
   opacity: 1;
 }
 
-
-
-
 body.gu-unselectable {
-.layout--region {
-  background-color: $cnw_color-blueLight2;
-  border: 1px dotted $cnw_color-blueLight;
-  min-height: 50px;
-}
+  .layout--region {
+    background-color: $cnw_color-blueLight2;
+    border: 1px dotted $cnw_color-blueLight;
+    min-height: 50px;
+  }
   .outer-row {
     border: 1px dotted $cnw_color-blueLight;
   }
 }
 
-
-
 .widget-code-preview {
   display: none;
 }
 
-
-
 .builder--wrapper {
-  width:100%;
+  width: 100%;
   float: left;
 }
 
 footer {
   float: left;
-  width:100%;
+  width: 100%;
 }

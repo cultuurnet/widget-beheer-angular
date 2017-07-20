@@ -21,7 +21,28 @@
 .md-3 {
   width: 50%; }
 
-/* */
+
+
+
+.desktop .preview-inner {
+  width: 96%; }
+
+.mobile .preview-inner {
+  width: 320px; }
+
+.tablet .preview-inner {
+  width: 768px; }
+
+.mobile .xs,
+.mobile .sm,
+.mobile .md {
+  width: 100%; }
+
+
+
+/*
+
+!* *!
 .w-label {
   font-size: 110%;
   font-weight: bold;
@@ -90,20 +111,7 @@
   display: block;
   text-align: right; }
 
-.desktop .preview-inner {
-  width: 96%; }
-
-.mobile .preview-inner {
-  width: 320px; }
-
-.tablet .preview-inner {
-  width: 768px; }
-
-.mobile .xs,
-.mobile .sm,
-.mobile .md {
-  width: 100%; }
-
+*/
 
 .device-switcher {
   text-align: center;

@@ -82,16 +82,9 @@
   max-width: 100%;
 
 }
-/*
-.cnw_form,
-.cnw_sideCol {
-  //border:1px solid blue;
-  div[class*='cnw_col-'],
-  .cnw_col {
-    flex-basis: auto;
-  }
-}
-*/
+
+
+
 @include media-breakpoint-up(xs) {
   .cnw_flex-md-last {
     -webkit-box-ordinal-group: 2;

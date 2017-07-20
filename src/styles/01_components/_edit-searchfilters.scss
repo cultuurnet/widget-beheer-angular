@@ -12,7 +12,7 @@
     margin: 0 0 1.5rem 0;
   }
 
-  .widget-group-filters-edit  fieldset {
+  .widget-group-filters-edit fieldset {
     margin: 1.5rem 0 0 0;
     legend {
       font-size: 1.3rem;
@@ -21,34 +21,33 @@
     }
   }
 
-
 }
 
 .edit-searchfilters--group {
 
- @include dottedBorder();
+  @include dottedBorder();
   padding: 0.5rem;
   margin-bottom: 2.5rem;
 
-   .actions-bar {
-     margin-bottom: 0.8rem;
-      .action-list li  {
-       float: left;
-      }
-   }
+  .actions-bar {
+    margin-bottom: 0.8rem;
+    .action-list li {
+      float: left;
+    }
+  }
   h5 {
     margin-top: 3rem;
     border-bottom: 1px solid gray;
     padding-bottom: 1rem;
     font-weight: 300;
   }
- .form-check   label.form-check-label {
+  .form-check label.form-check-label {
     display: block;
     width: 100%;
   }
 
 }
 
-.widget-group-filters-group-option-edit  {
+.widget-group-filters-group-option-edit {
   margin: 1rem 0 1.5rem 0;
 }

@@ -8,5 +8,64 @@
   position: relative;
   transition: box-shadow 0.25s ease;
 
+}
 
+.component-label {
+  margin: 0 0 0 1rem;
+  line-height: 40px;
+  white-space: nowrap;
+}
+
+.component-icon {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+
+.components-group,
+.layouts-group {
+  opacity: 0;
+  height: 0;
+  transition: all 0.5s ease;
+  position: absolute;
+  z-index: 980;
+  background-color: #004F94;
+  width: 300px;
+  margin: 0 auto;
+  left: 50%;
+  margin-left: -150px;
+  padding: 10px 5px 0 5px;
+  display: none;
+}
+
+.components-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  overflow: hidden;
+}
+
+.components-listitem {
+  margin-bottom: 7.5px;
+  width: 100%;
+  padding: 0 5px;
+}
+
+.selected {
+  background-color: white;
+  border: 1px solid $cnw_color-blueLight;
+  box-shadow: -1px -1px 17px 1px rgba(212, 212, 212, 1);
+
+  &.component--preview-throbber {
+    border: 1px solid $green;
+    background-color: lighten($green, 40);
+    .actions-bar {
+      animation: bg-pulse 0.8s infinite normal;
+    }
+  }
+}
+
+.selected .selector {
+  height: 0;
 }

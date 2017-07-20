@@ -6,11 +6,13 @@
   padding: 15px;
   transition: all 0.5s ease;
   text-align: center;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .layouts-add {
   margin-top: 10px;
-  padding: 0; }
+  padding: 0;
+}
 
 .btn-add {
   display: block;
@@ -23,11 +25,14 @@
   border: 0px solid #FFF;
   position: relative;
   transition: all 0.5s ease;
-  outline: 0; }
+  outline: 0;
+}
+
 .btn-add:hover {
   background-color: #003461;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-  transform: translate(0, -4px); }
+  transform: translate(0, -4px);
+}
 
 .btn-layout {
   border-radius: 15px;
@@ -36,14 +41,14 @@
   border: 0px solid #FFF;
   position: relative;
   transition: all 0.5s ease;
-  outline: 0; }
+  outline: 0;
+}
+
 .btn-layout:hover {
   background-color: #003461;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-  transform: translate(0, -4px); }
-
-
-
+  transform: translate(0, -4px);
+}
 
 @mixin addWidgetComponentButton() {
 
@@ -82,8 +87,6 @@
         padding: 0.5rem;
       }
 
-      // padding: 1rem 0.5rem 0.8rem 1rem;
-      // line-height: 2rem;
       &:hover {
         background-color: $cnw_color-blueHeader;
         border-color: $cnw_color-blueHeader;
@@ -91,11 +94,11 @@
         cursor: pointer;
       }
       &:disabled {
-        background-color: $gray-light;
-        border-color: $gray-light;
-        color: $gray-light;
+        background-color: #ffffff;
+        border-color: #bcc8d0;
+        color: #dde2e6;
         cursor: not-allowed;
-        display: none;
+
       }
 
       .fa {
