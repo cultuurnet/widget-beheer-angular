@@ -160,8 +160,10 @@
 .actions-bar--row li {
   margin-bottom: 5px; }
 
-.actions-bar a span {
-  display: none; }
+.actions-bar button span {
+  display: none;
+  @include text-hide();
+}
 
 
 

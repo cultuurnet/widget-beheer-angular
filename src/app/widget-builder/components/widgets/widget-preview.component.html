@@ -4,20 +4,20 @@
 
 
 
-            <li class="move"><a href="#" class="btn btn-default btn-sm bnt-cnw-action--drag"><i class="fa fa-arrows drag" aria-hidden="true"></i><span>{{ "LABEL_DRAG" | translate}}</span></a>
+            <li class="move"><button class="btn btn-default btn-sm bnt-cnw-action--drag"><i class="fa fa-arrows drag" aria-hidden="true"></i><span>{{ "LABEL_DRAG" | translate}}</span></button>
             </li>
 
-            <li><a href="#" (click)="removeWidget(widget)" class="btn btn-default btn-sm bnt-cnw-action--remove"><i class="fa fa-trash"></i><span>{{ "LABEL_REMOVE_WIDGET" | translate }}</span></a>
+            <li><button (click)="removeWidget(widget)" class="btn btn-default btn-sm bnt-cnw-action--remove"><i class="fa fa-trash"></i><span>{{ "LABEL_REMOVE_WIDGET" | translate }}</span></button>
             </li>
 
 
-             <li><a href="#" (click)="toggleSidebar()" class="btn btn-default btn-sm bnt-cnw-action--instellingen"><i class="fa fa-cogs"></i><span>Instellingen</span></a>
+             <li><button (click)="toggleSidebar()" class="btn btn-default btn-sm bnt-cnw-action--instellingen"><i class="fa fa-cogs"></i><span>{{ "LABEL_INSTELLINGEN" | translate }}</span></button>
             </li>
 
             <li  *ngIf="isRendering" class="loading">
-                <a href="#" class="btn btn-default btn-sm bnt-cnw-action--loading">
+                <button class="btn btn-default btn-sm bnt-cnw-action--loading">
                     <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
-                </a>
+                </button>
 
             </li>
 

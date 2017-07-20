@@ -1,7 +1,7 @@
 <div class="actions-bar actions-bar--row">
     <ul class="actions-list list-inline">
-        <li class="list-inline-item"><a href="#" *ngIf="index !== 0" (click)="moveRowUp($event, index)" class="btn btn-default btn-sm bnt-cnw-action--move-up"><i class="fa fa-arrow-up" aria-hidden="true"></i><span>{{ 'BUTTON_ROW_MOVE_UP' | translate }}</span></a></li>
-        <li class="list-inline-item"><a href="#" *ngIf="index !== (rows.length-1)" (click)="moveRowDown($event, index)" class="btn btn-default btn-sm bnt-cnw-action--move-down"><i class="fa fa-arrow-down"></i><span>{{ 'BUTTON_ROW_MOVE_DOWN' | translate }}</span></a></li>
-        <li class="list-inline-item"><a href="#" (click)="removeRow($event, index)" class="btn btn-default bnt-cnw-action--remove"><i class="fa fa-trash"></i><span>{{ 'BUTTON_ROW_REMOVE' | translate }}</span></a></li>
+        <li class="list-inline-item"><button *ngIf="index !== 0" (click)="moveRowUp($event, index)" class="btn btn-default btn-sm bnt-cnw-action--move-up"><i class="fa fa-arrow-up" aria-hidden="true"></i><span>{{ 'BUTTON_ROW_MOVE_UP' | translate }}</span></button></li>
+        <li class="list-inline-item"><button *ngIf="index !== (rows.length-1)" (click)="moveRowDown($event, index)" class="btn btn-default btn-sm bnt-cnw-action--move-down"><i class="fa fa-arrow-down"></i><span>{{ 'BUTTON_ROW_MOVE_DOWN' | translate }}</span></button></li>
+        <li class="list-inline-item"><button (click)="removeRow($event, index)" class="btn btn-default bnt-cnw-action--remove"><i class="fa fa-trash"></i><span>{{ 'BUTTON_ROW_REMOVE' | translate }}</span></button></li>
     </ul>
 </div>
