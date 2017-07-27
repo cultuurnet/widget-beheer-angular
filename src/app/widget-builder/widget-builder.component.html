@@ -58,7 +58,7 @@
 
 
 <div class="builder--wrapper">
-    <div class="builder" [ngClass]="{ 'no-sidebar' : !showSidebar }">
+    <div class="builder" [ngClass]="{ 'no-sidebar' : !showSidebar, 'builder--edit-modus' : showSidebar }">
         <div (click)="deselectWidget($event)" id="widget-builder-preview" class='preview {{ viewMode }}'>
 
             <div class="preview-inner">
