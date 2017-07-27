@@ -168,7 +168,11 @@ body.gu-unselectable {
 .builder--wrapper {
   width: 100%;
   float: left;
+  padding-top:80px;
+  height:100vh;
+  overflow-y:auto;
 }
+
 
 footer {
   float: left;
