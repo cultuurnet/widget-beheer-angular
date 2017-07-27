@@ -43,9 +43,12 @@ $font-family-sans-serif: "Open Sans";
 
 
 body {
+  font-size:0.8rem;
   font-family:$font-family-base;
 }
 
+// disable all scroll
+html, body {margin: 0; height: 100%; overflow: hidden}
 
 
 
