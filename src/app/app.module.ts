@@ -26,6 +26,8 @@ import { HtmlWidget } from "./core/widget/widgets/html-widget/html-widget.widget
 import { HtmlWidgetWidgetEditComponent } from "./widget-builder/components/widgets/html-widget/html-widget-edit.component";
 import { OneCollLayout } from "./core/layout/layouts/one-col/one-col.layout";
 import { OneColLayoutComponent } from "./widget-builder/components/layouts/one-col/one-col-layout.component";
+import { TipsWidget } from "./core/widget/widgets/tips-widget/tips-widget.widget";
+import { TipsWidgetWidgetEditComponent } from "./widget-builder/components/widgets/tips-widget/tips-widget-edit.component";
 
 /**
  * AoT requires an exported function for factories
@@ -69,6 +71,7 @@ export class AppModule {
     widgetTypeRegistry.register('search-form', 'Search form', SearchFormWidget, SearchFormWidgetEditComponent);
     widgetTypeRegistry.register('search-results', 'Search results', SearchResultsWidget, SearchResultsWidgetEditComponent);
     widgetTypeRegistry.register('html', 'HTML', HtmlWidget, HtmlWidgetWidgetEditComponent);
+    widgetTypeRegistry.register('tips', 'Tips', TipsWidget, TipsWidgetWidgetEditComponent);
 
     // Register layouts
     layoutTypeRegistry.register('2col-sidebar-left', 'Two col sidebar left', TwoColSidebarLeftLayout, TwoColSidebarLeftLayoutComponent);

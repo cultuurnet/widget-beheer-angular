@@ -2,16 +2,16 @@ import { Component } from "@angular/core";
 import { AbstractWidgetEditComponent } from "../../../../core/widget/components/abstract-widget-edit-component";
 import { FormBuilder } from "@angular/forms";
 import { ckeditorConfig } from "../../../constants/ckeditor-config";
-import * as _ from "lodash";
 import { WidgetBuilderService } from "../../../services/widget-builder.service";
+import * as _ from "lodash";
 
 /**
- * Search results widget edit form component.
+ * Tips widget edit form component.
  */
 @Component({
-  templateUrl: './search-results-widget-edit.component.html'
+  templateUrl: './tips-widget-edit.component.html'
 })
-export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponent {
+export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
 
   /**
    * Config for the ckdeditor in this component
@@ -33,7 +33,7 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
   ];
 
   /**
-   * SearchResultsWidgetEditComponent constructor
+   * HtmlWidgetEditComponent constructor
    */
   constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
     super(formBuilder);
@@ -45,10 +45,12 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
   protected buildForm() {
     this.widgetEditForm = this.formBuilder.group({
       general: this.formBuilder.group({
-        current_search: [_.get(this.settings, 'general.current_search')]
-      }),
-      header: this.formBuilder.group({
-        body: [_.get(this.settings, 'header.body', '')]
+        items: [_.get(this.widget.settings, 'general.items', 3)],
+        detail_link: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'general.detail_link.enabled', '')],
+          url: [_.get(this.widget.settings, 'general.detail_link.url', '')],
+          cbdid: [_.get(this.widget.settings, 'general.detail_link.cbdid', '')],
+        })
       }),
       items: this.formBuilder.group({
         icon_vlieg: this.formBuilder.group({
@@ -95,58 +97,6 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
           enabled: [_.get(this.widget.settings, 'items.read_more.enabled', '')],
           label: [_.get(this.widget.settings, 'items.read_more.label', '')]
         }),
-      }),
-      detail_page: this.formBuilder.group({
-        map: [_.get(this.widget.settings, 'detail_page.map', '')],
-        price_information: [_.get(this.widget.settings, 'detail_page.price_information', '')],
-        language_switcher: [_.get(this.widget.settings, 'detail_page.language_switcher', '')],
-        uitpas_benefits: [_.get(this.widget.settings, 'detail_page.uitpas_benefits', '')],
-        share_buttons: [_.get(this.widget.settings, 'detail_page.share_buttons', '')],
-        back_button: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'detail_page.back_button.enabled', '')],
-          label: [_.get(this.widget.settings, 'detail_page.back_button.label', '')],
-          url: [_.get(this.widget.settings, 'detail_page.back_button.url', '')]
-        }),
-        icon_vlieg: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'detail_page.icon_vlieg.enabled', '')]
-        }),
-        icon_uitpas: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'detail_page.icon_uitpas.enabled', '')]
-        }),
-        description: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'detail_page.description.enabled', '')],
-          label: [_.get(this.widget.settings, 'detail_page.description.label', '')],
-          characters: [_.get(this.widget.settings, 'detail_page.description.characters', '')]
-        }),
-        when: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'detail_page.when.enabled', '')],
-          label: [_.get(this.widget.settings, 'detail_page.when.label', '')]
-        }),
-        where: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'detail_page.where.enabled', '')],
-          label: [_.get(this.widget.settings, 'detail_page.where.label', '')]
-        }),
-        age: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'idetail_pagetems.age.enabled', '')],
-          label: [_.get(this.widget.settings, 'detail_page.age.label', '')]
-        }),
-        language_icons: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'detail_page.language_icons.enabled', '')]
-        }),
-        image: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'detail_page.image.enabled', '')],
-          width: [_.get(this.widget.settings, 'detail_page.image.width', '')],
-          height: [_.get(this.widget.settings, 'detail_page.image.height', '')],
-          default_image: [_.get(this.widget.settings, 'detail_page.image.default_image', '')],
-          position: [_.get(this.widget.settings, 'detail_page.image.position', '')]
-        }),
-        labels: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'detail_page.labels.enabled', '')],
-          limit_labels: this.formBuilder.group({
-            enabled: [_.get(this.widget.settings, 'detail_page.limit_labels.enabled', '')],
-            labels: [_.get(this.widget.settings, 'detail_page.limit_labels.labels', '')]
-          }),
-        }),
       })
     });
   }
@@ -157,9 +107,7 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
   protected applyValuesToModel(values: any) {
     // Apply all values to the model
     _.set(this.settings, 'general', _.get(values, 'general', {}));
-    _.set(this.settings, 'header', _.get(values, 'header', {}));
     _.set(this.settings, 'items', _.get(values, 'items', {}));
-    _.set(this.settings, 'detail_page', _.get(values, 'detail_page', {}));
 
     this.widgetBuilderService.saveWigetPage(this.widget.id);
   }
