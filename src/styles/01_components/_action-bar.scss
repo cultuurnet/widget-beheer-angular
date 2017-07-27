@@ -97,6 +97,9 @@
   &.bnt-cnw-action--loading {
     background-color: transparent;
   }
+  &.bnt-cnw-action--drag {
+    cursor: grab;
+  }
 
   &:hover {
     box-shadow: 1px 1px 1px 1px #d4d4d4;
