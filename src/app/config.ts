@@ -128,6 +128,10 @@ export class Config {
                     'icon_uitpas': {
                       'enabled': true
                     },
+                    'description': {
+                      'enabled': true,
+                      'characters': 200
+                    },
                     'when': {
                       'enabled': false,
                       'label': 'Wanneer'
@@ -145,8 +149,8 @@ export class Config {
                     },
                     'image': {
                       'enabled': true,
-                      'width': 100,
-                      'height': 80,
+                      'width': 300,
+                      'height': 200,
                       'default_image': true,
                       'position': 'left'
                     },

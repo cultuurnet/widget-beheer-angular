@@ -113,6 +113,11 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
         icon_uitpas: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.icon_uitpas.enabled', '')]
         }),
+        description: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.description.enabled', '')],
+          label: [_.get(this.widget.settings, 'detail_page.description.label', '')],
+          characters: [_.get(this.widget.settings, 'detail_page.description.characters', '')]
+        }),
         when: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.when.enabled', '')],
           label: [_.get(this.widget.settings, 'detail_page.when.label', '')]
