@@ -65,6 +65,39 @@ export class Config {
           'content': {
             'widgets': [
               {
+                'id': '3c6ae3ef-cc96-4e15-880b-a4a5b5289fef',
+                'type': 'facets',
+                'settings': {
+                  'general': {
+                  },
+                  'group_filters': {
+                    'enabled': true,
+                    'filters': [
+                      {
+                        'label': 'Group filter label',
+                        'type': 'link',
+                        'options': [
+                          {
+                            'label': 'Gent',
+                            'query': 'zip=9000'
+                          },
+                        ]
+                      },
+                      {
+                        'label': 'Some custom label',
+                        'type': 'link',
+                        'options': [
+                          {
+                            'label': 'Gent',
+                            'query': 'zip=9000'
+                          },
+                        ]
+                      }
+                    ]
+                  }
+                }
+              },
+              {
                 'id': 'c039e4b6-3d61-1c2a-d028-4606fa56c4c9',
                 'type': 'search-results',
                 'settings': {

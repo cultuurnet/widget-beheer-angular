@@ -1,0 +1,30 @@
+<h2>{{ "TITLE_FACET_EDIT_FORM" | translate }}</h2>
+<ngb-tabset>
+    <ngb-tab>
+        <form [formGroup]="widgetEditForm" novalidate>
+            <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
+            <ng-template ngbTabContent>
+                <ngb-accordion [closeOthers]="true" [activeIds]="'content'">
+                    <ngb-panel id="content" formGroupName="content">
+                        <ng-template ngbPanelTitle>Algemeen</ng-template>
+                        <ng-template ngbPanelContent>
+                            Algemeen
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="extra_filters">
+                        <ng-template ngbPanelTitle>Extra filters</ng-template>
+                        <ng-template ngbPanelContent>
+                            <app-widget-group-filters-edit [groupFilters]="settings.group_filters" [type]="'link'" [hideType]="true" [hidePlaceholder]="true"></app-widget-group-filters-edit>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </ng-template>
+        </form>
+    </ngb-tab>
+    <ngb-tab>
+        <ng-template ngbTabTitle>JSON</ng-template>
+        <ng-template ngbTabContent>
+            <p>You can't handle the JSON!<p>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>

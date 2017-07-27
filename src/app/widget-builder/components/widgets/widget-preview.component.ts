@@ -9,6 +9,7 @@ import { WidgetPreviewDirective } from "../../directives/widget-preview.directiv
 import * as _ from "lodash";
 import { HtmlWidgetPreviewComponent } from "./html-widget/html-widget-preview.component";
 import { TipsWidgetPreviewComponent } from "./tips-widget/tips-widget-preview.component";
+import { FacetsWidgetPreviewComponent } from "./facets-widget/facets-widget-preview.component";
 
 /**
  * A generic widget preview component.
@@ -113,6 +114,9 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
         break;
       case 'tips':
         previewComponent = TipsWidgetPreviewComponent;
+        break;
+      case 'facets':
+        previewComponent = FacetsWidgetPreviewComponent;
         break;
       default:
         previewComponent = SearchFormWidgetPreviewComponent;
