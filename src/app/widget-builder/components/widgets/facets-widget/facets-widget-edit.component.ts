@@ -24,7 +24,17 @@ export class FacetsWidgetWidgetEditComponent extends AbstractWidgetEditComponent
    */
   protected buildForm() {
     this.widgetEditForm = this.formBuilder.group({
-      content: this.formBuilder.group({})
+      general: this.formBuilder.group({
+        options: this.formBuilder.group({
+          what: [_.get(this.settings, 'general.options.what', false)],
+          where: [_.get(this.settings, 'general.options.where', false)],
+          when: [_.get(this.settings, 'general.options.when', false)],
+          uitpas: [_.get(this.settings, 'general.options.uitpas', false)],
+          vlieg: [_.get(this.settings, 'general.options.vlieg', false)],
+          age: [_.get(this.settings, 'general.options.age', false)],
+          free: [_.get(this.settings, 'general.options.free', false)]
+        }),
+      })
     });
   }
 
@@ -32,7 +42,11 @@ export class FacetsWidgetWidgetEditComponent extends AbstractWidgetEditComponent
    * @inheritDoc
    */
   protected applyValuesToModel(values: any) {
+    // Apply all values to the model
+    // Groupfilter values are applied to the model and taken care of in their own component
+    _.set(this.settings, 'general', _.get(values, 'general', {}));
 
+    this.widgetBuilderService.saveWigetPage(this.widget.id);
   }
 
 }

@@ -69,6 +69,15 @@ export class Config {
                 'type': 'facets',
                 'settings': {
                   'general': {
+                    'options': {
+                      'what': true,
+                      'where': true,
+                      'when': true,
+                      'uitpas': true,
+                      'vlieg': false,
+                      'age': true,
+                      'free': false
+                    }
                   },
                   'group_filters': {
                     'enabled': true,
