@@ -1,6 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { WidgetGroupFiltersGroupEditComponent } from "./widget-group-filters-group-edit.component";
 import { Subscription } from "rxjs";
 import { group_filter_types } from "app/widget-builder/constants/group-filters";
 
