@@ -57,14 +57,27 @@
   border: 1px solid $cnw_color-blueLight;
   box-shadow: -1px -1px 17px 1px rgba(212, 212, 212, 1);
 
+
   &.component--preview-throbber {
-    border: 1px solid $green;
-    background-color: lighten($green, 40);
-    .actions-bar {
+    background-color: rgba($green, 0.1);
+    &::before {
+      content: '';
+      position: absolute;
+      top:0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      border: 1px solid $green;
+      background-color: rgba($green, 0.5);
       animation: bg-pulse 0.8s infinite normal;
+      z-index: 100;
+      opacity: 0.4;
+     cursor: progress;
     }
+
   }
 }
+
 
 .selected .selector {
   height: 0;
