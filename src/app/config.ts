@@ -68,16 +68,10 @@ export class Config {
                 'id': '3c6ae3ef-cc96-4e15-880b-a4a5b5289fef',
                 'type': 'facets',
                 'settings': {
-                  'general': {
-                    'options': {
-                      'what': true,
-                      'where': true,
-                      'when': true,
-                      'uitpas': true,
-                      'vlieg': false,
-                      'age': true,
-                      'free': false
-                    }
+                  'filters': {
+                    'what': true,
+                    'where': true,
+                    'when': false,
                   },
                   'group_filters': {
                     'enabled': true,

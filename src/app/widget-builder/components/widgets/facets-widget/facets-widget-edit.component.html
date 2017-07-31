@@ -4,13 +4,13 @@
         <form [formGroup]="widgetEditForm" novalidate>
             <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
             <ng-template ngbTabContent>
-                <ngb-accordion [closeOthers]="true">
-                    <ngb-panel id="general" formGroupName="general">
+                <ngb-accordion [closeOthers]="true" [activeIds]="'general'">
+                    <ngb-panel id="general">
                         <ng-template ngbPanelTitle>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_PANEL_TITLE_GENERAL" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
                             <fieldset>
                                 <legend>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS" | translate }}</legend>
-                                <div formGroupName="options">
+                                <div formGroupName="filters">
                                     <div>
                                         <label>
                                             <input type="checkbox" formControlName="what" />
@@ -30,37 +30,10 @@
                                         </label>
                                     </div>
                                     <div>
-                                        <label>
-                                            <input type="checkbox" formControlName="uitpas" />
-                                            <span>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_UITPAS" | translate }}</span>
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label>
-                                            <input type="checkbox" formControlName="vlieg" />
-                                            <span>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_VLIEG" | translate }}</span>
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label>
-                                            <input type="checkbox" formControlName="age" />
-                                            <span>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_AGE" | translate }}</span>
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label>
-                                            <input type="checkbox" formControlName="free" />
-                                            <span>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_FREE" | translate }}</span>
-                                        </label>
+                                        <app-widget-group-filters-edit [groupFilters]="settings.group_filters" [type]="'link'" [hideType]="true" [hidePlaceholder]="true"></app-widget-group-filters-edit>
                                     </div>
                                 </div>
                             </fieldset>
-                        </ng-template>
-                    </ngb-panel>
-                    <ngb-panel id="extra_filters">
-                        <ng-template ngbPanelTitle>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_PANEL_TITLE_EXTRA_FILTERS" | translate }}</ng-template>
-                        <ng-template ngbPanelContent>
-                            <app-widget-group-filters-edit [groupFilters]="settings.group_filters" [type]="'link'" [hideType]="true" [hidePlaceholder]="true"></app-widget-group-filters-edit>
                         </ng-template>
                     </ngb-panel>
                 </ngb-accordion>
