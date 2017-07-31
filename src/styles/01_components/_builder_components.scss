@@ -57,7 +57,9 @@
   border: 1px solid $cnw_color-blueLight;
   box-shadow: -1px -1px 17px 1px rgba(212, 212, 212, 1);
 
-
+  .inner-preview-rendering {
+    display: none;
+  }
   &.component--preview-throbber {
     background-color: rgba($green, 0.1);
     overflow:hidden;
@@ -79,10 +81,9 @@
     }
 
     .inner-preview-rendering {
-
+      display: block;
       position: absolute;
       width: 100%;
-    //  height: 40px;
       padding: 10px;
       top: 0;
       margin: 0 auto;
@@ -94,7 +95,7 @@
         margin-right: 20px;
       }
       span {
-        
+
         font-size: 1.2em;
       }
     }
