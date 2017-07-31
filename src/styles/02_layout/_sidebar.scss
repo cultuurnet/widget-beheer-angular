@@ -1,11 +1,13 @@
 .sidebar {
-  width: 480px;
+
+  width: 30%;
   position: fixed;
-  right: 24px;
+  right: 0px;
   bottom: 0;
   top: 56px;
   transition: all 0.2s;
-  background-color: white;
+
+  background-color: #f1f1f1;
 
   border-left: 1px solid $cnw_color-grayLight;
   height: auto;
@@ -105,6 +107,15 @@
     padding: 10px 0;
   }
 
+
+  .sidebar-info {
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
+
+
+
 }
 
 .sidebar .properties {
@@ -140,4 +151,13 @@
   border-right: 0px;
 }
 
+.btn--stop-editing {
+  background-color: yellow;
+}
 
+
+
+.builder--edit-modus .sidebar {
+  animation: slide-in-right 0.3s cubic-bezier(0.770, 0.000, 0.175, 1.000) both;
+
+}
