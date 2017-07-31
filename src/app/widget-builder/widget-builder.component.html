@@ -15,7 +15,7 @@
 
         </ul>
         <ul class="nav navbar-nav mx-auto">
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="!showSidebar">
                 <app-view-mode-switcher (viewModeChanged)="handleViewModeChanged($event)"></app-view-mode-switcher>
             </li>
 
