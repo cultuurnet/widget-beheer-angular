@@ -163,5 +163,9 @@
   "LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_WHAT": "Wat",
   "LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_WHERE": "Waar",
   "LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_WHEN": "Wanneer",
-  "LABEL_SELECTED_ELEMENT": "Je selecteerde"
+  "LABEL_SELECTED_ELEMENT": "Je selecteerde",
+  "LABEL_FACETS_WIDGET_EDIT_FORM_SEARCH_RESULTS": "Zoekresultaten koppelen",
+  "FACETS_WIDGET_EDIT_FORM_MISSING_SEARCH_RESULTS_WIDGETS_WARNING": "Maak ten minste één \"Zoekresultaten\" blok aan zodat je deze kan koppelen aan de zoekverfijningen.",
+  "FACETS_WIDGET_EDIT_FORM_SEARCH_RESULTS_REQUIRED": "Selecteer een \"Zoekresultaten\" blok om de zoekverfijningen aan te koppelen.",
+  "FACETS_WIDGET_EDIT_FORM_SEARCH_RESULTS_EMPTY_OPTION": "Selecteer blok"
 }

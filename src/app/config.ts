@@ -70,6 +70,7 @@ export class Config {
                 'type': 'facets',
                 'name': 'Zoekverfijningen',
                 'settings': {
+                  'search_results': 'c039e4b6-3d61-1c2a-d028-4606fa56c4c9',
                   'filters': {
                     'what': true,
                     'where': true,
