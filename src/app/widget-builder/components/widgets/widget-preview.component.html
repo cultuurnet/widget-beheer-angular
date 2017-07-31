@@ -1,8 +1,6 @@
-<div class="component" [ngClass]="{ 'selected' : widget === activeWidget, 'component--preview-throbber' : isRendering }" (click)="editWidget($event, widget)">
-    <div class="actions-bar actions-bar--component">
+<div class="component" [ngClass]="{ 'selected' : widget === activeWidget, 'component--preview-throbber' : isRendering }" (click)="selectWidget($event, widget)">
+    <div class="actions-bar actions-bar--component"  *ngIf="!widgetBuilderComponent.showSidebar">
         <ul class="actions-list">
-
-
 
             <li class="move"><button class="btn btn-default btn-sm bnt-cnw-action--drag"><i class="fa fa-arrows drag" aria-hidden="true"></i><span>{{ "LABEL_DRAG" | translate}}</span></button>
             </li>
@@ -11,7 +9,7 @@
             </li>
 
 
-             <li><button (click)="toggleSidebar()" class="btn btn-default btn-sm bnt-cnw-action--instellingen"><i class="fa fa-cogs"></i><span>{{ "LABEL_INSTELLINGEN" | translate }}</span></button>
+             <li><button (click)="editWidget($event, widget)" class="btn btn-default btn-sm bnt-cnw-action--instellingen"><i class="fa fa-cogs"></i><span>{{ "LABEL_INSTELLINGEN" | translate }}</span></button>
             </li>
 
             <li  *ngIf="isRendering" class="loading">
@@ -23,7 +21,7 @@
 
         </ul>
     </div>
-    <div>
+    <div class="inner-preview-wrapper">
         <ng-template widget-preview></ng-template>
 
         <div class="widget-preview">

@@ -42,7 +42,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   /**
    * Indicates the sidebar is being shown or not
    */
-  public showSidebar: boolean = true;
+  public showSidebar: boolean = false;
 
   /**
    * View mode of the widget builder (eg. desktop, tablet,..)
@@ -143,6 +143,13 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    */
   public toggleSidebar() {
     this.showSidebar = !this.showSidebar;
+  }
+
+  /**
+   * close the sidebar.
+   */
+  public closeSidebar() {
+    this.showSidebar = false;
   }
 
   /**

@@ -1,6 +1,7 @@
 import { Component, ComponentFactoryResolver, Input, OnInit, OnDestroy, ViewChild } from "@angular/core";
 import { Widget } from "../../../core/widget/widget";
 import { WidgetBuilderService } from "../../services/widget-builder.service";
+import { WidgetBuilderComponent } from "../../..//widget-builder/widget-builder.component";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationModalComponent } from "../../../core/modal/components/confirmation-modal.component";
 import { SearchFormWidgetPreviewComponent } from "./search-form-widget/search-form-widget-preview.component";
@@ -62,10 +63,11 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
   /**
    * WidgetPreviewComponent constructor.
    * @param widgetBuilderService
+   * @param widgetBuilderComponent
    * @param modalService
    * @param _componentFactoryResolver
    */
-  constructor(private widgetBuilderService: WidgetBuilderService, private modalService: NgbModal, private _componentFactoryResolver: ComponentFactoryResolver) {
+  constructor(private widgetBuilderService: WidgetBuilderService, private widgetBuilderComponent: WidgetBuilderComponent, private modalService: NgbModal, private _componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   /**
@@ -135,13 +137,24 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
    * @param $event
    * @param widget
    */
-  public editWidget($event, widget: Widget) {
+  public editWidget() {
+    this.widgetBuilderComponent.showSidebar = true;
+  }
+
+
+  /**
+   * Set selected for the given widget.
+   * @param $event
+   * @param widget
+   */
+  public selectWidget($event, widget: Widget) {
     $event.stopWidgetDeselect = true;
 
     if (this.activeWidget !== widget) {
       this.widgetBuilderService.selectWidget(widget);
     }
   }
+
 
   /**
    * Remove a widget from the page.
