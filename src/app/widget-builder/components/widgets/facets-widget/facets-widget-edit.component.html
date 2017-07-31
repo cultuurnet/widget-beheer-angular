@@ -1,4 +1,9 @@
-<h2>{{ "TITLE_FACETS_EDIT_FORM" | translate }}</h2>
+<div class="selected-element">
+    <p>{{ "LABEL_SELECTED_ELEMENT" | translate }}: <br>
+        <i class="fa fa-crosshairs"></i>
+        <input type="text" [(ngModel)]="widget.name" (ngModelChange)="handleWidgetNameChanged($event)"/>
+    </p>
+</div>
 <ngb-tabset>
     <ngb-tab>
         <form [formGroup]="widgetEditForm" novalidate>
@@ -29,7 +34,7 @@
                                             <span>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_WHEN" | translate }}</span>
                                         </label>
                                     </div>
-                                    <div>
+                                    <div *ngIf="settings.group_filters">
                                         <app-widget-group-filters-edit [groupFilters]="settings.group_filters" [type]="'link'" [hideType]="true" [hidePlaceholder]="true"></app-widget-group-filters-edit>
                                     </div>
                                 </div>

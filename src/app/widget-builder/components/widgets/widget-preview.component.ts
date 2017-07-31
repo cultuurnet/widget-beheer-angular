@@ -163,16 +163,14 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
     modalInstance.message = 'REMOVE_WIDGET_MODAL_MESSAGE';
 
     // Remove row on confirmation
-    modal.result.then((result) => {
+    modal.result.then(() => {
       this.widgetBuilderService.widgetPage.removeWidget(widget);
 
       // Deselect active widget
       this.widgetBuilderService.selectWidget();
 
       // Save the widget page
-      this.widgetBuilderService.saveWigetPage();
-    }, (reason) => {
-      // Do nothing on cancel because the widget hasn't changed
+      this.widgetBuilderService.saveWidgetPage();
     });
   }
 }

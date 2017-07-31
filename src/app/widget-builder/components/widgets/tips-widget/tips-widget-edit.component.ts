@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { AbstractWidgetEditComponent } from "../../../../core/widget/components/abstract-widget-edit-component";
 import { FormBuilder } from "@angular/forms";
-import { ckeditorConfig } from "../../../constants/ckeditor-config";
 import { WidgetBuilderService } from "../../../services/widget-builder.service";
 import * as _ from "lodash";
 
@@ -12,11 +11,6 @@ import * as _ from "lodash";
   templateUrl: './tips-widget-edit.component.html'
 })
 export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
-
-  /**
-   * Config for the ckdeditor in this component
-   */
-  public ckeditorConfig: any = ckeditorConfig;
 
   /**
    * The available image positions for the list items
@@ -109,7 +103,14 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
     _.set(this.settings, 'general', _.get(values, 'general', {}));
     _.set(this.settings, 'items', _.get(values, 'items', {}));
 
-    this.widgetBuilderService.saveWigetPage(this.widget.id);
+    this.widgetBuilderService.saveWidgetPage(this.widget.id);
+  }
+
+  /**
+   * @inheritDoc
+   */
+  protected handleWidgetNameChanged(name: string) {
+    this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
 
 }

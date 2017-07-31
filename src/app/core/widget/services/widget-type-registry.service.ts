@@ -83,6 +83,7 @@ export class WidgetTypeRegistry {
 
         return new this.widgetTypes[type].widget({
           id: _.get(values, 'id'),
+          name: _.get(values, 'name'),
           type: type,
           settings: deepmerge.all([defaultSettings, _.get(values, 'settings', {})], {clone: true})
         });

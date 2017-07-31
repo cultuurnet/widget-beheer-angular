@@ -40,7 +40,14 @@ export class FacetsWidgetWidgetEditComponent extends AbstractWidgetEditComponent
     // Groupfilter values are applied to the model and taken care of in their own component
     _.set(this.settings, 'filters', _.get(values, 'filters', {}));
 
-    this.widgetBuilderService.saveWigetPage(this.widget.id);
+    this.widgetBuilderService.saveWidgetPage(this.widget.id);
+  }
+
+  /**
+   * @inheritDoc
+   */
+  protected handleWidgetNameChanged(name: string) {
+    this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
 
 }

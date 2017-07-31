@@ -20,6 +20,11 @@ export abstract class AbstractWidget implements Widget {
   /**
    * @inheritDoc
    */
+  public name: string;
+
+  /**
+   * @inheritDoc
+   */
   public settings: any;
 
   /**
