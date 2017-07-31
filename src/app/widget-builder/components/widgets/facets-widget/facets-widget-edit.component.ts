@@ -32,7 +32,7 @@ export class FacetsWidgetWidgetEditComponent extends AbstractWidgetEditComponent
   protected buildForm() {
     // Get all available search-result widgets
     this.searchResultsWidgets = this.getSearchResultsWidgets();
-    
+
     this.widgetEditForm = this.formBuilder.group({
       search_results: [_.get(this.settings, 'search_results', '')],
       filters: this.formBuilder.group({
