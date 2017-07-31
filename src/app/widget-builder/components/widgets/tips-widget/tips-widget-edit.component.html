@@ -1,0 +1,193 @@
+<div class="selected-element">
+    <p>{{ "LABEL_SELECTED_ELEMENT" | translate }}: <br>
+        <i class="fa fa-crosshairs"></i>
+        <input type="text" [(ngModel)]="widget.name" (ngModelChange)="handleWidgetNameChanged($event)"/>
+    </p>
+</div>
+<ngb-tabset>
+    <ngb-tab>
+        <form [formGroup]="widgetEditForm" novalidate>
+            <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
+            <ng-template ngbTabContent>
+                <ngb-accordion [closeOthers]="true">
+                    <ngb-panel id="general" formGroupName="general">
+                        <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_GENERAL" | translate }}</ng-template>
+                        <ng-template ngbPanelContent>
+                            <fieldset>
+                                <label>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_NUM_ELEMENTS" | translate }}</label>
+                                <input type="number" formControlName="items" step="1" min="1" max="20" />
+                                <div formGroupName="detail_link">
+                                    <label>
+                                        <input type="checkbox" formControlName="enabled">
+                                        <span>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_LINK_TO_DETAIL_PAGE" | translate }}</span>
+                                    </label>
+                                    <div *ngIf="settings.general.detail_link.enabled">
+                                        <div>
+                                            <label>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_DETAIL_PAGE_URL" | translate }}</label>
+                                            <input type="text" formControlName="url">
+                                        </div>
+                                        <div>
+                                            <label>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_DETAIL_PAGE_URL_OPTIONS" | translate }}</label>
+                                            <div>
+                                                <label>
+                                                    <input type="radio" value="query_string" name="cbdid" formControlName="cbdid">
+                                                    <span>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_DETAIL_PAGE_URL_OPTIONS_OPTION_QUERYSTRING" | translate }}</span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" value="url" name="cbdid" formControlName="cbdid">
+                                                    <span>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_DETAIL_PAGE_URL_OPTIONS_OPTION_URL" | translate }}</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="items" formGroupName="items">
+                        <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_ELEMENTS" | translate }}</ng-template>
+                        <ng-template ngbPanelContent>
+                            <div formGroupName="icon_vlieg">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_ICON_VLIEG" | translate }}</span>
+                                </label>
+                            </div>
+                            <div formGroupName="icon_uitpas">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_ICON_UITPAS" | translate }}</span>
+                                </label>
+                            </div>
+                            <div formGroupName="description">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_DESCRIPTION" | translate }}</span>
+                                </label>
+                                <div *ngIf="settings.items.description.enabled">
+                                    <div>
+                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_DESCRIPTION_LABEL" | translate }}</label>
+                                        <input type="text" formControlName="label">
+                                    </div>
+                                    <div>
+                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_DESCRIPTION_NUM_CHARACTERS" | translate }}</label>
+                                        <input type="number" formControlName="characters" step="1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div formGroupName="when">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHEN" | translate }}</span>
+                                </label>
+                                <div *ngIf="settings.items.when.enabled">
+                                    <div>
+                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHEN_LABEL" | translate }}</label>
+                                        <input type="text" formControlName="label">
+                                    </div>
+                                </div>
+                            </div>
+                            <div formGroupName="where">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHERE" | translate }}</span>
+                                </label>
+                                <div *ngIf="settings.items.where.enabled">
+                                    <div>
+                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHERE_LABEL" | translate }}</label>
+                                        <input type="text" formControlName="label">
+                                    </div>
+                                </div>
+                            </div>
+                            <div formGroupName="age">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_AGE" | translate }}</span>
+                                </label>
+                                <div *ngIf="settings.items.age.enabled">
+                                    <div>
+                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_AGE_LABEL" | translate }}</label>
+                                        <input type="text" formControlName="label">
+                                    </div>
+                                </div>
+                            </div>
+                            <div formGroupName="language_icons">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_LANGUAGE_ICONS" | translate }}</span>
+                                </label>
+                            </div>
+                            <div formGroupName="image">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE" | translate }}</span>
+                                </label>
+                                <div *ngIf="settings.items.image.enabled">
+                                    <div>
+                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_WIDTH" | translate }}</label>
+                                        <input type="number" formControlName="width" step="1" />
+                                    </div>
+                                    <div>
+                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_HEIGHT" | translate }}</label>
+                                        <input type="number" formControlName="height" step="1" />
+                                    </div>
+                                    <label>
+                                        <input type="checkbox" formControlName="default_image">
+                                        <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_DEFAULT_IMAGE" | translate }}</span>
+                                    </label>
+                                    <div>
+                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_POSITION" | translate }}</label>
+                                        <select formControlName="position">
+                                            <option *ngFor="let position of imagePositions" [value]="position.value">{{ ("LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_POSITION_OPTION_" + position.label |  uppercase) | translate }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div formGroupName="labels">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_LABELS" | translate }}</span>
+                                </label>
+                                <div *ngIf="settings.items.labels.enabled">
+                                    <div formGroupName="limit_labels">
+                                        <label>
+                                            <input type="checkbox" formControlName="enabled">
+                                            <span>{{ "LABEL_TIPS_EDIT_FORM_LABELS_SHOW_ONLY_ALLOWED_LABELS" | translate }}</span>
+                                        </label>
+                                        <div>
+                                            <label>{{ "LABEL_TIPS_EDIT_FORM_LABELS_ALLOWED_LABELS" | translate }}</label>
+                                            <input type="text" formControlName="labels">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div formGroupName="read_more">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_READ_MORE_LINK" | translate }}</span>
+                                </label>
+                                <div *ngIf="settings.items.read_more.enabled">
+                                    <label>{{ "LABEL_TIPS_EDIT_FORM_READ_MORE_LINK_LABEL" | translate }}</label>
+                                    <input type="text" formControlName="label">
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                    <ngb-panel id="extra_parameters">
+                        <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_EXTRA_PARAMETERS" | translate }}</ng-template>
+                        <ng-template ngbPanelContent>
+                            <!-- todo: Add querybuilder -->
+                            Querybuilder
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </ng-template>
+        </form>
+    </ngb-tab>
+    <ngb-tab>
+        <ng-template ngbTabTitle>JSON</ng-template>
+        <ng-template ngbTabContent>
+            <p>You can't handle the JSON!<p>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>

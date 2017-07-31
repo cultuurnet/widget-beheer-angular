@@ -79,4 +79,9 @@ export class AbstractWidgetEditComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Handles the widget name change
+   */
+  protected handleWidgetNameChanged(name: string) {}
+
 }

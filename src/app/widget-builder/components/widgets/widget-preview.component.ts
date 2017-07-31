@@ -8,6 +8,8 @@ import { SearchResultsWidgetPreviewComponent } from "./search-results-widget/sea
 import { WidgetPreviewDirective } from "../../directives/widget-preview.directive";
 import * as _ from "lodash";
 import { HtmlWidgetPreviewComponent } from "./html-widget/html-widget-preview.component";
+import { TipsWidgetPreviewComponent } from "./tips-widget/tips-widget-preview.component";
+import { FacetsWidgetPreviewComponent } from "./facets-widget/facets-widget-preview.component";
 
 /**
  * A generic widget preview component.
@@ -110,6 +112,12 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
       case 'html':
         previewComponent = HtmlWidgetPreviewComponent;
         break;
+      case 'tips':
+        previewComponent = TipsWidgetPreviewComponent;
+        break;
+      case 'facets':
+        previewComponent = FacetsWidgetPreviewComponent;
+        break;
       default:
         previewComponent = SearchFormWidgetPreviewComponent;
         break;
@@ -155,16 +163,14 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
     modalInstance.message = 'REMOVE_WIDGET_MODAL_MESSAGE';
 
     // Remove row on confirmation
-    modal.result.then((result) => {
+    modal.result.then(() => {
       this.widgetBuilderService.widgetPage.removeWidget(widget);
 
       // Deselect active widget
       this.widgetBuilderService.selectWidget();
 
       // Save the widget page
-      this.widgetBuilderService.saveWigetPage();
-    }, (reason) => {
-      // Do nothing on cancel because the widget hasn't changed
+      this.widgetBuilderService.saveWidgetPage();
     });
   }
 }

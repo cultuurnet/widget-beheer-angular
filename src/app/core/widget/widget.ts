@@ -11,6 +11,11 @@ export interface Widget {
   type: string;
 
   /**
+   * The widget name
+   */
+  name: string;
+
+  /**
    * The widget settings
    */
   settings: any;

@@ -20,8 +20,6 @@ import { RowEditComponent } from "./components/row-edit/row-edit.component";
 import { ViewModeSwitcherComponent } from "./components/view-mode-switcher/view-mode-switcher.component";
 import { WidgetPreviewComponent } from "./components/widgets/widget-preview.component";
 import { WidgetGroupFiltersEditComponent } from "./components/widgets/group-filters/widget-group-filters-edit.component";
-import { WidgetGroupFiltersGroupEditComponent } from "./components/widgets/group-filters/widget-group-filters-group-edit.component";
-import { WidgetGroupFiltersGroupOptionEditComponent } from "./components/widgets/group-filters/widget-group-filters-group-option-edit.component";
 import { SearchResultsWidgetPreviewComponent } from "./components/widgets/search-results-widget/search-results-widget-preview.component";
 import { SearchFormWidgetPreviewComponent } from "./components/widgets/search-form-widget/search-form-widget-preview.component";
 import { WidgetPreviewDirective } from "./directives/widget-preview.directive";
@@ -29,6 +27,10 @@ import { CKEditorModule } from "ng2-ckeditor";
 import { HtmlWidgetPreviewComponent } from "./components/widgets/html-widget/html-widget-preview.component";
 import { HtmlWidgetWidgetEditComponent } from "./components/widgets/html-widget/html-widget-edit.component";
 import { OneColLayoutComponent } from "./components/layouts/one-col/one-col-layout.component";
+import { TipsWidgetWidgetEditComponent } from "./components/widgets/tips-widget/tips-widget-edit.component";
+import { TipsWidgetPreviewComponent } from "./components/widgets/tips-widget/tips-widget-preview.component";
+import { FacetsWidgetWidgetEditComponent } from "./components/widgets/facets-widget/facets-widget-edit.component";
+import { FacetsWidgetPreviewComponent } from "./components/widgets/facets-widget/facets-widget-preview.component";
 
 @NgModule({
   declarations: [
@@ -49,12 +51,14 @@ import { OneColLayoutComponent } from "./components/layouts/one-col/one-col-layo
     ViewModeSwitcherComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
-    WidgetGroupFiltersGroupEditComponent,
-    WidgetGroupFiltersGroupOptionEditComponent,
     SearchResultsWidgetPreviewComponent,
     SearchFormWidgetPreviewComponent,
     HtmlWidgetWidgetEditComponent,
-    HtmlWidgetPreviewComponent
+    HtmlWidgetPreviewComponent,
+    TipsWidgetWidgetEditComponent,
+    TipsWidgetPreviewComponent,
+    FacetsWidgetWidgetEditComponent,
+    FacetsWidgetPreviewComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -81,12 +85,14 @@ import { OneColLayoutComponent } from "./components/layouts/one-col/one-col-layo
     ViewModeSwitcherComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
-    WidgetGroupFiltersGroupEditComponent,
-    WidgetGroupFiltersGroupOptionEditComponent,
     SearchResultsWidgetPreviewComponent,
     SearchFormWidgetPreviewComponent,
     HtmlWidgetWidgetEditComponent,
-    HtmlWidgetPreviewComponent
+    HtmlWidgetPreviewComponent,
+    TipsWidgetWidgetEditComponent,
+    TipsWidgetPreviewComponent,
+    FacetsWidgetWidgetEditComponent,
+    FacetsWidgetPreviewComponent
   ]
 })
 

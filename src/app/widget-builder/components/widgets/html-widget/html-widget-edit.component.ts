@@ -44,7 +44,14 @@ export class HtmlWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
     _.set(this.settings, 'content', _.get(values, 'content', {}));
 
     // Trigger widgetpage save
-    this.widgetBuilderService.saveWigetPage(this.widget.id);
+    this.widgetBuilderService.saveWidgetPage(this.widget.id);
+  }
+
+  /**
+   * @inheritDoc
+   */
+  protected handleWidgetNameChanged(name: string) {
+    this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
 
 }
