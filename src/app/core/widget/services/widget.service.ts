@@ -30,7 +30,6 @@ export class WidgetService {
    * @return {Promise<T>}
    */
   public saveWidgetPage(widgetPage: WidgetPage, widgetId?: string) : Observable<WidgetSaveResponse> {
-
     let requestOptions = new RequestOptions();
     requestOptions.params = new URLSearchParams();
     if (widgetId) {

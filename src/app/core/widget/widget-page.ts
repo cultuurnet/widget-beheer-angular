@@ -1,9 +1,25 @@
 import { Layout } from "../layout/layout";
 import { Widget } from "./widget";
 
+/**
+ * Represents a widget page
+ * containing rows with regions and widgets.
+ */
 export class WidgetPage {
+
+  /**
+   * The widget page id
+   */
   id: string;
+
+  /**
+   * The widget page title
+   */
   title: string;
+
+  /**
+   * The widget page rows
+   */
   rows: Array<Layout> = [];
 
   /**

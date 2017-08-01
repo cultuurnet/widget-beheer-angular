@@ -21,7 +21,7 @@ import { TwoColSidebarRightLayoutComponent } from "./widget-builder/components/l
 import { ThreeColDoubleSidebarLayout } from "./core/layout/layouts/3col-double-sidebar/3col-double-sidebar.layout";
 import { ThreeColDoubleSidebarLayoutComponent } from "./widget-builder/components/layouts/3col-double-sidebar/3col-double-sidebar-layout.component";
 import { PageTemplateRegistry } from "./core/template/services/page-template-registry.service";
-import { MyTemplate } from "./core/template/page-templates/my-template";
+import { EmptyPageTemplate } from "./core/template/page-templates/empty-page-template";
 import { HtmlWidget } from "./core/widget/widgets/html-widget/html-widget.widget";
 import { HtmlWidgetWidgetEditComponent } from "./widget-builder/components/widgets/html-widget/html-widget-edit.component";
 import { OneCollLayout } from "./core/layout/layouts/one-col/one-col.layout";
@@ -30,6 +30,12 @@ import { TipsWidget } from "./core/widget/widgets/tips-widget/tips-widget.widget
 import { TipsWidgetWidgetEditComponent } from "./widget-builder/components/widgets/tips-widget/tips-widget-edit.component";
 import { FacetsWidget } from "./core/widget/widgets/facets-widget/facets-widget.widget";
 import { FacetsWidgetWidgetEditComponent } from "./widget-builder/components/widgets/facets-widget/facets-widget-edit.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { PageNotFoundComponent } from "./not-found.component";
+import { PagesModule } from "./pages/pages.module";
+import { AgendaPageTemplate } from "./core/template/page-templates/agenda-page-template";
+import { TipsPageTemplate } from "./core/template/page-templates/tips-page-template";
+import { UitPasPageTemplate } from "./core/template/page-templates/uitpas-page-template";
 
 /**
  * AoT requires an exported function for factories
@@ -40,10 +46,10 @@ export function HttpLoaderFactory(http: Http) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent
   ],
   imports: [
-    BrowserModule,
     FormsModule,
     HttpModule,
     TranslateModule.forRoot({
@@ -55,6 +61,9 @@ export function HttpLoaderFactory(http: Http) {
     }),
     CoreModule,
     WidgetBuilderModule,
+    PagesModule,
+    BrowserModule,
+    AppRoutingModule,
     NgbModule.forRoot()
   ],
   bootstrap: [AppComponent],
@@ -83,7 +92,10 @@ export class AppModule {
     layoutTypeRegistry.register('one-col', 'Full width', OneCollLayout, OneColLayoutComponent);
 
     // Register page templates
-    pageTemplateRegistry.register('my-template', new MyTemplate());
+    pageTemplateRegistry.register('empty', new EmptyPageTemplate());
+    pageTemplateRegistry.register('agenda', new AgendaPageTemplate());
+    pageTemplateRegistry.register('tips', new TipsPageTemplate());
+    pageTemplateRegistry.register('uitpas', new UitPasPageTemplate());
 
     // Invoke the afterInit method
     this.afterInit();

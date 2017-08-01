@@ -20,7 +20,7 @@ export class WidgetPageFactory {
   create(jsonObject: any) {
     let widgetPage = new WidgetPage();
 
-    if (jsonObject.rows) {
+    if (jsonObject.hasOwnProperty('rows')) {
       for (let row of jsonObject.rows) {
         widgetPage.addRow(this.layoutFactory.create(row));
       }
