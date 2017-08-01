@@ -29,6 +29,8 @@ import { CKEditorModule } from "ng2-ckeditor";
 import { HtmlWidgetPreviewComponent } from "./components/widgets/html-widget/html-widget-preview.component";
 import { HtmlWidgetWidgetEditComponent } from "./components/widgets/html-widget/html-widget-edit.component";
 import { OneColLayoutComponent } from "./components/layouts/one-col/one-col-layout.component";
+import { SafeHTMLPipe } from "../core/safe-html.pipe";
+import { CoreModule } from "../core/core.module";
 
 @NgModule({
   declarations: [
@@ -54,12 +56,13 @@ import { OneColLayoutComponent } from "./components/layouts/one-col/one-col-layo
     SearchResultsWidgetPreviewComponent,
     SearchFormWidgetPreviewComponent,
     HtmlWidgetWidgetEditComponent,
-    HtmlWidgetPreviewComponent
+    HtmlWidgetPreviewComponent,
   ],
   exports: [
     WidgetBuilderComponent
   ],
   imports: [
+    CoreModule,
     CommonModule,
     FormsModule,
     DragulaModule,

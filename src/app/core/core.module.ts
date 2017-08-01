@@ -11,6 +11,7 @@ import { Http, RequestOptions } from "@angular/http";
 import { PageTemplateRegistry } from "./template/services/page-template-registry.service";
 import { WidgetService } from "./widget/services/widget.service";
 import { ApiRequestOptions } from "./api-request-options";
+import { SafeHTMLPipe } from "./safe-html.pipe";
 
 @NgModule({
   providers: [
@@ -20,7 +21,7 @@ import { ApiRequestOptions } from "./api-request-options";
     WidgetPageFactory,
     WidgetService,
     WidgetTypeRegistry,
-    { provide: RequestOptions, useClass: ApiRequestOptions }
+    { provide: RequestOptions, useClass: ApiRequestOptions },
   ],
   imports: [
     TranslateModule.forRoot({
@@ -33,10 +34,12 @@ import { ApiRequestOptions } from "./api-request-options";
     NgbModalModule
   ],
   exports: [
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    SafeHTMLPipe
   ],
   declarations: [
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    SafeHTMLPipe
   ],
   entryComponents: [
     ConfirmationModalComponent
