@@ -32,6 +32,7 @@ import { TipsWidgetPreviewComponent } from "./components/widgets/tips-widget/tip
 import { FacetsWidgetWidgetEditComponent } from "./components/widgets/facets-widget/facets-widget-edit.component";
 import { FacetsWidgetPreviewComponent } from "./components/widgets/facets-widget/facets-widget-preview.component";
 import { WidgetBuilderRoutingModule } from "./widget-builder-routing.module";
+import { AddPageComponent } from "./components/add-page/add-page.component";
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { WidgetBuilderRoutingModule } from "./widget-builder-routing.module";
     TipsWidgetWidgetEditComponent,
     TipsWidgetPreviewComponent,
     FacetsWidgetWidgetEditComponent,
-    FacetsWidgetPreviewComponent
+    FacetsWidgetPreviewComponent,
+    AddPageComponent
   ],
   exports: [
     WidgetBuilderComponent

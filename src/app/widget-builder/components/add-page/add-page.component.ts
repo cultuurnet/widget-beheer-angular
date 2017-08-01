@@ -4,6 +4,7 @@ import { PageTemplate } from "../../../core/template/pageTemplate";
 import { WidgetPageFactory } from "../../../core/widget/factories/widget-page.factory";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
+import { WidgetService } from "../../../core/widget/services/widget.service";
 
 /**
  * Component used for adding a new widget page to a project.
@@ -33,10 +34,11 @@ export class AddPageComponent implements OnInit, OnDestroy {
    * AddPageComponent constructor.
    * @param pageTemplateRegistry
    * @param widgetPageFactory
+   * @param widgetService
    * @param route
    * @param router
    */
-  constructor(private pageTemplateRegistry: PageTemplateRegistry, private widgetPageFactory: WidgetPageFactory, private route: ActivatedRoute, private router: Router) {
+  constructor(private pageTemplateRegistry: PageTemplateRegistry, private widgetPageFactory: WidgetPageFactory, private widgetService: WidgetService, private route: ActivatedRoute, private router: Router) {
   }
 
   /**
@@ -70,14 +72,21 @@ export class AddPageComponent implements OnInit, OnDestroy {
    * @param pageTemplate
    */
   public addPage(pageTemplate: PageTemplate) {
+    // Merge the project id on the template configuration
+    let config = pageTemplate.configuration;
+    config['projectId'] = this.projectId;
+
     // Create a widget page from the template, ensuring it contains the required defaults, id's,...
-    let widgetPage = this.widgetPageFactory.create(pageTemplate.configuration);
+    let widgetPage = this.widgetPageFactory.create(config);
 
-    // @todo: Trigger the widgetpage create call
-    let widgetPageId = '3c6ae3ef-cc96-4e15-880b-a4a5b5289fef';
+    // Save the newly created widget page
+    this.widgetService.saveWidgetPage(widgetPage).subscribe(widgetSaveResponse => {
+      // Redirect to the widget builder
+      this.router.navigate(['/project', this.projectId, 'page', widgetSaveResponse.widgetPage.id, 'edit']);
+    });
 
-    // Redirect to the widget builder
-    this.router.navigate(['/project', this.projectId, 'page', widgetPageId, 'edit']);
+    // @todo: Remove when save call works
+    this.router.navigate(['/project', this.projectId, 'page', 'a33b0a36-54a5-4f6d-a5f1-266ae7121ac7', 'edit']);
   }
 
 }

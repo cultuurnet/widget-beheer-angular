@@ -18,12 +18,6 @@ export class WidgetTypeRegistry {
   public widgetTypes: any = {};
 
   /**
-   * WidgetTypeRegistry constructor
-   */
-  constructor(private widgetService: WidgetService) {
-  }
-
-  /**
    * Register a new widget type.
    * @param id
    * @param label
@@ -37,21 +31,6 @@ export class WidgetTypeRegistry {
       editComponent: editComponent,
       defaultSettings: {}
     };
-  }
-
-  /**
-   * Load the widget default settings onto the registered widgets
-   */
-  public loadWidgetDefaultSettings() {
-    this.widgetService.getWidgetDefaultSettings().subscribe(
-        defaultSettings => {
-          for (let widgetType in defaultSettings) {
-            if (defaultSettings.hasOwnProperty(widgetType) &&  this.widgetTypes.hasOwnProperty(widgetType)) {
-              this.widgetTypes[widgetType].defaultSettings = defaultSettings[widgetType];
-            }
-          }
-      },
-    );
   }
 
   /**

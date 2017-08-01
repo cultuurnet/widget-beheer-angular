@@ -9,6 +9,9 @@ import * as autoScroll from 'dom-autoscroller';
 import { WidgetPage } from "../core/widget/widget-page";
 import { WidgetPageFactory } from "../core/widget/factories/widget-page.factory";
 import { Config } from "../config";
+import { Subscription } from "rxjs";
+import { ActivatedRoute, ParamMap } from "@angular/router";
+import { WidgetService } from "../core/widget/services/widget.service";
 
 /**
  * The widget builder component is used for editing a widget page.
@@ -57,7 +60,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   /**
    * Subscription to the widget selected observable
    */
-  private widgetSelectedSubscription;
+  private widgetSelectedSubscription: Subscription;
 
   /**
    * WidgetBuilder constructor.
@@ -65,30 +68,37 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    * @param _componentFactoryResolver
    * @param widgetTypeRegistry
    * @param widgetBuilderService
+   * @param widgetService
    * @param widgetPageFactory
+   * @param route
    */
   constructor(
     private dragulaService: DragulaService,
     private _componentFactoryResolver: ComponentFactoryResolver,
     private widgetTypeRegistry: WidgetTypeRegistry,
     private widgetBuilderService: WidgetBuilderService,
-    private widgetPageFactory: WidgetPageFactory
+    private widgetService: WidgetService,
+    private widgetPageFactory: WidgetPageFactory,
+    private route: ActivatedRoute
   ) {
     this.widgetSelectedSubscription = widgetBuilderService.widgetSelected$.subscribe(widget => {
       this.editWidget(widget);
     });
-
-    // @todo: Get the widget page from silex and have the service pass it through the widgetPageFactory
-    this.editingPage = this.widgetPageFactory.create(Config.EXAMPLE_PAGE);
-
-    // Set the current page on the widget builder service
-    this.widgetBuilderService.widgetPage = this.editingPage;
   }
 
   /**
    * @inheritDoc
    */
   ngOnInit() {
+    this.route.paramMap
+      .switchMap((params: ParamMap) => this.widgetService.getWidgetPage(params.get('project_id'), params.get('page_id')))
+      .subscribe((widgetPage: WidgetPage) => {
+        this.editingPage = widgetPage;
+
+        // Set the current page on the widget builder service
+        this.widgetBuilderService.widgetPage = this.editingPage;
+      });
+
     // Set the dragula options
     this.dragulaService.setOptions('widget-container', {
       moves: function (el, container, handle) {

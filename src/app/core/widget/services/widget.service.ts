@@ -5,6 +5,8 @@ import { Http, RequestOptions, URLSearchParams } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import { environment } from "../../../../environments/environment";
 import { WidgetSaveResponse } from "../widget-save-response";
+import { WidgetPageFactory } from "../factories/widget-page.factory";
+import { Config } from "../../../config";
 
 /**
  * Temporary service that mimics calls that should go to Silex
@@ -16,7 +18,12 @@ export class WidgetService {
     renderedWidgets: {}
   };
 
-  constructor (private http: Http) {
+  /**
+   * WidgetService constructor.
+   * @param http
+   * @param widgetPageFactory
+   */
+  constructor (private http: Http, private widgetPageFactory: WidgetPageFactory) {
   }
 
   /**
@@ -38,6 +45,17 @@ export class WidgetService {
 
     return this.http.put(environment.apiUrl + 'test', widgetPage, requestOptions)
         .map(res => res.json());
+  }
+
+  /**
+   * Get a widgetpage
+   * @param projectId
+   * @param pageId
+   */
+  public getWidgetPage(projectId: string, pageId: string) {
+    return new Promise((resolve) => {
+      resolve(this.widgetPageFactory.create(Config.EXAMPLE_PAGE));
+    });
   }
 
   /**

@@ -11,11 +11,6 @@ export class EmptyPageTemplate implements PageTemplate {
   public label: string = 'Leeg';
 
   /**
-   * The template title
-   */
-  public title: string = 'Mijn pagina';
-
-  /**
    * The template description
    */
   public description: string = 'Je begint met een lege lay-out en bouwt zo alles op je eigen maat.';
@@ -24,6 +19,7 @@ export class EmptyPageTemplate implements PageTemplate {
    * The template configuration
    */
   public configuration = {
+    'title': 'Mijn pagina',
     'rows': [
     ],
     'styling': {}

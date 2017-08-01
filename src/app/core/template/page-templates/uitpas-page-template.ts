@@ -11,11 +11,6 @@ export class UitPasPageTemplate implements PageTemplate {
   public label: string = 'UiTPAS';
 
   /**
-   * The template title
-   */
-  public title: string = 'Mijn UiTPASpagina';
-
-  /**
    * The template description
    */
   public description: string = 'Je kalender is geconfigureerd voor UiTPAS-evenementen en -voordelen.';
@@ -24,6 +19,7 @@ export class UitPasPageTemplate implements PageTemplate {
    * The template configuration
    */
   public configuration = {
+    'title': 'Mijn UiTPASpagina',
     'rows': [
       {
         'type': 'one-col',

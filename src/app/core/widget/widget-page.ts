@@ -13,6 +13,11 @@ export class WidgetPage {
   id: string;
 
   /**
+   * The project id
+   */
+  projectId: string;
+
+  /**
    * The widget page title
    */
   title: string;
@@ -21,6 +26,18 @@ export class WidgetPage {
    * The widget page rows
    */
   rows: Array<Layout> = [];
+
+  /**
+   * WidgetPage constructor.
+   * @param values
+   */
+  constructor(values: any = {}) {
+    for (let key in values) {
+      if (values.hasOwnProperty(key)) {
+        this[key] = values[key];
+      }
+    }
+  }
 
   /**
    * Add a row to the widget page.

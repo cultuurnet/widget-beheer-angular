@@ -11,11 +11,6 @@ export class AgendaPageTemplate implements PageTemplate {
   public label: string = 'Agenda';
 
   /**
-   * The template title
-   */
-  public title: string = 'Mijn kalenderpagina';
-
-  /**
    * The template description
    */
   public description: string = 'Je start met een eenvoudige kalender met een zoekbox, zoekresultaten en verfijningen.';
@@ -24,6 +19,7 @@ export class AgendaPageTemplate implements PageTemplate {
    * The template configuration
    */
   public configuration = {
+    'title': 'Mijn kalenderpagina',
     'rows': [
       {
         'type': 'one-col',

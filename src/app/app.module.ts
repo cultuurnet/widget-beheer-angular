@@ -32,10 +32,10 @@ import { FacetsWidget } from "./core/widget/widgets/facets-widget/facets-widget.
 import { FacetsWidgetWidgetEditComponent } from "./widget-builder/components/widgets/facets-widget/facets-widget-edit.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { PageNotFoundComponent } from "./not-found.component";
-import { PagesModule } from "./pages/pages.module";
 import { AgendaPageTemplate } from "./core/template/page-templates/agenda-page-template";
 import { TipsPageTemplate } from "./core/template/page-templates/tips-page-template";
 import { UitPasPageTemplate } from "./core/template/page-templates/uitpas-page-template";
+import { WidgetService } from "./core/widget/services/widget.service";
 
 /**
  * AoT requires an exported function for factories
@@ -61,7 +61,6 @@ export function HttpLoaderFactory(http: Http) {
     }),
     CoreModule,
     WidgetBuilderModule,
-    PagesModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule.forRoot()
@@ -74,10 +73,11 @@ export class AppModule {
   /**
    * AppModule constructor.
    * @param widgetTypeRegistry
+   * @param widgetService
    * @param layoutTypeRegistry
    * @param pageTemplateRegistry
    */
-  constructor(private widgetTypeRegistry: WidgetTypeRegistry, private layoutTypeRegistry: LayoutTypeRegistry, private pageTemplateRegistry: PageTemplateRegistry) {
+  constructor(private widgetTypeRegistry: WidgetTypeRegistry, private widgetService: WidgetService, private layoutTypeRegistry: LayoutTypeRegistry, private pageTemplateRegistry: PageTemplateRegistry) {
     // Register widget types
     widgetTypeRegistry.register('search-form', 'Search form', SearchFormWidget, SearchFormWidgetEditComponent);
     widgetTypeRegistry.register('search-results', 'Search results', SearchResultsWidget, SearchResultsWidgetEditComponent);
@@ -105,7 +105,23 @@ export class AppModule {
    * Tasks to be run after the app has initialized
    */
   private afterInit() {
-    this.widgetTypeRegistry.loadWidgetDefaultSettings();
+    this.loadWidgetDefaultSettings();
+  }
+
+  /**
+   * Load the widget default settings onto the registered widgets
+   * @Todo: Move this to when the router is loading the component
+   */
+  private loadWidgetDefaultSettings() {
+    this.widgetService.getWidgetDefaultSettings().subscribe(
+      defaultSettings => {
+        for (let widgetType in defaultSettings) {
+          if (defaultSettings.hasOwnProperty(widgetType) &&  this.widgetTypeRegistry.widgetTypes.hasOwnProperty(widgetType)) {
+            this.widgetTypeRegistry.widgetTypes[widgetType].defaultSettings = defaultSettings[widgetType];
+          }
+        }
+      },
+    );
   }
 
 }

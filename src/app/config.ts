@@ -1,6 +1,7 @@
 export class Config {
   public static EXAMPLE_PAGE = {
     'id': '1',
+    'projectId': 'd1ae67d3-60a3-8f74-d64f-9c97c3afe6b6',
     'title': 'Page title',
     'uid': 'uid uitid user',
     'rows': [
