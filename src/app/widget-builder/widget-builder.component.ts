@@ -78,7 +78,6 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     private widgetTypeRegistry: WidgetTypeRegistry,
     private widgetBuilderService: WidgetBuilderService,
     private widgetService: WidgetService,
-    private widgetPageFactory: WidgetPageFactory,
     private route: ActivatedRoute
   ) {
     this.widgetSelectedSubscription = widgetBuilderService.widgetSelected$.subscribe(widget => {

@@ -9,8 +9,9 @@ import { ConfirmationModalComponent } from "./modal/components/confirmation-moda
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { HttpLoaderFactory } from "../app.module";
 import { PageTemplateRegistry } from "./template/services/page-template-registry.service";
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from "@angular/common/http";
 import { BrowserModule } from "@angular/platform-browser";
+import { ApiRequestInterceptor } from "./api-request-interceptor";
 
 @NgModule({
   providers: [
@@ -18,8 +19,13 @@ import { BrowserModule } from "@angular/platform-browser";
     LayoutTypeRegistry,
     PageTemplateRegistry,
     WidgetPageFactory,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiRequestInterceptor,
+      multi: true,
+    },
     WidgetService,
-    WidgetTypeRegistry
+    WidgetTypeRegistry,
   ],
   imports: [
     BrowserModule,
