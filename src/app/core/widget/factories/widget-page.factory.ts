@@ -20,7 +20,7 @@ export class WidgetPageFactory {
    */
   create(jsonObject: any) {
     let widgetPage = new WidgetPage({
-      projectId: _.get(jsonObject, 'projectId', ''),
+      project_id: _.get(jsonObject, 'project_id', ''),
       title:  _.get(jsonObject, 'title', ''),
     });
 

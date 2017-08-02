@@ -79,7 +79,7 @@ export class AddPageComponent implements OnInit, OnDestroy {
   public addPage(pageTemplate: PageTemplate) {
     // Merge the project id on the template configuration
     let config = pageTemplate.configuration;
-    config['projectId'] = this.projectId;
+    config['project_id'] = this.projectId;
 
     // Create a widget page from the template, ensuring it contains the required defaults, id's,...
     let widgetPage = this.widgetPageFactory.create(config);
@@ -89,9 +89,6 @@ export class AddPageComponent implements OnInit, OnDestroy {
       // Redirect to the widget builder
       this.router.navigate(['/project', this.projectId, 'page', widgetSaveResponse.widgetPage.id, 'edit']);
     });
-
-    // @todo: Remove when save call works
-    this.router.navigate(['/project', this.projectId, 'page', 'a33b0a36-54a5-4f6d-a5f1-266ae7121ac7', 'edit']);
   }
 
 }

@@ -4,9 +4,11 @@ import * as _ from "lodash";
 import { environment } from "../../../../environments/environment";
 import { WidgetSaveResponse } from "../widget-save-response";
 import { WidgetPageFactory } from "../factories/widget-page.factory";
-import { Config } from "../../../config";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import { StaticCache } from "../../static-cache";
 
 /**
  * Temporary service that mimics calls that should go to Silex
@@ -14,16 +16,13 @@ import { Observable } from "rxjs";
 @Injectable()
 export class WidgetService {
 
-  private cache: any = {
-    renderedWidgets: {}
-  };
-
   /**
    * WidgetService constructor.
    * @param http
    * @param widgetPageFactory
+   * @param cache
    */
-  constructor (private http: HttpClient, private widgetPageFactory: WidgetPageFactory) {
+  constructor (private http: HttpClient, private widgetPageFactory: WidgetPageFactory, private cache: StaticCache) {
   }
 
   /**
@@ -45,17 +44,29 @@ export class WidgetService {
       requestOptions.params.set('render', widgetId);
     }
 
-    return this.http.put(environment.apiUrl + 'test', widgetPage, requestOptions);
+    return this.http.put(environment.apiUrl + 'test', widgetPage, requestOptions).do<WidgetSaveResponse>(widgetSaveReponse => {
+      // Cache the response
+      this.cache.put('widgetPage', [widgetSaveReponse.widgetPage.id], this.widgetPageFactory.create(widgetSaveReponse.widgetPage))
+    });
   }
 
   /**
    * Get a widgetpage
-   * @param projectId
    * @param pageId
+   * @return {Observable<WidgetPage>}
    */
-  public getWidgetPage(projectId: string, pageId: string) {
-    return new Promise((resolve) => {
-      resolve(this.widgetPageFactory.create(Config.EXAMPLE_PAGE));
+  public getWidgetPage(pageId: string) {
+    const widgetPage = this.cache.get('widgetPage', [pageId], false);
+
+    if (widgetPage) {
+      console.log('fetch from cache');
+      return Observable.of(widgetPage);
+    }
+
+    return this.http.get(environment.apiUrl + 'test')
+      .map(widgetPage => this.widgetPageFactory.create(widgetPage))
+      .do(widgetPage => {
+      this.cache.put('widgetPage', [pageId], widgetPage);
     });
   }
 
@@ -69,7 +80,7 @@ export class WidgetService {
   public renderWidget(widgetPageId: string, widgetId: string, reset: boolean = false) {
     // @todo Implement the render request
     let _self = this;
-    let renderedWidget = _.get(this.cache.renderedWidgets, [widgetPageId, widgetId], false);
+    const renderedWidget = this.cache.get('renderedWidgets', [widgetPageId, widgetId], false);
 
     // Cache hit and no reset
     if (renderedWidget && !reset) {
@@ -80,7 +91,7 @@ export class WidgetService {
     return new Promise((resolve, reject) => {
       setTimeout(function() {
         let response = _self.fakeRenderResponse(widgetId);
-        _.set(_self.cache.renderedWidgets, [widgetPageId, widgetId], response);
+        _self.cache.put('renderedWidgets', [widgetPageId, widgetId], response);
 
         resolve({content: response});
       }, _.random(1000, 3000));

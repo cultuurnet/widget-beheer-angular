@@ -63,6 +63,11 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   private widgetSelectedSubscription: Subscription;
 
   /**
+   * The dragula container name
+   */
+  private dragulaContainer = 'widget-container';
+
+  /**
    * WidgetBuilder constructor.
    * @param dragulaService
    * @param _componentFactoryResolver
@@ -90,7 +95,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this.route.paramMap
-      .switchMap((params: ParamMap) => this.widgetService.getWidgetPage(params.get('project_id'), params.get('page_id')))
+      .switchMap((params: ParamMap) => this.widgetService.getWidgetPage(params.get('page_id')))
       .subscribe((widgetPage: WidgetPage) => {
         this.editingPage = widgetPage;
 
@@ -99,15 +104,16 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
       });
 
     // Set the dragula options
-    this.dragulaService.setOptions('widget-container', {
+    this.dragulaService.setOptions(this.dragulaContainer, {
       moves: function (el, container, handle) {
         return handle.classList.contains('drag');
       }
     });
 
     // Get a reference to the widget-container drake
-    let drake = this.dragulaService.find('widget-container');
+    let drake = this.dragulaService.find(this.dragulaContainer);
 
+    // Keep a reference to the dom-autoscroller
     this.scroll = autoScroll(document.querySelector('#widget-builder-preview'), {
       margin: 30,
       maxSpeed: 25,
@@ -125,6 +131,9 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
     this.widgetSelectedSubscription.unsubscribe();
+
+    // Destroy the dragula container
+    this.dragulaService.destroy(this.dragulaContainer);
   }
 
   /**

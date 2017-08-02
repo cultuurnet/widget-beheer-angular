@@ -12,6 +12,7 @@ import { PageTemplateRegistry } from "./template/services/page-template-registry
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from "@angular/common/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { ApiRequestInterceptor } from "./api-request-interceptor";
+import { StaticCache } from "./static-cache";
 
 @NgModule({
   providers: [
@@ -19,6 +20,7 @@ import { ApiRequestInterceptor } from "./api-request-interceptor";
     LayoutTypeRegistry,
     PageTemplateRegistry,
     WidgetPageFactory,
+    StaticCache,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiRequestInterceptor,

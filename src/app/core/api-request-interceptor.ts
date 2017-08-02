@@ -1,15 +1,28 @@
 import {Injectable} from '@angular/core';
 import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
 import { Observable } from "rxjs";
+import * as URI from "urijs";
+import { environment } from "../../environments/environment";
 
 /**
  * Intercepts every request and injects common headers.
  */
 @Injectable()
 export class ApiRequestInterceptor implements HttpInterceptor {
+
+  /**
+   * @inheritDoc
+   */
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // @todo: Only act on API requests
-    let credReq = req.clone({withCredentials: true});
-    return next.handle(credReq);
+    const requestURI = URI(req.url);
+
+    // Only act on widget API requests
+    if (requestURI.host() === environment.apiUrl) {
+      const credReq = req.clone({withCredentials: true});
+      return next.handle(credReq);
+    }
+
+    return next.handle(req);
   }
+
 }

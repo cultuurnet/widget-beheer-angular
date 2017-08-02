@@ -1,7 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { Widget } from '../widget';
 import { AbstractWidgetEditComponent } from "../components/abstract-widget-edit-component";
-import { WidgetService } from "./widget.service";
 import * as deepmerge from 'deepmerge';
 import * as _ from "lodash";
 

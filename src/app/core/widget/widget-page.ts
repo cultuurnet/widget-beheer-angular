@@ -15,7 +15,7 @@ export class WidgetPage {
   /**
    * The project id
    */
-  projectId: string;
+  project_id: string;
 
   /**
    * The widget page title

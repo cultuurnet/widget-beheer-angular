@@ -96,7 +96,6 @@ export class WidgetBuilderService {
     }
 
     this.debounceWidgetPageSave(widgetId).then(response => {
-      console.log(response);
       // Update the widget preview with the new render response
       if (widgetId) {
         _self.widgetPreview.next({
