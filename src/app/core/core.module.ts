@@ -8,9 +8,9 @@ import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationModalComponent } from "./modal/components/confirmation-modal.component";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { HttpLoaderFactory } from "../app.module";
-import { Http, RequestOptions } from "@angular/http";
 import { PageTemplateRegistry } from "./template/services/page-template-registry.service";
-import { ApiRequestOptions } from "./api-request-options";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { BrowserModule } from "@angular/platform-browser";
 
 @NgModule({
   providers: [
@@ -19,15 +19,16 @@ import { ApiRequestOptions } from "./api-request-options";
     PageTemplateRegistry,
     WidgetPageFactory,
     WidgetService,
-    WidgetTypeRegistry,
-    { provide: RequestOptions, useClass: ApiRequestOptions }
+    WidgetTypeRegistry
   ],
   imports: [
+    BrowserModule,
+    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [Http]
+        deps: [HttpClient]
       }
     }),
     NgbModalModule

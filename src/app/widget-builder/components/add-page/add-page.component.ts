@@ -38,8 +38,13 @@ export class AddPageComponent implements OnInit, OnDestroy {
    * @param route
    * @param router
    */
-  constructor(private pageTemplateRegistry: PageTemplateRegistry, private widgetPageFactory: WidgetPageFactory, private widgetService: WidgetService, private route: ActivatedRoute, private router: Router) {
-  }
+  constructor (
+    private pageTemplateRegistry: PageTemplateRegistry,
+    private widgetPageFactory: WidgetPageFactory,
+    private widgetService: WidgetService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   /**
    * @inheritDoc

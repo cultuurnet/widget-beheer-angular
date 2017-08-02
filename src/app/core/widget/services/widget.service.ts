@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { WidgetPage } from "../widget-page";
 import * as _ from "lodash";
-import { Http, RequestOptions, URLSearchParams } from "@angular/http";
-import { Observable } from "rxjs/Observable";
 import { environment } from "../../../../environments/environment";
 import { WidgetSaveResponse } from "../widget-save-response";
 import { WidgetPageFactory } from "../factories/widget-page.factory";
 import { Config } from "../../../config";
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 /**
  * Temporary service that mimics calls that should go to Silex
@@ -23,7 +23,7 @@ export class WidgetService {
    * @param http
    * @param widgetPageFactory
    */
-  constructor (private http: Http, private widgetPageFactory: WidgetPageFactory) {
+  constructor (private http: HttpClient, private widgetPageFactory: WidgetPageFactory) {
   }
 
   /**
@@ -34,17 +34,18 @@ export class WidgetService {
    *
    * @param widgetPage
    * @param widgetId
-   * @return {Promise<T>}
+   * @return {Observable<WidgetSaveResponse>}
    */
   public saveWidgetPage(widgetPage: WidgetPage, widgetId?: string) : Observable<WidgetSaveResponse> {
-    let requestOptions = new RequestOptions();
-    requestOptions.params = new URLSearchParams();
+    let requestOptions = {
+      params: new HttpParams()
+    };
+
     if (widgetId) {
       requestOptions.params.set('render', widgetId);
     }
 
-    return this.http.put(environment.apiUrl + 'test', widgetPage, requestOptions)
-        .map(res => res.json());
+    return this.http.put(environment.apiUrl + 'test', widgetPage, requestOptions);
   }
 
   /**
@@ -116,9 +117,9 @@ export class WidgetService {
 
   /**
    * Get the default settings for the given widget types.
+   * @return {Observable<Object>}
    */
   public getWidgetDefaultSettings(): Observable<Object> {
-    return this.http.get(environment.apiUrl + 'widget-types')
-        .map(res => res.json());
+    return this.http.get(environment.apiUrl + 'widget-types');
   }
 }

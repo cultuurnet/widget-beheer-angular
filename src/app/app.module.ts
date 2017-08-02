@@ -1,7 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { Http, HttpModule } from "@angular/http";
 import { AppComponent } from "./app.component";
 import { WidgetBuilderModule } from "./widget-builder/widget-builder.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -36,11 +35,12 @@ import { AgendaPageTemplate } from "./core/template/page-templates/agenda-page-t
 import { TipsPageTemplate } from "./core/template/page-templates/tips-page-template";
 import { UitPasPageTemplate } from "./core/template/page-templates/uitpas-page-template";
 import { WidgetService } from "./core/widget/services/widget.service";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 /**
  * AoT requires an exported function for factories
  */
-export function HttpLoaderFactory(http: Http) {
+export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
@@ -50,18 +50,18 @@ export function HttpLoaderFactory(http: Http) {
     PageNotFoundComponent
   ],
   imports: [
+    BrowserModule,
+    HttpClientModule,
     FormsModule,
-    HttpModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [Http]
+        deps: [HttpClient]
       }
     }),
     CoreModule,
     WidgetBuilderModule,
-    BrowserModule,
     AppRoutingModule,
     NgbModule.forRoot()
   ],
