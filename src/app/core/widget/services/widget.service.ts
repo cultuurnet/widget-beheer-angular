@@ -17,6 +17,12 @@ import { StaticCache } from "../../static-cache";
 export class WidgetService {
 
   /**
+   * The widget API path
+   * @type {string}
+   */
+  private widgetApiPath: string = 'widget/api/';
+
+  /**
    * WidgetService constructor.
    * @param http
    * @param widgetPageFactory
@@ -44,7 +50,7 @@ export class WidgetService {
       requestOptions.params.set('render', widgetId);
     }
 
-    return this.http.put(environment.apiUrl + 'test', widgetPage, requestOptions).do<WidgetSaveResponse>(widgetSaveReponse => {
+    return this.http.put(environment.apiUrl + this.widgetApiPath + 'test', widgetPage, requestOptions).do<WidgetSaveResponse>(widgetSaveReponse => {
       // Cache the response
       this.cache.put('widgetPage', [widgetSaveReponse.widgetPage.id], this.widgetPageFactory.create(widgetSaveReponse.widgetPage))
     });
@@ -62,7 +68,7 @@ export class WidgetService {
       return Observable.of(widgetPage);
     }
 
-    return this.http.get(environment.apiUrl + 'test')
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'test')
       .map(widgetPage => this.widgetPageFactory.create(widgetPage))
       .do(widgetPage => {
         // Cache the response
@@ -131,6 +137,6 @@ export class WidgetService {
    * @return {Observable<Object>}
    */
   public getWidgetDefaultSettings(): Observable<Object> {
-    return this.http.get(environment.apiUrl + 'widget-types');
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'widget-types');
   }
 }

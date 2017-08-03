@@ -2,11 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PageTemplateRegistry } from "../../../core/template/services/page-template-registry.service";
 import { PageTemplate } from "../../../core/template/pageTemplate";
 import { WidgetPageFactory } from "../../../core/widget/factories/widget-page.factory";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { WidgetService } from "../../../core/widget/services/widget.service";
 import { TemplatePreviewModalComponent } from "./preview/template-preview-modal.component";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ProjectService } from "../../../core/project/services/project.service";
 
 /**
  * Component used for adding a new widget page to a project.
@@ -54,6 +55,11 @@ export class AddPageComponent implements OnInit, OnDestroy {
    * @inheritDoc
    */
   ngOnInit(): void {
+    this.route.data
+      .subscribe((data: { project: any }) => {
+        this.projectId = this.route.snapshot.params['project_id'];
+      });
+
     const keys = Object.keys(this.pageTemplateRegistry.pageTemplates);
     for (const key of keys) {
       this.pageTemplates.push({

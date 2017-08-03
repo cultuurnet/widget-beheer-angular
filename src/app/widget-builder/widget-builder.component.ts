@@ -94,10 +94,9 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    * @inheritDoc
    */
   ngOnInit() {
-    this.route.paramMap
-      .switchMap((params: ParamMap) => this.widgetService.getWidgetPage(params.get('page_id')))
-      .subscribe((widgetPage: WidgetPage) => {
-        this.editingPage = widgetPage;
+    this.route.data
+      .subscribe((data: { project: any, widgetPage: WidgetPage }) => {
+        this.editingPage = data.widgetPage;
 
         // Set the current page on the widget builder service
         this.widgetBuilderService.widgetPage = this.editingPage;

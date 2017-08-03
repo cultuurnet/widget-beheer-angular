@@ -13,6 +13,9 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from "@angular/common
 import { BrowserModule } from "@angular/platform-browser";
 import { ApiRequestInterceptor } from "./api-request-interceptor";
 import { StaticCache } from "./static-cache";
+import { ProjectService } from "./project/services/project.service";
+import { ProjectResolver } from "./route/resolver/project-resolver.service";
+import { WidgetPageResolver } from "./route/resolver/widget-page-resolver.service";
 
 @NgModule({
   providers: [
@@ -27,7 +30,10 @@ import { StaticCache } from "./static-cache";
       multi: true,
     },
     WidgetService,
+    ProjectService,
     WidgetTypeRegistry,
+    ProjectResolver,
+    WidgetPageResolver
   ],
   imports: [
     BrowserModule,

@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://projectaanvraag-api.dev/widget/api/'
+  apiUrl: 'http://projectaanvraag-api.dev/'
 };
