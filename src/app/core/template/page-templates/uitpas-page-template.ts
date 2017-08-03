@@ -16,6 +16,11 @@ export class UitPasPageTemplate implements PageTemplate {
   public description: string = 'Je kalender is geconfigureerd voor UiTPAS-evenementen en -voordelen.';
 
   /**
+   * Preview available
+   */
+  public preview = true;
+
+  /**
    * The template configuration
    */
   public configuration = {

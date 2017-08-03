@@ -5,6 +5,8 @@ import { WidgetPageFactory } from "../../../core/widget/factories/widget-page.fa
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { WidgetService } from "../../../core/widget/services/widget.service";
+import { TemplatePreviewModalComponent } from "./preview/template-preview-modal.component";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 /**
  * Component used for adding a new widget page to a project.
@@ -35,6 +37,7 @@ export class AddPageComponent implements OnInit, OnDestroy {
    * @param pageTemplateRegistry
    * @param widgetPageFactory
    * @param widgetService
+   * @param modalService
    * @param route
    * @param router
    */
@@ -42,6 +45,7 @@ export class AddPageComponent implements OnInit, OnDestroy {
     private pageTemplateRegistry: PageTemplateRegistry,
     private widgetPageFactory: WidgetPageFactory,
     private widgetService: WidgetService,
+    private modalService: NgbModal,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -76,9 +80,9 @@ export class AddPageComponent implements OnInit, OnDestroy {
    * Add a widget page to the current project
    * @param pageTemplate
    */
-  public addPage(pageTemplate: PageTemplate) {
+  public addPage(pageTemplate: any) {
     // Merge the project id on the template configuration
-    let config = pageTemplate.configuration;
+    let config = pageTemplate.template.configuration;
     config['project_id'] = this.projectId;
 
     // Create a widget page from the template, ensuring it contains the required defaults, id's,...
@@ -89,6 +93,24 @@ export class AddPageComponent implements OnInit, OnDestroy {
       // Redirect to the widget builder
       this.router.navigate(['/project', this.projectId, 'page', widgetSaveResponse.widgetPage.id, 'edit']);
     });
+  }
+
+  /**
+   * Show a preview of the selected page template
+   * @param pageTemplate
+   */
+  public preview(pageTemplate: any) {
+    // Show the confirmation modal
+    let modal = this.modalService.open(TemplatePreviewModalComponent, {windowClass: 'modal-fullscreen'});
+    let modalInstance = modal.componentInstance;
+
+    modalInstance.templateId = pageTemplate.id;
+    modalInstance.title = pageTemplate.label;
+
+    modal.result.then(() => {
+      // Add the page
+      this.addPage(pageTemplate);
+    }, () => {});
   }
 
 }

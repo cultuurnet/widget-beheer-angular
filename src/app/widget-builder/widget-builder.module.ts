@@ -33,6 +33,7 @@ import { FacetsWidgetWidgetEditComponent } from "./components/widgets/facets-wid
 import { FacetsWidgetPreviewComponent } from "./components/widgets/facets-widget/facets-widget-preview.component";
 import { WidgetBuilderRoutingModule } from "./widget-builder-routing.module";
 import { AddPageComponent } from "./components/add-page/add-page.component";
+import {TemplatePreviewModalComponent} from "./components/add-page/preview/template-preview-modal.component";
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { AddPageComponent } from "./components/add-page/add-page.component";
     TipsWidgetPreviewComponent,
     FacetsWidgetWidgetEditComponent,
     FacetsWidgetPreviewComponent,
-    AddPageComponent
+    AddPageComponent,
+    TemplatePreviewModalComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -96,7 +98,8 @@ import { AddPageComponent } from "./components/add-page/add-page.component";
     TipsWidgetWidgetEditComponent,
     TipsWidgetPreviewComponent,
     FacetsWidgetWidgetEditComponent,
-    FacetsWidgetPreviewComponent
+    FacetsWidgetPreviewComponent,
+    TemplatePreviewModalComponent
   ]
 })
 

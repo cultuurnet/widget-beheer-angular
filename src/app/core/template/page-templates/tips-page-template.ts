@@ -16,6 +16,11 @@ export class TipsPageTemplate implements PageTemplate {
   public description: string = 'Je plaatst enkele evenementen in de kijker en gidst zo de surfer door de agenda.';
 
   /**
+   * Preview available
+   */
+  public preview = true;
+
+  /**
    * The template configuration
    */
   public configuration = {

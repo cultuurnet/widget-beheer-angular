@@ -16,6 +16,11 @@ export class EmptyPageTemplate implements PageTemplate {
   public description: string = 'Je begint met een lege lay-out en bouwt zo alles op je eigen maat.';
 
   /**
+   * Preview available
+   */
+  public preview = false;
+
+  /**
    * The template configuration
    */
   public configuration = {

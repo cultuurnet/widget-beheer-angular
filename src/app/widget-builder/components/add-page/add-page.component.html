@@ -1,3 +1,8 @@
+<!-- Template preview modal !-->
+<ng-template template-preview>
+  <app-template-preview-modal></app-template-preview-modal>
+</ng-template>
+
 <div class="container-fluid">
   <h1>{{ "ADD_PAGE_TITLE" | translate }}</h1>
   <p>{{ "ADD_PAGE_INTRO" | translate }}</p>
@@ -10,8 +15,8 @@
           <p>{{ pageTemplate.description }}</p>
         </div>
         <div class="card-footer">
-          <button class="btn btn-primary" (click)="addPage(pageTemplate.template)">{{ "ADD_PAGE_SELECT_TEMPLATE_BUTTON" | translate }}</button>
-          <a class="btn btn-link">{{ "ADD_PAGE_PREVIEW_BUTTON" | translate }}</a>
+          <button class="btn btn-primary" (click)="addPage(pageTemplate)">{{ "ADD_PAGE_SELECT_TEMPLATE_BUTTON" | translate }}</button>
+          <button *ngIf="pageTemplate.template.preview" class="btn btn-link" (click)="preview(pageTemplate)">{{ "ADD_PAGE_PREVIEW_BUTTON" | translate }}</button>
         </div>
       </div>
     </div>

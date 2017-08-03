@@ -17,4 +17,10 @@ export interface PageTemplate {
    * Template configuration object
    */
   configuration: object;
+
+  /**
+   * Indicates if this template has a preview available
+   */
+  preview: boolean;
+
 }

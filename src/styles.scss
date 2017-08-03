@@ -710,3 +710,10 @@ app-add-row{
   width: 100%;
   height: 100%;
 }
+
+.modal-fullscreen {
+  .modal-dialog {
+    max-width:1200px;
+  }
+}
+

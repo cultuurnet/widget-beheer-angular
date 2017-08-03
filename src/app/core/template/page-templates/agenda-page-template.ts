@@ -16,6 +16,11 @@ export class AgendaPageTemplate implements PageTemplate {
   public description: string = 'Je start met een eenvoudige kalender met een zoekbox, zoekresultaten en verfijningen.';
 
   /**
+   * Preview available
+   */
+  public preview = true;
+
+  /**
    * The template configuration
    */
   public configuration = {

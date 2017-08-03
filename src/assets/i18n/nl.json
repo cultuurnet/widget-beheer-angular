@@ -171,5 +171,7 @@
   "ADD_PAGE_TITLE": "Aan de slag",
   "ADD_PAGE_INTRO": "Om je snel op weg te helpen met de integratie van een UiT-agenda op je eigen site kan je gebruik maken van deze handige sjablonen:",
   "ADD_PAGE_SELECT_TEMPLATE_BUTTON": "Kiezen",
-  "ADD_PAGE_PREVIEW_BUTTON": "Voorbeeld"
+  "ADD_PAGE_PREVIEW_BUTTON": "Voorbeeld",
+  "TEMPLATE_PREVIEW_SELECT_BUTTON": "Kiezen",
+  "TEMPLATE_PREVIEW_CANCEL_BUTTON": "Annuleren"
 }
