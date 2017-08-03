@@ -3,13 +3,13 @@
   <p>Om je snel op weg te helpen met de integratie van een UiT-agenda op je eigen site kan je gebruik maken van deze handige sjablonen:</p>
   <div class="row">
     <div *ngFor="let pageTemplate of pageTemplates" class="col-sm-3">
-      <div class="panel panel-default template">
-        <div class="panel-body">
+      <div class="card template">
+        <div class="card-block">
           <p><strong>{{ pageTemplate.label }}</strong></p>
           <img src="/assets/page-templates/{{ pageTemplate.id }}.svg" class="img-responsive" style="margin: 0 auto 10px;"/>
           <p>{{ pageTemplate.description }}</p>
         </div>
-        <div class="panel-footer">
+        <div class="card-footer">
           <button class="btn btn-primary" (click)="addPage(pageTemplate.template)">Kiezen</button>
           <a class="btn btn-link">Voorbeeld</a>
         </div>
