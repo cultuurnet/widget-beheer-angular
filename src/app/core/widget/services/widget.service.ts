@@ -59,15 +59,15 @@ export class WidgetService {
     const widgetPage = this.cache.get('widgetPage', [pageId], false);
 
     if (widgetPage) {
-      console.log('fetch from cache');
       return Observable.of(widgetPage);
     }
 
     return this.http.get(environment.apiUrl + 'test')
       .map(widgetPage => this.widgetPageFactory.create(widgetPage))
       .do(widgetPage => {
-      this.cache.put('widgetPage', [pageId], widgetPage);
-    });
+        // Cache the response
+        this.cache.put('widgetPage', [pageId], widgetPage);
+      });
   }
 
   /**
