@@ -1,6 +1,6 @@
 <div class="container-fluid">
-  <h1>Aan de slag</h1>
-  <p>Om je snel op weg te helpen met de integratie van een UiT-agenda op je eigen site kan je gebruik maken van deze handige sjablonen:</p>
+  <h1>{{ "ADD_PAGE_TITLE" | translate }}</h1>
+  <p>{{ "ADD_PAGE_INTRO" | translate }}</p>
   <div class="row">
     <div *ngFor="let pageTemplate of pageTemplates" class="col-sm-3">
       <div class="card template">
@@ -10,8 +10,8 @@
           <p>{{ pageTemplate.description }}</p>
         </div>
         <div class="card-footer">
-          <button class="btn btn-primary" (click)="addPage(pageTemplate.template)">Kiezen</button>
-          <a class="btn btn-link">Voorbeeld</a>
+          <button class="btn btn-primary" (click)="addPage(pageTemplate.template)">{{ "ADD_PAGE_SELECT_TEMPLATE_BUTTON" | translate }}</button>
+          <a class="btn btn-link">{{ "ADD_PAGE_PREVIEW_BUTTON" | translate }}</a>
         </div>
       </div>
     </div>
