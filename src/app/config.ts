@@ -111,6 +111,66 @@ export class Config {
                   },
                   'allowed_labels': 'Label 1, Label 2'
                 }
+              },
+              {
+                'id': 'my-id',
+                'type': 'tips',
+                'settings': {
+                  'general': {
+                    'items': 3,
+                    'detail_link': {
+                      'enabled': false,
+                      'cbdid': 'query_string'
+                    }
+                  },
+                  'items': {
+                    'icon_vlieg': {
+                      'enabled': true
+                    },
+                    'icon_uitpas': {
+                      'enabled': true
+                    },
+                    'description': {
+                      'enabled': true,
+                      'characters': 200
+                    },
+                    'when': {
+                      'enabled': false,
+                      'label': 'Wanneer'
+                    },
+                    'where': {
+                      'enabled': true,
+                      'label': 'Waar'
+                    },
+                    'age': {
+                      'enabled': true,
+                      'label': 'Leeftijd'
+                    },
+                    'language_icons': {
+                      'enabled': false
+                    },
+                    'image': {
+                      'enabled': true,
+                      'width': 100,
+                      'height': 80,
+                      'default_image': true,
+                      'position': 'left'
+                    },
+                    'labels': {
+                      'enabled': false,
+                      'limit_labels': {
+                        'enabled': false,
+                      }
+                    },
+                    'read_more': {
+                      'enabled': true,
+                      'label': 'Lees verder'
+                    },
+                  },
+                  'search_params': {
+                    'query': '?=somevar'
+                  }
+                }
               }
             ]
           }
