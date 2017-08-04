@@ -171,6 +171,8 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
 
       // Save the widget page
       this.widgetBuilderService.saveWidgetPage();
+    }, (reason) => {
+      // Do nothing on dismiss, because the row hasn't changed
     });
   }
 }

@@ -2,7 +2,25 @@
  * Interface for classes that represent a widget page template.
  */
 export interface PageTemplate {
-  title: string;
+
+  /**
+   * The page template label
+   */
+  label: string;
+
+  /**
+   * The page template description
+   */
   description: string;
+
+  /**
+   * Template configuration object
+   */
   configuration: object;
+
+  /**
+   * Indicates if this template has a preview available
+   */
+  preview: boolean;
+
 }

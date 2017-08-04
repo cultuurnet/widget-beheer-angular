@@ -1,10 +1,43 @@
 import { Layout } from "../layout/layout";
 import { Widget } from "./widget";
 
+/**
+ * Represents a widget page
+ * containing rows with regions and widgets.
+ */
 export class WidgetPage {
+
+  /**
+   * The widget page id
+   */
   id: string;
+
+  /**
+   * The project id
+   */
+  project_id: string;
+
+  /**
+   * The widget page title
+   */
   title: string;
+
+  /**
+   * The widget page rows
+   */
   rows: Array<Layout> = [];
+
+  /**
+   * WidgetPage constructor.
+   * @param values
+   */
+  constructor(values: any = {}) {
+    for (let key in values) {
+      if (values.hasOwnProperty(key)) {
+        this[key] = values[key];
+      }
+    }
+  }
 
   /**
    * Add a row to the widget page.

@@ -31,6 +31,9 @@ import { TipsWidgetWidgetEditComponent } from "./components/widgets/tips-widget/
 import { TipsWidgetPreviewComponent } from "./components/widgets/tips-widget/tips-widget-preview.component";
 import { FacetsWidgetWidgetEditComponent } from "./components/widgets/facets-widget/facets-widget-edit.component";
 import { FacetsWidgetPreviewComponent } from "./components/widgets/facets-widget/facets-widget-preview.component";
+import { WidgetBuilderRoutingModule } from "./widget-builder-routing.module";
+import { AddPageComponent } from "./components/add-page/add-page.component";
+import {TemplatePreviewModalComponent} from "./components/add-page/preview/template-preview-modal.component";
 import { CoreModule } from "../core/core.module";
 
 @NgModule({
@@ -59,12 +62,15 @@ import { CoreModule } from "../core/core.module";
     TipsWidgetWidgetEditComponent,
     TipsWidgetPreviewComponent,
     FacetsWidgetWidgetEditComponent,
-    FacetsWidgetPreviewComponent
+    FacetsWidgetPreviewComponent,
+    AddPageComponent,
+    TemplatePreviewModalComponent
   ],
   exports: [
     WidgetBuilderComponent
   ],
   imports: [
+    WidgetBuilderRoutingModule,
     CoreModule,
     CommonModule,
     FormsModule,
@@ -94,7 +100,8 @@ import { CoreModule } from "../core/core.module";
     TipsWidgetWidgetEditComponent,
     TipsWidgetPreviewComponent,
     FacetsWidgetWidgetEditComponent,
-    FacetsWidgetPreviewComponent
+    FacetsWidgetPreviewComponent,
+    TemplatePreviewModalComponent
   ]
 })
 

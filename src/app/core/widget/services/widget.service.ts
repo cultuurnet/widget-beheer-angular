@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { WidgetPage } from "../widget-page";
 import * as _ from "lodash";
-import { Http, RequestOptions, URLSearchParams } from "@angular/http";
-import { Observable } from "rxjs/Observable";
 import { environment } from "../../../../environments/environment";
 import { WidgetSaveResponse } from "../widget-save-response";
+import { WidgetPageFactory } from "../factories/widget-page.factory";
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { Observable } from "rxjs";
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import { StaticCache } from "../../static-cache";
 
 /**
  * Temporary service that mimics calls that should go to Silex
@@ -12,11 +16,13 @@ import { WidgetSaveResponse } from "../widget-save-response";
 @Injectable()
 export class WidgetService {
 
-  private cache: any = {
-    renderedWidgets: {}
-  };
-
-  constructor (private http: Http) {
+  /**
+   * WidgetService constructor.
+   * @param http
+   * @param widgetPageFactory
+   * @param cache
+   */
+  constructor (private http: HttpClient, private widgetPageFactory: WidgetPageFactory, private cache: StaticCache) {
   }
 
   /**
@@ -27,18 +33,41 @@ export class WidgetService {
    *
    * @param widgetPage
    * @param widgetId
-   * @return {Promise<T>}
+   * @return {Observable<WidgetSaveResponse>}
    */
   public saveWidgetPage(widgetPage: WidgetPage, widgetId?: string) : Observable<WidgetSaveResponse> {
+    let requestOptions = {
+      params: new HttpParams()
+    };
 
-    let requestOptions = new RequestOptions();
-    requestOptions.params = new URLSearchParams();
     if (widgetId) {
       requestOptions.params.set('render', widgetId);
     }
 
-    return this.http.put(environment.apiUrl + 'test', widgetPage, requestOptions)
-        .map(res => res.json());
+    return this.http.put(environment.apiUrl + 'project/' + widgetPage.project_id + '/widget-page', widgetPage, requestOptions).do<WidgetSaveResponse>(widgetSaveReponse => {
+      // Cache the response
+      this.cache.put('widgetPage', [widgetSaveReponse.widgetPage.id], this.widgetPageFactory.create(widgetSaveReponse.widgetPage))
+    });
+  }
+
+  /**
+   * Get a widgetpage
+   * @param pageId
+   * @return {Observable<WidgetPage>}
+   */
+  public getWidgetPage(pageId: string) {
+    const widgetPage = this.cache.get('widgetPage', [pageId], false);
+
+    if (widgetPage) {
+      return Observable.of(widgetPage);
+    }
+
+    return this.http.get(environment.apiUrl + 'test')
+      .map(widgetPage => this.widgetPageFactory.create(widgetPage))
+      .do(widgetPage => {
+        // Cache the response
+        this.cache.put('widgetPage', [pageId], widgetPage);
+      });
   }
 
   /**
@@ -51,7 +80,7 @@ export class WidgetService {
   public renderWidget(widgetPageId: string, widgetId: string, reset: boolean = false) {
     // @todo Implement the render request
     let _self = this;
-    let renderedWidget = _.get(this.cache.renderedWidgets, [widgetPageId, widgetId], false);
+    const renderedWidget = this.cache.get('renderedWidgets', [widgetPageId, widgetId], false);
 
     // Cache hit and no reset
     if (renderedWidget && !reset) {
@@ -62,7 +91,7 @@ export class WidgetService {
     return new Promise((resolve, reject) => {
       setTimeout(function() {
         let response = _self.fakeRenderResponse(widgetId);
-        _.set(_self.cache.renderedWidgets, [widgetPageId, widgetId], response);
+        _self.cache.put('renderedWidgets', [widgetPageId, widgetId], response);
 
         resolve({content: response});
       }, _.random(1000, 3000));
@@ -99,9 +128,9 @@ export class WidgetService {
 
   /**
    * Get the default settings for the given widget types.
+   * @return {Observable<Object>}
    */
   public getWidgetDefaultSettings(): Observable<Object> {
-    return this.http.get(environment.apiUrl + 'widget-types')
-        .map(res => res.json());
+    return this.http.get(environment.apiUrl + 'widget-types');
   }
 }

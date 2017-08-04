@@ -1,7 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { Http, HttpModule } from "@angular/http";
 import { AppComponent } from "./app.component";
 import { WidgetBuilderModule } from "./widget-builder/widget-builder.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -21,7 +20,7 @@ import { TwoColSidebarRightLayoutComponent } from "./widget-builder/components/l
 import { ThreeColDoubleSidebarLayout } from "./core/layout/layouts/3col-double-sidebar/3col-double-sidebar.layout";
 import { ThreeColDoubleSidebarLayoutComponent } from "./widget-builder/components/layouts/3col-double-sidebar/3col-double-sidebar-layout.component";
 import { PageTemplateRegistry } from "./core/template/services/page-template-registry.service";
-import { MyTemplate } from "./core/template/page-templates/my-template";
+import { EmptyPageTemplate } from "./core/template/page-templates/empty-page-template";
 import { HtmlWidget } from "./core/widget/widgets/html-widget/html-widget.widget";
 import { HtmlWidgetWidgetEditComponent } from "./widget-builder/components/widgets/html-widget/html-widget-edit.component";
 import { OneCollLayout } from "./core/layout/layouts/one-col/one-col.layout";
@@ -30,31 +29,40 @@ import { TipsWidget } from "./core/widget/widgets/tips-widget/tips-widget.widget
 import { TipsWidgetWidgetEditComponent } from "./widget-builder/components/widgets/tips-widget/tips-widget-edit.component";
 import { FacetsWidget } from "./core/widget/widgets/facets-widget/facets-widget.widget";
 import { FacetsWidgetWidgetEditComponent } from "./widget-builder/components/widgets/facets-widget/facets-widget-edit.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { PageNotFoundComponent } from "./not-found.component";
+import { AgendaPageTemplate } from "./core/template/page-templates/agenda-page-template";
+import { TipsPageTemplate } from "./core/template/page-templates/tips-page-template";
+import { UitPasPageTemplate } from "./core/template/page-templates/uitpas-page-template";
+import { WidgetService } from "./core/widget/services/widget.service";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 /**
  * AoT requires an exported function for factories
  */
-export function HttpLoaderFactory(http: Http) {
+export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
-    HttpModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [Http]
+        deps: [HttpClient]
       }
     }),
     CoreModule,
     WidgetBuilderModule,
+    AppRoutingModule,
     NgbModule.forRoot()
   ],
   bootstrap: [AppComponent],
@@ -65,10 +73,11 @@ export class AppModule {
   /**
    * AppModule constructor.
    * @param widgetTypeRegistry
+   * @param widgetService
    * @param layoutTypeRegistry
    * @param pageTemplateRegistry
    */
-  constructor(private widgetTypeRegistry: WidgetTypeRegistry, private layoutTypeRegistry: LayoutTypeRegistry, private pageTemplateRegistry: PageTemplateRegistry) {
+  constructor(private widgetTypeRegistry: WidgetTypeRegistry, private widgetService: WidgetService, private layoutTypeRegistry: LayoutTypeRegistry, private pageTemplateRegistry: PageTemplateRegistry) {
     // Register widget types
     widgetTypeRegistry.register('search-form', 'Search form', SearchFormWidget, SearchFormWidgetEditComponent);
     widgetTypeRegistry.register('search-results', 'Search results', SearchResultsWidget, SearchResultsWidgetEditComponent);
@@ -83,7 +92,10 @@ export class AppModule {
     layoutTypeRegistry.register('one-col', 'Full width', OneCollLayout, OneColLayoutComponent);
 
     // Register page templates
-    pageTemplateRegistry.register('my-template', new MyTemplate());
+    pageTemplateRegistry.register('empty', new EmptyPageTemplate());
+    pageTemplateRegistry.register('agenda', new AgendaPageTemplate());
+    pageTemplateRegistry.register('tips', new TipsPageTemplate());
+    pageTemplateRegistry.register('uitpas', new UitPasPageTemplate());
 
     // Invoke the afterInit method
     this.afterInit();
@@ -93,7 +105,23 @@ export class AppModule {
    * Tasks to be run after the app has initialized
    */
   private afterInit() {
-    this.widgetTypeRegistry.loadWidgetDefaultSettings();
+    this.loadWidgetDefaultSettings();
+  }
+
+  /**
+   * Load the widget default settings onto the registered widgets
+   * @Todo: Move this to when the router is loading the component
+   */
+  private loadWidgetDefaultSettings() {
+    this.widgetService.getWidgetDefaultSettings().subscribe(
+      defaultSettings => {
+        for (let widgetType in defaultSettings) {
+          if (defaultSettings.hasOwnProperty(widgetType) &&  this.widgetTypeRegistry.widgetTypes.hasOwnProperty(widgetType)) {
+            this.widgetTypeRegistry.widgetTypes[widgetType].defaultSettings = defaultSettings[widgetType];
+          }
+        }
+      },
+    );
   }
 
 }
