@@ -31,6 +31,7 @@ import { TipsWidgetWidgetEditComponent } from "./components/widgets/tips-widget/
 import { TipsWidgetPreviewComponent } from "./components/widgets/tips-widget/tips-widget-preview.component";
 import { FacetsWidgetWidgetEditComponent } from "./components/widgets/facets-widget/facets-widget-edit.component";
 import { FacetsWidgetPreviewComponent } from "./components/widgets/facets-widget/facets-widget-preview.component";
+import { CoreModule } from "../core/core.module";
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { FacetsWidgetPreviewComponent } from "./components/widgets/facets-widget
     WidgetBuilderComponent
   ],
   imports: [
+    CoreModule,
     CommonModule,
     FormsModule,
     DragulaModule,

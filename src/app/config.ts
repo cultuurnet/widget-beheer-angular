@@ -254,6 +254,9 @@ export class Config {
                       'enabled': true,
                       'label': 'Lees verder'
                     },
+                  },
+                  'search_params': {
+                    'query': '?=somevar'
                   }
                 }
               }
