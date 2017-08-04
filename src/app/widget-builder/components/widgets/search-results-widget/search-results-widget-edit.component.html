@@ -307,8 +307,10 @@
                     <ngb-panel id="extra_parameters">
                         <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_PANEL_TITLE_EXTRA_PARAMETERS" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
-                            <!-- todo: Add querybuilder -->
-                            Querybuilder
+                            <div formGroupName="search_params">
+                                <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_QUERY" | translate }}</label>
+                                <input type="text" formControlName="query">
+                            </div>
                         </ng-template>
                     </ngb-panel>
                 </ngb-accordion>
