@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import { StaticCache } from "../../static-cache";
+import { Project } from "../project";
 
 /**
  * Service that handles request to the "project" api
@@ -33,6 +34,7 @@ export class ProjectService {
     }
 
     return this.http.get(environment.apiUrl + 'project/' + id)
+      .map(project => new Project(project))
       .do(project => {
         // Cache the response
         this.cache.put('project', [id], project);

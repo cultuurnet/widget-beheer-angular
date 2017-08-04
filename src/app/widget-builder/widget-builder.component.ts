@@ -12,6 +12,7 @@ import { Config } from "../config";
 import { Subscription } from "rxjs";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { WidgetService } from "../core/widget/services/widget.service";
+import { Project } from "../core/project/project";
 
 /**
  * The widget builder component is used for editing a widget page.
@@ -92,8 +93,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     this.route.data
-      .subscribe((data: { project: any, widgetPage: WidgetPage }) => {
-      console.log(data.widgetPage);
+      .subscribe((data: { project: Project, widgetPage: WidgetPage }) => {
         this.editingPage = data.widgetPage;
 
         // Set the current page on the widget builder service

@@ -38,14 +38,8 @@ import { WidgetPageResolver } from "./route/resolver/widget-page-resolver.servic
   imports: [
     BrowserModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    NgbModalModule
+    NgbModalModule,
+    TranslateModule
   ],
   exports: [
     ConfirmationModalComponent

@@ -4,7 +4,7 @@
 </ng-template>
 
 <div class="container-fluid">
-  <button [routerLink]="['/project', projectId]" class="btn btn-secondary"><i class="fa fa-chevron-left"></i> Terug</button>
+  <button [routerLink]="['/project', project.id]" class="btn btn-secondary"><i class="fa fa-chevron-left"></i> {{ project.name }}</button>
   <h1>{{ "ADD_PAGE_TITLE" | translate }}</h1>
   <p>{{ "ADD_PAGE_INTRO" | translate }}</p>
   <div class="row">

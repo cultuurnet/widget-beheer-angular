@@ -40,6 +40,18 @@ export class StaticCache {
   }
 
   /**
+   * Remove an item from the cache
+   * @param bin
+   * @param path
+   */
+  public remove(bin: string, path: Array<string>): void {
+    // Prepend the cache bin to the path
+    path.unshift(bin);
+
+    _.unset(this.cache, path);
+  }
+
+  /**
    * Clear the cache or a specific cache bin
    * @param bin
    * @param path

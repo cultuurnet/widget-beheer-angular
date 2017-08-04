@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { WidgetPage } from "../../../core/widget/widget-page";
 import * as _ from "lodash";
+import { WidgetService } from "../../../core/widget/services/widget.service";
+import { Project } from "../../../core/project/project";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ConfirmationModalComponent } from "app/core/modal/components/confirmation-modal.component";
+import { ToastyService } from "ng2-toasty";
 
 /**
  * Displays a list of pages for a project.
@@ -28,23 +33,31 @@ export class PageListComponent implements OnInit {
   public legacyWidgetPages: Array<WidgetPage>;
 
   /**
-   * The id of the current project
+   * The current project
    */
-  public projectId: string;
+  public project: Project;
 
   /**
    * PageListComponent constructor.
+   * @param widgetService
+   * @param modalService
+   * @param toastyService
    * @param route
+   * @param router
    */
-  constructor(private route: ActivatedRoute) {
-  }
+  constructor(
+    private widgetService: WidgetService,
+    private modalService: NgbModal,
+    private toastyService: ToastyService,
+    private route: ActivatedRoute, private router: Router)
+  { }
 
   /**
    * @inheritDoc
    */
   ngOnInit() {
     this.route.data
-      .subscribe((data: { widgetPages: Array<WidgetPage> }) => {
+      .subscribe((data: { widgetPages: Array<WidgetPage>, project: Project }) => {
         const _self = this;
 
         // Filter the widget pages by version
@@ -57,8 +70,55 @@ export class PageListComponent implements OnInit {
         });
 
         // Get the project id from the current route
-        this.projectId = this.route.snapshot.params['project_id'];
+        this.project = data.project;
       });
+  }
+
+  /**
+   * Duplicate a widget page and redirect to the widget builder
+   * @param widgetPage
+   */
+  public duplicateWidgetPage(widgetPage: WidgetPage) {
+    // Remove the widgetPage id
+    widgetPage.id = '';
+
+    // Save the widget page and redirect
+    this.widgetService.saveWidgetPage(widgetPage).subscribe(widgetSaveResponse => {
+      if (widgetSaveResponse.widgetPage) {
+        this.router.navigate(['/project', this.project.id, 'page', widgetSaveResponse.widgetPage.id, 'edit']);
+      }
+    });
+  }
+
+  /**
+   * Delete a widget page
+   * @param widgetPage
+   */
+  public deleteWidgetPage(widgetPage: WidgetPage) {
+    let modal = this.modalService.open(ConfirmationModalComponent);
+    let modalInstance = modal.componentInstance;
+
+    modalInstance.title = 'REMOVE_WIDGET_PAGE_MODAL_TITLE';
+    modalInstance.message = 'REMOVE_WIDGET_PAGE_MODAL_MESSAGE';
+
+    modal.result.then((result) => {
+      this.widgetService.deleteWidgetPage(widgetPage).subscribe(() => {
+        // Remove the widget from the corresponding array, so the model gets updated
+        let widgetPages = this.widgetPages;
+        if (widgetPage.version < this.currentWidgetVersion) {
+          widgetPages = this.legacyWidgetPages;
+        }
+
+        const index = widgetPages.indexOf(widgetPage);
+        if (index > -1) {
+          widgetPages.splice(index, 1);
+        }
+      }, (error) => {
+        this.toastyService.error('It fucking failed');
+      });
+    }, (reason) => {
+      // Do nothing on modal close
+    });
   }
 
 }

@@ -1,13 +1,13 @@
 <h1>Mijn widgets</h1>
-<button class="btn btn-primary" [routerLink]="['/project', projectId, 'page', 'add']">Nieuwe widget maken</button>
+<button class="btn btn-primary" [routerLink]="['/project', project.id, 'page', 'add']">Nieuwe widget maken</button>
 <div class="container-fluid">
   <div class="page-list">
     <div *ngFor="let widgetPage of widgetPages" class="card">
       <div class="card-header">
         <h3 class="float-left" style="margin:0; line-height:38px;">{{ widgetPage.title }}</h3>
-        <button [routerLink]="['/project', projectId, 'page', widgetPage.id, 'edit']" class="btn btn-secondary float-left" style="margin-left: 20px;">Aanpassen</button>
-        <button class="btn btn-link">Dupliceren</button>
-        <button class="btn btn-link">Verwijderen</button>
+        <button [routerLink]="['/project', project.id, 'page', widgetPage.id, 'edit']" class="btn btn-secondary float-left" style="margin-left: 20px;">Aanpassen</button>
+        <button (click)="duplicateWidgetPage(widgetPage)" class="btn btn-link">Dupliceren</button>
+        <button (click)="deleteWidgetPage(widgetPage)" class="btn btn-link">Verwijderen</button>
       </div>
       <div class="card-block">
         <div class="highlight">
@@ -25,9 +25,7 @@
     <div *ngFor="let widgetPage of legacyWidgetPages" class="card">
       <div class="card-header">
         <h3 class="float-left" style="margin:0; line-height:38px;">{{ widgetPage.title }}</h3>
-        <button class="btn btn-secondary float-left" style="margin-left: 20px;">Aanpassen</button>
-        <button class="btn btn-link">Dupliceren</button>
-        <button class="btn btn-link">Verwijderen</button>
+        <button class="btn btn-secondary float-left" style="margin-left: 20px;">Upgrade aanvragen</button>
       </div>
       <div class="card-block">
         <div class="highlight">

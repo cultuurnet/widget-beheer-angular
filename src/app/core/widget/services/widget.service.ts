@@ -82,6 +82,21 @@ export class WidgetService {
   }
 
   /**
+   * Delete a widget page
+   * @param widgetPage
+   */
+  public deleteWidgetPage(widgetPage: WidgetPage) {
+    return this.http.delete(environment.apiUrl + this.widgetApiPath + 'test')
+      .do(reponse => {
+        // Clear the widgetPageList cache for the given project
+        this.cache.clear('widgetPageList', [widgetPage.project_id]);
+
+        // Remove the widgetPage object from the cache
+        this.cache.clear('widgetPage', [widgetPage.id]);
+      });
+  }
+
+  /**
    * Get all widgetpages for a project
    * @param projectId
    * @param reset

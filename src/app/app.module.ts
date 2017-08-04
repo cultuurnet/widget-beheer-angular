@@ -36,6 +36,7 @@ import { TipsPageTemplate } from "./core/template/page-templates/tips-page-templ
 import { UitPasPageTemplate } from "./core/template/page-templates/uitpas-page-template";
 import { WidgetService } from "./core/widget/services/widget.service";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { ToastyConfig, ToastyModule } from "ng2-toasty";
 
 /**
  * AoT requires an exported function for factories
@@ -63,7 +64,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     CoreModule,
     WidgetBuilderModule,
     AppRoutingModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    ToastyModule.forRoot()
+  ],
+  exports: [
+    TranslateModule
   ],
   bootstrap: [AppComponent],
 })
@@ -76,8 +81,15 @@ export class AppModule {
    * @param widgetService
    * @param layoutTypeRegistry
    * @param pageTemplateRegistry
+   * @param toastyConfig
    */
-  constructor(private widgetTypeRegistry: WidgetTypeRegistry, private widgetService: WidgetService, private layoutTypeRegistry: LayoutTypeRegistry, private pageTemplateRegistry: PageTemplateRegistry) {
+  constructor(
+    private widgetTypeRegistry: WidgetTypeRegistry,
+    private widgetService: WidgetService,
+    private layoutTypeRegistry: LayoutTypeRegistry,
+    private pageTemplateRegistry: PageTemplateRegistry,
+    private toastyConfig: ToastyConfig
+  ) {
     // Register widget types
     widgetTypeRegistry.register('search-form', 'Search form', SearchFormWidget, SearchFormWidgetEditComponent);
     widgetTypeRegistry.register('search-results', 'Search results', SearchResultsWidget, SearchResultsWidgetEditComponent);
@@ -105,7 +117,16 @@ export class AppModule {
    * Tasks to be run after the app has initialized
    */
   private afterInit() {
+    this.setToastyDefaultSettings();
     this.loadWidgetDefaultSettings();
+  }
+
+  /**
+   * Set the toasty (growl) default settings
+   */
+  private setToastyDefaultSettings() {
+    this.toastyConfig.timeout = 3000;
+    this.toastyConfig.position = 'top-right';
   }
 
   /**

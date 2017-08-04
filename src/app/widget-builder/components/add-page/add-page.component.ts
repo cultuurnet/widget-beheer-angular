@@ -1,13 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageTemplateRegistry } from "../../../core/template/services/page-template-registry.service";
-import { PageTemplate } from "../../../core/template/pageTemplate";
 import { WidgetPageFactory } from "../../../core/widget/factories/widget-page.factory";
-import { ActivatedRoute, ParamMap, Router } from "@angular/router";
-import { Subscription } from "rxjs";
+import { ActivatedRoute, Router } from "@angular/router";
 import { WidgetService } from "../../../core/widget/services/widget.service";
 import { TemplatePreviewModalComponent } from "./preview/template-preview-modal.component";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ProjectService } from "../../../core/project/services/project.service";
+import { Project } from "../../../core/project/project";
 
 /**
  * Component used for adding a new widget page to a project.
@@ -16,22 +14,17 @@ import { ProjectService } from "../../../core/project/services/project.service";
   selector: 'app-add-page',
   templateUrl: './add-page.component.html',
 })
-export class AddPageComponent implements OnInit, OnDestroy {
+export class AddPageComponent implements OnInit {
 
   /**
-   * The id of the current project
+   * The current project
    */
-  protected projectId: string;
+  public project: Project;
 
   /**
    * Array containing all available page templates
    */
   public pageTemplates = [];
-
-  /**
-   * Subscription to the route parameters
-   */
-  private paramSubscription: Subscription;
 
   /**
    * AddPageComponent constructor.
@@ -56,8 +49,8 @@ export class AddPageComponent implements OnInit, OnDestroy {
    */
   ngOnInit(): void {
     this.route.data
-      .subscribe((data: { project: any }) => {
-        this.projectId = this.route.snapshot.params['project_id'];
+      .subscribe((data: { project: Project }) => {
+        this.project = data.project;
       });
 
     const keys = Object.keys(this.pageTemplateRegistry.pageTemplates);
@@ -69,17 +62,6 @@ export class AddPageComponent implements OnInit, OnDestroy {
         template: this.pageTemplateRegistry.pageTemplates[key]
       });
     }
-
-    this.paramSubscription = this.route.paramMap.subscribe(
-      params => this.projectId = params.get('project_id')
-    );
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public ngOnDestroy() {
-    this.paramSubscription.unsubscribe();
   }
 
   /**
@@ -89,7 +71,7 @@ export class AddPageComponent implements OnInit, OnDestroy {
   public addPage(pageTemplate: any) {
     // Merge the project id on the template configuration
     let config = pageTemplate.template.configuration;
-    config['project_id'] = this.projectId;
+    config['project_id'] = this.project.id;
 
     // Create a widget page from the template, ensuring it contains the required defaults, id's,...
     const widgetPage = this.widgetPageFactory.create(config);
@@ -97,7 +79,7 @@ export class AddPageComponent implements OnInit, OnDestroy {
     // Save the newly created widget page
     this.widgetService.saveWidgetPage(widgetPage).subscribe(widgetSaveResponse => {
       // Redirect to the widget builder
-      this.router.navigate(['/project', this.projectId, 'page', widgetSaveResponse.widgetPage.id, 'edit']);
+      this.router.navigate(['/project', this.project.id, 'page', widgetSaveResponse.widgetPage.id, 'edit']);
     });
   }
 
