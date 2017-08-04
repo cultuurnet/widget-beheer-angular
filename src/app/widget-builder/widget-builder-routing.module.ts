@@ -11,6 +11,9 @@ const widgetBuilderRoutes: Routes = [
   {
     path: 'project/:project_id',
     component: PageListComponent,
+    resolve: {
+      project: ProjectResolver
+    }
   },
   {
     path: 'project/:project_id/page/add',

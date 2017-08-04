@@ -5,24 +5,24 @@ import { WidgetPage } from "../../widget/widget-page";
 import { Observable } from "rxjs";
 
 /**
- * Attempts to resolve a "WidgetPage" from the route
+ * Attempts to resolve a list of "WidgetPage" objects
  */
 @Injectable()
-export class WidgetPageResolver implements Resolve<Object> {
+export class WidgetPageListResolver implements Resolve<Object> {
 
   /**
-   * WidgetPageResolver constructor.
+   * WidgetPageListResolver constructor.
    * @param widgetService
    * @param router
    */
   constructor(private widgetService: WidgetService, private router: Router) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<WidgetPage> {
-    const id = route.paramMap.get('page_id');
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Array<WidgetPage>> {
+    const id = route.paramMap.get('project_id');
 
-    return this.widgetService.getWidgetPage(id).map((widgetPage: WidgetPage) => {
-      return widgetPage;
+    return this.widgetService.getWidgetPages(id).map((widgetPages: Array<WidgetPage>) => {
+      return widgetPages;
     }).catch(() => {
       this.router.navigate(['/']);
       return Observable.of(false);

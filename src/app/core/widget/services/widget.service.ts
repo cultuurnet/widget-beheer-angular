@@ -51,28 +51,56 @@ export class WidgetService {
     }
 
     return this.http.put(environment.apiUrl + this.widgetApiPath + 'test', widgetPage, requestOptions).do<WidgetSaveResponse>(widgetSaveReponse => {
+      // Invalidate the widgetPage cache for the given project id
+      this.cache.clear('widgetPage', [widgetPage.project_id]);
+
       // Cache the response
-      this.cache.put('widgetPage', [widgetSaveReponse.widgetPage.id], this.widgetPageFactory.create(widgetSaveReponse.widgetPage))
+      this.cache.put('widgetPage', [widgetPage.project_id, widgetSaveReponse.widgetPage.id], this.widgetPageFactory.create(widgetSaveReponse.widgetPage))
     });
   }
 
   /**
    * Get a widgetpage
    * @param pageId
+   * @param reset
    * @return {Observable<WidgetPage>}
    */
-  public getWidgetPage(pageId: string) {
-    const widgetPage = this.cache.get('widgetPage', [pageId], false);
+  public getWidgetPage(pageId: string, reset: boolean = false) {
+    if (!reset) {
+      const widgetPage = this.cache.get('widgetPage', [pageId], false);
 
-    if (widgetPage) {
-      return Observable.of(widgetPage);
+      if (widgetPage) {
+        return Observable.of(widgetPage);
+      }
     }
 
     return this.http.get(environment.apiUrl + this.widgetApiPath + 'test')
       .map(widgetPage => this.widgetPageFactory.create(widgetPage))
       .do(widgetPage => {
-        // Cache the response
-        this.cache.put('widgetPage', [pageId], widgetPage);
+        this.cache.put('widgetPage', [widgetPage.project_id, pageId], widgetPage);
+      });
+  }
+
+  /**
+   * Get all widgetpages for a project
+   * @param projectId
+   * @param reset
+   * @return {Observable<Array>}
+   */
+  public getWidgetPages(projectId: string, reset: boolean = false) {
+    // @todo: Use the same cache path as the widgetPage calls
+    if (!reset) {
+      const widgetPages = this.cache.get('widgetPageList', [projectId], false);
+
+      if (widgetPages) {
+        return Observable.of(widgetPages);
+      }
+    }
+
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'test')
+      .map(widgetPage => this.widgetPageFactory.create(widgetPage))
+      .do(widgetPage => {
+        this.cache.put('widgetPageList', [projectId], widgetPage);
       });
   }
 
@@ -134,9 +162,20 @@ export class WidgetService {
 
   /**
    * Get the default settings for the given widget types.
+   * @param reset
    * @return {Observable<Object>}
    */
-  public getWidgetDefaultSettings(): Observable<Object> {
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'widget-types');
+  public getWidgetDefaultSettings(reset: boolean = false): Observable<Object> {
+    if (!reset) {
+      const defaultSettings = this.cache.get('widgetDefaultSettings', ['settings'], false);
+
+      if (defaultSettings) {
+        return Observable.of(defaultSettings);
+      }
+    }
+
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'widget-types').do(defaultSettings => {
+      this.cache.put('widgetDefaultSettings', ['settings'], defaultSettings);
+    });
   }
 }

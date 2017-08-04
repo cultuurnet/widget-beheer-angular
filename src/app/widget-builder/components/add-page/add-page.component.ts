@@ -92,7 +92,7 @@ export class AddPageComponent implements OnInit, OnDestroy {
     config['project_id'] = this.projectId;
 
     // Create a widget page from the template, ensuring it contains the required defaults, id's,...
-    let widgetPage = this.widgetPageFactory.create(config);
+    const widgetPage = this.widgetPageFactory.create(config);
 
     // Save the newly created widget page
     this.widgetService.saveWidgetPage(widgetPage).subscribe(widgetSaveResponse => {
