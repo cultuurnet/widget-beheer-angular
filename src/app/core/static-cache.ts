@@ -58,8 +58,6 @@ export class StaticCache {
       // Clear the entire static cache
       this.cache = {};
     }
-
-    console.log(this.cache);
   }
 
 }

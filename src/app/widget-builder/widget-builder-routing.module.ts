@@ -6,13 +6,15 @@ import { PageListComponent } from "./components/page-list/page-list.component";
 import { ProjectResolver } from "../core/route/resolver/project-resolver.service";
 import { WidgetPageResolver } from "../core/route/resolver/widget-page-resolver.service";
 import { CoreModule } from "../core/core.module";
+import { WidgetPageListResolver } from "./route/resolver/widget-page-list-resolver.service";
 
 const widgetBuilderRoutes: Routes = [
   {
     path: 'project/:project_id',
     component: PageListComponent,
     resolve: {
-      project: ProjectResolver
+      project: ProjectResolver,
+      widgetPages: WidgetPageListResolver
     }
   },
   {
@@ -33,6 +35,9 @@ const widgetBuilderRoutes: Routes = [
 ];
 
 @NgModule({
+  providers: [
+    WidgetPageListResolver
+  ],
   imports: [
     CoreModule,
     RouterModule.forChild(widgetBuilderRoutes)

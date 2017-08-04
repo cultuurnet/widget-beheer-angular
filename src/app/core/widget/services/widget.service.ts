@@ -51,11 +51,11 @@ export class WidgetService {
     }
 
     return this.http.put(environment.apiUrl + this.widgetApiPath + 'test', widgetPage, requestOptions).do<WidgetSaveResponse>(widgetSaveReponse => {
-      // Invalidate the widgetPage cache for the given project id
-      this.cache.clear('widgetPage', [widgetPage.project_id]);
+      // Invalidate the widgetPageList cache for the given project id
+      this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
       // Cache the response
-      this.cache.put('widgetPage', [widgetPage.project_id, widgetSaveReponse.widgetPage.id], this.widgetPageFactory.create(widgetSaveReponse.widgetPage))
+      this.cache.put('widgetPage', [widgetSaveReponse.widgetPage.id], this.widgetPageFactory.create(widgetSaveReponse.widgetPage))
     });
   }
 
@@ -77,7 +77,7 @@ export class WidgetService {
     return this.http.get(environment.apiUrl + this.widgetApiPath + 'test')
       .map(widgetPage => this.widgetPageFactory.create(widgetPage))
       .do(widgetPage => {
-        this.cache.put('widgetPage', [widgetPage.project_id, pageId], widgetPage);
+        this.cache.put('widgetPage', [pageId], widgetPage);
       });
   }
 
@@ -88,19 +88,49 @@ export class WidgetService {
    * @return {Observable<Array>}
    */
   public getWidgetPages(projectId: string, reset: boolean = false) {
-    // @todo: Use the same cache path as the widgetPage calls
     if (!reset) {
-      const widgetPages = this.cache.get('widgetPageList', [projectId], false);
+      let widgetPages = [];
+      const widgetPageIds = this.cache.get('widgetPageList', [projectId], false);
 
-      if (widgetPages) {
-        return Observable.of(widgetPages);
+      if (widgetPageIds) {
+        // Get all the widgetPage objects from the widgetPage cache
+        for (const widgetPageId of widgetPageIds) {
+          const widgetPage = this.cache.get('widgetPage', [widgetPageId]);
+          if (widgetPage) {
+            widgetPages.push(widgetPage);
+          }
+        }
+
+        // If not all widgetPages were found in the cache, fetch the new list from the API
+        if (widgetPageIds.length === widgetPages.length) {
+          return Observable.of(widgetPages);
+        }
       }
     }
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'test')
-      .map(widgetPage => this.widgetPageFactory.create(widgetPage))
-      .do(widgetPage => {
-        this.cache.put('widgetPageList', [projectId], widgetPage);
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'test/multiple')
+      .map(widgetPages => {
+        let pages = [];
+
+        for (let id in widgetPages) {
+          if (widgetPages.hasOwnProperty(id)) {
+            const widgetPage: WidgetPage = this.widgetPageFactory.create(widgetPages[id]);
+            if (widgetPage) {
+              pages.push(widgetPage);
+            }
+          }
+        }
+
+        return pages;
+      })
+      .do(widgetPages => {
+        // Store only the keys in the widgetPageList cache
+        this.cache.put('widgetPageList', [projectId], _.map(widgetPages, 'id'));
+
+        // Store all pages in the widgetPage cache
+        for (let widgetPage of widgetPages) {
+          this.cache.put('widgetPage', [widgetPage.id], widgetPage);
+        }
       });
   }
 

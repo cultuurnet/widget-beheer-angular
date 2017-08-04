@@ -73,8 +73,6 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    * @param _componentFactoryResolver
    * @param widgetTypeRegistry
    * @param widgetBuilderService
-   * @param widgetService
-   * @param widgetPageFactory
    * @param route
    */
   constructor(
@@ -82,7 +80,6 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     private _componentFactoryResolver: ComponentFactoryResolver,
     private widgetTypeRegistry: WidgetTypeRegistry,
     private widgetBuilderService: WidgetBuilderService,
-    private widgetService: WidgetService,
     private route: ActivatedRoute
   ) {
     this.widgetSelectedSubscription = widgetBuilderService.widgetSelected$.subscribe(widget => {
@@ -96,6 +93,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.data
       .subscribe((data: { project: any, widgetPage: WidgetPage }) => {
+      console.log(data.widgetPage);
         this.editingPage = data.widgetPage;
 
         // Set the current page on the widget builder service

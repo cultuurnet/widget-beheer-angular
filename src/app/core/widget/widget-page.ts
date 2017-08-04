@@ -10,17 +10,22 @@ export class WidgetPage {
   /**
    * The widget page id
    */
-  id: string;
+  public id: string;
 
   /**
    * The project id
    */
-  project_id: string;
+  public project_id: string;
 
   /**
    * The widget page title
    */
-  title: string;
+  public title: string;
+
+  /**
+   * The widget version
+   */
+  public version: number;
 
   /**
    * The widget page rows
