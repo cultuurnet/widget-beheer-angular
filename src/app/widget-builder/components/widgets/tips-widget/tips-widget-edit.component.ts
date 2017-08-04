@@ -107,7 +107,14 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
     _.set(this.settings, 'items', _.get(values, 'items', {}));
     _.set(this.settings, 'search_params', _.get(values, 'search_params', {}));
 
-    this.widgetBuilderService.saveWigetPage(this.widget.id);
+    this.widgetBuilderService.saveWidgetPage(this.widget.id);
+  }
+
+  /**
+   * @inheritDoc
+   */
+  protected handleWidgetNameChanged(name: string) {
+    this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
 
 }

@@ -20,8 +20,6 @@ import { RowEditComponent } from "./components/row-edit/row-edit.component";
 import { ViewModeSwitcherComponent } from "./components/view-mode-switcher/view-mode-switcher.component";
 import { WidgetPreviewComponent } from "./components/widgets/widget-preview.component";
 import { WidgetGroupFiltersEditComponent } from "./components/widgets/group-filters/widget-group-filters-edit.component";
-import { WidgetGroupFiltersGroupEditComponent } from "./components/widgets/group-filters/widget-group-filters-group-edit.component";
-import { WidgetGroupFiltersGroupOptionEditComponent } from "./components/widgets/group-filters/widget-group-filters-group-option-edit.component";
 import { SearchResultsWidgetPreviewComponent } from "./components/widgets/search-results-widget/search-results-widget-preview.component";
 import { SearchFormWidgetPreviewComponent } from "./components/widgets/search-form-widget/search-form-widget-preview.component";
 import { WidgetPreviewDirective } from "./directives/widget-preview.directive";
@@ -31,6 +29,8 @@ import { HtmlWidgetWidgetEditComponent } from "./components/widgets/html-widget/
 import { OneColLayoutComponent } from "./components/layouts/one-col/one-col-layout.component";
 import { TipsWidgetWidgetEditComponent } from "./components/widgets/tips-widget/tips-widget-edit.component";
 import { TipsWidgetPreviewComponent } from "./components/widgets/tips-widget/tips-widget-preview.component";
+import { FacetsWidgetWidgetEditComponent } from "./components/widgets/facets-widget/facets-widget-edit.component";
+import { FacetsWidgetPreviewComponent } from "./components/widgets/facets-widget/facets-widget-preview.component";
 import { CoreModule } from "../core/core.module";
 
 @NgModule({
@@ -52,14 +52,14 @@ import { CoreModule } from "../core/core.module";
     ViewModeSwitcherComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
-    WidgetGroupFiltersGroupEditComponent,
-    WidgetGroupFiltersGroupOptionEditComponent,
     SearchResultsWidgetPreviewComponent,
     SearchFormWidgetPreviewComponent,
     HtmlWidgetWidgetEditComponent,
     HtmlWidgetPreviewComponent,
     TipsWidgetWidgetEditComponent,
-    TipsWidgetPreviewComponent
+    TipsWidgetPreviewComponent,
+    FacetsWidgetWidgetEditComponent,
+    FacetsWidgetPreviewComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -87,14 +87,14 @@ import { CoreModule } from "../core/core.module";
     ViewModeSwitcherComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
-    WidgetGroupFiltersGroupEditComponent,
-    WidgetGroupFiltersGroupOptionEditComponent,
     SearchResultsWidgetPreviewComponent,
     SearchFormWidgetPreviewComponent,
     HtmlWidgetWidgetEditComponent,
     HtmlWidgetPreviewComponent,
     TipsWidgetWidgetEditComponent,
-    TipsWidgetPreviewComponent
+    TipsWidgetPreviewComponent,
+    FacetsWidgetWidgetEditComponent,
+    FacetsWidgetPreviewComponent
   ]
 })
 

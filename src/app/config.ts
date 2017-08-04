@@ -12,6 +12,7 @@ export class Config {
               {
                 'id': 'd1ae67d3-60a3-8f74-d64f-9c97c3afe6b6',
                 'type': 'search-form',
+                'name': 'Zoekformulier',
                 'settings': {
                   'general': {
                     'destination': 'https://www.uitinvlaanderen.be/agenda/search',
@@ -65,8 +66,47 @@ export class Config {
           'content': {
             'widgets': [
               {
+                'id': '3c6ae3ef-cc96-4e15-880b-a4a5b5289fef',
+                'type': 'facets',
+                'name': 'Zoekverfijningen',
+                'settings': {
+                  'search_results': 'c039e4b6-3d61-1c2a-d028-4606fa56c4c9',
+                  'filters': {
+                    'what': true,
+                    'where': true,
+                    'when': false,
+                  },
+                  'group_filters': {
+                    'enabled': true,
+                    'filters': [
+                      {
+                        'label': 'Group filter label',
+                        'type': 'link',
+                        'options': [
+                          {
+                            'label': 'Gent',
+                            'query': 'zip=9000'
+                          },
+                        ]
+                      },
+                      {
+                        'label': 'Some custom label',
+                        'type': 'link',
+                        'options': [
+                          {
+                            'label': 'Gent',
+                            'query': 'zip=9000'
+                          },
+                        ]
+                      }
+                    ]
+                  }
+                }
+              },
+              {
                 'id': 'c039e4b6-3d61-1c2a-d028-4606fa56c4c9',
                 'type': 'search-results',
+                'name': 'Zoekresultaten',
                 'settings': {
                   'general': {
                     'current_search': true,
@@ -149,8 +189,8 @@ export class Config {
                     },
                     'image': {
                       'enabled': true,
-                      'width': 300,
-                      'height': 200,
+                      'width': 100,
+                      'height': 80,
                       'default_image': true,
                       'position': 'left'
                     },
@@ -166,6 +206,7 @@ export class Config {
               {
                 'id': 'my-id',
                 'type': 'tips',
+                'name': 'My custom name',
                 'settings': {
                   'general': {
                     'items': 3,
@@ -235,6 +276,7 @@ export class Config {
               {
                 'id': '4fb36e4c-d2f3-55c6-b923-31bed556936b',
                 'type': 'search-results',
+                'name': 'Zoekresultaten-1',
                 'settings': {
                   'header': {
                     'body': 'Header text'

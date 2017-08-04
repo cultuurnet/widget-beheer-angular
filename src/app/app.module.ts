@@ -28,6 +28,8 @@ import { OneCollLayout } from "./core/layout/layouts/one-col/one-col.layout";
 import { OneColLayoutComponent } from "./widget-builder/components/layouts/one-col/one-col-layout.component";
 import { TipsWidget } from "./core/widget/widgets/tips-widget/tips-widget.widget";
 import { TipsWidgetWidgetEditComponent } from "./widget-builder/components/widgets/tips-widget/tips-widget-edit.component";
+import { FacetsWidget } from "./core/widget/widgets/facets-widget/facets-widget.widget";
+import { FacetsWidgetWidgetEditComponent } from "./widget-builder/components/widgets/facets-widget/facets-widget-edit.component";
 
 /**
  * AoT requires an exported function for factories
@@ -72,6 +74,7 @@ export class AppModule {
     widgetTypeRegistry.register('search-results', 'Search results', SearchResultsWidget, SearchResultsWidgetEditComponent);
     widgetTypeRegistry.register('html', 'HTML', HtmlWidget, HtmlWidgetWidgetEditComponent);
     widgetTypeRegistry.register('tips', 'Tips', TipsWidget, TipsWidgetWidgetEditComponent);
+    widgetTypeRegistry.register('facets', 'Facets', FacetsWidget, FacetsWidgetWidgetEditComponent);
 
     // Register layouts
     layoutTypeRegistry.register('2col-sidebar-left', 'Two col sidebar left', TwoColSidebarLeftLayout, TwoColSidebarLeftLayoutComponent);
