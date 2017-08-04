@@ -34,6 +34,7 @@ import { FacetsWidgetPreviewComponent } from "./components/widgets/facets-widget
 import { WidgetBuilderRoutingModule } from "./widget-builder-routing.module";
 import { AddPageComponent } from "./components/add-page/add-page.component";
 import {TemplatePreviewModalComponent} from "./components/add-page/preview/template-preview-modal.component";
+import { CoreModule } from "../core/core.module";
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import {TemplatePreviewModalComponent} from "./components/add-page/preview/templ
   ],
   imports: [
     WidgetBuilderRoutingModule,
+    CoreModule,
     CommonModule,
     FormsModule,
     DragulaModule,

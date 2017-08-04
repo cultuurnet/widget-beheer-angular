@@ -205,6 +205,22 @@
                                     <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_ICON_UITPAS" | translate }}</span>
                                 </label>
                             </div>
+                            <div formGroupName="description">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_DESCRIPTION" | translate }}</span>
+                                </label>
+                                <div *ngIf="settings.detail_page.description.enabled">
+                                    <div>
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_DESCRIPTION_LABEL" | translate }}</label>
+                                        <input type="text" formControlName="label">
+                                    </div>
+                                    <div>
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_DESCRIPTION_NUM_CHARACTERS" | translate }}</label>
+                                        <input type="number" formControlName="characters" step="1" />
+                                    </div>
+                                </div>
+                            </div>
                             <div formGroupName="when">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
@@ -296,8 +312,10 @@
                     <ngb-panel id="extra_parameters">
                         <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_PANEL_TITLE_EXTRA_PARAMETERS" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
-                            <!-- todo: Add querybuilder -->
-                            Querybuilder
+                            <div formGroupName="search_params">
+                                <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_QUERY" | translate }}</label>
+                                <input type="text" formControlName="query">
+                            </div>
                         </ng-template>
                     </ngb-panel>
                 </ngb-accordion>

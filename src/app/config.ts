@@ -66,6 +66,205 @@ export class Config {
           },
           'content': {
             'widgets': [
+              {
+                'id': '3c6ae3ef-cc96-4e15-880b-a4a5b5289fef',
+                'type': 'facets',
+                'name': 'Zoekverfijningen',
+                'settings': {
+                  'search_results': 'c039e4b6-3d61-1c2a-d028-4606fa56c4c9',
+                  'filters': {
+                    'what': true,
+                    'where': true,
+                    'when': false,
+                  },
+                  'group_filters': {
+                    'enabled': true,
+                    'filters': [
+                      {
+                        'label': 'Group filter label',
+                        'type': 'link',
+                        'options': [
+                          {
+                            'label': 'Gent',
+                            'query': 'zip=9000'
+                          },
+                        ]
+                      },
+                      {
+                        'label': 'Some custom label',
+                        'type': 'link',
+                        'options': [
+                          {
+                            'label': 'Gent',
+                            'query': 'zip=9000'
+                          },
+                        ]
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                'id': 'c039e4b6-3d61-1c2a-d028-4606fa56c4c9',
+                'type': 'search-results',
+                'name': 'Zoekresultaten',
+                'settings': {
+                  'general': {
+                    'current_search': true,
+                  },
+                  'items': {
+                    'icon_vlieg': {
+                      'enabled': true
+                    },
+                    'icon_uitpas': {
+                      'enabled': true
+                    },
+                    'description': {
+                      'enabled': true,
+                      'characters': 200
+                    },
+                    'when': {
+                      'enabled': false,
+                      'label': 'Wanneer'
+                    },
+                    'where': {
+                      'enabled': true,
+                      'label': 'Waar'
+                    },
+                    'age': {
+                      'enabled': true,
+                      'label': 'Leeftijd'
+                    },
+                    'language_icons': {
+                      'enabled': false
+                    },
+                    'image': {
+                      'enabled': true,
+                      'width': 100,
+                      'height': 80,
+                      'default_image': true,
+                      'position': 'left'
+                    },
+                    'labels': {
+                      'enabled': false,
+                      'limit_labels': {
+                        'enabled': false,
+                      }
+                    },
+                    'read_more': {
+                      'enabled': true,
+                      'label': 'Lees verder'
+                    },
+                  },
+                  'detail_page': {
+                    'price_information': true,
+                    'share_buttons': true,
+                    'back_button': {
+                      'enabled': true,
+                      'label': 'Volledig aanbod'
+                    },
+                    'icon_vlieg': {
+                      'enabled': true
+                    },
+                    'icon_uitpas': {
+                      'enabled': true
+                    },
+                    'description': {
+                      'enabled': true,
+                      'characters': 200
+                    },
+                    'when': {
+                      'enabled': false,
+                      'label': 'Wanneer'
+                    },
+                    'where': {
+                      'enabled': true,
+                      'label': 'Waar'
+                    },
+                    'age': {
+                      'enabled': true,
+                      'label': 'Leeftijd'
+                    },
+                    'language_icons': {
+                      'enabled': false
+                    },
+                    'image': {
+                      'enabled': true,
+                      'width': 100,
+                      'height': 80,
+                      'default_image': true,
+                      'position': 'left'
+                    },
+                    'labels': {
+                      'enabled': false,
+                      'limit_labels': {
+                        'enabled': false,
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                'id': 'my-id',
+                'type': 'tips',
+                'name': 'My custom name',
+                'settings': {
+                  'general': {
+                    'items': 3,
+                    'detail_link': {
+                      'enabled': false,
+                      'cbdid': 'query_string'
+                    }
+                  },
+                  'items': {
+                    'icon_vlieg': {
+                      'enabled': true
+                    },
+                    'icon_uitpas': {
+                      'enabled': true
+                    },
+                    'description': {
+                      'enabled': true,
+                      'characters': 200
+                    },
+                    'when': {
+                      'enabled': false,
+                      'label': 'Wanneer'
+                    },
+                    'where': {
+                      'enabled': true,
+                      'label': 'Waar'
+                    },
+                    'age': {
+                      'enabled': true,
+                      'label': 'Leeftijd'
+                    },
+                    'language_icons': {
+                      'enabled': false
+                    },
+                    'image': {
+                      'enabled': true,
+                      'width': 100,
+                      'height': 80,
+                      'default_image': true,
+                      'position': 'left'
+                    },
+                    'labels': {
+                      'enabled': false,
+                      'limit_labels': {
+                        'enabled': false,
+                      }
+                    },
+                    'read_more': {
+                      'enabled': true,
+                      'label': 'Lees verder'
+                    },
+                  },
+                  'search_params': {
+                    'query': '?=somevar'
+                  }
+                }
+              }
             ]
           }
         }

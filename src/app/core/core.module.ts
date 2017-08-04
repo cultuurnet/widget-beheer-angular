@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from "@angular/common
 import { BrowserModule } from "@angular/platform-browser";
 import { ApiRequestInterceptor } from "./api-request-interceptor";
 import { StaticCache } from "./static-cache";
+import { SafeHTMLPipe } from "./safe-html.pipe";
 
 @NgModule({
   providers: [
@@ -42,10 +43,12 @@ import { StaticCache } from "./static-cache";
     NgbModalModule
   ],
   exports: [
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    SafeHTMLPipe
   ],
   declarations: [
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    SafeHTMLPipe
   ],
   entryComponents: [
     ConfirmationModalComponent

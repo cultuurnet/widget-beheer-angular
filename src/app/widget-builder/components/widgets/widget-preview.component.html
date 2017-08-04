@@ -12,8 +12,7 @@
             <div class="preview-throbber" *ngIf="isRendering">
                 <i class="fa fa-cog fa-spin fa-fw"></i>
             </div>
-            <div class="preview-content" *ngIf="widgetPreview">
-                {{ widgetPreview }}
+            <div class="preview-content" *ngIf="widgetPreview" [innerHTML]="widgetPreview | safeHTML">
             </div>
         </div>
 
