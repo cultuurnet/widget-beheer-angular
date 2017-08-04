@@ -31,6 +31,7 @@ import { HtmlWidgetWidgetEditComponent } from "./components/widgets/html-widget/
 import { OneColLayoutComponent } from "./components/layouts/one-col/one-col-layout.component";
 import { TipsWidgetWidgetEditComponent } from "./components/widgets/tips-widget/tips-widget-edit.component";
 import { TipsWidgetPreviewComponent } from "./components/widgets/tips-widget/tips-widget-preview.component";
+import { CoreModule } from "../core/core.module";
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { TipsWidgetPreviewComponent } from "./components/widgets/tips-widget/tip
     WidgetBuilderComponent
   ],
   imports: [
+    CoreModule,
     CommonModule,
     FormsModule,
     DragulaModule,

@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { AbstractWidgetEditComponent } from "../../../../core/widget/components/abstract-widget-edit-component";
 import { FormBuilder } from "@angular/forms";
-import { ckeditorConfig } from "../../../constants/ckeditor-config";
 import { WidgetBuilderService } from "../../../services/widget-builder.service";
 import * as _ from "lodash";
 
@@ -12,11 +11,6 @@ import * as _ from "lodash";
   templateUrl: './tips-widget-edit.component.html'
 })
 export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
-
-  /**
-   * Config for the ckdeditor in this component
-   */
-  public ckeditorConfig: any = ckeditorConfig;
 
   /**
    * The available image positions for the list items
@@ -33,7 +27,7 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
   ];
 
   /**
-   * HtmlWidgetEditComponent constructor
+   * TipsWidgetWidgetEditComponent constructor
    */
   constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
     super(formBuilder);
@@ -97,6 +91,9 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'items.read_more.enabled', '')],
           label: [_.get(this.widget.settings, 'items.read_more.label', '')]
         }),
+      }),
+      search_params: this.formBuilder.group({
+        query: [_.get(this.widget.settings, 'search_params.query', '')]
       })
     });
   }
@@ -108,6 +105,7 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
     // Apply all values to the model
     _.set(this.settings, 'general', _.get(values, 'general', {}));
     _.set(this.settings, 'items', _.get(values, 'items', {}));
+    _.set(this.settings, 'search_params', _.get(values, 'search_params', {}));
 
     this.widgetBuilderService.saveWigetPage(this.widget.id);
   }
