@@ -165,7 +165,7 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
     _.set(this.settings, 'detail_page', _.get(values, 'detail_page', {}));
     _.set(this.settings, 'search_params', _.get(values, 'search_params', {}));
 
-    this.widgetBuilderService.saveWigetPage(this.widget.id);    
+    this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
 
   /**

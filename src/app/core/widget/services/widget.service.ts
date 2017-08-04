@@ -44,7 +44,7 @@ export class WidgetService {
       requestOptions.params.set('render', widgetId);
     }
 
-    return this.http.put(environment.apiUrl + 'test', widgetPage, requestOptions).do<WidgetSaveResponse>(widgetSaveReponse => {
+    return this.http.put(environment.apiUrl + 'project/' + widgetPage.project_id + '/widget-page', widgetPage, requestOptions).do<WidgetSaveResponse>(widgetSaveReponse => {
       // Cache the response
       this.cache.put('widgetPage', [widgetSaveReponse.widgetPage.id], this.widgetPageFactory.create(widgetSaveReponse.widgetPage))
     });

@@ -15,9 +15,10 @@ export class ApiRequestInterceptor implements HttpInterceptor {
    */
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const requestURI = URI(req.url);
+    const apiURI = URI(environment.apiUrl);
 
     // Only act on widget API requests
-    if (requestURI.host() === environment.apiUrl) {
+    if (requestURI.host() === apiURI.host()) {
       const credReq = req.clone({withCredentials: true});
       return next.handle(credReq);
     }
