@@ -168,6 +168,10 @@ export class Config {
                     'icon_uitpas': {
                       'enabled': true
                     },
+                    'description': {
+                      'enabled': true,
+                      'characters': 200
+                    },
                     'when': {
                       'enabled': false,
                       'label': 'Wanneer'
