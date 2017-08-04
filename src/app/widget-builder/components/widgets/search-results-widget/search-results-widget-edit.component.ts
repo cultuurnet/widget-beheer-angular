@@ -1,6 +1,9 @@
 import { Component } from "@angular/core";
 import { AbstractWidgetEditComponent } from "../../../../core/widget/components/abstract-widget-edit-component";
 import { FormBuilder } from "@angular/forms";
+import { ckeditorConfig } from "../../../constants/ckeditor-config";
+import * as _ from "lodash";
+import { WidgetBuilderService } from "../../../services/widget-builder.service";
 
 /**
  * Search results widget edit form component.
@@ -11,10 +14,158 @@ import { FormBuilder } from "@angular/forms";
 export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponent {
 
   /**
+   * Config for the ckdeditor in this component
+   */
+  public ckeditorConfig: any = ckeditorConfig;
+
+  /**
+   * The available image positions for the list items
+   */
+  public imagePositions: any = [
+    {
+      label: 'Left',
+      value: 'left'
+    },
+    {
+      label: 'Right',
+      value: 'right',
+    }
+  ];
+
+  /**
    * SearchResultsWidgetEditComponent constructor
    */
-  constructor(public formBuilder: FormBuilder) {
+  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
     super(formBuilder);
+  }
+
+  /**
+   * @inheritDoc
+   */
+  protected buildForm() {
+    this.widgetEditForm = this.formBuilder.group({
+      general: this.formBuilder.group({
+        current_search: [_.get(this.settings, 'general.current_search')]
+      }),
+      header: this.formBuilder.group({
+        body: [_.get(this.settings, 'header.body', '')]
+      }),
+      items: this.formBuilder.group({
+        icon_vlieg: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.icon_vlieg.enabled', '')]
+        }),
+        icon_uitpas: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.icon_uitpas.enabled', '')]
+        }),
+        description: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.description.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.description.label', '')],
+          characters: [_.get(this.widget.settings, 'items.description.characters', '')]
+        }),
+        when: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.when.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.when.label', '')]
+        }),
+        where: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.where.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.where.label', '')]
+        }),
+        age: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.age.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.age.label', '')]
+        }),
+        language_icons: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.language_icons.enabled', '')]
+        }),
+        image: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.image.enabled', '')],
+          width: [_.get(this.widget.settings, 'items.image.width', '')],
+          height: [_.get(this.widget.settings, 'items.image.height', '')],
+          default_image: [_.get(this.widget.settings, 'items.image.default_image', '')],
+          position: [_.get(this.widget.settings, 'items.image.position', '')]
+        }),
+        labels: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.labels.enabled', '')],
+          limit_labels: this.formBuilder.group({
+            enabled: [_.get(this.widget.settings, 'items.limit_labels.enabled', '')],
+            labels: [_.get(this.widget.settings, 'items.limit_labels.labels', '')]
+          }),
+        }),
+        read_more: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.read_more.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.read_more.label', '')]
+        }),
+      }),
+      detail_page: this.formBuilder.group({
+        map: [_.get(this.widget.settings, 'detail_page.map', '')],
+        price_information: [_.get(this.widget.settings, 'detail_page.price_information', '')],
+        language_switcher: [_.get(this.widget.settings, 'detail_page.language_switcher', '')],
+        uitpas_benefits: [_.get(this.widget.settings, 'detail_page.uitpas_benefits', '')],
+        share_buttons: [_.get(this.widget.settings, 'detail_page.share_buttons', '')],
+        back_button: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.back_button.enabled', '')],
+          label: [_.get(this.widget.settings, 'detail_page.back_button.label', '')],
+          url: [_.get(this.widget.settings, 'detail_page.back_button.url', '')]
+        }),
+        icon_vlieg: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.icon_vlieg.enabled', '')]
+        }),
+        icon_uitpas: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.icon_uitpas.enabled', '')]
+        }),
+        description: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.description.enabled', '')],
+          label: [_.get(this.widget.settings, 'detail_page.description.label', '')],
+          characters: [_.get(this.widget.settings, 'detail_page.description.characters', '')]
+        }),
+        when: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.when.enabled', '')],
+          label: [_.get(this.widget.settings, 'detail_page.when.label', '')]
+        }),
+        where: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.where.enabled', '')],
+          label: [_.get(this.widget.settings, 'detail_page.where.label', '')]
+        }),
+        age: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'idetail_pagetems.age.enabled', '')],
+          label: [_.get(this.widget.settings, 'detail_page.age.label', '')]
+        }),
+        language_icons: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.language_icons.enabled', '')]
+        }),
+        image: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.image.enabled', '')],
+          width: [_.get(this.widget.settings, 'detail_page.image.width', '')],
+          height: [_.get(this.widget.settings, 'detail_page.image.height', '')],
+          default_image: [_.get(this.widget.settings, 'detail_page.image.default_image', '')],
+          position: [_.get(this.widget.settings, 'detail_page.image.position', '')]
+        }),
+        labels: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.labels.enabled', '')],
+          limit_labels: this.formBuilder.group({
+            enabled: [_.get(this.widget.settings, 'detail_page.limit_labels.enabled', '')],
+            labels: [_.get(this.widget.settings, 'detail_page.limit_labels.labels', '')]
+          }),
+        }),
+      }),
+      search_params: this.formBuilder.group({
+        query: [_.get(this.widget.settings, 'search_params.query', '')]
+      })
+    });
+  }
+
+  /**
+   * @inheritDoc
+   */
+  protected applyValuesToModel(values: any) {
+    // Apply all values to the model
+    _.set(this.settings, 'general', _.get(values, 'general', {}));
+    _.set(this.settings, 'header', _.get(values, 'header', {}));
+    _.set(this.settings, 'items', _.get(values, 'items', {}));
+    _.set(this.settings, 'detail_page', _.get(values, 'detail_page', {}));
+    _.set(this.settings, 'search_params', _.get(values, 'search_params', {}));
+
+    this.widgetBuilderService.saveWigetPage(this.widget.id);
   }
 
 }
