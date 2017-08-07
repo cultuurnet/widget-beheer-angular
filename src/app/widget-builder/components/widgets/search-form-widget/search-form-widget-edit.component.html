@@ -1,14 +1,10 @@
 
-<div class="p-4 sidebar-info">
-    <h2>{{ "TITLE_SEARCH_FORM_EDIT_FORM" | translate }}</h2>
-    <div class="selected-element">
-        <p><i class="fa fa-crosshairs"></i>
-            <code>#zoekbox-13</code>
-        </p>
-    </div>
+<div class="selected-element">
+    <p>{{ "LABEL_SELECTED_ELEMENT" | translate }}: <br>
+        <i class="fa fa-crosshairs"></i>
+        <input type="text" [(ngModel)]="widget.name" (ngModelChange)="handleWidgetNameChanged($event)"/>
+    </p>
 </div>
-
-
 
 <ngb-tabset>
     <ngb-tab>

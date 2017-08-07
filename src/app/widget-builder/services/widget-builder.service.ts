@@ -5,6 +5,7 @@ import { WidgetPage } from "../../core/widget/widget-page";
 import { WidgetService } from "../../core/widget/services/widget.service";
 import { WidgetPreview } from "../components/widgets/widget-preview";
 import * as debouncePromise from "debounce-promise"
+import { TranslateService } from "@ngx-translate/core";
 
 /**
  * The widgetbuilder service.
@@ -53,8 +54,9 @@ export class WidgetBuilderService {
   /**
    * WidgetBuilderService constructor
    * @param widgetService
+   * @param translateService
    */
-  constructor(private widgetService: WidgetService) {
+  constructor(private widgetService: WidgetService, private translateService: TranslateService) {
     // Debounce all widgetpage save calls for 500ms
     this.debounceWidgetPageSave = debouncePromise(this.widgetPageSaveDebounced, 500);
   }
@@ -85,7 +87,7 @@ export class WidgetBuilderService {
    *
    * @param widgetId
    */
-  public saveWigetPage(widgetId?: string) {
+  public saveWidgetPage(widgetId?: string) {
     let _self = this;
 
     if (widgetId) {
@@ -97,7 +99,7 @@ export class WidgetBuilderService {
       if (widgetId) {
         _self.widgetPreview.next({
           widgetId: widgetId,
-          content: response['content']
+          content: response['preview']
         });
       }
     }).catch((ex) => {
@@ -113,11 +115,12 @@ export class WidgetBuilderService {
   private widgetPageSaveDebounced(widgetId?: string) {
     return new Promise((resolve, reject) => {
       // Debounce the widget page save
-      this.widgetService.saveWidgetPage(this.widgetPage, widgetId).then(response => {
-        resolve(response);
-      }).catch((ex) => {
-        console.error('Error saving the widget page', ex);
-      });
+      this.widgetService.saveWidgetPage(this.widgetPage, widgetId).subscribe(
+        response => {
+          resolve(response);
+        },
+        error => console.error('Error saving the widget page', error)
+      );
     });
   }
 
@@ -151,6 +154,36 @@ export class WidgetBuilderService {
     this.widgetPreview.next({
       widgetId: widgetId,
       content: '',
+    });
+  }
+
+  /**
+   * Generate a widget name
+   * @param widgetType
+   * @return Promise
+   */
+  public generateWidgetName(widgetType: any) {
+    // Get the widget type count
+    let numWidgets = 1;
+    for (let rowKey in this.widgetPage.rows) {
+      if (this.widgetPage.rows.hasOwnProperty(rowKey)) {
+        for (let regionId in this.widgetPage.rows[rowKey].regions) {
+          if (this.widgetPage.rows[rowKey].regions.hasOwnProperty(regionId)) {
+            for (let widget of this.widgetPage.rows[rowKey].regions[regionId].widgets) {
+              if (widget.type === widgetType.type) {
+                numWidgets++;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Because of the translation being async, a promise is returned
+    return new Promise((resolve) => {
+      this.translateService.get(widgetType.label).subscribe((name: string) => {
+        resolve(name.toLowerCase() + '-' + numWidgets);
+      });
     });
   }
 

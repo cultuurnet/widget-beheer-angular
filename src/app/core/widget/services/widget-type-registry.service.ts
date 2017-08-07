@@ -1,7 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { Widget } from '../widget';
 import { AbstractWidgetEditComponent } from "../components/abstract-widget-edit-component";
-import { WidgetService } from "./widget.service";
 import * as deepmerge from 'deepmerge';
 import * as _ from "lodash";
 
@@ -18,12 +17,6 @@ export class WidgetTypeRegistry {
   public widgetTypes: any = {};
 
   /**
-   * WidgetTypeRegistry constructor
-   */
-  constructor(private widgetService: WidgetService) {
-  }
-
-  /**
    * Register a new widget type.
    * @param id
    * @param label
@@ -37,21 +30,6 @@ export class WidgetTypeRegistry {
       editComponent: editComponent,
       defaultSettings: {}
     };
-  }
-
-  /**
-   * Load the widget default settings onto the registered widgets
-   */
-  public loadWidgetDefaultSettings() {
-    this.widgetService.getWidgetDefaultSettings().subscribe(
-        defaultSettings => {
-          for (let widgetType in defaultSettings) {
-            if (defaultSettings.hasOwnProperty(widgetType) &&  this.widgetTypes.hasOwnProperty(widgetType)) {
-              this.widgetTypes[widgetType].defaultSettings = defaultSettings[widgetType];
-            }
-          }
-      },
-    );
   }
 
   /**
@@ -83,6 +61,7 @@ export class WidgetTypeRegistry {
 
         return new this.widgetTypes[type].widget({
           id: _.get(values, 'id'),
+          name: _.get(values, 'name'),
           type: type,
           settings: deepmerge.all([defaultSettings, _.get(values, 'settings', {})], {clone: true})
         });

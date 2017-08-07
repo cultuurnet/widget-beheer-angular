@@ -31,6 +31,8 @@ export class PageTemplateRegistry {
     if (this.pageTemplates.hasOwnProperty(id)) {
       return this.pageTemplates[id];
     }
+
+    return false;
   }
 
 }

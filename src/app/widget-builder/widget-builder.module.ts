@@ -11,7 +11,6 @@ import { RowLayoutDirective } from 'app/widget-builder/directives/row-layout.dir
 import { WidgetBuilderService } from "./services/widget-builder.service";
 import { TranslateModule } from "@ngx-translate/core";
 import { TwoColSidebarLeftLayoutComponent } from "./components/layouts/2col-sidebar-left/2col-sidebar-left-layout.component";
-import { FullWidthLayoutComponent } from "./components/layouts/full-width/full-width-layout.component";
 import { SearchFormWidgetEditComponent } from "./components/widgets/search-form-widget/search-form-widget-edit.component";
 import { SearchResultsWidgetEditComponent } from "app/widget-builder/components/widgets/search-results-widget/search-results-widget-edit.component";
 import { TwoColSidebarRightLayoutComponent } from "./components/layouts/2col-sidebar-right/2col-sidebar-right-layout.component";
@@ -21,14 +20,21 @@ import { RowEditComponent } from "./components/row-edit/row-edit.component";
 import { ViewModeSwitcherComponent } from "./components/view-mode-switcher/view-mode-switcher.component";
 import { WidgetPreviewComponent } from "./components/widgets/widget-preview.component";
 import { WidgetGroupFiltersEditComponent } from "./components/widgets/group-filters/widget-group-filters-edit.component";
-import { WidgetGroupFiltersGroupEditComponent } from "./components/widgets/group-filters/widget-group-filters-group-edit.component";
-import { WidgetGroupFiltersGroupOptionEditComponent } from "./components/widgets/group-filters/widget-group-filters-group-option-edit.component";
 import { SearchResultsWidgetPreviewComponent } from "./components/widgets/search-results-widget/search-results-widget-preview.component";
 import { SearchFormWidgetPreviewComponent } from "./components/widgets/search-form-widget/search-form-widget-preview.component";
 import { WidgetPreviewDirective } from "./directives/widget-preview.directive";
 import { CKEditorModule } from "ng2-ckeditor";
 import { HtmlWidgetPreviewComponent } from "./components/widgets/html-widget/html-widget-preview.component";
 import { HtmlWidgetWidgetEditComponent } from "./components/widgets/html-widget/html-widget-edit.component";
+import { OneColLayoutComponent } from "./components/layouts/one-col/one-col-layout.component";
+import { TipsWidgetWidgetEditComponent } from "./components/widgets/tips-widget/tips-widget-edit.component";
+import { TipsWidgetPreviewComponent } from "./components/widgets/tips-widget/tips-widget-preview.component";
+import { FacetsWidgetWidgetEditComponent } from "./components/widgets/facets-widget/facets-widget-edit.component";
+import { FacetsWidgetPreviewComponent } from "./components/widgets/facets-widget/facets-widget-preview.component";
+import { WidgetBuilderRoutingModule } from "./widget-builder-routing.module";
+import { AddPageComponent } from "./components/add-page/add-page.component";
+import { TemplatePreviewModalComponent } from "./components/add-page/preview/template-preview-modal.component";
+import { CoreModule } from "../core/core.module";
 
 @NgModule({
   declarations: [
@@ -42,24 +48,30 @@ import { HtmlWidgetWidgetEditComponent } from "./components/widgets/html-widget/
     AddRowComponent,
     RowPreviewComponent,
     RowEditComponent,
-    FullWidthLayoutComponent,
+    OneColLayoutComponent,
     TwoColSidebarLeftLayoutComponent,
     TwoColSidebarRightLayoutComponent,
     ThreeColDoubleSidebarLayoutComponent,
     ViewModeSwitcherComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
-    WidgetGroupFiltersGroupEditComponent,
-    WidgetGroupFiltersGroupOptionEditComponent,
     SearchResultsWidgetPreviewComponent,
     SearchFormWidgetPreviewComponent,
     HtmlWidgetWidgetEditComponent,
-    HtmlWidgetPreviewComponent
+    HtmlWidgetPreviewComponent,
+    TipsWidgetWidgetEditComponent,
+    TipsWidgetPreviewComponent,
+    FacetsWidgetWidgetEditComponent,
+    FacetsWidgetPreviewComponent,
+    AddPageComponent,
+    TemplatePreviewModalComponent
   ],
   exports: [
     WidgetBuilderComponent
   ],
   imports: [
+    WidgetBuilderRoutingModule,
+    CoreModule,
     CommonModule,
     FormsModule,
     DragulaModule,
@@ -77,16 +89,19 @@ import { HtmlWidgetWidgetEditComponent } from "./components/widgets/html-widget/
     TwoColSidebarLeftLayoutComponent,
     TwoColSidebarRightLayoutComponent,
     ThreeColDoubleSidebarLayoutComponent,
-    FullWidthLayoutComponent,
+    OneColLayoutComponent,
     ViewModeSwitcherComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
-    WidgetGroupFiltersGroupEditComponent,
-    WidgetGroupFiltersGroupOptionEditComponent,
     SearchResultsWidgetPreviewComponent,
     SearchFormWidgetPreviewComponent,
     HtmlWidgetWidgetEditComponent,
-    HtmlWidgetPreviewComponent
+    HtmlWidgetPreviewComponent,
+    TipsWidgetWidgetEditComponent,
+    TipsWidgetPreviewComponent,
+    FacetsWidgetWidgetEditComponent,
+    FacetsWidgetPreviewComponent,
+    TemplatePreviewModalComponent
   ]
 })
 

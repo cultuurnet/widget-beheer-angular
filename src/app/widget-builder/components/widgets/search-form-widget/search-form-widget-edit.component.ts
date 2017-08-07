@@ -88,6 +88,14 @@ export class SearchFormWidgetEditComponent extends AbstractWidgetEditComponent {
     _.set(this.settings, 'fields.time.date_search', _.get(values, 'time.date_search', {}));
     _.set(this.settings, 'footer', _.get(values, 'footer', {}));
 
-    this.widgetBuilderService.saveWigetPage(this.widget.id);
+    this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
+
+  /**
+   * @inheritDoc
+   */
+  protected handleWidgetNameChanged(name: string) {
+    this.widgetBuilderService.saveWidgetPage(this.widget.id);
+  }
+
 }

@@ -1,5 +1,5 @@
 <div class="row-add">
-  <span class="dropdown" ngbDropdown up="true">
+  <span class="dropdown" ngbDropdown [up]="true">
     <button class="btn btn-default btn-sm dropdown-toggle" type="button" ngbDropdownToggle (click)="dropToggleClick($event)">
       <i class="fa fa-plus-square-o fa-2x" aria-hidden="true"></i> <span class="dropdown-toggle--text"> {{ "BUTTON_ADD_ROW" | translate}}</span>
     </button>
