@@ -19,6 +19,7 @@ export class WidgetPageFactory {
    * @returns {WidgetPage}
    */
   create(jsonObject: any) {
+    console.log(jsonObject);
     let widgetPage = new WidgetPage({
       project_id: _.get(jsonObject, 'project_id', ''),
       title:  _.get(jsonObject, 'title', ''),
