@@ -19,9 +19,10 @@ export class WidgetPageResolver implements Resolve<Object> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<WidgetPage> {
-    const id = route.paramMap.get('page_id');
+    const page_id = route.paramMap.get('page_id');
+    const project_id = route.paramMap.get('project_id');
 
-    return this.widgetService.getWidgetPage(id).map((widgetPage: WidgetPage) => {
+    return this.widgetService.getWidgetPage(project_id, page_id).map((widgetPage: WidgetPage) => {
       return widgetPage;
     }).catch(() => {
       this.router.navigate(['/']);

@@ -173,5 +173,14 @@
   "ADD_PAGE_SELECT_TEMPLATE_BUTTON": "Kiezen",
   "ADD_PAGE_PREVIEW_BUTTON": "Voorbeeld",
   "TEMPLATE_PREVIEW_SELECT_BUTTON": "Kiezen",
-  "TEMPLATE_PREVIEW_CANCEL_BUTTON": "Annuleren"
+  "TEMPLATE_PREVIEW_CANCEL_BUTTON": "Annuleren",
+  "REMOVE_WIDGET_PAGE_MODAL_TITLE": "Widget verwijderen",
+  "REMOVE_WIDGET_PAGE_MODAL_MESSAGE": "Weet je zeker dat je deze widget wil verwijderen?",
+  "DUPLICATE_WIDGET_PAGE_FAILED_NOTIFICATION": "Er ging iets mis bij het dupliceren. Probeer het later opnieuw.",
+  "REMOVE_WIDGET_PAGE_FAILED_NOTIFICATION": "Er ging iets mis bij het verwijderen. Probeer het later opnieuw.",
+  "BUTTON_COPY_TO_CLIPBOARD": "Kopiëren naar klembord",
+  "BUTTON_COPY_TO_CLIPBOARD_SUCCESS": "Gekopieerd naar klembord",
+  "BUTTON_BACK_TO_PROJECTAANVRAAG_DASHBOARD": "Projectaanvragen",
+  "TITLE_WIDGET_PAGE_LIST_LEGACY_VERSION": "Oude versie",
+  "TITLE_WIDGET_PAGE_LIST_NEW_VERSION": "Nieuwe versie"
 }

@@ -28,6 +28,11 @@ export class WidgetPage {
   public version: number;
 
   /**
+   * The wiget page css
+   */
+  public css: any;
+
+  /**
    * The widget page rows
    */
   rows: Array<Layout> = [];

@@ -1,3 +1,4 @@
+<button (click)="backToDashboard()" class="btn btn-secondary"><i class="fa fa-chevron-left"></i> {{ "BUTTON_BACK_TO_PROJECTAANVRAAG_DASHBOARD" | translate }}</button>
 <h1>Mijn widgets</h1>
 <button class="btn btn-primary" [routerLink]="['/project', project.id, 'page', 'add']">Nieuwe widget maken</button>
 <div class="container-fluid">
@@ -10,10 +11,8 @@
         <button (click)="deleteWidgetPage(widgetPage)" class="btn btn-link">Verwijderen</button>
       </div>
       <div class="card-block">
-        <div class="highlight">
-          <p><code>&lt;script type="text/javascript" src="http://tools.uitdatabank.be/widgets/layout/2909.js"&gt;&lt;/script&gt;</code></p>
-          <button class="btn btn-secondary">Kopieer naar klembord</button>
-        </div>
+        <p><code>{{ getWidgetPageUrl(widgetPage, true) }}</code></p>
+        <app-clipboard-button [content]="getWidgetPageUrl(widgetPage, true)"></app-clipboard-button>
       </div>
     </div>
   </div>
@@ -28,10 +27,13 @@
         <button class="btn btn-secondary float-left" style="margin-left: 20px;">Upgrade aanvragen</button>
       </div>
       <div class="card-block">
-        <div class="highlight">
-          <p><code>&lt;script type="text/javascript" src="http://tools.uitdatabank.be/widgets/layout/2909.js"&gt;&lt;/script&gt;</code></p>
-          <button class="btn btn-secondary">Kopieer naar klembord</button>
-        </div>
+        <h4>{{ "TITLE_WIDGET_PAGE_LIST_LEGACY_VERSION" | translate }}</h4>
+        <p><code>{{ getWidgetPageUrl(widgetPage, true) }}</code></p>
+        <app-clipboard-button [content]="getWidgetPageUrl(widgetPage, true)"></app-clipboard-button>
+
+        <h4>{{ "TITLE_WIDGET_PAGE_LIST_NEW_VERSION" | translate }}</h4>
+        <p><code>{{ getWidgetPageUrl(widgetPage, true, true) }}</code></p>
+        <app-clipboard-button [content]="getWidgetPageUrl(widgetPage, true, true)"></app-clipboard-button>
       </div>
     </div>
   </div>

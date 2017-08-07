@@ -7,6 +7,8 @@ import { Project } from "../../../core/project/project";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationModalComponent } from "app/core/modal/components/confirmation-modal.component";
 import { ToastyService } from "ng2-toasty";
+import { TranslateService } from "@ngx-translate/core";
+import { environment } from "../../../../environments/environment";
 
 /**
  * Displays a list of pages for a project.
@@ -16,11 +18,6 @@ import { ToastyService } from "ng2-toasty";
   templateUrl: './page-list.component.html',
 })
 export class PageListComponent implements OnInit {
-
-  /**
-   * The current widget version
-   */
-  private currentWidgetVersion: number = 3;
 
   /**
    * Array containing all widget pages with the latest version
@@ -44,13 +41,16 @@ export class PageListComponent implements OnInit {
    * @param toastyService
    * @param route
    * @param router
+   * @param translateService
    */
   constructor(
     private widgetService: WidgetService,
     private modalService: NgbModal,
     private toastyService: ToastyService,
-    private route: ActivatedRoute, private router: Router)
-  { }
+    private route: ActivatedRoute,
+    private router: Router,
+    private translateService: TranslateService
+  ) { }
 
   /**
    * @inheritDoc
@@ -62,11 +62,11 @@ export class PageListComponent implements OnInit {
 
         // Filter the widget pages by version
         this.widgetPages = _.filter (data.widgetPages, function(widgetPage) {
-          return widgetPage.version >= _self.currentWidgetVersion;
+          return widgetPage.version >= environment.widgetApi.currentVersion;
         });
 
         this.legacyWidgetPages = _.filter (data.widgetPages, function(widgetPage) {
-          return widgetPage.version < _self.currentWidgetVersion;
+          return widgetPage.version < environment.widgetApi.currentVersion;
         });
 
         // Get the project id from the current route
@@ -87,6 +87,8 @@ export class PageListComponent implements OnInit {
       if (widgetSaveResponse.widgetPage) {
         this.router.navigate(['/project', this.project.id, 'page', widgetSaveResponse.widgetPage.id, 'edit']);
       }
+    }, () => {
+      this.toastyService.error(this.translateService.instant('DUPLICATE_WIDGET_PAGE_FAILED_NOTIFICATION'));
     });
   }
 
@@ -105,7 +107,7 @@ export class PageListComponent implements OnInit {
       this.widgetService.deleteWidgetPage(widgetPage).subscribe(() => {
         // Remove the widget from the corresponding array, so the model gets updated
         let widgetPages = this.widgetPages;
-        if (widgetPage.version < this.currentWidgetVersion) {
+        if (widgetPage.version < environment.widgetApi.currentVersion) {
           widgetPages = this.legacyWidgetPages;
         }
 
@@ -113,12 +115,29 @@ export class PageListComponent implements OnInit {
         if (index > -1) {
           widgetPages.splice(index, 1);
         }
-      }, (error) => {
-        this.toastyService.error('It fucking failed');
+      }, () => {
+        this.toastyService.error(this.translateService.instant('REMOVE_WIDGET_PAGE_FAILED_NOTIFICATION'));
       });
     }, (reason) => {
       // Do nothing on modal close
     });
+  }
+
+  /**
+   * Get the embed url/code for the widget page
+   * @param widgetPage
+   * @param tags
+   * @param currentVersion
+   */
+  public getWidgetPageUrl(widgetPage: WidgetPage, tags: boolean = false, currentVersion: boolean = false) {
+    return this.widgetService.getWidgetPageEmbedUrl(widgetPage, tags, currentVersion);
+  }
+
+  /**
+   * Redirect the user back to their projectaanvraag dashboard
+   */
+  public backToDashboard() {
+    return window.location.href = environment.projectaanvraagDashboardUrl;
   }
 
 }

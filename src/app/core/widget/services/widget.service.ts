@@ -11,7 +11,8 @@ import 'rxjs/add/operator/map';
 import { StaticCache } from "../../static-cache";
 
 /**
- * Temporary service that mimics calls that should go to Silex
+ * The widget service handles all request to the widget API
+ * and provides an in-memory caching layer.
  */
 @Injectable()
 export class WidgetService {
@@ -20,7 +21,7 @@ export class WidgetService {
    * The widget API path
    * @type {string}
    */
-  private widgetApiPath: string = 'widget/api/';
+  private widgetApiPath: string = 'widgets/api/';
 
   /**
    * WidgetService constructor.
@@ -50,22 +51,27 @@ export class WidgetService {
       requestOptions.params.set('render', widgetId);
     }
 
-    return this.http.put(environment.apiUrl + this.widgetApiPath + 'test', widgetPage, requestOptions).do<WidgetSaveResponse>(widgetSaveReponse => {
-      // Invalidate the widgetPageList cache for the given project id
-      this.cache.clear('widgetPageList', [widgetPage.project_id]);
+    return this.http.put(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page', widgetPage, requestOptions)
+      .do<WidgetSaveResponse>(widgetSaveReponse => {
+        // Invalidate the widgetPageList cache for the given project id
+        this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
-      // Cache the response
-      this.cache.put('widgetPage', [widgetSaveReponse.widgetPage.id], this.widgetPageFactory.create(widgetSaveReponse.widgetPage))
-    });
+        if (widgetSaveReponse.widgetPage) {
+          // Cache the response
+          this.cache.put('widgetPage', [widgetSaveReponse.widgetPage.id], this.widgetPageFactory.create(widgetSaveReponse.widgetPage));
+        }
+      });
   }
 
   /**
-   * Get a widgetpage
+   * Get a single widget page
+   *
+   * @param project_id
    * @param pageId
    * @param reset
    * @return {Observable<WidgetPage>}
    */
-  public getWidgetPage(pageId: string, reset: boolean = false) {
+  public getWidgetPage(project_id: string, pageId: string, reset: boolean = false) {
     if (!reset) {
       const widgetPage = this.cache.get('widgetPage', [pageId], false);
 
@@ -74,7 +80,7 @@ export class WidgetService {
       }
     }
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'test')
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'project/' + project_id + '/widget-page/' + pageId)
       .map(widgetPage => this.widgetPageFactory.create(widgetPage))
       .do(widgetPage => {
         this.cache.put('widgetPage', [pageId], widgetPage);
@@ -83,10 +89,11 @@ export class WidgetService {
 
   /**
    * Delete a widget page
+   *
    * @param widgetPage
    */
   public deleteWidgetPage(widgetPage: WidgetPage) {
-    return this.http.delete(environment.apiUrl + this.widgetApiPath + 'test')
+    return this.http.delete(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id)
       .do(reponse => {
         // Clear the widgetPageList cache for the given project
         this.cache.clear('widgetPageList', [widgetPage.project_id]);
@@ -98,6 +105,7 @@ export class WidgetService {
 
   /**
    * Get all widgetpages for a project
+   *
    * @param projectId
    * @param reset
    * @return {Observable<Array>}
@@ -223,4 +231,29 @@ export class WidgetService {
       this.cache.put('widgetDefaultSettings', ['settings'], defaultSettings);
     });
   }
+
+  /**
+   * Get the widget page embed url
+   *
+   * @param widgetPage
+   * @param scriptTags
+   * @param currentVersion
+   */
+  public getWidgetPageEmbedUrl(widgetPage: WidgetPage, scriptTags: boolean = false, currentVersion: boolean = false) {
+    let embedUrl = environment.widgetApi.embedUrl.current;
+
+    if (widgetPage.version !== environment.widgetApi.currentVersion && !currentVersion) {
+      embedUrl = environment.widgetApi.embedUrl.legacy;
+    }
+
+    // Replace the :page_id placeholder
+    embedUrl = _.replace(embedUrl, /:page_id/g, widgetPage.id);
+
+    if (scriptTags) {
+      return '<script type="text/javascript" src="'+embedUrl+'"></script>';
+    }
+
+    return embedUrl;
+  }
+
 }
