@@ -58,7 +58,6 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
 
     // Subscribe to changes in the form and reflect them on the widget groupFilters model
     this.formSubscription = this.groupFilterForm.valueChanges.subscribe(values => {
-      console.log(values);
       for (let key in values) {
         if (values.hasOwnProperty(key)) {
           this.groupFilters[key] = values[key];
