@@ -237,10 +237,11 @@ export class WidgetService {
    *
    * @param widgetPage
    * @param scriptTags
+   *  Wrap the url in script tags
    * @param currentVersion
+   *  Force the embed url to the current version
    */
   public getWidgetPageEmbedUrl(widgetPage: WidgetPage, scriptTags: boolean = false, currentVersion: boolean = false) {
-    console.log('url');
     let embedUrl = environment.widgetApi.embedUrl.current;
 
     if (widgetPage.version !== environment.widgetApi.currentVersion && !currentVersion) {

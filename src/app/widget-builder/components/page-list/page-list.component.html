@@ -22,9 +22,8 @@
   </div>
 
   <div *ngIf="legacyWidgetPages.length">
-    <h2>Legacy widgets</h2>
-    <p>Legacy widgets draaien nog op versie 2 van het widgetsplatform. Deze widgets blijven werken, maar je kan ze niet meer aanpassen.<br/> Wil je toch een aanpassing maken, dan moet je eerst een upgrade naar de allerlaatste versie aanvragen.</p>
-
+    <h2>{{ "TITLE_WIDGET_PAGE_LEGACY_WIDGETS_LIST" | translate }}</h2>
+    <p>{{ "WIDGET_PAGE_LIST_LEGACY_WIDGETS_INFO" | translate }}</p>
     <div class="page-list">
       <div *ngFor="let widgetPage of legacyWidgetPages" class="card">
         <div class="card-header">

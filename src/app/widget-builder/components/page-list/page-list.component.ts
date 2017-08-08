@@ -22,12 +22,12 @@ export class PageListComponent implements OnInit {
   /**
    * Array containing all widget pages with the latest version
    */
-  public widgetPages: Array<WidgetPage>;
+  public widgetPages: Array<WidgetPage> = [];
 
   /**
    * Array containing all legacy widget pages
    */
-  public legacyWidgetPages: Array<WidgetPage>;
+  public legacyWidgetPages: Array<WidgetPage> = [];
 
   /**
    * The current project
@@ -58,18 +58,12 @@ export class PageListComponent implements OnInit {
   ngOnInit() {
     this.route.data
       .subscribe((data: { widgetPages: Array<WidgetPage>, project: Project }) => {
-        const _self = this;
+        // Separate legacy and current widgets
+        for (let widgetPage of data.widgetPages) {
+          widgetPage.version >= environment.widgetApi.currentVersion ? this.widgetPages.push(widgetPage) : this.legacyWidgetPages.push(widgetPage);
+        }
 
-        // Filter the widget pages by version
-        this.widgetPages = _.filter (data.widgetPages, function(widgetPage) {
-          return widgetPage.version >= environment.widgetApi.currentVersion;
-        });
-
-        this.legacyWidgetPages = _.filter (data.widgetPages, function(widgetPage) {
-          return widgetPage.version < environment.widgetApi.currentVersion;
-        });
-
-        // Get the project id from the current route
+        // Get the project from the current route
         this.project = data.project;
       });
   }
@@ -79,11 +73,14 @@ export class PageListComponent implements OnInit {
    * @param widgetPage
    */
   public duplicateWidgetPage(widgetPage: WidgetPage) {
+    // Clone the widget page
+    let clone =  _.cloneDeep(widgetPage);
+
     // Remove the widgetPage id
-    widgetPage.id = '';
+    clone.id = '';
 
     // Save the widget page and redirect
-    this.widgetService.saveWidgetPage(widgetPage).subscribe(widgetSaveResponse => {
+    this.widgetService.saveWidgetPage(clone).subscribe(widgetSaveResponse => {
       if (widgetSaveResponse.widgetPage) {
         this.router.navigate(['/project', this.project.id, 'page', widgetSaveResponse.widgetPage.id, 'edit']);
       }
