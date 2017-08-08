@@ -113,6 +113,11 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
         icon_uitpas: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.icon_uitpas.enabled', '')]
         }),
+        description: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.description.enabled', '')],
+          label: [_.get(this.widget.settings, 'detail_page.description.label', '')],
+          characters: [_.get(this.widget.settings, 'detail_page.description.characters', '')]
+        }),
         when: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.when.enabled', '')],
           label: [_.get(this.widget.settings, 'detail_page.when.label', '')]
@@ -142,6 +147,9 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
             labels: [_.get(this.widget.settings, 'detail_page.limit_labels.labels', '')]
           }),
         }),
+      }),
+      search_params: this.formBuilder.group({
+        query: [_.get(this.widget.settings, 'search_params.query', '')]
       })
     });
   }
@@ -155,6 +163,7 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
     _.set(this.settings, 'header', _.get(values, 'header', {}));
     _.set(this.settings, 'items', _.get(values, 'items', {}));
     _.set(this.settings, 'detail_page', _.get(values, 'detail_page', {}));
+    _.set(this.settings, 'search_params', _.get(values, 'search_params', {}));
 
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }

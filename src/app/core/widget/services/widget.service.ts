@@ -50,7 +50,7 @@ export class WidgetService {
     if (widgetId) {
       requestOptions.params.set('render', widgetId);
     }
-
+    
     return this.http.put(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page', widgetPage, requestOptions)
       .do<WidgetSaveResponse>(widgetSaveReponse => {
         // Invalidate the widgetPageList cache for the given project id

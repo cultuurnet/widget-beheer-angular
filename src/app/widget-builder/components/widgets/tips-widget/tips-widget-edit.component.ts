@@ -27,7 +27,7 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
   ];
 
   /**
-   * HtmlWidgetEditComponent constructor
+   * TipsWidgetWidgetEditComponent constructor
    */
   constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
     super(formBuilder);
@@ -91,6 +91,9 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'items.read_more.enabled', '')],
           label: [_.get(this.widget.settings, 'items.read_more.label', '')]
         }),
+      }),
+      search_params: this.formBuilder.group({
+        query: [_.get(this.widget.settings, 'search_params.query', '')]
       })
     });
   }
@@ -102,6 +105,7 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
     // Apply all values to the model
     _.set(this.settings, 'general', _.get(values, 'general', {}));
     _.set(this.settings, 'items', _.get(values, 'items', {}));
+    _.set(this.settings, 'search_params', _.get(values, 'search_params', {}));
 
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }

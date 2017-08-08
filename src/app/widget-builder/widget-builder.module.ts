@@ -74,6 +74,7 @@ import { CoreModule } from "../core/core.module";
   imports: [
     CoreModule,
     WidgetBuilderRoutingModule,
+    CoreModule,
     CommonModule,
     FormsModule,
     DragulaModule,

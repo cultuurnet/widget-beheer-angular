@@ -5,7 +5,6 @@ import { WidgetPage } from "../../core/widget/widget-page";
 import { WidgetService } from "../../core/widget/services/widget.service";
 import { WidgetPreview } from "../components/widgets/widget-preview";
 import * as debouncePromise from "debounce-promise"
-import { WidgetTypeRegistry } from "../../core/widget/services/widget-type-registry.service";
 import { TranslateService } from "@ngx-translate/core";
 
 /**

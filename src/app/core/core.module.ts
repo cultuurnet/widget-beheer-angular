@@ -17,6 +17,7 @@ import { ProjectResolver } from "./route/resolver/project-resolver.service";
 import { WidgetPageResolver } from "./route/resolver/widget-page-resolver.service";
 import { ClipboardModule } from 'ngx-clipboard';
 import { ClipboardButtonComponent } from "./clipboard/clipboard-button.component";
+import { SafeHTMLPipe } from "./safe-html.pipe";
 
 @NgModule({
   providers: [
@@ -50,6 +51,7 @@ import { ClipboardButtonComponent } from "./clipboard/clipboard-button.component
   declarations: [
     ConfirmationModalComponent,
     ClipboardButtonComponent
+    SafeHTMLPipe
   ],
   entryComponents: [
     ConfirmationModalComponent
