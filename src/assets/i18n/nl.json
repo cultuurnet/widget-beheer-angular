@@ -178,9 +178,11 @@
   "REMOVE_WIDGET_PAGE_MODAL_MESSAGE": "Weet je zeker dat je deze widget wil verwijderen?",
   "DUPLICATE_WIDGET_PAGE_FAILED_NOTIFICATION": "Er ging iets mis bij het dupliceren. Probeer het later opnieuw.",
   "REMOVE_WIDGET_PAGE_FAILED_NOTIFICATION": "Er ging iets mis bij het verwijderen. Probeer het later opnieuw.",
+  "REMOVE_WIDGET_PAGE_SUCCESS_NOTIFICATION": "Widget succesvol verwijderd",
   "BUTTON_COPY_TO_CLIPBOARD": "Kopiëren naar klembord",
   "BUTTON_COPY_TO_CLIPBOARD_SUCCESS": "Gekopieerd naar klembord",
   "BUTTON_BACK_TO_PROJECTAANVRAAG_DASHBOARD": "Projectaanvragen",
+  "WIDGET_PAGE_LIST_NO_PAGES_FOUND": "Geen widgets gevonden. Klik op \"Nieuwe widget maken\" om van start te gaan.",
   "TITLE_WIDGET_PAGE_LIST_LEGACY_VERSION": "Oude versie",
   "TITLE_WIDGET_PAGE_LIST_NEW_VERSION": "Nieuwe versie"
 }

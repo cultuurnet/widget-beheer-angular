@@ -131,7 +131,7 @@ export class WidgetService {
       }
     }
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'test/multiple')
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'project/' + projectId + '/widget-page')
       .map(widgetPages => {
         let pages = [];
 
@@ -240,6 +240,7 @@ export class WidgetService {
    * @param currentVersion
    */
   public getWidgetPageEmbedUrl(widgetPage: WidgetPage, scriptTags: boolean = false, currentVersion: boolean = false) {
+    console.log('url');
     let embedUrl = environment.widgetApi.embedUrl.current;
 
     if (widgetPage.version !== environment.widgetApi.currentVersion && !currentVersion) {

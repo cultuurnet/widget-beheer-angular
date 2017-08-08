@@ -24,8 +24,7 @@ export class WidgetPageListResolver implements Resolve<Object> {
     return this.widgetService.getWidgetPages(id).map((widgetPages: Array<WidgetPage>) => {
       return widgetPages;
     }).catch(() => {
-      this.router.navigate(['/']);
-      return Observable.of(false);
+      return Observable.of([]);
     });
   }
 }

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LayoutTypeRegistry } from "../../../core/layout/services/layout-type-registry.service";
 import { WidgetPage } from "../../../core/widget/widget-page";
+import { WidgetBuilderService } from "../../services/widget-builder.service";
 
 /**
  * Component used for adding new rows to the widget page.
@@ -25,8 +26,9 @@ export class AddRowComponent implements OnInit {
   /**
    * AddRowComponent constructor.
    * @param layoutTypeRegistry
+   * @param widgetBuilderService
    */
-  constructor(private layoutTypeRegistry: LayoutTypeRegistry) {
+  constructor(private layoutTypeRegistry: LayoutTypeRegistry, private widgetBuilderService: WidgetBuilderService) {
   }
 
   /**
@@ -54,6 +56,9 @@ export class AddRowComponent implements OnInit {
     // Add the row to the page
     let row = this.layoutTypeRegistry.getInstance(layout.type);
     this.page.addRow(row);
+
+    // Save the widget page
+    this.widgetBuilderService.saveWidgetPage();
   }
 
   /**

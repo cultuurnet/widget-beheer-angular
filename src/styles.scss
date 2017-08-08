@@ -222,6 +222,10 @@ body {
   line-height:30px;
 }
 
+.actions-bar .btn span {
+  display: none;
+}
+
 .actions-bar--component {
   background-color: #004F94;
   display: block;

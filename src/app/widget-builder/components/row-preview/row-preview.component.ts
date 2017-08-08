@@ -84,7 +84,6 @@ export class RowPreviewComponent implements OnInit, OnDestroy {
    * @param change
    */
   public handleRowChanged(change: any) {
-
     // Stop the widget from being deselected on the original event
     change.originalEvent.stopWidgetDeselect = true;
 
@@ -98,6 +97,9 @@ export class RowPreviewComponent implements OnInit, OnDestroy {
         }
       }
     }
+
+    // Save the widget page
+    this.widgetBuilderService.saveWidgetPage();
   }
 
 }

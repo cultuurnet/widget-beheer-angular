@@ -115,6 +115,8 @@ export class PageListComponent implements OnInit {
         if (index > -1) {
           widgetPages.splice(index, 1);
         }
+
+        this.toastyService.success(this.translateService.instant('REMOVE_WIDGET_PAGE_SUCCESS_NOTIFICATION'));
       }, () => {
         this.toastyService.error(this.translateService.instant('REMOVE_WIDGET_PAGE_FAILED_NOTIFICATION'));
       });
