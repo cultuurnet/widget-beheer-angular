@@ -1,0 +1,1 @@
+<button class="btn btn-secondary" [ngClass]="{'btn-success' : copySuccess}" ngxClipboard [cbContent]="content" (cbOnSuccess)="cbCopySuccess($event)">{{ copySuccess ? ("BUTTON_COPY_TO_CLIPBOARD_SUCCESS" | translate) : ("BUTTON_COPY_TO_CLIPBOARD" | translate) }}</button>

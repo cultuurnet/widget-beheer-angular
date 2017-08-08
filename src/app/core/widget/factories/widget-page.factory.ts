@@ -19,14 +19,19 @@ export class WidgetPageFactory {
    * @returns {WidgetPage}
    */
   create(jsonObject: any) {
-
-    let widgetPage = new WidgetPage({
-      project_id: _.get(jsonObject, 'project_id', ''),
-      title:  _.get(jsonObject, 'title', ''),
-    });
-
+    // Rows need to be parsed
+    let rows = null;
     if (jsonObject.hasOwnProperty('rows')) {
-      for (let row of jsonObject.rows) {
+      rows = jsonObject['rows'];
+    }
+
+    delete jsonObject['rows'];
+
+    let widgetPage = new WidgetPage(jsonObject);
+
+    // Parse the rows
+    if (rows) {
+      for (let row of rows) {
         widgetPage.addRow(this.layoutFactory.create(row));
       }
     }

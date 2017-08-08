@@ -32,6 +32,7 @@ export class TipsPageTemplate implements PageTemplate {
           'content': {
             'widgets': [
               {
+                'name': 'tips-1',
                 'type': 'tips'
               }
             ]

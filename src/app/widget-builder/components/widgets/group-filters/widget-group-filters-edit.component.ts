@@ -39,6 +39,11 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   public groupFilterForm: FormGroup;
 
   /**
+   * The available groupfilter types
+   */
+  public filterTypes: Array<any> = [];
+
+  /**
    * Subscription to the filter form values
    */
   private formSubscription: Subscription;
@@ -64,6 +69,8 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
         }
       }
     });
+    
+    this.filterTypes = group_filter_types;
   }
 
   /**

@@ -12,6 +12,7 @@ import { Config } from "../config";
 import { Subscription } from "rxjs";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { WidgetService } from "../core/widget/services/widget.service";
+import { Project } from "../core/project/project";
 
 /**
  * The widget builder component is used for editing a widget page.
@@ -63,6 +64,11 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   private widgetSelectedSubscription: Subscription;
 
   /**
+   * Subscription to the dragula drop event
+   */
+  private dragulaDropSubscription: Subscription;
+
+  /**
    * The dragula container name
    */
   private dragulaContainer = 'widget-container';
@@ -73,8 +79,6 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    * @param _componentFactoryResolver
    * @param widgetTypeRegistry
    * @param widgetBuilderService
-   * @param widgetService
-   * @param widgetPageFactory
    * @param route
    */
   constructor(
@@ -82,7 +86,6 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     private _componentFactoryResolver: ComponentFactoryResolver,
     private widgetTypeRegistry: WidgetTypeRegistry,
     private widgetBuilderService: WidgetBuilderService,
-    private widgetService: WidgetService,
     private route: ActivatedRoute
   ) {
     this.widgetSelectedSubscription = widgetBuilderService.widgetSelected$.subscribe(widget => {
@@ -94,10 +97,9 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    * @inheritDoc
    */
   ngOnInit() {
-    this.route.paramMap
-      .switchMap((params: ParamMap) => this.widgetService.getWidgetPage(params.get('page_id')))
-      .subscribe((widgetPage: WidgetPage) => {
-        this.editingPage = widgetPage;
+    this.route.data
+      .subscribe((data: { project: Project, widgetPage: WidgetPage }) => {
+        this.editingPage = data.widgetPage;
 
         // Set the current page on the widget builder service
         this.widgetBuilderService.widgetPage = this.editingPage;
@@ -124,6 +126,11 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
         return this.down && drake.drake.dragging;
       }
     });
+
+    // Subscribe to the drop event
+    this.dragulaDropSubscription = this.dragulaService.drop.subscribe((value) => {
+      this.onDragulaDrop(value);
+    });
   }
 
   /**
@@ -131,6 +138,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
     this.widgetSelectedSubscription.unsubscribe();
+    this.dragulaDropSubscription.unsubscribe();
 
     // Destroy the dragula container
     this.dragulaService.destroy(this.dragulaContainer);
@@ -186,6 +194,13 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     if (!$event.stopWidgetDeselect) {
       this.widgetBuilderService.selectWidget();
     }
+  }
+
+  /**
+   * React to the dragula drop event
+   */
+  private onDragulaDrop(args) {
+    this.widgetBuilderService.saveWidgetPage();
   }
 
 }
