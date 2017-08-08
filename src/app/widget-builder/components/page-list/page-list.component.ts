@@ -86,7 +86,7 @@ export class PageListComponent implements OnInit {
 
     // Remove the widgetPage id
     clone.id = '';
-    clone.title = clone.title + this.translateService.instant('DUPLICATE_WIDGET_PAGE_COPY');
+    clone.title = clone.title + ' (' + this.translateService.instant('DUPLICATE_WIDGET_PAGE_COPY') + ')';
 
     // Save the widget page and redirect
     this.widgetService.saveWidgetPage(clone).subscribe(widgetSaveResponse => {
