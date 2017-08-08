@@ -50,7 +50,7 @@ import { SafeHTMLPipe } from "./safe-html.pipe";
   ],
   declarations: [
     ConfirmationModalComponent,
-    ClipboardButtonComponent
+    ClipboardButtonComponent,
     SafeHTMLPipe
   ],
   entryComponents: [
