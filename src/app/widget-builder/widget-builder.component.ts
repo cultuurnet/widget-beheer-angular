@@ -64,6 +64,11 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   private widgetSelectedSubscription: Subscription;
 
   /**
+   * Subscription to the dragula drop event
+   */
+  private dragulaDropSubscription: Subscription;
+
+  /**
    * The dragula container name
    */
   private dragulaContainer = 'widget-container';
@@ -121,6 +126,11 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
         return this.down && drake.drake.dragging;
       }
     });
+
+    // Subscribe to the drop event
+    this.dragulaDropSubscription = this.dragulaService.drop.subscribe((value) => {
+      this.onDragulaDrop(value);
+    });
   }
 
   /**
@@ -128,6 +138,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
     this.widgetSelectedSubscription.unsubscribe();
+    this.dragulaDropSubscription.unsubscribe();
 
     // Destroy the dragula container
     this.dragulaService.destroy(this.dragulaContainer);
@@ -176,6 +187,14 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     if (!$event.stopWidgetDeselect) {
       this.widgetBuilderService.selectWidget();
     }
+  }
+
+  /**
+   * React to the dragula drop event
+   */
+  private onDragulaDrop(args) {
+    console.log('drop');
+    this.widgetBuilderService.saveWidgetPage();
   }
 
 }
