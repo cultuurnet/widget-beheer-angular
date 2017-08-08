@@ -14,6 +14,11 @@ export class User {
   public nick: string;
 
   /**
+   * The user displayname
+   */
+  public displayName: string;
+
+  /**
    * The user email address
    */
   public mbox: string;
@@ -48,6 +53,8 @@ export class User {
         this[key] = values[key];
       }
     }
+
+    this.displayName = values.givenName || values.nick;
   }
 
 }

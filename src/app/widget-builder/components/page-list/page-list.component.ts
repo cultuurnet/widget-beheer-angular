@@ -10,6 +10,8 @@ import { ToastyService } from "ng2-toasty";
 import { TranslateService } from "@ngx-translate/core";
 import { environment } from "../../../../environments/environment";
 import { UserService } from "../../../core/user/services/user.service";
+import { TopbarService } from "../../../core/topbar/services/topbar.service";
+import { BackButton } from "app/core/topbar/back-button";
 
 /**
  * Displays a list of pages for a project.
@@ -43,7 +45,7 @@ export class PageListComponent implements OnInit {
    * @param route
    * @param router
    * @param translateService
-   * @param userService
+   * @param topbarService
    */
   constructor(
     private widgetService: WidgetService,
@@ -52,17 +54,13 @@ export class PageListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private translateService: TranslateService,
-    private userService: UserService
+    private topbarService: TopbarService
   ) { }
 
   /**
    * @inheritDoc
    */
   ngOnInit() {
-    this.userService.getUser().subscribe(user => {
-      console.log(user);
-    });
-
     this.route.data
       .subscribe((data: { widgetPages: Array<WidgetPage>, project: Project }) => {
         // Separate legacy and current widgets
@@ -73,6 +71,9 @@ export class PageListComponent implements OnInit {
         // Get the project from the current route
         this.project = data.project;
       });
+
+    // Update the topbar
+    this.updateTopbar();
   }
 
   /**
@@ -85,6 +86,7 @@ export class PageListComponent implements OnInit {
 
     // Remove the widgetPage id
     clone.id = '';
+    clone.title = clone.title + this.translateService.instant('DUPLICATE_WIDGET_PAGE_COPY');
 
     // Save the widget page and redirect
     this.widgetService.saveWidgetPage(clone).subscribe(widgetSaveResponse => {
@@ -140,10 +142,15 @@ export class PageListComponent implements OnInit {
   }
 
   /**
-   * Redirect the user back to their projectaanvraag dashboard
+   * Update the topbar
    */
-  public backToDashboard() {
-    return window.location.href = environment.projectaanvraagDashboardUrl;
+  private updateTopbar() {
+    // Add a back button
+    this.topbarService.setBackButton(new BackButton(
+      BackButton.TYPE_LINK,
+      'TOPBAR_BACK_BUTTON_LABEL_PROJECTAANVRAGEN',
+      environment.projectaanvraagDashboardUrl
+    ));
   }
 
 }

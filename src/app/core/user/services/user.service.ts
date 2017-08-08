@@ -14,6 +14,12 @@ import { User } from "../user";
 export class UserService {
 
   /**
+   * The user API path
+   * @type {string}
+   */
+  private apiPath: string = 'uitid/';
+
+  /**
    * ProjectService constructor.
    * @param http
    * @param cache
@@ -22,21 +28,44 @@ export class UserService {
   }
 
   /**
-   * Get the current user
-   * @return {Observable<Object>}
+   * Checks if the user is logged in
    */
-  public getUser() {
+  public isLoggedIn(): Observable<boolean> {
+    return this.getUser().map(() => {
+      return true;
+    }, () => {
+      return false;
+    });
+  }
+
+  /**
+   * Get the current user
+   * @return {Observable<User>}
+   */
+  public getUser(): Observable<User> {
     const user = this.cache.get('currentUser', ['user'], false);
 
     if (user) {
       return Observable.of(user);
     }
 
-    return this.http.get(environment.apiUrl + 'uitid/user')
+    return this.http.get(environment.apiUrl + this.apiPath + 'user')
       .map(user => new User(user))
       .do(user => {
         // Cache the response
         this.cache.put('currentUser', ['user'], user);
+      });
+  }
+
+  /**
+   * Logout the current user
+   * @return {Observable<Object>}
+   */
+  public logout() {
+    return this.http.get(environment.apiUrl + this.apiPath + 'logout')
+      .do(() => {
+        // Remove the user from the cache
+        this.cache.clear('currentUser');
       });
   }
 

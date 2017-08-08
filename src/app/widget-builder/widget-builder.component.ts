@@ -13,6 +13,8 @@ import { Subscription } from "rxjs";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { WidgetService } from "../core/widget/services/widget.service";
 import { Project } from "../core/project/project";
+import { BackButton } from "../core/topbar/back-button";
+import { TopbarService } from "../core/topbar/services/topbar.service";
 
 /**
  * The widget builder component is used for editing a widget page.
@@ -74,19 +76,26 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   private dragulaContainer = 'widget-container';
 
   /**
+   * The current project
+   */
+  private project: Project;
+
+  /**
    * WidgetBuilder constructor.
    * @param dragulaService
    * @param _componentFactoryResolver
    * @param widgetTypeRegistry
    * @param widgetBuilderService
    * @param route
+   * @param topbarService
    */
   constructor(
     private dragulaService: DragulaService,
     private _componentFactoryResolver: ComponentFactoryResolver,
     private widgetTypeRegistry: WidgetTypeRegistry,
     private widgetBuilderService: WidgetBuilderService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private topbarService: TopbarService
   ) {
     this.widgetSelectedSubscription = widgetBuilderService.widgetSelected$.subscribe(widget => {
       this.editWidget(widget);
@@ -99,6 +108,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.data
       .subscribe((data: { project: Project, widgetPage: WidgetPage }) => {
+        this.project = data.project;
         this.editingPage = data.widgetPage;
 
         // Set the current page on the widget builder service
@@ -131,6 +141,9 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     this.dragulaDropSubscription = this.dragulaService.drop.subscribe((value) => {
       this.onDragulaDrop(value);
     });
+
+    // Update the topbar
+    this.updateTopbar();
   }
 
   /**
@@ -197,4 +210,16 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     this.widgetBuilderService.saveWidgetPage();
   }
 
+  /**
+   * Update the topbar
+   */
+  private updateTopbar() {
+    // Add a back button
+    this.topbarService.setBackButton(new BackButton(
+      BackButton.TYPE_ROUTE,
+      this.project.name,
+      null,
+      ['/project', this.project.id]
+    ));
+  }
 }

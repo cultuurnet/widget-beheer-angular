@@ -7,19 +7,22 @@ import { ProjectResolver } from "../core/route/resolver/project-resolver.service
 import { WidgetPageResolver } from "../core/route/resolver/widget-page-resolver.service";
 import { CoreModule } from "../core/core.module";
 import { WidgetPageListResolver } from "./route/resolver/widget-page-list-resolver.service";
+import { AuthGuard } from "../core/route/guard/auth-guard.service";
 
 const widgetBuilderRoutes: Routes = [
   {
     path: 'project/:project_id',
     component: PageListComponent,
+    canActivate: [AuthGuard],
     resolve: {
       project: ProjectResolver,
       widgetPages: WidgetPageListResolver
-    }
+    },
   },
   {
     path: 'project/:project_id/page/add',
     component: AddPageComponent,
+    canActivate: [AuthGuard],
     resolve: {
       project: ProjectResolver
     }
@@ -27,6 +30,7 @@ const widgetBuilderRoutes: Routes = [
   {
     path: 'project/:project_id/page/:page_id/edit',
     component: WidgetBuilderComponent,
+    canActivate: [AuthGuard],
     resolve: {
       widgetPage: WidgetPageResolver,
       project: ProjectResolver

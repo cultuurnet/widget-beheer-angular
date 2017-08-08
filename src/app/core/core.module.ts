@@ -4,7 +4,7 @@ import { LayoutTypeRegistry } from "./layout/services/layout-type-registry.servi
 import { WidgetPageFactory } from "./widget/factories/widget-page.factory";
 import { WidgetService } from "./widget/services/widget.service";
 import { WidgetTypeRegistry } from "./widget/services/widget-type-registry.service";
-import { NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbDropdownModule, NgbModalModule } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationModalComponent } from "./modal/components/confirmation-modal.component";
 import { TranslateModule } from "@ngx-translate/core";
 import { PageTemplateRegistry } from "./template/services/page-template-registry.service";
@@ -18,6 +18,9 @@ import { WidgetPageResolver } from "./route/resolver/widget-page-resolver.servic
 import { ClipboardModule } from 'ngx-clipboard';
 import { ClipboardButtonComponent } from "./clipboard/clipboard-button.component";
 import { UserService } from "./user/services/user.service";
+import { AuthGuard } from "./route/guard/auth-guard.service";
+import { TopbarComponent } from "./topbar/components/topbar.component";
+import { TopbarService } from "./topbar/services/topbar.service";
 
 @NgModule({
   providers: [
@@ -36,22 +39,27 @@ import { UserService } from "./user/services/user.service";
     ProjectService,
     WidgetTypeRegistry,
     ProjectResolver,
-    WidgetPageResolver
+    WidgetPageResolver,
+    AuthGuard,
+    TopbarService
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgbDropdownModule,
     NgbModalModule,
     TranslateModule,
     ClipboardModule
   ],
   exports: [
     ConfirmationModalComponent,
-    ClipboardButtonComponent
+    ClipboardButtonComponent,
+    TopbarComponent
   ],
   declarations: [
     ConfirmationModalComponent,
-    ClipboardButtonComponent
+    ClipboardButtonComponent,
+    TopbarComponent
   ],
   entryComponents: [
     ConfirmationModalComponent

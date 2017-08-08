@@ -1,0 +1,12 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button *ngIf="backButton" (click)="back()" class="btn btn-secondary"><i class="fa fa-chevron-left"></i> {{ backButton.label | translate }}</button>
+
+    // Dynamic components go here
+
+    <div *ngIf="user" ngbDropdown class="float-right">
+        <button class="btn btn-secondary" ngbDropdownToggle>{{ user.displayName }}</button>
+        <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" (click)="logout()">{{ "TOPBAR_USER_MENU_BUTTON_LOGOUT" | translate }}</button>
+        </div>
+    </div>
+</nav>
