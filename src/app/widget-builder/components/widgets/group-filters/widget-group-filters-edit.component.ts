@@ -39,6 +39,11 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   public groupFilterForm: FormGroup;
 
   /**
+   * The available groupfilter types
+   */
+  public filterTypes: Array<any> = [];
+
+  /**
    * Subscription to the filter form values
    */
   private formSubscription: Subscription;
@@ -58,13 +63,14 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
 
     // Subscribe to changes in the form and reflect them on the widget groupFilters model
     this.formSubscription = this.groupFilterForm.valueChanges.subscribe(values => {
-      console.log(values);
       for (let key in values) {
         if (values.hasOwnProperty(key)) {
           this.groupFilters[key] = values[key];
         }
       }
     });
+    
+    this.filterTypes = group_filter_types;
   }
 
   /**

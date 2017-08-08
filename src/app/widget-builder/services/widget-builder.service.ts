@@ -179,12 +179,7 @@ export class WidgetBuilderService {
       }
     }
 
-    // Because of the translation being async, a promise is returned
-    return new Promise((resolve) => {
-      this.translateService.get(widgetType.label).subscribe((name: string) => {
-        resolve(name.toLowerCase() + '-' + numWidgets);
-      });
-    });
+    return this.translateService.instant(widgetType.label).replace(/\s+/g, '-').toLowerCase() + '-' + numWidgets;
   }
 
 }

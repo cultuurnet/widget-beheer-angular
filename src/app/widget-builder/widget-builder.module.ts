@@ -34,6 +34,7 @@ import { FacetsWidgetPreviewComponent } from "./components/widgets/facets-widget
 import { WidgetBuilderRoutingModule } from "./widget-builder-routing.module";
 import { AddPageComponent } from "./components/add-page/add-page.component";
 import { TemplatePreviewModalComponent } from "./components/add-page/preview/template-preview-modal.component";
+import { PageListComponent } from "./components/page-list/page-list.component";
 import { CoreModule } from "../core/core.module";
 
 @NgModule({
@@ -64,12 +65,14 @@ import { CoreModule } from "../core/core.module";
     FacetsWidgetWidgetEditComponent,
     FacetsWidgetPreviewComponent,
     AddPageComponent,
-    TemplatePreviewModalComponent
+    TemplatePreviewModalComponent,
+    PageListComponent
   ],
   exports: [
     WidgetBuilderComponent
   ],
   imports: [
+    CoreModule,
     WidgetBuilderRoutingModule,
     CoreModule,
     CommonModule,
