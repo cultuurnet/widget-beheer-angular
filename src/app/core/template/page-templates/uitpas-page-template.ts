@@ -32,6 +32,7 @@ export class UitPasPageTemplate implements PageTemplate {
           'content': {
             'widgets': [
               {
+                'name': 'zoekformulier-1',
                 'type': 'search-form'
               }
             ]
@@ -44,12 +45,15 @@ export class UitPasPageTemplate implements PageTemplate {
           'sidebar_left': {
             'widgets': [
               {
+                'name': 'html-1',
                 'type': 'html'
               },
               {
+                'name': 'facets-1',
                 'type': 'facets'
               },
               {
+                'name': 'html-2',
                 'type': 'html'
               },
             ]
@@ -57,6 +61,7 @@ export class UitPasPageTemplate implements PageTemplate {
           'content': {
             'widgets': [
               {
+                'name': 'zoekresultaten-1',
                 'type': 'search-results'
               }
             ]

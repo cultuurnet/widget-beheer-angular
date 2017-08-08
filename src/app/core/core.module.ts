@@ -46,7 +46,8 @@ import { SafeHTMLPipe } from "./safe-html.pipe";
   ],
   exports: [
     ConfirmationModalComponent,
-    ClipboardButtonComponent
+    ClipboardButtonComponent,
+    SafeHTMLPipe
   ],
   declarations: [
     ConfirmationModalComponent,

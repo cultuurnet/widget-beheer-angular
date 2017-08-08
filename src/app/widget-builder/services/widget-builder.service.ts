@@ -179,7 +179,7 @@ export class WidgetBuilderService {
       }
     }
 
-    return this.translateService.instant(widgetType.label)  + '-' + numWidgets;
+    return this.translateService.instant(widgetType.label).replace(/\s+/g, '-').toLowerCase() + '-' + numWidgets;
   }
 
 }
