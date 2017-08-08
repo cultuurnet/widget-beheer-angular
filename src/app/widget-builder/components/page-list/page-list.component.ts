@@ -9,6 +9,7 @@ import { ConfirmationModalComponent } from "app/core/modal/components/confirmati
 import { ToastyService } from "ng2-toasty";
 import { TranslateService } from "@ngx-translate/core";
 import { environment } from "../../../../environments/environment";
+import { UserService } from "../../../core/user/services/user.service";
 
 /**
  * Displays a list of pages for a project.
@@ -42,6 +43,7 @@ export class PageListComponent implements OnInit {
    * @param route
    * @param router
    * @param translateService
+   * @param userService
    */
   constructor(
     private widgetService: WidgetService,
@@ -49,13 +51,18 @@ export class PageListComponent implements OnInit {
     private toastyService: ToastyService,
     private route: ActivatedRoute,
     private router: Router,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private userService: UserService
   ) { }
 
   /**
    * @inheritDoc
    */
   ngOnInit() {
+    this.userService.getUser().subscribe(user => {
+      console.log(user);
+    });
+
     this.route.data
       .subscribe((data: { widgetPages: Array<WidgetPage>, project: Project }) => {
         // Separate legacy and current widgets

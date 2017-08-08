@@ -17,6 +17,7 @@ import { ProjectResolver } from "./route/resolver/project-resolver.service";
 import { WidgetPageResolver } from "./route/resolver/widget-page-resolver.service";
 import { ClipboardModule } from 'ngx-clipboard';
 import { ClipboardButtonComponent } from "./clipboard/clipboard-button.component";
+import { UserService } from "./user/services/user.service";
 
 @NgModule({
   providers: [
@@ -30,6 +31,7 @@ import { ClipboardButtonComponent } from "./clipboard/clipboard-button.component
       useClass: ApiRequestInterceptor,
       multi: true,
     },
+    UserService,
     WidgetService,
     ProjectService,
     WidgetTypeRegistry,
