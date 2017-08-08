@@ -134,14 +134,12 @@ export class WidgetBuilderService {
     this.lockWidgetPreview(widgetId);
 
     // Render the widget
-    this.widgetService.renderWidget(this.widgetPage.id, widgetId).then(response => {
+    this.widgetService.renderWidget(this.widgetPage.id, widgetId).subscribe(response => {
       // Update the widget preview with the new render response
       _self.widgetPreview.next({
         widgetId: widgetId,
-        content: response['content']
+        content: response['data']
       });
-    }).catch((ex) => {
-      console.error('Error fetching the rendered widget', ex);
     });
   }
 
