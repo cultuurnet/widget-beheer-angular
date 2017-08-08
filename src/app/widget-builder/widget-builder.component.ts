@@ -193,7 +193,6 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    * React to the dragula drop event
    */
   private onDragulaDrop(args) {
-    console.log('drop');
     this.widgetBuilderService.saveWidgetPage();
   }
 
