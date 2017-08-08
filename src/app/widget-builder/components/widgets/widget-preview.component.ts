@@ -101,7 +101,7 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
 
     // Temp preview code.
     // @todo: Remove when no longer needed
-    let previewComponent = null;
+/*    let previewComponent = null;
     switch (this.widget.type) {
       case 'search-form':
         previewComponent = SearchFormWidgetPreviewComponent;
@@ -127,7 +127,7 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
 
     let viewContainerRef = this.preview.viewContainerRef;
     viewContainerRef.clear();
-    viewContainerRef.createComponent(componentFactory);
+    viewContainerRef.createComponent(componentFactory);*/
   }
 
   /**
