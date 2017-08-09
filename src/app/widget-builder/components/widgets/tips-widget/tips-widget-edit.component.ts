@@ -113,7 +113,7 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
   /**
    * @inheritDoc
    */
-  protected handleWidgetNameChanged(name: string) {
+  public handleWidgetNameChanged(name: string) {
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
 

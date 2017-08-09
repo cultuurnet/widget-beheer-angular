@@ -69,7 +69,7 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
    * @param modalService
    * @param _componentFactoryResolver
    */
-  constructor(private widgetBuilderService: WidgetBuilderService, private widgetBuilderComponent: WidgetBuilderComponent, private modalService: NgbModal, private _componentFactoryResolver: ComponentFactoryResolver) {
+  constructor(private widgetBuilderService: WidgetBuilderService, public widgetBuilderComponent: WidgetBuilderComponent, private modalService: NgbModal, private _componentFactoryResolver: ComponentFactoryResolver) {
   }
 
   /**
