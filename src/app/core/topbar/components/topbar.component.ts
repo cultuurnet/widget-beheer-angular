@@ -12,7 +12,6 @@ import { TopbarService } from "../services/topbar.service";
 import { Subscription } from "rxjs";
 import { DynamicComponentDirective } from "../directives/dynamic-component.directive";
 import * as _ from "lodash";
-import { WidgetPage } from "../../widget/widget-page";
 
 /**
  * Topbar component.
