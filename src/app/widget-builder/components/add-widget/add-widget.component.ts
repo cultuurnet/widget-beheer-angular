@@ -66,7 +66,7 @@ export class AddWidgetComponent implements OnInit {
     this.widgetBuilderService.selectWidget(widget);
 
     // Save the widget page
-    this.widgetBuilderService.saveWidgetPage();
+    this.widgetBuilderService.saveWidgetPage(widget.id);
   }
 
   /**
