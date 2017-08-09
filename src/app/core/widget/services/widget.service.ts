@@ -51,11 +51,11 @@ export class WidgetService {
       requestOptions.params.set('render', widgetId);
     }
 
+    // Invalidate the widgetPageList cache for the given project id
+    this.cache.clear('widgetPageList', [widgetPage.project_id]);
+
     return this.http.put(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page', widgetPage, requestOptions)
       .do<WidgetSaveResponse>(widgetSaveReponse => {
-        // Invalidate the widgetPageList cache for the given project id
-        this.cache.clear('widgetPageList', [widgetPage.project_id]);
-
         if (widgetSaveReponse.widgetPage) {
           // Cache the response
           this.cache.put('widgetPage', [widgetSaveReponse.widgetPage.id], this.widgetPageFactory.create(widgetSaveReponse.widgetPage));

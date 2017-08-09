@@ -1,6 +1,5 @@
 <div class="builder" [ngClass]="{ 'no-sidebar' : !showSidebar }">
     <div (click)="deselectWidget($event)" id="widget-builder-preview" class='preview {{ viewMode }}'>
-        <app-view-mode-switcher (viewModeChanged)="handleViewModeChanged($event)"></app-view-mode-switcher>
         <div class="preview-inner">
             <div class="page">
                 <div *ngIf="editingPage" class="page-inner">

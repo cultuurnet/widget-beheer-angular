@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, Input, OnInit, OnDestroy, ViewChild } from "@angular/core";
+import { Component, ComponentFactoryResolver, Input, OnInit, OnDestroy, ViewChild, EventEmitter } from "@angular/core";
 import { Widget } from "../../../core/widget/widget";
 import { WidgetBuilderService } from "../../services/widget-builder.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";

@@ -67,8 +67,8 @@ export class AddPageComponent implements OnInit {
       });
     }
 
-    // Update the topbar
-    this.updateTopbar();
+    // Init the topbar
+    this.initTopbar();
   }
 
   /**
@@ -109,9 +109,9 @@ export class AddPageComponent implements OnInit {
   }
 
   /**
-   * Update the topbar
+   * Init the topbar
    */
-  private updateTopbar() {
+  private initTopbar() {
     // Add a back button
     this.topbarService.setBackButton(new BackButton(
       BackButton.TYPE_ROUTE,

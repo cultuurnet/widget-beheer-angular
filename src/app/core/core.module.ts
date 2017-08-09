@@ -21,6 +21,7 @@ import { UserService } from "./user/services/user.service";
 import { AuthGuard } from "./route/guard/auth-guard.service";
 import { TopbarComponent } from "./topbar/components/topbar.component";
 import { TopbarService } from "./topbar/services/topbar.service";
+import { DynamicComponentDirective } from "./topbar/directives/dynamic-component.directive";
 
 @NgModule({
   providers: [
@@ -59,7 +60,8 @@ import { TopbarService } from "./topbar/services/topbar.service";
   declarations: [
     ConfirmationModalComponent,
     ClipboardButtonComponent,
-    TopbarComponent
+    TopbarComponent,
+    DynamicComponentDirective
   ],
   entryComponents: [
     ConfirmationModalComponent

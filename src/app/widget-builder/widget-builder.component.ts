@@ -7,14 +7,13 @@ import { Widget } from "app/core/widget/widget";
 import { AbstractWidgetEditComponent } from "../core/widget/components/abstract-widget-edit-component";
 import * as autoScroll from 'dom-autoscroller';
 import { WidgetPage } from "../core/widget/widget-page";
-import { WidgetPageFactory } from "../core/widget/factories/widget-page.factory";
-import { Config } from "../config";
 import { Subscription } from "rxjs";
-import { ActivatedRoute, ParamMap } from "@angular/router";
-import { WidgetService } from "../core/widget/services/widget.service";
+import { ActivatedRoute } from "@angular/router";
 import { Project } from "../core/project/project";
 import { BackButton } from "../core/topbar/back-button";
 import { TopbarService } from "../core/topbar/services/topbar.service";
+import { ViewModeSwitcherComponent } from "./components/view-mode-switcher/view-mode-switcher.component";
+import { WidgetPageTitleEditComponent } from "./components/widgetpage-title-edit/widgetpage-title-edit.component";
 
 /**
  * The widget builder component is used for editing a widget page.
@@ -53,7 +52,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   /**
    * View mode of the widget builder (eg. desktop, tablet,..)
    */
-  public viewMode: string;
+  public viewMode: string = 'desktop';
 
   /**
    * Reference to dom-autoscroller
@@ -142,8 +141,8 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
       this.onDragulaDrop(value);
     });
 
-    // Update the topbar
-    this.updateTopbar();
+    // Init the topbar
+    this.initTopbar();
   }
 
   /**
@@ -185,13 +184,6 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Change the current view mode
-   */
-  public handleViewModeChanged(viewMode: string) {
-    this.viewMode = viewMode;
-  }
-
-  /**
    * Deselect a widget
    * @param $event
    */
@@ -206,14 +198,13 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    * React to the dragula drop event
    */
   private onDragulaDrop(args) {
-    console.log('drop');
     this.widgetBuilderService.saveWidgetPage();
   }
 
   /**
-   * Update the topbar
+   * Init the topbar
    */
-  private updateTopbar() {
+  private initTopbar() {
     // Add a back button
     this.topbarService.setBackButton(new BackButton(
       BackButton.TYPE_ROUTE,
@@ -221,5 +212,15 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
       null,
       ['/project', this.project.id]
     ));
+
+    // Add the widgetpage title edit component
+    this.topbarService.addComponent('widgetPageTitleEdit', WidgetPageTitleEditComponent, {widgetPage: this.editingPage});
+
+    // Add the viewmodeswitcher component and subscribe to it's events
+    this.topbarService.addComponent('viewModeSwitcher', ViewModeSwitcherComponent)
+      .filter(event => event.output === 'viewModeChanged')
+      .subscribe(event => {
+        this.viewMode = event.value;
+      });
   }
 }

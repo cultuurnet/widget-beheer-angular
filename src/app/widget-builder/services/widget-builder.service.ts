@@ -16,7 +16,7 @@ import { TranslateService } from "@ngx-translate/core";
 export class WidgetBuilderService {
 
   /**
-   * Keep track of the widgetPage that is being edited in the builder
+   * The active widget page
    */
   public widgetPage: WidgetPage;
 
