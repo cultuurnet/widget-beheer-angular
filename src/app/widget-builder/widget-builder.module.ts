@@ -76,6 +76,7 @@ import { WidgetPageTitleEditComponent } from "./components/widgetpage-title-edit
   imports: [
     CoreModule,
     WidgetBuilderRoutingModule,
+    CoreModule,
     CommonModule,
     FormsModule,
     DragulaModule,

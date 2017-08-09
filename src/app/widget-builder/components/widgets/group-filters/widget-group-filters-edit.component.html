@@ -1,4 +1,5 @@
-<form [formGroup]="groupFilterForm" novalidate>
+<div class="widget-group-filters-edit">
+<form [formGroup]="groupFilterForm" novalidate >
     <label>
         <input type="checkbox" formControlName="enabled"> <span>{{ "LABEL_CHECKBOX_EXTRA_GROUP_FILTERS" | translate }}</span>
     </label>
@@ -10,41 +11,56 @@
                 <div [formGroupName]="i">
                     <div>
                         <app-row-edit [rows]="groupFilterForm['controls'].filters.controls" [index]="i" [modalTitle]="'GROUP_FILTER_REMOVE_MODAL_TITLE'" [modalMessage]="'GROUP_FILTER_REMOVE_MODAL_MESSAGE'" (rowChanged)="handleRowChanged($event)"></app-row-edit>
-                        <div>
-                            <label><strong>{{ "LABEL_GROUP_FILTER_LABEL" | translate }}</strong></label>
-                            <input type="text" formControlName="label">
-                        </div>
-                        <div *ngIf="!hidePlaceholder">
-                            <label><strong>{{ "LABEL_GROUP_FILTER_PLACEHOLDER" | translate }}</strong></label>
-                            <input type="text" formControlName="placeholder">
-                        </div>
-                        <div *ngIf="!hideType">
-                            <label><strong>{{ "LABEL_GROUP_FILTER_TYPE" | translate }}</strong></label>
-                            <label *ngFor="let filterType of filterTypes">
-                                <input type="radio" [value]="filterType.type" formControlName="type">
-                                <span>{{ filterType.label | translate }}</span>
-                            </label>
-                        </div>
-                        <div formArrayName="options">
-                            <div [formGroupName]="j" *ngFor="let option of groupFilter['controls'].options['controls']; let j=index">
-                                <div>
-                                    <app-row-edit [index]="j" [rows]="groupFilter['controls'].options['controls']" [modalTitle]="'GROUP_FILTER_OPTION_REMOVE_MODAL_TITLE'" [modalMessage]="'GROUP_FILTER_OPTION_REMOVE_MODAL_MESSAGE'" (rowChanged)="handleRowChanged($event)"></app-row-edit>
+                        <div class="widget-group-filters-group-edit">
+                            <div class="form-group">
+                                <label><strong>{{ "LABEL_GROUP_FILTER_LABEL" | translate }}</strong></label>
+                                <input type="text" formControlName="label" class="form-control">
+                            </div>
+                            <div *ngIf="!hidePlaceholder" class="form-group">
+                                <label><strong>{{ "LABEL_GROUP_FILTER_PLACEHOLDER" | translate }}</strong></label>
+                                <input type="text" formControlName="placeholder" class="form-control">
+                            </div>
+                            <div *ngIf="!hideType">
+                                <h5>{{ "LABEL_GROUP_FILTER_TYPE" | translate }}</h5>
+                                <div class="form-check">
+                                    <label *ngFor="let filterType of filterTypes" class="form-check-label">
+                                        <input type="radio" [value]="filterType.type" formControlName="type">
+                                        <span>{{ filterType.label | translate }}</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div formArrayName="options" class="widget-group-filters-group-option-edit component">
+                                <div [formGroupName]="j" *ngFor="let option of groupFilter['controls'].options['controls']; let j=index">
                                     <div>
-                                        <label><strong>{{ "LABEL_GROUP_FILTER_OPTION_LABEL" | translate }}</strong> <span>{{ "LABEL_GROUP_FILTER_OPTION_LABEL_INFO" | translate }}</span></label>
-                                        <input type="text" formControlName="label">
-                                    </div>
-                                    <div>
-                                        <label><strong>{{ "LABEL_GROUP_FILTER_OPTION_QUERY" | translate }}</strong> <span>{{ "LABEL_GROUP_FILTER_OPTION_QUERY_INFO" | translate }}</span></label>
-                                        <input type="text" formControlName="query">
+                                        <app-row-edit [index]="j" [rows]="groupFilter['controls'].options['controls']" [modalTitle]="'GROUP_FILTER_OPTION_REMOVE_MODAL_TITLE'" [modalMessage]="'GROUP_FILTER_OPTION_REMOVE_MODAL_MESSAGE'" (rowChanged)="handleRowChanged($event)"></app-row-edit>
+                                        <div class="form-group">
+                                            <label><strong>{{ "LABEL_GROUP_FILTER_OPTION_LABEL" | translate }}</strong></label>
+                                            <input type="text" formControlName="label" class="form-control">
+                                            <small  class="form-text text-muted">{{ "LABEL_GROUP_FILTER_OPTION_LABEL_INFO" | translate }}</small>
+                                        </div>
+                                        <div>
+                                            <label><strong>{{ "LABEL_GROUP_FILTER_OPTION_QUERY" | translate }}</strong> </label>
+                                            <input type="text" formControlName="query" class="form-control">
+                                            <small  class="form-text text-muted">{{ "LABEL_GROUP_FILTER_OPTION_QUERY_INFO" | translate }}</small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <button class="btn btn-primary btn-sm btn-cnw-filtergroup--add" type="button" (click)="addGroupFilterOptionItem(groupFilter['controls'].options)" [disabled]="!groupFilter['controls'].options.valid">
+                                <i aria-hidden="true" class="fa fa-plus-square-o fa-1x"></i>
+                                {{ "BUTTON_ADD_GROUP_FILTER_FILTER_OPTION" | translate }}
+                            </button>
+
                         </div>
-                        <button class="btn btn-primary btn-sm" type="button" (click)="addGroupFilterOptionItem(groupFilter['controls'].options)" [disabled]="!groupFilter['controls'].options.valid">{{ "BUTTON_ADD_GROUP_FILTER_FILTER_OPTION" | translate }}</button>
+
                     </div>
                 </div>
+                </div>
             </div>
-        </div>
-        <button class="btn btn-primary btn-sm" type="button" (click)="addGroupFilterItem()" [disabled]="!groupFilterForm['controls'].filters.valid">{{ "BUTTON_ADD_GROUP_FILTER" | translate }}</button>
+
+        <button class="btn btn-primary btn-sm btn-cnw-filtergroup--add" type="button" (click)="addGroupFilterItem()" [disabled]="!groupFilterForm['controls'].filters.valid">
+            <i aria-hidden="true" class="fa fa-plus-square-o fa-1x"></i>
+            {{ "BUTTON_ADD_GROUP_FILTER" | translate }}</button>
     </fieldset>
 </form>
+</div>

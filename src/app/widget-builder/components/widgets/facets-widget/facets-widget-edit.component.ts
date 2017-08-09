@@ -13,14 +13,14 @@ import { WidgetPage } from "../../../../core/widget/widget-page";
 })
 export class FacetsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
 
-  /**
+  /**x
    * Array of search results widgets in the page
    * @type {Array}
    */
   public searchResultsWidgets = [];
 
   /**
-   * HtmlWidgetEditComponent constructor
+   * FacetsWidgetWidgetEditComponent constructor
    */
   constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
     super(formBuilder);
@@ -58,7 +58,7 @@ export class FacetsWidgetWidgetEditComponent extends AbstractWidgetEditComponent
   /**
    * @inheritDoc
    */
-  protected handleWidgetNameChanged(name: string) {
+  public handleWidgetNameChanged(name: string) {
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
 

@@ -48,7 +48,7 @@ export class WidgetService {
     };
 
     if (widgetId) {
-      requestOptions.params.set('render', widgetId);
+      requestOptions.params = requestOptions.params.set('render', widgetId);
     }
 
     // Invalidate the widgetPageList cache for the given project id
@@ -165,52 +165,11 @@ export class WidgetService {
    * @param reset
    */
   public renderWidget(widgetPageId: string, widgetId: string, reset: boolean = false) {
-    // @todo Implement the render request
+    // @todo Implement the full render request + cache it and return an interface object.
     let _self = this;
     const renderedWidget = this.cache.get('renderedWidgets', [widgetPageId, widgetId], false);
 
-    // Cache hit and no reset
-    if (renderedWidget && !reset) {
-      return Promise.resolve({content: renderedWidget});
-    }
-
-    // Service request
-    return new Promise((resolve, reject) => {
-      setTimeout(function() {
-        let response = _self.fakeRenderResponse(widgetId);
-        _self.cache.put('renderedWidgets', [widgetPageId, widgetId], response);
-
-        resolve({content: response});
-      }, _.random(1000, 3000));
-    });
-  }
-
-  /**
-   * Returns a fake render response
-   * @todo: Remove
-   *
-   * @param widgetId
-   * @returns {string}
-   */
-  private fakeRenderResponse(widgetId: string) {
-    let response = '';
-
-    switch(widgetId) {
-      case 'd1ae67d3-60a3-8f74-d64f-9c97c3afe6b6': {
-        response = 'search form preview';
-        break;
-      }
-      case 'c039e4b6-3d61-1c2a-d028-4606fa56c4c9': {
-        response = 'search results preview';
-        break;
-      }
-      default: {
-        response = 'default widget preview';
-        break;
-      }
-    }
-
-    return response + ' ' + Math.random().toString(36).slice(2);
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'render/' + widgetPageId + '/' + widgetId);
   }
 
   /**

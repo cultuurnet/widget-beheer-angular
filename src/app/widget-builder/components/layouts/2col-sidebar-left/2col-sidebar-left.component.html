@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="sm">
+    <div class="sm-2 preview-col cnw_left cnw_sideCol">
         <div [dragula]='"widget-container"' class="layout--region" [dragulaModel]='regions.sidebar_left.widgets'>
             <app-widget-preview [widget]="widget" *ngFor="let widget of regions.sidebar_left.widgets"></app-widget-preview>
         </div>
         <app-add-widget [region]="regions.sidebar_left"></app-add-widget>
     </div>
-    <div class="md">
+    <div class="md-2 preview-col  cnw_center">
         <div [dragula]='"widget-container"' class="layout--region" [dragulaModel]='regions.content.widgets'>
             <app-widget-preview [widget]="widget" *ngFor="let widget of regions.content.widgets"></app-widget-preview>
         </div>

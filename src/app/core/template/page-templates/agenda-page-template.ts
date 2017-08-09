@@ -32,6 +32,7 @@ export class AgendaPageTemplate implements PageTemplate {
           'content': {
             'widgets': [
               {
+                'name': 'zoekformulier-1',
                 'type': 'search-form'
               }
             ]
@@ -51,6 +52,7 @@ export class AgendaPageTemplate implements PageTemplate {
           'content': {
             'widgets': [
               {
+                'name': 'zoekresultaten-1',
                 'type': 'search-results'
               }
             ]

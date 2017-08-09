@@ -22,6 +22,7 @@ import { AuthGuard } from "./route/guard/auth-guard.service";
 import { TopbarComponent } from "./topbar/components/topbar.component";
 import { TopbarService } from "./topbar/services/topbar.service";
 import { DynamicComponentDirective } from "./topbar/directives/dynamic-component.directive";
+import { SafeHTMLPipe } from "./safe-html.pipe";
 
 @NgModule({
   providers: [
@@ -55,13 +56,15 @@ import { DynamicComponentDirective } from "./topbar/directives/dynamic-component
   exports: [
     ConfirmationModalComponent,
     ClipboardButtonComponent,
-    TopbarComponent
+    TopbarComponent,
+    SafeHTMLPipe
   ],
   declarations: [
     ConfirmationModalComponent,
     ClipboardButtonComponent,
     TopbarComponent,
-    DynamicComponentDirective
+    DynamicComponentDirective,
+    SafeHTMLPipe
   ],
   entryComponents: [
     ConfirmationModalComponent

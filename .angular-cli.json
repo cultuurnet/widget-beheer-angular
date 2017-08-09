@@ -19,7 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss"
+        "styles/cn_widget_builder.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

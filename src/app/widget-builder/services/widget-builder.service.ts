@@ -5,7 +5,6 @@ import { WidgetPage } from "../../core/widget/widget-page";
 import { WidgetService } from "../../core/widget/services/widget.service";
 import { WidgetPreview } from "../components/widgets/widget-preview";
 import * as debouncePromise from "debounce-promise"
-import { WidgetTypeRegistry } from "../../core/widget/services/widget-type-registry.service";
 import { TranslateService } from "@ngx-translate/core";
 
 /**
@@ -135,14 +134,12 @@ export class WidgetBuilderService {
     this.lockWidgetPreview(widgetId);
 
     // Render the widget
-    this.widgetService.renderWidget(this.widgetPage.id, widgetId).then(response => {
+    this.widgetService.renderWidget(this.widgetPage.id, widgetId).subscribe(response => {
       // Update the widget preview with the new render response
       _self.widgetPreview.next({
         widgetId: widgetId,
-        content: response['content']
+        content: response['data']
       });
-    }).catch((ex) => {
-      console.error('Error fetching the rendered widget', ex);
     });
   }
 
@@ -180,7 +177,7 @@ export class WidgetBuilderService {
       }
     }
 
-    return this.translateService.instant(widgetType.label)  + '-' + numWidgets;
+    return this.translateService.instant(widgetType.label).replace(/\s+/g, '-').toLowerCase() + '-' + numWidgets;
   }
 
 }
