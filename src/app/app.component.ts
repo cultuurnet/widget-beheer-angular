@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from "@ngx-translate/core";
-import { NavigationEnd, Router } from "@angular/router";
-import { TopbarService } from "./core/topbar/services/topbar.service";
+import { TranslateService } from '@ngx-translate/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { TopbarService } from './core/topbar/services/topbar.service';
 
 @Component({
   selector: 'app-root',

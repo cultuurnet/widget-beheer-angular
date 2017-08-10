@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
-import { AbstractWidgetEditComponent } from "../../../../core/widget/components/abstract-widget-edit-component";
-import { FormBuilder } from "@angular/forms";
-import { WidgetBuilderService } from "../../../services/widget-builder.service";
-import * as _ from "lodash";
+import { Component } from '@angular/core';
+import { AbstractWidgetEditComponent } from '../../../../core/widget/components/abstract-widget-edit-component';
+import { FormBuilder } from '@angular/forms';
+import { WidgetBuilderService } from '../../../services/widget-builder.service';
+import * as _ from 'lodash';
 
 /**
  * Tips widget edit form component.

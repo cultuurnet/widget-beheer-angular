@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { environment } from "../../../../environments/environment";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { environment } from '../../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-import { User } from "../user";
-import { MemoryCache } from "../../memory-cache";
+import { User } from '../user';
+import { MemoryCache } from '../../memory-cache';
 
 /**
  * Service that handles request to the "user" api
@@ -17,7 +17,7 @@ export class UserService {
    * The user API path
    * @type {string}
    */
-  private apiPath: string = 'uitid/';
+  private apiPath = 'uitid/';
 
   /**
    * ProjectService constructor.
@@ -35,6 +35,8 @@ export class UserService {
       return true;
     }, () => {
       return false;
+    }).catch(error => {
+      return Observable.of(false);
     });
   }
 
@@ -43,10 +45,10 @@ export class UserService {
    * @return {Observable<User>}
    */
   public getUser(): Observable<User> {
-    const user = this.cache.get('currentUser', ['user'], false);
+    const cachedUser = this.cache.get('currentUser', ['user'], false);
 
-    if (user) {
-      return Observable.of(user);
+    if (cachedUser) {
+      return Observable.of(cachedUser);
     }
 
     return this.http.get(environment.apiUrl + this.apiPath + 'user')

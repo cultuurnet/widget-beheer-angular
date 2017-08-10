@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-import { BackButton } from "../back-button";
-import { Subject } from "rxjs";
+import 'rxjs/add/operator/filter';
+import { BackButton } from '../back-button';
+import { Subject } from 'rxjs/Subject';
 
 /**
  * Service that allows communication between the Topbar component and other components

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractLayoutComponent } from "../../../../core/layout/components/abstract-layout.component";
+import { AbstractLayoutComponent } from '../../../../core/layout/components/abstract-layout.component';
 
 /**
  * Provides a two col with sidebar right layout component.

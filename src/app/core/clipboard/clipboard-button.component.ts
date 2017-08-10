@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from '@angular/core';
 
 /**
  * Copy to clipboard button component.
@@ -17,14 +17,14 @@ export class ClipboardButtonComponent {
   /**
    * Flag indicating if the text was copied successfully
    */
-  public copySuccess: boolean = false;
+  public copySuccess = false;
 
   /**
    * React on clipboard copy success
    * @param $event
    */
   public cbCopySuccess($event) {
-    let _self = this;
+    const _self = this;
     this.copySuccess = true;
 
     setTimeout(function() {

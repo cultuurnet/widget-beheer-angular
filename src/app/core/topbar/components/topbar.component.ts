@@ -1,17 +1,17 @@
 import {
   Component, ComponentFactoryResolver, ComponentRef, EventEmitter, OnDestroy, OnInit, ReflectiveInjector, ViewChild,
   ViewContainerRef
-} from "@angular/core";
-import { Router } from "@angular/router";
-import { ToastyService } from "ng2-toasty";
-import { TranslateService } from "@ngx-translate/core";
-import { User } from "../../user/user";
-import { UserService } from "../../user/services/user.service";
-import { BackButton } from "../back-button";
-import { TopbarService } from "../services/topbar.service";
-import { Subscription } from "rxjs";
-import { DynamicComponentDirective } from "../directives/dynamic-component.directive";
-import * as _ from "lodash";
+} from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastyService } from 'ng2-toasty';
+import { TranslateService } from '@ngx-translate/core';
+import { User } from '../../user/user';
+import { UserService } from '../../user/services/user.service';
+import { BackButton } from '../back-button';
+import { TopbarService } from '../services/topbar.service';
+import { Subscription } from 'rxjs/Subscription';
+import { DynamicComponentDirective } from '../directives/dynamic-component.directive';
+import * as _ from 'lodash';
 
 /**
  * Topbar component.
@@ -75,7 +75,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
    */
   public ngOnInit() {
     // Subscribe to the back button
-    let backButtonSubscription = this.topbarService.backButton$.subscribe(
+    const backButtonSubscription = this.topbarService.backButton$.subscribe(
       backButton => {
         this.backButton = backButton;
       });
@@ -83,7 +83,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
     this.subscriptions.push(backButtonSubscription);
 
     // Subscribe to the back button
-    let dynamicComponentSubscription = this.topbarService.dynamicComponents$.subscribe(
+    const dynamicComponentSubscription = this.topbarService.dynamicComponents$.subscribe(
       res => {
         switch (res.action) {
           case 'add':
@@ -138,7 +138,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
    * Respond to the back button click
    */
   public back() {
-    if (this.backButton.type == BackButton.TYPE_LINK) {
+    if (this.backButton.type === BackButton.TYPE_LINK) {
       return window.location.href = this.backButton.url;
     }else {
       return this.router.navigate(this.backButton.route);
@@ -149,6 +149,10 @@ export class TopbarComponent implements OnInit, OnDestroy {
    * Clear all dynamic components
    */
   private clearDynamicComponents() {
+    if (!this.dynamicComponentContainer) {
+      return;
+    }
+
     // Unsubscribe from all subscriptions
     for (const id in this.dynamicComponentSubscriptions) {
       if (this.dynamicComponentSubscriptions.hasOwnProperty(id)) {
@@ -202,18 +206,18 @@ export class TopbarComponent implements OnInit, OnDestroy {
    */
   private addDynamicComponent(id: string, component: any, inputs: any = {}, index: number = null) {
     // Create factory out of the component we want to create
-    let componentFactory = this.resolver.resolveComponentFactory(component);
+    const componentFactory = this.resolver.resolveComponentFactory(component);
 
     // Insert the component into the dom container
-    let dynamicComponent = this.dynamicComponentContainer.createComponent(componentFactory, index);
+    const dynamicComponent = this.dynamicComponentContainer.createComponent(componentFactory, index);
 
     // Get all event emitters and subscribe to them, so we can have the events bubble of through the topbar service
-    let componentInstance = dynamicComponent.instance;
-    for (let key in componentInstance) {
+    const componentInstance = dynamicComponent.instance;
+    for (const key in componentInstance) {
       if (componentInstance.hasOwnProperty(key)) {
         // Subscribe to all event emitters
         if (componentInstance[key] instanceof EventEmitter) {
-          let subscription = componentInstance[key].subscribe((value) => {
+          const subscription = componentInstance[key].subscribe((value) => {
             this.topbarService.dispatchEvent({
               id: id,
               output: key,
@@ -221,7 +225,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
             });
           });
 
-          _.set(this.dynamicComponentSubscriptions, [id, key], subscription)
+          _.set(this.dynamicComponentSubscriptions, [id, key], subscription);
         }
       }
     }
@@ -242,7 +246,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
    * @param ids
    */
   private showDynamicComponents(ids: Array<string>) {
-    for (let id of ids) {
+    for (const id of ids) {
       if (this.dynamicComponents.hasOwnProperty(id)) {
         const component = this.dynamicComponents[id];
         const index = this.dynamicComponentContainer.indexOf(component);
@@ -259,7 +263,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
    * @param ids
    */
   private hideDynamicComponents(ids: Array<string>) {
-    for (let id of ids) {
+    for (const id of ids) {
       if (this.dynamicComponents.hasOwnProperty(id)) {
         const component = this.dynamicComponents[id];
         const index = this.dynamicComponentContainer.indexOf(component);

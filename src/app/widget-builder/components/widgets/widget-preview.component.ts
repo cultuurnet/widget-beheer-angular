@@ -1,12 +1,11 @@
-import { Component, Input, OnInit, OnDestroy, ViewChild } from "@angular/core";
-import { Widget } from "../../../core/widget/widget";
-import { WidgetBuilderService } from "../../services/widget-builder.service";
-import { WidgetBuilderComponent } from "../../..//widget-builder/widget-builder.component";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ConfirmationModalComponent } from "../../../core/modal/components/confirmation-modal.component";
-import { WidgetPreviewDirective } from "../../directives/widget-preview.directive";
-import * as _ from "lodash";
-import { Subscription } from "rxjs";
+import { Component, Input, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Widget } from '../../../core/widget/widget';
+import { WidgetBuilderService } from '../../services/widget-builder.service';
+import { WidgetBuilderComponent } from '../../..//widget-builder/widget-builder.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationModalComponent } from '../../../core/modal/components/confirmation-modal.component';
+import * as _ from 'lodash';
+import { Subscription } from 'rxjs/Subscription';
 
 /**
  * A generic widget preview component.
@@ -21,16 +20,10 @@ import { Subscription } from "rxjs";
  */
 export class WidgetPreviewComponent implements OnInit, OnDestroy {
 
-
   /**
    * The widget being previewed
    */
   @Input() widget: Widget;
-
-  /**
-   * The widget preview directive to replace with the rendered widget preview component
-   */
-  @ViewChild(WidgetPreviewDirective) preview: WidgetPreviewDirective;
 
   /**
    * Rendered widget preview
@@ -41,7 +34,7 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
    * Indicates if the preview is rendering or not
    * @type {boolean}
    */
-  public isRendering: boolean = true;
+  public isRendering = true;
 
   /**
    * Keep track of the active widget
@@ -61,7 +54,7 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
   /**
    * Flag indicating if the sidebar is shown or not
    */
-  public sidebar: boolean = false;
+  public sidebar = false;
 
   /**
    * Subscription to the widgetbuilder sidebar status
@@ -146,8 +139,8 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
    * @param widget
    */
   public removeWidget(widget: Widget) {
-    let modal = this.modalService.open(ConfirmationModalComponent);
-    let modalInstance = modal.componentInstance;
+    const modal = this.modalService.open(ConfirmationModalComponent);
+    const modalInstance = modal.componentInstance;
 
     modalInstance.title = 'REMOVE_WIDGET_MODAL_TITLE';
     modalInstance.message = 'REMOVE_WIDGET_MODAL_MESSAGE';

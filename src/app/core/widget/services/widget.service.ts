@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { WidgetPage } from "../widget-page";
-import * as _ from "lodash";
-import { environment } from "../../../../environments/environment";
-import { WidgetSaveResponse } from "../widget-save-response";
-import { WidgetPageFactory } from "../factories/widget-page.factory";
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { WidgetPage } from '../widget-page';
+import * as _ from 'lodash';
+import { environment } from '../../../../environments/environment';
+import { WidgetSaveResponse } from '../widget-save-response';
+import { WidgetPageFactory } from '../factories/widget-page.factory';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-import { MemoryCache } from "../../memory-cache";
-import { RenderedWidget } from "../rendered-widget";
+import { MemoryCache } from '../../memory-cache';
+import { RenderedWidget } from '../rendered-widget';
 
 /**
  * The widget service handles all request to the widget API
@@ -22,7 +22,7 @@ export class WidgetService {
    * The widget API path
    * @type {string}
    */
-  private widgetApiPath: string = 'widgets/api/';
+  private widgetApiPath = 'widgets/api/';
 
   /**
    * WidgetService constructor.
@@ -43,8 +43,8 @@ export class WidgetService {
    * @param widgetId
    * @return {Observable<WidgetSaveResponse>}
    */
-  public saveWidgetPage(widgetPage: WidgetPage, widgetId?: string) : Observable<WidgetSaveResponse> {
-    let requestOptions = {
+  public saveWidgetPage(widgetPage: WidgetPage, widgetId?: string): Observable<WidgetSaveResponse> {
+    const requestOptions = {
       params: new HttpParams()
     };
 
@@ -72,7 +72,7 @@ export class WidgetService {
    * @param reset
    * @return {Observable<WidgetPage>}
    */
-  public getWidgetPage(project_id: string, pageId: string, reset: boolean = false) {
+  public getWidgetPage(project_id: string, pageId: string, reset: boolean = false): Observable<WidgetPage> {
     if (!reset) {
       const widgetPage = this.cache.get('widgetPage', [pageId], false);
 
@@ -109,11 +109,11 @@ export class WidgetService {
    *
    * @param projectId
    * @param reset
-   * @return {Observable<Array>}
+   * @return {Observable<Array<WidgetPage>>}
    */
-  public getWidgetPages(projectId: string, reset: boolean = false) {
+  public getWidgetPages(projectId: string, reset: boolean = false): Observable<Array<WidgetPage>> {
     if (!reset) {
-      let widgetPages = [];
+      const widgetPages = [];
       const widgetPageIds = this.cache.get('widgetPageList', [projectId], false);
 
       if (widgetPageIds) {
@@ -134,9 +134,9 @@ export class WidgetService {
 
     return this.http.get(environment.apiUrl + this.widgetApiPath + 'project/' + projectId + '/widget-page')
       .map(widgetPages => {
-        let pages = [];
+        const pages = [];
 
-        for (let id in widgetPages) {
+        for (const id in widgetPages) {
           if (widgetPages.hasOwnProperty(id)) {
             const widgetPage: WidgetPage = this.widgetPageFactory.create(widgetPages[id]);
             if (widgetPage) {
@@ -152,7 +152,7 @@ export class WidgetService {
         this.cache.put('widgetPageList', [projectId], _.map(widgetPages, 'id'));
 
         // Store all pages in the widgetPage cache
-        for (let widgetPage of widgetPages) {
+        for (const widgetPage of widgetPages) {
           this.cache.put('widgetPage', [widgetPage.id], widgetPage);
         }
       });
@@ -178,7 +178,7 @@ export class WidgetService {
         return {
           widgetId: widgetId,
           data: response['data']
-        }
+        };
       })
       .do(renderedWidget => {
       // Cache the rendered widget
@@ -214,7 +214,7 @@ export class WidgetService {
    * @param currentVersion
    *  Force the embed url to the current version
    */
-  public getWidgetPageEmbedUrl(widgetPage: WidgetPage, scriptTags: boolean = false, currentVersion: boolean = false) {
+  public getWidgetPageEmbedUrl(widgetPage: WidgetPage, scriptTags: boolean = false, currentVersion: boolean = false): string {
     let embedUrl = environment.widgetApi.embedUrl.current;
 
     if (widgetPage.version !== environment.widgetApi.currentVersion && !currentVersion) {
@@ -225,7 +225,7 @@ export class WidgetService {
     embedUrl = _.replace(embedUrl, /:page_id/g, widgetPage.id);
 
     if (scriptTags) {
-      return '<script type="text/javascript" src="'+embedUrl+'"></script>';
+      return '<script type="text/javascript" src="' + embedUrl + '"></script>';
     }
 
     return embedUrl;

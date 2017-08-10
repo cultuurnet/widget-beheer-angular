@@ -3,8 +3,8 @@
  */
 export class BackButton {
 
-  static TYPE_LINK: string = 'link';
-  static TYPE_ROUTE: string = 'route';
+  static TYPE_LINK = 'link';
+  static TYPE_ROUTE = 'route';
 
   /**
    * The link type
@@ -33,7 +33,7 @@ export class BackButton {
    * @param url
    * @param route
    */
-  constructor(type: string, label: string, url: string = null, route:Array<string> = []) {
+  constructor(type: string, label: string, url: string = null, route: Array<string> = []) {
     this.type = type;
     this.label = label;
     this.url = url;

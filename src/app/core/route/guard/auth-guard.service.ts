@@ -1,6 +1,6 @@
-import { Injectable }     from '@angular/core';
-import { CanActivate }    from '@angular/router';
-import { UserService } from "../../user/services/user.service";
+import { Injectable } from '@angular/core';
+import { CanActivate } from '@angular/router';
+import { UserService } from '../../user/services/user.service';
 
 /**
  * Authguard service

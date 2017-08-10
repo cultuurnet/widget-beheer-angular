@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
-import { WidgetPage } from "../../../core/widget/widget-page";
-import * as _ from "lodash";
-import { WidgetService } from "../../../core/widget/services/widget.service";
-import { Project } from "../../../core/project/project";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ConfirmationModalComponent } from "app/core/modal/components/confirmation-modal.component";
-import { ToastyService } from "ng2-toasty";
-import { TranslateService } from "@ngx-translate/core";
-import { environment } from "../../../../environments/environment";
-import { UserService } from "../../../core/user/services/user.service";
-import { TopbarService } from "../../../core/topbar/services/topbar.service";
-import { BackButton } from "app/core/topbar/back-button";
+import { ActivatedRoute, Router } from '@angular/router';
+import { WidgetPage } from '../../../core/widget/widget-page';
+import * as _ from 'lodash';
+import { WidgetService } from '../../../core/widget/services/widget.service';
+import { Project } from '../../../core/project/project';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationModalComponent } from 'app/core/modal/components/confirmation-modal.component';
+import { ToastyService } from 'ng2-toasty';
+import { TranslateService } from '@ngx-translate/core';
+import { environment } from '../../../../environments/environment';
+import { UserService } from '../../../core/user/services/user.service';
+import { TopbarService } from '../../../core/topbar/services/topbar.service';
+import { BackButton } from 'app/core/topbar/back-button';
 
 /**
  * Displays a list of pages for a project.
@@ -64,8 +64,12 @@ export class PageListComponent implements OnInit {
     this.route.data
       .subscribe((data: { widgetPages: Array<WidgetPage>, project: Project }) => {
         // Separate legacy and current widgets
-        for (let widgetPage of data.widgetPages) {
-          widgetPage.version >= environment.widgetApi.currentVersion ? this.widgetPages.push(widgetPage) : this.legacyWidgetPages.push(widgetPage);
+        for (const widgetPage of data.widgetPages) {
+          if (widgetPage.version >= environment.widgetApi.currentVersion) {
+            this.widgetPages.push(widgetPage);
+          } else {
+            this.legacyWidgetPages.push(widgetPage);
+          }
         }
 
         // Get the project from the current route
@@ -82,7 +86,7 @@ export class PageListComponent implements OnInit {
    */
   public duplicateWidgetPage(widgetPage: WidgetPage) {
     // Clone the widget page
-    let clone =  _.cloneDeep(widgetPage);
+    const clone =  _.cloneDeep(widgetPage);
 
     // Remove the widgetPage id
     clone.id = '';
@@ -103,8 +107,8 @@ export class PageListComponent implements OnInit {
    * @param widgetPage
    */
   public deleteWidgetPage(widgetPage: WidgetPage) {
-    let modal = this.modalService.open(ConfirmationModalComponent);
-    let modalInstance = modal.componentInstance;
+    const modal = this.modalService.open(ConfirmationModalComponent);
+    const modalInstance = modal.componentInstance;
 
     modalInstance.title = 'REMOVE_WIDGET_PAGE_MODAL_TITLE';
     modalInstance.message = 'REMOVE_WIDGET_PAGE_MODAL_MESSAGE';

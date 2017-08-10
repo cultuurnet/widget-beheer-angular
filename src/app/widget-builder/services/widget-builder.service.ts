@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Subject } from "rxjs/Subject";
-import { Widget } from "../../core/widget/widget";
-import { WidgetPage } from "../../core/widget/widget-page";
-import { WidgetService } from "../../core/widget/services/widget.service";
-import * as debouncePromise from "debounce-promise"
-import { TranslateService } from "@ngx-translate/core";
-import { RenderedWidget } from "../../core/widget/rendered-widget";
+import { Subject } from 'rxjs/Subject';
+import { Widget } from '../../core/widget/widget';
+import { WidgetPage } from '../../core/widget/widget-page';
+import { WidgetService } from '../../core/widget/services/widget.service';
+import * as debouncePromise from 'debounce-promise';
+import { TranslateService } from '@ngx-translate/core';
+import { RenderedWidget } from '../../core/widget/rendered-widget';
 
 /**
  * The widgetbuilder service.
@@ -99,7 +99,7 @@ export class WidgetBuilderService {
    * @param widgetId
    */
   public saveWidgetPage(widgetId?: string) {
-    let _self = this;
+    const _self = this;
 
     if (widgetId) {
       this.lockWidgetPreview(widgetId);
@@ -141,7 +141,7 @@ export class WidgetBuilderService {
    * @param widgetId
    */
   public renderWidget(widgetId: string) {
-    let _self = this;
+    const _self = this;
     this.lockWidgetPreview(widgetId);
 
     // Render the widget
@@ -171,11 +171,11 @@ export class WidgetBuilderService {
   public generateWidgetName(widgetType: any) {
     // Get the widget type count
     let numWidgets = 1;
-    for (let rowKey in this.widgetPage.rows) {
+    for (const rowKey in this.widgetPage.rows) {
       if (this.widgetPage.rows.hasOwnProperty(rowKey)) {
-        for (let regionId in this.widgetPage.rows[rowKey].regions) {
+        for (const regionId in this.widgetPage.rows[rowKey].regions) {
           if (this.widgetPage.rows[rowKey].regions.hasOwnProperty(regionId)) {
-            for (let widget of this.widgetPage.rows[rowKey].regions[regionId].widgets) {
+            for (const widget of this.widgetPage.rows[rowKey].regions[regionId].widgets) {
               if (widget.type === widgetType.type) {
                 numWidgets++;
               }

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { PageTemplateRegistry } from "../../../core/template/services/page-template-registry.service";
-import { WidgetPageFactory } from "../../../core/widget/factories/widget-page.factory";
-import { ActivatedRoute, Router } from "@angular/router";
-import { WidgetService } from "../../../core/widget/services/widget.service";
-import { TemplatePreviewModalComponent } from "./preview/template-preview-modal.component";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { Project } from "../../../core/project/project";
-import { TopbarService } from "../../../core/topbar/services/topbar.service";
-import { BackButton } from "../../../core/topbar/back-button";
+import { PageTemplateRegistry } from '../../../core/template/services/page-template-registry.service';
+import { WidgetPageFactory } from '../../../core/widget/factories/widget-page.factory';
+import { ActivatedRoute, Router } from '@angular/router';
+import { WidgetService } from '../../../core/widget/services/widget.service';
+import { TemplatePreviewModalComponent } from './preview/template-preview-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Project } from '../../../core/project/project';
+import { TopbarService } from '../../../core/topbar/services/topbar.service';
+import { BackButton } from '../../../core/topbar/back-button';
 
 /**
  * Component used for adding a new widget page to a project.
@@ -77,7 +77,7 @@ export class AddPageComponent implements OnInit {
    */
   public addPage(pageTemplate: any) {
     // Merge the project id on the template configuration
-    let config = pageTemplate.template.configuration;
+    const config = pageTemplate.template.configuration;
     config['project_id'] = this.project.id;
 
     // Create a widget page from the template, ensuring it contains the required defaults, id's,...
@@ -96,8 +96,8 @@ export class AddPageComponent implements OnInit {
    */
   public preview(pageTemplate: any) {
     // Show the confirmation modal
-    let modal = this.modalService.open(TemplatePreviewModalComponent, {windowClass: 'modal-fullscreen'});
-    let modalInstance = modal.componentInstance;
+    const modal = this.modalService.open(TemplatePreviewModalComponent, {windowClass: 'modal-fullscreen'});
+    const modalInstance = modal.componentInstance;
 
     modalInstance.templateId = pageTemplate.id;
     modalInstance.title = pageTemplate.label;

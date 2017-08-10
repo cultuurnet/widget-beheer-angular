@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
-import { WidgetService } from "../../../core/widget/services/widget.service";
-import { ToastyService } from "ng2-toasty";
-import { TranslateService } from "@ngx-translate/core";
-import { WidgetPage } from "../../../core/widget/widget-page";
-import { WidgetBuilderService } from "../../services/widget-builder.service";
-import { Subscription } from "rxjs";
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { WidgetService } from '../../../core/widget/services/widget.service';
+import { ToastyService } from 'ng2-toasty';
+import { TranslateService } from '@ngx-translate/core';
+import { WidgetPage } from '../../../core/widget/widget-page';
+import { WidgetBuilderService } from '../../services/widget-builder.service';
+import { Subscription } from 'rxjs/Subscription';
 
 /**
  * The toolbar component contains actions and tools for editing a widget page:
@@ -60,12 +60,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
    * Active view mode, defaults to "desktop".
    * @type {string}
    */
-  public activeViewMode: string = 'desktop';
+  public activeViewMode = 'desktop';
 
   /**
    * Edit title mode or not
    */
-  public editingTitle: boolean = false;
+  public editingTitle = false;
 
   /**
    * The widget page title
@@ -75,7 +75,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   /**
    * Flag indicating if the sidebar is open or not
    */
-  public sidebar: boolean = false;
+  public sidebar = false;
 
   /**
    * Reference to the sidebar subscription
@@ -89,8 +89,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
    * @param toastyService
    * @param translateService
    */
-  constructor(private widgetService: WidgetService, private widgetBuilderService: WidgetBuilderService, private toastyService: ToastyService, private translateService: TranslateService) {
-  }
+  constructor(
+    private widgetService: WidgetService,
+    private widgetBuilderService: WidgetBuilderService,
+    private toastyService: ToastyService,
+    private translateService: TranslateService
+  ) { }
 
   /**
    * @inheritDoc
