@@ -135,7 +135,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     const drake = this.dragulaService.find(this.dragulaContainer);
 
     // Keep a reference to the dom-autoscroller
-    this.scroll = autoScroll(document.querySelector('#widget-builder-preview'), {
+    this.scroll = autoScroll(document.querySelector('.builder--wrapper'), {
       margin: 30,
       maxSpeed: 25,
       scrollWhenOutside: true,
