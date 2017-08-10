@@ -208,5 +208,6 @@
   "LOGOUT_FAILED_NOTIFICATION": "Afmelden niet gelukt. Probeer het later opnieuw.",
   "TOPBAR_USER_MENU_BUTTON_LOGOUT": "Afmelden",
   "TOPBAR_BACK_BUTTON_LABEL_PROJECTAANVRAGEN": "Projectaanvragen",
-  "WIDGET_PAGE_TITLE_EDIT_FAILED_NOTIFICATION": "Er ging iets mis bij het opslaan van de titel. Probeer het later opnieuw."
+  "WIDGET_PAGE_TITLE_EDIT_FAILED_NOTIFICATION": "Er ging iets mis bij het opslaan van de titel. Probeer het later opnieuw.",
+  "BUTTON_WIDGET_BUILDER_TOOLBAR_STOP_EDITING": "Stop bewerken"
 }

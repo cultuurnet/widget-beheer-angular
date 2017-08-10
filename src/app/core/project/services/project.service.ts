@@ -4,8 +4,8 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-import { StaticCache } from "../../static-cache";
 import { Project } from "../project";
+import { MemoryCache } from "../../memory-cache";
 
 /**
  * Service that handles request to the "project" api
@@ -18,7 +18,7 @@ export class ProjectService {
    * @param http
    * @param cache
    */
-  constructor (private http: HttpClient, private cache: StaticCache) {
+  constructor (private http: HttpClient, private cache: MemoryCache) {
   }
 
   /**

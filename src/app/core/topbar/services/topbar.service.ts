@@ -56,14 +56,16 @@ export class TopbarService {
    * @param id
    * @param component
    * @param inputs
+   * @param index
    */
-  public addComponent(id: string, component: any, inputs: any = {}) {
+  public addComponent(id: string, component: any, inputs: any = {}, index: number = null) {
     this.dynamicComponentsSource.next({
       action: 'add',
       data: {
         id: id,
         component: component,
-        inputs: inputs
+        inputs: inputs,
+        index: index
       }
     });
 
@@ -87,6 +89,30 @@ export class TopbarService {
       action: 'remove',
       data: {
         id: id
+      }
+    });
+  }
+
+  /**
+   * Hide components in the topbar
+   */
+  public hideComponents(ids: Array<string>) {
+    this.dynamicComponentsSource.next({
+      action: 'hide',
+      data: {
+        ids: ids
+      }
+    });
+  }
+
+  /**
+   * Show components in the topbar
+   */
+  public showComponents(ids: Array<string>) {
+    this.dynamicComponentsSource.next({
+      action: 'show',
+      data: {
+        ids: ids
       }
     });
   }

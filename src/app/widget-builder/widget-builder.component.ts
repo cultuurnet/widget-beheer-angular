@@ -12,8 +12,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Project } from "../core/project/project";
 import { BackButton } from "../core/topbar/back-button";
 import { TopbarService } from "../core/topbar/services/topbar.service";
-import { ViewModeSwitcherComponent } from "./components/view-mode-switcher/view-mode-switcher.component";
-import { WidgetPageTitleEditComponent } from "./components/widgetpage-title-edit/widgetpage-title-edit.component";
+import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 
 /**
  * The widget builder component is used for editing a widget page.
@@ -80,6 +79,11 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   private project: Project;
 
   /**
+   * Widgetbuilder sidebar subscription
+   */
+  private sidebarSubscription: Subscription;
+
+  /**
    * WidgetBuilder constructor.
    * @param dragulaService
    * @param _componentFactoryResolver
@@ -95,11 +99,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     private widgetBuilderService: WidgetBuilderService,
     private route: ActivatedRoute,
     private topbarService: TopbarService
-  ) {
-    this.widgetSelectedSubscription = widgetBuilderService.widgetSelected$.subscribe(widget => {
-      this.editWidget(widget);
-    });
-  }
+  ) {  }
 
   /**
    * @inheritDoc
@@ -113,6 +113,16 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
         // Set the current page on the widget builder service
         this.widgetBuilderService.widgetPage = this.editingPage;
       });
+
+    // Subscribe to the selected widget
+    this.widgetSelectedSubscription = this.widgetBuilderService.widgetSelected$.subscribe(widget => {
+      this.editWidget(widget);
+    });
+
+    // Subscribe to sidebar status
+    this.sidebarSubscription = this.widgetBuilderService.sidebarStatus$.subscribe(status => {
+      this.showSidebar = status;
+    });
 
     // Set the dragula options
     this.dragulaService.setOptions(this.dragulaContainer, {
@@ -177,24 +187,11 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Toggle the sidebar.
-   */
-  public toggleSidebar() {
-    this.showSidebar = !this.showSidebar;
-  }
-
-  /**
    * close the sidebar.
    */
   public closeSidebar() {
     this.showSidebar = false;
-  }
-
-  /**
-   * Change the current view mode
-   */
-  public handleViewModeChanged(viewMode: string) {
-    this.viewMode = viewMode;
+    this.widgetBuilderService.toggleWidgetbuilderSidebar(false);
   }
 
   /**
@@ -227,14 +224,17 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
       ['/project', this.project.id]
     ));
 
-    // Add the widgetpage title edit component
-    this.topbarService.addComponent('widgetPageTitleEdit', WidgetPageTitleEditComponent, {widgetPage: this.editingPage});
-
-    // Add the viewmodeswitcher component and subscribe to it's events
-    this.topbarService.addComponent('viewModeSwitcher', ViewModeSwitcherComponent)
-      .filter(event => event.output === 'viewModeChanged')
+    // Add the toolbar component and subscribe to it's events
+    this.topbarService.addComponent('toolbar', ToolbarComponent, {widgetPage: this.editingPage})
       .subscribe(event => {
-        this.viewMode = event.value;
+        switch (event.output) {
+          case 'viewModeChanged':
+            this.viewMode = event.value;
+            break;
+          case 'sidebarClose':
+            this.closeSidebar();
+            break
+        }
       });
   }
 }

@@ -11,7 +11,6 @@ import { PageTemplateRegistry } from "./template/services/page-template-registry
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { ApiRequestInterceptor } from "./api-request-interceptor";
-import { StaticCache } from "./static-cache";
 import { ProjectService } from "./project/services/project.service";
 import { ProjectResolver } from "./route/resolver/project-resolver.service";
 import { WidgetPageResolver } from "./route/resolver/widget-page-resolver.service";
@@ -23,6 +22,7 @@ import { TopbarComponent } from "./topbar/components/topbar.component";
 import { TopbarService } from "./topbar/services/topbar.service";
 import { DynamicComponentDirective } from "./topbar/directives/dynamic-component.directive";
 import { SafeHTMLPipe } from "./safe-html.pipe";
+import { MemoryCache } from "./memory-cache";
 
 @NgModule({
   providers: [
@@ -30,7 +30,7 @@ import { SafeHTMLPipe } from "./safe-html.pipe";
     LayoutTypeRegistry,
     PageTemplateRegistry,
     WidgetPageFactory,
-    StaticCache,
+    MemoryCache,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiRequestInterceptor,

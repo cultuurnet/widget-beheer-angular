@@ -2,35 +2,19 @@
     <div class="builder--wrapper">
         <div class="builder" [ngClass]="{ 'no-sidebar' : !showSidebar, 'builder--edit-modus' : showSidebar }">
             <div (click)="deselectWidget($event)" id="widget-builder-preview" class='preview {{ viewMode }}'>
-
                 <div class="preview-inner">
                     <div class="page">
                         <div *ngIf="editingPage" class="page-inner">
-                                <app-row-preview *ngFor="let row of editingPage.rows; let i = index" [rows]="editingPage.rows" [index]="i" [row]="row" (widgetSelected)="editWidget($event)"></app-row-preview>
-
+                            <app-row-preview *ngFor="let row of editingPage.rows; let i = index" [rows]="editingPage.rows" [index]="i" [row]="row" (widgetSelected)="editWidget($event)"></app-row-preview>
                             <app-add-row [page]="editingPage"></app-add-row>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="sidebar ">
                 <div class="sidebar-inner">
-
                     <div [ngClass]="{ 'hidden' : !activeWidget }">
                         <ng-template widget-edit></ng-template>
-                    </div>
-                    <div class="tip p-4" *ngIf="!activeWidget">
-                        <h2>{{ 'TRANSLATION_DEMO' | translate }}</h2>
-
-                        <p>Stel je widget samen in drie stappen:</p>
-                        <ol>
-                            <li><strong>Voeg een rij toe</strong>. Hiermee bouw je de lay-out van de pagina. Je hebt keuze uit meerdere kolomstructuren. Je kan ook meerdere rijen toevoegen.</li>
-                            <li><strong>Voeg een blok toe</strong> in de passende kolom. Je hebt keuze uit meerdere soorten blokken: zo kan je je resultaten op je pagina plaatsen.</li>
-                            <li><strong>Configureer elke component</strong> door erop te klikken en de eigenschappen in deze rechterkolom aan te passen.</li>
-                        </ol>
-                        <p>Klaar met je widget te configureren?<br>Klik op 'Publiceren' en plak deze code in op je eigen website.</p>
-                        <p>Wil je deze pagina opmaken?<br>Klik op de knop 'CSS' en voeg je eigen stijlregels toe.</p>
                     </div>
                 </div>
             </div>

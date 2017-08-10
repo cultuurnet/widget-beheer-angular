@@ -17,7 +17,6 @@ import { TwoColSidebarRightLayoutComponent } from "./components/layouts/2col-sid
 import { ThreeColDoubleSidebarLayoutComponent } from "./components/layouts/3col-double-sidebar/3col-double-sidebar-layout.component";
 import { AddRowComponent } from "./components/add-row/add-row.component";
 import { RowEditComponent } from "./components/row-edit/row-edit.component";
-import { ViewModeSwitcherComponent } from "./components/view-mode-switcher/view-mode-switcher.component";
 import { WidgetPreviewComponent } from "./components/widgets/widget-preview.component";
 import { WidgetGroupFiltersEditComponent } from "./components/widgets/group-filters/widget-group-filters-edit.component";
 import { SearchResultsWidgetPreviewComponent } from "./components/widgets/search-results-widget/search-results-widget-preview.component";
@@ -36,7 +35,7 @@ import { AddPageComponent } from "./components/add-page/add-page.component";
 import { TemplatePreviewModalComponent } from "./components/add-page/preview/template-preview-modal.component";
 import { PageListComponent } from "./components/page-list/page-list.component";
 import { CoreModule } from "../core/core.module";
-import { WidgetPageTitleEditComponent } from "./components/widgetpage-title-edit/widgetpage-title-edit.component";
+import { ToolbarComponent } from "./components/toolbar/toolbar.component";
 
 @NgModule({
   declarations: [
@@ -54,7 +53,6 @@ import { WidgetPageTitleEditComponent } from "./components/widgetpage-title-edit
     TwoColSidebarLeftLayoutComponent,
     TwoColSidebarRightLayoutComponent,
     ThreeColDoubleSidebarLayoutComponent,
-    ViewModeSwitcherComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
     SearchResultsWidgetPreviewComponent,
@@ -68,7 +66,7 @@ import { WidgetPageTitleEditComponent } from "./components/widgetpage-title-edit
     AddPageComponent,
     TemplatePreviewModalComponent,
     PageListComponent,
-    WidgetPageTitleEditComponent
+    ToolbarComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -95,7 +93,6 @@ import { WidgetPageTitleEditComponent } from "./components/widgetpage-title-edit
     TwoColSidebarRightLayoutComponent,
     ThreeColDoubleSidebarLayoutComponent,
     OneColLayoutComponent,
-    ViewModeSwitcherComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
     SearchResultsWidgetPreviewComponent,
@@ -107,7 +104,7 @@ import { WidgetPageTitleEditComponent } from "./components/widgetpage-title-edit
     FacetsWidgetWidgetEditComponent,
     FacetsWidgetPreviewComponent,
     TemplatePreviewModalComponent,
-    WidgetPageTitleEditComponent
+    ToolbarComponent
   ]
 })
 

@@ -8,7 +8,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-import { StaticCache } from "../../static-cache";
+import { MemoryCache } from "../../memory-cache";
 
 /**
  * The widget service handles all request to the widget API
@@ -29,7 +29,7 @@ export class WidgetService {
    * @param widgetPageFactory
    * @param cache
    */
-  constructor (private http: HttpClient, private widgetPageFactory: WidgetPageFactory, private cache: StaticCache) {
+  constructor (private http: HttpClient, private widgetPageFactory: WidgetPageFactory, private cache: MemoryCache) {
   }
 
   /**

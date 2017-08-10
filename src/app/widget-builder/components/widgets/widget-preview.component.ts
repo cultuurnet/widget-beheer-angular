@@ -1,16 +1,12 @@
-import { Component, ComponentFactoryResolver, Input, OnInit, OnDestroy, ViewChild, EventEmitter } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy, ViewChild } from "@angular/core";
 import { Widget } from "../../../core/widget/widget";
 import { WidgetBuilderService } from "../../services/widget-builder.service";
 import { WidgetBuilderComponent } from "../../..//widget-builder/widget-builder.component";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ConfirmationModalComponent } from "../../../core/modal/components/confirmation-modal.component";
-import { SearchFormWidgetPreviewComponent } from "./search-form-widget/search-form-widget-preview.component";
-import { SearchResultsWidgetPreviewComponent } from "./search-results-widget/search-results-widget-preview.component";
 import { WidgetPreviewDirective } from "../../directives/widget-preview.directive";
 import * as _ from "lodash";
-import { HtmlWidgetPreviewComponent } from "./html-widget/html-widget-preview.component";
-import { TipsWidgetPreviewComponent } from "./tips-widget/tips-widget-preview.component";
-import { FacetsWidgetPreviewComponent } from "./facets-widget/facets-widget-preview.component";
+import { Subscription } from "rxjs";
 
 /**
  * A generic widget preview component.
@@ -60,16 +56,24 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
   /**
    * Subscription to the widget preview observable
    */
-  private widgetPreviewSubscription;
+  private widgetPreviewSubscription: Subscription;
+
+  /**
+   * Flag indicating if the sidebar is shown or not
+   */
+  public sidebar: boolean = false;
+
+  /**
+   * Subscription to the widgetbuilder sidebar status
+   */
+  private sidebarSubscription: Subscription;
 
   /**
    * WidgetPreviewComponent constructor.
    * @param widgetBuilderService
-   * @param widgetBuilderComponent
    * @param modalService
-   * @param _componentFactoryResolver
    */
-  constructor(private widgetBuilderService: WidgetBuilderService, public widgetBuilderComponent: WidgetBuilderComponent, private modalService: NgbModal, private _componentFactoryResolver: ComponentFactoryResolver) {
+  constructor(private widgetBuilderService: WidgetBuilderService, private modalService: NgbModal) {
   }
 
   /**
@@ -98,38 +102,13 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
       }
     });
 
+    // Subscribe to the widgetbuilder sidebar status
+    this.sidebarSubscription = this.widgetBuilderService.sidebarStatus$.subscribe(status => {
+      this.sidebar = status;
+    });
+
     // Render the current widget
     this.widgetBuilderService.renderWidget(this.widget.id);
-
-    // Temp preview code.
-    // @todo: Remove when no longer needed
-/*    let previewComponent = null;
-    switch (this.widget.type) {
-      case 'search-form':
-        previewComponent = SearchFormWidgetPreviewComponent;
-        break;
-      case 'search-results':
-        previewComponent = SearchResultsWidgetPreviewComponent;
-        break;
-      case 'html':
-        previewComponent = HtmlWidgetPreviewComponent;
-        break;
-      case 'tips':
-        previewComponent = TipsWidgetPreviewComponent;
-        break;
-      case 'facets':
-        previewComponent = FacetsWidgetPreviewComponent;
-        break;
-      default:
-        previewComponent = SearchFormWidgetPreviewComponent;
-        break;
-    }
-
-    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(previewComponent);
-
-    let viewContainerRef = this.preview.viewContainerRef;
-    viewContainerRef.clear();
-    viewContainerRef.createComponent(componentFactory);*/
   }
 
   /**
@@ -142,13 +121,11 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
 
   /**
    * Start editing the given widget.
-   * @param $event
-   * @param widget
    */
   public editWidget() {
-    this.widgetBuilderComponent.showSidebar = true;
+    // Open the sidebar
+    this.widgetBuilderService.toggleWidgetbuilderSidebar(true);
   }
-
 
   /**
    * Set selected for the given widget.

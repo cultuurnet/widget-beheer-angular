@@ -47,6 +47,17 @@ export class WidgetBuilderService {
   public widgetPreview$ = this.widgetPreview.asObservable();
 
   /**
+   * Widgetbuilder sidebar status
+   * @type {Subject}
+   */
+  private sidebarStatus = new Subject<boolean>();
+
+  /**
+   * Observable widgetbuilder sidebar status
+   */
+  public sidebarStatus$ = this.sidebarStatus.asObservable();
+
+  /**
    * Debounce the widgetpage save
    */
   private debounceWidgetPageSave;
@@ -178,6 +189,14 @@ export class WidgetBuilderService {
     }
 
     return this.translateService.instant(widgetType.label).replace(/\s+/g, '-').toLowerCase() + '-' + numWidgets;
+  }
+
+  /**
+   * Toggle the widgetbuilder sidebar
+   *  Pass in a boolean for the status (open or closed)
+   */
+  public toggleWidgetbuilderSidebar(status: boolean) {
+    return this.sidebarStatus.next(status);
   }
 
 }

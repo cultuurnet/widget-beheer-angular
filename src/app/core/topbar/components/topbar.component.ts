@@ -87,13 +87,19 @@ export class TopbarComponent implements OnInit, OnDestroy {
       res => {
         switch (res.action) {
           case 'add':
-            this.addDynamicComponent(res.data.id, res.data.component, res.data.inputs);
+            this.addDynamicComponent(res.data.id, res.data.component, res.data.inputs, res.data.index);
             break;
           case 'clear':
             this.clearDynamicComponents();
             break;
           case 'remove':
             this.removeDynamicComponent(res.data.id);
+            break;
+          case 'show':
+            this.showDynamicComponents(res.data.ids);
+            break;
+          case 'hide':
+            this.hideDynamicComponents(res.data.ids);
             break;
         }
       });
@@ -192,19 +198,14 @@ export class TopbarComponent implements OnInit, OnDestroy {
    * @param id
    * @param component
    * @param inputs
+   * @param index
    */
-  private addDynamicComponent(id: string, component: any, inputs: any = {}) {
-    let inputProviders = Object.keys(inputs).map((inputName) => {return {provide: inputName, useValue: inputs[inputName]};});
-    let resolvedInputs = ReflectiveInjector.resolve(inputProviders);
-
-    // Create an injector out of the data we want to pass down and this components injector
-    let injector = ReflectiveInjector.fromResolvedProviders(resolvedInputs, this.dynamicComponentContainer.parentInjector);
-
+  private addDynamicComponent(id: string, component: any, inputs: any = {}, index: number = null) {
     // Create factory out of the component we want to create
-    let factory = this.resolver.resolveComponentFactory(component);
+    let componentFactory = this.resolver.resolveComponentFactory(component);
 
-    // Create the component using the factory and the injector
-    let dynamicComponent = factory.create(injector);
+    // Insert the component into the dom container
+    let dynamicComponent = this.dynamicComponentContainer.createComponent(componentFactory, index);
 
     // Get all event emitters and subscribe to them, so we can have the events bubble of through the topbar service
     let componentInstance = dynamicComponent.instance;
@@ -232,11 +233,42 @@ export class TopbarComponent implements OnInit, OnDestroy {
       }
     }
 
-    // Insert the component into the dom container
-    this.dynamicComponentContainer.insert(dynamicComponent.hostView);
-
     // Keep track of the component
     this.dynamicComponents[id] = dynamicComponent;
+  }
+
+  /**
+   * Show dynamic components
+   * @param ids
+   */
+  private showDynamicComponents(ids: Array<string>) {
+    for (let id of ids) {
+      if (this.dynamicComponents.hasOwnProperty(id)) {
+        const component = this.dynamicComponents[id];
+        const index = this.dynamicComponentContainer.indexOf(component);
+
+        if (index === -1) {
+          this.dynamicComponentContainer.insert(component.hostView);
+        }
+      }
+    }
+  }
+
+  /**
+   * Hide dynamic components
+   * @param ids
+   */
+  private hideDynamicComponents(ids: Array<string>) {
+    for (let id of ids) {
+      if (this.dynamicComponents.hasOwnProperty(id)) {
+        const component = this.dynamicComponents[id];
+        const index = this.dynamicComponentContainer.indexOf(component);
+
+        if (index > -1) {
+          this.dynamicComponentContainer.detach(index);
+        }
+      }
+    }
   }
 
 }
