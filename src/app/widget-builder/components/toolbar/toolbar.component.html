@@ -1,30 +1,44 @@
-<div *ngIf="widgetPage">
-  <div class="page-title-edit" *ngIf="!sidebar">
-    <div *ngIf="!editingTitle">
-      <span class="page-title"><a (click)="toggleTitleEditMode()">{{ title }} <i class="fa fa-pencil"></i></a></span>
-    </div>
-    <div *ngIf="editingTitle" class="editable-controls">
-      <input type="text" [(ngModel)]="title">
-      <span class="editable-buttons">
+<!-- Publish page confirmation modal !-->
+<ng-template>
+  <app-publish-page-confirmation-modal></app-publish-page-confirmation-modal>
+</ng-template>
+
+<div class="row" *ngIf="widgetPage">
+  <div class="col-5">
+    <div class="page-title-edit" *ngIf="!sidebar">
+      <div *ngIf="!editingTitle">
+        <span class="page-title"><a (click)="toggleTitleEditMode()">{{ title }} <i class="fa fa-pencil"></i></a></span>
+      </div>
+      <div *ngIf="editingTitle" class="editable-controls">
+        <input type="text" [(ngModel)]="title">
+        <span class="editable-buttons">
         <button type="submit" class="btn btn-primary" title="Submit" aria-label="Submit" (click)="saveTitle()"><span class="fa fa-check"></span></button>
         <button type="button" class="btn btn-default" title="Cancel" aria-label="Cancel" (click)="cancelTitleEdit()"><span class="fa fa-times"></span></button>
     </span>
-    </div>
-  </div>
-  <div class="switcher" *ngIf="!sidebar">
-    <div class="device-switcher">
-      <div class="btn-group">
-        <button *ngFor="let viewMode of viewModes" type="button" class="btn btn-default navbar-btn btn--device-switcher" (click)="toggleViewMode($event, viewMode.type)" [ngClass]="{'active': activeViewMode === viewMode.type}">
-          <i class="fa fa-{{ viewMode.type }}" aria-hidden="true"></i>
-          <span>{{ viewMode.label | translate }}</span>
-        </button>
       </div>
     </div>
   </div>
-  <div class="edit-actions" *ngIf="sidebar">
-    <button  class="btn btn-default navbar-btn btn--stop-editing  nav-link" (click)="closeSidebar()" >
-      <i class="fa fa-times-circle" aria-hidden="true"></i>
-      {{ "BUTTON_WIDGET_BUILDER_TOOLBAR_STOP_EDITING" | translate }}
-    </button>
+  <div class="col-2">
+    <div class="switcher" *ngIf="!sidebar">
+      <div class="device-switcher">
+        <div class="btn-group">
+          <button *ngFor="let viewMode of viewModes" type="button" class="btn btn-default navbar-btn btn--device-switcher" (click)="toggleViewMode($event, viewMode.type)" [ngClass]="{'active': activeViewMode === viewMode.type}">
+            <i class="fa fa-{{ viewMode.type }}" aria-hidden="true"></i>
+            <span>{{ viewMode.label | translate }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="edit-actions" *ngIf="sidebar">
+      <button  class="btn btn-default navbar-btn btn--stop-editing  nav-link" (click)="closeSidebar()" >
+        <i class="fa fa-times-circle" aria-hidden="true"></i>
+        {{ "BUTTON_WIDGET_BUILDER_TOOLBAR_STOP_EDITING" | translate }}
+      </button>
+    </div>
+  </div>
+  <div class="col-5">
+    <div class="page-actions" *ngIf="!sidebar" style="float:right;">
+      <button class="btn btn-default btn-primary" (click)="publishPage()">Publiceren</button>
+    </div>
   </div>
 </div>

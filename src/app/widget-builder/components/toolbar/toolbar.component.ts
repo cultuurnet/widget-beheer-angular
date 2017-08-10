@@ -5,6 +5,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { WidgetPage } from '../../../core/widget/widget-page';
 import { WidgetBuilderService } from '../../services/widget-builder.service';
 import { Subscription } from 'rxjs/Subscription';
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ConfirmationModalComponent } from "../../../core/modal/components/confirmation-modal.component";
+import { PublishPageConfirmationModalComponent } from "../modal/publish-page-confirmation-modal.component";
 
 /**
  * The toolbar component contains actions and tools for editing a widget page:
@@ -88,12 +91,14 @@ export class ToolbarComponent implements OnInit, OnDestroy {
    * @param widgetBuilderService
    * @param toastyService
    * @param translateService
+   * @param modalService
    */
   constructor(
     private widgetService: WidgetService,
     private widgetBuilderService: WidgetBuilderService,
     private toastyService: ToastyService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private modalService: NgbModal
   ) { }
 
   /**
@@ -176,5 +181,18 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.toggleTitleEditMode();
   }
 
+  /**
+   * Publish the currently active widget page
+   */
+  public publishPage() {
+    this.widgetService.publishWidgetPage(this.widgetPage).subscribe(() => {
+      // Show the confirmation modal
+      const modal = this.modalService.open(PublishPageConfirmationModalComponent);
+      let modalInstance = modal.componentInstance;
+      modalInstance.widgetPage = this.widgetPage;
+    }, () => {
+      this.toastyService.error(this.translateService.instant('WIDGET_PAGE_PUBLISH_FAILED_NOTIFICATION'));
+    });
+  }
 
 }

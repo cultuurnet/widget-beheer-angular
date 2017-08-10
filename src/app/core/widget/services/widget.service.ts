@@ -65,6 +65,22 @@ export class WidgetService {
   }
 
   /**
+   * Publish a widgetpage
+   *
+   * @param widgetPage
+   */
+  public publishWidgetPage(widgetPage: WidgetPage) {
+    return this.http.post(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id + '/publish', {})
+      .do(res => {
+        // Clear the widgetPageList cache for the given project
+        this.cache.clear('widgetPageList', [widgetPage.project_id]);
+
+        // Remove the widgetPage object from the cache
+        this.cache.clear('widgetPage', [widgetPage.id]);
+      });
+  }
+
+  /**
    * Get a single widget page
    *
    * @param project_id
