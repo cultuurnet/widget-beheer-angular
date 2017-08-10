@@ -9,6 +9,7 @@ import { Observable } from "rxjs";
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import { MemoryCache } from "../../memory-cache";
+import { RenderedWidget } from "../rendered-widget";
 
 /**
  * The widget service handles all request to the widget API
@@ -164,12 +165,25 @@ export class WidgetService {
    * @param widgetId
    * @param reset
    */
-  public renderWidget(widgetPageId: string, widgetId: string, reset: boolean = false) {
-    // @todo Implement the full render request + cache it and return an interface object.
-    let _self = this;
-    const renderedWidget = this.cache.get('renderedWidgets', [widgetPageId, widgetId], false);
+  public renderWidget(widgetPageId: string, widgetId: string, reset: boolean = false): Observable<RenderedWidget> {
+    if (!reset) {
+      const renderedWidget = this.cache.get('renderedWidgets', [widgetPageId, widgetId], false);
+      if (renderedWidget) {
+        return Observable.of(renderedWidget);
+      }
+    }
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'render/' + widgetPageId + '/' + widgetId);
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'render/' + widgetPageId + '/' + widgetId)
+      .map(response => {
+        return {
+          widgetId: widgetId,
+          data: response['data']
+        }
+      })
+      .do(renderedWidget => {
+      // Cache the rendered widget
+      this.cache.put('renderedWidgets', [widgetPageId, widgetId], renderedWidget);
+    });
   }
 
   /**

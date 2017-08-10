@@ -89,14 +89,14 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
     this.activeWidget = this.widgetBuilderService.getActiveWidget();
 
     // Subscribe to the widget preview observable
-    this.widgetPreviewSubscription = this.widgetBuilderService.widgetPreview$.subscribe(widgetPreview => {
-      if (widgetPreview.widgetId === this.widget.id) {
+    this.widgetPreviewSubscription = this.widgetBuilderService.widgetPreview$.subscribe(renderedWidget => {
+      if (renderedWidget.widgetId === this.widget.id) {
         // If the content is empty, show the throbber and leave the old content (if any) as-is
-        if (_.isEmpty(widgetPreview.content)) {
+        if (_.isEmpty(renderedWidget.data)) {
           this.isRendering = true;
         } else {
           // Rendering done, replace the content
-          this.widgetPreview = widgetPreview.content;
+          this.widgetPreview = renderedWidget.data;
           this.isRendering = false;
         }
       }

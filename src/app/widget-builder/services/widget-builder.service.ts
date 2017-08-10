@@ -3,9 +3,9 @@ import { Subject } from "rxjs/Subject";
 import { Widget } from "../../core/widget/widget";
 import { WidgetPage } from "../../core/widget/widget-page";
 import { WidgetService } from "../../core/widget/services/widget.service";
-import { WidgetPreview } from "../components/widgets/widget-preview";
 import * as debouncePromise from "debounce-promise"
 import { TranslateService } from "@ngx-translate/core";
+import { RenderedWidget } from "../../core/widget/rendered-widget";
 
 /**
  * The widgetbuilder service.
@@ -39,7 +39,7 @@ export class WidgetBuilderService {
    * Widget preview subject
    * @type {Subject}
    */
-  private widgetPreview = new Subject<WidgetPreview>();
+  private widgetPreview = new Subject<RenderedWidget>();
 
   /**
    * Observable widget preview
@@ -110,7 +110,7 @@ export class WidgetBuilderService {
       if (widgetId) {
         _self.widgetPreview.next({
           widgetId: widgetId,
-          content: response['preview']
+          data: response.preview
         });
       }
     }).catch((ex) => {
@@ -145,12 +145,9 @@ export class WidgetBuilderService {
     this.lockWidgetPreview(widgetId);
 
     // Render the widget
-    this.widgetService.renderWidget(this.widgetPage.id, widgetId).subscribe(response => {
+    this.widgetService.renderWidget(this.widgetPage.id, widgetId).subscribe(widgetPreview => {
       // Update the widget preview with the new render response
-      _self.widgetPreview.next({
-        widgetId: widgetId,
-        content: response['data']
-      });
+      _self.widgetPreview.next(widgetPreview);
     });
   }
 
@@ -162,7 +159,7 @@ export class WidgetBuilderService {
     // Trigger an update of the preview with empty content
     this.widgetPreview.next({
       widgetId: widgetId,
-      content: '',
+      data: '',
     });
   }
 
