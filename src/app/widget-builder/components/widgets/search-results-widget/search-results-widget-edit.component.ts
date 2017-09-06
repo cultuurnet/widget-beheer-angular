@@ -150,6 +150,9 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
       }),
       search_params: this.formBuilder.group({
         query: [_.get(this.widget.settings, 'search_params.query', '')]
+      }),
+      footer: this.formBuilder.group({
+        body: [_.get(this.settings, 'footer.body', '')]
       })
     });
   }
@@ -164,6 +167,7 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
     _.set(this.settings, 'items', _.get(values, 'items', {}));
     _.set(this.settings, 'detail_page', _.get(values, 'detail_page', {}));
     _.set(this.settings, 'search_params', _.get(values, 'search_params', {}));
+    _.set(this.settings, 'footer', _.get(values, 'footer', {}));
 
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
