@@ -6,6 +6,7 @@ import { WidgetService } from "../../../core/widget/services/widget.service";
 import { TemplatePreviewModalComponent } from "./preview/template-preview-modal.component";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { Project } from "../../../core/project/project";
+import * as _ from "lodash";
 
 /**
  * Component used for adding a new widget page to a project.
@@ -70,11 +71,13 @@ export class AddPageComponent implements OnInit {
    */
   public addPage(pageTemplate: any) {
     // Merge the project id on the template configuration
-    let config = pageTemplate.template.configuration;
-    config['project_id'] = this.project.id;
+    const config = pageTemplate.template.configuration;
+
+    let templateConfig = _.cloneDeep(config);
+    templateConfig['project_id'] = this.project.id;
 
     // Create a widget page from the template, ensuring it contains the required defaults, id's,...
-    const widgetPage = this.widgetPageFactory.create(config);
+    const widgetPage = this.widgetPageFactory.create(templateConfig);
 
     // Save the newly created widget page
     this.widgetService.saveWidgetPage(widgetPage).subscribe(widgetSaveResponse => {
