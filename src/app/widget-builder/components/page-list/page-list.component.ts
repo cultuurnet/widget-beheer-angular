@@ -86,7 +86,7 @@ export class PageListComponent implements OnInit {
    */
   public duplicateWidgetPage(widgetPage: WidgetPage) {
     // Clone the widget page
-    const clone =  _.cloneDeep(widgetPage);
+    let clone =  _.cloneDeep(widgetPage);
 
     // Remove the widgetPage id
     clone.id = '';

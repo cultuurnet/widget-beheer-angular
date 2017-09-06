@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { ckeditorConfig } from '../../../constants/ckeditor-config';
 import * as _ from 'lodash';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
+import { BaseWidgetEditComponent } from "../base-widget-edit.component";
 
 /**
  * Search results widget edit form component.
@@ -11,7 +12,7 @@ import { WidgetBuilderService } from '../../../services/widget-builder.service';
 @Component({
   templateUrl: './search-results-widget-edit.component.html'
 })
-export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponent {
+export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
 
   /**
    * Config for the ckdeditor in this component
@@ -36,7 +37,7 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
    * SearchResultsWidgetEditComponent constructor
    */
   constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
-    super(formBuilder);
+    super(formBuilder, widgetBuilderService);
   }
 
   /**
@@ -165,13 +166,6 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
     _.set(this.settings, 'detail_page', _.get(values, 'detail_page', {}));
     _.set(this.settings, 'search_params', _.get(values, 'search_params', {}));
 
-    this.widgetBuilderService.saveWidgetPage(this.widget.id);
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public handleWidgetNameChanged(name: string) {
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
 

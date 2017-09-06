@@ -1,7 +1,8 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { group_filter_types } from 'app/widget-builder/constants/group-filters';
+import { Widget } from "../../../../core/widget/widget";
 
 /**
  * Widget group filters edit component.
@@ -32,6 +33,11 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    * Show the groupfilter placeholder field
    */
   @Input() hidePlaceholder = false;
+
+  /**
+   * Notify when the group filters have changed
+   */
+  @Output() groupFiltersChanged = new EventEmitter();
 
   /**
    * The group filter form
@@ -68,6 +74,9 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
           this.groupFilters[key] = values[key];
         }
       }
+
+      // Notify watchers
+      this.groupFiltersChanged.emit();
     });
 
     this.filterTypes = group_filter_types;
@@ -76,8 +85,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   /**
    * @inheritDoc
    */
-  ngOnDestroy() {
-    // Unsubscribe from the form value changes
+  ngOnDestroy(): void {
     this.formSubscription.unsubscribe();
   }
 

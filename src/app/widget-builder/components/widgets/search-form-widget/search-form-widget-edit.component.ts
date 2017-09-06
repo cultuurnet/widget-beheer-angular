@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { AbstractWidgetEditComponent } from '../../../../core/widget/components/abstract-widget-edit-component';
 import { FormBuilder } from '@angular/forms';
 import * as _ from 'lodash';
 import { ckeditorConfig } from '../../../constants/ckeditor-config';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
+import { BaseWidgetEditComponent } from "../base-widget-edit.component";
 
 /**
  * Search widget edit form component.
@@ -11,7 +11,7 @@ import { WidgetBuilderService } from '../../../services/widget-builder.service';
 @Component({
   templateUrl: './search-form-widget-edit.component.html'
 })
-export class SearchFormWidgetEditComponent extends AbstractWidgetEditComponent {
+export class SearchFormWidgetEditComponent extends BaseWidgetEditComponent {
 
   /**
    * Config for the ckdeditor in this component
@@ -21,8 +21,8 @@ export class SearchFormWidgetEditComponent extends AbstractWidgetEditComponent {
   /**
    * SearchFormWidgetEditComponent constructor
    */
-  constructor(public formBuilder: FormBuilder, private widgetBuilderService: WidgetBuilderService) {
-    super(formBuilder);
+  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
+    super(formBuilder, widgetBuilderService);
   }
 
   /**
@@ -88,13 +88,6 @@ export class SearchFormWidgetEditComponent extends AbstractWidgetEditComponent {
     _.set(this.settings, 'fields.time.date_search', _.get(values, 'time.date_search', {}));
     _.set(this.settings, 'footer', _.get(values, 'footer', {}));
 
-    this.widgetBuilderService.saveWidgetPage(this.widget.id);
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public handleWidgetNameChanged(name: string) {
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
 

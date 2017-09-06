@@ -71,7 +71,7 @@
                             </fieldset>
                             <fieldset *ngIf="settings.fields.type.group_filters">
                                 <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
-                                <app-widget-group-filters-edit [groupFilters]="settings.fields.type.group_filters"></app-widget-group-filters-edit>
+                                <app-widget-group-filters-edit (groupFiltersChanged)="handleGroupFiltersChanged()" [groupFilters]="settings.fields.type.group_filters"></app-widget-group-filters-edit>
                             </fieldset>
                         </ng-template>
                     </ngb-panel>
@@ -98,7 +98,7 @@
                             </fieldset>
                             <fieldset *ngIf="settings.fields.location.group_filters">
                                 <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
-                                <app-widget-group-filters-edit [groupFilters]="settings.fields.location.group_filters"></app-widget-group-filters-edit>
+                                <app-widget-group-filters-edit (groupFiltersChanged)="handleGroupFiltersChanged()" [groupFilters]="settings.fields.location.group_filters"></app-widget-group-filters-edit>
                             </fieldset>
                         </ng-template>
                     </ngb-panel>
@@ -171,7 +171,7 @@
                             </fieldset>
                             <fieldset *ngIf="settings.fields.time.group_filters">
                                 <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
-                                <app-widget-group-filters-edit [groupFilters]="settings.fields.time.group_filters"></app-widget-group-filters-edit>
+                                <app-widget-group-filters-edit (groupFiltersChanged)="handleGroupFiltersChanged()" [groupFilters]="settings.fields.time.group_filters"></app-widget-group-filters-edit>
                             </fieldset>
                         </ng-template>
                     </ngb-panel>
@@ -180,7 +180,7 @@
                         <ng-template ngbPanelContent>
                             <fieldset *ngIf="settings.fields.extra.group_filters">
                                 <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
-                                <app-widget-group-filters-edit [groupFilters]="settings.fields.extra.group_filters"></app-widget-group-filters-edit>
+                                <app-widget-group-filters-edit (groupFiltersChanged)="handleGroupFiltersChanged()" [groupFilters]="settings.fields.extra.group_filters"></app-widget-group-filters-edit>
                             </fieldset>
                         </ng-template>
                     </ngb-panel>
@@ -196,9 +196,9 @@
         </form>
     </ngb-tab>
     <ngb-tab>
-        <ng-template ngbTabTitle>JSON</ng-template>
+        <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_JSON" | translate }}</ng-template>
         <ng-template ngbTabContent>
-            <p>You can't handle the JSON!<p>
+            <app-json-edit [widget]="widget"></app-json-edit>
         </ng-template>
     </ngb-tab>
 </ngb-tabset>
