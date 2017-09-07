@@ -99,12 +99,8 @@ export class WidgetBuilderService {
    * @param settings
    */
   public saveWidgetSettings(widgetId: string, settings: any): Promise<any> {
+    console.log(settings);
     return new Promise((resolve, reject) => {
-      const _self = this;
-
-      // Lock the widget preview
-      this.lockWidgetPreview(widgetId);
-
       // Clone the currently active widget page and apply the widget settings
       let widgetPageClone =  _.cloneDeep(this.widgetPage);
       let widget = widgetPageClone.findWidget(widgetId);
@@ -128,12 +124,6 @@ export class WidgetBuilderService {
               }
             }
           }
-
-          // Update the preview
-          _self.widgetPreview.next({
-            widgetId: widgetId,
-            data: response.preview
-          });
 
           resolve(response);
         },

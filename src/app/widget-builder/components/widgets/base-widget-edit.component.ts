@@ -52,4 +52,17 @@ export class BaseWidgetEditComponent extends AbstractWidgetEditComponent {
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
 
+  /**
+   * Update the form values when the JSON model was changed from the JSON edit component
+   */
+  public handleJsonChanged() {
+    this.buildForm();
+
+    // Subscribe to changes in the form and reflect them on the widget model
+    this.formSubscription = this.widgetEditForm.valueChanges.subscribe(values => {
+      // Apply the values to the model
+      this.applyValuesToModel(values);
+    });
+  }
+
 }

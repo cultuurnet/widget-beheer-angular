@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Widget } from "../../../../core/widget/widget";
-import { validJson } from "../../../../core/form/validators/json.directive";
 import { WidgetBuilderService } from "../../../services/widget-builder.service";
-import { ToastyService } from "ng2-toasty";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { JsonEditModalComponent } from "./json-edit-modal.component";
 import { TranslateService } from "@ngx-translate/core";
+import { ToastyService } from "ng2-toasty";
 
 /**
  * The json edit component allows direct editing of a widgets' JSON
@@ -16,79 +16,66 @@ import { TranslateService } from "@ngx-translate/core";
 export class JsonEditComponent implements OnInit {
 
   /**
-   * The json edit form
-   */
-  public jsonEditForm: FormGroup;
-
-  /**
-   * Indicates if the widget is being saved
-   */
-  public isSaving: boolean = false;
-
-  /**
    * The widget being edited
    */
   @Input() widget: Widget;
 
   /**
+   * Notify any changes in the widget JSON
+   * @type {EventEmitter<any>}
+   */
+  @Output() jsonChanged = new EventEmitter<any>();
+
+  /**
+   * The formatted JSON
+   */
+  public json: string;
+
+  /**
    * JsonEditComponent constructor
    */
   constructor(
-    private formBuilder: FormBuilder,
     private widgetBuilderService: WidgetBuilderService,
-    private toastyService: ToastyService,
-    private translateService: TranslateService
+    private modalService: NgbModal,
+    private translateService: TranslateService,
+    private toastyService: ToastyService
   ) { }
 
+  /**
+   * Open the JSON edit modal to start editing
+   */
+  public editJson() {
+    // Show the confirmation modal (disable keyboard and background dismiss)
+    const modal = this.modalService.open(JsonEditModalComponent, {
+      windowClass: 'modal-large',
+      backdrop: 'static',
+      keyboard: false
+    });
+
+    let modalInstance = modal.componentInstance;
+    modalInstance.widget = this.widget;
+
+    modal.result.then((result) => {
+      if (result) {
+        // Update the widget JSON
+        this.json = JSON.stringify(this.widget.settings, undefined, 4);
+
+        console.log(this.widget.settings);
+
+        // Notify the parent of the JSON change
+        this.jsonChanged.emit();
+        this.toastyService.success(this.translateService.instant('WIDGET_JSON_EDIT_SUCCESS_NOTIFICATION'));
+
+        // Render the widget
+        this.widgetBuilderService.renderWidget(this.widget.id);
+      }
+    }, () => {});
+  }
   /**
    * @inheritDoc
    */
   public ngOnInit() {
-    this.buildForm();
-  }
-
-  /**
-   * Build the dynamic form
-   */
-  protected buildForm() {
-    this.jsonEditForm = this.formBuilder.group({
-      json: [JSON.stringify(this.widget.settings, undefined, 4), [Validators.required, validJson]],
-    });
-  }
-
-  /**
-   * Apply the JSON to the widget settings and save the widget page
-   */
-  public saveJson() {
-    this.disableForm();
-
-    // Save the widget page (will trigger a render for the current widget)
-    this.widgetBuilderService.saveWidgetSettings(this.widget.id, JSON.parse(this.jsonEditForm.get('json').value)).then(() => {
-      // Update the form values
-      this.jsonEditForm.get('json').patchValue(JSON.stringify(this.widget.settings, undefined, 4));
-
-      this.enableForm();
-      this.toastyService.success(this.translateService.instant('WIDGET_JSON_EDIT_SUCCESS_NOTIFICATION'));
-    }).catch(() => {
-      this.enableForm();
-      this.toastyService.error(this.translateService.instant('WIDGET_JSON_EDIT_FAILED_NOTIFICATION'));
-    });
-  }
-
-  /**
-   * Disable the JSON edit form
-   */
-  private disableForm() {
-    this.isSaving = true;
-    this.jsonEditForm.get('json').disable();
-  }
-
-  /**
-   * Enable the JSON edit form
-   */
-  private enableForm() {
-    this.jsonEditForm.get('json').enable();
-    this.isSaving = false;
+    this.json = JSON.stringify(this.widget.settings, undefined, 4);
   }
 
 }

@@ -1,7 +1,9 @@
-<form (ngSubmit)="saveJson()" [formGroup]="jsonEditForm" novalidate>
-    <textarea formControlName="json"></textarea>
-    <div *ngIf="jsonEditForm.controls['json'].errors && (jsonEditForm.controls['json'].errors.required || jsonEditForm.controls['json'].errors.validJson)">
-        <p>{{ "WIDGET_JSON_EDIT_JSON_INVALID_ERROR" | translate }}</p>
-    </div>
-    <button class="btn btn-primary" [disabled]="jsonEditForm.invalid || isSaving">Save changes</button>
-</form>
+<!-- JSON edit modal !-->
+<ng-template json-edit>
+    <app-json-edit-modal></app-json-edit-modal>
+</ng-template>
+
+<div>
+    <textarea class="json-edit" readonly [ngModel]="json"></textarea>
+    <button class="btn btn-primary" (click)="editJson()">{{ "WIDGET_JSON_EDIT_BUTTON_EDIT" | translate }}</button>
+</div>
