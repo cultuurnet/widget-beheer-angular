@@ -60,8 +60,6 @@ export class JsonEditComponent implements OnInit {
         // Update the widget JSON
         this.json = JSON.stringify(this.widget.settings, undefined, 4);
 
-        console.log(this.widget.settings);
-
         // Notify the parent of the JSON change
         this.jsonChanged.emit();
         this.toastyService.success(this.translateService.instant('WIDGET_JSON_EDIT_SUCCESS_NOTIFICATION'));

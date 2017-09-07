@@ -65,7 +65,7 @@
     <ngb-tab>
         <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_JSON" | translate }}</ng-template>
         <ng-template ngbTabContent>
-            <app-json-edit [widget]="widget"></app-json-edit>
+            <app-json-edit (jsonChanged)="handleJsonChanged()" [widget]="widget"></app-json-edit>
         </ng-template>
     </ngb-tab>
 </ngb-tabset>
