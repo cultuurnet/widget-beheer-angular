@@ -45,7 +45,11 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
   protected buildForm() {
     this.widgetEditForm = this.formBuilder.group({
       general: this.formBuilder.group({
-        current_search: [_.get(this.settings, 'general.current_search')]
+        current_search: [_.get(this.settings, 'general.current_search')],
+        exclude: this.formBuilder.group({
+          long_term: [_.get(this.widget.settings, 'general.exclude.long_term', false)],
+          permanent: [_.get(this.widget.settings, 'general.exclude.permanent', false)]
+        })
       }),
       header: this.formBuilder.group({
         body: [_.get(this.settings, 'header.body', '')]
