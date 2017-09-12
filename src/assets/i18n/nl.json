@@ -221,5 +221,18 @@
   "WIDGET_JSON_EDIT_MODAL_TITLE": "JSON bewerken",
   "WIDGET_JSON_EDIT_MODAL_BUTTON_SAVE": "Opslaan",
   "WIDGET_JSON_EDIT_MODAL_BUTTON_CANCEL": "Annuleren",
-  "WIDGET_JSON_EDIT_BUTTON_EDIT": "Bewerken"
+  "WIDGET_JSON_EDIT_BUTTON_EDIT": "Bewerken",
+  "WIDGET_PAGE_CSS_EDIT_MODAL_TITLE": "CSS",
+  "WIDGET_PAGE_CSS_EDIT_SUCCESS_NOTIFICATION": "De CSS is correct opgeslagen.",
+  "WIDGET_PAGE_CSS_EDIT_SAVE_FAILED": "Er ging iets mis bij het opslaan van de CSS. Probeer het later opnieuw.",
+  "WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_SAVE": "Opslaan",
+  "WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_CANCEL": "Annuleren",
+  "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_TITLE": "Stijlhulp",
+  "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_DESCRIPTION": "We willen je graag helpen door hier de voornaamste stijlen op te sommen. Geef het websiteadres in waarop je de kalender wil integreren en druk op \"Stijlen ophalen\".",
+  "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_PLACEHOLDER": "http://www.mijnwebsite.be",
+  "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_SCRAPE_BUTTON": "Stijlen ophalen",
+  "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_LABEL": "Website",
+  "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_ERROR": "Ongeldig URL formaat",
+  "WIDGET_PAGE_CSS_EDIT_STYLE_FOUND_STYLES_DESCRIPTION": "We vonden volgende stijlen terug op de website",
+  "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL": "wijzigen"
 }

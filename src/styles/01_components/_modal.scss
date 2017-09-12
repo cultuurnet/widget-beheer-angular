@@ -6,13 +6,17 @@
 
 .modal-large {
   .modal-dialog {
-    max-width:800px;
+    max-width:900px;
   }
 }
 
-.json-edit {
+.code-edit {
   width: 100%;
   min-height:320px;
   font-size: 13px;
   resize: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #555555;
+  padding: 6px 12px;
 }

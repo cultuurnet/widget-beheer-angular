@@ -9,7 +9,7 @@
         {{ "WIDGET_JSON_EDIT_SAVE_FAILED" | translate }}
     </div>
     <form [formGroup]="jsonEditForm" novalidate>
-        <textarea class="json-edit" formControlName="json"></textarea>
+        <textarea class="code-edit" formControlName="json"></textarea>
         <div *ngIf="jsonEditForm.controls['json'].errors && (jsonEditForm.controls['json'].errors.required || jsonEditForm.controls['json'].errors.validJson)">
             <p>{{ "WIDGET_JSON_EDIT_JSON_INVALID_ERROR" | translate }}</p>
         </div>

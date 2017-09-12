@@ -6,8 +6,8 @@ import { WidgetPage } from '../../../core/widget/widget-page';
 import { WidgetBuilderService } from '../../services/widget-builder.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ConfirmationModalComponent } from "../../../core/modal/components/confirmation-modal.component";
 import { PublishPageConfirmationModalComponent } from "../modal/publish-page-confirmation-modal.component";
+import { CssEditModalComponent } from "../widgets/css-edit/css-edit-modal.component";
 
 /**
  * The toolbar component contains actions and tools for editing a widget page:
@@ -193,6 +193,26 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     }, () => {
       this.toastyService.error(this.translateService.instant('WIDGET_PAGE_PUBLISH_FAILED_NOTIFICATION'));
     });
+  }
+
+  /**
+   * Edit the widget page CSS
+   */
+  public editCss() {
+    const modal = this.modalService.open(CssEditModalComponent, {
+      windowClass: 'modal-large',
+      backdrop: 'static',
+      keyboard: false
+    });
+
+    let modalInstance = modal.componentInstance;
+    modalInstance.widgetPage = this.widgetPage;
+
+    modal.result.then((result) => {
+      if (result) {
+        this.toastyService.success(this.translateService.instant('WIDGET_PAGE_CSS_EDIT_SUCCESS_NOTIFICATION'));
+      }
+    }, () => {});
   }
 
 }

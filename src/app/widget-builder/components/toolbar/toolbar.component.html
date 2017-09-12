@@ -3,6 +3,11 @@
   <app-publish-page-confirmation-modal></app-publish-page-confirmation-modal>
 </ng-template>
 
+<!-- Css edit modal !-->
+<ng-template>
+  <app-css-edit-modal></app-css-edit-modal>
+</ng-template>
+
 <div class="row" *ngIf="widgetPage">
   <div class="col-5">
     <div class="page-title-edit" *ngIf="!sidebar">
@@ -38,6 +43,7 @@
   </div>
   <div class="col-5">
     <div class="page-actions" *ngIf="!sidebar" style="float:right;">
+      <button class="btn btn-default btn-secondary" (click)="editCss()">CSS</button>
       <button class="btn btn-default btn-primary" (click)="publishPage()">Publiceren</button>
     </div>
   </div>
