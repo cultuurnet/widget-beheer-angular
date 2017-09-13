@@ -102,4 +102,25 @@ export class WidgetPage {
 
     return false;
   }
+
+  /**
+   * Find a widget by id in the page
+   * @param widgetId
+   */
+  public findWidget(widgetId: string) {
+    for (const rowKey in this.rows) {
+      if (this.rows.hasOwnProperty(rowKey)) {
+        for (const regionId in this.rows[rowKey].regions) {
+          if (this.rows[rowKey].regions.hasOwnProperty(regionId)) {
+            const widget = this.rows[rowKey].regions[regionId].widgets.find(widget => widget.id === widgetId)
+            if (widget !== undefined) {
+              return widget;
+            }
+          }
+        }
+      }
+    }
+
+    return false;
+  }
 }

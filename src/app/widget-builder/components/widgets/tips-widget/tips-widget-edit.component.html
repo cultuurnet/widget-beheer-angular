@@ -187,9 +187,9 @@
         </form>
     </ngb-tab>
     <ngb-tab>
-        <ng-template ngbTabTitle>JSON</ng-template>
+        <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_JSON" | translate }}</ng-template>
         <ng-template ngbTabContent>
-            <p>You can't handle the JSON!<p>
+            <app-json-edit (jsonChanged)="handleJsonChanged()" [widget]="widget"></app-json-edit>
         </ng-template>
     </ngb-tab>
 </ngb-tabset>

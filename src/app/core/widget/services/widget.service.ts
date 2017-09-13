@@ -58,8 +58,17 @@ export class WidgetService {
     return this.http.put(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page', widgetPage, requestOptions)
       .do<WidgetSaveResponse>(widgetSaveReponse => {
         if (widgetSaveReponse.widgetPage) {
+          // Parse the widget page
+          const parsedWidgetPage = this.widgetPageFactory.create(widgetSaveReponse.widgetPage);
+          widgetSaveReponse.widgetPage = parsedWidgetPage;
+
           // Cache the response
-          this.cache.put('widgetPage', [widgetSaveReponse.widgetPage.id], this.widgetPageFactory.create(widgetSaveReponse.widgetPage));
+          this.cache.put('widgetPage', [widgetSaveReponse.widgetPage.id], parsedWidgetPage);
+        }
+
+        // Cache the render response if available
+        if (widgetSaveReponse.preview && widgetId) {
+          this.cache.put('renderedWidgets', [widgetPage.id, widgetId], {widgetId: widgetId, data: widgetSaveReponse.preview});
         }
       });
   }

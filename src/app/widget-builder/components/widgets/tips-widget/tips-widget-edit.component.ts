@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AbstractWidgetEditComponent } from '../../../../core/widget/components/abstract-widget-edit-component';
 import { FormBuilder } from '@angular/forms';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import * as _ from 'lodash';
+import { BaseWidgetEditComponent } from "../base-widget-edit.component";
 
 /**
  * Tips widget edit form component.
@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 @Component({
   templateUrl: './tips-widget-edit.component.html'
 })
-export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
+export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
 
   /**
    * The available image positions for the list items
@@ -30,7 +30,7 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
    * TipsWidgetWidgetEditComponent constructor
    */
   constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
-    super(formBuilder);
+    super(formBuilder, widgetBuilderService);
   }
 
   /**
@@ -107,13 +107,6 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
     _.set(this.settings, 'items', _.get(values, 'items', {}));
     _.set(this.settings, 'search_params', _.get(values, 'search_params', {}));
 
-    this.widgetBuilderService.saveWidgetPage(this.widget.id);
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public handleWidgetNameChanged(name: string) {
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
 

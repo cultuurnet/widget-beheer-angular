@@ -1,0 +1,9 @@
+<!-- JSON edit modal !-->
+<ng-template json-edit>
+    <app-json-edit-modal></app-json-edit-modal>
+</ng-template>
+
+<div>
+    <textarea class="json-edit" readonly [ngModel]="json"></textarea>
+    <button class="btn btn-primary" (click)="editJson()">{{ "WIDGET_JSON_EDIT_BUTTON_EDIT" | translate }}</button>
+</div>

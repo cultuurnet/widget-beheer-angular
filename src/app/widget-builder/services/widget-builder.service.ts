@@ -6,6 +6,7 @@ import { WidgetService } from '../../core/widget/services/widget.service';
 import * as debouncePromise from 'debounce-promise';
 import { TranslateService } from '@ngx-translate/core';
 import { RenderedWidget } from '../../core/widget/rendered-widget';
+import * as _ from 'lodash';
 
 /**
  * The widgetbuilder service.
@@ -91,6 +92,49 @@ export class WidgetBuilderService {
   }
 
   /**
+   * Save the settings of a single widget.
+   * The settings of this widget in the currently active widget page are replaced upon success.
+   *
+   * @param widgetId
+   * @param settings
+   */
+  public saveWidgetSettings(widgetId: string, settings: any): Promise<any> {
+
+    return new Promise((resolve, reject) => {
+      // Clone the currently active widget page and apply the widget settings
+      let widgetPageClone =  _.cloneDeep(this.widgetPage);
+      let widget = widgetPageClone.findWidget(widgetId);
+
+      // Apply the settings to the cloned widget
+      if (widget) {
+        widget.settings = settings;
+      }
+
+      this.widgetService.saveWidgetPage(widgetPageClone, widgetId).subscribe(
+        response => {
+          // Replace the widget settings with the settings from the response
+          const responseWidget = response.widgetPage.findWidget(widgetId);
+          let originalWidget = this.widgetPage.findWidget(widgetId);
+
+          // Apply the settings to the cloned widget
+          if (responseWidget && originalWidget) {
+            for (const key in responseWidget.settings) {
+              if (responseWidget.settings.hasOwnProperty(key)) {
+                originalWidget.settings[key] = responseWidget.settings[key];
+              }
+            }
+          }
+
+          resolve(response);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  /**
    * Save the currently active widget page.
    * Provide an optional triggering widget id to do a partial render.
    *
@@ -105,7 +149,7 @@ export class WidgetBuilderService {
       this.lockWidgetPreview(widgetId);
     }
 
-    this.debounceWidgetPageSave(widgetId).then(response => {
+    this.debounceWidgetPageSave(this.widgetPage, widgetId).then(response => {
       // Update the widget preview with the new render response
       if (widgetId) {
         _self.widgetPreview.next({
@@ -116,17 +160,18 @@ export class WidgetBuilderService {
     }).catch((ex) => {
       console.error('Error saving the widget page', ex);
     });
-
   }
 
   /**
    * Debounced widget page save
+   *
+   * @param widgetPage
    * @param widgetId
    */
-  private widgetPageSaveDebounced(widgetId?: string) {
+  private widgetPageSaveDebounced(widgetPage: WidgetPage, widgetId?: string) {
     return new Promise((resolve, reject) => {
       // Debounce the widget page save
-      this.widgetService.saveWidgetPage(this.widgetPage, widgetId).subscribe(
+      this.widgetService.saveWidgetPage(widgetPage, widgetId).subscribe(
         response => {
           resolve(response);
         },

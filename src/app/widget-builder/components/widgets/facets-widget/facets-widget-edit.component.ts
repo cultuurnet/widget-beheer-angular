@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { AbstractWidgetEditComponent } from '../../../../core/widget/components/abstract-widget-edit-component';
 import { FormBuilder } from '@angular/forms';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import * as _ from 'lodash';
-import { WidgetPage } from '../../../../core/widget/widget-page';
+import { BaseWidgetEditComponent } from "../base-widget-edit.component";
 
 /**
  * Facets widget edit form component.
@@ -11,7 +10,7 @@ import { WidgetPage } from '../../../../core/widget/widget-page';
 @Component({
   templateUrl: './facets-widget-edit.component.html'
 })
-export class FacetsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
+export class FacetsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
 
   /**x
    * Array of search results widgets in the page
@@ -23,7 +22,7 @@ export class FacetsWidgetWidgetEditComponent extends AbstractWidgetEditComponent
    * FacetsWidgetWidgetEditComponent constructor
    */
   constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
-    super(formBuilder);
+    super(formBuilder, widgetBuilderService);
   }
 
   /**
@@ -52,13 +51,6 @@ export class FacetsWidgetWidgetEditComponent extends AbstractWidgetEditComponent
     _.set(this.settings, 'filters', _.get(values, 'filters', {}));
     _.set(this.settings, 'search_results', _.get(values, 'search_results', ''));
 
-    this.widgetBuilderService.saveWidgetPage(this.widget.id);
-  }
-
-  /**
-   * @inheritDoc
-   */
-  public handleWidgetNameChanged(name: string) {
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
 

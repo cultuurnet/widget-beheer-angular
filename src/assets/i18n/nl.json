@@ -218,5 +218,13 @@
   "WIDGET_PAGE_PUBLISH_FAILED_NOTIFICATION": "Er ging iets mis bij het publiceren van de widget. Probeer het later opnieuw.",
   "WIDGET_PAGE_PUBLISHED_MODAL_TITLE": "Widget gepubliceerd",
   "WIDGET_PAGE_PUBLISHED_MODAL_MESSAGE": "Je widget is gepubliceerd en je wijzigingen staan nu live! Kopiëer de embed-code hieronder en gebruik deze vervolgens op je website.",
-  "WIDGET_PAGE_PUBLISHED_MODAL_CONFIRM": "Ok"
+  "WIDGET_PAGE_PUBLISHED_MODAL_CONFIRM": "Ok",
+  "TITLE_EDIT_FORM_JSON": "JSON",
+  "WIDGET_JSON_EDIT_JSON_INVALID_ERROR": "De JSON is niet geldig",
+  "WIDGET_JSON_EDIT_SAVE_FAILED": "Er ging iets mis bij het opslaan van de JSON. Controleer de JSON of probeer het later opnieuw.",
+  "WIDGET_JSON_EDIT_SUCCESS_NOTIFICATION": "De JSON is correct opgeslagen.",
+  "WIDGET_JSON_EDIT_MODAL_TITLE": "JSON bewerken",
+  "WIDGET_JSON_EDIT_MODAL_BUTTON_SAVE": "Opslaan",
+  "WIDGET_JSON_EDIT_MODAL_BUTTON_CANCEL": "Annuleren",
+  "WIDGET_JSON_EDIT_BUTTON_EDIT": "Bewerken"
 }

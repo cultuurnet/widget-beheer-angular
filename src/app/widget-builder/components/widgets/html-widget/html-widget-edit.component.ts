@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { AbstractWidgetEditComponent } from '../../../../core/widget/components/abstract-widget-edit-component';
-import { FormBuilder } from '@angular/forms';
 import { ckeditorConfig } from '../../../constants/ckeditor-config';
-import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import * as _ from 'lodash';
+import { BaseWidgetEditComponent } from "../base-widget-edit.component";
+import { FormBuilder } from "@angular/forms";
+import { WidgetBuilderService } from "../../../services/widget-builder.service";
 
 /**
  * Html widget edit form component.
@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 @Component({
   templateUrl: './html-widget-edit.component.html'
 })
-export class HtmlWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
+export class HtmlWidgetWidgetEditComponent extends BaseWidgetEditComponent {
 
   /**
    * Config for the ckdeditor in this component
@@ -19,10 +19,10 @@ export class HtmlWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
   public ckeditorConfig: any = ckeditorConfig;
 
   /**
-   * HtmlWidgetEditComponent constructor
+   * HtmlWidgetWidgetEditComponent constructor
    */
   constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
-    super(formBuilder);
+    super(formBuilder, widgetBuilderService);
   }
 
   /**

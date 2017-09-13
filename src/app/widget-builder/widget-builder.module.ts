@@ -36,6 +36,8 @@ import { PageListComponent } from './components/page-list/page-list.component';
 import { CoreModule } from '../core/core.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { PublishPageConfirmationModalComponent } from "./components/modal/publish-page-confirmation-modal.component";
+import { JsonEditComponent } from "./components/widgets/json-edit/json-edit.component";
+import { JsonEditModalComponent } from "./components/widgets/json-edit/json-edit-modal.component";
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { PublishPageConfirmationModalComponent } from "./components/modal/publis
     TemplatePreviewModalComponent,
     PageListComponent,
     ToolbarComponent,
-    PublishPageConfirmationModalComponent
+    PublishPageConfirmationModalComponent,
+    JsonEditComponent,
+    JsonEditModalComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -105,7 +109,8 @@ import { PublishPageConfirmationModalComponent } from "./components/modal/publis
     FacetsWidgetPreviewComponent,
     TemplatePreviewModalComponent,
     ToolbarComponent,
-    PublishPageConfirmationModalComponent
+    PublishPageConfirmationModalComponent,
+    JsonEditModalComponent
   ]
 })
 

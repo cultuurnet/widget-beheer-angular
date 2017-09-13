@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ "WIDGET_JSON_EDIT_MODAL_TITLE" | translate }}</h4>
+    <button type="button" class="close" (click)="activeModal.dismiss('cancel')" [disabled]="isSaving">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div *ngIf="showError" class="alert alert-danger" role="alert">
+        {{ "WIDGET_JSON_EDIT_SAVE_FAILED" | translate }}
+    </div>
+    <form [formGroup]="jsonEditForm" novalidate>
+        <textarea class="json-edit" formControlName="json"></textarea>
+        <div *ngIf="jsonEditForm.controls['json'].errors && (jsonEditForm.controls['json'].errors.required || jsonEditForm.controls['json'].errors.validJson)">
+            <p>{{ "WIDGET_JSON_EDIT_JSON_INVALID_ERROR" | translate }}</p>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="saveJson()" [disabled]="jsonEditForm.invalid || isSaving">{{ "WIDGET_JSON_EDIT_MODAL_BUTTON_SAVE" | translate }}</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('cancel')" [disabled]="isSaving">{{ "WIDGET_JSON_EDIT_MODAL_BUTTON_CANCEL" | translate }}</button>
+</div>
