@@ -320,6 +320,12 @@
                             </div>
                         </ng-template>
                     </ngb-panel>
+                    <ngb-panel id="footer" formGroupName="footer">
+                        <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_PANEL_TITLE_FOOTER" | translate }}</ng-template>
+                        <ng-template ngbPanelContent>
+                            <ckeditor formControlName="body" [config]="ckeditorConfig.basic_html"></ckeditor>
+                        </ng-template>
+                    </ngb-panel>
                 </ngb-accordion>
             </ng-template>
         </form>
