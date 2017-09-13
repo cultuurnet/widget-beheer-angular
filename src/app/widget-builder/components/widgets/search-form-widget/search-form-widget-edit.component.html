@@ -167,6 +167,18 @@
                                             </label>
                                         </div>
                                     </div>
+                                    <div>
+                                        <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_DEFAULT_OPTION" | translate }}</label>
+                                        <select formControlName="default_option">
+                                            <option value="today">{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_TODAY" | translate }}</option>
+                                            <option value="tomorrow">{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_TOMORROW" | translate }}</option>
+                                            <option value="weekend">{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_WEEKEND" | translate }}</option>
+                                            <option value="days_7">{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_7" | translate }}</option>
+                                            <option value="days_14">{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_14" | translate }}</option>
+                                            <option value="days_30">{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_30" | translate }}</option>
+                                            <option value="custom_date">{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_CUSTOM_DATE" | translate }}</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </fieldset>
                             <fieldset *ngIf="settings.fields.time.group_filters">
