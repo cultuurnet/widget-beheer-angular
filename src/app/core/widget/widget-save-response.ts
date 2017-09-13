@@ -10,5 +10,5 @@ export interface WidgetSaveResponse {
     /**
      * The rendered preview of the requested widget
      */
-    preview: string
+    preview: string;
 }

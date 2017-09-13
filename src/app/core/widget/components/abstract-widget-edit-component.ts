@@ -1,7 +1,7 @@
-import { Input, OnDestroy, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { Subscription } from "rxjs";
-import { Widget } from "../widget";
+import { Input, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
+import { Widget } from '../widget';
 
 /**
  * Abstract implementation of a widget edit component
@@ -72,7 +72,7 @@ export class AbstractWidgetEditComponent implements OnInit, OnDestroy {
    */
   protected applyValuesToModel(values: any) {
     // As a default, all top-level properties are applied to the model
-    for (let key in values) {
+    for (const key in values) {
       if (values.hasOwnProperty(key)) {
         this.widget.settings[key] = values[key];
       }

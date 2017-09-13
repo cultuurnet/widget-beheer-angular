@@ -1,47 +1,24 @@
 <div class="component" [ngClass]="{ 'selected' : widget === activeWidget, 'component--preview-throbber' : isRendering }" (click)="selectWidget($event, widget)">
-    <div class="actions-bar actions-bar--component"  *ngIf="!widgetBuilderComponent.showSidebar">
+    <div class="actions-bar actions-bar--component"  *ngIf="!sidebar">
         <ul class="actions-list">
-
-            <li class="move"><button class="btn btn-default btn-sm bnt-cnw-action--drag"><i class="fa fa-arrows drag" aria-hidden="true"></i><span>{{ "LABEL_DRAG" | translate}}</span></button>
-            </li>
-
-            <li><button (click)="removeWidget(widget)" class="btn btn-default btn-sm bnt-cnw-action--remove"><i class="fa fa-trash"></i><span>{{ "LABEL_REMOVE_WIDGET" | translate }}</span></button>
-            </li>
-
-
-             <li><button (click)="editWidget($event, widget)" class="btn btn-default btn-sm bnt-cnw-action--instellingen"><i class="fa fa-cogs"></i><span>{{ "LABEL_INSTELLINGEN" | translate }}</span></button>
-            </li>
-
-            <li  *ngIf="isRendering" class="loading">
-                <button class="btn btn-default btn-sm bnt-cnw-action--loading">
-                    <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
-                </button>
-
-            </li>
-
+            <li class="move"><button class="btn btn-default btn-sm bnt-cnw-action--drag"><i class="fa fa-arrows drag" aria-hidden="true"></i><span>{{ "LABEL_DRAG" | translate}}</span></button></li>
+            <li><button (click)="removeWidget(widget)" class="btn btn-default btn-sm bnt-cnw-action--remove"><i class="fa fa-trash"></i><span>{{ "LABEL_REMOVE_WIDGET" | translate }}</span></button></li>
+            <li><button (click)="editWidget($event, widget)" class="btn btn-default btn-sm bnt-cnw-action--instellingen"><i class="fa fa-cogs"></i><span>{{ "LABEL_INSTELLINGEN" | translate }}</span></button></li>
+            <li  *ngIf="isRendering" class="loading"><button class="btn btn-default btn-sm bnt-cnw-action--loading"><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i></button></li>
         </ul>
     </div>
-
     <div class="inner-preview-wrapper">
-
         <div class="inner-preview-rendering" *ngIf="isRendering">
             <i class="fa fa-spinner fa-pulse fa-2x fa-fw" ></i>
             <span>Rendering</span>
         </div>
-
         <div class="widget-preview">
-            <div class="preview-content" *ngIf="widgetPreview" [innerHTML]="widgetPreview | safeHTML">
-            </div>
-
+            <div class="preview-content" *ngIf="widgetPreview" [innerHTML]="widgetPreview | safeHTML"></div>
         </div>
-
         <div class="widget-code-preview">
             <code>
                 {{ widget | json }}
             </code>
         </div>
-
-
     </div>
-
 </div>

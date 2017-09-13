@@ -213,7 +213,7 @@ export class Config {
                     'items': 3,
                     'detail_link': {
                       'enabled': false,
-                      'cbdid': 'query_string'
+                      'cdbid': 'query_string'
                     }
                   },
                   'items': {

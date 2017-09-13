@@ -1,9 +1,9 @@
-import { Component } from "@angular/core";
-import { AbstractWidgetEditComponent } from "../../../../core/widget/components/abstract-widget-edit-component";
-import { FormBuilder } from "@angular/forms";
-import { WidgetBuilderService } from "../../../services/widget-builder.service";
-import * as _ from "lodash";
-import { WidgetPage } from "../../../../core/widget/widget-page";
+import { Component } from '@angular/core';
+import { AbstractWidgetEditComponent } from '../../../../core/widget/components/abstract-widget-edit-component';
+import { FormBuilder } from '@angular/forms';
+import { WidgetBuilderService } from '../../../services/widget-builder.service';
+import * as _ from 'lodash';
+import { WidgetPage } from '../../../../core/widget/widget-page';
 
 /**
  * Facets widget edit form component.
@@ -67,13 +67,13 @@ export class FacetsWidgetWidgetEditComponent extends AbstractWidgetEditComponent
    * @return {Array}
    */
   private getSearchResultsWidgets() {
-    let searchResultsWidgets = [];
+    const searchResultsWidgets = [];
 
-    for (let rowKey in this.widgetBuilderService.widgetPage.rows) {
+    for (const rowKey in this.widgetBuilderService.widgetPage.rows) {
       if (this.widgetBuilderService.widgetPage.rows.hasOwnProperty(rowKey)) {
-        for (let regionId in this.widgetBuilderService.widgetPage.rows[rowKey].regions) {
+        for (const regionId in this.widgetBuilderService.widgetPage.rows[rowKey].regions) {
           if (this.widgetBuilderService.widgetPage.rows[rowKey].regions.hasOwnProperty(regionId)) {
-            for (let widget of this.widgetBuilderService.widgetPage.rows[rowKey].regions[regionId].widgets) {
+            for (const widget of this.widgetBuilderService.widgetPage.rows[rowKey].regions[regionId].widgets) {
               if (widget.type === 'search-results') {
                 searchResultsWidgets.push(widget);
               }

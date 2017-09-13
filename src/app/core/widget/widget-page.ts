@@ -1,5 +1,5 @@
-import { Layout } from "../layout/layout";
-import { Widget } from "./widget";
+import { Layout } from '../layout/layout';
+import { Widget } from './widget';
 
 /**
  * Represents a widget page
@@ -42,7 +42,7 @@ export class WidgetPage {
    * @param values
    */
   constructor(values: any = {}) {
-    for (let key in values) {
+    for (const key in values) {
       if (values.hasOwnProperty(key)) {
         this[key] = values[key];
       }
@@ -62,7 +62,7 @@ export class WidgetPage {
    * @param row
    */
   public removeRow(row: Layout) {
-    let index = this.rows.indexOf(row);
+    const index = this.rows.indexOf(row);
     if (index > -1) {
       this.removeRowAtIndex(index);
     }
@@ -84,13 +84,13 @@ export class WidgetPage {
    */
   public removeWidget(widget: Widget) {
     // Loop the rows (layouts)
-    for (let rowKey in this.rows) {
+    for (const rowKey in this.rows) {
       if (this.rows.hasOwnProperty(rowKey)) {
 
         // Loop the regions
-        for (let regionId in this.rows[rowKey].regions) {
+        for (const regionId in this.rows[rowKey].regions) {
           if (this.rows[rowKey].regions.hasOwnProperty(regionId)) {
-            let index = this.rows[rowKey].regions[regionId].widgets.indexOf(widget);
+            const index = this.rows[rowKey].regions[regionId].widgets.indexOf(widget);
             if (index > -1) {
               this.rows[rowKey].regions[regionId].widgets.splice(index, 1);
               return true;
