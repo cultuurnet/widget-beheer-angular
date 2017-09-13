@@ -5,23 +5,25 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="container">
-        <ul class="nav navbar-nav">
-            <li class="nav-item active">
-                <button *ngIf="backButton" (click)="back()" class="btn btn-secondary"><i class="fa fa-chevron-left"></i> {{ backButton.label | translate }}</button>
-            </li>
-        </ul>
-        <div class="nav navbar-nav mx-auto">
-            <ng-template appDynamicComponent></ng-template>
+        <div class="col-md-2">
+            <ul class="nav navbar-nav">
+                <li class="nav-item active">
+                    <button *ngIf="backButton" (click)="back()" class="btn btn-secondary"><i class="fa fa-chevron-left"></i> {{ backButton.label | translate }}</button>
+                </li>
+            </ul>
         </div>
-        <ul class="nav navbar-nav">
-            <li class="nav-item">
-                <div *ngIf="user" ngbDropdown class="float-right">
-                    <button class="btn btn-secondary" ngbDropdownToggle>{{ user.displayName }}</button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" (click)="logout()">{{ "TOPBAR_USER_MENU_BUTTON_LOGOUT" | translate }}</button>
-                    </div>
+        <div class="col-md-8">
+            <div class="nav navbar-nav mx-auto">
+                <ng-template appDynamicComponent></ng-template>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div *ngIf="user" ngbDropdown class="float-right">
+                <button class="btn btn-secondary" ngbDropdownToggle>{{ user.displayName }}</button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item" (click)="logout()">{{ "TOPBAR_USER_MENU_BUTTON_LOGOUT" | translate }}</button>
                 </div>
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
 </nav>

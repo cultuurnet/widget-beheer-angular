@@ -35,6 +35,7 @@ import { TemplatePreviewModalComponent } from './components/add-page/preview/tem
 import { PageListComponent } from './components/page-list/page-list.component';
 import { CoreModule } from '../core/core.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { PublishPageConfirmationModalComponent } from "./components/modal/publish-page-confirmation-modal.component";
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     AddPageComponent,
     TemplatePreviewModalComponent,
     PageListComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    PublishPageConfirmationModalComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -102,7 +104,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     FacetsWidgetWidgetEditComponent,
     FacetsWidgetPreviewComponent,
     TemplatePreviewModalComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    PublishPageConfirmationModalComponent
   ]
 })
 

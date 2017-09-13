@@ -163,9 +163,12 @@ body.gu-unselectable {
 }
 
 .builder--wrapper {
+  padding-top: 77px;
   width: 100%;
-  float: left;
-  height:100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height:100%;
   overflow-y:auto;
 }
 
