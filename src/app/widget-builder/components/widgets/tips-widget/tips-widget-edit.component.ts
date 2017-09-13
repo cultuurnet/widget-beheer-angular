@@ -43,7 +43,7 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
         detail_link: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'general.detail_link.enabled', '')],
           url: [_.get(this.widget.settings, 'general.detail_link.url', '')],
-          cbdid: [_.get(this.widget.settings, 'general.detail_link.cbdid', '')],
+          cdbid: [_.get(this.widget.settings, 'general.detail_link.cdbid', '')],
         })
       }),
       items: this.formBuilder.group({
