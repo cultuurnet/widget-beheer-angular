@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://widgetbeheer-api.dev/',
+  apiUrl: 'http://projectaanvraag-api.dev/',
   widgetApi: {
     currentVersion: 3,
     embedUrl: {
@@ -13,5 +13,5 @@ export const environment = {
       legacy: 'http://tools.uitdatabank.be/widgets/layout/v2/:page_id.js',
     }
   },
-  projectaanvraagDashboardUrl: 'https://projectaanvraag.uitdatabank.be/'
+  projectaanvraagDashboardUrl: 'http://projectaanvraag.dev/'
 };

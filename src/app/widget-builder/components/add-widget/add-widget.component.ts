@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { WidgetTypeRegistry } from "../../../core/widget/services/widget-type-registry.service";
-import { Region } from "../../../core/layout/region";
-import { WidgetBuilderService } from "../../services/widget-builder.service";
+import { WidgetTypeRegistry } from '../../../core/widget/services/widget-type-registry.service';
+import { Region } from '../../../core/layout/region';
+import { WidgetBuilderService } from '../../services/widget-builder.service';
 
 /**
  * Component used for adding new widgets to the widget page rows.
@@ -55,7 +55,7 @@ export class AddWidgetComponent implements OnInit {
     const widgetName = this.widgetBuilderService.generateWidgetName(widgetType);
 
     // Get a widget with default settings from the registry
-    let widget = this.widgetTypeRegistry.getInstance({
+    const widget = this.widgetTypeRegistry.getInstance({
       type: widgetType.type,
       name: widgetName,
     });

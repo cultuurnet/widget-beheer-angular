@@ -6,6 +6,7 @@
 body {
   background-color: white;
   color: $gray;
+  padding-top: 77px;
 }
 
 .uit-logo {
@@ -164,9 +165,6 @@ body.gu-unselectable {
 .builder--wrapper {
   width: 100%;
   float: left;
-
-  margin-top: 57px;
-  padding-top: 20px;
   height:100vh;
   overflow-y:auto;
 }

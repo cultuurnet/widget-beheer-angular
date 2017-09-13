@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LayoutTypeRegistry } from "../../../core/layout/services/layout-type-registry.service";
-import { WidgetPage } from "../../../core/widget/widget-page";
-import { WidgetBuilderService } from "../../services/widget-builder.service";
+import { LayoutTypeRegistry } from '../../../core/layout/services/layout-type-registry.service';
+import { WidgetPage } from '../../../core/widget/widget-page';
+import { WidgetBuilderService } from '../../services/widget-builder.service';
 
 /**
  * Component used for adding new rows to the widget page.
@@ -34,7 +34,7 @@ export class AddRowComponent implements OnInit {
   /**
    * @inheritDoc
    */
-  ngOnInit(): void {
+  public ngOnInit(): void {
     const keys = Object.keys(this.layoutTypeRegistry.layoutTypes);
     for (const key of keys) {
       this.layoutTypes.push({
@@ -49,12 +49,12 @@ export class AddRowComponent implements OnInit {
    * @param $event
    * @param layout
    */
-  addRow($event, layout: any): void{
+  public addRow($event, layout: any) {
     // Stop the builder from deselecting the active widget
     $event.stopWidgetDeselect = true;
 
     // Add the row to the page
-    let row = this.layoutTypeRegistry.getInstance(layout.type);
+    const row = this.layoutTypeRegistry.getInstance(layout.type);
     this.page.addRow(row);
 
     // Save the widget page
