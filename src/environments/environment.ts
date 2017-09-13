@@ -13,5 +13,5 @@ export const environment = {
       legacy: 'http://tools.uitdatabank.be/widgets/layout/v2/:page_id.js',
     }
   },
-  projectaanvraagDashboardUrl: 'https://projectaanvraag.uitdatabank.be/'
+  projectaanvraagDashboardUrl: 'http://projectaanvraag.dev/'
 };
