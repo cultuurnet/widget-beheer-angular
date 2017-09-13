@@ -99,7 +99,7 @@ export class WidgetBuilderService {
    * @param settings
    */
   public saveWidgetSettings(widgetId: string, settings: any): Promise<any> {
-    console.log(settings);
+
     return new Promise((resolve, reject) => {
       // Clone the currently active widget page and apply the widget settings
       let widgetPageClone =  _.cloneDeep(this.widgetPage);
