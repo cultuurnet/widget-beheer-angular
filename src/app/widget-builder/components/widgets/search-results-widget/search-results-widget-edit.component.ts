@@ -1,9 +1,9 @@
-import { Component } from "@angular/core";
-import { AbstractWidgetEditComponent } from "../../../../core/widget/components/abstract-widget-edit-component";
-import { FormBuilder } from "@angular/forms";
-import { ckeditorConfig } from "../../../constants/ckeditor-config";
-import * as _ from "lodash";
-import { WidgetBuilderService } from "../../../services/widget-builder.service";
+import { Component } from '@angular/core';
+import { AbstractWidgetEditComponent } from '../../../../core/widget/components/abstract-widget-edit-component';
+import { FormBuilder } from '@angular/forms';
+import { ckeditorConfig } from '../../../constants/ckeditor-config';
+import * as _ from 'lodash';
+import { WidgetBuilderService } from '../../../services/widget-builder.service';
 
 /**
  * Search results widget edit form component.

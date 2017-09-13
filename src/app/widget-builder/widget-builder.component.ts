@@ -1,18 +1,18 @@
 import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { WidgetEditDirective } from './directives/widget-edit.directive';
 import { DragulaService } from 'ng2-dragula';
-import { WidgetBuilderService } from "./services/widget-builder.service";
-import { WidgetTypeRegistry } from "../core/widget/services/widget-type-registry.service";
-import { Widget } from "app/core/widget/widget";
-import { AbstractWidgetEditComponent } from "../core/widget/components/abstract-widget-edit-component";
+import { WidgetBuilderService } from './services/widget-builder.service';
+import { WidgetTypeRegistry } from '../core/widget/services/widget-type-registry.service';
+import { Widget } from 'app/core/widget/widget';
+import { AbstractWidgetEditComponent } from '../core/widget/components/abstract-widget-edit-component';
 import * as autoScroll from 'dom-autoscroller';
-import { WidgetPage } from "../core/widget/widget-page";
-import { WidgetPageFactory } from "../core/widget/factories/widget-page.factory";
-import { Config } from "../config";
-import { Subscription } from "rxjs";
-import { ActivatedRoute, ParamMap } from "@angular/router";
-import { WidgetService } from "../core/widget/services/widget.service";
-import { Project } from "../core/project/project";
+import { WidgetPage } from '../core/widget/widget-page';
+import { Subscription } from 'rxjs/Subscription';
+import { ActivatedRoute } from '@angular/router';
+import { Project } from '../core/project/project';
+import { BackButton } from '../core/topbar/back-button';
+import { TopbarService } from '../core/topbar/services/topbar.service';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 /**
  * The widget builder component is used for editing a widget page.
@@ -46,12 +46,12 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   /**
    * Indicates the sidebar is being shown or not
    */
-  public showSidebar: boolean = false;
+  public showSidebar = false;
 
   /**
    * View mode of the widget builder (eg. desktop, tablet,..)
    */
-  public viewMode: string;
+  public viewMode = 'desktop';
 
   /**
    * Reference to dom-autoscroller
@@ -74,24 +74,32 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   private dragulaContainer = 'widget-container';
 
   /**
+   * The current project
+   */
+  private project: Project;
+
+  /**
+   * Widgetbuilder sidebar subscription
+   */
+  private sidebarSubscription: Subscription;
+
+  /**
    * WidgetBuilder constructor.
    * @param dragulaService
    * @param _componentFactoryResolver
    * @param widgetTypeRegistry
    * @param widgetBuilderService
    * @param route
+   * @param topbarService
    */
   constructor(
     private dragulaService: DragulaService,
     private _componentFactoryResolver: ComponentFactoryResolver,
     private widgetTypeRegistry: WidgetTypeRegistry,
     private widgetBuilderService: WidgetBuilderService,
-    private route: ActivatedRoute
-  ) {
-    this.widgetSelectedSubscription = widgetBuilderService.widgetSelected$.subscribe(widget => {
-      this.editWidget(widget);
-    });
-  }
+    private route: ActivatedRoute,
+    private topbarService: TopbarService
+  ) {  }
 
   /**
    * @inheritDoc
@@ -99,11 +107,22 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.data
       .subscribe((data: { project: Project, widgetPage: WidgetPage }) => {
+        this.project = data.project;
         this.editingPage = data.widgetPage;
 
         // Set the current page on the widget builder service
         this.widgetBuilderService.widgetPage = this.editingPage;
       });
+
+    // Subscribe to the selected widget
+    this.widgetSelectedSubscription = this.widgetBuilderService.widgetSelected$.subscribe(widget => {
+      this.editWidget(widget);
+    });
+
+    // Subscribe to sidebar status
+    this.sidebarSubscription = this.widgetBuilderService.sidebarStatus$.subscribe(status => {
+      this.showSidebar = status;
+    });
 
     // Set the dragula options
     this.dragulaService.setOptions(this.dragulaContainer, {
@@ -113,7 +132,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     });
 
     // Get a reference to the widget-container drake
-    let drake = this.dragulaService.find(this.dragulaContainer);
+    const drake = this.dragulaService.find(this.dragulaContainer);
 
     // Keep a reference to the dom-autoscroller
     this.scroll = autoScroll(document.querySelector('#widget-builder-preview'), {
@@ -131,6 +150,9 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     this.dragulaDropSubscription = this.dragulaService.drop.subscribe((value) => {
       this.onDragulaDrop(value);
     });
+
+    // Init the topbar
+    this.initTopbar();
   }
 
   /**
@@ -151,24 +173,17 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   public editWidget(widget?: Widget) {
     this.activeWidget = widget;
 
-    let viewContainerRef = this.editForm.viewContainerRef;
+    const viewContainerRef = this.editForm.viewContainerRef;
     viewContainerRef.clear();
 
     // Render the widget edit component
     if (widget) {
-      let widgetType = this.widgetTypeRegistry.getWidgetType(widget.type);
-      let componentFactory = this._componentFactoryResolver.resolveComponentFactory(widgetType.editComponent);
+      const widgetType = this.widgetTypeRegistry.getWidgetType(widget.type);
+      const componentFactory = this._componentFactoryResolver.resolveComponentFactory(widgetType.editComponent);
 
-      let componentRef = viewContainerRef.createComponent(componentFactory);
+      const componentRef = viewContainerRef.createComponent(componentFactory);
       (<AbstractWidgetEditComponent>componentRef.instance).widget = widget;
     }
-  }
-
-  /**
-   * Toggle the sidebar.
-   */
-  public toggleSidebar() {
-    this.showSidebar = !this.showSidebar;
   }
 
   /**
@@ -176,13 +191,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    */
   public closeSidebar() {
     this.showSidebar = false;
-  }
-
-  /**
-   * Change the current view mode
-   */
-  public handleViewModeChanged(viewMode: string) {
-    this.viewMode = viewMode;
+    this.widgetBuilderService.toggleWidgetbuilderSidebar(false);
   }
 
   /**
@@ -203,4 +212,29 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     this.widgetBuilderService.saveWidgetPage();
   }
 
+  /**
+   * Init the topbar
+   */
+  private initTopbar() {
+    // Add a back button
+    this.topbarService.setBackButton(new BackButton(
+      BackButton.TYPE_ROUTE,
+      this.project.name,
+      null,
+      ['/project', this.project.id]
+    ));
+
+    // Add the toolbar component and subscribe to it's events
+    this.topbarService.addComponent('toolbar', ToolbarComponent, {widgetPage: this.editingPage})
+      .subscribe(event => {
+        switch (event.output) {
+          case 'viewModeChanged':
+            this.viewMode = event.value;
+            break;
+          case 'sidebarClose':
+            this.closeSidebar();
+            break;
+        }
+      });
+  }
 }

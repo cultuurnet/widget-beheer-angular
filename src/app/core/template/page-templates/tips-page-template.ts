@@ -1,4 +1,4 @@
-import { PageTemplate } from "../pageTemplate";
+import { PageTemplate } from '../pageTemplate';
 
 /**
  * Tips page template
@@ -8,12 +8,12 @@ export class TipsPageTemplate implements PageTemplate {
   /**
    * The template label
    */
-  public label: string = 'Tips';
+  public label = 'Tips';
 
   /**
    * The template description
    */
-  public description: string = 'Je plaatst enkele evenementen in de kijker en gidst zo de surfer door de agenda.';
+  public description = 'Je plaatst enkele evenementen in de kijker en gidst zo de surfer door de agenda.';
 
   /**
    * Preview available

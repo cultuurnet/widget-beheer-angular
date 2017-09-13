@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Subject } from "rxjs/Subject";
-import { Widget } from "../../core/widget/widget";
-import { WidgetPage } from "../../core/widget/widget-page";
-import { WidgetService } from "../../core/widget/services/widget.service";
-import { WidgetPreview } from "../components/widgets/widget-preview";
-import * as debouncePromise from "debounce-promise"
-import { TranslateService } from "@ngx-translate/core";
+import { Subject } from 'rxjs/Subject';
+import { Widget } from '../../core/widget/widget';
+import { WidgetPage } from '../../core/widget/widget-page';
+import { WidgetService } from '../../core/widget/services/widget.service';
+import * as debouncePromise from 'debounce-promise';
+import { TranslateService } from '@ngx-translate/core';
+import { RenderedWidget } from '../../core/widget/rendered-widget';
 
 /**
  * The widgetbuilder service.
@@ -15,7 +15,7 @@ import { TranslateService } from "@ngx-translate/core";
 export class WidgetBuilderService {
 
   /**
-   * Keep track of the widgetPage that is being edited in the builder
+   * The active widget page
    */
   public widgetPage: WidgetPage;
 
@@ -39,12 +39,23 @@ export class WidgetBuilderService {
    * Widget preview subject
    * @type {Subject}
    */
-  private widgetPreview = new Subject<WidgetPreview>();
+  private widgetPreview = new Subject<RenderedWidget>();
 
   /**
    * Observable widget preview
    */
   public widgetPreview$ = this.widgetPreview.asObservable();
+
+  /**
+   * Widgetbuilder sidebar status
+   * @type {Subject}
+   */
+  private sidebarStatus = new Subject<boolean>();
+
+  /**
+   * Observable widgetbuilder sidebar status
+   */
+  public sidebarStatus$ = this.sidebarStatus.asObservable();
 
   /**
    * Debounce the widgetpage save
@@ -88,7 +99,7 @@ export class WidgetBuilderService {
    * @param widgetId
    */
   public saveWidgetPage(widgetId?: string) {
-    let _self = this;
+    const _self = this;
 
     if (widgetId) {
       this.lockWidgetPreview(widgetId);
@@ -99,7 +110,7 @@ export class WidgetBuilderService {
       if (widgetId) {
         _self.widgetPreview.next({
           widgetId: widgetId,
-          content: response['preview']
+          data: response.preview
         });
       }
     }).catch((ex) => {
@@ -130,16 +141,13 @@ export class WidgetBuilderService {
    * @param widgetId
    */
   public renderWidget(widgetId: string) {
-    let _self = this;
+    const _self = this;
     this.lockWidgetPreview(widgetId);
 
     // Render the widget
-    this.widgetService.renderWidget(this.widgetPage.id, widgetId).subscribe(response => {
+    this.widgetService.renderWidget(this.widgetPage.id, widgetId).subscribe(widgetPreview => {
       // Update the widget preview with the new render response
-      _self.widgetPreview.next({
-        widgetId: widgetId,
-        content: response['data']
-      });
+      _self.widgetPreview.next(widgetPreview);
     });
   }
 
@@ -151,7 +159,7 @@ export class WidgetBuilderService {
     // Trigger an update of the preview with empty content
     this.widgetPreview.next({
       widgetId: widgetId,
-      content: '',
+      data: '',
     });
   }
 
@@ -163,11 +171,11 @@ export class WidgetBuilderService {
   public generateWidgetName(widgetType: any) {
     // Get the widget type count
     let numWidgets = 1;
-    for (let rowKey in this.widgetPage.rows) {
+    for (const rowKey in this.widgetPage.rows) {
       if (this.widgetPage.rows.hasOwnProperty(rowKey)) {
-        for (let regionId in this.widgetPage.rows[rowKey].regions) {
+        for (const regionId in this.widgetPage.rows[rowKey].regions) {
           if (this.widgetPage.rows[rowKey].regions.hasOwnProperty(regionId)) {
-            for (let widget of this.widgetPage.rows[rowKey].regions[regionId].widgets) {
+            for (const widget of this.widgetPage.rows[rowKey].regions[regionId].widgets) {
               if (widget.type === widgetType.type) {
                 numWidgets++;
               }
@@ -178,6 +186,14 @@ export class WidgetBuilderService {
     }
 
     return this.translateService.instant(widgetType.label).replace(/\s+/g, '-').toLowerCase() + '-' + numWidgets;
+  }
+
+  /**
+   * Toggle the widgetbuilder sidebar
+   *  Pass in a boolean for the status (open or closed)
+   */
+  public toggleWidgetbuilderSidebar(status: boolean) {
+    return this.sidebarStatus.next(status);
   }
 
 }

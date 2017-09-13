@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ConfirmationModalComponent } from "../../../core/modal/components/confirmation-modal.component";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ConfirmationModalComponent } from '../../../core/modal/components/confirmation-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 /**
  * The row edit component is a generic component for manipulating rows within an array.
@@ -28,12 +28,12 @@ export class RowEditComponent {
   /**
    * Modal title
    */
-  @Input() modalTitle: string = 'REMOVE_ROW_DEFAULT_MODAL_TITLE';
+  @Input() modalTitle = 'REMOVE_ROW_DEFAULT_MODAL_TITLE';
 
   /**
    * Modal message
    */
-  @Input() modalMessage: string = 'REMOVE_ROW_DEFAULT_MODAL_MESSAGE';
+  @Input() modalMessage = 'REMOVE_ROW_DEFAULT_MODAL_MESSAGE';
 
   /**
    * Row changed event emitter.
@@ -53,10 +53,10 @@ export class RowEditComponent {
    * @param $event
    * @param index
    */
-  removeRow($event, index: number): void{
+  public removeRow($event, index: number) {
     // Show the confirmation modal
-    let modal = this.modalService.open(ConfirmationModalComponent);
-    let modalInstance = modal.componentInstance;
+    const modal = this.modalService.open(ConfirmationModalComponent);
+    const modalInstance = modal.componentInstance;
 
     modalInstance.title = this.modalTitle;
     modalInstance.message = this.modalMessage;
@@ -88,7 +88,7 @@ export class RowEditComponent {
    * @param $originalEvent
    * @param direction
    */
-  moveRow(index:number, $originalEvent, direction: number = RowEditComponent.ROW_DIRECTION_UP) {
+  public moveRow(index: number, $originalEvent, direction: number = RowEditComponent.ROW_DIRECTION_UP) {
     this.rows.splice(index + direction, 0, this.rows.splice(index, 1)[0]);
 
     // Emit the change (move) event
@@ -103,7 +103,7 @@ export class RowEditComponent {
    * @param $event
    * @param index
    */
-  moveRowUp($event, index: number) {
+  public moveRowUp($event, index: number) {
     this.moveRow(index, $event);
   }
 
@@ -112,8 +112,8 @@ export class RowEditComponent {
    * @param $event
    * @param index
    */
-  moveRowDown($event, index: number) {
-    this.moveRow(index, $event, RowEditComponent.ROW_DIRECTION_DOWN)
+  public moveRowDown($event, index: number) {
+    this.moveRow(index, $event, RowEditComponent.ROW_DIRECTION_DOWN);
   }
 
 }

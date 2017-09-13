@@ -63,7 +63,7 @@ export class Project {
    * @param values
    */
   constructor(values: any = {}) {
-    for (let key in values) {
+    for (const key in values) {
       if (values.hasOwnProperty(key)) {
         this[key] = values[key];
       }

@@ -20,7 +20,7 @@ export const ckeditorConfig = {
       { name: 'about', groups: [ 'about' ] }
     ],
     removeButtons: 'Underline,Subscript,Superscript,Cut,Copy,PasteText,Paste,PasteFromWord,Scayt,Styles,Strike,RemoveFormat,Blockquote,Anchor,About,SpecialChar,HorizontalRule',
-    removeDialogFields: "image:info:txtBorder;image:info:txtHSpace;image:info:txtVSpace;image:info:txtHSpace",
-    image_previewText: " "
+    removeDialogFields: 'image:info:txtBorder;image:info:txtHSpace;image:info:txtVSpace;image:info:txtHSpace',
+    image_previewText: ' '
   }
 };

@@ -1,5 +1,5 @@
-import { Layout } from "../../layout";
-import { Region } from "../../region";
+import { Layout } from '../../layout';
+import { Region } from '../../region';
 
 /**
  * Provides a one col layout.

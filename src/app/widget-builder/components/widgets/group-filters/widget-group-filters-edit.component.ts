@@ -1,7 +1,7 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
-import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Subscription } from "rxjs";
-import { group_filter_types } from "app/widget-builder/constants/group-filters";
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
+import { group_filter_types } from 'app/widget-builder/constants/group-filters';
 
 /**
  * Widget group filters edit component.
@@ -26,12 +26,12 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   /**
    * Hide the type options
    */
-  @Input() hideType: boolean = false;
+  @Input() hideType = false;
 
   /**
    * Show the groupfilter placeholder field
    */
-  @Input() hidePlaceholder: boolean = false;
+  @Input() hidePlaceholder = false;
 
   /**
    * The group filter form
@@ -63,13 +63,13 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
 
     // Subscribe to changes in the form and reflect them on the widget groupFilters model
     this.formSubscription = this.groupFilterForm.valueChanges.subscribe(values => {
-      for (let key in values) {
+      for (const key in values) {
         if (values.hasOwnProperty(key)) {
           this.groupFilters[key] = values[key];
         }
       }
     });
-    
+
     this.filterTypes = group_filter_types;
   }
 
@@ -85,11 +85,11 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    * Build the initial form
    */
   public buildForm() {
-    let items = [];
+    const items = [];
 
     // Create the group edit form components for the group filters already on the model
     if (this.groupFilters.hasOwnProperty('filters')) {
-      for (let groupFilter of this.groupFilters.filters) {
+      for (const groupFilter of this.groupFilters.filters) {
         items.push(this.buildGroupFilterItem(
             groupFilter.type,
             groupFilter.label,
@@ -120,10 +120,10 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    * @returns {FormGroup}
    */
   private buildGroupFilterItem(type?: string, label: string = '', placeholder: string = '', options: any = []) {
-    let filterOptions = [];
+    const filterOptions = [];
 
     // Create the filter options form components
-    for (let option of options) {
+    for (const option of options) {
       filterOptions.push(this.buildFilterOptionItem(option.label, option.query));
     }
 
@@ -136,17 +136,17 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
     if (!type) {
       // Set the type if it is forced on the directive
       if (this.type) {
-        type = this.type
+        type = this.type;
       } else {
         // Fall back to the default
-        let defaultFieldType = group_filter_types.find(filterType => filterType.default === true);
+        const defaultFieldType = group_filter_types.find(filterType => filterType.default === true);
         if (defaultFieldType) {
           type = defaultFieldType.type;
         }
       }
     }
 
-    let formGroup = {
+    const formGroup = {
       label: [label, Validators.required],
       type: [type, this.hideType ? [] : Validators.required],
       placeholder: [placeholder, this.hidePlaceholder ? [] : Validators.required],
@@ -173,7 +173,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    * Add a group filter formgroup
    */
   public addGroupFilterItem() {
-    let control = <FormArray>this.groupFilterForm.controls['filters'];
+    const control = <FormArray>this.groupFilterForm.controls['filters'];
     control.push(this.buildGroupFilterItem(this.type));
   }
 
