@@ -12,6 +12,7 @@ import { TopbarService } from '../services/topbar.service';
 import { Subscription } from 'rxjs/Subscription';
 import { DynamicComponentDirective } from '../directives/dynamic-component.directive';
 import * as _ from 'lodash';
+import { environment } from "../../../../environments/environment";
 
 /**
  * Topbar component.
@@ -127,7 +128,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
    */
   public logout() {
     this.userService.logout().subscribe(() => {
-      this.router.navigate(['/']);
+      window.location.href = environment.projectaanvraagDashboardUrl;
     }, () => {
       // Failed logging out
       this.toastyService.error(this.translateService.instant('LOGOUT_FAILED_NOTIFICATION'));
@@ -140,7 +141,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
   public back() {
     if (this.backButton.type === BackButton.TYPE_LINK) {
       return window.location.href = this.backButton.url;
-    }else {
+    } else {
       return this.router.navigate(this.backButton.route);
     }
   }
