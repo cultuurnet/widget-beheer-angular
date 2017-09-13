@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as _ from 'lodash';
 import { PageTemplateRegistry } from '../../../core/template/services/page-template-registry.service';
 import { WidgetPageFactory } from '../../../core/widget/factories/widget-page.factory';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -78,10 +79,12 @@ export class AddPageComponent implements OnInit {
   public addPage(pageTemplate: any) {
     // Merge the project id on the template configuration
     const config = pageTemplate.template.configuration;
-    config['project_id'] = this.project.id;
+
+    let templateConfig = _.cloneDeep(config);
+    templateConfig['project_id'] = this.project.id;
 
     // Create a widget page from the template, ensuring it contains the required defaults, id's,...
-    const widgetPage = this.widgetPageFactory.create(config);
+    const widgetPage = this.widgetPageFactory.create(templateConfig);
 
     // Save the newly created widget page
     this.widgetService.saveWidgetPage(widgetPage).subscribe(widgetSaveResponse => {
