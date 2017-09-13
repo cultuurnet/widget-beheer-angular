@@ -46,7 +46,11 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
   protected buildForm() {
     this.widgetEditForm = this.formBuilder.group({
       general: this.formBuilder.group({
-        current_search: [_.get(this.settings, 'general.current_search')]
+        current_search: [_.get(this.settings, 'general.current_search')],
+        exclude: this.formBuilder.group({
+          long_term: [_.get(this.widget.settings, 'general.exclude.long_term', false)],
+          permanent: [_.get(this.widget.settings, 'general.exclude.permanent', false)]
+        })
       }),
       header: this.formBuilder.group({
         body: [_.get(this.settings, 'header.body', '')]
@@ -151,6 +155,9 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
       }),
       search_params: this.formBuilder.group({
         query: [_.get(this.widget.settings, 'search_params.query', '')]
+      }),
+      footer: this.formBuilder.group({
+        body: [_.get(this.settings, 'footer.body', '')]
       })
     });
   }
@@ -165,6 +172,7 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
     _.set(this.settings, 'items', _.get(values, 'items', {}));
     _.set(this.settings, 'detail_page', _.get(values, 'detail_page', {}));
     _.set(this.settings, 'search_params', _.get(values, 'search_params', {}));
+    _.set(this.settings, 'footer', _.get(values, 'footer', {}));
 
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }

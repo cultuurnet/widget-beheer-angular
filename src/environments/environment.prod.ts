@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://widgetbeheer-api-test.uitdatabank.be/',
+  apiUrl: 'https://widgetbeheer-api-test.uitdatabank.be/',
   widgetApi: {
     currentVersion: 3,
     embedUrl: {
