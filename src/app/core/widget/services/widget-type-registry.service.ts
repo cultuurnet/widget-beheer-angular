@@ -1,8 +1,8 @@
 import { Injectable, Type } from '@angular/core';
 import { Widget } from '../widget';
-import { AbstractWidgetEditComponent } from "../components/abstract-widget-edit-component";
+import { AbstractWidgetEditComponent } from '../components/abstract-widget-edit-component';
 import * as deepmerge from 'deepmerge';
-import * as _ from "lodash";
+import * as _ from 'lodash';
 
 /**
  * The widget type registry allows for registering of widget types
@@ -53,11 +53,11 @@ export class WidgetTypeRegistry {
    */
   public getInstance(values: any) {
     if (values.hasOwnProperty('type')) {
-      let type = values.type;
+      const type = values.type;
 
       if (this.widgetTypes.hasOwnProperty(type)) {
         // Return an instance of the requested Widget type with default settings if no settings are provided
-        let defaultSettings = this.widgetTypes[type].defaultSettings;
+        const defaultSettings = this.widgetTypes[type].defaultSettings;
 
         return new this.widgetTypes[type].widget({
           id: _.get(values, 'id'),

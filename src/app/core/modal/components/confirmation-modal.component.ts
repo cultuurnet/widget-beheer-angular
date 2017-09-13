@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { Component } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 /**
  * Confirmation modal component.
@@ -23,12 +23,12 @@ export class ConfirmationModalComponent {
   /**
    * The confirmation modal confirm button text
    */
-  confirmButtonText: string = 'CONFIRMATION_MODAL_CONFIRM';
+  confirmButtonText = 'CONFIRMATION_MODAL_CONFIRM';
 
   /**
    * The confirmation modal dismiss/cancel button text
    */
-  dismissButtonText: string = 'CONFIRMATION_MODAL_DISMISS';
+  dismissButtonText = 'CONFIRMATION_MODAL_DISMISS';
 
   /**
    * ConfirmationModalComponent constructor.

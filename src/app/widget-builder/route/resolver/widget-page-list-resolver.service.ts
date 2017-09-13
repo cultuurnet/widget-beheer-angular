@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from "rxjs";
-import { WidgetService } from "../../../core/widget/services/widget.service";
-import { WidgetPage } from "../../../core/widget/widget-page";
+import { Observable } from 'rxjs/Observable';
+import { WidgetService } from '../../../core/widget/services/widget.service';
+import { WidgetPage } from '../../../core/widget/widget-page';
+import 'rxjs/add/operator/catch';
 
 /**
  * Attempts to resolve a list of "WidgetPage" objects
@@ -18,6 +19,9 @@ export class WidgetPageListResolver implements Resolve<Object> {
   constructor(private widgetService: WidgetService, private router: Router) {
   }
 
+  /**
+   * @inheritDoc
+   */
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Array<WidgetPage>> {
     const id = route.paramMap.get('project_id');
 

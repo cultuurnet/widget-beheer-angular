@@ -1,9 +1,9 @@
-import { Component } from "@angular/core";
-import { AbstractWidgetEditComponent } from "../../../../core/widget/components/abstract-widget-edit-component";
-import { FormBuilder } from "@angular/forms";
-import { ckeditorConfig } from "../../../constants/ckeditor-config";
-import * as _ from "lodash";
-import { WidgetBuilderService } from "../../../services/widget-builder.service";
+import { Component } from '@angular/core';
+import { AbstractWidgetEditComponent } from '../../../../core/widget/components/abstract-widget-edit-component';
+import { FormBuilder } from '@angular/forms';
+import { ckeditorConfig } from '../../../constants/ckeditor-config';
+import * as _ from 'lodash';
+import { WidgetBuilderService } from '../../../services/widget-builder.service';
 
 /**
  * Search results widget edit form component.
@@ -154,6 +154,9 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
       }),
       search_params: this.formBuilder.group({
         query: [_.get(this.widget.settings, 'search_params.query', '')]
+      }),
+      footer: this.formBuilder.group({
+        body: [_.get(this.settings, 'footer.body', '')]
       })
     });
   }
@@ -168,6 +171,7 @@ export class SearchResultsWidgetEditComponent extends AbstractWidgetEditComponen
     _.set(this.settings, 'items', _.get(values, 'items', {}));
     _.set(this.settings, 'detail_page', _.get(values, 'detail_page', {}));
     _.set(this.settings, 'search_params', _.get(values, 'search_params', {}));
+    _.set(this.settings, 'footer', _.get(values, 'footer', {}));
 
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }

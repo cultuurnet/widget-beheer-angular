@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
-import { WidgetService } from "../../widget/services/widget.service";
-import { WidgetPage } from "../../widget/widget-page";
-import { Observable } from "rxjs";
+import { WidgetService } from '../../widget/services/widget.service';
+import { WidgetPage } from '../../widget/widget-page';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * Attempts to resolve a "WidgetPage" from the route

@@ -1,4 +1,4 @@
-import { PageTemplate } from "../pageTemplate";
+import { PageTemplate } from '../pageTemplate';
 
 /**
  * UiTPas page template
@@ -8,12 +8,12 @@ export class UitPasPageTemplate implements PageTemplate {
   /**
    * The template label
    */
-  public label: string = 'UiTPAS';
+  public label = 'UiTPAS';
 
   /**
    * The template description
    */
-  public description: string = 'Je kalender is geconfigureerd voor UiTPAS-evenementen en -voordelen.';
+  public description = 'Je kalender is geconfigureerd voor UiTPAS-evenementen en -voordelen.';
 
   /**
    * Preview available

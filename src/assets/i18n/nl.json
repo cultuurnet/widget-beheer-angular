@@ -58,6 +58,7 @@
   "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_14": "Volgende 14 dagen",
   "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_30": "Volgende 30 dagen",
   "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_CUSTOM_DATE": "Specifieke datum",
+  "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_DEFAULT_OPTION": "Standaardkeuze",
   "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_EXTRA_OPTIONS": "Extra opties",
   "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_FOOTER": "Footer",
   "TITLE_HTML_EDIT_FORM": "HTML bewerken",
@@ -170,6 +171,7 @@
   "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_LABELS_SHOW_ONLY_ALLOWED_LABELS": "Toon enkel specifieke labels",
   "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_LABELS_ALLOWED_LABELS": "Labels",
   "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_QUERY": "Query",
+  "LABEL_SEARCH_RESULTS_EDIT_FORM_PANEL_TITLE_FOOTER": "Footer",
   "Facets": "Zoekverfijningen",
   "TITLE_FACETS_EDIT_FORM": "Zoekverfijningen bewerken",
   "LABEL_FACETS_WIDGET_EDIT_FORM_PANEL_TITLE_GENERAL": "Algemeen",
@@ -192,6 +194,7 @@
   "WIDGET_PAGE_LIST_ADD_NEW_WIDGET_BUTTON": "Nieuwe widget maken",
   "WIDGET_PAGE_LIST_EDIT_WIDGET_BUTTON": "Aanpassen",
   "WIDGET_PAGE_LIST_DUPLICATE_WIDGET_BUTTON": "Dupliceren",
+  "DUPLICATE_WIDGET_PAGE_COPY": "kopie",
   "WIDGET_PAGE_LIST_WIDGET_REQUEST_UPGRADE_BUTTON": "Upgrade aanvragen",
   "WIDGET_PAGE_LIST_DELETE_WIDGET_BUTTON": "Verwijderen",
   "REMOVE_WIDGET_PAGE_MODAL_TITLE": "Widget verwijderen",
@@ -206,5 +209,10 @@
   "TITLE_WIDGET_PAGE_LEGACY_WIDGETS_LIST": "Legacy widgets",
   "WIDGET_PAGE_LIST_LEGACY_WIDGETS_INFO": "Legacy widgets draaien nog op versie 2 van het widgetsplatform. Deze widgets blijven werken, maar je kan ze niet meer aanpassen.<br/> Wil je toch een aanpassing maken, dan moet je eerst een upgrade naar de allerlaatste versie aanvragen.",
   "TITLE_WIDGET_PAGE_LIST_LEGACY_VERSION": "Oude versie",
-  "TITLE_WIDGET_PAGE_LIST_NEW_VERSION": "Nieuwe versie"
+  "TITLE_WIDGET_PAGE_LIST_NEW_VERSION": "Nieuwe versie",
+  "LOGOUT_FAILED_NOTIFICATION": "Afmelden niet gelukt. Probeer het later opnieuw.",
+  "TOPBAR_USER_MENU_BUTTON_LOGOUT": "Afmelden",
+  "TOPBAR_BACK_BUTTON_LABEL_PROJECTAANVRAGEN": "Projectaanvragen",
+  "WIDGET_PAGE_TITLE_EDIT_FAILED_NOTIFICATION": "Er ging iets mis bij het opslaan van de titel. Probeer het later opnieuw.",
+  "BUTTON_WIDGET_BUILDER_TOOLBAR_STOP_EDITING": "Stop bewerken"
 }

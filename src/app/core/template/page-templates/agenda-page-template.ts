@@ -1,4 +1,4 @@
-import { PageTemplate } from "../pageTemplate";
+import { PageTemplate } from '../pageTemplate';
 
 /**
  * Agenda page template
@@ -8,12 +8,12 @@ export class AgendaPageTemplate implements PageTemplate {
   /**
    * The template label
    */
-  public label: string = 'Agenda';
+  public label = 'Agenda';
 
   /**
    * The template description
    */
-  public description: string = 'Je start met een eenvoudige kalender met een zoekbox, zoekresultaten en verfijningen.';
+  public description = 'Je start met een eenvoudige kalender met een zoekbox, zoekresultaten en verfijningen.';
 
   /**
    * Preview available
