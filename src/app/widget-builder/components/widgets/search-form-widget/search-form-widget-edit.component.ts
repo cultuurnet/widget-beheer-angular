@@ -1,9 +1,9 @@
-import { Component } from "@angular/core";
-import { AbstractWidgetEditComponent } from "../../../../core/widget/components/abstract-widget-edit-component";
-import { FormBuilder } from "@angular/forms";
-import * as _ from "lodash";
-import { ckeditorConfig } from "../../../constants/ckeditor-config";
-import { WidgetBuilderService } from "../../../services/widget-builder.service";
+import { Component } from '@angular/core';
+import { AbstractWidgetEditComponent } from '../../../../core/widget/components/abstract-widget-edit-component';
+import { FormBuilder } from '@angular/forms';
+import * as _ from 'lodash';
+import { ckeditorConfig } from '../../../constants/ckeditor-config';
+import { WidgetBuilderService } from '../../../services/widget-builder.service';
 
 /**
  * Search widget edit form component.
@@ -66,7 +66,8 @@ export class SearchFormWidgetEditComponent extends AbstractWidgetEditComponent {
             days_14: [_.get(this.settings, 'fields.time.date_search.options.days_14', '')],
             days_30: [_.get(this.settings, 'fields.time.date_search.options.days_30', '')],
             custom_date: [_.get(this.settings, 'fields.time.date_search.options.custom_date', '')]
-          })
+          }),
+          default_option: [_.get(this.settings, 'fields.time.date_search.default_option', 'today')]
         })
       }),
       footer: this.formBuilder.group({

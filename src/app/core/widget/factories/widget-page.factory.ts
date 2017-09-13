@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
-import { LayoutFactory } from "../../layout/factories/layout.factory";
-import { WidgetPage } from "../widget-page";
-import * as _ from "lodash";
+import { Injectable } from '@angular/core';
+import { LayoutFactory } from '../../layout/factories/layout.factory';
+import { WidgetPage } from '../widget-page';
+import * as _ from 'lodash';
 
 @Injectable()
 export class WidgetPageFactory {
@@ -27,11 +27,11 @@ export class WidgetPageFactory {
 
     delete jsonObject['rows'];
 
-    let widgetPage = new WidgetPage(jsonObject);
+    const widgetPage = new WidgetPage(jsonObject);
 
     // Parse the rows
     if (rows) {
-      for (let row of rows) {
+      for (const row of rows) {
         widgetPage.addRow(this.layoutFactory.create(row));
       }
     }

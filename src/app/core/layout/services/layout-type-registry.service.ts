@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
-import { Layout } from "../layout";
-import { AbstractLayoutComponent } from "../components/abstract-layout.component";
+import { Layout } from '../layout';
+import { AbstractLayoutComponent } from '../components/abstract-layout.component';
 
 @Injectable()
 export class LayoutTypeRegistry {

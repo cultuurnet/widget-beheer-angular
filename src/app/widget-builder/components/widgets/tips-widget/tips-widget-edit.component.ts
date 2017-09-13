@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
-import { AbstractWidgetEditComponent } from "../../../../core/widget/components/abstract-widget-edit-component";
-import { FormBuilder } from "@angular/forms";
-import { WidgetBuilderService } from "../../../services/widget-builder.service";
-import * as _ from "lodash";
+import { Component } from '@angular/core';
+import { AbstractWidgetEditComponent } from '../../../../core/widget/components/abstract-widget-edit-component';
+import { FormBuilder } from '@angular/forms';
+import { WidgetBuilderService } from '../../../services/widget-builder.service';
+import * as _ from 'lodash';
 
 /**
  * Tips widget edit form component.
@@ -43,7 +43,7 @@ export class TipsWidgetWidgetEditComponent extends AbstractWidgetEditComponent {
         detail_link: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'general.detail_link.enabled', '')],
           url: [_.get(this.widget.settings, 'general.detail_link.url', '')],
-          cbdid: [_.get(this.widget.settings, 'general.detail_link.cbdid', '')],
+          cdbid: [_.get(this.widget.settings, 'general.detail_link.cdbid', '')],
         })
       }),
       items: this.formBuilder.group({

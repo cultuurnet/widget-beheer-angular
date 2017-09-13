@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { environment } from "../../../../environments/environment";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { environment } from '../../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-import { StaticCache } from "../../static-cache";
-import { Project } from "../project";
+import { Project } from '../project';
+import { MemoryCache } from '../../memory-cache';
 
 /**
  * Service that handles request to the "project" api
@@ -18,7 +18,7 @@ export class ProjectService {
    * @param http
    * @param cache
    */
-  constructor (private http: HttpClient, private cache: StaticCache) {
+  constructor (private http: HttpClient, private cache: MemoryCache) {
   }
 
   /**
@@ -27,10 +27,10 @@ export class ProjectService {
    * @return {Observable<Object>}
    */
   public getProject(id: string) {
-    const project = this.cache.get('project', [id], false);
+    const cachedProject = this.cache.get('project', [id], false);
 
-    if (project) {
-      return Observable.of(project);
+    if (cachedProject) {
+      return Observable.of(cachedProject);
     }
 
     return this.http.get(environment.apiUrl + 'project/' + id)

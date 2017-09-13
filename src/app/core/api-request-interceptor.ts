@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
-import { Observable } from "rxjs";
-import * as URI from "urijs";
-import { environment } from "../../environments/environment";
+import { Observable } from 'rxjs/Observable';
+import * as URI from 'urijs';
+import { environment } from '../../environments/environment';
 
 /**
  * Intercepts every request and injects common headers.

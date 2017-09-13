@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { PageTemplateRegistry } from "../../../core/template/services/page-template-registry.service";
-import { WidgetPageFactory } from "../../../core/widget/factories/widget-page.factory";
-import { ActivatedRoute, Router } from "@angular/router";
-import { WidgetService } from "../../../core/widget/services/widget.service";
-import { TemplatePreviewModalComponent } from "./preview/template-preview-modal.component";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { Project } from "../../../core/project/project";
-import * as _ from "lodash";
+import * as _ from 'lodash';
+import { PageTemplateRegistry } from '../../../core/template/services/page-template-registry.service';
+import { WidgetPageFactory } from '../../../core/widget/factories/widget-page.factory';
+import { ActivatedRoute, Router } from '@angular/router';
+import { WidgetService } from '../../../core/widget/services/widget.service';
+import { TemplatePreviewModalComponent } from './preview/template-preview-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Project } from '../../../core/project/project';
+import { TopbarService } from '../../../core/topbar/services/topbar.service';
+import { BackButton } from '../../../core/topbar/back-button';
 
 /**
  * Component used for adding a new widget page to a project.
@@ -35,6 +37,7 @@ export class AddPageComponent implements OnInit {
    * @param modalService
    * @param route
    * @param router
+   * @param topbarService
    */
   constructor (
     private pageTemplateRegistry: PageTemplateRegistry,
@@ -42,7 +45,8 @@ export class AddPageComponent implements OnInit {
     private widgetService: WidgetService,
     private modalService: NgbModal,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private topbarService: TopbarService
   ) { }
 
   /**
@@ -63,6 +67,9 @@ export class AddPageComponent implements OnInit {
         template: this.pageTemplateRegistry.pageTemplates[key]
       });
     }
+
+    // Init the topbar
+    this.initTopbar();
   }
 
   /**
@@ -92,8 +99,8 @@ export class AddPageComponent implements OnInit {
    */
   public preview(pageTemplate: any) {
     // Show the confirmation modal
-    let modal = this.modalService.open(TemplatePreviewModalComponent, {windowClass: 'modal-fullscreen'});
-    let modalInstance = modal.componentInstance;
+    const modal = this.modalService.open(TemplatePreviewModalComponent, {windowClass: 'modal-fullscreen'});
+    const modalInstance = modal.componentInstance;
 
     modalInstance.templateId = pageTemplate.id;
     modalInstance.title = pageTemplate.label;
@@ -102,6 +109,19 @@ export class AddPageComponent implements OnInit {
       // Add the page
       this.addPage(pageTemplate);
     }, () => {});
+  }
+
+  /**
+   * Init the topbar
+   */
+  private initTopbar() {
+    // Add a back button
+    this.topbarService.setBackButton(new BackButton(
+      BackButton.TYPE_ROUTE,
+      this.project.name,
+      null,
+      ['/project', this.project.id]
+    ));
   }
 
 }

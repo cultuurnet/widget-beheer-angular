@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
-import { ProjectService } from "../../project/services/project.service";
-import { Observable } from "rxjs";
+import { ProjectService } from '../../project/services/project.service';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * Attempts to resolve a "project" from the route

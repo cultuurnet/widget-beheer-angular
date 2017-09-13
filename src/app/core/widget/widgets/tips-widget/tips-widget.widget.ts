@@ -1,4 +1,4 @@
-import { AbstractWidget } from "../abstract-widget";
+import { AbstractWidget } from '../abstract-widget';
 
 /**
  * Provides a tips widget.

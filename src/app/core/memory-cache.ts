@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import * as _ from "lodash";
+import { Injectable } from '@angular/core';
+import * as _ from 'lodash';
 
 /**
- * Simple static cache
+ * Simple memory cache
  */
 @Injectable()
-export class StaticCache {
+export class MemoryCache {
 
   /**
-   * The static cache
+   * The cache object
    */
   private cache: any = {};
 
@@ -67,7 +67,7 @@ export class StaticCache {
         _.set(this.cache, bin, {});
       }
     } else {
-      // Clear the entire static cache
+      // Clear the entire cache
       this.cache = {};
     }
   }
