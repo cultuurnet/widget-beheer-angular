@@ -19,6 +19,21 @@
                                 <input type="checkbox" formControlName="current_search">
                                 <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_GENERAL_CURRENT_SEARCH" | translate }}</span>
                             </label>
+                            <div formGroupName="exclude">
+                                <label><strong>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_GENERAL_HIDE_FILTERS" | translate }}</strong></label>
+                                <div>
+                                    <label>
+                                        <input type="checkbox" formControlName="long_term">
+                                        <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_GENERAL_HIDE_FILTERS_OPTION_LONG_TERM" | translate }}</span>
+                                    </label>
+                                </div>
+                                <div>
+                                    <label>
+                                        <input type="checkbox" formControlName="permanent">
+                                        <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_GENERAL_HIDE_FILTERS_OPTION_PERMANENT" | translate }}</span>
+                                    </label>
+                                </div>
+                            </div>
                         </ng-template>
                     </ngb-panel>
                     <ngb-panel id="header" formGroupName="header">
