@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://projectaanvraag-api.dev/',
+  apiUrl: 'http://widgetbeheer-api.dev/',
   widgetApi: {
     currentVersion: 3,
     embedUrl: {

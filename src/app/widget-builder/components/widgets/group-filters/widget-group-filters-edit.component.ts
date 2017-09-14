@@ -189,8 +189,25 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    * @param change
    */
   public handleRowChanged(change: any) {
-    // Update the form
-    this.groupFilterForm.updateValueAndValidity();
+    if (change.action !== 'confirm') {
+      // Traverse the form and update all childrens' value and validity
+      const filters = this.groupFilterForm.get('filters');
+      if (filters) {
+        for (const filter in filters['controls']) {
+          if (filters['controls'].hasOwnProperty(filter)) {
+            const filterGroup = filters['controls'][filter];
+            filterGroup.updateValueAndValidity();
+
+            if (filters['controls'].hasOwnProperty(filter)) {
+              const options = filters['controls'][filter].get('options');
+              if (options) {
+                options.updateValueAndValidity();
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
 }
