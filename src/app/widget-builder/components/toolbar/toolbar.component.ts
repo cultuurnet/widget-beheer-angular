@@ -173,7 +173,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       this.widgetPage.title = this.title;
 
       // Save the page
-      this.widgetService.saveWidgetPage(this.widgetPage).subscribe(() => {
+      this.widgetService.saveWidgetPage(this.widgetPage).subscribe((widgetSaveResponse) => {
+        // Draft state
+        this.widgetPage.draft = widgetSaveResponse.widgetPage.draft;
       }, () => {
         // Revert to the old title
         this.widgetPage.title = oldTitle;

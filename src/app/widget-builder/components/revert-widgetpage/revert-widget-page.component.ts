@@ -3,7 +3,6 @@ import { WidgetPage } from "../../../core/widget/widget-page";
 import { WidgetService } from "../../../core/widget/services/widget.service";
 import { Project } from "../../../core/project/project";
 import { ActivatedRoute, Router } from "@angular/router";
-import { MemoryCache } from "../../../core/memory-cache";
 
 /**
  * The RevertWidgetPageComponent reverts a given widget page to its published state
