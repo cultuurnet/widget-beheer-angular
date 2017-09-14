@@ -38,7 +38,8 @@
   </div>
   <div class="col-5">
     <div class="page-actions" *ngIf="!sidebar" style="float:right;">
-      <button class="btn btn-default btn-primary" (click)="publishPage()">Publiceren</button>
+      <button *ngIf="widgetPage.draft" class="btn btn-default btn-secondary" (click)="revertDraft()">Revert</button>
+      <button class="btn btn-default btn-primary" (click)="publishPage()">{{ "BUTTON_WIDGET_BUILDER_TOOLBAR_PUBLISH" | translate }}</button>
     </div>
   </div>
 </div>

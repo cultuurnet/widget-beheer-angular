@@ -1,0 +1,62 @@
+import { Component, OnInit } from '@angular/core';
+import { WidgetPage } from "../../../core/widget/widget-page";
+import { WidgetService } from "../../../core/widget/services/widget.service";
+import { Project } from "../../../core/project/project";
+import { ActivatedRoute, Router } from "@angular/router";
+import { MemoryCache } from "../../../core/memory-cache";
+
+/**
+ * The RevertWidgetPageComponent reverts a given widget page to its published state
+ * and redirects the user back to the widget builder.
+ */
+@Component({
+  selector: 'app-revert-widget-page',
+  templateUrl: './revert-widget-page.component.html'
+})
+export class RevertWidgetPageComponent implements OnInit {
+
+  /**
+   * The widgetpage to revert
+   */
+  public widgetPage: WidgetPage;
+
+  /**
+   * The current project
+   */
+  private project: Project;
+
+  /**
+   * RevertWidgetPageComponent constructor.
+   * @param widgetService
+   * @param route
+   * @param router
+   */
+  constructor(
+    private widgetService: WidgetService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
+
+  /**
+   * @inheritDoc
+   */
+  ngOnInit() {
+    this.route.data
+      .subscribe((data: { project: Project, widgetPage: WidgetPage }) => {
+        this.project = data.project;
+        this.widgetPage = data.widgetPage;
+      });
+
+    this.revertWidgetPage();
+  }
+
+  /**
+   * Revert the loaded widget page to its published state and redirect to the builder
+   */
+  revertWidgetPage() {
+    this.widgetService.revertWidgetPage(this.widgetPage.id).subscribe(() => {
+      this.router.navigate(['/project', this.project.id, 'page', this.widgetPage.id, 'edit']);
+    }, () => {});
+  }
+
+}

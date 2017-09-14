@@ -215,6 +215,7 @@
   "TOPBAR_BACK_BUTTON_LABEL_PROJECTAANVRAGEN": "Projectaanvragen",
   "WIDGET_PAGE_TITLE_EDIT_FAILED_NOTIFICATION": "Er ging iets mis bij het opslaan van de titel. Probeer het later opnieuw.",
   "BUTTON_WIDGET_BUILDER_TOOLBAR_STOP_EDITING": "Stop bewerken",
+  "BUTTON_WIDGET_BUILDER_TOOLBAR_PUBLISH": "Publiceren",
   "WIDGET_PAGE_PUBLISH_FAILED_NOTIFICATION": "Er ging iets mis bij het publiceren van de widget. Probeer het later opnieuw.",
   "WIDGET_PAGE_PUBLISHED_MODAL_TITLE": "Widget gepubliceerd",
   "WIDGET_PAGE_PUBLISHED_MODAL_MESSAGE": "Je widget is gepubliceerd en je wijzigingen staan nu live! Kopiëer de embed-code hieronder en gebruik deze vervolgens op je website.",
@@ -226,5 +227,10 @@
   "WIDGET_JSON_EDIT_MODAL_TITLE": "JSON bewerken",
   "WIDGET_JSON_EDIT_MODAL_BUTTON_SAVE": "Opslaan",
   "WIDGET_JSON_EDIT_MODAL_BUTTON_CANCEL": "Annuleren",
-  "WIDGET_JSON_EDIT_BUTTON_EDIT": "Bewerken"
+  "WIDGET_JSON_EDIT_BUTTON_EDIT": "Bewerken",
+  "REVERT_WIDGET_PAGE_MODAL_TITLE": "Wijzigingen ongedaan maken",
+  "REVERT_WIDGET_PAGE_MODAL_MESSAGE": "Weet je zeker dat je de gemaakte wijzigigen ongedaan wil maken? De widget wordt hersteld naar zijn laatst gepubliceerde staat.",
+  "REVERT_WIDGET_PAGE_MODAL_BUTTON_CONFIRM": "Terugzetten",
+  "REVERT_WIDGET_PAGE_FAILED_ERROR": "Er ging iets mis bij het terugzetten van de widget pagina. Probeer het later opnieuw.",
+  "REVERT_WIDGET_PAGE_SUCCESS_NOTIFICATION": "De widget werd succesvol teruggezet"
 }

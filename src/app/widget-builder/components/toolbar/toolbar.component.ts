@@ -6,8 +6,9 @@ import { WidgetPage } from '../../../core/widget/widget-page';
 import { WidgetBuilderService } from '../../services/widget-builder.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ConfirmationModalComponent } from "../../../core/modal/components/confirmation-modal.component";
 import { PublishPageConfirmationModalComponent } from "../modal/publish-page-confirmation-modal.component";
+import { Router } from "@angular/router";
+import { ConfirmationModalComponent } from "../../../core/modal/components/confirmation-modal.component";
 
 /**
  * The toolbar component contains actions and tools for editing a widget page:
@@ -92,13 +93,16 @@ export class ToolbarComponent implements OnInit, OnDestroy {
    * @param toastyService
    * @param translateService
    * @param modalService
+   * @param router
+   * @param route
    */
   constructor(
     private widgetService: WidgetService,
     private widgetBuilderService: WidgetBuilderService,
     private toastyService: ToastyService,
     private translateService: TranslateService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router
   ) { }
 
   /**
@@ -182,10 +186,31 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Revert changes in the draft version back to the published version
+   */
+  public revertDraft() {
+    // Show the confirmation modal
+    const modal = this.modalService.open(ConfirmationModalComponent);
+    const modalInstance = modal.componentInstance;
+
+    modalInstance.title = 'REVERT_WIDGET_PAGE_MODAL_TITLE';
+    modalInstance.message = 'REVERT_WIDGET_PAGE_MODAL_MESSAGE';
+    modalInstance.confirmButtonText = 'REVERT_WIDGET_PAGE_MODAL_BUTTON_CONFIRM';
+
+    // Remove row on confirmation
+    modal.result.then(() => {
+      this.router.navigate(['/project', this.widgetPage.project_id, 'page', this.widgetPage.id, 'revert']);
+    }, () => {});
+  }
+
+  /**
    * Publish the currently active widget page
    */
   public publishPage() {
     this.widgetService.publishWidgetPage(this.widgetPage).subscribe(() => {
+      // After publishing, the widgetpage is no longer in draft
+      this.widgetPage.draft = false;
+
       // Show the confirmation modal
       const modal = this.modalService.open(PublishPageConfirmationModalComponent);
       let modalInstance = modal.componentInstance;

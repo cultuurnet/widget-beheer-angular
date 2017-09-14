@@ -85,7 +85,7 @@ export class WidgetService {
         this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
         // Remove the widgetPage object from the cache
-        this.cache.clear('widgetPage', [widgetPage.id]);
+        this.cache.remove('widgetPage', [widgetPage.id]);
       });
   }
 
@@ -125,7 +125,7 @@ export class WidgetService {
         this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
         // Remove the widgetPage object from the cache
-        this.cache.clear('widgetPage', [widgetPage.id]);
+        this.cache.remove('widgetPage', [widgetPage.id]);
       });
   }
 
@@ -227,6 +227,23 @@ export class WidgetService {
 
     return this.http.get(environment.apiUrl + this.widgetApiPath + 'widget-types').do(defaultSettings => {
       this.cache.put('widgetDefaultSettings', ['settings'], defaultSettings);
+    });
+  }
+
+  /**
+   * Revert a draft widget page back to the published version.
+   * @param widgetPageId
+   * @return {Observable<Object>}
+   */
+  public revertWidgetPage(widgetPageId: string): Observable<Object> {
+    // Remove the widgetPage object from the cache
+    this.cache.remove('widgetPage', [widgetPageId]);
+
+    // @todo: Implement the API call
+    return new Observable(observer => {
+      setTimeout(() => {
+        observer.next();
+      }, 1000);
     });
   }
 
