@@ -5,6 +5,7 @@ import * as cssbeautify from 'cssbeautify';
 import { WidgetPage } from "../../../../core/widget/widget-page";
 import { WidgetService } from "../../../../core/widget/services/widget.service";
 import { Styles } from "../../../../core/widget/styles";
+import { WidgetBuilderService } from "../../../services/widget-builder.service";
 
 /**
  * CssEditModalComponent modal component.
@@ -55,11 +56,13 @@ export class CssEditModalComponent implements OnInit {
    * @param activeModal
    * @param formBuilder
    * @param widgetService
+   * @param widgetBuilderService
    */
   constructor(
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
-    private widgetService: WidgetService
+    private widgetService: WidgetService,
+    private widgetBuilderService: WidgetBuilderService
   ) { }
 
   /**
@@ -118,7 +121,14 @@ export class CssEditModalComponent implements OnInit {
 
     // Save the widget page (will trigger a render for the current widget)
     this.widgetService.saveWidgetPage(this.widgetPage).subscribe(() => {
-      this.activeModal.close(true);
+      // Apply the widgetPage css to the DOM
+      if (this.widgetBuilderService.attachCss(this.widgetPage.css)) {
+        // Close the modal
+        this.activeModal.close(true);
+      } else {
+        this.error = true;
+        this.isSaving = false;
+      }
     }, () => {
       this.isSaving = false;
 

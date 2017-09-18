@@ -153,6 +153,11 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
 
     // Init the topbar
     this.initTopbar();
+
+    // Attach the widgetPage CSS to the DOM
+    if (this.editingPage.css) {
+      this.widgetBuilderService.attachCss(this.editingPage.css);
+    }
   }
 
   /**
@@ -164,6 +169,9 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
 
     // Destroy the dragula container
     this.dragulaService.destroy(this.dragulaContainer);
+
+    // Remove any previously attached styles
+    this.widgetBuilderService.removeCss();
   }
 
   /**

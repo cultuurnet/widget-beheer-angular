@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 
 /**
  * The widgetbuilder service.
- * Used tracking the active widget, widget preview,... and performing operations on the widget page.
+ * Used for tracking the active widget, widget preview,... and performing operations on the widget page.
  */
 @Injectable()
 export class WidgetBuilderService {
@@ -239,6 +239,95 @@ export class WidgetBuilderService {
    */
   public toggleWidgetbuilderSidebar(status: boolean) {
     return this.sidebarStatus.next(status);
+  }
+
+  /**
+   * Attach the widgetpage css to the document
+   */
+  public attachCss(css: string) {
+    // Wrap in a try-catch because of possibly foul user input
+    try {
+      // Remove any previously attached styles
+      this.removeCss();
+
+      let styleElement = document.createElement("style");
+      styleElement.setAttribute('class', 'widgetbuilder');
+
+      // Webkit fix
+      styleElement.appendChild(document.createTextNode(''));
+
+      // Append the style element to the DOM
+      document.head.appendChild(styleElement);
+      let sheet = <CSSStyleSheet>styleElement.sheet;
+
+      // Create a dummy document and element for parsing purposes
+      const doc = document.implementation.createHTMLDocument("");
+      let dummyElement = document.createElement("style");
+
+      dummyElement.textContent = css;
+      doc.body.appendChild(dummyElement);
+
+      // Iterate the CSS rules, prefix and add them to the styles
+      const rules = dummyElement.sheet['cssRules'];
+
+      for(let i = 0 ; i < rules.length; i++){
+        const rule = rules[i];
+
+        // Media rules
+        if (rule instanceof CSSMediaRule) {
+          for (let ruleKey in rule.cssRules) {
+            let mediaRule = rule.cssRules[ruleKey];
+            if (mediaRule instanceof CSSStyleRule) {
+              this.prefixCssStyleRule(mediaRule, '.widget-preview');
+            }
+          }
+        } else if (rule instanceof CSSStyleRule) {
+          this.prefixCssStyleRule(rule, '.widget-preview');
+        }
+
+        sheet.insertRule(rule.cssText);
+      }
+    }
+    catch(err) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Prefix a css style rule with
+   * @param rule
+   * @param prefix
+   */
+  private prefixCssStyleRule(rule: CSSStyleRule, prefix: string) {
+    const selector = rule.selectorText;
+
+    // Split on comma
+    const selectors = selector.split(',');
+    let prefixedSelectors = [];
+
+    for (const s of selectors) {
+      prefixedSelectors.push(prefix + ' ' + s);
+    }
+
+    // Prefix the selector if any
+    // In case of no selector (animations, ...) leave the rule as is
+    if (selector !== '' && !_.isNil(selector)) {
+      rule.selectorText = prefixedSelectors.join();
+    }
+
+    return rule;
+  }
+
+  /**
+   * Remove any widgetpage css attached to the DOM
+   */
+  public removeCss() {
+    const styleSheets = document.head.getElementsByClassName('widgetbuilder');
+    for (let i = 0; i < styleSheets.length; i++) {
+      document.head.removeChild(styleSheets[i]);
+    }
   }
 
 }
