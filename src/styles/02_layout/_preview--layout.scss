@@ -1,3 +1,9 @@
+.builder--edit-modus .preview-content {
+  width: 90%;
+  padding: 2%;
+  margin: 20px auto;
+  background-color: white;
+}
 .preview {
 
   .cnw_form {
@@ -62,3 +68,11 @@ html .preview .cnw_sideCol {
   }
 }
 
+.cnw_searchresult--block {
+  margin-bottom: 3rem;
+}
+
+p.cnw_card-description {
+  padding: 15px;
+  width: 100%;
+}
