@@ -2,48 +2,10 @@
 $font-family-sans-serif: "Open Sans";
 
 
-
 // override with cnw_ styles
 @import "00_base/variables";
 @import "00_base/cnw_variabels";
-
-@import "06_vendors/bootstrap/mixins";
-@import "00_base/cnw_reboot";
-@import "00_base/cnw_normalize";
-
-
-@import "07_builder/helper/cn_widgetbuilder";
-
-@import "00_base/custom";
-@import "06_vendors/cn_bootstrap";
-@import "05_helpers/helper";
-@import "05_helpers/images";
-
-@import "01_components/components";
-@import "02_layout/layout";
-
-
-//  CNW builder styles
-@import "07_builder/layout/builder_components-grid";
-
-@import '07_builder/helper/keyframes';
-//@import "02_layout/header";
-@import "06_vendors/projectaanvraag/base/footer";
-@import "07_builder/helper/cnwBuilder-mixins";
-@import "07_builder/layout/preview--layout";
-@import "07_builder/layout/sidebar";
-@import "07_builder/components/builder_components";
-@import "07_builder/components/topnav";
-@import "07_builder/components/edit-searchfilters";
-@import "07_builder/components/action-bar";
-@import "07_builder/components/addComponent--buttons";
-@import "07_builder/components/messages";
-@import "07_builder/components/modal";
-@import "07_builder/layout/builder_layoutSwitcher";
-  body {
-    font-size:0.8rem;
-    font-family:$font-family-base;
-  }
-
-  // disable all scroll
-  html, body {margin: 0; height: 100%; }
+/* You can add global styles to this file, and also import other style files */
+@import "~dragula/dist/dragula.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.min.css";
