@@ -1,9 +1,10 @@
 
-<div class="selected-element">
-    <p>{{ "LABEL_SELECTED_ELEMENT" | translate }}: <br>
-        <i class="fa fa-crosshairs"></i>
-        <input type="text" [(ngModel)]="widget.name" (ngModelChange)="handleWidgetNameChanged($event)"/>
-    </p>
+<div class="selected-element ">
+    <p>{{ "LABEL_SELECTED_ELEMENT" | translate }}: </p>
+    <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-crosshairs"></i></span>
+        <input type="text" class="form-control" [(ngModel)]="widget.name" (ngModelChange)="handleWidgetNameChanged($event)"/>
+    </div>
 </div>
 
 <ngb-tabset>
