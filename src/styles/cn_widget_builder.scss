@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
-$font-family-sans-serif: "Open Sans";
+
 
 
 // override with cnw_ styles
-@import "00_base/variables";
-@import "00_base/cnw_variabels";
+//@import "00_base/variables";
+//@import "00_base/cnw_variabels";
 /* You can add global styles to this file, and also import other style files */
+$font-family-sans-serif: "Open Sans";
 @import "~dragula/dist/dragula.css";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.min.css";
+
+body {
+  font-family: "Open Sans", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif ;
+}
