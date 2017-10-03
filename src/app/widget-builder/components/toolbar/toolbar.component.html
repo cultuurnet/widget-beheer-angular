@@ -7,14 +7,21 @@
   <div class="col-5">
     <div class="page-title-edit" *ngIf="!sidebar">
       <div *ngIf="!editingTitle">
-        <span class="page-title"><a (click)="toggleTitleEditMode()">{{ title }} <i class="fa fa-pencil"></i></a></span>
+        <span class="page-title"><h4>{{ title }} </h4><a (click)="toggleTitleEditMode()" class="btn btn-pagetitle--edit"> <i class="fa fa-pencil"></i></a></span>
       </div>
-      <div *ngIf="editingTitle" class="editable-controls">
-        <input type="text" [(ngModel)]="title">
-        <span class="editable-buttons">
-        <button type="submit" class="btn btn-primary" title="Submit" aria-label="Submit" (click)="saveTitle()"><span class="fa fa-check"></span></button>
-        <button type="button" class="btn btn-default" title="Cancel" aria-label="Cancel" (click)="cancelTitleEdit()"><span class="fa fa-times"></span></button>
-    </span>
+      <div *ngIf="editingTitle" class="editable-controls input-group">
+
+        <input type="text" class="form-control" [(ngModel)]="title">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-success" title="Submit" aria-label="Submit" (click)="saveTitle()">
+              <span class="fa fa-check"></span>
+            </button>
+        </span>
+           <span class="input-group-btn">
+          <button type="button" class="btn btn-danger" title="Cancel" aria-label="Cancel" (click)="cancelTitleEdit()">
+            <span class="fa fa-times"></span>
+          </button>
+        </span>
       </div>
     </div>
   </div>
@@ -31,14 +38,14 @@
     </div>
     <div class="edit-actions" *ngIf="sidebar">
       <button  class="btn btn-default navbar-btn btn--stop-editing  nav-link" (click)="closeSidebar()" >
-        <i class="fa fa-times-circle" aria-hidden="true"></i>
+        <i class="fa fa-floppy-o" aria-hidden="true"></i>
         {{ "BUTTON_WIDGET_BUILDER_TOOLBAR_STOP_EDITING" | translate }}
       </button>
     </div>
   </div>
   <div class="col-5">
     <div class="page-actions" *ngIf="!sidebar" style="float:right;">
-      <button class="btn btn-default btn-primary" (click)="publishPage()">Publiceren</button>
+      <button class="btn btn-default btn--publicing" (click)="publishPage()">  <i class="fa fa-cloud-upload" aria-hidden="true"></i>  {{ "BUTTON_WIDGET_BUILDER_TOOLBAR_PUBLISHING" | translate }}</button>
     </div>
   </div>
 </div>
