@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md page-list--header">
       <h1 class="float-left" >{{ "TITLE_WIDGET_PAGE_LIST" | translate }}</h1>
-      <button class="btn btn-primary float-right" [routerLink]="['/project', project.id, 'page', 'add']">{{ "WIDGET_PAGE_LIST_ADD_NEW_WIDGET_BUTTON" | translate }}</button>
+      <button class="btn btn-primary float-right" [routerLink]="['/project', project.id, 'page', 'add']"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_ADD_NEW_WIDGET_BUTTON" | translate }}</button>
     </div>
   </div>
 
@@ -19,12 +19,13 @@
           <button [routerLink]="['/project', project.id, 'page', widgetPage.id, 'edit']" class="btn btn-secondary " style="margin-left: 20px;"><i class="fa fa-pencil" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_EDIT_WIDGET_BUTTON" | translate }}</button>
 
           <button (click)="duplicateWidgetPage(widgetPage)" class="btn btn-link"><i class="fa fa-files-o" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_DUPLICATE_WIDGET_BUTTON" | translate }}</button>
+
           <button (click)="deleteWidgetPage(widgetPage)" class="btn btn-link btn-link--remove"><i class="fa fa-trash-o" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_DELETE_WIDGET_BUTTON" | translate }}</button>
           </div>
 
         </div>
         <div class="card-block">
-          <div class="input-group">
+          <div class="input-group clipboard-group">
             <span class="input-group-btn"><app-clipboard-button [content]="getWidgetPageUrl(widgetPage, true)"></app-clipboard-button></span>
             <input type="text" value="{{ getWidgetPageUrl(widgetPage, true) }}" class="form-control" >
           </div>
