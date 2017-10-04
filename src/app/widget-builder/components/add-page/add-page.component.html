@@ -3,16 +3,20 @@
   <app-template-preview-modal></app-template-preview-modal>
 </ng-template>
 
-<div class="container-fluid">
-  <h1>{{ "ADD_PAGE_TITLE" | translate }}</h1>
-  <p>{{ "ADD_PAGE_INTRO" | translate }}</p>
+<div class="container page-template">
+
+  <div class="page-list--header">
+    <h1>{{ "ADD_PAGE_TITLE" | translate }}</h1>
+    <p class="cnw_lead">{{ "ADD_PAGE_INTRO" | translate }}</p>
+  </div>
+
   <div class="row">
-    <div *ngFor="let pageTemplate of pageTemplates" class="col-sm-3">
+    <div *ngFor="let pageTemplate of pageTemplates" class="col-6">
       <div class="card template">
-        <div class="card-block">
-          <p><strong>{{ pageTemplate.label }}</strong></p>
-          <img src="/assets/page-templates/{{ pageTemplate.id }}.svg" class="img-responsive" style="margin: 0 auto 10px;"/>
-          <p>{{ pageTemplate.description }}</p>
+        <div class="card-block row">
+
+          <div class="col">  <img src="/assets/page-templates/{{ pageTemplate.id }}.svg" class="img-responsive "/></div>
+          <div class="col-9 align-self-center"><h4>{{ pageTemplate.label }}</h4><p class="page-template--info">{{ pageTemplate.description }}</p></div>
         </div>
         <div class="card-footer">
           <button class="btn btn-primary" (click)="addPage(pageTemplate)">{{ "ADD_PAGE_SELECT_TEMPLATE_BUTTON" | translate }}</button>

@@ -1,6 +1,6 @@
 
 .cnw_container-fluid {
-   @include make-container()
+  // @include make-container()
 }
 
 .cnw_container {
@@ -83,6 +83,30 @@
 
 }
 
+.cnw_sideCol {
+  //border:1px solid blue;
+  div[class*='cnw_col-'],
+  .cnw_col {
+    flex-basis: auto;
+    width: 100%;
+   // border:1px solid orange;
+  }
+}
+
+
+@media (max-width: 1018px) {
+
+ .cnw_center .cnw_searchresult--block {
+    //border:1px solid blue;
+    div[class*='cnw_col-'],
+    .cnw_col {
+      flex-basis: unset;
+      max-width: 100%;
+
+    }
+  }
+}
+
 
 
 @include media-breakpoint-up(xs) {
@@ -100,6 +124,3 @@
     order: 0;
   }
 }
-
-
-
