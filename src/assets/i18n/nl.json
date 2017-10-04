@@ -213,7 +213,7 @@
   "TOPBAR_USER_MENU_BUTTON_LOGOUT": "Afmelden",
   "TOPBAR_BACK_BUTTON_LABEL_PROJECTAANVRAGEN": "Projectaanvragen",
   "TOPBAR_PUBLISH_BUTTON": "Publiceren",
-  "TOPBAR_CSS_BUTTON": "CSS"
+  "TOPBAR_CSS_BUTTON": "CSS",
   "WIDGET_PAGE_TITLE_EDIT_FAILED_NOTIFICATION": "Er ging iets mis bij het opslaan van de titel. Probeer het later opnieuw.",
   "BUTTON_WIDGET_BUILDER_TOOLBAR_STOP_EDITING": "Instellingen opslaan en sluiten",
   "WIDGET_PAGE_PUBLISH_FAILED_NOTIFICATION": "Er ging iets mis bij het publiceren van de widget. Probeer het later opnieuw.",
@@ -240,7 +240,7 @@
   "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_LABEL": "Website",
   "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_ERROR": "Ongeldig URL formaat",
   "WIDGET_PAGE_CSS_EDIT_STYLE_FOUND_STYLES_DESCRIPTION": "We vonden volgende stijlen terug op de website",
-  "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL": "wijzigen"
+  "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL": "wijzigen",
   "Two col sidebar left": "Twee kolommen met een zijbalk links",
   "Two col sidebar right": "Twee kolommen met een zijbalk rechts",
   "Three col double sidebar": "Drie kolommen met een dubbele zijbalk",
