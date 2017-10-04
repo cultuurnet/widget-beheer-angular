@@ -38,6 +38,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { PublishPageConfirmationModalComponent } from "./components/modal/publish-page-confirmation-modal.component";
 import { JsonEditComponent } from "./components/widgets/json-edit/json-edit.component";
 import { JsonEditModalComponent } from "./components/widgets/json-edit/json-edit-modal.component";
+import { CssEditModalComponent } from "./components/widgets/css-edit/css-edit-modal.component";
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { JsonEditModalComponent } from "./components/widgets/json-edit/json-edit
     ToolbarComponent,
     PublishPageConfirmationModalComponent,
     JsonEditComponent,
-    JsonEditModalComponent
+    JsonEditModalComponent,
+    CssEditModalComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -110,7 +112,8 @@ import { JsonEditModalComponent } from "./components/widgets/json-edit/json-edit
     TemplatePreviewModalComponent,
     ToolbarComponent,
     PublishPageConfirmationModalComponent,
-    JsonEditModalComponent
+    JsonEditModalComponent,
+    CssEditModalComponent
   ]
 })
 

@@ -28,9 +28,9 @@ export class WidgetPage {
   public version: number;
 
   /**
-   * The wiget page css
+   * The widget page css
    */
-  public css: any;
+  public css: string;
 
   /**
    * The widget page rows
