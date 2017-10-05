@@ -9,11 +9,6 @@ export const group_filter_types = [
     'default': true
   },
   {
-    'label': 'LABEL_GROUP_FILTER_OPTION_AUTOCOMPLETE',
-    'type': 'autocomplete',
-    'default': false
-  },
-  {
     'label': 'LABEL_GROUP_FILTER_OPTION_MULTIPLE',
     'type': 'select_multiple',
     'default': false

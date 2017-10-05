@@ -35,6 +35,11 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   @Input() hidePlaceholder = false;
 
   /**
+   * Hide the default options
+   */
+  @Input() hideDefaultOption = false;
+
+  /**
    * Notify when the group filters have changed
    */
   @Output() groupFiltersChanged = new EventEmitter();
@@ -102,7 +107,8 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
             groupFilter.type,
             groupFilter.label,
             groupFilter.placeholder,
-            groupFilter.options
+            groupFilter.options,
+            groupFilter.default_option
         ));
       }
     }
@@ -117,6 +123,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
       enabled: this.groupFilters.enabled,
       filters: this.formBuilder.array(items)
     });
+
   }
 
   /**
@@ -125,9 +132,10 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    * @param label
    * @param placeholder
    * @param options
+   * @param default_option
    * @returns {FormGroup}
    */
-  private buildGroupFilterItem(type?: string, label: string = '', placeholder: string = '', options: any = []) {
+  private buildGroupFilterItem(type?: string, label: string = '', placeholder: string = '', options: any = [], default_option:string = '') {
     const filterOptions = [];
 
     // Create the filter options form components
@@ -158,7 +166,8 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
       label: [label, Validators.required],
       type: [type, this.hideType ? [] : Validators.required],
       placeholder: [placeholder, this.hidePlaceholder ? [] : Validators.required],
-      options: this.formBuilder.array(filterOptions)
+      options: this.formBuilder.array(filterOptions),
+      default_option: [default_option]
     };
 
     return this.formBuilder.group(formGroup);
@@ -183,6 +192,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   public addGroupFilterItem() {
     const control = <FormArray>this.groupFilterForm.controls['filters'];
     control.push(this.buildGroupFilterItem(this.type));
+    console.log(control);
   }
 
   /**
@@ -190,6 +200,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    */
   public addGroupFilterOptionItem(formArray: FormArray) {
     formArray.push(this.buildFilterOptionItem());
+    console.log(formArray);
   }
 
   /**

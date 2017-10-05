@@ -16,7 +16,7 @@
         <div class="card-header">
           <h3 class="float-left card-header--title" >{{ widgetPage.title }}</h3>
           <div class="float-right">
-          <button [routerLink]="['/project', project.id, 'page', widgetPage.id, 'edit']" class="btn btn-secondary " style="margin-left: 20px;"><i class="fa fa-pencil" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_EDIT_WIDGET_BUTTON" | translate }}</button>
+          <button [routerLink]="['/project', project.id, 'page', widgetPage.id, 'edit']" class="btn btn-secondary "><i class="fa fa-pencil" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_EDIT_WIDGET_BUTTON" | translate }}</button>
 
           <button (click)="duplicateWidgetPage(widgetPage)" class="btn btn-link"><i class="fa fa-files-o" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_DUPLICATE_WIDGET_BUTTON" | translate }}</button>
 
@@ -41,17 +41,20 @@
       <div class="page-list">
         <div *ngFor="let widgetPage of legacyWidgetPages" class="card">
           <div class="card-header">
-            <h3 class="float-left" style="margin:0; line-height:38px;">{{ widgetPage.title }}</h3>
-            <button class="btn btn-secondary float-left" style="margin-left: 20px;">{{ "WIDGET_PAGE_LIST_WIDGET_REQUEST_UPGRADE_BUTTON" | translate }}</button>
+            <h3 class="float-left card-header--title" >{{ widgetPage.title }}</h3>
+            <button class="btn btn-secondary float-right">{{ "WIDGET_PAGE_LIST_WIDGET_REQUEST_UPGRADE_BUTTON" | translate }}</button>
           </div>
           <div class="card-block">
             <h4>{{ "TITLE_WIDGET_PAGE_LIST_LEGACY_VERSION" | translate }}</h4>
-            <p><code>{{ getWidgetPageUrl(widgetPage, true) }}</code></p>
-            <app-clipboard-button [content]="getWidgetPageUrl(widgetPage, true)"></app-clipboard-button>
-
-            <h4>{{ "TITLE_WIDGET_PAGE_LIST_NEW_VERSION" | translate }}</h4>
-            <p><code>{{ getWidgetPageUrl(widgetPage, true, true) }}</code></p>
-            <app-clipboard-button [content]="getWidgetPageUrl(widgetPage, true, true)"></app-clipboard-button>
+            <div class="input-group clipboard-group">
+              <span class="input-group-btn"> <app-clipboard-button [content]="getWidgetPageUrl(widgetPage, true)"></app-clipboard-button></span>
+              <input type="text" value="{{ getWidgetPageUrl(widgetPage, true) }}" class="form-control" >
+            </div>
+            <h4 class="title-new-version">{{ "TITLE_WIDGET_PAGE_LIST_NEW_VERSION" | translate }}</h4>
+            <div class="input-group clipboard-group">
+              <span class="input-group-btn"><app-clipboard-button [content]="getWidgetPageUrl(widgetPage, true, true)"></app-clipboard-button></span>
+              <input type="text" value="{{ getWidgetPageUrl(widgetPage, true, true) }}" class="form-control" >
+            </div>
           </div>
         </div>
       </div>
