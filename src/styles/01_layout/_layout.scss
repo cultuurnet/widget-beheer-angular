@@ -1,0 +1,21 @@
+body {
+  font-size:0.8rem;
+  font-family:$font-family-sans-serif;
+  background-color: white;
+  color: $gray;
+  padding-top: 77px;
+}
+
+// disable all scroll
+html, body {margin: 0; height: 100%; }
+
+body.gu-unselectable {
+  .layout--region {
+    background-color: $cnw_color-blueLight2;
+    border: 1px dotted $cnw_color-blueLight;
+    min-height: 50px;
+  }
+  .outer-row {
+    border: 1px dotted $cnw_color-blueLight;
+  }
+}
