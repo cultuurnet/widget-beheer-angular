@@ -55,7 +55,6 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
         }),
         description: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.description.enabled', '')],
-          label: [_.get(this.widget.settings, 'items.description.label', '')],
           characters: [_.get(this.widget.settings, 'items.description.characters', '')]
         }),
         when: this.formBuilder.group({

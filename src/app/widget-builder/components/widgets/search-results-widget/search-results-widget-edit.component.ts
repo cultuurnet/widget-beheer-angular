@@ -64,7 +64,6 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         }),
         description: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.description.enabled', '')],
-          label: [_.get(this.widget.settings, 'items.description.label', '')],
           characters: [_.get(this.widget.settings, 'items.description.characters', '')]
         }),
         when: this.formBuilder.group({
@@ -120,7 +119,6 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         }),
         description: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.description.enabled', '')],
-          label: [_.get(this.widget.settings, 'detail_page.description.label', '')],
           characters: [_.get(this.widget.settings, 'detail_page.description.characters', '')]
         }),
         when: this.formBuilder.group({
