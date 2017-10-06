@@ -29,6 +29,14 @@
   border-right: 1px solid #e0e0e0;
 }
 
+.layout--preview {
+  padding: 2px 20px 10px 20px;
+}
+
+.layout--preview > :first-child {
+  width: 100%;
+}
+
 .preview-inner {
   padding: 5px;
   margin: 0 auto;

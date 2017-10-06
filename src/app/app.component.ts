@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { TopbarService } from './core/topbar/services/topbar.service';
+import { environment } from "../environments/environment";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
 
@@ -25,6 +26,9 @@ export class AppComponent implements OnInit {
    * @inheritDoc
    */
   public ngOnInit() {
+
+    document.querySelector('head').innerHTML += '<link rel="stylesheet" href="' + environment.apiUrl + 'assets/css/cn_widget_styling.css' + '" type="text/css"/>';
+
     this.router.events.subscribe((event) => {
       this.interceptNavigation(event);
     });
