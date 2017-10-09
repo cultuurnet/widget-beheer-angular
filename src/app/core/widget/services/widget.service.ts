@@ -198,7 +198,7 @@ export class WidgetService {
       }
     }
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'render/' + widgetPageId + '/' + widgetId)
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'render/' + widgetPageId + '/' + widgetId + '/draft')
       .map(response => {
         return {
           widgetId: widgetId,
