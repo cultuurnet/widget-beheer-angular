@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ckeditorConfig } from '../../../constants/ckeditor-config';
 import * as _ from 'lodash';
-import { BaseWidgetEditComponent } from "../base-widget-edit.component";
-import { FormBuilder } from "@angular/forms";
-import { WidgetBuilderService } from "../../../services/widget-builder.service";
+import { BaseWidgetEditComponent } from '../base-widget-edit.component';
+import { FormBuilder } from '@angular/forms';
+import { WidgetBuilderService } from '../../../services/widget-builder.service';
 
 /**
  * Html widget edit form component.

@@ -5,9 +5,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { WidgetPage } from '../../../core/widget/widget-page';
 import { WidgetBuilderService } from '../../services/widget-builder.service';
 import { Subscription } from 'rxjs/Subscription';
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { PublishPageConfirmationModalComponent } from "../modal/publish-page-confirmation-modal.component";
-import { CssEditModalComponent } from "../widgets/css-edit/css-edit-modal.component";
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PublishPageConfirmationModalComponent } from '../modal/publish-page-confirmation-modal.component';
+import { CssEditModalComponent } from '../widgets/css-edit/css-edit-modal.component';
 
 /**
  * The toolbar component contains actions and tools for editing a widget page:
@@ -188,7 +188,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.widgetService.publishWidgetPage(this.widgetPage).subscribe(() => {
       // Show the confirmation modal
       const modal = this.modalService.open(PublishPageConfirmationModalComponent);
-      let modalInstance = modal.componentInstance;
+      const modalInstance = modal.componentInstance;
       modalInstance.widgetPage = this.widgetPage;
     }, () => {
       this.toastyService.error(this.translateService.instant('WIDGET_PAGE_PUBLISH_FAILED_NOTIFICATION'));
@@ -205,7 +205,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       keyboard: false
     });
 
-    let modalInstance = modal.componentInstance;
+    const modalInstance = modal.componentInstance;
     modalInstance.widgetPage = this.widgetPage;
 
     modal.result.then((result) => {

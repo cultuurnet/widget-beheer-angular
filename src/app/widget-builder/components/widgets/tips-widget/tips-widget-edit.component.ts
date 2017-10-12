@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import * as _ from 'lodash';
-import { BaseWidgetEditComponent } from "../base-widget-edit.component";
+import { BaseWidgetEditComponent } from '../base-widget-edit.component';
 
 /**
  * Tips widget edit form component.

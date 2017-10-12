@@ -102,8 +102,8 @@ export class WidgetBuilderService {
 
     return new Promise((resolve, reject) => {
       // Clone the currently active widget page and apply the widget settings
-      let widgetPageClone =  _.cloneDeep(this.widgetPage);
-      let widget = widgetPageClone.findWidget(widgetId);
+      const widgetPageClone =  _.cloneDeep(this.widgetPage);
+      const widget = widgetPageClone.findWidget(widgetId);
 
       // Apply the settings to the cloned widget
       if (widget) {
@@ -114,7 +114,7 @@ export class WidgetBuilderService {
         response => {
           // Replace the widget settings with the settings from the response
           const responseWidget = response.widgetPage.findWidget(widgetId);
-          let originalWidget = this.widgetPage.findWidget(widgetId);
+          const originalWidget = this.widgetPage.findWidget(widgetId);
 
           // Apply the settings to the cloned widget
           if (responseWidget && originalWidget) {
@@ -250,7 +250,7 @@ export class WidgetBuilderService {
       // Remove any previously attached styles
       this.removeCss();
 
-      let styleElement = document.createElement("style");
+      const styleElement = document.createElement('style');
       styleElement.setAttribute('class', 'widgetbuilder');
 
       // Webkit fix
@@ -258,11 +258,11 @@ export class WidgetBuilderService {
 
       // Append the style element to the DOM
       document.head.appendChild(styleElement);
-      let sheet = <CSSStyleSheet>styleElement.sheet;
+      const sheet = <CSSStyleSheet>styleElement.sheet;
 
       // Create a dummy document and element for parsing purposes
-      const doc = document.implementation.createHTMLDocument("");
-      let dummyElement = document.createElement("style");
+      const doc = document.implementation.createHTMLDocument('');
+      const dummyElement = document.createElement('style');
 
       dummyElement.textContent = css;
       doc.body.appendChild(dummyElement);
@@ -270,15 +270,17 @@ export class WidgetBuilderService {
       // Iterate the CSS rules, prefix and add them to the styles
       const rules = dummyElement.sheet['cssRules'];
 
-      for(let i = 0 ; i < rules.length; i++){
+      for (let i = 0 ; i < rules.length; i++) {
         const rule = rules[i];
 
         // Media rules
-        if (rule instanceof CSSMediaRule) {
-          for (let ruleKey in rule.cssRules) {
-            let mediaRule = rule.cssRules[ruleKey];
-            if (mediaRule instanceof CSSStyleRule) {
-              this.prefixCssStyleRule(mediaRule, '.widget-preview');
+        if (rule instanceof CSSMediaRule && rule.cssRules) {
+          for (const ruleKey in rule.cssRules) {
+            if (rule.cssRules.hasOwnProperty(ruleKey)) {
+              const mediaRule = rule.cssRules[ruleKey];
+              if (mediaRule instanceof CSSStyleRule) {
+                this.prefixCssStyleRule(mediaRule, '.widget-preview');
+              }
             }
           }
         } else if (rule instanceof CSSStyleRule) {
@@ -288,7 +290,7 @@ export class WidgetBuilderService {
         sheet.insertRule(rule.cssText);
       }
     }
-    catch(err) {
+    catch (err) {
       return false;
     }
 
@@ -305,7 +307,7 @@ export class WidgetBuilderService {
 
     // Split on comma
     const selectors = selector.split(',');
-    let prefixedSelectors = [];
+    const prefixedSelectors = [];
 
     for (const s of selectors) {
       prefixedSelectors.push(prefix + ' ' + s);

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Widget } from "../../../../core/widget/widget";
-import { WidgetBuilderService } from "../../../services/widget-builder.service";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { JsonEditModalComponent } from "./json-edit-modal.component";
-import { TranslateService } from "@ngx-translate/core";
-import { ToastyService } from "ng2-toasty";
+import { Widget } from '../../../../core/widget/widget';
+import { WidgetBuilderService } from '../../../services/widget-builder.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { JsonEditModalComponent } from './json-edit-modal.component';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastyService } from 'ng2-toasty';
 
 /**
  * The json edit component allows direct editing of a widgets' JSON
@@ -52,7 +52,7 @@ export class JsonEditComponent implements OnInit {
       keyboard: false
     });
 
-    let modalInstance = modal.componentInstance;
+    const modalInstance = modal.componentInstance;
     modalInstance.widget = this.widget;
 
     modal.result.then((result) => {

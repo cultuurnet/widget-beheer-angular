@@ -112,7 +112,7 @@ export class WidgetPage {
       if (this.rows.hasOwnProperty(rowKey)) {
         for (const regionId in this.rows[rowKey].regions) {
           if (this.rows[rowKey].regions.hasOwnProperty(regionId)) {
-            const widget = this.rows[rowKey].regions[regionId].widgets.find(widget => widget.id === widgetId)
+            const widget = this.rows[rowKey].regions[regionId].widgets.find(widget => widget.id === widgetId);
             if (widget !== undefined) {
               return widget;
             }

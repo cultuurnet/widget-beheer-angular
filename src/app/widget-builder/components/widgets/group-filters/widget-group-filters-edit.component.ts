@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { group_filter_types } from 'app/widget-builder/constants/group-filters';
-import { Widget } from "../../../../core/widget/widget";
+import { Widget } from '../../../../core/widget/widget';
 
 /**
  * Widget group filters edit component.

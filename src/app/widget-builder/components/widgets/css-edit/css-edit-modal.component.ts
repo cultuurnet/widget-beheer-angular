@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as cssbeautify from 'cssbeautify';
-import { WidgetPage } from "../../../../core/widget/widget-page";
-import { WidgetService } from "../../../../core/widget/services/widget.service";
-import { Styles } from "../../../../core/widget/styles";
-import { WidgetBuilderService } from "../../../services/widget-builder.service";
+import { WidgetPage } from '../../../../core/widget/widget-page';
+import { WidgetService } from '../../../../core/widget/services/widget.service';
+import { Styles } from '../../../../core/widget/styles';
+import { WidgetBuilderService } from '../../../services/widget-builder.service';
 
 /**
  * CssEditModalComponent modal component.
@@ -30,7 +30,7 @@ export class CssEditModalComponent implements OnInit {
    * Indicates if the widget is being saved
    * @type {boolean}
    */
-  public isSaving: boolean = false;
+  public isSaving = false;
 
   /**
    * The widgetPage being edited
@@ -40,7 +40,7 @@ export class CssEditModalComponent implements OnInit {
   /**
    * Show/hide error message
    */
-  public error: boolean = false;
+  public error = false;
 
   /**
    * The scraped styles
@@ -48,7 +48,7 @@ export class CssEditModalComponent implements OnInit {
   public scrapedStyles: Styles = {
     url: 'someurl.com',
     colors: ['#626262'],
-    fonts: ["'Verdana', 'Arial', 'Helvetica'"]
+    fonts: ['"Verdana", "Arial", "Helvetica"']
   };
 
   /**
@@ -85,7 +85,7 @@ export class CssEditModalComponent implements OnInit {
 
     // Scrape form
     this.cssScrapeForm = this.formBuilder.group({
-      url: ['', [Validators.pattern("^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?"), Validators.required]]
+      url: ['', [Validators.pattern('^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?'), Validators.required]]
     });
   }
 
@@ -97,7 +97,7 @@ export class CssEditModalComponent implements OnInit {
     this.scrapedStyles = {
       url: 'someurl.com',
       colors: ['#626262'],
-      fonts: ["'Verdana', 'Arial', 'Helvetica'"]
+      fonts: ['"Verdana", "Arial", "Helvetica"']
     };
   }
 
