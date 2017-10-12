@@ -42,7 +42,7 @@
         <div *ngFor="let widgetPage of legacyWidgetPages" class="card">
           <div class="card-header">
             <h3 class="float-left card-header--title" >{{ widgetPage.title }}</h3>
-            <button class="btn btn-secondary float-right">{{ "WIDGET_PAGE_LIST_WIDGET_REQUEST_UPGRADE_BUTTON" | translate }}</button>
+            <button (click)="upgradeWidgetPage(widgetPage)" class="btn btn-secondary float-right">{{ "WIDGET_PAGE_LIST_WIDGET_REQUEST_UPGRADE_BUTTON" | translate }}</button>
           </div>
           <div class="card-block">
             <h4>{{ "TITLE_WIDGET_PAGE_LIST_LEGACY_VERSION" | translate }}</h4>

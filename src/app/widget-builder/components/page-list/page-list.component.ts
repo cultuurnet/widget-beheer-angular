@@ -63,14 +63,8 @@ export class PageListComponent implements OnInit {
   ngOnInit() {
     this.route.data
       .subscribe((data: { widgetPages: Array<WidgetPage>, project: Project }) => {
-        // Separate legacy and current widgets
-        for (const widgetPage of data.widgetPages) {
-          if (widgetPage.version >= environment.widgetApi.currentVersion) {
-            this.widgetPages.push(widgetPage);
-          } else {
-            this.legacyWidgetPages.push(widgetPage);
-          }
-        }
+
+        this.buildWidgetPageList(data.widgetPages);
 
         // Get the project from the current route
         this.project = data.project;
@@ -136,13 +130,66 @@ export class PageListComponent implements OnInit {
   }
 
   /**
+   * Upgrade a widget page to latest version.
+   * @param widgetPage
+   */
+  public upgradeWidgetPage(widgetPage: WidgetPage) {
+
+    const modal = this.modalService.open(ConfirmationModalComponent);
+    const modalInstance = modal.componentInstance;
+
+    modalInstance.title = 'UPGRADE_WIDGET_PAGE_MODAL_TITLE';
+    modalInstance.message = 'UPGRADE_WIDGET_PAGE_MODAL_MESSAGE';
+
+    modal.result.then((result) => {
+      this.widgetService.upgradeWidgetPage(widgetPage).subscribe(() => {
+
+        this.reloadWidgetPageList();
+
+        this.toastyService.success(this.translateService.instant('UPGRADE_WIDGET_PAGE_SUCCESS_NOTIFICATION'));
+      }, () => {
+        this.toastyService.error(this.translateService.instant('UPGRADE_WIDGET_PAGE_FAILED_NOTIFICATION'));
+      });
+    }, (reason) => {
+      // Do nothing on modal close
+    });
+  }
+
+  /**
    * Get the embed url/code for the widget page
    * @param widgetPage
    * @param tags
-   * @param currentVersion
+   * @param forceCurrentVersion
    */
-  public getWidgetPageUrl(widgetPage: WidgetPage, tags: boolean = false, currentVersion: boolean = false) {
-    return this.widgetService.getWidgetPageEmbedUrl(widgetPage, tags, currentVersion);
+  public getWidgetPageUrl(widgetPage: WidgetPage, tags: boolean = false, forceCurrentVersion: boolean = false) {
+    return this.widgetService.getWidgetPageEmbedUrl(widgetPage, tags, forceCurrentVersion);
+  }
+
+  /**
+   * Reload the current widget page list.
+   */
+  private reloadWidgetPageList() {
+
+    this.widgetService.getWidgetPages(this.project.id).subscribe((widgetPages: Array<WidgetPage>) => {
+      this.widgetPages = [];
+      this.legacyWidgetPages = [];
+      this.buildWidgetPageList(widgetPages);
+    });
+  }
+
+  /**
+   * Build the widget page list with given pages.
+   */
+  private buildWidgetPageList(widgetPages: Array<WidgetPage>) {
+    // Separate legacy and current widgets
+    for (const widgetPage of widgetPages) {
+
+      if (widgetPage.version >= environment.widgetApi.currentVersion) {
+        this.widgetPages.push(widgetPage);
+      } else {
+        this.legacyWidgetPages.push(widgetPage);
+      }
+    }
   }
 
   /**

@@ -130,6 +130,22 @@ export class WidgetService {
   }
 
   /**
+   * Upgrade a widget page to latest version.
+   *
+   * @param widgetPage
+   */
+  public upgradeWidgetPage(widgetPage: WidgetPage) {
+    return this.http.post(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id + '/upgrade', {})
+        .do(reponse => {
+          // Clear the widgetPageList cache for the given project
+          this.cache.clear('widgetPageList', [widgetPage.project_id]);
+
+          // Remove the widgetPage object from the cache
+          this.cache.clear('widgetPage', [widgetPage.id]);
+        });
+  }
+
+  /**
    * Get all widgetpages for a project
    *
    * @param projectId
@@ -236,14 +252,14 @@ export class WidgetService {
    * @param widgetPage
    * @param scriptTags
    *  Wrap the url in script tags
-   * @param currentVersion
+   * @param forceCurrentVersion
    *  Force the embed url to the current version
    */
-  public getWidgetPageEmbedUrl(widgetPage: WidgetPage, scriptTags: boolean = false, currentVersion: boolean = false): string {
+  public getWidgetPageEmbedUrl(widgetPage: WidgetPage, scriptTags: boolean = false, forceCurrentVersion: boolean = false): string {
     let embedUrl = environment.widgetApi.embedUrl.current;
 
-    if (widgetPage.version !== environment.widgetApi.currentVersion && !currentVersion) {
-      embedUrl = environment.widgetApi.embedUrl.legacy;
+    if (widgetPage.version !== environment.widgetApi.currentVersion && forceCurrentVersion) {
+      embedUrl = environment.widgetApi.embedUrl.force_current;
     }
 
     // Replace the :page_id placeholder
