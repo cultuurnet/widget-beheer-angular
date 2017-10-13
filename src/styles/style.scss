@@ -21,7 +21,6 @@ $font-family-sans-serif: "Open Sans";
 @import "02_components/builder/builder";
 
 
-
-
-
-
+body {
+  font-family: $font-family-sans-serif,  "Segoe UI", Tahoma, sans-serif; !important;
+}
