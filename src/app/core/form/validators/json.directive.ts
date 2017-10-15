@@ -1,4 +1,4 @@
-import { AbstractControl } from "@angular/forms";
+import { AbstractControl } from '@angular/forms';
 
 /**
  * A JSON string needs to be valid

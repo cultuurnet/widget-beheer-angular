@@ -1,11 +1,12 @@
 import { FormBuilder } from '@angular/forms';
-import { AbstractWidgetEditComponent } from "../../../core/widget/components/abstract-widget-edit-component";
-import { WidgetBuilderService } from "../../services/widget-builder.service";
+import { AbstractWidgetEditComponent } from '../../../core/widget/components/abstract-widget-edit-component';
+import { WidgetBuilderService } from '../../services/widget-builder.service';
+import { OnDestroy, OnInit } from '@angular/core';
 
 /**
  * Base widget edit component.
  */
-export class BaseWidgetEditComponent extends AbstractWidgetEditComponent {
+export class BaseWidgetEditComponent extends AbstractWidgetEditComponent implements OnInit, OnDestroy {
 
   /**
    * BaseWidgetEditComponent constructor

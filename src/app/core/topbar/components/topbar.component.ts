@@ -12,7 +12,7 @@ import { TopbarService } from '../services/topbar.service';
 import { Subscription } from 'rxjs/Subscription';
 import { DynamicComponentDirective } from '../directives/dynamic-component.directive';
 import * as _ from 'lodash';
-import { environment } from "../../../../environments/environment";
+import { environment } from '../../../../environments/environment';
 
 /**
  * Topbar component.

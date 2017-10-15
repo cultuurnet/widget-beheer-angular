@@ -19,7 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles/cn_widget_builder.scss"
+        "styles/style.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -36,7 +36,8 @@
   },
   "lint": [
     {
-      "project": "src/tsconfig.app.json"
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**/*"
     },
     {
       "project": "src/tsconfig.spec.json"
@@ -51,7 +52,7 @@
     }
   },
   "defaults": {
-    "styleExt": "scss",
+    "styleExt": "css",
     "component": {}
   }
 }

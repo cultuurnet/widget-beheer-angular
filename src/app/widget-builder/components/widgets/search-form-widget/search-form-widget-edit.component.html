@@ -1,9 +1,10 @@
 
-<div class="selected-element">
-    <p>{{ "LABEL_SELECTED_ELEMENT" | translate }}: <br>
-        <i class="fa fa-crosshairs"></i>
-        <input type="text" [(ngModel)]="widget.name" (ngModelChange)="handleWidgetNameChanged($event)"/>
-    </p>
+<div class="selected-element ">
+    <p>{{ "LABEL_SELECTED_ELEMENT" | translate }}: </p>
+    <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-crosshairs"></i></span>
+        <input type="text" class="form-control" [(ngModel)]="widget.name" (ngModelChange)="handleWidgetNameChanged($event)"/>
+    </div>
 </div>
 
 <ngb-tabset>
@@ -82,7 +83,7 @@
                                 <legend>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH" | translate }}</legend>
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH_SEARCH_BY_TERM" | translate }}</span>
+                                    <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH_SEARCH_BY_LOCATION" | translate }}</span>
                                 </label>
 
                                 <div *ngIf="settings.fields.location.keyword_search.enabled">
@@ -170,6 +171,7 @@
                                     <div>
                                         <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_DEFAULT_OPTION" | translate }}</label>
                                         <select formControlName="default_option">
+                                            <option value="placeholder">{{ settings.fields.time.date_search.placeholder }}</option>
                                             <option value="today">{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_TODAY" | translate }}</option>
                                             <option value="tomorrow">{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_TOMORROW" | translate }}</option>
                                             <option value="weekend">{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_WEEKEND" | translate }}</option>

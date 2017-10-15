@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import * as _ from 'lodash';
 import { ckeditorConfig } from '../../../constants/ckeditor-config';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
-import { BaseWidgetEditComponent } from "../base-widget-edit.component";
+import { BaseWidgetEditComponent } from '../base-widget-edit.component';
 
 /**
  * Search widget edit form component.

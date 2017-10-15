@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import * as _ from 'lodash';
-import { BaseWidgetEditComponent } from "../base-widget-edit.component";
+import { BaseWidgetEditComponent } from '../base-widget-edit.component';
 
 /**
  * Tips widget edit form component.
@@ -55,7 +55,6 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
         }),
         description: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.description.enabled', '')],
-          label: [_.get(this.widget.settings, 'items.description.label', '')],
           characters: [_.get(this.widget.settings, 'items.description.characters', '')]
         }),
         when: this.formBuilder.group({

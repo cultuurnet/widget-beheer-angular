@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { WidgetBuilderService } from "../../../services/widget-builder.service";
-import { Widget } from "../../../../core/widget/widget";
-import { validJson } from "../../../../core/form/validators/json.directive";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { WidgetBuilderService } from '../../../services/widget-builder.service';
+import { Widget } from '../../../../core/widget/widget';
+import { validJson } from '../../../../core/form/validators/json.directive';
 
 /**
  * JsonEditModalComponent modal component.
@@ -23,7 +23,7 @@ export class JsonEditModalComponent implements OnInit {
    * Indicates if the widget is being saved
    * @type {boolean}
    */
-  public isSaving: boolean = false;
+  public isSaving = false;
 
   /**
    * The widget being edited
@@ -33,7 +33,7 @@ export class JsonEditModalComponent implements OnInit {
   /**
    * Show/hide error message
    */
-  public showError: boolean = false;
+  public showError = false;
 
   /**
    * JsonEditModalComponent constructor.

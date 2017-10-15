@@ -21,7 +21,7 @@
                                 <input type="text" formControlName="placeholder" class="form-control">
                             </div>
                             <div *ngIf="!hideType">
-                                <h5>{{ "LABEL_GROUP_FILTER_TYPE" | translate }}</h5>
+                                <label><strong>{{ "LABEL_GROUP_FILTER_TYPE" | translate }}</strong></label>
                                 <div class="form-check">
                                     <label *ngFor="let filterType of filterTypes" class="form-check-label">
                                         <input type="radio" [value]="filterType.type" formControlName="type">
@@ -46,19 +46,25 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary btn-sm btn-cnw-filtergroup--add" type="button" (click)="addGroupFilterOptionItem(groupFilter['controls'].options)" [disabled]="!groupFilter['controls'].options.valid">
+
+                            <button class="btn btn-primary btn-sm btn-cnw-filtergroup--add" type="button" (click)="addGroupFilterOptionItem(groupFilter['controls'].options)" [disabled]="groupFilter['controls'].options.invalid">
                                 <i aria-hidden="true" class="fa fa-plus-square-o fa-1x"></i>
                                 {{ "BUTTON_ADD_GROUP_FILTER_FILTER_OPTION" | translate }}
                             </button>
 
-                        </div>
+                            <div *ngIf="!hideDefaultOption">
+                                <label><strong>{{ "LABEL_GROUP_FILTER_DEFAULT_OPTION" | translate }}</strong></label>
+                                <select formControlName="default_option">
+                                    <option *ngFor="let option of groupFilter['controls'].options['controls'];" [value]="option['controls'].label.value">{{ option['controls'].label.value }}</option>
+                                </select>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
-                </div>
             </div>
-
-        <button class="btn btn-primary btn-sm btn-cnw-filtergroup--add" type="button" (click)="addGroupFilterItem()" [disabled]="!groupFilterForm['controls'].filters.valid">
+        </div>
+        <button class="btn btn-primary btn-sm btn-cnw-filtergroup--add" type="button" (click)="addGroupFilterItem()" [disabled]="groupFilterForm.invalid && groupFilterForm['controls'].filters.controls.length">
             <i aria-hidden="true" class="fa fa-plus-square-o fa-1x"></i>
             {{ "BUTTON_ADD_GROUP_FILTER" | translate }}</button>
     </fieldset>

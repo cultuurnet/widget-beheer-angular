@@ -15,10 +15,5 @@
         <div class="widget-preview">
             <div class="preview-content" *ngIf="widgetPreview" [innerHTML]="widgetPreview | safeHTML"></div>
         </div>
-        <div class="widget-code-preview">
-            <code>
-                {{ widget | json }}
-            </code>
-        </div>
     </div>
 </div>

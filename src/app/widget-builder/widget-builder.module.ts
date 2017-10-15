@@ -19,26 +19,22 @@ import { AddRowComponent } from './components/add-row/add-row.component';
 import { RowEditComponent } from './components/row-edit/row-edit.component';
 import { WidgetPreviewComponent } from './components/widgets/widget-preview.component';
 import { WidgetGroupFiltersEditComponent } from './components/widgets/group-filters/widget-group-filters-edit.component';
-import { SearchResultsWidgetPreviewComponent } from './components/widgets/search-results-widget/search-results-widget-preview.component';
-import { SearchFormWidgetPreviewComponent } from './components/widgets/search-form-widget/search-form-widget-preview.component';
 import { CKEditorModule } from 'ng2-ckeditor';
-import { HtmlWidgetPreviewComponent } from './components/widgets/html-widget/html-widget-preview.component';
 import { HtmlWidgetWidgetEditComponent } from './components/widgets/html-widget/html-widget-edit.component';
 import { OneColLayoutComponent } from './components/layouts/one-col/one-col-layout.component';
 import { TipsWidgetWidgetEditComponent } from './components/widgets/tips-widget/tips-widget-edit.component';
-import { TipsWidgetPreviewComponent } from './components/widgets/tips-widget/tips-widget-preview.component';
 import { FacetsWidgetWidgetEditComponent } from './components/widgets/facets-widget/facets-widget-edit.component';
-import { FacetsWidgetPreviewComponent } from './components/widgets/facets-widget/facets-widget-preview.component';
 import { WidgetBuilderRoutingModule } from './widget-builder-routing.module';
 import { AddPageComponent } from './components/add-page/add-page.component';
 import { TemplatePreviewModalComponent } from './components/add-page/preview/template-preview-modal.component';
 import { PageListComponent } from './components/page-list/page-list.component';
 import { CoreModule } from '../core/core.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { PublishPageConfirmationModalComponent } from "./components/modal/publish-page-confirmation-modal.component";
-import { JsonEditComponent } from "./components/widgets/json-edit/json-edit.component";
-import { JsonEditModalComponent } from "./components/widgets/json-edit/json-edit-modal.component";
-import { RevertWidgetPageComponent } from "./components/revert-widgetpage/revert-widget-page.component";
+import { PublishPageConfirmationModalComponent } from './components/modal/publish-page-confirmation-modal.component';
+import { JsonEditComponent } from './components/widgets/json-edit/json-edit.component';
+import { JsonEditModalComponent } from './components/widgets/json-edit/json-edit-modal.component';
+import { CssEditModalComponent } from './components/widgets/css-edit/css-edit-modal.component';
+import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert-widget-page.component';
 
 @NgModule({
   declarations: [
@@ -57,14 +53,9 @@ import { RevertWidgetPageComponent } from "./components/revert-widgetpage/revert
     ThreeColDoubleSidebarLayoutComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
-    SearchResultsWidgetPreviewComponent,
-    SearchFormWidgetPreviewComponent,
     HtmlWidgetWidgetEditComponent,
-    HtmlWidgetPreviewComponent,
     TipsWidgetWidgetEditComponent,
-    TipsWidgetPreviewComponent,
     FacetsWidgetWidgetEditComponent,
-    FacetsWidgetPreviewComponent,
     AddPageComponent,
     TemplatePreviewModalComponent,
     PageListComponent,
@@ -72,7 +63,11 @@ import { RevertWidgetPageComponent } from "./components/revert-widgetpage/revert
     PublishPageConfirmationModalComponent,
     JsonEditComponent,
     JsonEditModalComponent,
+<<<<<<< HEAD
     RevertWidgetPageComponent
+=======
+    CssEditModalComponent
+>>>>>>> master
   ],
   exports: [
     WidgetBuilderComponent
@@ -101,18 +96,14 @@ import { RevertWidgetPageComponent } from "./components/revert-widgetpage/revert
     OneColLayoutComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
-    SearchResultsWidgetPreviewComponent,
-    SearchFormWidgetPreviewComponent,
     HtmlWidgetWidgetEditComponent,
-    HtmlWidgetPreviewComponent,
     TipsWidgetWidgetEditComponent,
-    TipsWidgetPreviewComponent,
     FacetsWidgetWidgetEditComponent,
-    FacetsWidgetPreviewComponent,
     TemplatePreviewModalComponent,
     ToolbarComponent,
     PublishPageConfirmationModalComponent,
-    JsonEditModalComponent
+    JsonEditModalComponent,
+    CssEditModalComponent
   ]
 })
 

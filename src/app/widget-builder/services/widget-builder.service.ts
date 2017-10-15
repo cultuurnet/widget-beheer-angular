@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 
 /**
  * The widgetbuilder service.
- * Used tracking the active widget, widget preview,... and performing operations on the widget page.
+ * Used for tracking the active widget, widget preview,... and performing operations on the widget page.
  */
 @Injectable()
 export class WidgetBuilderService {
@@ -101,8 +101,8 @@ export class WidgetBuilderService {
   public saveWidgetSettings(widgetId: string, settings: any): Promise<any> {
     return new Promise((resolve, reject) => {
       // Clone the currently active widget page and apply the widget settings
-      let widgetPageClone =  _.cloneDeep(this.widgetPage);
-      let widget = widgetPageClone.findWidget(widgetId);
+      const widgetPageClone =  _.cloneDeep(this.widgetPage);
+      const widget = widgetPageClone.findWidget(widgetId);
 
       // Apply the settings to the cloned widget
       if (widget) {
@@ -113,7 +113,7 @@ export class WidgetBuilderService {
         response => {
           // Replace the widget settings with the settings from the response
           const responseWidget = response.widgetPage.findWidget(widgetId);
-          let originalWidget = this.widgetPage.findWidget(widgetId);
+          const originalWidget = this.widgetPage.findWidget(widgetId);
 
           // Set the draft state
           this.widgetPage.draft = response.widgetPage.draft;
@@ -244,6 +244,97 @@ export class WidgetBuilderService {
    */
   public toggleWidgetbuilderSidebar(status: boolean) {
     return this.sidebarStatus.next(status);
+  }
+
+  /**
+   * Attach the widgetpage css to the document
+   */
+  public attachCss(css: string) {
+    // Wrap in a try-catch because of possibly foul user input
+    try {
+      // Remove any previously attached styles
+      this.removeCss();
+
+      const styleElement = document.createElement('style');
+      styleElement.setAttribute('class', 'widgetbuilder');
+
+      // Webkit fix
+      styleElement.appendChild(document.createTextNode(''));
+
+      // Append the style element to the DOM
+      document.head.appendChild(styleElement);
+      const sheet = <CSSStyleSheet>styleElement.sheet;
+
+      // Create a dummy document and element for parsing purposes
+      const doc = document.implementation.createHTMLDocument('');
+      const dummyElement = document.createElement('style');
+
+      dummyElement.textContent = css;
+      doc.body.appendChild(dummyElement);
+
+      // Iterate the CSS rules, prefix and add them to the styles
+      const rules = dummyElement.sheet['cssRules'];
+
+      for (let i = 0 ; i < rules.length; i++) {
+        const rule = rules[i];
+
+        // Media rules
+        if (rule instanceof CSSMediaRule && rule.cssRules) {
+          for (const ruleKey in rule.cssRules) {
+            if (rule.cssRules.hasOwnProperty(ruleKey)) {
+              const mediaRule = rule.cssRules[ruleKey];
+              if (mediaRule instanceof CSSStyleRule) {
+                this.prefixCssStyleRule(mediaRule, '.widget-preview');
+              }
+            }
+          }
+        } else if (rule instanceof CSSStyleRule) {
+          this.prefixCssStyleRule(rule, '.widget-preview');
+        }
+
+        sheet.insertRule(rule.cssText);
+      }
+    }
+    catch (err) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Prefix a css style rule with
+   * @param rule
+   * @param prefix
+   */
+  private prefixCssStyleRule(rule: CSSStyleRule, prefix: string) {
+    const selector = rule.selectorText;
+
+    // Split on comma
+    const selectors = selector.split(',');
+    const prefixedSelectors = [];
+
+    for (const s of selectors) {
+      prefixedSelectors.push(prefix + ' ' + s);
+    }
+
+    // Prefix the selector if any
+    // In case of no selector (animations, ...) leave the rule as is
+    if (selector !== '' && !_.isNil(selector)) {
+      rule.selectorText = prefixedSelectors.join();
+    }
+
+    return rule;
+  }
+
+  /**
+   * Remove any widgetpage css attached to the DOM
+   */
+  public removeCss() {
+    const styleSheets = document.head.getElementsByClassName('widgetbuilder');
+    for (let i = 0; i < styleSheets.length; i++) {
+      document.head.removeChild(styleSheets[i]);
+    }
   }
 
 }

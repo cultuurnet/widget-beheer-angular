@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { group_filter_types } from 'app/widget-builder/constants/group-filters';
-import { Widget } from "../../../../core/widget/widget";
+import { Widget } from '../../../../core/widget/widget';
 
 /**
  * Widget group filters edit component.
@@ -33,6 +33,11 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    * Show the groupfilter placeholder field
    */
   @Input() hidePlaceholder = false;
+
+  /**
+   * Hide the default options
+   */
+  @Input() hideDefaultOption = false;
 
   /**
    * Notify when the group filters have changed
@@ -102,7 +107,8 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
             groupFilter.type,
             groupFilter.label,
             groupFilter.placeholder,
-            groupFilter.options
+            groupFilter.options,
+            groupFilter.default_option
         ));
       }
     }
@@ -117,6 +123,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
       enabled: this.groupFilters.enabled,
       filters: this.formBuilder.array(items)
     });
+
   }
 
   /**
@@ -125,9 +132,10 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    * @param label
    * @param placeholder
    * @param options
+   * @param default_option
    * @returns {FormGroup}
    */
-  private buildGroupFilterItem(type?: string, label: string = '', placeholder: string = '', options: any = []) {
+  private buildGroupFilterItem(type?: string, label: string = '', placeholder: string = '', options: any = [], default_option:string = '') {
     const filterOptions = [];
 
     // Create the filter options form components
@@ -158,7 +166,8 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
       label: [label, Validators.required],
       type: [type, this.hideType ? [] : Validators.required],
       placeholder: [placeholder, this.hidePlaceholder ? [] : Validators.required],
-      options: this.formBuilder.array(filterOptions)
+      options: this.formBuilder.array(filterOptions),
+      default_option: [default_option]
     };
 
     return this.formBuilder.group(formGroup);
@@ -183,6 +192,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   public addGroupFilterItem() {
     const control = <FormArray>this.groupFilterForm.controls['filters'];
     control.push(this.buildGroupFilterItem(this.type));
+    console.log(control);
   }
 
   /**
@@ -190,6 +200,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    */
   public addGroupFilterOptionItem(formArray: FormArray) {
     formArray.push(this.buildFilterOptionItem());
+    console.log(formArray);
   }
 
   /**
@@ -197,8 +208,25 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    * @param change
    */
   public handleRowChanged(change: any) {
-    // Update the form
-    this.groupFilterForm.updateValueAndValidity();
+    if (change.action !== 'confirm') {
+      // Traverse the form and update all childrens' value and validity
+      const filters = this.groupFilterForm.get('filters');
+      if (filters) {
+        for (const filter in filters['controls']) {
+          if (filters['controls'].hasOwnProperty(filter)) {
+            const filterGroup = filters['controls'][filter];
+            filterGroup.updateValueAndValidity();
+
+            if (filters['controls'].hasOwnProperty(filter)) {
+              const options = filters['controls'][filter].get('options');
+              if (options) {
+                options.updateValueAndValidity();
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
 }

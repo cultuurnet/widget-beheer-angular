@@ -26,6 +26,7 @@
     "angular2-uuid": "^1.1.1",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
+    "cssbeautify": "^0.3.1",
     "debounce-promise": "^3.0.1",
     "deepmerge": "^1.5.0",
     "dom-autoscroller": "^2.3.3",

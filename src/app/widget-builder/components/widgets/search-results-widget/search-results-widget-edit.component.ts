@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { ckeditorConfig } from '../../../constants/ckeditor-config';
 import * as _ from 'lodash';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
-import { BaseWidgetEditComponent } from "../base-widget-edit.component";
+import { BaseWidgetEditComponent } from '../base-widget-edit.component';
 
 /**
  * Search results widget edit form component.
@@ -56,6 +56,9 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         body: [_.get(this.settings, 'header.body', '')]
       }),
       items: this.formBuilder.group({
+        type: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.type.enabled', '')]
+        }),
         icon_vlieg: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.icon_vlieg.enabled', '')]
         }),
@@ -64,7 +67,6 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         }),
         description: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.description.enabled', '')],
-          label: [_.get(this.widget.settings, 'items.description.label', '')],
           characters: [_.get(this.widget.settings, 'items.description.characters', '')]
         }),
         when: this.formBuilder.group({
@@ -120,7 +122,6 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         }),
         description: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.description.enabled', '')],
-          label: [_.get(this.widget.settings, 'detail_page.description.label', '')],
           characters: [_.get(this.widget.settings, 'detail_page.description.characters', '')]
         }),
         when: this.formBuilder.group({

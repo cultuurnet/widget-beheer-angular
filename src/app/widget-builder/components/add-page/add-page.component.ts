@@ -80,7 +80,7 @@ export class AddPageComponent implements OnInit {
     // Merge the project id on the template configuration
     const config = pageTemplate.template.configuration;
 
-    let templateConfig = _.cloneDeep(config);
+    const templateConfig = _.cloneDeep(config);
     templateConfig['project_id'] = this.project.id;
 
     // Create a widget page from the template, ensuring it contains the required defaults, id's,...

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { WidgetPage } from "../../../core/widget/widget-page";
-import { WidgetService } from "../../../core/widget/services/widget.service";
+import { WidgetPage } from '../../../core/widget/widget-page';
+import { WidgetService } from '../../../core/widget/services/widget.service';
 
 /**
  * Confirmation modal component.
