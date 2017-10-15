@@ -248,19 +248,18 @@ export class WidgetService {
 
   /**
    * Revert a draft widget page back to the published version.
-   * @param widgetPageId
+   * @param widgetPage
    * @return {Observable<Object>}
    */
-  public revertWidgetPage(widgetPageId: string): Observable<Object> {
-    // Remove the widgetPage object from the cache
-    this.cache.remove('widgetPage', [widgetPageId]);
+  public revertWidgetPage(widgetPage: WidgetPage): Observable<Object> {
+    return this.http.post(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id + '/revert', {})
+        .do(res => {
+          // Clear the widgetPageList cache for the given project
+          this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
-    // @todo: Implement the API call
-    return new Observable(observer => {
-      setTimeout(() => {
-        observer.next();
-      }, 1000);
-    });
+          // Remove the widgetPage object from the cache
+          this.cache.remove('widgetPage', [widgetPage.id]);
+        });
   }
 
   /**

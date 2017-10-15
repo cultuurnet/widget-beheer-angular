@@ -3,6 +3,8 @@ import { WidgetPage } from "../../../core/widget/widget-page";
 import { WidgetService } from "../../../core/widget/services/widget.service";
 import { Project } from "../../../core/project/project";
 import { ActivatedRoute, Router } from "@angular/router";
+import { ToastyService } from 'ng2-toasty';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * The RevertWidgetPageComponent reverts a given widget page to its published state
@@ -33,7 +35,9 @@ export class RevertWidgetPageComponent implements OnInit {
   constructor(
     private widgetService: WidgetService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastyService: ToastyService,
+    private translateService: TranslateService
   ) { }
 
   /**
@@ -53,9 +57,13 @@ export class RevertWidgetPageComponent implements OnInit {
    * Revert the loaded widget page to its published state and redirect to the builder
    */
   revertWidgetPage() {
-    this.widgetService.revertWidgetPage(this.widgetPage.id).subscribe(() => {
+    this.widgetService.revertWidgetPage(this.widgetPage).subscribe(() => {
       this.router.navigate(['/project', this.project.id, 'page', this.widgetPage.id, 'edit']);
-    }, () => {});
+      this.toastyService.success(this.translateService.instant('REVERT_WIDGET_PAGE_SUCCESS_NOTIFICATION'));
+    }, () => {
+      this.router.navigate(['/project', this.project.id, 'page', this.widgetPage.id, 'edit']);
+      this.toastyService.error(this.translateService.instant('REVERT_WIDGET_PAGE_FAILED_NOTIFICATION'));
+    });
   }
 
 }

@@ -50,8 +50,8 @@
   </div>
   <div class="col-5">
     <div class="page-actions" *ngIf="!sidebar" style="float:right;">
-      <button *ngIf="widgetPage.draft" class="btn btn-default btn-secondary" (click)="revertDraft()">{{ "TOPBAR_REVERT_BUTTON" | translate }}</button>
-      <button class="btn btn-default btn-secondary" (click)="editCss()">{{ "TOPBAR_CSS_BUTTON" | translate }}</button>
+      <button class="btn btn-default btn-secondary" (click)="editCss()"><i class="fa fa-paint-brush" aria-hidden="true"></i> {{ "TOPBAR_CSS_BUTTON" | translate }}</button>
+      <button *ngIf="widgetPage.draft" class="btn btn-default btn-secondary" (click)="revertDraft()"><i class="fa fa-undo" aria-hidden="true"></i> {{ "TOPBAR_REVERT_BUTTON" | translate }}</button>
       <button class="btn btn-default btn--publicing" (click)="publishPage()">  <i class="fa fa-cloud-upload" aria-hidden="true"></i>  {{ "TOPBAR_PUBLISH_BUTTON" | translate }}</button>
     </div>
   </div>
