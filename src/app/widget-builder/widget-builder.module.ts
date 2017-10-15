@@ -63,11 +63,8 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     PublishPageConfirmationModalComponent,
     JsonEditComponent,
     JsonEditModalComponent,
-<<<<<<< HEAD
-    RevertWidgetPageComponent
-=======
+    RevertWidgetPageComponent,
     CssEditModalComponent
->>>>>>> master
   ],
   exports: [
     WidgetBuilderComponent
