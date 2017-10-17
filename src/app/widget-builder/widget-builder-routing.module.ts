@@ -8,6 +8,7 @@ import { WidgetPageResolver } from '../core/route/resolver/widget-page-resolver.
 import { CoreModule } from '../core/core.module';
 import { WidgetPageListResolver } from './route/resolver/widget-page-list-resolver.service';
 import { AuthGuard } from '../core/route/guard/auth-guard.service';
+import { RevertWidgetPageComponent } from "./components/revert-widgetpage/revert-widget-page.component";
 
 const widgetBuilderRoutes: Routes = [
   {
@@ -30,6 +31,15 @@ const widgetBuilderRoutes: Routes = [
   {
     path: 'project/:project_id/page/:page_id/edit',
     component: WidgetBuilderComponent,
+    canActivate: [AuthGuard],
+    resolve: {
+      widgetPage: WidgetPageResolver,
+      project: ProjectResolver
+    }
+  },
+  {
+    path: 'project/:project_id/page/:page_id/revert',
+    component: RevertWidgetPageComponent,
     canActivate: [AuthGuard],
     resolve: {
       widgetPage: WidgetPageResolver,

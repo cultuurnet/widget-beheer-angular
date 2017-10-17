@@ -34,6 +34,7 @@ import { PublishPageConfirmationModalComponent } from './components/modal/publis
 import { JsonEditComponent } from './components/widgets/json-edit/json-edit.component';
 import { JsonEditModalComponent } from './components/widgets/json-edit/json-edit-modal.component';
 import { CssEditModalComponent } from './components/widgets/css-edit/css-edit-modal.component';
+import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert-widget-page.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { CssEditModalComponent } from './components/widgets/css-edit/css-edit-mo
     PublishPageConfirmationModalComponent,
     JsonEditComponent,
     JsonEditModalComponent,
+    RevertWidgetPageComponent,
     CssEditModalComponent
   ],
   exports: [

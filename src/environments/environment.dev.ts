@@ -7,8 +7,8 @@ export const environment = {
   widgetApi: {
     currentVersion: 3,
     embedUrl: {
-      current: 'http://tools.uitdatabank.be/widgets/layout/:page_id.js',
-      legacy: 'http://tools.uitdatabank.be/widgets/layout/v2/:page_id.js',
+      current: 'http://widgetbeheer-api.dev/widgets/layout/:page_id.js',
+      force_current: 'http://widgetbeheer-api.dev/widgets/layout/v3/:page_id.js',
     }
   },
   projectaanvraagDashboardUrl: 'https://projectaanvraag.uitdatabank.be/'

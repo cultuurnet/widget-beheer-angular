@@ -99,7 +99,6 @@ export class WidgetBuilderService {
    * @param settings
    */
   public saveWidgetSettings(widgetId: string, settings: any): Promise<any> {
-
     return new Promise((resolve, reject) => {
       // Clone the currently active widget page and apply the widget settings
       const widgetPageClone =  _.cloneDeep(this.widgetPage);
@@ -115,6 +114,9 @@ export class WidgetBuilderService {
           // Replace the widget settings with the settings from the response
           const responseWidget = response.widgetPage.findWidget(widgetId);
           const originalWidget = this.widgetPage.findWidget(widgetId);
+
+          // Set the draft state
+          this.widgetPage.draft = response.widgetPage.draft;
 
           // Apply the settings to the cloned widget
           if (responseWidget && originalWidget) {
@@ -150,6 +152,9 @@ export class WidgetBuilderService {
     }
 
     this.debounceWidgetPageSave(this.widgetPage, widgetId).then(response => {
+      // Set the draft state
+      this.widgetPage.draft = response.widgetPage.draft;
+
       // Update the widget preview with the new render response
       if (widgetId) {
         _self.widgetPreview.next({

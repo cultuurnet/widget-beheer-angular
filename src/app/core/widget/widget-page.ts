@@ -33,6 +33,11 @@ export class WidgetPage {
   public css: string;
 
   /**
+   * Widget page draft state
+   */
+  public draft: boolean;
+
+  /**
    * The widget page rows
    */
   rows: Array<Layout> = [];
