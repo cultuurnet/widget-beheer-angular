@@ -19,6 +19,17 @@
 
   z-index: 200;
 
+
+
+  label {
+    font-weight: 700;
+    span {
+      font-weight: normal;
+      display: inline-block;
+      margin-left: 10px;
+    }
+  }
+
   hr {
     border-color: #DDD;
     margin-bottom: 15px;

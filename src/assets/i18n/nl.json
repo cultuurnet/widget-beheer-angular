@@ -227,7 +227,7 @@
   "TOPBAR_CSS_BUTTON": "CSS",
   "TOPBAR_REVERT_BUTTON": "Herstellen",
   "WIDGET_PAGE_TITLE_EDIT_FAILED_NOTIFICATION": "Er ging iets mis bij het opslaan van de titel. Probeer het later opnieuw.",
-  "BUTTON_WIDGET_BUILDER_TOOLBAR_STOP_EDITING": "Instellingen opslaan en sluiten",
+  "BUTTON_WIDGET_BUILDER_TOOLBAR_STOP_EDITING": "Opslaan en sluiten",
   "WIDGET_PAGE_PUBLISH_FAILED_NOTIFICATION": "Er ging iets mis bij het publiceren van de widget. Probeer het later opnieuw.",
   "WIDGET_PAGE_PUBLISHED_MODAL_TITLE": "Widget gepubliceerd",
   "WIDGET_PAGE_PUBLISHED_MODAL_MESSAGE": "Je widget is gepubliceerd en je wijzigingen staan nu live! Kopiëer de embed-code hieronder en gebruik deze vervolgens op je website.",
