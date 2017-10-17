@@ -72,18 +72,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="edit-searchfilters--selectgroup"  formGroupName="when">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHEN" | translate }}</span>
-                                </label>
-                                <div *ngIf="settings.items.when.enabled">
-                                    <div class="form-group">
-                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHEN_LABEL" | translate }}</label>
-                                        <input class="form-control" type="text" formControlName="label">
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="edit-searchfilters--selectgroup"  formGroupName="where">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
@@ -96,6 +85,27 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="edit-searchfilters--selectgroup"  formGroupName="when">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHEN" | translate }}</span>
+                                </label>
+                                <div *ngIf="settings.items.when.enabled">
+                                    <div class="form-group">
+                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHEN_LABEL" | translate }}</label>
+                                        <input class="form-control" type="text" formControlName="label">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="edit-searchfilters--selectgroup" formGroupName="organizer">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_ORGANIZER" | translate }}</span>
+                                </label>
+                            </div>
+
                             <div class="edit-searchfilters--selectgroup"  formGroupName="age">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">

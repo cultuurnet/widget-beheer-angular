@@ -77,6 +77,9 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'items.where.enabled', '')],
           label: [_.get(this.widget.settings, 'items.where.label', '')]
         }),
+        organizer: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.organizer.enabled', '')]
+        }),
         age: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.age.enabled', '')],
           label: [_.get(this.widget.settings, 'items.age.label', '')]
@@ -106,6 +109,8 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
       detail_page: this.formBuilder.group({
         map: [_.get(this.widget.settings, 'detail_page.map', '')],
         price_information: [_.get(this.widget.settings, 'detail_page.price_information', '')],
+        contact_information: [_.get(this.widget.settings, 'detail_page.contact_information', '')],
+        reservation_information: [_.get(this.widget.settings, 'detail_page.reservation_information', '')],
         language_switcher: [_.get(this.widget.settings, 'detail_page.language_switcher', '')],
         uitpas_benefits: [_.get(this.widget.settings, 'detail_page.uitpas_benefits', '')],
         share_buttons: [_.get(this.widget.settings, 'detail_page.share_buttons', '')],
@@ -132,8 +137,11 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'detail_page.where.enabled', '')],
           label: [_.get(this.widget.settings, 'detail_page.where.label', '')]
         }),
+        organizer: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.organizer.enabled', '')]
+        }),
         age: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'idetail_pagetems.age.enabled', '')],
+          enabled: [_.get(this.widget.settings, 'detail_page.age.enabled', '')],
           label: [_.get(this.widget.settings, 'detail_page.age.label', '')]
         }),
         language_icons: this.formBuilder.group({

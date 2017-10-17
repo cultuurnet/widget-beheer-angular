@@ -65,6 +65,9 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'items.where.enabled', '')],
           label: [_.get(this.widget.settings, 'items.where.label', '')]
         }),
+        organizer: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.organizer.enabled', '')]
+        }),
         age: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.age.enabled', '')],
           label: [_.get(this.widget.settings, 'items.age.label', '')]
