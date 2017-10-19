@@ -83,6 +83,11 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   public sidebar = false;
 
   /**
+   * Flag indicating if a publish action is being processed.
+   */
+  public publishing = false;
+
+  /**
    * Reference to the sidebar subscription
    */
   private sidebarSubscription: Subscription;
@@ -210,15 +215,18 @@ export class ToolbarComponent implements OnInit, OnDestroy {
    * Publish the currently active widget page
    */
   public publishPage() {
+    this.publishing = true;
     this.widgetService.publishWidgetPage(this.widgetPage).subscribe(() => {
       // After publishing, the widgetpage is no longer in draft
       this.widgetPage.draft = false;
+      this.publishing = false;
 
       // Show the confirmation modal
       const modal = this.modalService.open(PublishPageConfirmationModalComponent);
       const modalInstance = modal.componentInstance;
       modalInstance.widgetPage = this.widgetPage;
     }, () => {
+      this.publishing = false;
       this.toastyService.error(this.translateService.instant('WIDGET_PAGE_PUBLISH_FAILED_NOTIFICATION'));
     });
   }

@@ -6,8 +6,10 @@
 </div>
 <div class="modal-body">
     <p>{{ "WIDGET_PAGE_PUBLISHED_MODAL_MESSAGE" | translate }}</p>
-    <p style="word-break: break-all"><code>{{ embedCode }}</code></p>
-    <app-clipboard-button [content]="embedCode"></app-clipboard-button>
+    <div class="input-group clipboard-group">
+        <span class="input-group-btn"><app-clipboard-button [content]="embedCode"></app-clipboard-button></span>
+        <input type="text" value="{{ embedCode }}" class="form-control" >
+    </div>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('closed')">{{ "WIDGET_PAGE_PUBLISHED_MODAL_CONFIRM" | translate }}</button>

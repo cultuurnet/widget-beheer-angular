@@ -291,10 +291,6 @@
                                     <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_DESCRIPTION" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.detail_page.description.enabled">
-                                    <div  class="form-group">
-                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_DESCRIPTION_LABEL" | translate }}</label>
-                                        <input type="text"  class="form-control"  formControlName="label">
-                                    </div>
                                     <div class="form-group">
                                         <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_DESCRIPTION_NUM_CHARACTERS" | translate }}</label>
                                         <input type="number"  class="form-control"  formControlName="characters" step="1" />

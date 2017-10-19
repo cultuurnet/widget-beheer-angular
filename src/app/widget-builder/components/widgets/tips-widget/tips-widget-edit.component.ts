@@ -47,6 +47,9 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
         })
       }),
       items: this.formBuilder.group({
+        type: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.type.enabled', '')]
+        }),
         icon_vlieg: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.icon_vlieg.enabled', '')]
         }),
