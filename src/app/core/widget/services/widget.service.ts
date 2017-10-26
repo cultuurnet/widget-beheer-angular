@@ -317,7 +317,6 @@ export class WidgetService {
 
     requestOptions.params = requestOptions.params.set('url', url);
 
-
     return this.http.get(environment.apiUrl + this.widgetApiPath + 'css-stats', requestOptions)
       .do(cssStats => {
         console.log(cssStats);

@@ -106,7 +106,7 @@ export class CssEditModalComponent implements OnInit {
 
     let url = this.cssScrapeForm.get('url').value;
 
-    // Add http if it's missing
+    // Try to add protocol if it's missing
     if (!/^(f|ht)tps?:\/\//i.test(url)) {
       url = "http://" + url;
     }
