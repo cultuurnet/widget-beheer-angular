@@ -90,6 +90,13 @@
                                 </div>
                             </div>
 
+                            <div class="edit-searchfilters--selectgroup" formGroupName="organizer">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_ORGANIZER" | translate }}</span>
+                                </label>
+                            </div>
+
                             <div class="edit-searchfilters--selectgroup" formGroupName="when">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
@@ -101,13 +108,6 @@
                                         <input class="form-control"  type="text" formControlName="label">
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="edit-searchfilters--selectgroup" formGroupName="organizer">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_ORGANIZER" | translate }}</span>
-                                </label>
                             </div>
 
                             <div class="edit-searchfilters--selectgroup" formGroupName="age">
