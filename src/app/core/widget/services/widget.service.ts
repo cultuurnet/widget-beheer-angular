@@ -319,7 +319,6 @@ export class WidgetService {
 
     return this.http.get(environment.apiUrl + this.widgetApiPath + 'css-stats', requestOptions)
       .do(cssStats => {
-        console.log(cssStats);
         this.cache.put('cssStats', [cacheKey], cssStats);
       });
   }
