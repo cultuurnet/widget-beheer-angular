@@ -10,6 +10,8 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import { MemoryCache } from '../../memory-cache';
 import { RenderedWidget } from '../rendered-widget';
+import { CssStats } from "../css-stats";
+import * as URI from 'urijs';
 
 /**
  * The widget service handles all request to the widget API
@@ -286,6 +288,41 @@ export class WidgetService {
     }
 
     return embedUrl;
+  }
+
+  /**
+   * Get css statistics for a given url
+   *
+   * @param url
+   * @param reset
+   * @return {Observable<CssStats>}
+   */
+  public getCssStats(url: string, reset: boolean = false): Observable<CssStats> {
+    // Cache per origin
+    const scrapeURI = URI(url);
+    const cacheKey = scrapeURI.origin();
+
+    if (!reset) {
+      const cssStats = this.cache.get('cssStats', [cacheKey], false);
+
+      if (cssStats) {
+        return Observable.of(cssStats);
+      }
+    }
+
+    // Request options
+    const requestOptions = {
+      params: new HttpParams()
+    };
+
+    requestOptions.params = requestOptions.params.set('url', url);
+
+
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'css-stats', requestOptions)
+      .do(cssStats => {
+        console.log(cssStats);
+        this.cache.put('cssStats', [cacheKey], cssStats);
+      });
   }
 
 }

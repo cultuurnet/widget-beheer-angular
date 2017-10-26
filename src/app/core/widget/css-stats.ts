@@ -1,18 +1,18 @@
-export interface Styles {
+export interface CssStats {
 
   /**
    * The url the styles originate from
    */
-  url: string;
+  origin: string;
 
   /**
    * Color codes
    */
-  colors: Array<string>;
+  colors: Array<object>;
 
   /**
    * Fonts
    */
-  fonts: Array<string>;
+  font_families: Array<object>;
 
 }

@@ -4,8 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as cssbeautify from 'cssbeautify';
 import { WidgetPage } from '../../../../core/widget/widget-page';
 import { WidgetService } from '../../../../core/widget/services/widget.service';
-import { Styles } from '../../../../core/widget/styles';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
+import { CssStats } from "../../../../core/widget/css-stats";
+import * as URI from 'urijs';
 
 /**
  * CssEditModalComponent modal component.
@@ -43,13 +44,19 @@ export class CssEditModalComponent implements OnInit {
   public error = false;
 
   /**
-   * The scraped styles
+   * The scraped css statistics
    */
-  public scrapedStyles: Styles = {
-    url: 'someurl.com',
-    colors: ['#626262'],
-    fonts: ['"Verdana", "Arial", "Helvetica"']
-  };
+  public cssStats: CssStats;
+
+  /**
+   * Indicates if the application is busy scraping
+   */
+  public isScraping: boolean = false;
+
+  /**
+   * Indicates if a scrape error occurred
+   */
+  public scrapeError: boolean = false;
 
   /**
    * CssEditModalComponent constructor.
@@ -85,28 +92,41 @@ export class CssEditModalComponent implements OnInit {
 
     // Scrape form
     this.cssScrapeForm = this.formBuilder.group({
-      url: ['', [Validators.pattern('^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?'), Validators.required]]
+      url: ['', [Validators.pattern('^(http[s]?:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?'), Validators.required]]
     });
   }
 
   /**
-   * Scape a given URL for
+   * Get CSS statistics for a given URL
    */
-  public scrapeCss() {
-    // Scrape a given URL for css styles
-    this.scrapedStyles = {
-      url: 'someurl.com',
-      colors: ['#626262'],
-      fonts: ['"Verdana", "Arial", "Helvetica"']
-    };
+  public getCssStats() {
+    // Reset flags
+    this.isScraping = true;
+    this.scrapeError = false;
+
+    let url = this.cssScrapeForm.get('url').value;
+
+    // Add http if it's missing
+    if (!/^(f|ht)tps?:\/\//i.test(url)) {
+      url = "http://" + url;
+    }
+
+    this.widgetService.getCssStats(url).subscribe((cssStats: CssStats) => {
+      this.cssStats = cssStats;
+      this.isScraping = false;
+    }, () => {
+      // Show error
+      this.isScraping = false;
+      this.scrapeError = true;
+    });
   }
 
   /**
    * Show the user the scrape URL form
    */
   public resetScrapedStyles() {
-    // Reset the scraped styles
-    this.scrapedStyles = null;
+    // Reset the scraped statistics
+    this.cssStats = null;
   }
 
   /**
@@ -135,6 +155,15 @@ export class CssEditModalComponent implements OnInit {
       // Show error message in the modal
       this.error = true;
     });
+  }
+
+  /**
+   * Get a cleaned origin Url
+   * @param url
+   */
+  public getCleanOriginUrl(url: string) {
+    const originURI = URI(url);
+    return originURI.hostname();
   }
 
 }
