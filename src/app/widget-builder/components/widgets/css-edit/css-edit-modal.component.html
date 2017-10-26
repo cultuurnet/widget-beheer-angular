@@ -19,6 +19,7 @@
         <div *ngIf="!scrapedStyles" class="col-sm-4">
             <h3>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_TITLE" | translate }}</h3>
             <p>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_DESCRIPTION" | translate }}</p>
+            <p>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_DESCRIPTION_2" | translate }}</p>
             <form [formGroup]="cssScrapeForm" (submit)="scrapeCss()" novalidate>
                 <div class="form-group">
                     <label>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_LABEL" | translate }}</label>

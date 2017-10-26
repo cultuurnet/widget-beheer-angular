@@ -10,7 +10,6 @@
     <div class="inner-preview-wrapper">
         <div class="inner-preview-rendering" *ngIf="isRendering">
             <i class="fa fa-spinner fa-pulse fa-2x fa-fw" ></i>
-            <span>Rendering</span>
         </div>
         <div class="widget-preview">
             <div class="preview-content" *ngIf="widgetPreview" [innerHTML]="widgetPreview | safeHTML"></div>
