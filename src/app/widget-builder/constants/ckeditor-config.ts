@@ -19,7 +19,7 @@ export const ckeditorConfig = {
       { name: 'colors', groups: [ 'colors' ] },
       { name: 'about', groups: [ 'about' ] }
     ],
-    removeButtons: 'Underline,Subscript,Superscript,Cut,Copy,PasteText,Paste,PasteFromWord,Scayt,Styles,Strike,RemoveFormat,Blockquote,Anchor,About,SpecialChar,HorizontalRule',
+    removeButtons: 'Underline,Subscript,Superscript,Cut,Copy,PasteText,Paste,PasteFromWord,Scayt,Styles,Strike,RemoveFormat,Blockquote,Anchor,About,SpecialChar,HorizontalRule,Maximize',
     removeDialogFields: 'image:info:txtBorder;image:info:txtHSpace;image:info:txtVSpace;image:info:txtHSpace',
     image_previewText: ' '
   }

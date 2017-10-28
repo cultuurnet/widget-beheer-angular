@@ -93,15 +93,15 @@ export class AppModule {
     // Register widget types
     widgetTypeRegistry.register('search-form', 'Search form', SearchFormWidget, SearchFormWidgetEditComponent);
     widgetTypeRegistry.register('search-results', 'Search results', SearchResultsWidget, SearchResultsWidgetEditComponent);
+    widgetTypeRegistry.register('facets', 'Facets', FacetsWidget, FacetsWidgetWidgetEditComponent);
     widgetTypeRegistry.register('html', 'HTML', HtmlWidget, HtmlWidgetWidgetEditComponent);
     widgetTypeRegistry.register('tips', 'Tips', TipsWidget, TipsWidgetWidgetEditComponent);
-    widgetTypeRegistry.register('facets', 'Facets', FacetsWidget, FacetsWidgetWidgetEditComponent);
 
     // Register layouts
+    layoutTypeRegistry.register('one-col', 'Full width', OneCollLayout, OneColLayoutComponent);
     layoutTypeRegistry.register('2col-sidebar-left', 'Two col sidebar left', TwoColSidebarLeftLayout, TwoColSidebarLeftLayoutComponent);
     layoutTypeRegistry.register('2col-sidebar-right', 'Two col sidebar right', TwoColSidebarRightayout, TwoColSidebarRightLayoutComponent);
     layoutTypeRegistry.register('3col-double-sidebar', 'Three col double sidebar', ThreeColDoubleSidebarLayout, ThreeColDoubleSidebarLayoutComponent);
-    layoutTypeRegistry.register('one-col', 'Full width', OneCollLayout, OneColLayoutComponent);
 
     // Register page templates
     pageTemplateRegistry.register('empty', new EmptyPageTemplate());

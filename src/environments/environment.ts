@@ -13,5 +13,6 @@ export const environment = {
       force_current: 'http://widgetbeheer-api.dev/widgets/layout/v3/:page_id.js',
     }
   },
-  projectaanvraagDashboardUrl: 'http://projectaanvraag.dev/'
+  projectaanvraagDashboardUrl: 'http://projectaanvraag.dev/',
+  zendeskUrl: 'http://www.zendesk.com'
 };
