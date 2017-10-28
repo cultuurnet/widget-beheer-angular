@@ -7,7 +7,7 @@ import { WidgetBuilderService } from '../../services/widget-builder.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PublishPageConfirmationModalComponent } from '../modal/publish-page-confirmation-modal.component';
-import { CssEditModalComponent } from '../widgets/css-edit/css-edit-modal.component';
+import { CssEditModalComponent } from '../css-edit/css-edit-modal.component';
 import { Router } from '@angular/router';
 import { ConfirmationModalComponent } from '../../../core/modal/components/confirmation-modal.component';
 

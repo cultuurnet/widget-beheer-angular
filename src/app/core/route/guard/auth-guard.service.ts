@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { UserService } from '../../user/services/user.service';
+import { environment } from "../../../../environments/environment";
+import { Observable } from "rxjs/Observable";
 
 /**
  * Authguard service
@@ -19,7 +21,14 @@ export class AuthGuard implements CanActivate {
    * @inheritDoc
    */
   canActivate() {
-    return this.userService.isLoggedIn();
+      return this.userService.getUser().map(() => {
+          return true;
+      }, () => {
+          window.location.href = environment.projectaanvraagDashboardUrl;
+      }).catch(error => {
+          window.location.href = environment.projectaanvraagDashboardUrl;
+          return Observable.of(false);
+      });
   }
 
 }

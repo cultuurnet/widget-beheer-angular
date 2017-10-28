@@ -269,5 +269,9 @@
   "Three col double sidebar": "Drie kolommen met een dubbele zijbalk",
   "Full width": "Volledige paginabreedte",
   "Search results": "Zoekresultaten",
-  "Search form": "Zoekbox"
+  "Search form": "Zoekbox",
+  "NO_ACCESS_TITLE": "Geen toegang",
+  "PROJECT_NO_ACCESS_MESSAGE": "U heeft geen toegang tot dit project.",
+  "PAGE_NOT_FOUND": "Pagina niet gevonden",
+  "PAGE_NOT_FOUND_MESSAGE": "De opgevraagde pagina werd niet gevonden."
 }

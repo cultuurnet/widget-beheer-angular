@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Widget } from '../../../../core/widget/widget';
-import { WidgetBuilderService } from '../../../services/widget-builder.service';
+import { Widget } from '../../../core/widget/widget';
+import { WidgetBuilderService } from '../../services/widget-builder.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { JsonEditModalComponent } from './json-edit-modal.component';
 import { TranslateService } from '@ngx-translate/core';

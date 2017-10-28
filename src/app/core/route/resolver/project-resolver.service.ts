@@ -23,7 +23,7 @@ export class ProjectResolver implements Resolve<Object> {
     return this.projectService.getProject(id).map(project => {
       return project;
     }).catch(() => {
-      this.router.navigate(['/']);
+      this.router.navigate(['/project-not-found']);
       return Observable.of(false);
     });
   }

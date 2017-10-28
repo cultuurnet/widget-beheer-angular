@@ -30,13 +30,14 @@ import { TipsWidgetWidgetEditComponent } from './widget-builder/components/widge
 import { FacetsWidget } from './core/widget/widgets/facets-widget/facets-widget.widget';
 import { FacetsWidgetWidgetEditComponent } from './widget-builder/components/widgets/facets-widget/facets-widget-edit.component';
 import { AppRoutingModule } from './app-routing.module';
-import { PageNotFoundComponent } from './not-found.component';
+import { PageNotFoundComponent } from './core/route/components/not-found.component';
 import { AgendaPageTemplate } from './core/template/page-templates/agenda-page-template';
 import { TipsPageTemplate } from './core/template/page-templates/tips-page-template';
 import { UitPasPageTemplate } from './core/template/page-templates/uitpas-page-template';
 import { WidgetService } from './core/widget/services/widget.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ToastyConfig, ToastyModule } from 'ng2-toasty';
+import { ProjectNoAccessComponent } from './core/route/components/project-no-access.component';
 
 /**
  * AoT requires an exported function for factories
@@ -48,7 +49,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ProjectNoAccessComponent  
   ],
   imports: [
     BrowserModule,
@@ -125,13 +127,12 @@ export class AppModule {
    * Set the toasty (growl) default settings
    */
   private setToastyDefaultSettings() {
-    this.toastyConfig.timeout = 3000;
+    this.toastyConfig.timeout = 5000;
     this.toastyConfig.position = 'top-right';
   }
 
   /**
    * Load the widget default settings onto the registered widgets
-   * @Todo: Move this to when the router is loading the component
    */
   private loadWidgetDefaultSettings() {
     this.widgetService.getWidgetDefaultSettings().subscribe(

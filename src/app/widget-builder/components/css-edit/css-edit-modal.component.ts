@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as cssbeautify from 'cssbeautify';
-import { WidgetPage } from '../../../../core/widget/widget-page';
-import { WidgetService } from '../../../../core/widget/services/widget.service';
-import { WidgetBuilderService } from '../../../services/widget-builder.service';
-import { CssStats } from "../../../../core/widget/css-stats";
+import { WidgetPage } from '../../../core/widget/widget-page';
+import { WidgetService } from '../../../core/widget/services/widget.service';
+import { WidgetBuilderService } from '../../services/widget-builder.service';
+import { CssStats } from "../../../core/widget/css-stats";
 import * as URI from 'urijs';
 
 /**
