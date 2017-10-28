@@ -11,5 +11,6 @@ export const environment = {
       force_current: 'http://widgetbeheer-api.dev/widgets/layout/v3/:page_id.js',
     }
   },
-  projectaanvraagDashboardUrl: 'https://projectaanvraag.uitdatabank.be/'
+  projectaanvraagDashboardUrl: 'https://projectaanvraag.uitdatabank.be/',
+  zendeskUrl: 'http://www.zendesk.com'
 };
