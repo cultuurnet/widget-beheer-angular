@@ -47,7 +47,7 @@ export class JsonEditComponent implements OnInit {
   public editJson() {
     // Show the confirmation modal (disable keyboard and background dismiss)
     const modal = this.modalService.open(JsonEditModalComponent, {
-      windowClass: 'modal-large',
+      size: 'lg',
       backdrop: 'static',
       keyboard: false
     });

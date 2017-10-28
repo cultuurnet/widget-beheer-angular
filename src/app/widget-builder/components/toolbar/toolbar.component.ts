@@ -236,7 +236,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
    */
   public editCss() {
     const modal = this.modalService.open(CssEditModalComponent, {
-      windowClass: 'modal-large',
+      size: 'lg',
       backdrop: 'static',
       keyboard: false
     });

@@ -4,9 +4,9 @@
   }
 }
 
-.modal-large {
-  .modal-dialog {
-    max-width:800px;
+@media (min-width: 992px) {
+  .modal-dialog.modal-lg {
+    max-width: 900px;
   }
 }
 
