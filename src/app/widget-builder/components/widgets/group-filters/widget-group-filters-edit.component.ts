@@ -192,7 +192,6 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   public addGroupFilterItem() {
     const control = <FormArray>this.groupFilterForm.controls['filters'];
     control.push(this.buildGroupFilterItem(this.type));
-    console.log(control);
   }
 
   /**
@@ -200,7 +199,6 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    */
   public addGroupFilterOptionItem(formArray: FormArray) {
     formArray.push(this.buildFilterOptionItem());
-    console.log(formArray);
   }
 
   /**

@@ -53,7 +53,7 @@
                                         </label>
                                     </div>
                                     <div *ngIf="settings.group_filters">
-                                        <app-widget-group-filters-edit [groupFilters]="settings.group_filters" [type]="'link'" [hideType]="true" [hidePlaceholder]="true" [hideDefaultOption]="true"></app-widget-group-filters-edit>
+                                        <app-widget-group-filters-edit (groupFiltersChanged)="handleGroupFiltersChanged()" [groupFilters]="settings.group_filters" [type]="'link'" [hideType]="true" [hidePlaceholder]="true" [hideDefaultOption]="true"></app-widget-group-filters-edit>
                                     </div>
                                 </div>
                             </fieldset>
