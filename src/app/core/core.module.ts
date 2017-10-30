@@ -23,6 +23,8 @@ import { TopbarService } from './topbar/services/topbar.service';
 import { DynamicComponentDirective } from './topbar/directives/dynamic-component.directive';
 import { SafeHTMLPipe } from './safe-html.pipe';
 import { MemoryCache } from './memory-cache';
+import { PageNotFoundComponent } from './route/components/not-found.component';
+import { ProjectNoAccessComponent } from './route/components/project-no-access.component';
 
 @NgModule({
   providers: [
@@ -64,7 +66,9 @@ import { MemoryCache } from './memory-cache';
     ClipboardButtonComponent,
     TopbarComponent,
     DynamicComponentDirective,
-    SafeHTMLPipe
+    SafeHTMLPipe,
+    PageNotFoundComponent,
+    ProjectNoAccessComponent
   ],
   entryComponents: [
     ConfirmationModalComponent

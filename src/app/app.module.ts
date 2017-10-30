@@ -30,7 +30,6 @@ import { TipsWidgetWidgetEditComponent } from './widget-builder/components/widge
 import { FacetsWidget } from './core/widget/widgets/facets-widget/facets-widget.widget';
 import { FacetsWidgetWidgetEditComponent } from './widget-builder/components/widgets/facets-widget/facets-widget-edit.component';
 import { AppRoutingModule } from './app-routing.module';
-import { PageNotFoundComponent } from './core/route/components/not-found.component';
 import { AgendaPageTemplate } from './core/template/page-templates/agenda-page-template';
 import { TipsPageTemplate } from './core/template/page-templates/tips-page-template';
 import { UitPasPageTemplate } from './core/template/page-templates/uitpas-page-template';
@@ -48,9 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PageNotFoundComponent,
-    ProjectNoAccessComponent  
+    AppComponent
   ],
   imports: [
     BrowserModule,
