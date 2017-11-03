@@ -43,7 +43,7 @@
     </div>
     <div class="edit-actions" *ngIf="sidebar">
       <button  class="btn btn-default navbar-btn btn--stop-editing  nav-link" (click)="closeSidebar()" >
-        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        <i [ngClass]="{'fa-floppy-o': !isSavingDraft, 'fa-spinner fa-spin': isSavingDraft}" class="fa" aria-hidden="true"></i>
         {{ "BUTTON_WIDGET_BUILDER_TOOLBAR_STOP_EDITING" | translate }}
       </button>
     </div>
@@ -51,8 +51,8 @@
   <div class="col-5">
     <div class="page-actions" *ngIf="!sidebar" style="float:right;">
       <button class="btn btn-default btn-secondary" (click)="editCss()"><i class="fa fa-paint-brush" aria-hidden="true"></i> {{ "TOPBAR_CSS_BUTTON" | translate }}</button>
-      <button *ngIf="widgetPage.draft" class="btn btn-default btn-secondary" (click)="revertDraft()"><i class="fa fa-undo" aria-hidden="true"></i> {{ "TOPBAR_REVERT_BUTTON" | translate }}</button>
-      <button class="btn btn-default btn--publicing" (click)="publishPage()">  <i class="fa" [ngClass]="{'fa-cloud-upload': !publishing, 'fa-spinner': publishing}" aria-hidden="true"></i>  {{ "TOPBAR_PUBLISH_BUTTON" | translate }}</button>
+      <button *ngIf="widgetPage.draft" class="btn btn-default btn-secondary" (click)="revertDraft()" title='{{ "TOPBAR_REVERT_BUTTON" | translate }}'><i class="fa fa-undo" aria-hidden="true"></i></button>
+      <button class="btn btn-default btn--publicing" (click)="publishPage()">  <i class="fa" [ngClass]="{'fa-cloud-upload': !publishing, 'fa-spinner fa-spin': publishing}" aria-hidden="true"></i>  {{ "TOPBAR_PUBLISH_BUTTON" | translate }}</button>
     </div>
   </div>
 </div>

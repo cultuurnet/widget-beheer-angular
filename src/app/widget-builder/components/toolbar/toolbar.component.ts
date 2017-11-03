@@ -88,9 +88,19 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   public publishing = false;
 
   /**
+   * Flag indicating if a widget save action is being processed.
+   */
+  public isSavingDraft = false;
+
+  /**
    * Reference to the sidebar subscription
    */
   private sidebarSubscription: Subscription;
+
+  /**
+   * Subscription to the widget save observable
+   */
+  private widgetSaveSubscription: Subscription;
 
   /**
    * WidgetPageTitleEditComponent constructor
@@ -122,6 +132,16 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.sidebarSubscription = this.widgetBuilderService.sidebarStatus$.subscribe(status => {
       this.sidebar = status;
     });
+
+    // Subscribe to the widget preview observable
+    this.widgetSaveSubscription = this.widgetBuilderService.widgetSave$.subscribe(savedWidget => {
+        if (savedWidget.saving) {
+            this.isSavingDraft = true;
+        } else {
+            this.isSavingDraft = false;
+        }
+    });
+
   }
 
   /**

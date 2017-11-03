@@ -71,48 +71,10 @@
   border: 1px solid $cnw_color-blueLight;
   box-shadow: -1px -1px 17px 1px rgba(212, 212, 212, 1);
 
-  .inner-preview-rendering {
-    display: none;
-
-  }
   &.component--preview-throbber {
-    background-color: rgba(#6baf3a, 0.1);
-    overflow:hidden;
-    height: 100%;
-    &::after {
-      content: '';
-      position: absolute;
-      top:0;
-      left: 0;
-      height: 500%;
-      width: 100%;
-      border: 1px solid #6baf3a;
-      background-color: rgba(#6baf3a, 0.5);
-      animation: bg-pulse 0.8s infinite normal;
-      z-index: 100;
-      opacity: 0.4;
-     cursor: progress;
 
-    }
-
-    .inner-preview-rendering {
-      display: block;
-      position: absolute;
-      width: 100%;
-      padding: 10px;
-      top: 0;
-      margin: 0 auto;
-      background-color: #6baf3a;
-      z-index: 102;
-      color: white;
-      .fa {
-        color: white;
-        margin-right: 20px;
-      }
-      span {
-
-        font-size: 1.2em;
-      }
+    .actions-bar {
+      display: none;
     }
 
   }
