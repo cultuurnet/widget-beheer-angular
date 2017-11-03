@@ -8,6 +8,6 @@ export const environment = {
       force_current: 'http://widgetbeheer-api-test.uitdatabank.be/widgets/layout/v3/:page_id.js',
     }
   },
-  projectaanvraagDashboardUrl: 'https://projectaanvraag.uitdatabank.be/',
+  projectaanvraagDashboardUrl: 'https://projectaanvraag-test.uitdatabank.be/',
   zendeskUrl: 'http://www.zendesk.com'
 };
