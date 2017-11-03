@@ -11,7 +11,7 @@
     <div *ngIf="!widgetPages.length && !legacyWidgetPages.length">
       <p>{{ "WIDGET_PAGE_LIST_NO_PAGES_FOUND" | translate }}</p>
     </div>
-    <div *ngIf="widgetPages.length" class="page-list">
+    <div *ngIf="widgetPages.length" class="col">
       <div *ngFor="let widgetPage of widgetPages" class="card">
         <div class="card-header">
           <h3 class="float-left card-header--title" >{{ widgetPage.title }}</h3>
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div *ngIf="legacyWidgetPages.length">
-      <div class="legacyWidgets">
+      <div class="page-list--legacy-widgets col">
       <h2>{{ "TITLE_WIDGET_PAGE_LEGACY_WIDGETS_LIST" | translate }}</h2>
       <p>{{ "WIDGET_PAGE_LIST_LEGACY_WIDGETS_INFO" | translate }}</p>
       <div class="page-list">

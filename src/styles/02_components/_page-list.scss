@@ -5,10 +5,6 @@
 
   .page-list--header {
     margin: 2rem 0;
-    &.col-md {
-      padding-left: 0;
-      padding-right: 0;
-    }
     h1 {
       font-size: 2rem;
       font-weight: 200;
@@ -16,7 +12,7 @@
     }
   }
 
-  .legacyWidgets {
+  .page-list--legacy-widgets {
 
     h2 {
       font-size: 2rem;
