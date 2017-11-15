@@ -45,27 +45,34 @@ export class UitPasPageTemplate implements PageTemplate {
           'sidebar_left': {
             'widgets': [
               {
-                'name': 'html-1',
-                'type': 'html'
+                'type': 'html',
+                'settings': {
+                  'content': {
+                    'body': "Uitpas tekst"
+                  }
+                }
               },
               {
-                'name': 'facets-1',
                 'type': 'facets'
               },
               {
-                'name': 'html-2',
-                'type': 'html'
-              },
-            ]
-          },
-          'content': {
-            'widgets': [
-              {
-                'name': 'zoekresultaten-1',
-                'type': 'search-results'
+                'type': 'html',
+                'settings': {
+                  'content': {
+                    'body': "<a href='http://www.uitinvlaanderen.be' target='_blank'><img border='0' class='cultuurnet-logo-uiv' src='https://widgetbeheer-test.uitdatabank.be/assets/images/more-tips-on-uiv-btn.jpg' alt='Meer tips op UiTinVlaanderen.be' /></a>"
+                  }
+                }
               }
             ]
-          }
+          },
+        },
+        'content': {
+          'widgets': [
+            {
+              'name': 'zoekresultaten-1',
+              'type': 'search-results'
+            }
+          ]
         }
       }
     ],

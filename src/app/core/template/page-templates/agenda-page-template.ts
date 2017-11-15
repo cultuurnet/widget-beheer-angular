@@ -47,6 +47,14 @@ export class AgendaPageTemplate implements PageTemplate {
               {
                 'type': 'facets'
               },
+              {
+                'type': 'html',
+                'settings': {
+                  'content': {
+                    'body': "<a href='http://www.uitinvlaanderen.be' target='_blank'><img border='0' class='cultuurnet-logo-uiv' src='https://widgetbeheer-test.uitdatabank.be/assets/images/more-tips-on-uiv-btn.jpg' alt='Meer tips op UiTinVlaanderen.be' /></a>"
+                  }
+                }
+              }
             ]
           },
           'content': {
