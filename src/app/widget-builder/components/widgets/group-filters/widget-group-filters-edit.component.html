@@ -52,7 +52,7 @@
                                 {{ "BUTTON_ADD_GROUP_FILTER_FILTER_OPTION" | translate }}
                             </button>
 
-                            <div *ngIf="!hideDefaultOption">
+                            <div *ngIf="!hideDefaultOption && groupFilter['controls'].type.value != 'select_multiple'" >
                                 <label><strong>{{ "LABEL_GROUP_FILTER_DEFAULT_OPTION" | translate }}</strong></label>
                                 <select formControlName="default_option">
                                     <option [value]="">{{ groupFilter['controls'].placeholder.value }}</option>

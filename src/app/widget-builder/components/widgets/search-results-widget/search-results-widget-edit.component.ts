@@ -78,7 +78,8 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
           label: [_.get(this.widget.settings, 'items.where.label', '')]
         }),
         organizer: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'items.organizer.enabled', '')]
+          enabled: [_.get(this.widget.settings, 'items.organizer.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.organizer.label', '')]
         }),
         age: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.age.enabled', '')],
@@ -138,7 +139,8 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
           label: [_.get(this.widget.settings, 'detail_page.where.label', '')]
         }),
         organizer: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'detail_page.organizer.enabled', '')]
+          enabled: [_.get(this.widget.settings, 'detail_page.organizer.enabled', '')],
+          label: [_.get(this.widget.settings, 'detail_page.organizer.label', '')]
         }),
         age: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.age.enabled', '')],

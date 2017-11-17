@@ -178,7 +178,6 @@ export class WidgetService {
     return this.http.get(environment.apiUrl + this.widgetApiPath + 'project/' + projectId + '/widget-page')
       .map(widgetPages => {
         const pages = [];
-
         for (const id in widgetPages) {
           if (widgetPages.hasOwnProperty(id)) {
             const widgetPage: WidgetPage = this.widgetPageFactory.create(widgetPages[id]);

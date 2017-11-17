@@ -1,7 +1,7 @@
 <div class="container page-list">
   <div class="row">
     <div class="col-md page-list--header">
-      <h1 class="float-left" >{{ "TITLE_WIDGET_PAGE_LIST" | translate }}</h1>
+      <h1 class="float-left" >{{ project.name }}</h1>
       <button class="btn btn-primary float-right" [routerLink]="['/project', project.id, 'page', 'add']"><i class="fa fa-plus-circle" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_ADD_NEW_WIDGET_BUTTON" | translate }}</button>
     </div>
   </div>
