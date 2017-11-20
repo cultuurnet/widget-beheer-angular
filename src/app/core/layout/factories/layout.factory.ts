@@ -31,7 +31,7 @@ export class LayoutFactory {
         if (jsonObject.regions.hasOwnProperty(regionId)) {
           // Parse widgets and add to the region
           for (const item in jsonObject.regions[regionId].widgets) {
-            if (jsonObject.regions[regionId].widgets.hasOwnProperty(item)) {
+            if (jsonObject.regions[regionId].widgets.hasOwnProperty(item) && layout.regions.hasOwnProperty(regionId)) {
               layout.regions[regionId].addWidget(
                 this.widgetTypeRegistry.getInstance(
                   jsonObject.regions[regionId].widgets[item]),
