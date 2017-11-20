@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <label>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_LABEL" | translate }}</label>
                     <input [attr.disabled]="isScraping?'':null"  type="text" formControlName="url" [placeholder]="'WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_PLACEHOLDER' | translate" />
-                    <div *ngIf="cssScrapeForm.controls['url'].errors && cssScrapeForm.controls['url'].dirty">
+                    <div *ngIf="isInvalidUrl">
                         <p>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_ERROR" | translate }}</p>
                     </div>
                     <div>
@@ -42,7 +42,7 @@
                 <section *ngIf="cssStats.colors.length">
                     <p><strong>{{ "WIDGET_PAGE_CSS_EDIT_CSS_STATS_COLORS_TITLE" | translate }}</strong></p>
                     <ul>
-                        <li *ngFor="let color of (cssStats.colors ? cssStats.colors.slice(0,5): [])">
+                        <li *ngFor="let color of (cssStats.colors ? cssStats.colors: [])">
                             <span class="colour-bg" [ngStyle]="{'background-color': color.value}"></span>
                             <span class="colour-text" [ngStyle]="{'color': color.value}">Aa</span>
                             <span class="colour-code">{{ color.value }}</span>
@@ -52,7 +52,7 @@
                 <section *ngIf="cssStats.font_families.length">
                     <p><strong>{{ "WIDGET_PAGE_CSS_EDIT_CSS_STATS_FONT_FAMILIES_TITLE" | translate }}</strong></p>
                     <ul>
-                        <li *ngFor="let font of (cssStats.font_families ? cssStats.font_families.slice(0,5): [])">
+                        <li *ngFor="let font of (cssStats.font_families ? cssStats.font_families: [])">
                             <span>{{ font.value }}</span>
                         </li>
                     </ul>

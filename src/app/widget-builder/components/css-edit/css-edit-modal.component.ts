@@ -59,6 +59,11 @@ export class CssEditModalComponent implements OnInit {
   public scrapeError: boolean = false;
 
   /**
+   * Indicates if the current url is invalid.
+   */
+  public isInvalidUrl: boolean = false;
+
+  /**
    * CssEditModalComponent constructor.
    * @param activeModal
    * @param formBuilder
@@ -92,7 +97,7 @@ export class CssEditModalComponent implements OnInit {
 
     // Scrape form
     this.cssScrapeForm = this.formBuilder.group({
-      url: ['', [Validators.pattern('^(http[s]?:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?'), Validators.required]]
+      url: ['', [Validators.required]]
     });
   }
 
@@ -105,6 +110,15 @@ export class CssEditModalComponent implements OnInit {
     this.scrapeError = false;
 
     let url = this.cssScrapeForm.get('url').value;
+
+    var regex = new RegExp('^(http[s]?:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?');
+    if (!regex.test(url)) {
+      this.isScraping = false;
+      this.isInvalidUrl = true;
+      return true;
+    }
+
+    this.isInvalidUrl = false;
 
     // Try to add protocol if it's missing
     if (!/^(f|ht)tps?:\/\//i.test(url)) {
