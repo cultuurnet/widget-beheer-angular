@@ -117,7 +117,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
 
     // Add an empty option if needed
     if (!items.length) {
-      items.push(this.buildGroupFilterItem());
+      items.push(this.buildGroupFilterItem('', this.translateService.instant('GROUP_FILTERS_DEFAULT_LABEL')));
     }
 
     // Initialize the form
