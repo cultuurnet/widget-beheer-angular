@@ -4,6 +4,12 @@
   }
 }
 
+.modal-open .modal-fullscreen {
+  width: 75%;
+  margin: 0 auto;
+}
+
+
 @media (min-width: 992px) {
   .modal-dialog.modal-lg {
     max-width: 900px;

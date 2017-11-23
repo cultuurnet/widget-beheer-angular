@@ -27,3 +27,16 @@
   display: inline-block;
   margin-right: 5px;
 }
+
+.code-edit {
+  border:1px solid gray;
+}
+
+section > section {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+label.css-edit--websiteurl {
+  font-weight: bold;
+}

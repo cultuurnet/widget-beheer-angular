@@ -21,7 +21,7 @@
                                 <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_GENERAL_CURRENT_SEARCH" | translate }}</span>
                             </label>
                             <div class="edit-searchfilters--selectgroup" formGroupName="exclude">
-                                <label><strong>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_GENERAL_HIDE_FILTERS" | translate }}</strong></label>
+                                <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_GENERAL_HIDE_FILTERS" | translate }}</label>
                                 <div>
                                     <label>
                                         <input type="checkbox" formControlName="long_term">
@@ -196,70 +196,54 @@
                         <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_PANEL_TITLE_DETAIL_PAGE" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
                             <div class="edit-searchfilters--selectgroup">
-                                <div class="row">
-                                    <div class="col-6">
+                                <div class=" form-group">
                                         <label>
                                             <input type="checkbox" formControlName="map">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_MAP" | translate }}</span>
                                         </label>
-                                    </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-6">
+                                <div class=" form-group">
                                         <label>
                                             <input type="checkbox" formControlName="price_information">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_PRICE_INFORMATION" | translate }}</span>
                                         </label>
-                                    </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-6">
+                                <div class=" form-group">
                                         <label>
                                             <input type="checkbox" formControlName="reservation_information">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_RESERVATION_INFO" | translate }}</span>
                                         </label>
-                                    </div>
                                 </div>
 
 
-                                <div class="row">
-                                    <div class="col-6">
+                                <div class=" form-group">
                                         <label>
                                             <input type="checkbox" formControlName="contact_information">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_CONTACT_INFORMATION" | translate }}</span>
                                         </label>
-                                    </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-6">
-
+                                <div class=" form-group">
                                         <label>
                                             <input type="checkbox" formControlName="uitpas_benefits">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_UITPAS_BENEFITS" | translate }}</span>
                                         </label>
-                                    </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-6">
+                                <div class=" form-group">
                                         <label>
                                             <input type="checkbox" formControlName="language_switcher">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_LANGUAGE_SWITCHER" | translate }}</span>
                                         </label>
-                                    </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-6">
-
+                                <div class=" form-group">
                                         <label>
                                             <input type="checkbox" formControlName="share_buttons">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_SHARE_BUTTONS" | translate }}</span>
                                         </label>
-                                    </div>
                                 </div>
                             </div>
 
@@ -272,12 +256,13 @@
 
                                 <div *ngIf="settings.detail_page.back_button.enabled">
                                     <div  class="form-group">
-                                    <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_BACK_BUTTON_LABEL" | translate }}</label>
-                                        <input  class="form-group" type="text" formControlName="label">
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_BACK_BUTTON_LABEL" | translate }}</label>
+                                        <input  class="form-control" type="text" formControlName="label">
+
                                     </div>
                                     <div  class="form-group">
-                                    <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_BACK_BUTTON_URL" | translate }}</label>
-                                        <input  class="form-group" type="text" formControlName="url">
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_BACK_BUTTON_URL" | translate }}</label>
+                                        <input  class="form-control" type="text" formControlName="url">
                                     </div>
                                 </div>
                             </div>
@@ -412,9 +397,9 @@
                     <ngb-panel id="extra_parameters">
                         <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_PANEL_TITLE_EXTRA_PARAMETERS" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
-                            <div class="edit-searchfilters--selectgroup" formGroupName="search_params">
+                            <div class="edit-searchfilters--selectgroup form-group" formGroupName="search_params">
                                 <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_QUERY" | translate }}</label>
-                                <textarea rows="1" formControlName="query"></textarea>
+                                <textarea class="form-control" rows="3" formControlName="query"></textarea>
                             </div>
                         </ng-template>
                     </ngb-panel>

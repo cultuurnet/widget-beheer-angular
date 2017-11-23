@@ -22,8 +22,8 @@
             <p>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_DESCRIPTION_2" | translate }}</p>
             <form [formGroup]="cssScrapeForm" (submit)="getCssStats()" novalidate>
                 <div class="form-group">
-                    <label>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_LABEL" | translate }}</label>
-                    <input [attr.disabled]="isScraping?'':null"  type="text" formControlName="url" [placeholder]="'WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_PLACEHOLDER' | translate" />
+                    <label class="css-edit--websiteurl">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_LABEL" | translate }}</label>
+                    <input [attr.disabled]="isScraping?'':null"  type="text" formControlName="url" [placeholder]="'WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_PLACEHOLDER' | translate" class="form-control"/>
                     <div *ngIf="isInvalidUrl">
                         <p>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_ERROR" | translate }}</p>
                     </div>
@@ -36,11 +36,13 @@
         </div>
         <div *ngIf="cssStats" class="col-sm-4 state-results">
             <h3>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_TITLE" | translate }}</h3>
-            <p *ngIf="cssStats.colors.length || cssStats.font_families.length">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_FOUND_STYLES_DESCRIPTION" | translate }} "{{ getCleanOriginUrl(cssStats.origin) }}" (<button class="btn btn-link" (click)="resetScrapedStyles()">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL" | translate }}</button>)</p>
+            <p *ngIf="cssStats.colors.length || cssStats.font_families.length">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_FOUND_STYLES_DESCRIPTION" | translate }} "{{ getCleanOriginUrl(cssStats.origin) }}" </p>
+            <button class="btn btn-info btn-sm" (click)="resetScrapedStyles()">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL" | translate }}</button>
             <p *ngIf="!cssStats.colors.length && !cssStats.font_families.length">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_NO_FOUND_STYLES_DESCRIPTION" | translate }} "{{ getCleanOriginUrl(cssStats.origin) }}" (<button class="btn btn-link" (click)="resetScrapedStyles()">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL" | translate }}</button>)</p>
             <section class="styleresults">
                 <section *ngIf="cssStats.colors.length">
-                    <p><strong>{{ "WIDGET_PAGE_CSS_EDIT_CSS_STATS_COLORS_TITLE" | translate }}</strong></p>
+
+                    <h4>{{ "WIDGET_PAGE_CSS_EDIT_CSS_STATS_COLORS_TITLE" | translate }}</h4>
                     <ul>
                         <li *ngFor="let color of (cssStats.colors ? cssStats.colors: [])">
                             <span class="colour-bg" [ngStyle]="{'background-color': color.value}"></span>
@@ -50,7 +52,8 @@
                     </ul>
                 </section>
                 <section *ngIf="cssStats.font_families.length">
-                    <p><strong>{{ "WIDGET_PAGE_CSS_EDIT_CSS_STATS_FONT_FAMILIES_TITLE" | translate }}</strong></p>
+
+                    <h4>{{ "WIDGET_PAGE_CSS_EDIT_CSS_STATS_FONT_FAMILIES_TITLE" | translate }}</h4>
                     <ul>
                         <li *ngFor="let font of (cssStats.font_families ? cssStats.font_families: [])">
                             <span>{{ font.value }}</span>

@@ -36,6 +36,8 @@
 .modal-open .modal {
   overflow-x: hidden;
   overflow-y: auto;
+  width: 75%;
+  margin: 0 auto;
 }
 
 // Shell div to position the modal with bottom padding
