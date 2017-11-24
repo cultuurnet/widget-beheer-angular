@@ -19,9 +19,9 @@
                                     {{ "FACETS_WIDGET_EDIT_FORM_MISSING_SEARCH_RESULTS_WIDGETS_WARNING" | translate }}
                                 </div>
                             </div>
-                            <div *ngIf="searchResultsWidgets.length">
+                            <div *ngIf="searchResultsWidgets.length" class="form-group">
                                 <label>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_SEARCH_RESULTS" | translate }}</label>
-                                <select formControlName="search_results">
+                                <select formControlName="search_results" class="form-control">
                                     <option [value]="''">{{ "FACETS_WIDGET_EDIT_FORM_SEARCH_RESULTS_EMPTY_OPTION" | translate }} </option>
                                     <option *ngFor="let searchResult of searchResultsWidgets" [value]="searchResult.id">{{ searchResult.name }}</option>
                                 </select>
