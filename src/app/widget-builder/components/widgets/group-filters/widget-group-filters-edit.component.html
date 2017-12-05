@@ -54,7 +54,7 @@
 
                             <div *ngIf="!hideDefaultOption && groupFilter['controls'].type.value != 'select_multiple'" >
                                 <label>{{ "LABEL_GROUP_FILTER_DEFAULT_OPTION" | translate }}</label>
-                                <select formControlName="default_option">
+                                <select formControlName="default_option" class="form-control">
                                     <option [value]="">{{ groupFilter['controls'].placeholder.value }}</option>
                                     <option *ngFor="let option of groupFilter['controls'].options['controls'];" [value]="option['controls'].label.value">{{ option['controls'].label.value }}</option>
                                 </select>

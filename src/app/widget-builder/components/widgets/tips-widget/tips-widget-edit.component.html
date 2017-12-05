@@ -162,13 +162,13 @@
                                     </div>
                                     <div>
                                         <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_POSITION" | translate }}</label>
-                                        <select formControlName="position">
+                                        <select formControlName="position" class="form-control">
                                             <option *ngFor="let position of imagePositions" [value]="position.value">{{ ("LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_POSITION_OPTION_" + position.label |  uppercase) | translate }}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="edit-searchfilters--selectgroup"  formGroupName="labels">
+                            <div class="edit-searchfilters--selectgroup" formGroupName="labels">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
                                     <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_LABELS" | translate }}</span>
