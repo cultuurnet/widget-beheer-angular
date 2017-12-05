@@ -154,10 +154,12 @@
                                         <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_HEIGHT" | translate }}</label>
                                         <input type="number"  class="form-control" formControlName="height" step="1" />
                                     </div>
-                                    <label>
-                                        <input type="checkbox" formControlName="default_image">
-                                        <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_DEFAULT_IMAGE" | translate }}</span>
-                                    </label>
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="checkbox" formControlName="default_image">
+                                            <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_DEFAULT_IMAGE" | translate }}</span>
+                                        </label>
+                                    </div>
                                     <div>
                                         <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_POSITION" | translate }}</label>
                                         <select formControlName="position">

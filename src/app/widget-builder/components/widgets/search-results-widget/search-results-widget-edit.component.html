@@ -148,10 +148,12 @@
                                         <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_IMAGE_HEIGHT" | translate }}</label>
                                         <input class="form-control" type="number" formControlName="height" step="1" />
                                     </div>
+                                    <div class="form-group">
                                         <label>
                                             <input type="checkbox" formControlName="default_image">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_IMAGE_DEFAULT_IMAGE" | translate }}</span>
                                         </label>
+                                    </div>
                                     <div class="form-group">
                                         <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_IMAGE_POSITION" | translate }}</label>
                                         <select formControlName="position" class="form-control" >
@@ -196,21 +198,21 @@
                         <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_PANEL_TITLE_DETAIL_PAGE" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
                             <div class="edit-searchfilters--selectgroup">
-                                <div class=" form-group">
+                                <div class="form-group">
                                         <label>
                                             <input type="checkbox" formControlName="map">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_MAP" | translate }}</span>
                                         </label>
                                 </div>
 
-                                <div class=" form-group">
+                                <div class="form-group">
                                         <label>
                                             <input type="checkbox" formControlName="price_information">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_PRICE_INFORMATION" | translate }}</span>
                                         </label>
                                 </div>
 
-                                <div class=" form-group">
+                                <div class="form-group">
                                         <label>
                                             <input type="checkbox" formControlName="reservation_information">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_RESERVATION_INFO" | translate }}</span>
@@ -218,28 +220,28 @@
                                 </div>
 
 
-                                <div class=" form-group">
+                                <div class="form-group">
                                         <label>
                                             <input type="checkbox" formControlName="contact_information">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_CONTACT_INFORMATION" | translate }}</span>
                                         </label>
                                 </div>
 
-                                <div class=" form-group">
+                                <div class="form-group">
                                         <label>
                                             <input type="checkbox" formControlName="uitpas_benefits">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_UITPAS_BENEFITS" | translate }}</span>
                                         </label>
                                 </div>
 
-                                <div class=" form-group">
+                                <div class="form-group">
                                         <label>
                                             <input type="checkbox" formControlName="language_switcher">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_LANGUAGE_SWITCHER" | translate }}</span>
                                         </label>
                                 </div>
 
-                                <div class=" form-group">
+                                <div class="form-group">
                                         <label>
                                             <input type="checkbox" formControlName="share_buttons">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_SHARE_BUTTONS" | translate }}</span>
@@ -354,19 +356,21 @@
                                     <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_IMAGE" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.detail_page.image.enabled">
-                                    <div  class="form-group">
+                                    <div class="form-group">
                                     <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_IMAGE_WIDTH" | translate }}</label>
                                         <input type="number"  class="form-control" formControlName="width" step="1" />
                                     </div>
-                                    <div  class="form-group">
-                                    <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_IMAGE_HEIGHT" | translate }}</label>
+                                    <div class="form-group">
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_IMAGE_HEIGHT" | translate }}</label>
                                         <input type="number" class="form-control" formControlName="height" step="1" />
                                     </div>
-                                    <label>
-                                        <input type="checkbox" formControlName="default_image">
-                                        <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_IMAGE_DEFAULT_IMAGE" | translate }}</span>
-                                    </label>
-                                    <div>
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="checkbox" formControlName="default_image">
+                                            <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_IMAGE_DEFAULT_IMAGE" | translate }}</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
                                         <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_IMAGE_POSITION" | translate }}</label>
                                         <select formControlName="position">
                                             <option *ngFor="let position of imagePositions" [value]="position.value">{{ ("LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_IMAGE_POSITION_OPTION_" + position.label |  uppercase) | translate }}</option>
