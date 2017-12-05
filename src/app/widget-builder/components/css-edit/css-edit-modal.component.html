@@ -45,9 +45,12 @@
                     <h4>{{ "WIDGET_PAGE_CSS_EDIT_CSS_STATS_COLORS_TITLE" | translate }}</h4>
                     <ul>
                         <li *ngFor="let color of (cssStats.colors ? cssStats.colors: [])">
-                            <span class="colour-bg" [ngStyle]="{'background-color': color.value}"></span>
-                            <span class="colour-text" [ngStyle]="{'color': color.value}">Aa</span>
-                            <span class="colour-code">{{ color.value }}</span>
+                            <div class="css-stat-info">
+                                <span class="colour-bg" [ngStyle]="{'background-color': color.value}"></span>
+                                <span class="colour-text" [ngStyle]="{'color': color.value}">Aa</span>
+                                <span class="colour-code">{{ color.value }}</span>
+                            </div>
+                            <app-clipboard-button [content]="color.value"></app-clipboard-button>
                         </li>
                     </ul>
                 </section>
@@ -56,7 +59,10 @@
                     <h4>{{ "WIDGET_PAGE_CSS_EDIT_CSS_STATS_FONT_FAMILIES_TITLE" | translate }}</h4>
                     <ul>
                         <li *ngFor="let font of (cssStats.font_families ? cssStats.font_families: [])">
-                            <span>{{ font.value }}</span>
+                            <div class="css-stat-info">
+                                <span>{{ font.value }}</span>
+                            </div>
+                            <app-clipboard-button [content]="font.value"></app-clipboard-button>
                         </li>
                     </ul>
                 </section>

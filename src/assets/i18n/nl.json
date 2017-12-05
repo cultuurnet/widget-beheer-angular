@@ -215,6 +215,7 @@
   "UPGRADE_WIDGET_PAGE_SUCCESS_NOTIFICATION": "De widget is vanaf nu beschikbaar in de nieuwste versie",
   "UPGRADE_WIDGET_PAGE_FAILED_NOTIFICATION": "Er ging iets mis bij het upgraden. Probeer het later opnieuw.",
   "BUTTON_COPY_TO_CLIPBOARD": "Scripttag kopiëren",
+  "BUTTON_COPY_TO_CLIPBOARD_TITLE": "Kopiëren",
   "BUTTON_COPY_TO_CLIPBOARD_SUCCESS": "Scripttag gekopieerd",
   "BUTTON_BACK_TO_PROJECTAANVRAAG_DASHBOARD": "Projectaanvragen",
   "WIDGET_PAGE_LIST_NO_PAGES_FOUND": "Geen widgets gevonden. Klik op \"Nieuwe widget maken\" om van start te gaan.",

@@ -2,17 +2,36 @@
   margin: 0;
   padding: 0;
   list-style: none;
-}
 
-.styleresults ul li {
-  line-height: 30px;
-  margin-bottom: 5px;
-  border-bottom: 1px solid #ddd;
-  padding-top: 5px;
-}
+  li {
+    line-height: 30px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+    padding-top: 5px;
+    display: table;
+  }
 
-.styleresults .copy {
-  float: right;
+  .css-stat-info {
+    display: table-cell;
+    width: 90%;
+  }
+
+  .btn-copy-clipboard {
+    display: table-cell;
+    width: 10%;
+
+    span {
+      display: none;
+    }
+
+    &.btn-success {
+      background-color: transparent;
+      border-color: transparent;
+      color: $btn-success-bg;
+    }
+
+  }
+
 }
 
 .colour-bg {
