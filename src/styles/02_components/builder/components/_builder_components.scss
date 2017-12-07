@@ -7,7 +7,18 @@
   border: 1px solid #d5dde4;
   position: relative;
   transition: box-shadow 0.25s ease;
+}
 
+.widget-preview {
+  position: relative;
+}
+
+.component-hyperspan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .component-label {

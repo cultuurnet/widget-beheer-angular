@@ -12,6 +12,7 @@
         </div>
         <div class="widget-preview">
             <div class="preview-content" *ngIf="widgetPreview" [innerHTML]="widgetPreview | safeHTML"></div>
+            <a (click)="selectWidget($event, widget)" class="component-hyperspan"></a>
         </div>
     </div>
 </div>
