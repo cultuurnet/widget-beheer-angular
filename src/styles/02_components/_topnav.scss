@@ -19,6 +19,18 @@
   background-color: white;
 }
 
+.hide-on-tablet {
+  @include media-breakpoint-down(lg) {
+    display: none;
+  }
+}
+
+.page-actions .hide-on-tablet {
+  @media (max-width: 1251px) 
+  {
+    display: none;
+  }
+}
 
 .page-title  {
 
@@ -26,6 +38,16 @@
     float: left;
     font-weight: 300;
     line-height: 1.9rem;
+    @include media-breakpoint-down(md) {
+      float: left;
+      font-weight: 300;
+      font-size: 1rem;
+    //line-height: 1rem;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
   }
 
 

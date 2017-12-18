@@ -9,12 +9,12 @@
 </ng-template>
 
 <div class="row" *ngIf="widgetPage">
-  <div class="col-5">
+  <div class="col-5 page-title-col">
     <div class="page-title-edit" *ngIf="!sidebar">
       <div *ngIf="!editingTitle">
         <span class="page-title"><h4>{{ title }} </h4><a (click)="toggleTitleEditMode()" class="btn btn-pagetitle--edit"> <i class="fa fa-pencil"></i></a></span>
       </div>
-      <div *ngIf="editingTitle" class="editable-controls input-group">
+      <div *ngIf="editingTitle" class="editable-controls input-group ">
 
         <input type="text" class="form-control" [(ngModel)]="title">
         <span class="input-group-btn">
@@ -30,9 +30,9 @@
       </div>
     </div>
   </div>
-  <div class="col-2">
+  <div class="col-2 hide-on-tablet">
     <div class="switcher" *ngIf="!sidebar">
-      <div class="device-switcher">
+      <div class="device-switcher ">
         <div class="btn-group">
           <button *ngFor="let viewMode of viewModes" type="button" class="btn btn-default navbar-btn btn--device-switcher" (click)="toggleViewMode($event, viewMode.type)" [ngClass]="{'active': activeViewMode === viewMode.type}">
             <i class="fa fa-{{ viewMode.type }}" aria-hidden="true"></i>
@@ -50,9 +50,9 @@
   </div>
   <div class="col-5">
     <div class="page-actions" *ngIf="!sidebar" style="float:right;">
-      <button class="btn btn-default btn-secondary" (click)="editCss()"><i class="fa fa-paint-brush" aria-hidden="true"></i> {{ "TOPBAR_CSS_BUTTON" | translate }}</button>
-      <button *ngIf="widgetPage.draft" class="btn btn-default btn-secondary" (click)="revertDraft()"><i class="fa fa-undo" aria-hidden="true"></i> {{ "TOPBAR_REVERT_BUTTON" | translate }}</button>
-      <button class="btn btn-default btn--publicing" (click)="publishPage()">  <i class="fa fa-cloud-upload" aria-hidden="true"></i>  {{ "TOPBAR_PUBLISH_BUTTON" | translate }}</button>
+      <button class="btn btn-default btn-secondary" (click)="editCss()"><i class="fa fa-paint-brush" aria-hidden="true"></i><span class="hide-on-tablet"> {{ "TOPBAR_CSS_BUTTON" | translate }}</span></button>
+      <button *ngIf="widgetPage.draft" class="btn btn-default btn-secondary" (click)="revertDraft()"><i class="fa fa-undo" aria-hidden="true"></i> <span class="hide-on-tablet">{{ "TOPBAR_REVERT_BUTTON" | translate }}</span></button>
+      <button class="btn btn-default btn--publicing" (click)="publishPage()">  <i class="fa fa-cloud-upload" aria-hidden="true"></i><span class="hide-on-tablet">  {{ "TOPBAR_PUBLISH_BUTTON" | translate }} </span></button>
     </div>
   </div>
 </div>
