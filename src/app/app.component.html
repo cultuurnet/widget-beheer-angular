@@ -7,4 +7,12 @@
 </ng-template>
 
 <app-topbar></app-topbar>
+
+<div class="widget-loader" *ngIf="loading">
+    <div class="widget-loader--wrapper">
+        <div class="widget-loader--block"></div>
+        <div class="widget-loader--text">Even geduld </div>
+    </div>
+</div>
+
 <router-outlet></router-outlet>

@@ -61,23 +61,11 @@ html .preview .cnw_sideCol {
   }
 }
 
-.main-nav {
-  background-color: white;
-  float: left;
-  width: 100%;
-  & > .container {
-
-    padding: 0;
-    width: 100%;
-    border: 0;
-  }
-}
-
 .cnw_searchresult--block {
   margin-bottom: 3rem;
 }
 
 p.cnw_card-description {
-  padding: 15px;
+ // padding: 15px;
   width: 100%;
 }

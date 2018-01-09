@@ -19,6 +19,8 @@ export class UserService {
    */
   private apiPath = 'uitid/';
 
+  private lastLoaded;
+
   /**
    * ProjectService constructor.
    * @param http
@@ -45,6 +47,20 @@ export class UserService {
    * @return {Observable<User>}
    */
   public getUser(): Observable<User> {
+
+    // Don't keep the user forever in cache. Check every 5 minutes if he is still really logged in.
+    if (this.lastLoaded) {
+
+      const currentDate = new Date();
+      const difference = currentDate.getTime() - this.lastLoaded.getTime();
+
+      // Refresh user every 5 minutes.
+      if (Math.round(difference / 60000) > 5) {
+        this.cache.clear('currentUser');
+      }
+
+    }
+
     const cachedUser = this.cache.get('currentUser', ['user'], false);
 
     if (cachedUser) {
@@ -54,6 +70,7 @@ export class UserService {
     return this.http.get(environment.apiUrl + this.apiPath + 'user')
       .map(user => new User(user))
       .do(user => {
+        this.lastLoaded = new Date();
         // Cache the response
         this.cache.put('currentUser', ['user'], user);
       });

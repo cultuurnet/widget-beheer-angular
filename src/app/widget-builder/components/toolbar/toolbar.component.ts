@@ -7,7 +7,7 @@ import { WidgetBuilderService } from '../../services/widget-builder.service';
 import { Subscription } from 'rxjs/Subscription';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PublishPageConfirmationModalComponent } from '../modal/publish-page-confirmation-modal.component';
-import { CssEditModalComponent } from '../widgets/css-edit/css-edit-modal.component';
+import { CssEditModalComponent } from '../css-edit/css-edit-modal.component';
 import { Router } from '@angular/router';
 import { ConfirmationModalComponent } from '../../../core/modal/components/confirmation-modal.component';
 
@@ -83,9 +83,24 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   public sidebar = false;
 
   /**
+   * Flag indicating if a publish action is being processed.
+   */
+  public publishing = false;
+
+  /**
+   * Flag indicating if a widget save action is being processed.
+   */
+  public isSavingDraft = false;
+
+  /**
    * Reference to the sidebar subscription
    */
   private sidebarSubscription: Subscription;
+
+  /**
+   * Subscription to the widget save observable
+   */
+  private widgetSaveSubscription: Subscription;
 
   /**
    * WidgetPageTitleEditComponent constructor
@@ -117,6 +132,16 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.sidebarSubscription = this.widgetBuilderService.sidebarStatus$.subscribe(status => {
       this.sidebar = status;
     });
+
+    // Subscribe to the widget preview observable
+    this.widgetSaveSubscription = this.widgetBuilderService.widgetSave$.subscribe(savedWidget => {
+        if (savedWidget.saving) {
+            this.isSavingDraft = true;
+        } else {
+            this.isSavingDraft = false;
+        }
+    });
+
   }
 
   /**
@@ -210,15 +235,18 @@ export class ToolbarComponent implements OnInit, OnDestroy {
    * Publish the currently active widget page
    */
   public publishPage() {
+    this.publishing = true;
     this.widgetService.publishWidgetPage(this.widgetPage).subscribe(() => {
       // After publishing, the widgetpage is no longer in draft
       this.widgetPage.draft = false;
+      this.publishing = false;
 
       // Show the confirmation modal
       const modal = this.modalService.open(PublishPageConfirmationModalComponent);
       const modalInstance = modal.componentInstance;
       modalInstance.widgetPage = this.widgetPage;
     }, () => {
+      this.publishing = false;
       this.toastyService.error(this.translateService.instant('WIDGET_PAGE_PUBLISH_FAILED_NOTIFICATION'));
     });
   }
@@ -228,7 +256,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
    */
   public editCss() {
     const modal = this.modalService.open(CssEditModalComponent, {
-      windowClass: 'modal-large',
+      size: 'lg',
       backdrop: 'static',
       keyboard: false
     });

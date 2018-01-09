@@ -28,6 +28,7 @@
 
 .actions-list {
   list-style-type: none;
+  min-height: 36px;
   margin: 0;
   padding: 0;
 }
@@ -67,8 +68,6 @@
   }
 
   ul.actions-list {
-    min-height: 36px;
-    padding-top: 3px;
     margin-bottom: 0;
   }
 }

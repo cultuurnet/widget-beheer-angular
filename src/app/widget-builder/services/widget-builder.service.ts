@@ -7,6 +7,7 @@ import * as debouncePromise from 'debounce-promise';
 import { TranslateService } from '@ngx-translate/core';
 import { RenderedWidget } from '../../core/widget/rendered-widget';
 import * as _ from 'lodash';
+import { SavedWidget } from "../../core/widget/saved-widget";
 
 /**
  * The widgetbuilder service.
@@ -46,6 +47,17 @@ export class WidgetBuilderService {
    * Observable widget preview
    */
   public widgetPreview$ = this.widgetPreview.asObservable();
+
+  /**
+   * Widget save subject
+   * @type {Subject}
+   */
+  private widgetSave = new Subject<SavedWidget>();
+
+  /**
+   * Observable widget save
+   */
+  public widgetSave$ = this.widgetSave.asObservable();
 
   /**
    * Widgetbuilder sidebar status
@@ -148,7 +160,10 @@ export class WidgetBuilderService {
     const _self = this;
 
     if (widgetId) {
-      this.lockWidgetPreview(widgetId);
+        this.widgetSave.next({
+            widgetId: widgetId,
+            saving: true
+        });
     }
 
     this.debounceWidgetPageSave(this.widgetPage, widgetId).then(response => {
@@ -157,6 +172,10 @@ export class WidgetBuilderService {
 
       // Update the widget preview with the new render response
       if (widgetId) {
+          this.widgetSave.next({
+              widgetId: widgetId,
+              saving: false
+          });
         _self.widgetPreview.next({
           widgetId: widgetId,
           data: response.preview

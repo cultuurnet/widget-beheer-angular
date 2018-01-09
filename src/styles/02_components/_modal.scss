@@ -1,18 +1,24 @@
 .modal-fullscreen {
   .modal-dialog {
-    max-width:1200px;
+    max-width: 100%;
   }
 }
 
-.modal-large {
-  .modal-dialog {
-    max-width:800px;
+.modal-open .modal-fullscreen {
+  width: 75%;
+  margin: 0 auto;
+}
+
+
+@media (min-width: 992px) {
+  .modal-dialog.modal-lg {
+    max-width: 900px;
   }
 }
 
-.json-edit {
-  width: 100%;
-  min-height:320px;
-  font-size: 13px;
-  resize: none;
+.modal-dialog {
+  .code-edit {
+    width: 100%;
+  }
 }
+

@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i,800');
 
-$font-family-sans-serif: "Open Sans";
-
 @import "~dragula/dist/dragula.css";
-@import "~bootstrap/dist/css/bootstrap.css";
+
+// import cnw variables before loading bootstrap
+@import "00_base/cnw_variables";
+@import "~bootstrap/scss/bootstrap";
+
 @import "~font-awesome/css/font-awesome.min.css";
 
-@import "00_base/variables";
-@import "00_base/cnw_variabels";
+//@import "00_base/variables";
 
-@import "06_vendors/bootstrap/mixins";
+//@import "06_vendors/bootstrap/mixins";
 
 @import "00_base/forms";
 
@@ -20,6 +21,3 @@ $font-family-sans-serif: "Open Sans";
 @import "02_components/components";
 @import "02_components/builder/builder";
 
-body {
-  font-family: $font-family-sans-serif,  "Segoe UI", Tahoma, sans-serif !important;
-}

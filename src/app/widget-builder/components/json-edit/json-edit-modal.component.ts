@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { WidgetBuilderService } from '../../../services/widget-builder.service';
-import { Widget } from '../../../../core/widget/widget';
-import { validJson } from '../../../../core/form/validators/json.directive';
+import { WidgetBuilderService } from '../../services/widget-builder.service';
+import { Widget } from '../../../core/widget/widget';
+import { validJson } from '../../../core/form/validators/json.directive';
 
 /**
  * JsonEditModalComponent modal component.

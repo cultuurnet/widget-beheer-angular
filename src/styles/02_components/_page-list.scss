@@ -1,14 +1,9 @@
 
 .page-template,
 .page-list {
-  width:100%;
 
   .page-list--header {
     margin: 2rem 0;
-    &.col-md {
-      padding-left: 0;
-      padding-right: 0;
-    }
     h1 {
       font-size: 2rem;
       font-weight: 200;
@@ -16,7 +11,11 @@
     }
   }
 
-  .legacyWidgets {
+  .page-list--legacy-widgets {
+
+    &--item-header {
+      padding: 0.75rem 0;
+    }
 
     h2 {
       font-size: 2rem;
@@ -34,13 +33,15 @@
     }
 
   }
-.card-header {
-  background-color: transparent;
-}
+
+  .card-header {
+    background-color: transparent;
+  }
+
   h3.card-header--title {
     margin: 0;
     line-height: 38px;
-    color: #337ab7;
+    color: #292b2c;
     font-size: 1.2em;
     font-weight: 400;
 
@@ -61,7 +62,6 @@
     text-decoration: none;
     border-radius: 2px;
     color: #004F94;
-    font-size: 14px;
 
     &:hover {
       border-color: #00192e;
@@ -89,6 +89,7 @@
 
 
 }
+
 .clipboard-group {
   .btn-copy-clipboard {
     line-height: inherit;

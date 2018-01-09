@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Widget } from '../../../../core/widget/widget';
-import { WidgetBuilderService } from '../../../services/widget-builder.service';
+import { Widget } from '../../../core/widget/widget';
+import { WidgetBuilderService } from '../../services/widget-builder.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { JsonEditModalComponent } from './json-edit-modal.component';
 import { TranslateService } from '@ngx-translate/core';
@@ -47,7 +47,7 @@ export class JsonEditComponent implements OnInit {
   public editJson() {
     // Show the confirmation modal (disable keyboard and background dismiss)
     const modal = this.modalService.open(JsonEditModalComponent, {
-      windowClass: 'modal-large',
+      size: 'lg',
       backdrop: 'static',
       keyboard: false
     });

@@ -47,6 +47,9 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
         })
       }),
       items: this.formBuilder.group({
+        type: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.type.enabled', '')]
+        }),
         icon_vlieg: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.icon_vlieg.enabled', '')]
         }),
@@ -64,6 +67,10 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
         where: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.where.enabled', '')],
           label: [_.get(this.widget.settings, 'items.where.label', '')]
+        }),
+        organizer: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.organizer.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.organizer.label', '')]
         }),
         age: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.age.enabled', '')],

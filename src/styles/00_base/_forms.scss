@@ -1,3 +1,11 @@
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: $font-family-sans-serif;
+}
+
 legend {
   margin-top: 0.75em;
   font-size: 1em;
@@ -17,4 +25,9 @@ fieldset {
 .btn-primary:focus, .btn-primary.focus {
   outline: none;
   box-shadow: none;
+}
+
+.btn {
+  cursor: pointer;
+  font-size: 14px;
 }

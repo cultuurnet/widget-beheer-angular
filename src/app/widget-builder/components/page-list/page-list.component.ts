@@ -63,7 +63,6 @@ export class PageListComponent implements OnInit {
   ngOnInit() {
     this.route.data
       .subscribe((data: { widgetPages: Array<WidgetPage>, project: Project }) => {
-
         this.buildWidgetPageList(data.widgetPages);
 
         // Get the project from the current route

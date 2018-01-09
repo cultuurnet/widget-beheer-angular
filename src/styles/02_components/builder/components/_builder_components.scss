@@ -7,7 +7,18 @@
   border: 1px solid #d5dde4;
   position: relative;
   transition: box-shadow 0.25s ease;
+}
 
+.widget-preview {
+  position: relative;
+}
+
+.component-hyperspan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .component-label {
@@ -71,48 +82,10 @@
   border: 1px solid $cnw_color-blueLight;
   box-shadow: -1px -1px 17px 1px rgba(212, 212, 212, 1);
 
-  .inner-preview-rendering {
-    display: none;
-
-  }
   &.component--preview-throbber {
-    background-color: rgba(#6baf3a, 0.1);
-    overflow:hidden;
-    height: 100%;
-    &::after {
-      content: '';
-      position: absolute;
-      top:0;
-      left: 0;
-      height: 500%;
-      width: 100%;
-      border: 1px solid #6baf3a;
-      background-color: rgba(#6baf3a, 0.5);
-      animation: bg-pulse 0.8s infinite normal;
-      z-index: 100;
-      opacity: 0.4;
-     cursor: progress;
 
-    }
-
-    .inner-preview-rendering {
-      display: block;
-      position: absolute;
-      width: 100%;
-      padding: 10px;
-      top: 0;
-      margin: 0 auto;
-      background-color: #6baf3a;
-      z-index: 102;
-      color: white;
-      .fa {
-        color: white;
-        margin-right: 20px;
-      }
-      span {
-
-        font-size: 1.2em;
-      }
+    .actions-bar {
+      display: none;
     }
 
   }
@@ -175,7 +148,7 @@
 
   position: fixed !important;
   box-shadow: -1px -1px 17px 1px #d4d4d4;
-  top: 56px;
+  top: 52px;
   left: 0;
   z-index: 40;
   width: 70%;

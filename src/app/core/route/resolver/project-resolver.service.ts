@@ -22,8 +22,14 @@ export class ProjectResolver implements Resolve<Object> {
 
     return this.projectService.getProject(id).map(project => {
       return project;
-    }).catch(() => {
-      this.router.navigate(['/']);
+    }).catch(e => {
+      if (e.status === 403) {
+          this.router.navigate(['/project-no-access']);
+      }
+      else {
+          this.router.navigate(['']);
+      }
+
       return Observable.of(false);
     });
   }

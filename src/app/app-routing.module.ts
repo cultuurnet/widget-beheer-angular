@@ -1,9 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PageNotFoundComponent } from './not-found.component';
+import { PageNotFoundComponent } from './core/route/components/not-found.component';
+import { ProjectNoAccessComponent } from './core/route/components/project-no-access.component';
 
 const routes: Routes = [
-  { path: '**', component: PageNotFoundComponent }
+  {
+    path: 'project-no-access',
+    component: ProjectNoAccessComponent,
+  },
+  {
+      path: '**',
+      component: PageNotFoundComponent
+  }
 ];
 
 @NgModule({

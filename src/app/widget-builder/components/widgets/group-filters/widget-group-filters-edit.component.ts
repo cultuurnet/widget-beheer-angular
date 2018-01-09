@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { group_filter_types } from 'app/widget-builder/constants/group-filters';
 import { Widget } from '../../../../core/widget/widget';
+import { TranslateService } from "@ngx-translate/core";
 
 /**
  * Widget group filters edit component.
@@ -62,7 +63,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   /**
    * WidgetGroupFiltersFilterEditComponent constructor
    */
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private translateService: TranslateService) {
   }
 
   /**
@@ -75,6 +76,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
     // Subscribe to changes in the form and reflect them on the widget groupFilters model
     this.formSubscription = this.groupFilterForm.valueChanges.subscribe(values => {
       for (const key in values) {
+
         if (values.hasOwnProperty(key)) {
           this.groupFilters[key] = values[key];
         }
@@ -115,7 +117,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
 
     // Add an empty option if needed
     if (!items.length) {
-      items.push(this.buildGroupFilterItem());
+      items.push(this.buildGroupFilterItem('', this.translateService.instant('GROUP_FILTERS_DEFAULT_LABEL')));
     }
 
     // Initialize the form
@@ -191,8 +193,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    */
   public addGroupFilterItem() {
     const control = <FormArray>this.groupFilterForm.controls['filters'];
-    control.push(this.buildGroupFilterItem(this.type));
-    console.log(control);
+    control.push(this.buildGroupFilterItem(this.type, this.translateService.instant('GROUP_FILTERS_DEFAULT_LABEL')));
   }
 
   /**
@@ -200,7 +201,6 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    */
   public addGroupFilterOptionItem(formArray: FormArray) {
     formArray.push(this.buildFilterOptionItem());
-    console.log(formArray);
   }
 
   /**

@@ -1,3 +1,17 @@
+.main-nav {
+  background-color: $gray-lightest;
+  border: 1px solid $gray-lighter;
+  border-width: 0 0 1px;
+  float: left;
+  width: 100%;
+  & > .container {
+
+    padding: 0;
+    width: 100%;
+    border: 0;
+  }
+}
+
 .topnav-acties {
   margin-right: 1rem;
   a, .btn {
@@ -26,13 +40,16 @@
 }
 
 .page-actions .hide-on-tablet {
-  @media (max-width: 1251px) 
-  {
+  @media (max-width: 1251px) {
     display: none;
   }
 }
 
-.page-title  {
+.btn-help {
+  margin-left: 5px;
+}
+
+.page-title-edit {
 
   h4 {
     float: left;
@@ -50,43 +67,61 @@
     }
   }
 
-
-  .btn {
-    color: #FFF;
-
-    border-radius: 50%;
-    background-color: #b6c4d0;
-    padding: 2px;
-    margin: 5px;
-    border: 0px;
-    margin-left: 15px;
-    width: 1.6rem;
-    height: 1.6rem;
+  .page-title  {
 
 
-    &:hover {
-      box-shadow: 1px 1px 1px 1px #d4d4d4;
-      cursor: pointer;
+    .btn {
+      color: #FFF;
 
+      border-radius: 50%;
+      background-color: #b6c4d0;
+      padding: 2px;
+      margin: 5px;
+      border: 0px;
+      margin-left: 15px;
+      width: 1.6rem;
+      height: 1.6rem;
+
+
+      &:hover {
+        box-shadow: 1px 1px 1px 1px #d4d4d4;
+        cursor: pointer;
+
+      }
+      .fa {
+        color: white;}
     }
-    .fa {
-      color: white;}
   }
+
 }
 
+.builder--edit-modus .btn--css {
+  opacity: 0.2;
+}
 
+app-widgetbuilder-toolbar {
+  width: 100%;
+  display: block;
+}
 
-  .fixed-top {
-    box-shadow: 0px 4px 0px 0px rgba(213, 226, 236, 0.69);
+.device-switcher {
+  text-align: center;
+  margin-right: 30px;
+
+  .btn--device-switcher {
+    width: 44px;
+    color: #333;
+    background-color: $white;
+    border-color: #adadad;
+    &.active {
+      background-color: $gray-lighter;
+    }
+  }
+  span {
+    display: none;
   }
 
-
-
-  .builder--edit-modus .btn--css {
-    opacity: 0.2;
+  span {
+    display: none;
   }
-
-  app-widgetbuilder-toolbar {
-    width: 100%;
-    display: block;
-  }
+}

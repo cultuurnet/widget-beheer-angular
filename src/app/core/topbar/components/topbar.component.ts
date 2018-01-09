@@ -147,6 +147,13 @@ export class TopbarComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * Redirect the user to zendesk.
+   */
+  public goToZendesk() {
+      window.open(environment.zendeskUrl, '_blank');
+  }
+
+  /**
    * Clear all dynamic components
    */
   private clearDynamicComponents() {
