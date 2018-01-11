@@ -9,7 +9,7 @@
 </ng-template>
 
 <div class="row" *ngIf="widgetPage">
-  <div class="col-xl-5 col-7 page-title-col">
+  <div class="col-6 col-md-4 page-title-col">
     <div class="page-title-edit" *ngIf="!sidebar">
       <div *ngIf="!editingTitle">
         <span class="page-title"><h4>{{ title }} </h4><a (click)="toggleTitleEditMode()" class="btn btn-pagetitle--edit"> <i class="fa fa-pencil"></i></a></span>
@@ -30,9 +30,9 @@
       </div>
     </div>
   </div>
-  <div class="col-2 hidden-lg-down">
-    <div class="switcher" *ngIf="!sidebar">
-      <div class="device-switcher ">
+  <div>
+    <div class="switcher col-4 hidden-lg-down" *ngIf="!sidebar">
+      <div class="device-switcher">
         <div class="btn-group">
           <button *ngFor="let viewMode of viewModes" type="button" class="btn btn-default navbar-btn btn--device-switcher" (click)="toggleViewMode($event, viewMode.type)" [ngClass]="{'active': activeViewMode === viewMode.type}">
             <i class="fa fa-{{ viewMode.type }}" aria-hidden="true"></i>
@@ -41,14 +41,14 @@
         </div>
       </div>
     </div>
-    <div class="edit-actions" *ngIf="sidebar">
+    <div class="edit-actions col-2" *ngIf="sidebar">
       <button  class="btn btn-default navbar-btn btn--stop-editing  nav-link" (click)="closeSidebar()" >
         <i [ngClass]="{'fa-floppy-o': !isSavingDraft, 'fa-spinner fa-spin': isSavingDraft}" class="fa" aria-hidden="true"></i>
         {{ "BUTTON_WIDGET_BUILDER_TOOLBAR_STOP_EDITING" | translate }}
       </button>
     </div>
   </div>
-  <div class="col-5">
+  <div class="col-7 col-md-5">
     <div class="page-actions" *ngIf="!sidebar" style="float:right;">
       <button class="btn btn-default btn-secondary" (click)="editCss()"><i class="fa fa-paint-brush" aria-hidden="true"></i><span class="hidden-lg-down"> {{ "TOPBAR_CSS_BUTTON" | translate }}</span></button>
       <button *ngIf="widgetPage.draft" class="btn btn-default btn-secondary" (click)="revertDraft()"><i class="fa fa-undo" aria-hidden="true"></i> <span class="hidden-lg-down">{{ "TOPBAR_REVERT_BUTTON" | translate }}</span></button>

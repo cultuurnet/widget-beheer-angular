@@ -93,6 +93,12 @@ app-widgetbuilder-toolbar {
   display: block;
 }
 
+.switcher {
+  @media (max-width: 1400px) {
+    display: none;
+  }
+}
+
 .device-switcher {
   text-align: center;
   margin-right: 30px;
