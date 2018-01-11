@@ -51,7 +51,7 @@ export class AgendaPageTemplate implements PageTemplate {
                 'type': 'html',
                 'settings': {
                   'content': {
-                    'body': "<a href='http://www.uitinvlaanderen.be' target='_blank'><img border='0' class='cultuurnet-logo-uiv' src='//udb2-media.imgix.net/static/uiv_btn_tips.png' alt='Meer tips op UiTinVlaanderen.be' /></a>"
+                    'body': "<a class='cultuurnet-logo-uiv-link' href='http://www.uitinvlaanderen.be' target='_blank'><img border='0' class='cultuurnet-logo-uiv' src='//udb2-media.imgix.net/static/uiv_btn_tips.png' alt='Meer tips op UiTinVlaanderen.be' /></a>"
                   }
                 }
               }
