@@ -229,4 +229,11 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Handle a status update of group filters.
+   */
+  public handleStatusUpdate(event: any) {
+    this.groupFiltersChanged.emit();
+  }
+
 }

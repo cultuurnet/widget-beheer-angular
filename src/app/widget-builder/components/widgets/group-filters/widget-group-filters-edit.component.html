@@ -1,7 +1,7 @@
 <div class="widget-group-filters-edit">
 <form [formGroup]="groupFilterForm" novalidate >
     <label>
-        <input type="checkbox" formControlName="enabled"> <span>{{ "LABEL_CHECKBOX_EXTRA_GROUP_FILTERS" | translate }}</span>
+        <input type="checkbox" formControlName="enabled" (change)="handleStatusUpdate($event)"> <span>{{ "LABEL_CHECKBOX_EXTRA_GROUP_FILTERS" | translate }}</span>
     </label>
     <fieldset *ngIf="groupFilters.enabled">
         <legend>{{ "LABEL_GROUP_FILTERS_GROUPS" | translate }}</legend>
