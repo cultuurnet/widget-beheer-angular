@@ -42,9 +42,10 @@
 .page-title-edit {
 
   h4 {
+    margin-bottom: 0;
     float: left;
     font-weight: 300;
-    line-height: 1.9rem;
+    line-height: 2.2rem;
     @include media-breakpoint-down(lg) {
       font-size: 1rem;
     //line-height: 1rem;
