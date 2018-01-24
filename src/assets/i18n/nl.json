@@ -19,7 +19,7 @@
   "LABEL_GROUP_FILTER_OPTION_LABEL_INFO": "bv. Gent, 2000",
   "LABEL_GROUP_FILTER_OPTION_QUERY_INFO": "bv. zip=9000",
   "LABEL_GROUP_FILTER_DEFAULT_OPTION": "Standaardkeuze",
-  "GROUP_FILTERS_DEFAULT_LABEL": "Extra groep",
+  "GROUP_FILTERS_DEFAULT_LABEL": "Extra opties",
   "GROUP_FILTER_REMOVE_MODAL_TITLE": "Groep verwijderen",
   "GROUP_FILTER_REMOVE_MODAL_MESSAGE": "Ben je zeker dat je deze groep en de bijhorende filters wilt verwijderen?",
   "GROUP_FILTER_OPTION_REMOVE_MODAL_TITLE": "Filter verwijderen",
