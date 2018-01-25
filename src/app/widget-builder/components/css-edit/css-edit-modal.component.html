@@ -37,7 +37,7 @@
         <div *ngIf="cssStats" class="col-sm-4 state-results">
             <h3>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_TITLE" | translate }}</h3>
             <p *ngIf="cssStats.colors.length || cssStats.font_families.length">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_FOUND_STYLES_DESCRIPTION" | translate }} "{{ getCleanOriginUrl(cssStats.origin) }}" </p>
-            <button class="btn btn-info btn-sm" (click)="resetScrapedStyles()">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL" | translate }}</button>
+            <button class="btn btn-secondary" (click)="resetScrapedStyles()">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL" | translate }}</button>
             <p *ngIf="!cssStats.colors.length && !cssStats.font_families.length">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_NO_FOUND_STYLES_DESCRIPTION" | translate }} "{{ getCleanOriginUrl(cssStats.origin) }}" (<button class="btn btn-link" (click)="resetScrapedStyles()">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL" | translate }}</button>)</p>
             <section class="styleresults">
                 <section *ngIf="cssStats.colors.length">

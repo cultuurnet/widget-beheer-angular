@@ -46,8 +46,8 @@
     float: left;
     font-weight: 300;
     line-height: 2.2rem;
+    font-size: 1rem;
     @include media-breakpoint-down(lg) {
-      font-size: 1rem;
     //line-height: 1rem;
       max-width: 100%;
       overflow: hidden;
