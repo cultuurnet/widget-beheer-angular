@@ -110,7 +110,7 @@ export class PageListComponent implements OnInit {
       this.widgetService.deleteWidgetPage(widgetPage).subscribe(() => {
         // Remove the widget from the corresponding array, so the model gets updated
         let widgetPages = this.widgetPages;
-        if (widgetPage.version < environment.widgetApi.currentVersion) {
+        if (widgetPage.version < Number(environment.widgetApi_currentVersion)) {
           widgetPages = this.legacyWidgetPages;
         }
 
@@ -183,7 +183,7 @@ export class PageListComponent implements OnInit {
     // Separate legacy and current widgets
     for (const widgetPage of widgetPages) {
 
-      if (widgetPage.version >= environment.widgetApi.currentVersion) {
+      if (widgetPage.version >= Number(environment.widgetApi_currentVersion)) {
         this.widgetPages.push(widgetPage);
       } else {
         this.legacyWidgetPages.push(widgetPage);

@@ -273,10 +273,10 @@ export class WidgetService {
    *  Force the embed url to the current version
    */
   public getWidgetPageEmbedUrl(widgetPage: WidgetPage, scriptTags: boolean = false, forceCurrentVersion: boolean = false): string {
-    let embedUrl = environment.widgetApi.embedUrl.current;
+    let embedUrl = environment.widgetApi_embedUrl_current;
 
-    if (widgetPage.version !== environment.widgetApi.currentVersion && forceCurrentVersion) {
-      embedUrl = environment.widgetApi.embedUrl.force_current;
+    if (widgetPage.version !== Number(environment.widgetApi_currentVersion) && forceCurrentVersion) {
+      embedUrl = environment.widgetApi_embedUrl_forceCurrent;
     }
 
     // Replace the :page_id placeholder
