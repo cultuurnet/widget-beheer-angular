@@ -60,6 +60,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    */
   private formSubscription: Subscription;
 
+
   /**
    * WidgetGroupFiltersFilterEditComponent constructor
    */
