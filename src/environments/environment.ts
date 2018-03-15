@@ -5,14 +5,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://projectaanvraag-api.dev/',
-  widgetApi: {
-    currentVersion: 3,
-    embedUrl: {
-      current: 'http://projectaanvraag-api.dev/widgets/layout/:page_id.js',
-      force_current: 'http://projectaanvraag-api.dev/widgets/layout/v3/:page_id.js',
-    }
-  },
-  projectaanvraagDashboardUrl: 'http://projectaanvraag.dev/',
+  apiUrl: 'http://projectaanvraag-api.loc/',
+  widgetApi_currentVersion: 3,
+  widgetApi_embedUrl_current: 'http://projectaanvraag-api.loc/widgets/layout/:page_id.js',
+  widgetApi_embedUrl_forceCurrent: 'http://projectaanvraag-api.loc/widgets/layout/v3/:page_id.js',
+  projectaanvraagDashboardUrl: 'http://projectaanvraag.loc/',
   zendeskUrl: 'http://www.zendesk.com'
 };
