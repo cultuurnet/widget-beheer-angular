@@ -58,6 +58,10 @@
 
 .builder--edit-modus {
 
+  .builder--wrapper {
+    overflow: hidden;
+  }
+
   .lg .selected .inner-preview-wrapper {
     width: 100%;
   }
