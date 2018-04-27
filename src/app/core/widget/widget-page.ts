@@ -33,6 +33,16 @@ export class WidgetPage {
   public css: string;
 
   /**
+  * The widget page mobile setting
+  */
+  public mobile: boolean;
+
+  /**
+  * The widget page jquery setting
+  */
+  public jquery: boolean;
+
+  /**
    * Widget page draft state
    */
   public draft: boolean;

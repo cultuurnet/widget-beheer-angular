@@ -16,9 +16,19 @@
         <div class="card-header">
           <h3 class="float-left card-header--title" >{{ widgetPage.title }}</h3>
           <div class="float-right">
-            <button [routerLink]="['/project', project.id, 'page', widgetPage.id, 'edit']" class="btn btn-secondary "><i class="fa fa-pencil" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_EDIT_WIDGET_BUTTON" | translate }}</button>
-            <button (click)="duplicateWidgetPage(widgetPage)" class="btn btn-link"><i class="fa fa-files-o" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_DUPLICATE_WIDGET_BUTTON" | translate }}</button>
-            <button (click)="deleteWidgetPage(widgetPage)" class="btn btn-link btn-link--remove"><i class="fa fa-trash-o" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_DELETE_WIDGET_BUTTON" | translate }}</button>
+
+            <div class="btn-group">
+              <button [routerLink]="['/project', project.id, 'page', widgetPage.id, 'edit']" class="btn btn-secondary "><i class="fa fa-pencil" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_EDIT_WIDGET_BUTTON" | translate }}</button>
+              <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                <button class="btn btn-secondary dropdown-toggle-split" ngbDropdownToggle></button>
+                <div class="dropdown-menu" ngbDropdownMenu>
+                  <button (click)="duplicateWidgetPage(widgetPage)" class="dropdown-item"><i class="fa fa-files-o" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_DUPLICATE_WIDGET_BUTTON" | translate }}</button>
+                  <button (click)="adminWidgetPage(widgetPage)" class="dropdown-item"><i class="fa fa-cog" aria-hidden="true"></i> Geavanceerd</button>
+                  <button (click)="deleteWidgetPage(widgetPage)" class="dropdown-item"><i class="fa fa-trash-o" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_DELETE_WIDGET_BUTTON" | translate }}</button>
+                </div>
+              </div>
+            </div>
+
           </div>
 
         </div>
