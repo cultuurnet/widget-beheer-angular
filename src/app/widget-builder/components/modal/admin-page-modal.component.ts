@@ -18,8 +18,14 @@ export class AdminPageModalComponent implements OnInit {
    */
   public adminPageForm: FormGroup;
 
+    /**
+     * Indicates if the widget is being saved
+     * @type {boolean}
+     */
+    public isSaving = false;
+
   /**
-   * The widgetpage that was published
+   * The widgetpage that was modified
    */
   public widgetPage: WidgetPage;
 
@@ -51,6 +57,8 @@ export class AdminPageModalComponent implements OnInit {
   }
 
   public save() {
+    this.isSaving = true;
+
 
     // Apply the css to the widgetpage model
     this.widgetPage.mobile = this.adminPageForm.controls.mobile.value;
@@ -60,7 +68,7 @@ export class AdminPageModalComponent implements OnInit {
     this.widgetService.saveWidgetPage(this.widgetPage).subscribe(() => {
       this.activeModal.close(true);
       }, () => {
-        //
+        this.isSaving = false;
     });
   }
 
