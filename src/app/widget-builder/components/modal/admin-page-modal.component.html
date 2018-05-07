@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h4 class="modal-title">Geavanceerde instellingen</h4>
+    <button type="button" class="close" (click)="activeModal.dismiss('closed')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+  <p>Gebruik deze instellingen enkel bij problemen bij het inladen van de widget op je pagina.</p>
+
+  <form [formGroup]="adminPageForm" novalidate>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input name="mobile" class="form-check-input" formControlName="mobile" type="checkbox" />
+        <span>Forceer smalle weergave</span>
+      </label>
+    </div>
+
+    <div class="form-check">
+      <label class="form-check-label">
+        <input name="jquery" class="form-check-input" formControlName="jquery" type="checkbox" />
+        <span>jQuery niet inladen</span>
+      </label>
+    </div>
+  </form>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="save()" [disabled]="publishing"><i *ngIf="publishing" class="fa fa-spinner" aria-hidden="true"></i> {{ "WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_SAVE" | translate }}</button>
+</div>

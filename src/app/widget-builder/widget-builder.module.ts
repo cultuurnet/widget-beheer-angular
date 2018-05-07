@@ -30,6 +30,7 @@ import { TemplatePreviewModalComponent } from './components/add-page/preview/tem
 import { PageListComponent } from './components/page-list/page-list.component';
 import { CoreModule } from '../core/core.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { AdminPageModalComponent } from './components/modal/admin-page-modal.component';
 import { PublishPageConfirmationModalComponent } from './components/modal/publish-page-confirmation-modal.component';
 import { JsonEditComponent } from './components/json-edit/json-edit.component';
 import { JsonEditModalComponent } from './components/json-edit/json-edit-modal.component';
@@ -60,6 +61,7 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     TemplatePreviewModalComponent,
     PageListComponent,
     ToolbarComponent,
+    AdminPageModalComponent,
     PublishPageConfirmationModalComponent,
     JsonEditComponent,
     JsonEditModalComponent,
@@ -100,7 +102,8 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     ToolbarComponent,
     PublishPageConfirmationModalComponent,
     JsonEditModalComponent,
-    CssEditModalComponent
+    CssEditModalComponent,
+    AdminPageModalComponent
   ]
 })
 

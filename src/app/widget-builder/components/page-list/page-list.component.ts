@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WidgetPage } from '../../../core/widget/widget-page';
 import * as _ from 'lodash';
@@ -6,6 +6,7 @@ import { WidgetService } from '../../../core/widget/services/widget.service';
 import { Project } from '../../../core/project/project';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from 'app/core/modal/components/confirmation-modal.component';
+import { AdminPageModalComponent } from '../modal/admin-page-modal.component';
 import { ToastyService } from 'ng2-toasty';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
@@ -21,6 +22,11 @@ import { BackButton } from 'app/core/topbar/back-button';
   templateUrl: './page-list.component.html',
 })
 export class PageListComponent implements OnInit {
+
+  /**
+   * The widget page to edit
+   */
+  @Input() widgetPage: WidgetPage;
 
   /**
    * Array containing all widget pages with the latest version
@@ -126,6 +132,26 @@ export class PageListComponent implements OnInit {
     }, (reason) => {
       // Do nothing on modal close
     });
+  }
+
+  /**
+   * Admins a widget page
+   * @param widgetPage
+   */
+  public adminWidgetPage(widgetPage: WidgetPage) {
+    const modal = this.modalService.open(AdminPageModalComponent, {
+      backdrop: 'static',
+      keyboard: false
+    });
+
+    const modalInstance = modal.componentInstance;
+    modalInstance.widgetPage = widgetPage;
+
+    modal.result.then((result) => {
+      if (result) {
+        this.toastyService.success("De instellingen zijn bewaard.");
+      }
+    }, () => {});
   }
 
   /**
