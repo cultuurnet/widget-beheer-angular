@@ -128,6 +128,20 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="edit-searchfilters--selectgroup" formGroupName="audience">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>Toegang</span>
+                                </label>
+                                <div *ngIf="settings.items.audience.enabled">
+                                    <div class="form-group">
+                                        <label>Label</label>
+                                        <input class="form-control"  type="text" formControlName="label">
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="edit-searchfilters--selectgroup" formGroupName="language_icons">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
@@ -401,10 +415,16 @@
                     <ngb-panel id="extra_parameters">
                         <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_PANEL_TITLE_EXTRA_PARAMETERS" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
-                            <div class="edit-searchfilters--selectgroup form-group" formGroupName="search_params">
-                                <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_QUERY" | translate }}</label>
-                                <textarea class="form-control" rows="3" formControlName="query"></textarea>
-                                <small class="form-text text-muted">{{ "SAPI_EXAMPLE_QUERY" | translate }}. {{ "SAPI3_SYNTAX" | translate }}<br/><a href='{{ "SAPI3_DOC_URL" | translate }}' target='_blank'>{{ "SAPI3_DOC_LINK" | translate }} </a></small>
+                            <div class="edit-searchfilters--selectgroup" formGroupName="search_params">
+                                <div class="form-group">
+                                  <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_QUERY" | translate }}</label>
+                                  <textarea class="form-control" rows="3" formControlName="query"></textarea>
+                                  <small class="form-text text-muted">{{ "SAPI_EXAMPLE_QUERY" | translate }}. {{ "SAPI3_SYNTAX" | translate }}<br/><a href='{{ "SAPI3_DOC_URL" | translate }}' target='_blank'>{{ "SAPI3_DOC_LINK" | translate }} </a></small>
+                                </div>
+                                <div class="form-group">
+                                  <input type="checkbox" formControlName="private">
+                                  <span>Doorzoek ook ledenaanbod</span>
+                                </div>
                             </div>
                         </ng-template>
                     </ngb-panel>

@@ -85,6 +85,10 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'items.age.enabled', '')],
           label: [_.get(this.widget.settings, 'items.age.label', '')]
         }),
+        audience: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.audience.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.audience.label', '')]
+        }),
         language_icons: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.language_icons.enabled', '')]
         }),
@@ -146,6 +150,10 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'detail_page.age.enabled', '')],
           label: [_.get(this.widget.settings, 'detail_page.age.label', '')]
         }),
+        audience: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.audience.enabled', '')],
+          label: [_.get(this.widget.settings, 'detail_page.audience.label', '')]
+        }),
         language_icons: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.language_icons.enabled', '')]
         }),
@@ -165,7 +173,8 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         }),
       }),
       search_params: this.formBuilder.group({
-        query: [_.get(this.widget.settings, 'search_params.query', '')]
+        query: [_.get(this.widget.settings, 'search_params.query', '')],
+        private: [_.get(this.widget.settings, 'search_params.private', false)],
       }),
       footer: this.formBuilder.group({
         body: [_.get(this.settings, 'footer.body', '')]
