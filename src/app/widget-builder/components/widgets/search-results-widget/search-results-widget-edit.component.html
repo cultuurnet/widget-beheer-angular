@@ -132,11 +132,11 @@
                             <div class="edit-searchfilters--selectgroup" formGroupName="audience">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
-                                    <span>Toegang</span>
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_AUDIENCE" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.items.audience.enabled">
                                     <div class="form-group">
-                                        <label>Label</label>
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_AUDIENCE_LABEL" | translate }}</label>
                                         <input class="form-control"  type="text" formControlName="label">
                                     </div>
                                 </div>
@@ -358,6 +358,20 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div class="edit-searchfilters--selectgroup" formGroupName="audience">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_AUDIENCE" | translate }}</span>
+                                </label>
+                                <div *ngIf="settings.detail_page.audience.enabled">
+                                    <div class="form-group">
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_AUDIENCE_LABEL" | translate }}</label>
+                                        <input class="form-control"  type="text" formControlName="label">
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="edit-searchfilters--selectgroup" formGroupName="language_icons">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
