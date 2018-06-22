@@ -436,8 +436,10 @@
                                   <small class="form-text text-muted">{{ "SAPI_EXAMPLE_QUERY" | translate }}. {{ "SAPI3_SYNTAX" | translate }}<br/><a href='{{ "SAPI3_DOC_URL" | translate }}' target='_blank'>{{ "SAPI3_DOC_LINK" | translate }} </a></small>
                                 </div>
                                 <div class="form-group">
-                                  <input type="checkbox" formControlName="private">
-                                  <span>Doorzoek ook ledenaanbod</span>
+                                  <label>
+                                    <input type="checkbox" formControlName="private">
+                                    <span>Doorzoek ook ledenaanbod</span>
+                                  </label>
                                 </div>
                             </div>
                         </ng-template>
