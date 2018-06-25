@@ -194,6 +194,20 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="edit-searchfilters--selectgroup" formGroupName="facilities">
+                              <label>
+                                <input type="checkbox" formControlName="enabled">
+                                <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_FACILITIES" | translate }}</span>
+                              </label>
+                              <div *ngIf="settings.items.facilities.enabled">
+                                <div class="form-group">
+                                  <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_FACILITIES_LABEL" | translate }}</label>
+                                  <input class="form-control"  type="text" formControlName="label">
+                                </div>
+                              </div>
+                            </div>
+
                             <div class="edit-searchfilters--selectgroup" formGroupName="read_more">
                                 <div class="form-group">
                                     <label>
@@ -358,7 +372,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="edit-searchfilters--selectgroup" formGroupName="audience">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
@@ -371,7 +385,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="edit-searchfilters--selectgroup" formGroupName="language_icons">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
