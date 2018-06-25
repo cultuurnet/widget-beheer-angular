@@ -438,6 +438,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="edit-searchfilters--selectgroup" formGroupName="facilities">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_FACILITIES" | translate }}</span>
+                                </label>
+                                <div *ngIf="settings.detail_page.facilities.enabled">
+                                    <div class="form-group">
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_FACILITIES_LABEL" | translate }}</label>
+                                        <input class="form-control"  type="text" formControlName="label">
+                                    </div>
+                                </div>
+                            </div>
                         </ng-template>
                     </ngb-panel>
                     <ngb-panel id="extra_parameters">

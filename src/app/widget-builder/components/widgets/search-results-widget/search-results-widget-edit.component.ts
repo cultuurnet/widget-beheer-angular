@@ -175,6 +175,10 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
             labels: [_.get(this.widget.settings, 'detail_page.limit_labels.labels', '')]
           }),
         }),
+        facilities: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.facilities.enabled', '')],
+          label: [_.get(this.widget.settings, 'detail_page.facilities.label', '')]
+        }),
       }),
       search_params: this.formBuilder.group({
         query: [_.get(this.widget.settings, 'search_params.query', '')],
