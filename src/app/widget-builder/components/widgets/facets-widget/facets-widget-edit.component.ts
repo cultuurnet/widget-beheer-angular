@@ -38,6 +38,7 @@ export class FacetsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
         what: [_.get(this.settings, 'filters.what', false)],
         where: [_.get(this.settings, 'filters.where', false)],
         when: [_.get(this.settings, 'filters.when', false)],
+        facilities: [_.get(this.settings, 'filters.facilities', false)],
       }),
     });
   }
