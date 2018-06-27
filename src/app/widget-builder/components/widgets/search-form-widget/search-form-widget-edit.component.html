@@ -193,9 +193,10 @@
                     <ngb-panel id="extra">
                         <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_EXTRA_OPTIONS" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
-                            <fieldset *ngIf="settings.fields.extra.group_filters">
+                            <fieldset *ngIf="settings.fields.extra.group_filters || settings.fields.extra.facility_filters">
                                 <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
                                 <app-widget-group-filters-edit (groupFiltersChanged)="handleGroupFiltersChanged()" [groupFilters]="settings.fields.extra.group_filters"></app-widget-group-filters-edit>
+                                <app-widget-facility-filters-edit (facilityFiltersChanged)="handleGroupFiltersChanged()" [facilityFilters]="settings.fields.extra.facility_filters"></app-widget-facility-filters-edit>
                             </fieldset>
                         </ng-template>
                     </ngb-panel>
