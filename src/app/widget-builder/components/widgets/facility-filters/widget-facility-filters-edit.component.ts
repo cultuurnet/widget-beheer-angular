@@ -102,7 +102,6 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
    */
   public buildForm() {
     const items = [];
-    console.log(this.facilityFilters);
 
     // Create the facility edit form components for the facility filters already on the model
     if (this.facilityFilters.hasOwnProperty('filters')) {
