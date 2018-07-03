@@ -18,7 +18,7 @@
   "LABEL_GROUP_FILTER_OPTION_LABEL": "Label",
   "LABEL_GROUP_FILTER_OPTION_QUERY": "Query",
   "LABEL_GROUP_FILTER_OPTION_LABEL_INFO": "bv. Gent, 2000",
-  "LABEL_GROUP_FILTER_OPTION_QUERY_INFO": "bv. address.*.postalCode:9000",
+  "LABEL_GROUP_FILTER_OPTION_QUERY_INFO": "bv. address.\*.postalCode:9000",
   "LABEL_GROUP_FILTER_DEFAULT_OPTION": "Standaardkeuze",
   "GROUP_FILTERS_DEFAULT_LABEL": "Extra opties",
   "GROUP_FILTER_REMOVE_MODAL_TITLE": "Groep verwijderen",
@@ -285,6 +285,6 @@
   "PAGE_NOT_FOUND_MESSAGE": "De opgevraagde pagina werd niet gevonden.",
   "SAPI3_SYNTAX": "Deze query stel je op aan de hand van Sapi3-syntax. Werk met 'Advanced Queries'.",
   "SAPI3_DOC_LINK": "Meer info",
-  "SAPI3_DOC_URL": "http://documentatie.uitdatabank.be/content/search_api_3/latest/",
+  "SAPI3_DOC_URL": "https://documentatie.uitdatabank.be/content/search_api_3/latest/start.html",
   "SAPI_EXAMPLE_QUERY": "Bv. terms.id:\"0.7.0.0.0\""
 }
