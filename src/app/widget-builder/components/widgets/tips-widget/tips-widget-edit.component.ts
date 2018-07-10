@@ -76,6 +76,10 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'items.age.enabled', '')],
           label: [_.get(this.widget.settings, 'items.age.label', '')]
         }),
+        audience: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.audience.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.audience.label', '')]
+        }),
         language_icons: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.language_icons.enabled', '')]
         }),
