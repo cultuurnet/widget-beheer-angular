@@ -22,6 +22,6 @@ export const ckeditorConfig = {
     removeButtons: 'Underline,Subscript,Superscript,Cut,Copy,PasteText,Paste,PasteFromWord,Scayt,Styles,Strike,RemoveFormat,Blockquote,Anchor,About,SpecialChar,HorizontalRule,Maximize',
     removeDialogFields: 'image:info:txtBorder;image:info:txtHSpace;image:info:txtVSpace;image:info:txtHSpace',
     image_previewText: ' ',
-    filebrowserUploadUrl: 'https://projectaanvraag-api-test.uitdatabank.be/upload/?type=Files'
+    filebrowserUploadUrl: 'https://widgetbeheer.uitdatabank.dev/upload'
   }
 };
