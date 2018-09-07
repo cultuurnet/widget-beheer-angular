@@ -441,6 +441,20 @@
                                     <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_PRIVATE" | translate }}</span>
                                   </label>
                                 </div>
+                                <div class="form-group">
+                                  <label>
+                                      <input type="radio" value="BE" name="country" formControlName="country">
+                                      <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_BE" | translate }}</span>
+                                  </label>
+                                  <label>
+                                      <input type="radio" value="NL" name="country" formControlName="country">
+                                      <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_NL" | translate }}</span>
+                                  </label>
+                                  <label>
+                                      <input type="radio" value="*" name="country" formControlName="country">
+                                      <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_ALL" | translate }}</span>
+                                  </label>
+                                </div>
                             </div>
                         </ng-template>
                     </ngb-panel>
