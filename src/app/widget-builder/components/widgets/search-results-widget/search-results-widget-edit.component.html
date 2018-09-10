@@ -436,24 +436,32 @@
                                   <small class="form-text text-muted">{{ "SAPI_EXAMPLE_QUERY" | translate }}. {{ "SAPI3_SYNTAX" | translate }}<br/><a href='{{ "SAPI3_DOC_URL" | translate }}' target='_blank'>{{ "SAPI3_DOC_LINK" | translate }} </a></small>
                                 </div>
                                 <div class="form-group">
-                                  <label>
-                                    <input type="checkbox" formControlName="private">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_PRIVATE" | translate }}</span>
-                                  </label>
+                                  <div class="form-check">
+                                    <label>
+                                      <input type="checkbox" formControlName="private">
+                                      <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_PRIVATE" | translate }}</span>
+                                    </label>
+                                  </div>
                                 </div>
                                 <div class="form-group">
-                                  <label>
-                                      <input type="radio" value="BE" name="country" formControlName="country">
-                                      <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_BE" | translate }}</span>
-                                  </label>
-                                  <label>
-                                      <input type="radio" value="NL" name="country" formControlName="country">
-                                      <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_NL" | translate }}</span>
-                                  </label>
-                                  <label>
-                                      <input type="radio" value="*" name="country" formControlName="country">
-                                      <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_ALL" | translate }}</span>
-                                  </label>
+                                  <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" value="BE" name="country" formControlName="country">
+                                        <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_BE" | translate }}</span>
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" value="NL" name="country" formControlName="country">
+                                        <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_NL" | translate }}</span>
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" value="*" name="country" formControlName="country">
+                                        <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_ALL" | translate }}</span>
+                                    </label>
+                                  </div>
                                 </div>
                             </div>
                         </ng-template>
