@@ -22,8 +22,9 @@
 .md-3 {
   width: 50%; }
 
-
-
+.tripple {
+  width: 33.33%;
+}
 
 .desktop {
   .preview-inner {
@@ -51,7 +52,8 @@
     .md-2,
     .sm-2,
     .xs-3,
-    .md-3 {
+    .md-3,
+    .tripple {
       width: 100%; }
   }
 
@@ -86,5 +88,3 @@
     margin: 0 auto;
   }
 }
-
-

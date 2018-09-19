@@ -19,6 +19,8 @@ import { TwoColSidebarRightayout } from './core/layout/layouts/2col-sidebar-righ
 import { TwoColSidebarRightLayoutComponent } from './widget-builder/components/layouts/2col-sidebar-right/2col-sidebar-right-layout.component';
 import { ThreeColDoubleSidebarLayout } from './core/layout/layouts/3col-double-sidebar/3col-double-sidebar.layout';
 import { ThreeColDoubleSidebarLayoutComponent } from './widget-builder/components/layouts/3col-double-sidebar/3col-double-sidebar-layout.component';
+import { ThreeColTrippleLayout } from './core/layout/layouts/3col-tripple/3col-tripple.layout';
+import { ThreeColTrippleLayoutComponent } from './widget-builder/components/layouts/3col-tripple/3col-tripple-layout.component';
 import { PageTemplateRegistry } from './core/template/services/page-template-registry.service';
 import { EmptyPageTemplate } from './core/template/page-templates/empty-page-template';
 import { HtmlWidget } from './core/widget/widgets/html-widget/html-widget.widget';
@@ -101,6 +103,7 @@ export class AppModule {
     layoutTypeRegistry.register('2col-sidebar-left', 'Two col sidebar left', TwoColSidebarLeftLayout, TwoColSidebarLeftLayoutComponent);
     layoutTypeRegistry.register('2col-sidebar-right', 'Two col sidebar right', TwoColSidebarRightayout, TwoColSidebarRightLayoutComponent);
     layoutTypeRegistry.register('3col-double-sidebar', 'Three col double sidebar', ThreeColDoubleSidebarLayout, ThreeColDoubleSidebarLayoutComponent);
+    layoutTypeRegistry.register('3col-tripple', 'Three col tripple', ThreeColTrippleLayout, ThreeColTrippleLayoutComponent);
 
     // Register page templates
     pageTemplateRegistry.register('empty', new EmptyPageTemplate());
