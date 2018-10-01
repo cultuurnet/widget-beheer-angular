@@ -175,6 +175,7 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
       search_params: this.formBuilder.group({
         query: [_.get(this.widget.settings, 'search_params.query', '')],
         private: [_.get(this.widget.settings, 'search_params.private', false)],
+        country: [_.get(this.widget.settings, 'search_params.country', 'BE')],
       }),
       footer: this.formBuilder.group({
         body: [_.get(this.settings, 'footer.body', '')]
