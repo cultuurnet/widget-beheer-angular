@@ -106,6 +106,10 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
             labels: [_.get(this.widget.settings, 'items.limit_labels.labels', '')]
           }),
         }),
+        facilities: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.facilities.enabled', '')],
+          label: [_.get(this.widget.settings, 'items.facilities.label', '')]
+        }),
         read_more: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.read_more.enabled', '')],
           label: [_.get(this.widget.settings, 'items.read_more.label', '')]
@@ -171,10 +175,15 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
             labels: [_.get(this.widget.settings, 'detail_page.limit_labels.labels', '')]
           }),
         }),
+        facilities: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.facilities.enabled', '')],
+          label: [_.get(this.widget.settings, 'detail_page.facilities.label', '')]
+        }),
       }),
       search_params: this.formBuilder.group({
         query: [_.get(this.widget.settings, 'search_params.query', '')],
         private: [_.get(this.widget.settings, 'search_params.private', false)],
+        country: [_.get(this.widget.settings, 'search_params.country', 'BE')],
       }),
       footer: this.formBuilder.group({
         body: [_.get(this.settings, 'footer.body', '')]
