@@ -6,6 +6,7 @@
   "REMOVE_ROW_DEFAULT_MODAL_TITLE": "Rij verwijderen",
   "REMOVE_ROW_DEFAULT_MODAL_MESSAGE": "Ben je zeker dat je deze rij definitief wilt verwijderen? Deze rij bevat mogelijks meerdere blokken. Je kan deze actie niet ongedaan maken.",
   "LABEL_CHECKBOX_EXTRA_GROUP_FILTERS": "Extra groepfilters",
+  "LABEL_CHECKBOX_EXTRA_FACILITY_FILTERS": "Toegankelijkheid",
   "LABEL_GROUP_FILTERS_GROUPS": "Groepen",
   "LABEL_GROUP_FILTER_LABEL": "Label",
   "LABEL_GROUP_FILTER_PLACEHOLDER": "Suggestie",

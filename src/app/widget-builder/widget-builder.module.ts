@@ -20,6 +20,7 @@ import { AddRowComponent } from './components/add-row/add-row.component';
 import { RowEditComponent } from './components/row-edit/row-edit.component';
 import { WidgetPreviewComponent } from './components/widgets/widget-preview.component';
 import { WidgetGroupFiltersEditComponent } from './components/widgets/group-filters/widget-group-filters-edit.component';
+import { WidgetFacilityFiltersEditComponent } from './components/widgets/facility-filters/widget-facility-filters-edit.component';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { HtmlWidgetWidgetEditComponent } from './components/widgets/html-widget/html-widget-edit.component';
 import { OneColLayoutComponent } from './components/layouts/one-col/one-col-layout.component';
@@ -56,6 +57,7 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     ThreeColTrippleLayoutComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
+    WidgetFacilityFiltersEditComponent,
     HtmlWidgetWidgetEditComponent,
     TipsWidgetWidgetEditComponent,
     FacetsWidgetWidgetEditComponent,
@@ -98,6 +100,7 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     OneColLayoutComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
+    WidgetFacilityFiltersEditComponent,
     HtmlWidgetWidgetEditComponent,
     TipsWidgetWidgetEditComponent,
     FacetsWidgetWidgetEditComponent,
