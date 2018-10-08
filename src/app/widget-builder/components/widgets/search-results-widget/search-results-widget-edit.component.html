@@ -194,6 +194,20 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="edit-searchfilters--selectgroup" formGroupName="facilities">
+                              <label>
+                                <input type="checkbox" formControlName="enabled">
+                                <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_FACILITIES" | translate }}</span>
+                              </label>
+                              <div *ngIf="settings.items.facilities.enabled">
+                                <div class="form-group">
+                                  <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_FACILITIES_LABEL" | translate }}</label>
+                                  <input class="form-control"  type="text" formControlName="label">
+                                </div>
+                              </div>
+                            </div>
+
                             <div class="edit-searchfilters--selectgroup" formGroupName="read_more">
                                 <div class="form-group">
                                     <label>
@@ -358,7 +372,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="edit-searchfilters--selectgroup" formGroupName="audience">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
@@ -371,7 +385,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="edit-searchfilters--selectgroup" formGroupName="language_icons">
                                 <label>
                                     <input type="checkbox" formControlName="enabled">
@@ -424,6 +438,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="edit-searchfilters--selectgroup" formGroupName="facilities">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_FACILITIES" | translate }}</span>
+                                </label>
+                                <div *ngIf="settings.detail_page.facilities.enabled">
+                                    <div class="form-group">
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_FACILITIES_LABEL" | translate }}</label>
+                                        <input class="form-control"  type="text" formControlName="label">
+                                    </div>
+                                </div>
+                            </div>
                         </ng-template>
                     </ngb-panel>
                     <ngb-panel id="extra_parameters">
@@ -436,10 +462,32 @@
                                   <small class="form-text text-muted">{{ "SAPI_EXAMPLE_QUERY" | translate }}. {{ "SAPI3_SYNTAX" | translate }}<br/><a href='{{ "SAPI3_DOC_URL" | translate }}' target='_blank'>{{ "SAPI3_DOC_LINK" | translate }} </a></small>
                                 </div>
                                 <div class="form-group">
-                                  <label>
-                                    <input type="checkbox" formControlName="private">
-                                    <span>Doorzoek ook ledenaanbod</span>
-                                  </label>
+                                  <div class="form-check">
+                                    <label>
+                                      <input type="checkbox" formControlName="private">
+                                      <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_PRIVATE" | translate }}</span>
+                                    </label>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" value="BE" name="country" formControlName="country">
+                                        <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_BE" | translate }}</span>
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" value="NL" name="country" formControlName="country">
+                                        <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_NL" | translate }}</span>
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" value="*" name="country" formControlName="country">
+                                        <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_ALL" | translate }}</span>
+                                    </label>
+                                  </div>
                                 </div>
                             </div>
                         </ng-template>

@@ -15,6 +15,7 @@ import { SearchFormWidgetEditComponent } from './components/widgets/search-form-
 import { SearchResultsWidgetEditComponent } from 'app/widget-builder/components/widgets/search-results-widget/search-results-widget-edit.component';
 import { TwoColSidebarRightLayoutComponent } from './components/layouts/2col-sidebar-right/2col-sidebar-right-layout.component';
 import { ThreeColDoubleSidebarLayoutComponent } from './components/layouts/3col-double-sidebar/3col-double-sidebar-layout.component';
+import { ThreeColTrippleLayoutComponent } from './components/layouts/3col-tripple/3col-tripple-layout.component';
 import { AddRowComponent } from './components/add-row/add-row.component';
 import { RowEditComponent } from './components/row-edit/row-edit.component';
 import { WidgetPreviewComponent } from './components/widgets/widget-preview.component';
@@ -53,6 +54,7 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     TwoColSidebarLeftLayoutComponent,
     TwoColSidebarRightLayoutComponent,
     ThreeColDoubleSidebarLayoutComponent,
+    ThreeColTrippleLayoutComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
     WidgetFacilityFiltersEditComponent,
@@ -94,6 +96,7 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     TwoColSidebarLeftLayoutComponent,
     TwoColSidebarRightLayoutComponent,
     ThreeColDoubleSidebarLayoutComponent,
+    ThreeColTrippleLayoutComponent,
     OneColLayoutComponent,
     WidgetPreviewComponent,
     WidgetGroupFiltersEditComponent,
