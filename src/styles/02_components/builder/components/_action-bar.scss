@@ -33,6 +33,19 @@
   padding: 0;
 }
 
+.widget-group-filters-edit .actions-bar {
+  background-color: #ededed;
+}
+
+.widget-group-filters-group-edit {
+  border: 1px solid #ededed;
+  padding: 5px;
+
+  .actions-bar {
+    background-color: #ccc;
+  }
+}
+
 .widget-group-filters-group-edit .actions-list {
   float: right;
   width: 75%;
