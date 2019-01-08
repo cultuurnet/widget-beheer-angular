@@ -57,13 +57,16 @@ export class WidgetTypeRegistry {
 
       if (this.widgetTypes.hasOwnProperty(type)) {
         // Return an instance of the requested Widget type with default settings if no settings are provided
-        const defaultSettings = this.widgetTypes[type].defaultSettings;
-
+        const settings = values.hasOwnProperty('settings') ? _.get(values, 'settings') : deepmerge.all([
+            this.widgetTypes[type].defaultSettings, 
+            _.get(values, 'settings', {})
+        ], {clone: true});
+        
         return new this.widgetTypes[type].widget({
           id: _.get(values, 'id'),
           name: _.get(values, 'name'),
           type: type,
-          settings: deepmerge.all([defaultSettings, _.get(values, 'settings', {})], {clone: true})
+          settings: settings,
         });
       }
     }
