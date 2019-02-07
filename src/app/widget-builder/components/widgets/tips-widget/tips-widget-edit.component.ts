@@ -104,7 +104,8 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
       }),
       search_params: this.formBuilder.group({
         query: [_.get(this.widget.settings, 'search_params.query', '')],
-        private: [_.get(this.widget.settings, 'search_params.private', false)]
+        private: [_.get(this.widget.settings, 'search_params.private', false)],
+        country: [_.get(this.widget.settings, 'search_params.country', 'BE')],
       })
     });
   }
