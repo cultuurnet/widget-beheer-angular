@@ -82,13 +82,15 @@
   border: 1px solid $cnw_color-blueLight;
   box-shadow: -1px -1px 17px 1px rgba(212, 212, 212, 1);
 
-  &.component--preview-throbber {
+  /* WID-194
+
+    &.component--preview-throbber {
 
     .actions-bar {
       display: none;
     }
 
-  }
+  }*/
 }
 
 
