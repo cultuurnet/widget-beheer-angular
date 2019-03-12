@@ -30,7 +30,7 @@
     "deepmerge": "^1.5.0",
     "dom-autoscroller": "^2.3.3",
     "font-awesome": "^4.7.0",
-    "lodash": "^4.17",
+    "lodash": ">=4.17.5",
     "ng2-ckeditor": "^1.1.9",
     "ng2-dragula": "^1.5.0",
     "ng2-toasty": "^4.0.3",
