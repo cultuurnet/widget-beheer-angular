@@ -179,6 +179,10 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'detail_page.facilities.enabled', '')],
           label: [_.get(this.widget.settings, 'detail_page.facilities.label', '')]
         }),
+        articles: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.articles.enabled', '')],
+          publishers: [_.get(this.widget.settings, 'detail_page.articles.publishers', '')]
+        })
       }),
       search_params: this.formBuilder.group({
         query: [_.get(this.widget.settings, 'search_params.query', '')],

@@ -275,6 +275,7 @@
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_SHARE_BUTTONS" | translate }}</span>
                                         </label>
                                 </div>
+
                             </div>
 
                             <div class="edit-searchfilters--selectgroup" formGroupName="back_button">
@@ -447,6 +448,18 @@
                                     <div class="form-group">
                                         <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_FACILITIES_LABEL" | translate }}</label>
                                         <input class="form-control"  type="text" formControlName="label">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="edit-searchfilters--selectgroup" formGroupName="articles">
+                                <div class="form-group">
+                                    <label>
+                                        <input type="checkbox" formControlName="enabled">
+                                        <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_ARTICLES" | translate }} <span class="badge badge-primary">beta</span></span>
+                                    </label>
+                                    <div *ngIf="settings.detail_page.articles.enabled">
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_ARTICLES_LABEL" | translate }}</label>
+                                        <input type="text" class="form-control" formControlName="publishers">
                                     </div>
                                 </div>
                             </div>
