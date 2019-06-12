@@ -83,6 +83,10 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
         }
       }
 
+      // Sanitize groupFilters
+      this.facilityFilters = this.sanitizeFacilityFilters(this.facilityFilters);
+
+
       // Notify watchers
       this.facilityFiltersChanged.emit();
     });
@@ -235,6 +239,18 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
    */
   public handleStatusUpdate(event: any) {
     this.facilityFiltersChanged.emit();
+  }
+
+  public sanitizeFacilityFilters(filters: any){
+    var lineBreakRegex = new RegExp(/\r?\n|\r/g);
+    var filtersLength = filters.filters.length;
+    for(var i = 0; i < filtersLength; i++){
+      var filterOptionsLength = filters.filters[i].options.length;
+      for(var j = 0; j < filterOptionsLength; j++){
+        filters.filters[i].options[j].query = filters.filters[i].options[j].query.replace(lineBreakRegex,'');
+      }
+    }
+    return filters;
   }
 
 }
