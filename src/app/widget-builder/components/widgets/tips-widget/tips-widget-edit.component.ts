@@ -3,12 +3,14 @@ import { FormBuilder } from '@angular/forms';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import * as _ from 'lodash';
 import { BaseWidgetEditComponent } from '../base-widget-edit.component';
+import { QueryStringService } from "app/widget-builder/services/query-string.service";
 
 /**
  * Tips widget edit form component.
  */
 @Component({
-  templateUrl: './tips-widget-edit.component.html'
+  templateUrl: './tips-widget-edit.component.html',
+  providers: [QueryStringService]
 })
 export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
 
@@ -29,8 +31,8 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
   /**
    * TipsWidgetWidgetEditComponent constructor
    */
-  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
-    super(formBuilder, widgetBuilderService);
+  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService, public queryStringService: QueryStringService) {
+    super(formBuilder, widgetBuilderService, queryStringService);
   }
 
   /**

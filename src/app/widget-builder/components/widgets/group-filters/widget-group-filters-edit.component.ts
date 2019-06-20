@@ -4,13 +4,15 @@ import { Subscription } from 'rxjs/Subscription';
 import { group_filter_types } from 'app/widget-builder/constants/group-filters';
 import { Widget } from '../../../../core/widget/widget';
 import { TranslateService } from "@ngx-translate/core";
+import { QueryStringService } from "app/widget-builder/services/query-string.service";
 
 /**
  * Widget group filters edit component.
  */
 @Component({
   selector: 'app-widget-group-filters-edit',
-  templateUrl: './widget-group-filters-edit.component.html'
+  templateUrl: './widget-group-filters-edit.component.html',
+  providers: [QueryStringService]
 })
 export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
 
@@ -64,7 +66,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   /**
    * WidgetGroupFiltersFilterEditComponent constructor
    */
-  constructor(private formBuilder: FormBuilder, private translateService: TranslateService) {
+  constructor(private formBuilder: FormBuilder, private translateService: TranslateService, private queryStringService: QueryStringService) {
   }
 
   /**
@@ -83,7 +85,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
         }
       }
       // Sanitize groupFilters
-      this.groupFilters = this.sanitizeGroupFilters(this.groupFilters);
+      this.groupFilters.filters = this.queryStringService.sanitizeFilters(this.groupFilters.filters);
 
       // Notify watchers
       this.groupFiltersChanged.emit();
@@ -239,19 +241,5 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
     this.groupFiltersChanged.emit();
   }
 
-  /**
-   * Sanitize groupFilters query filters (remove line breaks)
-   */
-  public sanitizeGroupFilters(filters: any){
-    var lineBreakRegex = new RegExp(/\r?\n|\r/g);
-    var filtersLength = filters.filters.length;
-      for(var i = 0; i < filtersLength; i++){
-        var filterOptionsLength = filters.filters[i].options.length;
-        for(var j = 0; j < filterOptionsLength; j++){
-          filters.filters[i].options[j].query = filters.filters[i].options[j].query.replace(lineBreakRegex,'');
-        }
-      }
-   return filters;
-  }
 
 }

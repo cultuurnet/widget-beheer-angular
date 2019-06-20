@@ -4,13 +4,15 @@ import { Subscription } from 'rxjs/Subscription';
 import { group_filter_types } from 'app/widget-builder/constants/group-filters';
 import { Widget } from '../../../../core/widget/widget';
 import { TranslateService } from '@ngx-translate/core';
+import { QueryStringService } from "app/widget-builder/services/query-string.service";
 
 /**
  * Widget facility filters edit component.
  */
 @Component({
   selector: 'app-widget-facility-filters-edit',
-  templateUrl: './widget-facility-filters-edit.component.html'
+  templateUrl: './widget-facility-filters-edit.component.html',
+  providers: [QueryStringService]
 })
 export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
 
@@ -64,7 +66,7 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
   /**
    * WidgetFacilityFiltersFilterEditComponent constructor
    */
-  constructor(private formBuilder: FormBuilder, private translateService: TranslateService) {
+  constructor(private formBuilder: FormBuilder, private translateService: TranslateService, private queryStringService: QueryStringService) {
   }
 
   /**
@@ -84,7 +86,7 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
       }
 
       // Sanitize facilityFilters
-     this.facilityFilters = this.sanitizeFacilityFilters(this.facilityFilters);
+     this.facilityFilters.filters = this.queryStringService.sanitizeFilters(this.facilityFilters.filters);
 
       // Notify watchers
       this.facilityFiltersChanged.emit();
@@ -238,21 +240,6 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
    */
   public handleStatusUpdate(event: any) {
     this.facilityFiltersChanged.emit();
-  }
-
-  /**
-   * Remove line breaks from query filters
-   */
-  public sanitizeFacilityFilters(filters: any){
-    var lineBreakRegex = new RegExp(/\r?\n|\r/g);
-    var filtersLength = filters.filters.length;
-    for(var i = 0; i < filtersLength; i++){
-      var filterOptionsLength = filters.filters[i].options.length;
-      for(var j = 0; j < filterOptionsLength; j++){
-        filters.filters[i].options[j].query = filters.filters[i].options[j].query.replace(lineBreakRegex,'');
-      }
-    }
-    return filters;
   }
 
 }

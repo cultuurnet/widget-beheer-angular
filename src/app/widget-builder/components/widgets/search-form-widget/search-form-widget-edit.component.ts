@@ -4,12 +4,14 @@ import * as _ from 'lodash';
 import { ckeditorConfig } from '../../../constants/ckeditor-config';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import { BaseWidgetEditComponent } from '../base-widget-edit.component';
+import { QueryStringService } from "app/widget-builder/services/query-string.service";
 
 /**
  * Search widget edit form component.
  */
 @Component({
-  templateUrl: './search-form-widget-edit.component.html'
+  templateUrl: './search-form-widget-edit.component.html',
+  providers: [QueryStringService]
 })
 export class SearchFormWidgetEditComponent extends BaseWidgetEditComponent {
 
@@ -21,8 +23,8 @@ export class SearchFormWidgetEditComponent extends BaseWidgetEditComponent {
   /**
    * SearchFormWidgetEditComponent constructor
    */
-  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
-    super(formBuilder, widgetBuilderService);
+  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService, public queryStringService: QueryStringService) {
+    super(formBuilder, widgetBuilderService, queryStringService);
   }
 
   /**
