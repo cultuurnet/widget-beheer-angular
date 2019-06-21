@@ -17,5 +17,5 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-primary" (click)="saveJson()" [disabled]="jsonEditForm.invalid || isSaving"><i *ngIf="isSaving" class="fa fa-spinner" aria-hidden="true"></i> {{ "WIDGET_JSON_EDIT_MODAL_BUTTON_SAVE" | translate }}</button>
-    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('cancel')" [disabled]="isSaving">{{ "WIDGET_JSON_EDIT_MODAL_BUTTON_CANCEL" | translate }}</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel')" [disabled]="isSaving">{{ "WIDGET_JSON_EDIT_MODAL_BUTTON_CANCEL" | translate }}</button>
 </div>

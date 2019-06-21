@@ -18,9 +18,9 @@
           <div class="float-right">
 
             <div class="btn-group">
-              <button [routerLink]="['/project', project.id, 'page', widgetPage.id, 'edit']" class="btn btn-secondary "><i class="fa fa-pencil" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_EDIT_WIDGET_BUTTON" | translate }}</button>
+              <button [routerLink]="['/project', project.id, 'page', widgetPage.id, 'edit']" class="btn btn-outline-secondary "><i class="fa fa-pencil" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_EDIT_WIDGET_BUTTON" | translate }}</button>
               <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
-                <button class="btn btn-secondary dropdown-toggle-split" ngbDropdownToggle></button>
+                <button class="btn btn-outline-secondary dropdown-toggle-split" ngbDropdownToggle></button>
                 <div class="dropdown-menu" ngbDropdownMenu>
                   <button (click)="duplicateWidgetPage(widgetPage)" class="dropdown-item"><i class="fa fa-files-o" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_DUPLICATE_WIDGET_BUTTON" | translate }}</button>
                   <button (click)="adminWidgetPage(widgetPage)" class="dropdown-item"><i class="fa fa-cog" aria-hidden="true"></i> Geavanceerd</button>
@@ -32,7 +32,7 @@
           </div>
 
         </div>
-        <div class="card-block">
+        <div class="card-body">
           <div class="input-group clipboard-group">
             <span class="input-group-btn"><app-clipboard-button [content]="getWidgetPageUrl(widgetPage, true)"></app-clipboard-button></span>
             <input type="text" value="{{ getWidgetPageUrl(widgetPage, true) }}" class="form-control" >
@@ -54,10 +54,10 @@
               <button (click)="deleteWidgetPage(widgetPage)" class="btn btn-link btn-link--remove"><i class="fa fa-trash-o" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_DELETE_WIDGET_BUTTON" | translate }}</button>
             </div>
           </div>
-          <div class="card-block">
+          <div class="card-body">
             <div class="page-list--legacy-widgets--item-header clearfix">
               <h4 class="float-left">{{ "TITLE_WIDGET_PAGE_LIST_LEGACY_VERSION" | translate }}</h4>
-              <button (click)="upgradeWidgetPage(widgetPage)" class="btn btn-secondary float-right">{{ "WIDGET_PAGE_LIST_WIDGET_REQUEST_UPGRADE_BUTTON" | translate }}</button>
+              <button (click)="upgradeWidgetPage(widgetPage)" class="btn btn-outline-secondary float-right">{{ "WIDGET_PAGE_LIST_WIDGET_REQUEST_UPGRADE_BUTTON" | translate }}</button>
             </div>
             <div class="input-group clipboard-group">
               <span class="input-group-btn"> <app-clipboard-button [content]="getWidgetPageUrl(widgetPage, true)"></app-clipboard-button></span>
@@ -65,7 +65,7 @@
             </div>
             <div class="page-list--legacy-widgets--item-header clearfix">
               <h4 class="title-new-version float-left">{{ "TITLE_WIDGET_PAGE_LIST_NEW_VERSION" | translate }}</h4>
-              <button [routerLink]="['/project', project.id, 'page', widgetPage.id, 'edit']" class="btn btn-secondary float-right"><i class="fa fa-pencil" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_EDIT_WIDGET_BUTTON" | translate }}</button>
+              <button [routerLink]="['/project', project.id, 'page', widgetPage.id, 'edit']" class="btn btn-outline-secondary float-right"><i class="fa fa-pencil" aria-hidden="true"></i> {{ "WIDGET_PAGE_LIST_EDIT_WIDGET_BUTTON" | translate }}</button>
             </div>
             <div class="input-group clipboard-group">
               <span class="input-group-btn"><app-clipboard-button [content]="getWidgetPageUrl(widgetPage, true, true)"></app-clipboard-button></span>

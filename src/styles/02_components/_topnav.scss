@@ -1,6 +1,6 @@
 .main-nav {
-  background-color: $gray-lightest;
-  border: 1px solid $gray-lighter;
+  background-color: $gray-100;
+  border: 1px solid $gray-200;
   border-width: 0 0 1px;
   float: left;
   width: 100%;
@@ -109,7 +109,7 @@ app-widgetbuilder-toolbar {
     background-color: $white;
     border-color: #adadad;
     &.active {
-      background-color: $gray-lighter;
+      background-color: $gray-200;
     }
   }
   span {
