@@ -50,7 +50,7 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
         type: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.type.enabled', '')]
         }),
-        icon_vlieg: this.formBuilder.group({
+        : this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.icon_vlieg.enabled', '')]
         }),
         icon_uitpas: this.formBuilder.group({
@@ -59,6 +59,9 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
         description: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.description.enabled', '')],
           characters: [_.get(this.widget.settings, 'items.description.characters', '')]
+        }),
+        price_information: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.price_information', '')]
         }),
         when: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.when.enabled', '')],
