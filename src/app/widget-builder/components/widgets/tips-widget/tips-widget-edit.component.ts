@@ -122,8 +122,6 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
     _.set(this.settings, 'items', _.get(values, 'items', {}));
     _.set(this.settings, 'search_params', _.get(values, 'search_params', {}));
 
-    console.log('apply Values to model', this.settings.items);
-
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
 
