@@ -50,7 +50,7 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
         type: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.type.enabled', '')]
         }),
-        : this.formBuilder.group({
+        icon_vlieg: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.icon_vlieg.enabled', '')]
         }),
         icon_uitpas: this.formBuilder.group({
@@ -61,7 +61,7 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
           characters: [_.get(this.widget.settings, 'items.description.characters', '')]
         }),
         price_information: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'items.price_information', '')]
+          enabled: [_.get(this.widget.settings, 'items.price_information.enabled', '')]
         }),
         when: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.when.enabled', '')],
@@ -121,6 +121,8 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
     _.set(this.settings, 'general', _.get(values, 'general', {}));
     _.set(this.settings, 'items', _.get(values, 'items', {}));
     _.set(this.settings, 'search_params', _.get(values, 'search_params', {}));
+
+    console.log('apply Values to model', this.settings.items);
 
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
