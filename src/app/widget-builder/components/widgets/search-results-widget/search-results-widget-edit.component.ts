@@ -69,6 +69,9 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'items.description.enabled', '')],
           characters: [_.get(this.widget.settings, 'items.description.characters', '')]
         }),
+        price_information: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.price_information.enabled', '')]
+        }),
         when: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.when.enabled', '')],
           label: [_.get(this.widget.settings, 'items.when.label', '')]
