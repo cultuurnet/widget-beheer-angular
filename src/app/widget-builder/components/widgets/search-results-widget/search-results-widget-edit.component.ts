@@ -50,6 +50,9 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         exclude: this.formBuilder.group({
           long_term: [_.get(this.widget.settings, 'general.exclude.long_term', false)],
           permanent: [_.get(this.widget.settings, 'general.exclude.permanent', false)]
+        }),
+        labels_as_icons: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'general.labels_as_icons.enabled', false)]
         })
       }),
       header: this.formBuilder.group({

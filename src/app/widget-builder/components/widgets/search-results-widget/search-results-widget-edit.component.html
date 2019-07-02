@@ -35,6 +35,12 @@
                                     </label>
                                 </div>
                             </div>
+                            <div formGroupName="labels_as_icons">
+                              <label>
+                                  <input type="checkbox" formControlName="enabled">
+                                  <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_GENERAL_SHOW_LABELS_AS_ICONS" | translate }}</span>
+                              </label>
+                            </div>
                         </ng-template>
                     </ngb-panel>
                     <ngb-panel id="header" formGroupName="header">
