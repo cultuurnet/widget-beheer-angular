@@ -14,7 +14,7 @@
                     <ngb-panel id="general" formGroupName="general">
                         <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_GENERAL" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
-                            <fieldset>
+                            <fieldset class="edit-searchfilters--selectgroup">
                                 <div class="form-group">
                                 <label>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_NUM_ELEMENTS" | translate }}</label>
                                 <input type="number" class="form-control" formControlName="items" step="1" min="1" max="20" />
@@ -44,12 +44,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div formGroupName="labels_as_icons">
-                                  <label>
-                                      <input type="checkbox" formControlName="enabled">
-                                      <span>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_SHOW_LABELS_AS_ICONS" | translate }}</span>
-                                  </label>
-                                </div>
+                            </fieldset>
+                            <fieldset class="edit-searchfilters--selectgroup">
+                              <div formGroupName="labels_as_icons">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_SHOW_LABELS_AS_ICONS" | translate }}</span>
+                                </label>
+                              </div>
                             </fieldset>
                         </ng-template>
                     </ngb-panel>
