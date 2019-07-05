@@ -41,12 +41,10 @@
                                   <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_GENERAL_SHOW_LABELS_AS_ICONS" | translate }}</span>
                               </label>
                             </div>
-                            <div formGroupName="pagination">
                                 <div class="form-group">
                                     <label> Aantal resultaten per pagina </label>
-                                    <input type="number" class="form-control"  formControlName="items_per_page" step="3" min="3" placeholder="3" />
+                                    <input type="number" class="form-control" formControlName="items" step="1" min="1" max="20" />
                                 </div>
-                            </div>
 
                         </ng-template>
                     </ngb-panel>

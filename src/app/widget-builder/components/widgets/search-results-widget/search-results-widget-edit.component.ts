@@ -54,9 +54,7 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         labels_as_icons: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'general.labels_as_icons.enabled', false)]
         }),
-        pagination: this.formBuilder.group({
-          items_per_page: [_.get(this.widget.settings, 'general.pagination.items_per_page', 9)]
-        })
+        items: [_.get(this.widget.settings, 'general.items', 10)]
       }),
       header: this.formBuilder.group({
         body: [_.get(this.settings, 'header.body', '')]
