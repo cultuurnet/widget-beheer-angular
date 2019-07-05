@@ -53,7 +53,8 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         }),
         labels_as_icons: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'general.labels_as_icons.enabled', false)]
-        })
+        }),
+        items: [_.get(this.widget.settings, 'general.items', 10)]
       }),
       header: this.formBuilder.group({
         body: [_.get(this.settings, 'header.body', '')]

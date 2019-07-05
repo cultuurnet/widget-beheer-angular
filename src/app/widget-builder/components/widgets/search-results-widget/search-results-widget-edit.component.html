@@ -35,12 +35,17 @@
                                     </label>
                                 </div>
                             </div>
-                            <div formGroupName="labels_as_icons">
+                            <div class="edit-searchfilters--selectgroup" formGroupName="labels_as_icons">
                               <label>
                                   <input type="checkbox" formControlName="enabled">
                                   <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_GENERAL_SHOW_LABELS_AS_ICONS" | translate }}</span>
                               </label>
                             </div>
+                                <div class="form-group">
+                                    <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_ITEMS_PER_PAGE" | translate }}</label>
+                                    <input type="number" class="form-control" formControlName="items" step="1" min="1" max="20" />
+                                </div>
+
                         </ng-template>
                     </ngb-panel>
                     <ngb-panel id="header" formGroupName="header">
