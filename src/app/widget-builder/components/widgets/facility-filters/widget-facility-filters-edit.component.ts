@@ -4,13 +4,15 @@ import { Subscription } from 'rxjs/Subscription';
 import { group_filter_types } from 'app/widget-builder/constants/group-filters';
 import { Widget } from '../../../../core/widget/widget';
 import { TranslateService } from '@ngx-translate/core';
+import { QueryStringService } from "app/widget-builder/services/query-string.service";
 
 /**
  * Widget facility filters edit component.
  */
 @Component({
   selector: 'app-widget-facility-filters-edit',
-  templateUrl: './widget-facility-filters-edit.component.html'
+  templateUrl: './widget-facility-filters-edit.component.html',
+  providers: [QueryStringService]
 })
 export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
 
@@ -64,7 +66,7 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
   /**
    * WidgetFacilityFiltersFilterEditComponent constructor
    */
-  constructor(private formBuilder: FormBuilder, private translateService: TranslateService) {
+  constructor(private formBuilder: FormBuilder, private translateService: TranslateService, private queryStringService: QueryStringService) {
   }
 
   /**
@@ -82,6 +84,9 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
           this.facilityFilters[key] = values[key];
         }
       }
+
+      // Sanitize facilityFilters
+     this.facilityFilters.filters = this.queryStringService.sanitizeFilters(this.facilityFilters.filters);
 
       // Notify watchers
       this.facilityFiltersChanged.emit();

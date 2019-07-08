@@ -4,13 +4,15 @@ import { Subscription } from 'rxjs/Subscription';
 import { group_filter_types } from 'app/widget-builder/constants/group-filters';
 import { Widget } from '../../../../core/widget/widget';
 import { TranslateService } from "@ngx-translate/core";
+import { QueryStringService } from "app/widget-builder/services/query-string.service";
 
 /**
  * Widget group filters edit component.
  */
 @Component({
   selector: 'app-widget-group-filters-edit',
-  templateUrl: './widget-group-filters-edit.component.html'
+  templateUrl: './widget-group-filters-edit.component.html',
+  providers: [QueryStringService]
 })
 export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
 
@@ -64,7 +66,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   /**
    * WidgetGroupFiltersFilterEditComponent constructor
    */
-  constructor(private formBuilder: FormBuilder, private translateService: TranslateService) {
+  constructor(private formBuilder: FormBuilder, private translateService: TranslateService, private queryStringService: QueryStringService) {
   }
 
   /**
@@ -82,6 +84,8 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
           this.groupFilters[key] = values[key];
         }
       }
+      // Sanitize groupFilters
+      this.groupFilters.filters = this.queryStringService.sanitizeFilters(this.groupFilters.filters);
 
       // Notify watchers
       this.groupFiltersChanged.emit();
@@ -236,5 +240,6 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   public handleStatusUpdate(event: any) {
     this.groupFiltersChanged.emit();
   }
+
 
 }
