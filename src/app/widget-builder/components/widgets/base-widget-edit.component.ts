@@ -2,6 +2,7 @@ import { FormBuilder } from '@angular/forms';
 import { AbstractWidgetEditComponent } from '../../../core/widget/components/abstract-widget-edit-component';
 import { WidgetBuilderService } from '../../services/widget-builder.service';
 import { OnDestroy, OnInit } from '@angular/core';
+import { QueryStringService } from 'app/widget-builder/services/query-string.service';
 
 /**
  * Base widget edit component.
@@ -11,7 +12,7 @@ export class BaseWidgetEditComponent extends AbstractWidgetEditComponent impleme
   /**
    * BaseWidgetEditComponent constructor
    */
-  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
+  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService, public queryStringService: QueryStringService) {
     super(formBuilder);
   }
 
@@ -27,6 +28,8 @@ export class BaseWidgetEditComponent extends AbstractWidgetEditComponent impleme
 
     // Subscribe to changes in the form and reflect them on the widget model
     this.formSubscription = this.widgetEditForm.valueChanges.subscribe(values => {
+      // Remove Line breaks from search_query
+      values.general.search_query = this.queryStringService.removeLineBreaks(values.general.search_query);
       // Apply the values to the model
       this.applyValuesToModel(values);
     });
