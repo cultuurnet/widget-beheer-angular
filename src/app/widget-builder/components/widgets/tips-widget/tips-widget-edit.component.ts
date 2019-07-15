@@ -46,6 +46,9 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'general.detail_link.enabled', '')],
           url: [_.get(this.widget.settings, 'general.detail_link.url', '')],
           cdbid: [_.get(this.widget.settings, 'general.detail_link.cdbid', '')],
+        }),
+        labels_as_icons: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'general.labels_as_icons.enabled', false)]
         })
       }),
       items: this.formBuilder.group({
@@ -61,6 +64,12 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
         description: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.description.enabled', '')],
           characters: [_.get(this.widget.settings, 'items.description.characters', '')]
+        }),
+        price_information: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.price_information.enabled', '')]
+        }),
+        reservation_information: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.reservation_information.enabled', '')]
         }),
         when: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.when.enabled', '')],

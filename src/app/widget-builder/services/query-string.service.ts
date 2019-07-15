@@ -12,6 +12,9 @@ export class QueryStringService{
    * @param query
    */
   public removeLineBreaks(query: string){
+    if(!query){
+      return;
+    }
     var lineBreakRegex = new RegExp(/\r?\n|\r/g);
     return query.replace(lineBreakRegex, '');
   }

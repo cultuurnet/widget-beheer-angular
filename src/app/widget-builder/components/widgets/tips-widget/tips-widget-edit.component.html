@@ -14,7 +14,7 @@
                     <ngb-panel id="general" formGroupName="general">
                         <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_GENERAL" | translate }}</ng-template>
                         <ng-template ngbPanelContent>
-                            <fieldset>
+                            <fieldset class="edit-searchfilters--selectgroup">
                                 <div class="form-group">
                                 <label>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_NUM_ELEMENTS" | translate }}</label>
                                 <input type="number" class="form-control" formControlName="items" step="1" min="1" max="20" />
@@ -44,6 +44,14 @@
                                         </div>
                                     </div>
                                 </div>
+                            </fieldset>
+                            <fieldset class="edit-searchfilters--selectgroup">
+                              <div formGroupName="labels_as_icons">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_SHOW_LABELS_AS_ICONS" | translate }}</span>
+                                </label>
+                              </div>
                             </fieldset>
                         </ng-template>
                     </ngb-panel>
@@ -81,6 +89,20 @@
                                         <input class="form-control" type="number" formControlName="characters" step="1" />
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="edit-searchfilters--selectgroup" formGroupName="price_information">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_PRICE_INFORMATION" | translate }}</span>
+                                </label>
+                            </div>
+
+                            <div class="edit-searchfilters--selectgroup" formGroupName="reservation_information">
+                                <label>
+                                    <input type="checkbox" formControlName="enabled">
+                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_RESERVATION_INFO" | translate }}</span>
+                                </label>
                             </div>
 
                             <div class="edit-searchfilters--selectgroup"  formGroupName="where">
