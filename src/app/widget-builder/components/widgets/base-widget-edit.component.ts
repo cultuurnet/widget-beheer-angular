@@ -28,8 +28,14 @@ export class BaseWidgetEditComponent extends AbstractWidgetEditComponent impleme
 
     // Subscribe to changes in the form and reflect them on the widget model
     this.formSubscription = this.widgetEditForm.valueChanges.subscribe(values => {
-      // Remove Line breaks from search_query
-      values.general.search_query = this.queryStringService.removeLineBreaks(values.general.search_query);
+      // Remove Line breaks from search results and tips widget
+      if(values.search_params && values.search_params.query){
+        values.search_params.query = this.queryStringService.removeLineBreaks(values.search_params.query)
+      }
+      // Remove line breaks from search box
+      if(values.general.search_query){
+        values.general.search_query = this.queryStringService.removeLineBreaks(values.general.search_query);
+      }
       // Apply the values to the model
       this.applyValuesToModel(values);
     });
