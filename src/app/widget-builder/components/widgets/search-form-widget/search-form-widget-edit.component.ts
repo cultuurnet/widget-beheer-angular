@@ -36,7 +36,6 @@ export class SearchFormWidgetEditComponent extends BaseWidgetEditComponent {
         destination: [_.get(this.widget.settings, 'general.destination', '')],
         new_window: [_.get(this.settings, 'general.new_window', '')],
         button_label: [_.get(this.settings, 'general.button_label', '')],
-        search_query: [_.get(this.settings, 'general.search_query', '')],
       }),
       header: this.formBuilder.group({
         body: [_.get(this.settings, 'header.body')]
