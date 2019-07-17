@@ -3,12 +3,14 @@ import { FormBuilder } from '@angular/forms';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import * as _ from 'lodash';
 import { BaseWidgetEditComponent } from '../base-widget-edit.component';
+import { QueryStringService } from 'app/widget-builder/services/query-string.service';
 
 /**
  * Facets widget edit form component.
  */
 @Component({
-  templateUrl: './facets-widget-edit.component.html'
+  templateUrl: './facets-widget-edit.component.html',
+  providers: [QueryStringService]
 })
 export class FacetsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
 
@@ -21,8 +23,8 @@ export class FacetsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
   /**
    * FacetsWidgetWidgetEditComponent constructor
    */
-  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
-    super(formBuilder, widgetBuilderService);
+  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService, public queryStringService: QueryStringService) {
+    super(formBuilder, widgetBuilderService, queryStringService);
   }
 
   /**
