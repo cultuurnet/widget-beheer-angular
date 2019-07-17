@@ -16,8 +16,8 @@
         <div class="col-2 col-md-1">
             <div *ngIf="user" ngbDropdown class="float-right">
                 <button class="btn btn-outline-secondary" ngbDropdownToggle><span class="hidden-lg-down"> {{ user.displayName }}</span></button>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <button class="dropdown-item" (click)="logout()">{{ "TOPBAR_USER_MENU_BUTTON_LOGOUT" | translate }}</button>
+                <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right">
+                    <button ngbDropdownItem class="dropdown-item" (click)="logout()">{{ "TOPBAR_USER_MENU_BUTTON_LOGOUT" | translate }}</button>
                 </div>
             </div>
         </div>

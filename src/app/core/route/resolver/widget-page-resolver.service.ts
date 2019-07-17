@@ -18,7 +18,7 @@ export class WidgetPageResolver implements Resolve<Object> {
   constructor(private widgetService: WidgetService, private router: Router) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<WidgetPage> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any>  {
     const page_id = route.paramMap.get('page_id');
     const project_id = route.paramMap.get('project_id');
 

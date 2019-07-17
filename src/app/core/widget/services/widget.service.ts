@@ -46,7 +46,7 @@ export class WidgetService {
    * @return {Observable<WidgetSaveResponse>}
    */
   public saveWidgetPage(widgetPage: WidgetPage, widgetId?: string): Observable<WidgetSaveResponse> {
-    
+
     const requestOptions = {
       params: new HttpParams()
     };

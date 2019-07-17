@@ -7,9 +7,10 @@
 </div>
 <ngb-tabset>
     <ngb-tab>
-        <form [formGroup]="widgetEditForm" novalidate>
+
             <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
             <ng-template ngbTabContent>
+              <form [formGroup]="widgetEditForm" novalidate>
                 <ngb-accordion [closeOthers]="true">
                     <ngb-panel id="general" formGroupName="general">
                         <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_GENERAL" | translate }}</ng-template>
@@ -271,8 +272,8 @@
                         </ng-template>
                     </ngb-panel>
                 </ngb-accordion>
+              </form>
             </ng-template>
-        </form>
     </ngb-tab>
     <ngb-tab>
         <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_JSON" | translate }}</ng-template>

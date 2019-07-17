@@ -41,8 +41,8 @@
         </div>
       </div>
     </div>
-    <div class="edit-actions col-2" *ngIf="sidebar">
-      <button  class="btn btn-default navbar-btn btn--stop-editing  nav-link" (click)="closeSidebar()" >
+    <div class="edit-actions" *ngIf="sidebar">
+      <button  class="btn btn-default navbar-btn btn--stop-editing" (click)="closeSidebar()" >
         <i [ngClass]="{'fa-floppy-o': !isSavingDraft, 'fa-spinner fa-spin': isSavingDraft}" class="fa" aria-hidden="true"></i>
         {{ "BUTTON_WIDGET_BUILDER_TOOLBAR_STOP_EDITING" | translate }}
       </button>
