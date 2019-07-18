@@ -1,5 +1,5 @@
 import {
-  Component, ComponentFactoryResolver, ComponentRef, EventEmitter, OnDestroy, OnInit, StaticInjector, ViewChild,
+  Component, ComponentFactoryResolver, ComponentRef, EventEmitter, OnDestroy, OnInit, ReflectiveInjector, ViewChild,
   ViewContainerRef
 } from '@angular/core';
 import { Router } from '@angular/router';
