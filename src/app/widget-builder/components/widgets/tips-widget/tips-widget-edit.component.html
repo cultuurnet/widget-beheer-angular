@@ -1,284 +1,290 @@
 <div class="selected-element ">
-    <p>{{ "LABEL_SELECTED_ELEMENT" | translate }}: </p>
-    <div class="input-group">
-        <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-crosshairs"></i></span>
-        <input type="text" class="form-control" [(ngModel)]="widget.name" (ngModelChange)="handleWidgetNameChanged($event)"/>
-    </div>
+  <p>{{ "LABEL_SELECTED_ELEMENT" | translate }}: </p>
+  <div class="input-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fa fa-crosshairs"></i></span>
+      </div>
+    <input type="text" class="form-control" [(ngModel)]="widget.name" (ngModelChange)="handleWidgetNameChanged($event)" />
+  </div>
 </div>
 <ngb-tabset>
-    <ngb-tab>
-
-            <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
-            <ng-template ngbTabContent>
-              <form [formGroup]="widgetEditForm" novalidate>
-                <ngb-accordion [closeOthers]="true">
-                    <ngb-panel id="general" formGroupName="general">
-                        <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_GENERAL" | translate }}</ng-template>
-                        <ng-template ngbPanelContent>
-                            <fieldset class="edit-searchfilters--selectgroup">
-                                <div class="form-group">
-                                <label>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_NUM_ELEMENTS" | translate }}</label>
-                                <input type="number" class="form-control" formControlName="items" step="1" min="1" max="20" />
-                                </div>
-                                <div formGroupName="detail_link" >
-                                    <label>
-                                        <input type="checkbox" formControlName="enabled">
-                                        <span>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_LINK_TO_DETAIL_PAGE" | translate }}</span>
-                                    </label>
-                                    <div *ngIf="settings.general.detail_link.enabled">
-                                        <div class="form-group">
-                                            <label>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_DETAIL_PAGE_URL" | translate }}</label>
-                                            <input class="form-control" type="text" formControlName="url">
-                                        </div>
-                                        <div>
-                                            <label>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_DETAIL_PAGE_URL_OPTIONS" | translate }}</label>
-                                            <div>
-                                                <label>
-                                                    <input type="radio" value="query_string" name="cdbid" formControlName="cdbid">
-                                                    <span>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_DETAIL_PAGE_URL_OPTIONS_OPTION_QUERYSTRING" | translate }}</span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" value="url" name="cdbid" formControlName="cdbid">
-                                                    <span>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_DETAIL_PAGE_URL_OPTIONS_OPTION_URL" | translate }}</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <fieldset class="edit-searchfilters--selectgroup">
-                              <div formGroupName="labels_as_icons">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_SHOW_LABELS_AS_ICONS" | translate }}</span>
-                                </label>
-                              </div>
-                            </fieldset>
-                        </ng-template>
-                    </ngb-panel>
-                    <ngb-panel id="items" formGroupName="items">
-                        <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_ELEMENTS" | translate }}</ng-template>
-                        <ng-template ngbPanelContent>
-
-                            <div class="edit-searchfilters--selectgroup" formGroupName="type">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_TYPE" | translate }}</span>
-                                </label>
-                            </div>
-
-                            <div class="edit-searchfilters--selectgroup"  formGroupName="icon_vlieg">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_ICON_VLIEG" | translate }}</span>
-                                </label>
-                            </div>
-                            <div class="edit-searchfilters--selectgroup"  formGroupName="icon_uitpas">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_ICON_UITPAS" | translate }}</span>
-                                </label>
-                            </div>
-                            <div class="edit-searchfilters--selectgroup"  formGroupName="description">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_DESCRIPTION" | translate }}</span>
-                                </label>
-                                <div *ngIf="settings.items.description.enabled">
-                                    <div class="form-group">
-                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_DESCRIPTION_NUM_CHARACTERS" | translate }}</label>
-                                        <input class="form-control" type="number" formControlName="characters" step="1" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="edit-searchfilters--selectgroup" formGroupName="price_information">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_PRICE_INFORMATION" | translate }}</span>
-                                </label>
-                            </div>
-
-                            <div class="edit-searchfilters--selectgroup" formGroupName="reservation_information">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_RESERVATION_INFO" | translate }}</span>
-                                </label>
-                            </div>
-
-                            <div class="edit-searchfilters--selectgroup"  formGroupName="where">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHERE" | translate }}</span>
-                                </label>
-                                <div *ngIf="settings.items.where.enabled">
-                                    <div class="form-group">
-                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHERE_LABEL" | translate }}</label>
-                                        <input type="text" class="form-control" formControlName="label">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="edit-searchfilters--selectgroup"  formGroupName="when">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHEN" | translate }}</span>
-                                </label>
-                                <div *ngIf="settings.items.when.enabled">
-                                    <div class="form-group">
-                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHEN_LABEL" | translate }}</label>
-                                        <input class="form-control" type="text" formControlName="label">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="edit-searchfilters--selectgroup" formGroupName="organizer">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_ORGANIZER" | translate }}</span>
-                                </label>
-                                <div *ngIf="settings.items.organizer.enabled">
-                                    <div class="form-group">
-                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_ORGANIZER_LABEL" | translate }}</label>
-                                        <input class="form-control" type="text" formControlName="label">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="edit-searchfilters--selectgroup"  formGroupName="age">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_AGE" | translate }}</span>
-                                </label>
-                                <div *ngIf="settings.items.age.enabled">
-                                    <div class="form-group">
-                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_AGE_LABEL" | translate }}</label>
-                                        <input type="text" class="form-control" formControlName="label">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="edit-searchfilters--selectgroup" formGroupName="audience">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_AUDIENCE" | translate }}</span>
-                                </label>
-                                <div *ngIf="settings.items.audience.enabled">
-                                    <div class="form-group">
-                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_AUDIENCE_LABEL" | translate }}</label>
-                                        <input class="form-control"  type="text" formControlName="label">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="edit-searchfilters--selectgroup"  formGroupName="language_icons">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_LANGUAGE_ICONS" | translate }}</span>
-                                </label>
-                            </div>
-                            <div class="edit-searchfilters--selectgroup"  formGroupName="image">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE" | translate }}</span>
-                                </label>
-                                <div *ngIf="settings.items.image.enabled">
-                                    <div class="form-group">
-                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_WIDTH" | translate }}</label>
-                                        <input type="number" class="form-control" formControlName="width" step="1" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_HEIGHT" | translate }}</label>
-                                        <input type="number"  class="form-control" formControlName="height" step="1" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>
-                                            <input type="checkbox" formControlName="default_image">
-                                            <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_DEFAULT_IMAGE" | translate }}</span>
-                                        </label>
-                                    </div>
-                                    <div>
-                                        <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_POSITION" | translate }}</label>
-                                        <select formControlName="position" class="form-control">
-                                            <option *ngFor="let position of imagePositions" [value]="position.value">{{ ("LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_POSITION_OPTION_" + position.label |  uppercase) | translate }}</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="edit-searchfilters--selectgroup" formGroupName="labels">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_LABELS" | translate }}</span>
-                                </label>
-                                <div *ngIf="settings.items.labels.enabled">
-                                    <div formGroupName="limit_labels">
-                                        <label>
-                                            <input type="checkbox" formControlName="enabled">
-                                            <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_LABELS_SHOW_ONLY_ALLOWED_LABELS" | translate }}</span>
-                                        </label>
-                                        <div *ngIf="settings.items.labels.limit_labels.enabled" class="form-group">
-                                            <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_LABELS_ALLOWED_LABELS" | translate }}</label>
-                                            <input type="text" class="form-control" formControlName="labels">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="edit-searchfilters--selectgroup"  formGroupName="read_more">
-                                <label>
-                                    <input type="checkbox" formControlName="enabled">
-                                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_READ_MORE_LINK" | translate }}</span>
-                                </label>
-                                <div *ngIf="settings.items.read_more.enabled" class="form-group">
-                                    <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_READ_MORE_LINK_LABEL" | translate }}</label>
-                                    <input type="text" class="form-control" formControlName="label">
-                                </div>
-                            </div>
-                        </ng-template>
-                    </ngb-panel>
-                    <ngb-panel id="extra_parameters">
-                        <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_EXTRA_SEARCH_PARAMETERS" | translate }}</ng-template>
-                        <ng-template ngbPanelContent>
-                            <div class="edit-searchfilters--selectgroup" formGroupName="search_params">
-                                <div class="form-group">
-                                    <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_QUERY" | translate }}</label>
-                                    <textarea type="text" class="form-control" rows="3" formControlName="query"></textarea>
-                                    <small class="form-text text-muted">{{ "SAPI_EXAMPLE_QUERY" | translate }}. {{ "SAPI3_SYNTAX" | translate }}<br/><a href='{{ "SAPI3_DOC_URL" | translate }}' target='_blank'>{{ "SAPI3_DOC_LINK" | translate }} </a></small>
-                                </div>
-                                <div class="form-group">
-                                    <label>
-                                        <input type="checkbox" formControlName="private">
-                                        <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_PRIVATE" | translate }}</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input type="radio" value="BE" name="country" formControlName="country">
-                                            <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_BE" | translate }}</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input type="radio" value="NL" name="country" formControlName="country">
-                                            <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_NL" | translate }}</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input type="radio" value="*" name="country" formControlName="country">
-                                            <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_ALL" | translate }}</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </ngb-panel>
-                </ngb-accordion>
-              </form>
+  <ngb-tab>
+    <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
+    <ng-template ngbTabContent>
+      <form [formGroup]="widgetEditForm" novalidate>
+        <ngb-accordion [closeOthers]="true">
+          <ngb-panel id="general" formGroupName="general">
+            <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_GENERAL" | translate }}</ng-template>
+            <ng-template ngbPanelContent>
+              <fieldset class="edit-searchfilters--selectgroup">
+                <div class="form-group">
+                  <label>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_NUM_ELEMENTS" | translate }}</label>
+                  <input type="number" class="form-control" formControlName="items" step="1" min="1" max="20" />
+                </div>
+                <div formGroupName="detail_link">
+                  <label>
+                    <input type="checkbox" formControlName="enabled">
+                    <span>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_LINK_TO_DETAIL_PAGE" | translate }}</span>
+                  </label>
+                  <div *ngIf="settings.general.detail_link.enabled">
+                    <div class="form-group">
+                      <label>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_DETAIL_PAGE_URL" | translate }}</label>
+                      <input class="form-control" type="text" formControlName="url">
+                    </div>
+                    <div>
+                      <label>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_DETAIL_PAGE_URL_OPTIONS" | translate }}</label>
+                      <div>
+                        <label>
+                          <input type="radio" value="query_string" name="cdbid" formControlName="cdbid">
+                          <span>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_DETAIL_PAGE_URL_OPTIONS_OPTION_QUERYSTRING" | translate }}</span>
+                        </label>
+                        <label>
+                          <input type="radio" value="url" name="cdbid" formControlName="cdbid">
+                          <span>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_DETAIL_PAGE_URL_OPTIONS_OPTION_URL" | translate }}</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="edit-searchfilters--selectgroup">
+                <div formGroupName="labels_as_icons">
+                  <label>
+                    <input type="checkbox" formControlName="enabled">
+                    <span>{{ "LABEL_TIPS_EDIT_FORM_GENERAL_SHOW_LABELS_AS_ICONS" | translate }}</span>
+                  </label>
+                </div>
+              </fieldset>
             </ng-template>
-    </ngb-tab>
-    <ngb-tab>
-        <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_JSON" | translate }}</ng-template>
-        <ng-template ngbTabContent>
-            <app-json-edit (jsonChanged)="handleJsonChanged()" [widget]="widget"></app-json-edit>
-        </ng-template>
-    </ngb-tab>
+          </ngb-panel>
+          <ngb-panel id="items" formGroupName="items">
+            <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_ELEMENTS" | translate }}</ng-template>
+            <ng-template ngbPanelContent>
+
+              <div class="edit-searchfilters--selectgroup" formGroupName="type">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_TYPE" | translate }}</span>
+                </label>
+              </div>
+
+              <div class="edit-searchfilters--selectgroup" formGroupName="icon_vlieg">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_ICON_VLIEG" | translate }}</span>
+                </label>
+              </div>
+              <div class="edit-searchfilters--selectgroup" formGroupName="icon_uitpas">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_ICON_UITPAS" | translate }}</span>
+                </label>
+              </div>
+              <div class="edit-searchfilters--selectgroup" formGroupName="description">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_DESCRIPTION" | translate }}</span>
+                </label>
+                <div *ngIf="settings.items.description.enabled">
+                  <div class="form-group">
+                    <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_DESCRIPTION_NUM_CHARACTERS" | translate }}</label>
+                    <input class="form-control" type="number" formControlName="characters" step="1" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="edit-searchfilters--selectgroup" formGroupName="price_information">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_PRICE_INFORMATION" | translate }}</span>
+                </label>
+              </div>
+
+              <div class="edit-searchfilters--selectgroup" formGroupName="reservation_information">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_RESERVATION_INFO" | translate }}</span>
+                </label>
+              </div>
+
+              <div class="edit-searchfilters--selectgroup" formGroupName="where">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHERE" | translate }}</span>
+                </label>
+                <div *ngIf="settings.items.where.enabled">
+                  <div class="form-group">
+                    <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHERE_LABEL" | translate }}</label>
+                    <input type="text" class="form-control" formControlName="label">
+                  </div>
+                </div>
+              </div>
+
+              <div class="edit-searchfilters--selectgroup" formGroupName="when">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHEN" | translate }}</span>
+                </label>
+                <div *ngIf="settings.items.when.enabled">
+                  <div class="form-group">
+                    <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_WHEN_LABEL" | translate }}</label>
+                    <input class="form-control" type="text" formControlName="label">
+                  </div>
+                </div>
+              </div>
+
+              <div class="edit-searchfilters--selectgroup" formGroupName="organizer">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_ORGANIZER" | translate }}</span>
+                </label>
+                <div *ngIf="settings.items.organizer.enabled">
+                  <div class="form-group">
+                    <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_ORGANIZER_LABEL" | translate }}</label>
+                    <input class="form-control" type="text" formControlName="label">
+                  </div>
+                </div>
+              </div>
+
+              <div class="edit-searchfilters--selectgroup" formGroupName="age">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_AGE" | translate }}</span>
+                </label>
+                <div *ngIf="settings.items.age.enabled">
+                  <div class="form-group">
+                    <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_AGE_LABEL" | translate }}</label>
+                    <input type="text" class="form-control" formControlName="label">
+                  </div>
+                </div>
+              </div>
+              <div class="edit-searchfilters--selectgroup" formGroupName="audience">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_AUDIENCE" | translate }}</span>
+                </label>
+                <div *ngIf="settings.items.audience.enabled">
+                  <div class="form-group">
+                    <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_AUDIENCE_LABEL" | translate }}</label>
+                    <input class="form-control" type="text" formControlName="label">
+                  </div>
+                </div>
+              </div>
+              <div class="edit-searchfilters--selectgroup" formGroupName="language_icons">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_LANGUAGE_ICONS" | translate }}</span>
+                </label>
+              </div>
+              <div class="edit-searchfilters--selectgroup" formGroupName="image">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE" | translate }}</span>
+                </label>
+                <div *ngIf="settings.items.image.enabled">
+                  <div class="form-group">
+                    <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_WIDTH" | translate }}</label>
+                    <input type="number" class="form-control" formControlName="width" step="1" />
+                  </div>
+                  <div class="form-group">
+                    <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_HEIGHT" | translate }}</label>
+                    <input type="number" class="form-control" formControlName="height" step="1" />
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <input type="checkbox" formControlName="default_image">
+                      <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_DEFAULT_IMAGE" | translate }}</span>
+                    </label>
+                  </div>
+                  <div>
+                    <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_POSITION" | translate }}</label>
+                    <select formControlName="position" class="form-control">
+                      <option *ngFor="let position of imagePositions" [value]="position.value">
+                        {{ ("LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_POSITION_OPTION_" + position.label |  uppercase) | translate }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="edit-searchfilters--selectgroup" formGroupName="labels">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_LABELS" | translate }}</span>
+                </label>
+                <div *ngIf="settings.items.labels.enabled">
+                  <div formGroupName="limit_labels">
+                    <label>
+                      <input type="checkbox" formControlName="enabled">
+                      <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_LABELS_SHOW_ONLY_ALLOWED_LABELS" | translate }}</span>
+                    </label>
+                    <div *ngIf="settings.items.labels.limit_labels.enabled" class="form-group">
+                      <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_LABELS_ALLOWED_LABELS" | translate }}</label>
+                      <input type="text" class="form-control" formControlName="labels">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="edit-searchfilters--selectgroup" formGroupName="read_more">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_READ_MORE_LINK" | translate }}</span>
+                </label>
+                <div *ngIf="settings.items.read_more.enabled" class="form-group">
+                  <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_READ_MORE_LINK_LABEL" | translate }}</label>
+                  <input type="text" class="form-control" formControlName="label">
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel id="extra_parameters">
+            <ng-template ngbPanelTitle>{{ "LABEL_TIPS_EDIT_FORM_PANEL_TITLE_EXTRA_SEARCH_PARAMETERS" | translate }}
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="edit-searchfilters--selectgroup" formGroupName="search_params">
+                <div class="form-group">
+                  <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_QUERY" | translate }}</label>
+                  <textarea type="text" class="form-control" rows="3" formControlName="query"></textarea>
+                  <small class="form-text text-muted">{{ "SAPI_EXAMPLE_QUERY" | translate }}.
+                    {{ "SAPI3_SYNTAX" | translate }}<br /><a href='{{ "SAPI3_DOC_URL" | translate }}'
+                      target='_blank'>{{ "SAPI3_DOC_LINK" | translate }} </a></small>
+                </div>
+                <div class="form-group">
+                  <label>
+                    <input type="checkbox" formControlName="private">
+                    <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_PRIVATE" | translate }}</span>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" value="BE" name="country" formControlName="country">
+                      <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_BE" | translate }}</span>
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" value="NL" name="country" formControlName="country">
+                      <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_NL" | translate }}</span>
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="radio" value="*" name="country" formControlName="country">
+                      <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_EXTRA_SEARCH_PARAMETERS_COUNTRY_ALL" | translate }}</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </form>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab>
+    <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_JSON" | translate }}</ng-template>
+    <ng-template ngbTabContent>
+      <app-json-edit (jsonChanged)="handleJsonChanged()" [widget]="widget"></app-json-edit>
+    </ng-template>
+  </ngb-tab>
 </ngb-tabset>
