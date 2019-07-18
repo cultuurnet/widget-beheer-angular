@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import {of as observableOf } from 'rxjs';
+import {of as observableOf, Observable } from 'rxjs';
 import {tap, map} from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-
-
 import { Project } from '../project';
 import { MemoryCache } from '../../memory-cache';
 
