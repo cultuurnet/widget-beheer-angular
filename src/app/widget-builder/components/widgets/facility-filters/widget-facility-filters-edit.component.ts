@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { group_filter_types } from 'app/widget-builder/constants/group-filters';
 import { Widget } from '../../../../core/widget/widget';
 import { TranslateService } from '@ngx-translate/core';

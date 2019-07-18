@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import {of as observableOf,  Observable } from 'rxjs';
+import {tap, map, catchError} from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
+
+
 import { User } from '../user';
 import { MemoryCache } from '../../memory-cache';
 
@@ -33,13 +34,13 @@ export class UserService {
    * Checks if the user is logged in
    */
   public isLoggedIn(): Observable<boolean> {
-    return this.getUser().map(() => {
+    return this.getUser().pipe(map(() => {
       return true;
     }, () => {
       return false;
-    }).catch(error => {
-      return Observable.of(false);
-    });
+    }),catchError(error => {
+      return observableOf(false);
+    }),);
   }
 
   /**
@@ -64,16 +65,16 @@ export class UserService {
     const cachedUser = this.cache.get('currentUser', ['user'], false);
 
     if (cachedUser) {
-      return Observable.of(cachedUser);
+      return observableOf(cachedUser);
     }
 
-    return this.http.get(environment.apiUrl + this.apiPath + 'user')
-      .map(user => new User(user))
-      .do(user => {
+    return this.http.get(environment.apiUrl + this.apiPath + 'user').pipe(
+      map(user => new User(user)),
+      tap(user => {
         this.lastLoaded = new Date();
         // Cache the response
         this.cache.put('currentUser', ['user'], user);
-      });
+      }),);
   }
 
   /**
@@ -81,11 +82,11 @@ export class UserService {
    * @return {Observable<Object>}
    */
   public logout() {
-    return this.http.get(environment.apiUrl + this.apiPath + 'logout')
-      .do(() => {
+    return this.http.get(environment.apiUrl + this.apiPath + 'logout').pipe(
+      tap(() => {
         // Remove the user from the cache
         this.cache.clear('currentUser');
-      });
+      }));
   }
 
 }

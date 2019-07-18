@@ -1,6 +1,6 @@
 import { Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { Widget } from '../widget';
 import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 

@@ -1,9 +1,11 @@
+
+import {filter} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
+
+
+
 import { BackButton } from '../back-button';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 /**
  * Service that allows communication between the Topbar component and other components
@@ -70,7 +72,7 @@ export class TopbarService {
       }
     });
 
-    return this.dynamicComponentsEvents$.filter(event => event.id === id);
+    return this.dynamicComponentsEvents$.pipe(filter(event => event.id === id));
   }
 
   /**

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import {of as observableOf,  Observable } from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { UserService } from '../../user/services/user.service';
 import { environment } from "../../../../environments/environment";
-import { Observable } from "rxjs/Observable";
 
 /**
  * Authguard service
@@ -21,14 +22,14 @@ export class AuthGuard implements CanActivate {
    * @inheritDoc
    */
   canActivate() {
-      return this.userService.getUser().map(() => {
+      return this.userService.getUser().pipe(map(() => {
           return true;
       }, () => {
           window.location.href = environment.projectaanvraagDashboardUrl;
-      }).catch(error => {
+      }),catchError(error => {
           window.location.href = environment.projectaanvraagDashboardUrl;
-          return Observable.of(false);
-      });
+          return observableOf(false);
+      }),);
   }
 
 }
