@@ -32,7 +32,7 @@
     "deepmerge": "^1.5.0",
     "dom-autoscroller": "^2.3.3",
     "font-awesome": "^4.7.0",
-    "lodash": "<=4.17.5",
+    "lodash": "^4.17.14",
     "ng2-ckeditor": "^1.1.9",
     "ng2-dragula": "^1.5.0",
     "ng2-toasty": "^4.0.3",
@@ -54,7 +54,7 @@
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "node-sass": "^4.12.0",
-    "protractor": "~5.1.0",
+    "protractor": "^6.0.0",
     "ts-node": "~2.0.0",
     "tslint": "^5.0.0",
     "typescript": "3.1"
