@@ -26,7 +26,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
   /**
    * The dynamic component container
    */
-  @ViewChild(DynamicComponentDirective, { read: ViewContainerRef }) dynamicComponentContainer: ViewContainerRef;
+  @ViewChild(DynamicComponentDirective, { read: ViewContainerRef, static: true }) dynamicComponentContainer: ViewContainerRef;
 
   /**
    * The back button

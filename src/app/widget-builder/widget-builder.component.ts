@@ -26,7 +26,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   /**
    * Widget edit form
    */
-  @ViewChild(WidgetEditDirective) editForm: WidgetEditDirective;
+  @ViewChild(WidgetEditDirective, { static: true }) editForm: WidgetEditDirective;
 
   /**
    * The currently active widget
