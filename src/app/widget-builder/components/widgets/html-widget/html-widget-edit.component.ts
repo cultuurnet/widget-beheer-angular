@@ -34,7 +34,7 @@ export class HtmlWidgetWidgetEditComponent extends BaseWidgetEditComponent {
   protected buildForm() {
     this.widgetEditForm = this.formBuilder.group({
       content: this.formBuilder.group({
-        body: [_.get(this.widget.settings, 'content.body', '')],
+        body: [_.get(this.settings, 'content.body', '')],
       })
     });
   }
