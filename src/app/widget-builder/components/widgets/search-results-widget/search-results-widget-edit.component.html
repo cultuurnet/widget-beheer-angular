@@ -427,7 +427,7 @@
                                     <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_LABELS" | translate }}</span>
                                 </label>
                                 <div *ngIf="settings.detail_page.labels.enabled">
-                                    <div class="edit-searchfilters--selectgroup" formGroupName="limit_labels">
+                                    <div formGroupName="limit_labels">
                                         <label>
                                             <input type="checkbox" formControlName="enabled">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_LABELS_SHOW_ONLY_ALLOWED_LABELS" | translate }}</span>
@@ -457,9 +457,31 @@
                                         <input type="checkbox" formControlName="enabled">
                                         <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_ARTICLES" | translate }} <span class="badge badge-primary">beta</span></span>
                                     </label>
-                                    <div *ngIf="settings.detail_page.articles.enabled">
-                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_ARTICLES_LABEL" | translate }}</label>
-                                        <input type="text" class="form-control" formControlName="publishers">
+                                </div>
+                                <div *ngIf="settings.detail_page.articles.enabled">
+                                    <div class="form-group">
+                                        <label>
+                                            <input type="checkbox"  formControlName="limit_publishers">
+                                            <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_ARTICLES_LIMIT_PUBLISHERS" | translate }}</span>
+                                        </label>
+                                        <div *ngIf="settings.detail_page.articles.limit_publishers" class="ml-4" formGroupName="publishers">
+                                            <div>
+                                              <input type="checkbox" formControlName="bill">
+                                              <span>bill</span>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" formControlName="bruzz">
+                                                <span>bruzz</span>
+                                            </div>
+                                            <div>
+                                                <input type="checkbox" formControlName="gva">
+                                                <span>gva</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_FACILITIES_LABEL" | translate }}</label>
+                                        <input class="form-control"  type="text" formControlName="label">
                                     </div>
                                 </div>
                             </div>

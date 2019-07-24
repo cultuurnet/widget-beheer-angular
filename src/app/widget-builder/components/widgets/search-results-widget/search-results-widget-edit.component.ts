@@ -5,6 +5,7 @@ import { ckeditorConfig } from '../../../constants/ckeditor-config';
 import * as _ from 'lodash';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import { BaseWidgetEditComponent } from '../base-widget-edit.component';
+import { PublishPageConfirmationModalComponent } from '../../modal/publish-page-confirmation-modal.component';
 
 /**
  * Search results widget edit form component.
@@ -12,6 +13,9 @@ import { BaseWidgetEditComponent } from '../base-widget-edit.component';
 @Component({
   templateUrl: './search-results-widget-edit.component.html'
 })
+
+
+
 export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
 
   /**
@@ -180,8 +184,14 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
           label: [_.get(this.widget.settings, 'detail_page.facilities.label', '')]
         }),
         articles: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'detail_page.articles.enabled', '')],
-          publishers: [_.get(this.widget.settings, 'detail_page.articles.publishers', '')]
+          enabled: [_.get(this.widget.settings, 'detail_page.articles.enabled', true)],
+          limit_publishers: [_.get(this.widget.settings, 'detail_page.articles.limit_publishers', false)],
+          publishers: this.formBuilder.group({
+              bill: [_.get(this.widget.settings, 'detail_page.publishers.bill', false)],
+              bruzz: [_.get(this.widget.settings, 'detail_page.publishers.bruzz', false)],
+              gva: [_.get(this.widget.settings, 'detail_page.publishers.gva', false)]
+          }),
+          label: [_.get(this.widget.settings, 'detail_page.articles.label', 'Lees ook')]
         })
       }),
       search_params: this.formBuilder.group({
