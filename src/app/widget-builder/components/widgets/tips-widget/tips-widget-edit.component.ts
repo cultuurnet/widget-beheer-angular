@@ -3,12 +3,14 @@ import { FormBuilder } from '@angular/forms';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import * as _ from 'lodash';
 import { BaseWidgetEditComponent } from '../base-widget-edit.component';
+import { QueryStringService } from "app/widget-builder/services/query-string.service";
 
 /**
  * Tips widget edit form component.
  */
 @Component({
-  templateUrl: './tips-widget-edit.component.html'
+  templateUrl: './tips-widget-edit.component.html',
+  providers: [QueryStringService]
 })
 export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
 
@@ -29,8 +31,8 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
   /**
    * TipsWidgetWidgetEditComponent constructor
    */
-  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
-    super(formBuilder, widgetBuilderService);
+  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService, public queryStringService: QueryStringService) {
+    super(formBuilder, widgetBuilderService, queryStringService);
   }
 
   /**
@@ -44,6 +46,9 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'general.detail_link.enabled', '')],
           url: [_.get(this.widget.settings, 'general.detail_link.url', '')],
           cdbid: [_.get(this.widget.settings, 'general.detail_link.cdbid', '')],
+        }),
+        labels_as_icons: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'general.labels_as_icons.enabled', false)]
         })
       }),
       items: this.formBuilder.group({
@@ -59,6 +64,12 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
         description: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.description.enabled', '')],
           characters: [_.get(this.widget.settings, 'items.description.characters', '')]
+        }),
+        price_information: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.price_information.enabled', '')]
+        }),
+        reservation_information: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.reservation_information.enabled', '')]
         }),
         when: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.when.enabled', '')],

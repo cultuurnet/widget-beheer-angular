@@ -4,12 +4,15 @@ import * as _ from 'lodash';
 import { BaseWidgetEditComponent } from '../base-widget-edit.component';
 import { FormBuilder } from '@angular/forms';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
+import { QueryStringService } from 'app/widget-builder/services/query-string.service';
+
 
 /**
  * Html widget edit form component.
  */
 @Component({
-  templateUrl: './html-widget-edit.component.html'
+  templateUrl: './html-widget-edit.component.html',
+  providers: [QueryStringService]
 })
 export class HtmlWidgetWidgetEditComponent extends BaseWidgetEditComponent {
 
@@ -21,8 +24,8 @@ export class HtmlWidgetWidgetEditComponent extends BaseWidgetEditComponent {
   /**
    * HtmlWidgetWidgetEditComponent constructor
    */
-  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
-    super(formBuilder, widgetBuilderService);
+  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService, public queryStringService: QueryStringService) {
+    super(formBuilder, widgetBuilderService, queryStringService);
   }
 
   /**

@@ -6,12 +6,14 @@ import * as _ from 'lodash';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import { BaseWidgetEditComponent } from '../base-widget-edit.component';
 import { PublishPageConfirmationModalComponent } from '../../modal/publish-page-confirmation-modal.component';
+import { QueryStringService } from "app/widget-builder/services/query-string.service";
 
 /**
  * Search results widget edit form component.
  */
 @Component({
-  templateUrl: './search-results-widget-edit.component.html'
+  templateUrl: './search-results-widget-edit.component.html',
+  providers: [QueryStringService]
 })
 
 
@@ -40,8 +42,8 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
   /**
    * SearchResultsWidgetEditComponent constructor
    */
-  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService) {
-    super(formBuilder, widgetBuilderService);
+  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService, public queryStringService: QueryStringService) {
+    super(formBuilder, widgetBuilderService, queryStringService);
   }
 
   /**
@@ -54,7 +56,12 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         exclude: this.formBuilder.group({
           long_term: [_.get(this.widget.settings, 'general.exclude.long_term', false)],
           permanent: [_.get(this.widget.settings, 'general.exclude.permanent', false)]
-        })
+        }),
+        labels_as_icons: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'general.labels_as_icons.enabled', false)]
+        }),
+        view: [_.get(this.widget.settings, 'general.view', 'list')],
+        items: [_.get(this.widget.settings, 'general.items', 10)]
       }),
       header: this.formBuilder.group({
         body: [_.get(this.settings, 'header.body', '')]
@@ -72,6 +79,12 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         description: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.description.enabled', '')],
           characters: [_.get(this.widget.settings, 'items.description.characters', '')]
+        }),
+        price_information: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.price_information.enabled', '')]
+        }),
+        reservation_information: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.reservation_information.enabled', '')]
         }),
         when: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.when.enabled', '')],
