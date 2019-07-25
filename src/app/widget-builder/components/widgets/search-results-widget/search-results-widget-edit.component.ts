@@ -16,8 +16,6 @@ import { QueryStringService } from "app/widget-builder/services/query-string.ser
   providers: [QueryStringService]
 })
 
-
-
 export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
 
   /**
