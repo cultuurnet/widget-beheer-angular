@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { AbstractWidgetEditComponent } from '../../../../core/widget/components/abstract-widget-edit-component';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormArray } from '@angular/forms';
 import { ckeditorConfig } from '../../../constants/ckeditor-config';
 import * as _ from 'lodash';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import { BaseWidgetEditComponent } from '../base-widget-edit.component';
-import { PublishPageConfirmationModalComponent } from '../../modal/publish-page-confirmation-modal.component';
-import { QueryStringService } from "app/widget-builder/services/query-string.service";
+import { QueryStringService } from 'app/widget-builder/services/query-string.service';
+import { environment } from 'environments/environment';
 
 /**
  * Search results widget edit form component.
@@ -38,11 +37,21 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
   ];
 
   /**
+   * Get the publishers from the environment config
+   */
+  publishers: Array<string> = environment.publishers;
+
+  selectedPublishers: Array<string> = [];
+
+
+  /**
    * SearchResultsWidgetEditComponent constructor
    */
   constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService, public queryStringService: QueryStringService) {
     super(formBuilder, widgetBuilderService, queryStringService);
   }
+
+
 
   /**
    * @inheritDoc
@@ -197,11 +206,7 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         articles: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.articles.enabled', true)],
           limit_publishers: [_.get(this.widget.settings, 'detail_page.articles.limit_publishers', false)],
-          publishers: this.formBuilder.group({
-              bill: [_.get(this.widget.settings, 'detail_page.publishers.bill', false)],
-              bruzz: [_.get(this.widget.settings, 'detail_page.publishers.bruzz', false)],
-              gva: [_.get(this.widget.settings, 'detail_page.publishers.gva', false)]
-          }),
+          publishers: this.addPublishersControl(),
           label: [_.get(this.widget.settings, 'detail_page.articles.label', 'Lees ook')]
         })
       }),
@@ -214,6 +219,34 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         body: [_.get(this.settings, 'footer.body', '')]
       })
     });
+  }
+
+  // method which loads the active publishers from the widget settings and handles the checbox states
+  addPublishersControl() {
+    const activePublishers = this.widget.settings.detail_page.articles.publishers;
+    let arr = [];
+    if (this.publishers.length) {
+      arr = this.publishers.map( publisher => {
+        const active = activePublishers.includes(publisher);
+        return this.formBuilder.control(active);
+      });
+    }
+    return this.formBuilder.array(arr);
+  }
+
+  // method which updates the selected publishers
+  getSelectedPublishers() {
+    this.selectedPublishers = [];
+    this.publishersArray.controls.map( (control, i) => {
+      if (control.value) {
+        this.selectedPublishers.push(this.publishers[i]);
+      }
+    });
+    this.settings.detail_page.articles.publishers = this.selectedPublishers;
+  }
+
+  get publishersArray() {
+    return <FormArray> this.widgetEditForm.get('detail_page.articles.publishers');
   }
 
   /**
@@ -230,5 +263,7 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
 
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
+
+
 
 }

@@ -512,18 +512,10 @@
                                             <input type="checkbox"  formControlName="limit_publishers">
                                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_ARTICLES_LIMIT_PUBLISHERS" | translate }}</span>
                                         </label>
-                                        <div *ngIf="settings.detail_page.articles.limit_publishers" class="ml-4" formGroupName="publishers">
-                                            <div>
-                                              <input type="checkbox" formControlName="bill">
-                                              <span>bill</span>
-                                            </div>
-                                            <div>
-                                                <input type="checkbox" formControlName="bruzz">
-                                                <span>bruzz</span>
-                                            </div>
-                                            <div>
-                                                <input type="checkbox" formControlName="gva">
-                                                <span>gva</span>
+                                        <div *ngIf="settings.detail_page.articles.limit_publishers" class="ml-4">
+                                            <div *ngFor="let publisher of publishersArray.controls;let i=index">
+                                              <input type="checkbox" [formControl]="publisher" (change)="getSelectedPublishers()">
+                                              <span>{{ publishers[i] }}</span>
                                             </div>
                                         </div>
                                     </div>
