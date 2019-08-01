@@ -11,8 +11,11 @@
   border-color: #adadad;
 }
 
-.btn-default:hover{
-  color: $white;
+.btn--publishing,
+.btn--stop-editing{
+  &:hover{
+    color: $white;
+  }
 }
 
 .btn-success{
