@@ -33,7 +33,7 @@ export class BaseWidgetEditComponent extends AbstractWidgetEditComponent impleme
         values.search_params.query = this.queryStringService.removeLineBreaks(values.search_params.query)
       }
       // Remove line breaks from search box
-      if(values.general.search_query){
+      if(values.general && values.general.search_query){
         values.general.search_query = this.queryStringService.removeLineBreaks(values.general.search_query);
       }
       // Apply the values to the model
