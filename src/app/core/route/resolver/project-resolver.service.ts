@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {of as observableOf,  Observable } from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import { of as observableOf,  Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { ProjectService } from '../../project/services/project.service';
 
@@ -23,15 +23,13 @@ export class ProjectResolver implements Resolve<Object> {
 
     return this.projectService.getProject(id).pipe(map(project => {
       return project;
-    }),catchError(e => {
+    }), catchError(e => {
       if (e.status === 403) {
           this.router.navigate(['/project-no-access']);
-      }
-      else {
+      } else {
           this.router.navigate(['']);
       }
-
       return observableOf(false);
-    }),);
+    }));
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {of as observableOf,  Observable } from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import { of as observableOf,  Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { WidgetService } from '../../../core/widget/services/widget.service';
 import { WidgetPage } from '../../../core/widget/widget-page';
@@ -28,8 +28,8 @@ export class WidgetPageListResolver implements Resolve<Object> {
 
     return this.widgetService.getWidgetPages(id).pipe(map((widgetPages: Array<WidgetPage>) => {
       return widgetPages;
-    }),catchError(() => {
+    }), catchError(() => {
       return observableOf([]);
-    }),);
+    }));
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {of as observableOf,  Observable } from 'rxjs';
-import {map, tap} from 'rxjs/operators';
+import { of as observableOf,  Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { WidgetPage } from '../widget-page';
 import * as _ from 'lodash';
 import { environment } from '../../../../environments/environment';
@@ -112,7 +112,7 @@ export class WidgetService {
       map(widgetPage => this.widgetPageFactory.create(widgetPage)),
       tap(widgetPage => {
         this.cache.put('widgetPage', [pageId], widgetPage);
-      }),);
+      }));
   }
 
   /**
@@ -197,7 +197,7 @@ export class WidgetService {
         for (const widgetPage of widgetPages) {
           this.cache.put('widgetPage', [widgetPage.id], widgetPage);
         }
-      }),);
+      }));
   }
 
   /**
@@ -225,7 +225,7 @@ export class WidgetService {
       tap(renderedWidget => {
       // Cache the rendered widget
       this.cache.put('renderedWidgets', [widgetPageId, widgetId], renderedWidget);
-    }),);
+    }));
   }
 
   /**

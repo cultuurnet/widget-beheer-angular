@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {of as observableOf, Observable } from 'rxjs';
-import {tap, map} from 'rxjs/operators';
+import { of as observableOf, Observable } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Project } from '../project';
@@ -37,7 +37,7 @@ export class ProjectService {
       tap(project => {
         // Cache the response
         this.cache.put('project', [id], project);
-      }),);
+      }));
   }
 
 }

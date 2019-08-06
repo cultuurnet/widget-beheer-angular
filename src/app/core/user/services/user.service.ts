@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import {of as observableOf,  Observable } from 'rxjs';
-import {tap, map, catchError} from 'rxjs/operators';
+import { of as observableOf,  Observable } from 'rxjs';
+import { tap, map, catchError } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-
-
 import { User } from '../user';
 import { MemoryCache } from '../../memory-cache';
 
@@ -38,9 +36,9 @@ export class UserService {
       return true;
     }, () => {
       return false;
-    }),catchError(error => {
+    }), catchError(error => {
       return observableOf(false);
-    }),);
+    }));
   }
 
   /**
@@ -74,7 +72,7 @@ export class UserService {
         this.lastLoaded = new Date();
         // Cache the response
         this.cache.put('currentUser', ['user'], user);
-      }),);
+      }));
   }
 
   /**
