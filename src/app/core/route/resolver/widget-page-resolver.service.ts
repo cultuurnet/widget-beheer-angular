@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {catchError, map} from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { of as observableOf,  Observable } from 'rxjs';
 import { Router, Resolve, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { WidgetService } from '../../widget/services/widget.service';
