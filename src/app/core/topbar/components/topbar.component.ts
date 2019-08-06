@@ -9,7 +9,7 @@ import { User } from '../../user/user';
 import { UserService } from '../../user/services/user.service';
 import { BackButton } from '../back-button';
 import { TopbarService } from '../services/topbar.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { DynamicComponentDirective } from '../directives/dynamic-component.directive';
 import * as _ from 'lodash';
 import { environment } from '../../../../environments/environment';
@@ -26,7 +26,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
   /**
    * The dynamic component container
    */
-  @ViewChild(DynamicComponentDirective, { read: ViewContainerRef }) dynamicComponentContainer: ViewContainerRef;
+  @ViewChild(DynamicComponentDirective, { read: ViewContainerRef, static: true }) dynamicComponentContainer: ViewContainerRef;
 
   /**
    * The back button

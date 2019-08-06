@@ -65,7 +65,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CoreModule,
     WidgetBuilderModule,
     AppRoutingModule,
-    NgbModule.forRoot(),
+    NgbModule,
     ToastyModule.forRoot()
   ],
   exports: [

@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
+import { of as observableOf,  Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { WidgetPage } from '../widget-page';
 import * as _ from 'lodash';
 import { environment } from '../../../../environments/environment';
 import { WidgetSaveResponse } from '../widget-save-response';
 import { WidgetPageFactory } from '../factories/widget-page.factory';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
 import { MemoryCache } from '../../memory-cache';
 import { RenderedWidget } from '../rendered-widget';
 import { CssStats } from "../css-stats";
@@ -46,7 +45,7 @@ export class WidgetService {
    * @return {Observable<WidgetSaveResponse>}
    */
   public saveWidgetPage(widgetPage: WidgetPage, widgetId?: string): Observable<WidgetSaveResponse> {
-    
+
     const requestOptions = {
       params: new HttpParams()
     };
@@ -58,8 +57,8 @@ export class WidgetService {
     // Invalidate the widgetPageList cache for the given project id
     this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
-    return this.http.put(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page', widgetPage, requestOptions)
-      .do<WidgetSaveResponse>(widgetSaveReponse => {
+    return this.http.put(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page', widgetPage, requestOptions).pipe(
+      tap<WidgetSaveResponse>(widgetSaveReponse => {
         if (widgetSaveReponse.widgetPage) {
           // Parse the widget page
           const parsedWidgetPage = this.widgetPageFactory.create(widgetSaveReponse.widgetPage);
@@ -73,7 +72,7 @@ export class WidgetService {
         if (widgetSaveReponse.preview && widgetId) {
           this.cache.put('renderedWidgets', [widgetPage.id, widgetId], {widgetId: widgetId, data: widgetSaveReponse.preview});
         }
-      });
+      }));
   }
 
   /**
@@ -82,14 +81,14 @@ export class WidgetService {
    * @param widgetPage
    */
   public publishWidgetPage(widgetPage: WidgetPage) {
-    return this.http.post(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id + '/publish', {})
-      .do(res => {
+    return this.http.post(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id + '/publish', {}).pipe(
+      tap(res => {
         // Clear the widgetPageList cache for the given project
         this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
         // Remove the widgetPage object from the cache
         this.cache.remove('widgetPage', [widgetPage.id]);
-      });
+      }));
   }
 
   /**
@@ -105,15 +104,15 @@ export class WidgetService {
       const widgetPage = this.cache.get('widgetPage', [pageId], false);
 
       if (widgetPage) {
-        return Observable.of(widgetPage);
+        return observableOf(widgetPage);
       }
     }
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'project/' + project_id + '/widget-page/' + pageId)
-      .map(widgetPage => this.widgetPageFactory.create(widgetPage))
-      .do(widgetPage => {
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'project/' + project_id + '/widget-page/' + pageId).pipe(
+      map(widgetPage => this.widgetPageFactory.create(widgetPage)),
+      tap(widgetPage => {
         this.cache.put('widgetPage', [pageId], widgetPage);
-      });
+      }));
   }
 
   /**
@@ -122,14 +121,14 @@ export class WidgetService {
    * @param widgetPage
    */
   public deleteWidgetPage(widgetPage: WidgetPage) {
-    return this.http.delete(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id)
-      .do(reponse => {
+    return this.http.delete(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id).pipe(
+      tap(reponse => {
         // Clear the widgetPageList cache for the given project
         this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
         // Remove the widgetPage object from the cache
         this.cache.remove('widgetPage', [widgetPage.id]);
-      });
+      }));
   }
 
   /**
@@ -138,14 +137,14 @@ export class WidgetService {
    * @param widgetPage
    */
   public upgradeWidgetPage(widgetPage: WidgetPage) {
-    return this.http.post(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id + '/upgrade', {})
-        .do(reponse => {
+    return this.http.post(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id + '/upgrade', {}).pipe(
+        tap(reponse => {
           // Clear the widgetPageList cache for the given project
           this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
           // Remove the widgetPage object from the cache
           this.cache.clear('widgetPage', [widgetPage.id]);
-        });
+        }));
   }
 
   /**
@@ -171,13 +170,13 @@ export class WidgetService {
 
         // If not all widgetPages were found in the cache, fetch the new list from the API
         if (widgetPageIds.length === widgetPages.length) {
-          return Observable.of(widgetPages);
+          return observableOf(widgetPages);
         }
       }
     }
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'project/' + projectId + '/widget-page')
-      .map(widgetPages => {
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'project/' + projectId + '/widget-page').pipe(
+      map(widgetPages => {
         const pages = [];
         for (const id in widgetPages) {
           if (widgetPages.hasOwnProperty(id)) {
@@ -189,8 +188,8 @@ export class WidgetService {
         }
 
         return pages;
-      })
-      .do(widgetPages => {
+      }),
+      tap(widgetPages => {
         // Store only the keys in the widgetPageList cache
         this.cache.put('widgetPageList', [projectId], _.map(widgetPages, 'id'));
 
@@ -198,7 +197,7 @@ export class WidgetService {
         for (const widgetPage of widgetPages) {
           this.cache.put('widgetPage', [widgetPage.id], widgetPage);
         }
-      });
+      }));
   }
 
   /**
@@ -212,21 +211,21 @@ export class WidgetService {
     if (!reset) {
       const renderedWidget = this.cache.get('renderedWidgets', [widgetPageId, widgetId], false);
       if (renderedWidget) {
-        return Observable.of(renderedWidget);
+        return observableOf(renderedWidget);
       }
     }
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'render/' + widgetPageId + '/' + widgetId + '/draft')
-      .map(response => {
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'render/' + widgetPageId + '/' + widgetId + '/draft').pipe(
+      map(response => {
         return {
           widgetId: widgetId,
           data: response['data']
         };
-      })
-      .do(renderedWidget => {
+      }),
+      tap(renderedWidget => {
       // Cache the rendered widget
       this.cache.put('renderedWidgets', [widgetPageId, widgetId], renderedWidget);
-    });
+    }));
   }
 
   /**
@@ -239,13 +238,13 @@ export class WidgetService {
       const defaultSettings = this.cache.get('widgetDefaultSettings', ['settings'], false);
 
       if (defaultSettings) {
-        return Observable.of(defaultSettings);
+        return observableOf(defaultSettings);
       }
     }
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'widget-types').do(defaultSettings => {
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'widget-types').pipe(tap(defaultSettings => {
       this.cache.put('widgetDefaultSettings', ['settings'], defaultSettings);
-    });
+    }));
   }
 
   /**
@@ -254,14 +253,14 @@ export class WidgetService {
    * @return {Observable<Object>}
    */
   public revertWidgetPage(widgetPage: WidgetPage): Observable<Object> {
-    return this.http.post(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id + '/revert', {})
-        .do(res => {
+    return this.http.post(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id + '/revert', {}).pipe(
+        tap(res => {
           // Clear the widgetPageList cache for the given project
           this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
           // Remove the widgetPage object from the cache
           this.cache.remove('widgetPage', [widgetPage.id]);
-        });
+        }));
   }
 
   /**
@@ -297,7 +296,7 @@ export class WidgetService {
    * @param reset
    * @return {Observable<CssStats>}
    */
-  public getCssStats(url: string, reset: boolean = false): Observable<CssStats> {
+  public getCssStats(url: string, reset: boolean = false): Observable<any> {
     // Cache per origin
     const scrapeURI = URI(url);
     const cacheKey = scrapeURI.origin();
@@ -306,7 +305,7 @@ export class WidgetService {
       const cssStats = this.cache.get('cssStats', [cacheKey], false);
 
       if (cssStats) {
-        return Observable.of(cssStats);
+        return observableOf(cssStats);
       }
     }
 
@@ -317,10 +316,10 @@ export class WidgetService {
 
     requestOptions.params = requestOptions.params.set('url', url);
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'css-stats', requestOptions)
-      .do(cssStats => {
+    return this.http.get(environment.apiUrl + this.widgetApiPath + 'css-stats', requestOptions).pipe(
+      tap(cssStats => {
         this.cache.put('cssStats', [cacheKey], cssStats);
-      });
+      }));
   }
 
 }

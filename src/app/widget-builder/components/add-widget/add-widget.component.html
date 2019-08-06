@@ -1,11 +1,11 @@
 <div class="component-add">
-  <span class="dropdown" ngbDropdown>
+  <span class="dropdown" ngbDropdown display="static" placement="bottom-left">
 
     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" ngbDropdownToggle (click)="dropToggleClick($event)">
       <i class="fa fa-plus-square-o fa-2x" aria-hidden="true"></i> <span class="dropdown-toggle--text">{{ "BUTTON_ADD_WIDGET" | translate }}</span>
     </button>
-    <div class="dropdown-menu">
-        <a *ngFor="let widgetType of widgetTypes" (click)="addWidget($event, widgetType)" class="dropdown-item">
+    <div ngbDropdownMenu display="static" class="dropdown-menu">
+        <a *ngFor="let widgetType of widgetTypes" ngbDropdownItem (click)="addWidget($event, widgetType)" class="dropdown-item">
           <div class="media">
             <div class="media-left">
               <img src="/assets/widgets/{{ widgetType.type }}-widget.svg" class="component-icon">

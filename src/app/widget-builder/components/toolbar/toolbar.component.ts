@@ -4,7 +4,7 @@ import { ToastyService } from 'ng2-toasty';
 import { TranslateService } from '@ngx-translate/core';
 import { WidgetPage } from '../../../core/widget/widget-page';
 import { WidgetBuilderService } from '../../services/widget-builder.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PublishPageConfirmationModalComponent } from '../modal/publish-page-confirmation-modal.component';
 import { CssEditModalComponent } from '../css-edit/css-edit-modal.component';
