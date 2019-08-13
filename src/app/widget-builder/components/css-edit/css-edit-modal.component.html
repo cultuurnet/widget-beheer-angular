@@ -31,13 +31,13 @@
                         <p *ngIf="scrapeError" class="text-danger">{{ "WIDGET_PAGE_CSS_EDIT_SCRAPE_STATS_FAILED_ERROR" | translate }}</p>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-secondary" [disabled]="cssScrapeForm.invalid || isScraping"><i *ngIf="isScraping" class="fa fa-spinner fa-spin"></i> {{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_SCRAPE_BUTTON" | translate}}</button>
+                <button type="submit" class="btn btn-outline-secondary" [disabled]="cssScrapeForm.invalid || isScraping"><i *ngIf="isScraping" class="fa fa-spinner fa-spin"></i> {{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_SCRAPE_BUTTON" | translate}}</button>
             </form>
         </div>
         <div *ngIf="cssStats" class="col-sm-4 state-results">
             <h3>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_TITLE" | translate }}</h3>
             <p *ngIf="cssStats.colors.length || cssStats.font_families.length">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_FOUND_STYLES_DESCRIPTION" | translate }} "{{ getCleanOriginUrl(cssStats.origin) }}" </p>
-            <button class="btn btn-secondary" (click)="resetScrapedStyles()">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL" | translate }}</button>
+            <button class="btn btn-outline-secondary" (click)="resetScrapedStyles()">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL" | translate }}</button>
             <p *ngIf="!cssStats.colors.length && !cssStats.font_families.length">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_NO_FOUND_STYLES_DESCRIPTION" | translate }} "{{ getCleanOriginUrl(cssStats.origin) }}" (<button class="btn btn-link" (click)="resetScrapedStyles()">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL" | translate }}</button>)</p>
             <section class="styleresults">
                 <section *ngIf="cssStats.colors.length">
@@ -72,5 +72,5 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-primary" (click)="save()" [disabled]="isSaving"><i *ngIf="isSaving" class="fa fa-spinner" aria-hidden="true"></i> {{ "WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_SAVE" | translate }}</button>
-    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('cancel')" [disabled]="isSaving">{{ "WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_CANCEL" | translate }}</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel')" [disabled]="isSaving">{{ "WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_CANCEL" | translate }}</button>
 </div>

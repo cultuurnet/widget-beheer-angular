@@ -5,7 +5,7 @@ import { WidgetBuilderComponent } from '../../..//widget-builder/widget-builder.
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from '../../../core/modal/components/confirmation-modal.component';
 import * as _ from 'lodash';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 /**
  * A generic widget preview component.

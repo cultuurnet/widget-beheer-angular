@@ -7,7 +7,7 @@ import { Widget } from 'app/core/widget/widget';
 import { AbstractWidgetEditComponent } from '../core/widget/components/abstract-widget-edit-component';
 import * as autoScroll from 'dom-autoscroller';
 import { WidgetPage } from '../core/widget/widget-page';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../core/project/project';
 import { BackButton } from '../core/topbar/back-button';
@@ -26,7 +26,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   /**
    * Widget edit form
    */
-  @ViewChild(WidgetEditDirective) editForm: WidgetEditDirective;
+  @ViewChild(WidgetEditDirective, { static: true }) editForm: WidgetEditDirective;
 
   /**
    * The currently active widget

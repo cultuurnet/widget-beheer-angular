@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { Widget } from '../../core/widget/widget';
 import { WidgetPage } from '../../core/widget/widget-page';
 import { WidgetService } from '../../core/widget/services/widget.service';
