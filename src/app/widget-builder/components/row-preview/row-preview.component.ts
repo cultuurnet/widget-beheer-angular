@@ -18,7 +18,7 @@ export class RowPreviewComponent implements OnInit, OnDestroy {
   /**
    * The row Layout preview
    */
-  @ViewChild(RowLayoutDirective) preview: RowLayoutDirective;
+  @ViewChild(RowLayoutDirective, { static: true }) preview: RowLayoutDirective;
 
   /**
    * The current row

@@ -1,30 +1,33 @@
 <div class="selected-element ">
-    <p>{{ "LABEL_SELECTED_ELEMENT" | translate }}: </p>
-    <div class="input-group">
-        <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-crosshairs"></i></span>
-        <input type="text" class="form-control" [(ngModel)]="widget.name" (ngModelChange)="handleWidgetNameChanged($event)"/>
-    </div>
+  <p>{{ "LABEL_SELECTED_ELEMENT" | translate }}: </p>
+  <div class="input-group">
+      <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fa fa-crosshairs"></i></span>
+      </div>
+      <input type="text" class="form-control" [(ngModel)]="widget.name" (ngModelChange)="handleWidgetNameChanged($event)" />
+  </div>
 </div>
 <ngb-tabset>
-    <ngb-tab>
-        <form [formGroup]="widgetEditForm" novalidate>
-            <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
-            <ng-template ngbTabContent>
-                <ngb-accordion [closeOthers]="true" [activeIds]="'content'">
-                    <ngb-panel id="content" formGroupName="content">
-                        <ng-template ngbPanelTitle>{{ "LABEL_HTML_EDIT_FORM_PANEL_TITLE_CONTENT" | translate }}</ng-template>
-                        <ng-template ngbPanelContent>
-                            <ckeditor formControlName="body" [config]="ckeditorConfig.basic_html"></ckeditor>
-                        </ng-template>
-                    </ngb-panel>
-                </ngb-accordion>
+  <ngb-tab>
+    <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
+    <ng-template ngbTabContent>
+      <form [formGroup]="widgetEditForm" novalidate>
+        <ngb-accordion [closeOthers]="true" [activeIds]="'content'">
+          <ngb-panel id="content" formGroupName="content">
+            <ng-template ngbPanelTitle>{{ "LABEL_HTML_EDIT_FORM_PANEL_TITLE_CONTENT" | translate }}</ng-template>
+            <ng-template ngbPanelContent>
+              <ckeditor formControlName="body" [config]="ckeditorConfig.basic_html"></ckeditor>
             </ng-template>
-        </form>
-    </ngb-tab>
-    <ngb-tab>
-        <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_JSON" | translate }}</ng-template>
-        <ng-template ngbTabContent>
-            <app-json-edit (jsonChanged)="handleJsonChanged()" [widget]="widget"></app-json-edit>
-        </ng-template>
-    </ngb-tab>
+          </ngb-panel>
+        </ngb-accordion>
+      </form>
+    </ng-template>
+
+  </ngb-tab>
+  <ngb-tab>
+    <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_JSON" | translate }}</ng-template>
+    <ng-template ngbTabContent>
+      <app-json-edit (jsonChanged)="handleJsonChanged()" [widget]="widget"></app-json-edit>
+    </ng-template>
+  </ngb-tab>
 </ngb-tabset>

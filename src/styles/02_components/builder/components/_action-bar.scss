@@ -147,7 +147,6 @@
 
 .actions-bar button span {
   display: none;
-  @include text-hide();
 }
 
 .selected .actions-bar--component {
