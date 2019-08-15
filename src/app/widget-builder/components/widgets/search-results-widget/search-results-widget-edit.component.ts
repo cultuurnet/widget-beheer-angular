@@ -224,18 +224,17 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
   // method which loads the active publishers from the widget settings and handles the checbox states
   addPublishersControl() {
     const activePublishers = this.widget.settings.detail_page.articles.publishers;
-    let arr = [];
+    let selectedPublishers: Array<any> = [];
     if (this.publishers.length) {
-      arr = this.publishers.map( publisher => {
+      selectedPublishers = this.publishers.map( publisher => {
         const active = activePublishers.includes(publisher);
         return this.formBuilder.control(active);
       });
     }
-    return this.formBuilder.array(arr);
+    return this.formBuilder.array(selectedPublishers);
   }
 
-  // method which updates the selected publishers
-  getSelectedPublishers() {
+  updateSelectedPublishers() {
     this.selectedPublishers = [];
     this.publishersArray.controls.map( (control, i) => {
       if (control.value) {

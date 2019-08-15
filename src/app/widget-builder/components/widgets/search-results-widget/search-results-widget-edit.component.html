@@ -522,7 +522,7 @@
                         </label>
                         <div *ngIf="settings.detail_page.articles.limit_publishers" class="ml-4">
                             <div *ngFor="let publisher of publishersArray.controls;let i=index">
-                              <input type="checkbox" [formControl]="publisher" (change)="getSelectedPublishers()">
+                              <input type="checkbox" [formControl]="publisher" (change)="updateSelectedPublishers()">
                               <span>{{ publishers[i] }}</span>
                             </div>
                         </div>
