@@ -6,5 +6,5 @@ export const environment = {
   widgetApi_embedUrl_forceCurrent: 'http://projectaanvraag-api-test.uitdatabank.be/widgets/layout/v3/:page_id.js',
   projectaanvraagDashboardUrl: 'https://projectaanvraag-test.uitdatabank.be/',
   zendeskUrl: 'http://www.zendesk.com',
-  publishers: ['bruzz', 'bill', 'gva']
+  publishers: ['BRUZZ', 'BILL', 'Gazet van Antwerpen']
 };
