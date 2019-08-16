@@ -508,22 +508,22 @@
                 </div>
               </div>
               <div class="edit-searchfilters--selectgroup" formGroupName="articles">
-                <div class="form-group">
+                <div>
                     <label>
                         <input type="checkbox" formControlName="enabled">
                         <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_ARTICLES" | translate }} <span class="badge badge-primary">beta</span></span>
                     </label>
                 </div>
                 <div *ngIf="settings.detail_page.articles.enabled">
-                    <div class="form-group">
+                    <div>
                         <label>
                             <input type="checkbox"  formControlName="limit_publishers">
                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_ARTICLES_LIMIT_PUBLISHERS" | translate }}</span>
                         </label>
                         <div *ngIf="settings.detail_page.articles.limit_publishers" class="ml-4">
-                            <div *ngFor="let publisher of publishersArray.controls;let i=index">
-                              <input type="checkbox" [formControl]="publisher" (change)="updateSelectedPublishers()">
-                              <span>{{ publishers[i] }}</span>
+                            <div class="publisher-option" *ngFor="let publisher of publishersArray.controls;let i=index">
+                              <input id="publisher{{i}}" type="checkbox" [formControl]="publisher" (change)="updateSelectedPublishers()">
+                              <label for="publisher{{i}}">{{ publishers[i] }}</label>
                             </div>
                         </div>
                     </div>
