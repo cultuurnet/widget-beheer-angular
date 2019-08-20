@@ -127,8 +127,8 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         labels: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.labels.enabled', '')],
           limit_labels: this.formBuilder.group({
-            enabled: [_.get(this.widget.settings, 'items.limit_labels.enabled', '')],
-            labels: [_.get(this.widget.settings, 'items.limit_labels.labels', '')]
+            enabled: [_.get(this.widget.settings, 'items.labels.limit_labels.enabled', '')],
+            labels: [_.get(this.widget.settings, 'items.labels.limit_labels.labels', '')]
           }),
         }),
         facilities: this.formBuilder.group({
@@ -196,8 +196,8 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         labels: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.labels.enabled', '')],
           limit_labels: this.formBuilder.group({
-            enabled: [_.get(this.widget.settings, 'detail_page.limit_labels.enabled', '')],
-            labels: [_.get(this.widget.settings, 'detail_page.limit_labels.labels', '')]
+            enabled: [_.get(this.widget.settings, 'detail_page.labels.limit_labels.enabled', '')],
+            labels: [_.get(this.widget.settings, 'detail_page.labels.limit_labels.labels', '')]
           }),
         }),
         facilities: this.formBuilder.group({
