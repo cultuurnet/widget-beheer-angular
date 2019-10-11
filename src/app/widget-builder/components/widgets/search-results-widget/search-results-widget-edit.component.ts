@@ -38,9 +38,8 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
 
   /**
    * Get the publishers from the environment config
-   * TODO: load publishers from environment.ts check jenkins build script
    */
-  publishers: Array<string> = ['BRUZZ', 'BILL', 'Gazet van Antwerpen'];
+  publishers: Array<string> = environment.publishers;
 
   selectedPublishers: Array<string> = [];
 
