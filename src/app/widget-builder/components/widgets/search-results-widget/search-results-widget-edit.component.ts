@@ -39,7 +39,7 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
   /**
    * Get the publishers from the environment config
    */
-  publishers: Array<string> = environment.publishers;
+  publishers: Array<string> = environment.publishers.split(',');
 
   selectedPublishers: Array<string> = [];
 
