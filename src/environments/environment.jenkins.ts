@@ -6,5 +6,5 @@ export const environment = {
   "widgetApi_embedUrl_forceCurrent": "cd015475aa69fafc0f1ebca9a113a9a5e34181e547a3e38123b0d292834c447a",
   "projectaanvraagDashboardUrl": "1fb0fe05eab2cfc45e41f9fdfd5eaab917f03839693da1bad98d95fb39d10dc4",
   "zendeskUrl": "f7df4024136061af5e4dd84985a288567b5f68d441a15d7c2f3ef2bd83665eea",
-  "publishers": "5CC693904BCA697974261413B3AB6FECE0832B14EE463817A655FE8B7E6CAA28"
+  "publishers": "5cc693904bca697974261413b3ab6fece0832b14ee463817a655fe8b7e6caa28"
 };
