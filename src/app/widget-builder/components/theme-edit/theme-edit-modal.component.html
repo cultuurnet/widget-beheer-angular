@@ -4,9 +4,26 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
+
 <div class="modal-body modal-css-edit">
-  <p>Select Theme Modal</p>
+  <div class="row">
+    <div class="col-4">
+      <h3>Select Theme</h3>
+      <div class="form-group">
+        <div *ngFor="let option of themeOptions" class="form-check">
+          <label class="form-check-label">
+            <input type="radio" [value]="option" name="selectedTheme" [(ngModel)]="selectedTheme">
+            <span>{{ option.name }}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <img *ngIf="selectedTheme" style="width:100%; height:auto;" src="/assets/page-templates/themes/{{ selectedTheme.preview }}" alt="">
+    </div>
+  </div>
 </div>
+
 <div class="modal-footer">
     <button type="button" class="btn btn-primary" (click)="save()" [disabled]="isSaving"><i *ngIf="isSaving" class="fa fa-spinner" aria-hidden="true"></i> {{ "WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_SAVE" | translate }}</button>
     <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel')" [disabled]="isSaving">{{ "WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_CANCEL" | translate }}</button>
