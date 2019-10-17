@@ -271,4 +271,24 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     }, () => {});
   }
 
+  /**
+   * Edit the widget page CSS
+   */
+  public setTheme() {
+    const modal = this.modalService.open(CssEditModalComponent, {
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false
+    });
+
+    const modalInstance = modal.componentInstance;
+    modalInstance.widgetPage = this.widgetPage;
+
+    modal.result.then((result) => {
+      if (result) {
+        this.toastyService.success('Thema succesvol ingesteld');
+      }
+    }, () => {});
+  }
+
 }
