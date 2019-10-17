@@ -15,6 +15,16 @@ import { WidgetBuilderService } from '../../services/widget-builder.service';
 export class ThemeEditModalComponent implements OnInit {
 
   /**
+   * The themeOptions
+   */
+  public themeOptions: Array<any>;
+
+  /**
+   * The themeOptions
+   */
+  public selectedTheme: any;
+
+  /**
    * Indicates if the widget is being saved
    * @type {boolean}
    */
@@ -48,7 +58,24 @@ export class ThemeEditModalComponent implements OnInit {
    * @inheritDoc
    */
   public ngOnInit() {
-
+    this.themeOptions =  [
+      {
+        name: 'Bram\'s paradise',
+        description: 'a blend of peaceful pastel colours',
+        preview: 'paradise_circus.jpg'
+      },
+      {
+        name: 'BILL',
+        description: 'stijl je agenda zoals de BILL jongerenagenda',
+        preview: 'bill.png'
+      },
+      {
+        name: 'Indian Summer',
+        description: 'cool',
+        preview: 'indian_summer.png'
+      }
+    ]
+    this.selectedTheme = null;
   }
 
   /**
