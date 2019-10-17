@@ -37,6 +37,7 @@ import { PublishPageConfirmationModalComponent } from './components/modal/publis
 import { JsonEditComponent } from './components/json-edit/json-edit.component';
 import { JsonEditModalComponent } from './components/json-edit/json-edit-modal.component';
 import { CssEditModalComponent } from './components/css-edit/css-edit-modal.component';
+import { ThemeEditModalComponent } from './components/theme-edit/theme-edit-modal.component';
 import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert-widget-page.component';
 
 @NgModule({
@@ -70,7 +71,8 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     JsonEditComponent,
     JsonEditModalComponent,
     RevertWidgetPageComponent,
-    CssEditModalComponent
+    CssEditModalComponent,
+    ThemeEditModalComponent
   ],
   exports: [
     WidgetBuilderComponent
@@ -109,6 +111,7 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     PublishPageConfirmationModalComponent,
     JsonEditModalComponent,
     CssEditModalComponent,
+    ThemeEditModalComponent,
     AdminPageModalComponent
   ]
 })
