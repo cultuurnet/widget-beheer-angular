@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { WidgetPage } from '../../../core/widget/widget-page';
 import { WidgetService } from '../../../core/widget/services/widget.service';
 import { WidgetBuilderService } from '../../services/widget-builder.service';
+import { HttpClient } from '@angular/common/http';
 
 /**
  * ThemeEditModalComponent modal component.
@@ -22,6 +23,11 @@ export class ThemeEditModalComponent implements OnInit {
    * The themeOptions
    */
   public selectedTheme: any;
+
+    /**
+   * The themeOptions
+   */
+  public cssTheme: any;
 
   /**
    * Indicates if the widget is being saved
@@ -44,12 +50,16 @@ export class ThemeEditModalComponent implements OnInit {
    * @param activeModal
    * @param widgetService
    * @param widgetBuilderService
+   * @param http
    */
   constructor(
     public activeModal: NgbActiveModal,
     private widgetService: WidgetService,
-    private widgetBuilderService: WidgetBuilderService
+    private widgetBuilderService: WidgetBuilderService,
+    private http: HttpClient
   ) { }
+
+
 
   /**
    * @inheritDoc
@@ -59,17 +69,26 @@ export class ThemeEditModalComponent implements OnInit {
       {
         name: 'Bram\'s paradise',
         description: 'a blend of peaceful pastel colours',
-        preview: 'paradise_circus.jpg'
+        preview: 'paradise_circus.jpg',
+        stylesheet: 'paradise-circus.css'
       },
       {
         name: 'BILL',
         description: 'stijl je agenda zoals de BILL jongerenagenda',
-        preview: 'bill.png'
+        preview: 'bill.png',
+        stylesheet: 'paradise-circus.css'
       },
       {
         name: 'Indian Summer',
         description: 'cool',
-        preview: 'indian_summer.png'
+        preview: 'indian_summer.png',
+        stylesheet: 'paradise-circus.css'
+      },
+      {
+        name: 'Smooth operator',
+        description: 'Corneel wille\'s smooth theme',
+        preview: 'smooth-operator.jpg',
+        stylesheet: 'smooth-operator.css'
       }
     ]
     if (this.widgetPage.selectedTheme) {
@@ -90,19 +109,31 @@ export class ThemeEditModalComponent implements OnInit {
     }
   }
 
+  public setCssFromTheme() {
+    return this.http.get(`assets/themes/${this.selectedTheme.stylesheet}`, {responseType: 'text'})
+    .subscribe(data => {
+      this.widgetPage.css = data;
+    })
+  }
+
   /**
    * Save Theme
    */
   public save() {
     this.isSaving = true;
     this.error = false;
-
+    this.setCssFromTheme();
     // Save the widget page (will trigger a render for the current widget)
     this.widgetService.saveWidgetPage(this.widgetPage).subscribe(() => {
       // Save the selectedTheme
       this.widgetPage.selectedTheme = this.selectedTheme;
-      // Close modal
-      this.activeModal.close(true);
+      if (this.widgetBuilderService.attachCss(this.widgetPage.css)) {
+        // Close the modal
+        this.activeModal.close(true);
+      } else {
+        this.error = true;
+        this.isSaving = false;
+      }
     }, () => {
       this.isSaving = false;
 
