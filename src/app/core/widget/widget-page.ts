@@ -33,6 +33,11 @@ export class WidgetPage {
   public css: string;
 
   /**
+   * The widget page selectedTheme
+   */
+  public selectedTheme: any;
+
+  /**
   * The widget page mobile setting
   */
   public mobile: boolean;
