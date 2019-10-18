@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WidgetPage } from '../../../core/widget/widget-page';
 import { WidgetService } from '../../../core/widget/services/widget.service';
 import { WidgetBuilderService } from '../../services/widget-builder.service';
@@ -43,13 +42,11 @@ export class ThemeEditModalComponent implements OnInit {
   /**
    * ThemeEditModalComponent constructor.
    * @param activeModal
-   * @param formBuilder
    * @param widgetService
    * @param widgetBuilderService
    */
   constructor(
     public activeModal: NgbActiveModal,
-    private formBuilder: FormBuilder,
     private widgetService: WidgetService,
     private widgetBuilderService: WidgetBuilderService
   ) { }
@@ -75,7 +72,22 @@ export class ThemeEditModalComponent implements OnInit {
         preview: 'indian_summer.png'
       }
     ]
-    this.selectedTheme = null;
+    if (this.widgetPage.selectedTheme) {
+      this.selectedTheme = this.widgetPage.selectedTheme;
+    }
+  }
+
+  public selectTheme(theme) {
+    this.selectedTheme = theme;
+  }
+
+  public isActiveTheme(theme) {
+    if (!this.selectedTheme) {
+      return;
+    }
+    if (this.selectedTheme.name === theme.name) {
+      return true;
+    }
   }
 
   /**
@@ -87,6 +99,8 @@ export class ThemeEditModalComponent implements OnInit {
 
     // Save the widget page (will trigger a render for the current widget)
     this.widgetService.saveWidgetPage(this.widgetPage).subscribe(() => {
+      // Save the selectedTheme
+      this.widgetPage.selectedTheme = this.selectedTheme;
       // Close modal
       this.activeModal.close(true);
     }, () => {
