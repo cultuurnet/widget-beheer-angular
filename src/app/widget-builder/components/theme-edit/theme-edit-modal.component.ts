@@ -73,10 +73,16 @@ export class ThemeEditModalComponent implements OnInit {
     }
   }
 
+  /**
+   * Add the selected theme to scope
+   */
   public selectTheme(theme) {
     this.selectedTheme = theme;
   }
 
+  /**
+   * Checks if the theme is active
+   */
   public isActiveTheme(theme) {
     if (!this.selectedTheme) {
       return;
@@ -87,12 +93,19 @@ export class ThemeEditModalComponent implements OnInit {
   }
 
   /**
+   * Get the CSS from the selected theme
+   */
+  public getCSSfromTheme() {
+    return this.http.get(`assets/themes/${this.selectedTheme.stylesheet}`, {responseType: 'text'});
+  }
+
+  /**
    * Save Theme
    */
   public save() {
     this.isSaving = true;
     this.error = false;
-    this.http.get(`assets/themes/${this.selectedTheme.stylesheet}`, {responseType: 'text'})
+    this.getCSSfromTheme()
     .subscribe(data => {
       this.widgetPage.css = data;
       this.widgetPage.selectedTheme = this.selectedTheme.name;
