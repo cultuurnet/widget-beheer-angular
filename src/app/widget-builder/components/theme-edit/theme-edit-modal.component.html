@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">Thema's</h4>
+    <h4 class="modal-title">{{ "WIDGET_PAGE_THEME_EDIT_MODAL_TITLE" | translate }}</h4>
     <button type="button" class="close" (click)="activeModal.dismiss('cancel')" [disabled]="isSaving">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -7,22 +7,30 @@
 
 <div class="modal-body modal-css-edit">
   <div class="row">
-    <div class="col-4">
-      <h3>Select Theme</h3>
-        <div *ngFor="let option of themeOptions" class="form-check">
-          <label class="form-check-label">
-            <input type="radio" [value]="option" name="selectedTheme" [checked]="isActiveTheme(option)" (change)="selectTheme(option)">
-            <span>{{ option.name }}</span>
-          </label>
+    <div class="col-md-4 col-sm-12">
+      <h3>{{ "WIDGET_PAGE_THEME_EDIT_MODAL_SUBTITLE" | translate }}</h3>
+      <p>{{ "WIDGET_PAGE_THEME_EDIT_MODAL_INTRO" | translate }}</p>
+      <fieldset>
+        <div class="form-group">
+          <div *ngFor="let option of themeOptions">
+            <label>
+              <input class="mr-1" type="radio" [value]="option" name="selectedTheme" [checked]="isActiveTheme(option)"
+                (change)="selectTheme(option)">
+              <span>{{ option.name }}</span>
+              <p class="form-text text-muted">{{ option.description }}</p>
+            </label>
+          </div>
         </div>
+      </fieldset>
     </div>
-    <div class="col-8">
-      <img *ngIf="selectedTheme" style="width:100%;" src="/assets/page-templates/themes/{{ selectedTheme.preview }}" alt="">
+    <div class="col-md-8 col-sm-12">
+      <img *ngIf="selectedTheme" style="width:100%;" src="/assets/page-templates/themes/{{ selectedTheme.preview }}"
+        alt="{{ selectedTheme.name }}">
     </div>
   </div>
 </div>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="save()" [disabled]="isSaving"><i *ngIf="isSaving" class="fa fa-spinner" aria-hidden="true"></i> {{ "WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_SAVE" | translate }}</button>
-    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel')" [disabled]="isSaving">{{ "WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_CANCEL" | translate }}</button>
+    <button type="button" class="btn btn-primary" (click)="save()" [disabled]="isSaving"><i *ngIf="isSaving" class="fa fa-spinner" aria-hidden="true"></i> {{ "WIDGET_PAGE_THEME_EDIT_MODAL_BUTTON_SAVE" | translate }}</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel')" [disabled]="isSaving">{{ "WIDGET_PAGE_THEME_EDIT_MODAL_BUTTON_CANCEL" | translate }}</button>
 </div>
