@@ -280,6 +280,7 @@
   "REVERT_WIDGET_PAGE_FAILED_NOTIFICATION": "Er ging iets mis bij het terugkeren naar de laatst gepubliceerde versie van deze pagina.",
   "REVERT_WIDGET_PAGE_FAILED_ERROR": "Er ging iets mis bij het terugzetten van de widget pagina. Probeer het later opnieuw.",
   "WIDGET_PAGE_CSS_EDIT_MODAL_TITLE": "CSS",
+  "WIDGET_PAGE_CSS_EDIT_MODAL_ACTIVE_THEME": "Huidig actief thema:",
   "WIDGET_PAGE_CSS_EDIT_SUCCESS_NOTIFICATION": "De CSS is correct opgeslagen.",
   "WIDGET_PAGE_CSS_EDIT_SAVE_FAILED": "Er ging iets mis bij het opslaan van de CSS. Probeer het later opnieuw.",
   "WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_SAVE": "Opslaan",
