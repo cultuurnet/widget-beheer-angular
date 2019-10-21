@@ -69,7 +69,7 @@ export class ThemeEditModalComponent implements OnInit {
     this.themeOptions = themes;
 
     if (this.widgetPage.selectedTheme) {
-      this.selectedTheme = this.widgetPage.selectedTheme;
+      this.selectedTheme = this.themeOptions.find( item => item.name ===  this.widgetPage.selectedTheme);
     }
   }
 
@@ -86,37 +86,33 @@ export class ThemeEditModalComponent implements OnInit {
     }
   }
 
-  public setCssFromTheme() {
-    return this.http.get(`assets/themes/${this.selectedTheme.stylesheet}`, {responseType: 'text'})
-    .subscribe(data => {
-      this.widgetPage.css = data;
-    })
-  }
-
   /**
    * Save Theme
    */
   public save() {
     this.isSaving = true;
     this.error = false;
-    this.setCssFromTheme();
-    // Save the widget page (will trigger a render for the current widget)
-    this.widgetService.saveWidgetPage(this.widgetPage).subscribe(() => {
-      // Save the selectedTheme
-      this.widgetPage.selectedTheme = this.selectedTheme;
-      if (this.widgetBuilderService.attachCss(this.widgetPage.css)) {
-        // Close the modal
-        this.activeModal.close(true);
-      } else {
-        this.error = true;
+    this.http.get(`assets/themes/${this.selectedTheme.stylesheet}`, {responseType: 'text'})
+    .subscribe(data => {
+      this.widgetPage.css = data;
+      this.widgetPage.selectedTheme = this.selectedTheme.name;
+      // Save the widget page (will trigger a render for the current widget)
+      this.widgetService.saveWidgetPage(this.widgetPage).subscribe(() => {
+        // Save the selectedTheme
+        if (this.widgetBuilderService.attachCss(this.widgetPage.css)) {
+          // Close the modal
+          this.activeModal.close(true);
+        } else {
+          this.error = true;
+          this.isSaving = false;
+        }
+      }, () => {
         this.isSaving = false;
-      }
-    }, () => {
-      this.isSaving = false;
 
-      // Show error message in the modal
-      this.error = true;
-    });
+        // Show error message in the modal
+        this.error = true;
+      });
+    })
   }
 
 }
