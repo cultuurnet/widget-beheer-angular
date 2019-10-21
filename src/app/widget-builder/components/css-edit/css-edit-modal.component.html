@@ -12,6 +12,7 @@
                     <div *ngIf="error" class="alert alert-danger" role="alert">
                         {{ "WIDGET_PAGE_CSS_EDIT_SAVE_FAILED" | translate }}
                     </div>
+                    <p *ngIf="widgetPage.selectedTheme">Huidig actief thema: <strong>{{widgetPage.selectedTheme}}</strong></p>
                     <textarea class="code-edit" formControlName="css" rows="20"></textarea>
                 </form>
             </div>
