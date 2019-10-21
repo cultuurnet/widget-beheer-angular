@@ -287,7 +287,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     modal.result.then((result) => {
       if (result) {
-        this.toastyService.success('Thema succesvol ingesteld');
+        this.toastyService.success(`Thema: ${this.widgetPage.selectedTheme} ingesteld`);
       }
     }, () => {});
   }
