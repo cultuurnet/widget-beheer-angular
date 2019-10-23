@@ -8,6 +8,11 @@
   <app-css-edit-modal></app-css-edit-modal>
 </ng-template>
 
+<!-- Theme edit modal !-->
+<ng-template>
+  <app-theme-edit-modal></app-theme-edit-modal>
+</ng-template>
+
 <div class="row" *ngIf="widgetPage">
   <div class="col-12 col-sm-5 col-md-5 col-lg-4 page-title-col">
     <div class="page-title-edit" *ngIf="!sidebar">
@@ -50,7 +55,13 @@
   </div>
   <div class="col-7 col-md-5">
     <div class="page-actions" *ngIf="!sidebar" style="float:right;">
-      <button class="btn btn-outline-secondary mr-2" (click)="editCss()"><i class="fa fa-paint-brush" aria-hidden="true"></i><span class="hidden-lg-down"> {{ "TOPBAR_CSS_BUTTON" | translate }}</span></button>
+      <div ngbDropdown class="d-inline-block" display="dynamic">
+        <button class="btn btn-outline-secondary mr-2" ngbDropdownToggle><i class="fa fa-paint-brush" aria-hidden="true"></i> <span class="hidden-lg-down">{{ "TOPBAR_STYLES_BUTTON" | translate }}</span></button>
+        <div ngbDropdownMenu class="dropdown-menu">
+            <button ngbDropdownItem class="dropdown-item " (click)="editCss()">{{ "TOPBAR_CSS_BUTTON" | translate }}</button>
+            <button ngbDropdownItem class="dropdown-item " (click)="editTheme()">{{ "TOPBAR_THEMES_BUTTON" | translate }}</button>
+        </div>
+      </div>
       <button *ngIf="widgetPage.draft" class="btn btn-outline-secondary mr-2" (click)="revertDraft()"><i class="fa fa-undo" aria-hidden="true"></i> <span class="hidden-lg-down">{{ "TOPBAR_REVERT_BUTTON" | translate }}</span></button>
       <button class="btn btn-default btn--publishing" (click)="publishPage()">  <i class="fa" [ngClass]="{'fa-cloud-upload': !publishing, 'fa-spinner fa-spin': publishing}" aria-hidden="true"></i><span class="hidden-lg-down">  {{ "TOPBAR_PUBLISH_BUTTON" | translate }} </span></button>
     </div>

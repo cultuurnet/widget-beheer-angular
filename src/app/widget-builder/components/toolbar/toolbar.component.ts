@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PublishPageConfirmationModalComponent } from '../modal/publish-page-confirmation-modal.component';
 import { CssEditModalComponent } from '../css-edit/css-edit-modal.component';
+import { ThemeEditModalComponent } from '../theme-edit/theme-edit-modal.component';
 import { Router } from '@angular/router';
 import { ConfirmationModalComponent } from '../../../core/modal/components/confirmation-modal.component';
 
@@ -267,6 +268,26 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     modal.result.then((result) => {
       if (result) {
         this.toastyService.success(this.translateService.instant('WIDGET_PAGE_CSS_EDIT_SUCCESS_NOTIFICATION'));
+      }
+    }, () => {});
+  }
+
+  /**
+   * Edit the widget page CSS
+   */
+  public editTheme() {
+    const modal = this.modalService.open(ThemeEditModalComponent, {
+      size: 'lg',
+      backdrop: 'static',
+      keyboard: false
+    });
+
+    const modalInstance = modal.componentInstance;
+    modalInstance.widgetPage = this.widgetPage;
+
+    modal.result.then((result) => {
+      if (result) {
+        this.toastyService.success(`Thema: ${this.widgetPage.selectedTheme} ingesteld`);
       }
     }, () => {});
   }
