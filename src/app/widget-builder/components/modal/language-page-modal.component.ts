@@ -44,7 +44,7 @@ export class LanguagePageModalComponent implements OnInit {
    * @inheritDoc
    */
   public ngOnInit() {
-    console.log('open language modal test bram');
+
   }
 
   public save() {

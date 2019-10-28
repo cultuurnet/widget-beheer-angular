@@ -1,12 +1,36 @@
 <div class="modal-header">
-    <h4 class="modal-title">Taal</h4>
+    <h4 class="modal-title">{{ "WIDGET_PAGE_LANGUAGE_MODAL_TITLE" | translate }}</h4>
     <button type="button" class="close" (click)="activeModal.dismiss('closed')">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
 
-  <p>Taal selectie modal</p>
+  <p>{{ "WIDGET_PAGE_LANGUAGE_MODAL_INTRO" | translate }}</p>
+  <fieldset>
+    <div class="form-group">
+      <div>
+        <label>
+          <input class="mr-1" type="radio" value="nl" name="selectedLanguage" (change)="selectLanguage()">
+          <span>{{ "WIDGET_PAGE_LANGUAGE_MODAL_NL" | translate }}</span>
+        </label>
+      </div>
+      <div>
+        <label>
+          <input class="mr-1" type="radio" value="fr" name="selectedLanguage" (change)="selectLanguage()">
+          <span>{{ "WIDGET_PAGE_LANGUAGE_MODAL_FR" | translate }}</span>
+        </label>
+      </div>
+      <div>
+        <label>
+          <input class="mr-1" type="radio" value="eng" name="selectedLanguage" (change)="selectLanguage()">
+          <span>{{ "WIDGET_PAGE_LANGUAGE_MODAL_ENG" | translate }}</span>
+        </label>
+      </div>
+    </div>
+  </fieldset>
+
+
 
 
 </div>
