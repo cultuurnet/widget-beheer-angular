@@ -7,6 +7,7 @@ import { Project } from '../../../core/project/project';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from 'app/core/modal/components/confirmation-modal.component';
 import { AdminPageModalComponent } from '../modal/admin-page-modal.component';
+import { LanguagePageModalComponent } from '../modal/language-page-modal.component';
 import { ToastyService } from 'ng2-toasty';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
@@ -153,6 +154,28 @@ export class PageListComponent implements OnInit {
       }
     }, () => {});
   }
+
+  /**
+   * Opens language settings
+   * @param widgetPage
+   */
+  public languageWidgetPage(widgetPage: WidgetPage) {
+    console.log('open language modal');
+    const modal = this.modalService.open(LanguagePageModalComponent, {
+      backdrop: 'static',
+      keyboard: false
+    });
+
+    const modalInstance = modal.componentInstance;
+    modalInstance.widgetPage = widgetPage;
+
+    modal.result.then((result) => {
+      if (result) {
+        this.toastyService.success("De taal is succesvol ingesteld.");
+      }
+    }, () => {});
+  }
+
 
   /**
    * Upgrade a widget page to latest version.
