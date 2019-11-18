@@ -2,7 +2,7 @@ export const themes = [
   {
     name: 'BILL',
     description: 'stijl je agenda zoals de BILL jongerenagenda',
-    preview: 'BILL.png',
+    preview: 'bill.png',
     stylesheet: 'BILL.css'
   },
   {
