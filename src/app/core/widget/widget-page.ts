@@ -48,6 +48,11 @@ export class WidgetPage {
   public jquery: boolean;
 
   /**
+  * The widget page language setting
+  */
+  public language: string;
+
+  /**
    * Widget page draft state
    */
   public draft: boolean;
