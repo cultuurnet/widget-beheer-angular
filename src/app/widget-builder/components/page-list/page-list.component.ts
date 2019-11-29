@@ -150,7 +150,7 @@ export class PageListComponent implements OnInit {
 
     modal.result.then((result) => {
       if (result) {
-        this.toastyService.success("De instellingen zijn bewaard.");
+        this.toastyService.success(this.translateService.instant('WIDGET_PAGE_LANGUAGE_MODAL_SUCCES_NOTIFICATION'));
       }
     }, () => {});
   }
@@ -160,7 +160,6 @@ export class PageListComponent implements OnInit {
    * @param widgetPage
    */
   public languageWidgetPage(widgetPage: WidgetPage) {
-    console.log('open language modal');
     const modal = this.modalService.open(LanguagePageModalComponent, {
       backdrop: 'static',
       keyboard: false
@@ -171,7 +170,7 @@ export class PageListComponent implements OnInit {
 
     modal.result.then((result) => {
       if (result) {
-        this.toastyService.success("De taal is succesvol ingesteld.");
+        this.toastyService.success(this.translateService.instant('WIDGET_PAGE_LANGUAGE_MODAL_SUCCES_NOTIFICATION') ` ${widgetPage.language}`);
       }
     }, () => {});
   }
