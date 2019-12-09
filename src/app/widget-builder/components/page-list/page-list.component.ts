@@ -150,7 +150,7 @@ export class PageListComponent implements OnInit {
 
     modal.result.then((result) => {
       if (result) {
-        this.toastyService.success(this.translateService.instant('WIDGET_PAGE_LANGUAGE_MODAL_SUCCES_NOTIFICATION'));
+        this.toastyService.success(this.translateService.instant('WIDGET_PAGE_ADMIN_MODAL_SUCCESS_NOTIFICATION'));
       }
     }, () => {});
   }
@@ -170,7 +170,7 @@ export class PageListComponent implements OnInit {
 
     modal.result.then((result) => {
       if (result) {
-        this.toastyService.success(this.translateService.instant('WIDGET_PAGE_LANGUAGE_MODAL_SUCCES_NOTIFICATION') ` ${widgetPage.language}`);
+        this.toastyService.success(`${widgetPage.language} ` + this.translateService.instant('WIDGET_PAGE_LANGUAGE_MODAL_SUCCESS_NOTIFICATION'));
       }
     }, () => {});
   }
