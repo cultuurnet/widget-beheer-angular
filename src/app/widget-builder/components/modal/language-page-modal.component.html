@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ "WIDGET_PAGE_LANGUAGE_MODAL_TITLE" | translate }}</h4>
+    <button type="button" class="close" (click)="activeModal.dismiss('closed')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <p>{{ "WIDGET_PAGE_LANGUAGE_MODAL_INTRO" | translate }}</p>
+
+    <form [formGroup]="languageForm" novalidate>
+        <fieldset>
+            <div class="form-group">
+              <div>
+                <label>
+                  <input class="mr-1" type="radio" value="nl" name="language" formControlName="language">
+                  <span>{{ "WIDGET_PAGE_LANGUAGE_MODAL_NL" | translate }}</span>
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input class="mr-1" type="radio" value="fr" name="language" formControlName="language">
+                  <span>{{ "WIDGET_PAGE_LANGUAGE_MODAL_FR" | translate }}</span>
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input class="mr-1" type="radio" value="en" name="language" formControlName="language">
+                  <span>{{ "WIDGET_PAGE_LANGUAGE_MODAL_ENG" | translate }}</span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+      </form>
+
+</div>
+
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="save()" [disabled]="publishing"><i *ngIf="publishing" class="fa fa-spinner" aria-hidden="true"></i> {{ "WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_SAVE" | translate }}</button>
+</div>
