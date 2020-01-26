@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { RenderedWidget } from '../../core/widget/rendered-widget';
 import * as _ from 'lodash';
 import { SavedWidget } from "../../core/widget/saved-widget";
+import { MemoryCache } from '../../core/memory-cache';
 
 /**
  * The widgetbuilder service.
@@ -80,7 +81,7 @@ export class WidgetBuilderService {
    * @param widgetService
    * @param translateService
    */
-  constructor(private widgetService: WidgetService, private translateService: TranslateService) {
+  constructor(private widgetService: WidgetService, private translateService: TranslateService, private cache: MemoryCache) {
     // Debounce all widgetpage save calls for 500ms
     this.debounceWidgetPageSave = debouncePromise(this.widgetPageSaveDebounced, 500);
   }
@@ -212,9 +213,15 @@ export class WidgetBuilderService {
   public renderWidget(widgetId: string) {
     const _self = this;
     this.lockWidgetPreview(widgetId);
-
+    const cachedLanguage = this.cache.get('currentLanguage', [widgetId], false);
+    const currentLanguage = (this.widgetPage.language) ? this.widgetPage.language : 'nl';
+    let resetCache = false;
+    if (currentLanguage !== cachedLanguage) {
+      resetCache = true;
+      this.cache.put('currentLanguage', [widgetId], currentLanguage);
+    }
     // Render the widget
-    this.widgetService.renderWidget(this.widgetPage.id, widgetId).subscribe(widgetPreview => {
+    this.widgetService.renderWidget(this.widgetPage.id, widgetId, resetCache).subscribe(widgetPreview => {
       // Update the widget preview with the new render response
       _self.widgetPreview.next(widgetPreview);
     });
