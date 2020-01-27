@@ -38,6 +38,10 @@
                   "show": true,
                   "label": "UitPas"
                 },
+                "icon_museumpass": {
+                  "show": true,
+                  "label": "Museumpas"
+                },
                 "description": {
                   "show": true,
                   "characters": 200
@@ -93,6 +97,10 @@
                 "icon_uitpas": {
                   "show": true,
                   "label": "UitPas"
+                },
+                "icon_museumpass": {
+                  "show": true,
+                  "label": "Museumpas"
                 },
                 "description": {
                   "show": true,

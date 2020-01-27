@@ -61,6 +61,9 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
         icon_uitpas: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.icon_uitpas.enabled', '')]
         }),
+        icon_museumpass: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.icon_museumpass.enabled', '')]
+        }),
         description: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.description.enabled', '')],
           characters: [_.get(this.widget.settings, 'items.description.characters', '')]
