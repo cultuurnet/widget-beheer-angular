@@ -215,9 +215,8 @@ export class WidgetBuilderService {
     this.lockWidgetPreview(widgetId);
     const cachedLanguage = this.cache.get('currentLanguage', [widgetId], false);
     const currentLanguage = (this.widgetPage.language) ? this.widgetPage.language : 'nl';
-    let resetCache = false;
-    if (currentLanguage !== cachedLanguage) {
-      resetCache = true;
+    const resetCache = currentLanguage !== cachedLanguage;
+    if (resetCache) {
       this.cache.put('currentLanguage', [widgetId], currentLanguage);
     }
     // Render the widget
