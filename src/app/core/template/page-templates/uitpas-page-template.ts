@@ -148,6 +148,9 @@ export class UitPasPageTemplate implements PageTemplate {
                                   'icon_uitpas' : {
                                       'enabled' : true
                                   },
+                                  'icon_museumpass' : {
+                                    'enabled' : true
+                                  },
                                   'description' : {
                                       'enabled' : true,
                                       'characters' : 200
@@ -207,6 +210,9 @@ export class UitPasPageTemplate implements PageTemplate {
                                       'enabled' : true
                                   },
                                   'icon_uitpas' : {
+                                      'enabled' : true
+                                  },
+                                  'icon_museumpass' : {
                                       'enabled' : true
                                   },
                                   'when' : {
