@@ -124,6 +124,7 @@ export class UitPasPageTemplate implements PageTemplate {
                   'widgets' : [
                       {
                           'type' : 'search-results',
+                          'name' : 'zoekresultaten-1',
                           'settings' : {
                               'general' : {
                                   'current_search' : true,
@@ -295,8 +296,7 @@ export class UitPasPageTemplate implements PageTemplate {
                                           ]
                                       }
                                   ]
-                              },
-                              'search_results' : '9b4db94d-1896-638f-b51b-3e0ae5ae3f59'
+                              }
                           }
                       },
                       {
