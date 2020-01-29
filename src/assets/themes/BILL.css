@@ -286,6 +286,11 @@ margin: 0.5em 0 !important;
 font-family: "Open Sans" !important;
 color: #004F94 !important;
 text-decoration: none !important;
+word-break: break-all !important;
+}
+
+.cnw_sticker {
+float: right !important;
 }
 
 .cnw_card-title a:hover {
