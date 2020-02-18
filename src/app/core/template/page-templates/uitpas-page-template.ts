@@ -303,7 +303,7 @@ export class UitPasPageTemplate implements PageTemplate {
                           'type' : 'html',
                           'settings' : {
                               'content' : {
-                                  'body' : '<div>\n<p><strong>Over UiTPAS</strong></p>\n\n<p>Met de UiTPAS kan je punten sparen en omruilen voor leuke <a href=\'https://www.uitinvlaanderen.be/promotions\'>voordelen</a>.</p>\n\n<p><a class=\'btn btn-primary\' href=\'https://www.uitinvlaanderen.be/register_where\'>Haal nu je UiTPAS</a></p>\n</div>\n'
+                                  'body' : '<div>\n<p><strong>Over UiTPAS</strong></p>\n\n<p>Met de UiTPAS kan je punten sparen en omruilen voor leuke <a href=\'https://www.uitpas.be/voordelen-zoeken\'>voordelen</a>.</p>\n\n<p><a class=\'btn btn-primary\' href=\'https://www.uitpas.be/activiteiten-in-de-regio\'>Haal nu je UiTPAS</a></p>\n</div>\n'
                               }
                           }
                       },
