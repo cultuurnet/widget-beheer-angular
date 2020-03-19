@@ -58,19 +58,21 @@
 
   .btn {
 
-    border: 1px solid #004F94;
-    text-decoration: none;
-    border-radius: 2px;
-    color: #004F94;
-
-    &:hover {
-      border-color: #00192e;
-      background-color: #004F94;
-      color: #FFF;
-      transition: all .15s ease-out;
-      cursor: pointer;
+    &.btn-primary {
+      color: #fff;
+      border: 1px solid #004F94;
       text-decoration: none;
+      border-radius: 2px;
 
+      &:hover {
+        border-color: #00192e;
+        background-color: #004F94;
+        color: #FFF;
+        transition: all .15s ease-out;
+        cursor: pointer;
+        text-decoration: none;
+
+      }
     }
 
     &.btn-link--remove {
@@ -81,10 +83,6 @@
         color: white;
       }
     }
-  }
-
-  .btn-primary {
-    color: #fff;
   }
 
 
