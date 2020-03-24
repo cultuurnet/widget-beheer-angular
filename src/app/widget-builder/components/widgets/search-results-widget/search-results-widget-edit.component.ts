@@ -141,6 +141,11 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'items.read_more.enabled', '')],
           label: [_.get(this.widget.settings, 'items.read_more.label', '')]
         }),
+        editorial_label: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.editorial_label.enabled', true)],
+          limit_publishers: [_.get(this.widget.settings, 'items.editorial_label.limit_publishers', false)],
+          publishers: this.addPublishersControl('items', 'editorial_label')
+        })
       }),
       detail_page: this.formBuilder.group({
         map: [_.get(this.widget.settings, 'detail_page.map', '')],
@@ -212,7 +217,7 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         articles: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.articles.enabled', true)],
           limit_publishers: [_.get(this.widget.settings, 'detail_page.articles.limit_publishers', false)],
-          publishers: this.addPublishersControl(),
+          publishers: this.addPublishersControl('detail_page', 'articles'),
           label: [_.get(this.widget.settings, 'detail_page.articles.label', 'Lees ook')]
         })
       }),
@@ -228,8 +233,8 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
   }
 
   // method which loads the active publishers from the widget settings and handles the checbox states
-  addPublishersControl() {
-    const activePublishers = this.widget.settings.detail_page.articles.publishers;
+  addPublishersControl(pageType, prop) {
+    const activePublishers = this.widget.settings[pageType][prop].publishers;
     let selectedPublishers: Array<any> = [];
     if (this.publishers.length) {
       selectedPublishers = this.publishers.map( publisher => {
@@ -240,18 +245,18 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
     return this.formBuilder.array(selectedPublishers);
   }
 
-  updateSelectedPublishers() {
+  updateSelectedPublishers(pageType, prop) {
     this.selectedPublishers = [];
-    this.publishersArray.controls.map( (control, i) => {
+    this.publishersArray(pageType, prop).controls.map( (control, i) => {
       if (control.value) {
         this.selectedPublishers.push(this.publishers[i]);
       }
     });
-    this.settings.detail_page.articles.publishers = this.selectedPublishers;
+    this.settings[pageType][prop].publishers = this.selectedPublishers;
   }
 
-  get publishersArray() {
-    return <FormArray> this.widgetEditForm.get('detail_page.articles.publishers');
+  publishersArray(pageType, prop) {
+    return <FormArray> this.widgetEditForm.get(`${pageType}.${prop}.publishers`);
   }
 
   /**
