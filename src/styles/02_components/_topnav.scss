@@ -91,6 +91,7 @@
 app-widgetbuilder-toolbar {
   width: 100%;
   display: block;
+  margin-top: 10px;
 }
 
 .switcher {
@@ -119,4 +120,8 @@ app-widgetbuilder-toolbar {
   span {
     display: none;
   }
+}
+
+.edit-actions {
+  float: right;
 }
