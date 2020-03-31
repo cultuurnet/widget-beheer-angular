@@ -1,5 +1,5 @@
 .main-nav {
-  background-color: $gray-100;
+  background-color: $cnw_color-white;
   border: 1px solid $gray-200;
   border-width: 0 0 1px;
   float: left;
@@ -91,6 +91,7 @@
 app-widgetbuilder-toolbar {
   width: 100%;
   display: block;
+  margin-top: 10px;
 }
 
 .switcher {
@@ -119,4 +120,8 @@ app-widgetbuilder-toolbar {
   span {
     display: none;
   }
+}
+
+.edit-actions {
+  float: right;
 }

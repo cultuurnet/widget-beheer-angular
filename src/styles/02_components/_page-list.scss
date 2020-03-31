@@ -24,7 +24,7 @@
 
     h4 {
 
-      font-size: 1.2rem;
+      font-size: 1rem;
 
       &.title-new-version {
         margin-top: 10px;
@@ -58,19 +58,21 @@
 
   .btn {
 
-    border: 1px solid #004F94;
-    text-decoration: none;
-    border-radius: 2px;
-    color: #004F94;
-
-    &:hover {
-      border-color: #00192e;
-      background-color: #004F94;
-      color: #FFF;
-      transition: all .15s ease-out;
-      cursor: pointer;
+    &.btn-primary {
+      color: #fff;
+      border: 1px solid #004F94;
       text-decoration: none;
+      border-radius: 2px;
 
+      &:hover {
+        border-color: #00192e;
+        background-color: #004F94;
+        color: #FFF;
+        transition: all .15s ease-out;
+        cursor: pointer;
+        text-decoration: none;
+
+      }
     }
 
     &.btn-link--remove {
@@ -81,10 +83,6 @@
         color: white;
       }
     }
-  }
-
-  .btn-primary {
-    color: #fff;
   }
 
 
@@ -124,11 +122,12 @@
 
 .page-template {
   h4 {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    font-weight: bold;
   }
 
   p.cnw_lead {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 100;
   }
 }
