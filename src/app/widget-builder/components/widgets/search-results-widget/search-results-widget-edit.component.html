@@ -121,6 +121,29 @@
                 </div>
               </div>
 
+              <div class="edit-searchfilters--selectgroup" formGroupName="editorial_label">
+                <div>
+                    <label>
+                        <input type="checkbox" formControlName="enabled">
+                        <span>Toon UiT-tip badge</span>
+                    </label>
+                </div>
+                <div *ngIf="settings.items.editorial_label.enabled">
+                    <div>
+                        <label>
+                            <input type="checkbox"  formControlName="limit_publishers">
+                            <span>Toon enkel UiT-tip badge van specifieke curator </span>
+                        </label>
+                        <div *ngIf="settings.items.editorial_label.limit_publishers" class="ml-4">
+                            <div class="publisher-option" *ngFor="let publisher of publishersArray('items', 'editorial_label').controls;let i=index">
+                              <input id="publisher{{i}}" type="checkbox" [formControl]="publisher" (change)="updateSelectedPublishers('items', 'editorial_label')">
+                              <label for="publisher{{i}}">{{ publishers[i] }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
               <div class="edit-searchfilters--selectgroup" formGroupName="price_information">
                 <label>
                   <input type="checkbox" formControlName="enabled">
@@ -533,8 +556,8 @@
                             <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_ARTICLES_LIMIT_PUBLISHERS" | translate }}</span>
                         </label>
                         <div *ngIf="settings.detail_page.articles.limit_publishers" class="ml-4">
-                            <div class="publisher-option" *ngFor="let publisher of publishersArray.controls;let i=index">
-                              <input id="publisher{{i}}" type="checkbox" [formControl]="publisher" (change)="updateSelectedPublishers()">
+                            <div class="publisher-option" *ngFor="let publisher of publishersArray('detail_page', 'articles').controls;let i=index">
+                              <input id="publisher{{i}}" type="checkbox" [formControl]="publisher" (change)="updateSelectedPublishers('detail_page', 'articles')">
                               <label for="publisher{{i}}">{{ publishers[i] }}</label>
                             </div>
                         </div>
