@@ -123,7 +123,10 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'items.image.enabled', '')],
           width: [_.get(this.widget.settings, 'items.image.width', '')],
           height: [_.get(this.widget.settings, 'items.image.height', '')],
-          default_image: [_.get(this.widget.settings, 'items.image.default_image', '')],
+          default_image: this.formBuilder.group({
+            enabled: [_.get(this.widget.settings, 'items.image.default_image.enabled', '')],
+            type: [_.get(this.widget.settings, 'items.image.default_image.type', '')]
+          }),
           position: [_.get(this.widget.settings, 'items.image.position', '')]
         }),
         labels: this.formBuilder.group({
@@ -200,7 +203,10 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
           enabled: [_.get(this.widget.settings, 'detail_page.image.enabled', '')],
           width: [_.get(this.widget.settings, 'detail_page.image.width', '')],
           height: [_.get(this.widget.settings, 'detail_page.image.height', '')],
-          default_image: [_.get(this.widget.settings, 'detail_page.image.default_image', '')],
+          default_image: this.formBuilder.group({
+            enabled: [_.get(this.widget.settings, 'detail_page.image.default_image.enabled', '')],
+            type: [_.get(this.widget.settings, 'detail_page.image.default_image.type', '')]
+          }),
           position: [_.get(this.widget.settings, 'detail_page.image.position', '')]
         }),
         labels: this.formBuilder.group({

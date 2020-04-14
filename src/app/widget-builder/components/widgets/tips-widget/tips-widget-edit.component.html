@@ -196,11 +196,25 @@
                     <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_HEIGHT" | translate }}</label>
                     <input type="number" class="form-control" formControlName="height" step="1" />
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" formGroupName="default_image">
                     <label>
-                      <input type="checkbox" formControlName="default_image">
+                      <input type="checkbox" formControlName="enabled">
                       <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_DEFAULT_IMAGE" | translate }}</span>
                     </label>
+                    <div *ngIf="settings.items.image.default_image.enabled" class="form-group ml-4">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="radio" value="uit" formControlName="type">
+                          <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_UIT_LOGO" | translate }}</span>
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="radio" value="theme" formControlName="type">
+                          <span>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_THEME_PHOTO" | translate }}</span>
+                        </label>
+                      </div>
+                    </div>
                   </div>
                   <div>
                     <label>{{ "LABEL_TIPS_EDIT_FORM_ELEMENTS_IMAGE_POSITION" | translate }}</label>
