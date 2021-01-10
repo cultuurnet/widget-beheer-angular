@@ -77,6 +77,9 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         type: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.type.enabled', '')]
         }),
+        theme: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'items.theme.enabled', '')]
+        }),
         icon_vlieg: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.icon_vlieg.enabled', '')]
         }),
