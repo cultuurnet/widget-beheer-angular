@@ -154,6 +154,12 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
         })
       }),
       detail_page: this.formBuilder.group({
+        type: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.type.enabled', '')]
+        }),
+        theme: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.theme.enabled', '')]
+        }),
         map: [_.get(this.widget.settings, 'detail_page.map', '')],
         price_information: [_.get(this.widget.settings, 'detail_page.price_information', '')],
         contact_information: [_.get(this.widget.settings, 'detail_page.contact_information', '')],

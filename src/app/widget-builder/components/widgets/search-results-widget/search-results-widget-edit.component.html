@@ -329,6 +329,18 @@
             <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_PANEL_TITLE_DETAIL_PAGE" | translate }}
             </ng-template>
             <ng-template ngbPanelContent>
+              <div class="edit-searchfilters--selectgroup" formGroupName="type">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_TYPE" | translate }}</span>
+                </label>
+              </div>
+              <div class="edit-searchfilters--selectgroup" formGroupName="theme">
+                <label>
+                  <input type="checkbox" formControlName="enabled">
+                  <span>{{ "LABEL_SEARCH_RESULTS_EDIT_FORM_DETAIL_PAGE_THEME" | translate }}</span>
+                </label>
+              </div>
               <div class="edit-searchfilters--selectgroup">
                 <div class="form-group">
                   <label>
