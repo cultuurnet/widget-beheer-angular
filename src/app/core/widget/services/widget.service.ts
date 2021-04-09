@@ -9,7 +9,6 @@ import { WidgetPageFactory } from '../factories/widget-page.factory';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MemoryCache } from '../../memory-cache';
 import { RenderedWidget } from '../rendered-widget';
-import { CssStats } from "../css-stats";
 import * as URI from 'urijs';
 
 /**
