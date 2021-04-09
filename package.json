@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "lint": "eslint . --fix --ignore-path .gitignore",
+    "lint": "eslint . --fix --ignore-path .gitignore --quiet",
     "e2e": "ng e2e"
   },
   "private": true,

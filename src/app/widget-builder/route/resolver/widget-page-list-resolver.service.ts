@@ -10,7 +10,7 @@ import { WidgetPage } from '../../../core/widget/widget-page';
  * Attempts to resolve a list of "WidgetPage" objects
  */
 @Injectable()
-export class WidgetPageListResolver implements Resolve<Object> {
+export class WidgetPageListResolver implements Resolve<unknown> {
 
   /**
    * WidgetPageListResolver constructor.

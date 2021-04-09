@@ -230,9 +230,9 @@ export class WidgetService {
   /**
    * Get the default settings for the given widget types.
    * @param reset
-   * @return {Observable<Object>}
+   * @return {Observable<unknown>}
    */
-  public getWidgetDefaultSettings(reset: boolean = false): Observable<Object> {
+  public getWidgetDefaultSettings(reset: boolean = false): Observable<unknown> {
     if (!reset) {
       const defaultSettings = this.cache.get('widgetDefaultSettings', ['settings'], false);
 
@@ -249,9 +249,9 @@ export class WidgetService {
   /**
    * Revert a draft widget page back to the published version.
    * @param widgetPage
-   * @return {Observable<Object>}
+   * @return {Observable<unknown>}
    */
-  public revertWidgetPage(widgetPage: WidgetPage): Observable<Object> {
+  public revertWidgetPage(widgetPage: WidgetPage): Observable<unknown> {
     return this.http.post(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id + '/revert', {}).pipe(
         tap(res => {
           // Clear the widgetPageList cache for the given project

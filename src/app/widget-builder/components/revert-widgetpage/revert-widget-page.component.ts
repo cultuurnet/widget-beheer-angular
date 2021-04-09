@@ -57,11 +57,11 @@ export class RevertWidgetPageComponent implements OnInit {
    * Revert the loaded widget page to its published state and redirect to the builder
    */
   revertWidgetPage() {
-    this.widgetService.revertWidgetPage(this.widgetPage).subscribe(() => {
-      this.router.navigate(['/project', this.project.id, 'page', this.widgetPage.id, 'edit']);
+    this.widgetService.revertWidgetPage(this.widgetPage).toPromise().then(async () => {
+      await this.router.navigate(['/project', this.project.id, 'page', this.widgetPage.id, 'edit']);
       this.toastyService.success(this.translateService.instant('REVERT_WIDGET_PAGE_SUCCESS_NOTIFICATION'));
-    }, () => {
-      this.router.navigate(['/project', this.project.id, 'page', this.widgetPage.id, 'edit']);
+    }, async () => {
+      await this.router.navigate(['/project', this.project.id, 'page', this.widgetPage.id, 'edit']);
       this.toastyService.error(this.translateService.instant('REVERT_WIDGET_PAGE_FAILED_NOTIFICATION'));
     });
   }

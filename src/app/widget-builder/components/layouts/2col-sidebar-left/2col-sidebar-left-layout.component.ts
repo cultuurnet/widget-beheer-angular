@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractLayoutComponent } from '../../../../core/layout/components/abstract-layout.component';
+import { AbstractLayoutDirective } from '../../../../core/layout/components/abstract-layout.component';
 
 /**
  * Provides a two col with sidebar left layout component.
@@ -8,5 +8,5 @@ import { AbstractLayoutComponent } from '../../../../core/layout/components/abst
   'selector': 'app-2-col-sidebar-left-layout',
   'templateUrl': './2col-sidebar-left.component.html'
 })
-export class TwoColSidebarLeftLayoutComponent extends AbstractLayoutComponent {
+export class TwoColSidebarLeftLayoutComponent extends AbstractLayoutDirective {
 }

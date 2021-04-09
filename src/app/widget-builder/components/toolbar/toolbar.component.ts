@@ -227,8 +227,8 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     modalInstance.confirmButtonText = 'REVERT_WIDGET_PAGE_MODAL_BUTTON_CONFIRM';
 
     // Remove row on confirmation
-    modal.result.then(() => {
-      this.router.navigate(['/project', this.widgetPage.project_id, 'page', this.widgetPage.id, 'revert']);
+    modal.result.then(async () => {
+      await this.router.navigate(['/project', this.widgetPage.project_id, 'page', this.widgetPage.id, 'revert']);
     }, () => {});
   }
 
@@ -287,7 +287,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     modal.result.then((result) => {
       if (result) {
-        this.toastyService.success(`Thema: ${this.widgetPage.selectedTheme} ingesteld`);
+        this.toastyService.success(`Thema: ${this.widgetPage.selectedTheme as string} ingesteld`);
       }
     }, () => {});
   }

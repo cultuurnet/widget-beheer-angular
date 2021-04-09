@@ -136,7 +136,7 @@ export class AppModule {
   private loadWidgetDefaultSettings() {
     this.widgetService.getWidgetDefaultSettings().subscribe(
       defaultSettings => {
-        for (const widgetType in defaultSettings) {
+        for (const widgetType in defaultSettings as any) {
           if (defaultSettings.hasOwnProperty(widgetType) &&  this.widgetTypeRegistry.widgetTypes.hasOwnProperty(widgetType)) {
             this.widgetTypeRegistry.widgetTypes[widgetType].defaultSettings = defaultSettings[widgetType];
           }

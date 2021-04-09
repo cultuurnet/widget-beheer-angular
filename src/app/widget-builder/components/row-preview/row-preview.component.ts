@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { RowLayoutDirective } from '../../directives/row-layout.directive';
-import { AbstractLayoutComponent } from '../../../core/layout/components/abstract-layout.component';
+import { AbstractLayoutDirective } from '../../../core/layout/components/abstract-layout.component';
 import { LayoutTypeRegistry } from '../../../core/layout/services/layout-type-registry.service';
 import { Layout } from '../../../core/layout/layout';
 import { WidgetBuilderService } from '../../services/widget-builder.service';
@@ -73,7 +73,7 @@ export class RowPreviewComponent implements OnInit, OnDestroy {
     viewContainerRef.clear();
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
-    (<AbstractLayoutComponent>componentRef.instance).regions = this.row.regions;
+    (<AbstractLayoutDirective>componentRef.instance).regions = this.row.regions;
   }
 
   /**
@@ -93,13 +93,12 @@ export class RowPreviewComponent implements OnInit, OnDestroy {
 
     if (change.action === 'remove') {
       // If the active widget is in the current row we are removing, deselect it
-      for (const regionId in this.row.regions) {
-        if (this.row.regions.hasOwnProperty(regionId)) {
-          if (this.row.regions[regionId].widgets.indexOf(this.activeWidget) > -1) {
-            this.widgetBuilderService.selectWidget();
-          }
+      this.row.regions.forEach((region) => {
+        const found = region.widgets.find(currentWidget => currentWidget.id === this.activeWidget.id)
+        if (found) {
+          this.widgetBuilderService.selectWidget();
         }
-      }
+      })
     }
 
     // Save the widget page

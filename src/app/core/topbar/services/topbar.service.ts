@@ -31,7 +31,7 @@ export class TopbarService {
 
   /**
    * Observable dynamic components stream
-   * @type {Observable<Object>}
+   * @type {Observable<unknown>}
    */
   public dynamicComponents$ = this.dynamicComponentsSource.asObservable();
 
@@ -42,7 +42,7 @@ export class TopbarService {
 
   /**
    * Observable dynamic components events stream
-   * @type {Observable<Object>}
+   * @type {Observable<unknown>}
    */
   public dynamicComponentsEvents$ = this.dynamicComponentsEvents.asObservable();
 
