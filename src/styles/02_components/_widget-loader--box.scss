@@ -17,7 +17,7 @@
 
 }
 
-@-webkit-keyframes sk-rotateplane {
+@keyframes sk-rotateplane {
   0% { -webkit-transform: perspective(120px) }
   25% { -webkit-transform: perspective(120px) rotateY(180deg) }
   50% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
@@ -28,7 +28,7 @@
 
 
 
-@-webkit-keyframes square-loader {
+@keyframes square-loader {
   0% {
     -webkit-transform: perspective(120px) rotateX(0) rotateY(90deg);
     transform: perspective(120px) rotateX(0) rotateY(90deg);
