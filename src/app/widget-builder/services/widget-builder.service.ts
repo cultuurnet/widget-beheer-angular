@@ -288,7 +288,7 @@ export class WidgetBuilderService {
 
       // Append the style element to the DOM
       document.head.appendChild(styleElement);
-      const sheet = <CSSStyleSheet>styleElement.sheet;
+      const sheet = >styleElement.sheet;
 
       // Create a dummy document and element for parsing purposes
       const doc = document.implementation.createHTMLDocument('');
@@ -319,8 +319,7 @@ export class WidgetBuilderService {
 
         sheet.insertRule(rule.cssText);
       }
-    }
-    catch (err) {
+    } catch (err) {
       return false;
     }
 

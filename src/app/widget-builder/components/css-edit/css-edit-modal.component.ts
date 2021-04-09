@@ -51,17 +51,17 @@ export class CssEditModalComponent implements OnInit {
   /**
    * Indicates if the application is busy scraping
    */
-  public isScraping: boolean = false;
+  public isScraping = false;
 
   /**
    * Indicates if a scrape error occurred
    */
-  public scrapeError: boolean = false;
+  public scrapeError = false;
 
   /**
    * Indicates if the current url is invalid.
    */
-  public isInvalidUrl: boolean = false;
+  public isInvalidUrl = false;
 
   /**
    * CssEditModalComponent constructor.
@@ -111,7 +111,7 @@ export class CssEditModalComponent implements OnInit {
 
     let url = this.cssScrapeForm.get('url').value;
 
-    var regex = new RegExp('^(http[s]?:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?');
+    const regex = new RegExp('^(http[s]?:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?');
     if (!regex.test(url)) {
       this.isScraping = false;
       this.isInvalidUrl = true;
