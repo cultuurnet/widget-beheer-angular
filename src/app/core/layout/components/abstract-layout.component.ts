@@ -1,8 +1,9 @@
-import { Input } from '@angular/core';
+import { Input, Directive } from '@angular/core';
 
 /**
  * Provides a base component for layouts.
  */
+@Directive()
 export abstract class AbstractLayoutComponent {
 
   /**

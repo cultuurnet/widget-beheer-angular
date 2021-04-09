@@ -1,4 +1,4 @@
-import { Input, OnDestroy, OnInit } from '@angular/core';
+import { Input, OnDestroy, OnInit, Directive } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Widget } from '../widget';
@@ -7,6 +7,7 @@ import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 /**
  * Abstract implementation of a widget edit component
  */
+@Directive()
 export class AbstractWidgetEditComponent implements OnInit, OnDestroy {
 
   /**
