@@ -7,8 +7,8 @@ describe('angular App', () => {
     page = new AngularPage();
   });
 
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+  it('should display message saying app works', async () => {
+    await page.navigateTo();
+    expect(await page.getParagraphText()).toEqual('app works!');
   });
 });

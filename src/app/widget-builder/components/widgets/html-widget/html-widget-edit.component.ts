@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ckeditorConfig } from '../../../constants/ckeditor-config';
 import * as _ from 'lodash';
-import { BaseWidgetEditComponent } from '../base-widget-edit.component';
+import { BaseWidgetEditDirective } from '../base-widget-edit.component';
 import { FormBuilder } from '@angular/forms';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import { QueryStringService } from 'app/widget-builder/services/query-string.service';
@@ -14,7 +14,7 @@ import { QueryStringService } from 'app/widget-builder/services/query-string.ser
   templateUrl: './html-widget-edit.component.html',
   providers: [QueryStringService]
 })
-export class HtmlWidgetWidgetEditComponent extends BaseWidgetEditComponent {
+export class HtmlWidgetWidgetEditComponent extends BaseWidgetEditDirective {
 
   /**
    * Config for the ckdeditor in this component

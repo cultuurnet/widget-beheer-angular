@@ -23,7 +23,7 @@ export class ProjectService {
   /**
    * Get a project
    * @param id
-   * @return {Observable<Object>}
+   * @return {Observable<unknown>}
    */
   public getProject(id: string) {
     const cachedProject = this.cache.get('project', [id], false);

@@ -119,7 +119,7 @@ export class WidgetBuilderService {
 
       // Apply the settings to the cloned widget
       if (widget) {
-        widget.settings = settings;
+        (widget as Widget).settings = settings;
       }
 
       this.widgetService.saveWidgetPage(widgetPageClone, widgetId).subscribe(
@@ -135,7 +135,7 @@ export class WidgetBuilderService {
           if (responseWidget && originalWidget) {
             for (const key in responseWidget.settings) {
               if (responseWidget.settings.hasOwnProperty(key)) {
-                originalWidget.settings[key] = responseWidget.settings[key];
+                (originalWidget as Widget).settings[key] = responseWidget.settings[key];
               }
             }
           }
@@ -246,21 +246,17 @@ export class WidgetBuilderService {
   public generateWidgetName(widgetType: any) {
     // Get the widget type count
     let numWidgets = 1;
-    for (const rowKey in this.widgetPage.rows) {
-      if (this.widgetPage.rows.hasOwnProperty(rowKey)) {
-        for (const regionId in this.widgetPage.rows[rowKey].regions) {
-          if (this.widgetPage.rows[rowKey].regions.hasOwnProperty(regionId)) {
-            for (const widget of this.widgetPage.rows[rowKey].regions[regionId].widgets) {
-              if (widget.type === widgetType.type) {
-                numWidgets++;
-              }
-            }
+    this.widgetPage.rows.forEach((row) => {
+      row.regions.forEach((region) => {
+        region.widgets.forEach((widget) => {
+          if (widget.type === widgetType.type) {
+            numWidgets++;
           }
-        }
-      }
-    }
+        })
+      })
+    })
 
-    return this.translateService.instant(widgetType.label).replace(/\s+/g, '-').toLowerCase() + '-' + numWidgets;
+    return (this.translateService.instant(widgetType.label) as string).replace(/\s+/g, '-').toLowerCase() + '-' + numWidgets.toString();
   }
 
   /**
@@ -288,7 +284,7 @@ export class WidgetBuilderService {
 
       // Append the style element to the DOM
       document.head.appendChild(styleElement);
-      const sheet = >styleElement.sheet;
+      const sheet = styleElement.sheet;
 
       // Create a dummy document and element for parsing purposes
       const doc = document.implementation.createHTMLDocument('');
@@ -317,7 +313,7 @@ export class WidgetBuilderService {
           this.prefixCssStyleRule(rule, '.widget-preview');
         }
 
-        sheet.insertRule(rule.cssText);
+        sheet.addRule(rule.cssText);
       }
     } catch (err) {
       return false;

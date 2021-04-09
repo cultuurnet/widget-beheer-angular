@@ -109,9 +109,9 @@ export class CssEditModalComponent implements OnInit {
     this.isScraping = true;
     this.scrapeError = false;
 
-    let url = this.cssScrapeForm.get('url').value;
+    let url: string = this.cssScrapeForm.get('url').value.toString();
 
-    const regex = new RegExp('^(http[s]?:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?');
+    const regex = new RegExp('^(http[s]?:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?');
     if (!regex.test(url)) {
       this.isScraping = false;
       this.isInvalidUrl = true;

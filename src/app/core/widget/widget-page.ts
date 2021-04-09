@@ -107,45 +107,31 @@ export class WidgetPage {
    * @param widget
    * @returns {boolean}
    */
-  public removeWidget(widget: Widget) {
-    // Loop the rows (layouts)
-    for (const rowKey in this.rows) {
-      if (this.rows.hasOwnProperty(rowKey)) {
-
-        // Loop the regions
-        for (const regionId in this.rows[rowKey].regions) {
-          if (this.rows[rowKey].regions.hasOwnProperty(regionId)) {
-            const index = this.rows[rowKey].regions[regionId].widgets.indexOf(widget);
-            if (index > -1) {
-              this.rows[rowKey].regions[regionId].widgets.splice(index, 1);
-              return true;
-            }
-          }
+  public removeWidget(widget: Widget): boolean {
+    this.rows.forEach((row, rowIndex) => {
+      row.regions.forEach((region, regionIndex) => {
+        const foundIndex = region.widgets.findIndex(currentWidget => currentWidget.id === widget.id)
+        if (foundIndex > -1) {
+          this.rows[rowIndex].regions[regionIndex].widgets.splice(foundIndex, 1);
+          return true;
         }
-      }
-    }
-
+      })
+    })
     return false;
   }
 
-  /**
+   /**
    * Find a widget by id in the page
    * @param widgetId
    */
-  public findWidget(widgetId: string) {
-    for (const rowKey in this.rows) {
-      if (this.rows.hasOwnProperty(rowKey)) {
-        for (const regionId in this.rows[rowKey].regions) {
-          if (this.rows[rowKey].regions.hasOwnProperty(regionId)) {
-            const widget = this.rows[rowKey].regions[regionId].widgets.find(widget => widget.id === widgetId);
-            if (widget !== undefined) {
-              return widget;
-            }
-          }
-        }
-      }
+    public findWidget(widgetId: string): Widget | boolean {
+      this.rows.forEach((row) => {
+        row.regions.forEach((region) => {
+          const widget = region.widgets.find(currentWidget => currentWidget.id === widgetId);
+          if (widget) return widget;
+        })
+      })
+      return false;
     }
-
-    return false;
-  }
+  
 }

@@ -1,5 +1,5 @@
 import { FormBuilder } from '@angular/forms';
-import { AbstractWidgetEditComponent } from '../../../core/widget/components/abstract-widget-edit-component';
+import { AbstractWidgetEditDirective } from '../../../core/widget/components/abstract-widget-edit-component';
 import { WidgetBuilderService } from '../../services/widget-builder.service';
 import { OnDestroy, OnInit, Directive } from '@angular/core';
 import { QueryStringService } from 'app/widget-builder/services/query-string.service';
@@ -8,10 +8,10 @@ import { QueryStringService } from 'app/widget-builder/services/query-string.ser
  * Base widget edit component.
  */
 @Directive()
-export class BaseWidgetEditComponent extends AbstractWidgetEditComponent implements OnInit, OnDestroy {
+export class BaseWidgetEditDirective extends AbstractWidgetEditDirective implements OnInit, OnDestroy {
 
   /**
-   * BaseWidgetEditComponent constructor
+   * BaseWidgetEditDirective constructor
    */
   constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService, public queryStringService: QueryStringService) {
     super(formBuilder);
