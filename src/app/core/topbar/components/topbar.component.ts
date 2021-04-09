@@ -19,7 +19,7 @@ import { environment } from '../../../../environments/environment';
  */
 @Component({
   selector: 'app-topbar',
-  templateUrl: './topbar.component.html',
+  template: './topbar.component.html',
 })
 export class TopbarComponent implements OnInit, OnDestroy {
 

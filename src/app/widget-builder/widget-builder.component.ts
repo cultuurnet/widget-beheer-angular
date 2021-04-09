@@ -19,7 +19,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
  */
 @Component({
   selector: 'app-widget-builder',
-  templateUrl: './widget-builder.component.html',
+  template: './widget-builder.component.html',
 })
 export class WidgetBuilderComponent implements OnInit, OnDestroy {
 

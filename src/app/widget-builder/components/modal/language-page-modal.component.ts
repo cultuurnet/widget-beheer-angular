@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup} from '@angular/forms';
  */
 @Component({
   selector: 'app-language-page-modal',
-  templateUrl: './language-page-modal.component.html'
+  template: './language-page-modal.component.html'
 })
 export class LanguagePageModalComponent implements OnInit {
 

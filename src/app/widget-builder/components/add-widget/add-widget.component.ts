@@ -8,7 +8,7 @@ import { WidgetBuilderService } from '../../services/widget-builder.service';
  */
 @Component({
   selector: 'app-add-widget',
-  templateUrl: './add-widget.component.html',
+  template: './add-widget.component.html',
 })
 export class AddWidgetComponent implements OnInit {
 

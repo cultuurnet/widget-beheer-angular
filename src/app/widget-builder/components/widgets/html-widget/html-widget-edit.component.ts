@@ -11,7 +11,7 @@ import { QueryStringService } from 'app/widget-builder/services/query-string.ser
  * Html widget edit form component.
  */
 @Component({
-  templateUrl: './html-widget-edit.component.html',
+  template: './html-widget-edit.component.html',
   providers: [QueryStringService]
 })
 export class HtmlWidgetWidgetEditComponent extends BaseWidgetEditDirective {

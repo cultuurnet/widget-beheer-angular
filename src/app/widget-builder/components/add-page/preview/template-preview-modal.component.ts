@@ -6,7 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
  */
 @Component({
   selector: 'app-template-preview-modal',
-  templateUrl: './template-preview-modal.component.html'
+  template: './template-preview-modal.component.html'
 })
 export class TemplatePreviewModalComponent {
 

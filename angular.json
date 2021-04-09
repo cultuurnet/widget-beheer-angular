@@ -24,7 +24,13 @@
             "styles": [
               "src/styles/style.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "urijs",
+              "rxjs/Subject",
+              "ng2-dragula"
+           ]
           },
           "configurations": {
             "production": {

@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
  */
 @Component({
   selector: 'app-widget-preview',
-  templateUrl: './widget-preview.component.html'
+  template: './widget-preview.component.html'
 })
 
 /**

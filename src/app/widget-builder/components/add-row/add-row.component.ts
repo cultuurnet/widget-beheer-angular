@@ -8,7 +8,7 @@ import { WidgetBuilderService } from '../../services/widget-builder.service';
  */
 @Component({
   selector: 'app-add-row',
-  templateUrl: './add-row.component.html',
+  template: './add-row.component.html',
 })
 export class AddRowComponent implements OnInit {
 

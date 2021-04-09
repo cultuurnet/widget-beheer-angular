@@ -8,8 +8,8 @@
   </div>
 </div>
 
-<ngb-tabset>
-  <ngb-tab>
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+  <li ngbNavItem>
     <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
     <ng-template ngbTabContent>
       <form [formGroup]="widgetEditForm" novalidate>
@@ -669,11 +669,11 @@
         </ngb-accordion>
       </form>
     </ng-template>
-  </ngb-tab>
-  <ngb-tab>
+  </li ngbNavItem>
+  <li ngbNavItem>
     <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_JSON" | translate }}</ng-template>
     <ng-template ngbTabContent>
       <app-json-edit (jsonChanged)="handleJsonChanged()" [widget]="widget"></app-json-edit>
     </ng-template>
-  </ngb-tab>
-</ngb-tabset>
+  </li ngbNavItem>
+</ul ngbNav #nav="ngbNav" class="nav-tabs">

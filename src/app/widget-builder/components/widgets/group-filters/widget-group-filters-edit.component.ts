@@ -11,7 +11,7 @@ import { QueryStringService } from "app/widget-builder/services/query-string.ser
  */
 @Component({
   selector: 'app-widget-group-filters-edit',
-  templateUrl: './widget-group-filters-edit.component.html',
+  template: './widget-group-filters-edit.component.html',
   providers: [QueryStringService]
 })
 export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {

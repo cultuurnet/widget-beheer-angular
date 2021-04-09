@@ -11,7 +11,7 @@ import { environment } from 'environments/environment';
  * Search results widget edit form component.
  */
 @Component({
-  templateUrl: './search-results-widget-edit.component.html',
+  template: './search-results-widget-edit.component.html',
   providers: [QueryStringService]
 })
 

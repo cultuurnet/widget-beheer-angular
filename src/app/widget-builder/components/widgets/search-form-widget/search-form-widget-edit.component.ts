@@ -10,7 +10,7 @@ import { QueryStringService } from "app/widget-builder/services/query-string.ser
  * Search widget edit form component.
  */
 @Component({
-  templateUrl: './search-form-widget-edit.component.html',
+  template: './search-form-widget-edit.component.html',
   providers: [QueryStringService]
 })
 export class SearchFormWidgetEditComponent extends BaseWidgetEditDirective {
