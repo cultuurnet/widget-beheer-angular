@@ -69,9 +69,6 @@ import { ProjectNoAccessComponent } from './route/components/project-no-access.c
     SafeHTMLPipe,
     PageNotFoundComponent,
     ProjectNoAccessComponent
-  ],
-  entryComponents: [
-    ConfirmationModalComponent
   ]
 })
 

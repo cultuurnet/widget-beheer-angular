@@ -94,29 +94,6 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     CKEditorModule
   ],
   providers: [WidgetBuilderService],
-  entryComponents: [
-    SearchFormWidgetEditComponent,
-    SearchResultsWidgetEditComponent,
-    TwoColSidebarLeftLayoutComponent,
-    TwoColSidebarRightLayoutComponent,
-    ThreeColDoubleSidebarLayoutComponent,
-    ThreeColTrippleLayoutComponent,
-    OneColLayoutComponent,
-    WidgetPreviewComponent,
-    WidgetGroupFiltersEditComponent,
-    WidgetFacilityFiltersEditComponent,
-    HtmlWidgetWidgetEditComponent,
-    TipsWidgetWidgetEditComponent,
-    FacetsWidgetWidgetEditComponent,
-    TemplatePreviewModalComponent,
-    ToolbarComponent,
-    PublishPageConfirmationModalComponent,
-    JsonEditModalComponent,
-    CssEditModalComponent,
-    ThemeEditModalComponent,
-    AdminPageModalComponent,
-    LanguagePageModalComponent
-  ]
 })
 
 export class WidgetBuilderModule {
