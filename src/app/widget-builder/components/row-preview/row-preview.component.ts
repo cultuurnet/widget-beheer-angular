@@ -93,7 +93,7 @@ export class RowPreviewComponent implements OnInit, OnDestroy {
 
     if (change.action === 'remove') {
       // If the active widget is in the current row we are removing, deselect it
-      this.row.regions.forEach((region) => {
+      Object.values(this.row.regions).forEach((region) => {
         const found = region.widgets.find(currentWidget => currentWidget.id === this.activeWidget.id)
         if (found) {
           this.widgetBuilderService.selectWidget();

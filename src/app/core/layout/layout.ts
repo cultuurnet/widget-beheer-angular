@@ -2,7 +2,7 @@ import { Region } from './region';
 
 export abstract class Layout {
   type: string;
-  regions: Array<Region>;
+  regions: Record<string, Region>;
 
   /**
    * Layout constructor.

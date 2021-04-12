@@ -109,7 +109,7 @@ export class WidgetPage {
    */
   public removeWidget(widget: Widget): boolean {
     this.rows.forEach((row, rowIndex) => {
-      row.regions.forEach((region, regionIndex) => {
+      Object.values(row.regions).forEach((region, regionIndex) => {
         const foundIndex = region.widgets.findIndex(currentWidget => currentWidget.id === widget.id)
         if (foundIndex > -1) {
           this.rows[rowIndex].regions[regionIndex].widgets.splice(foundIndex, 1);
@@ -126,7 +126,7 @@ export class WidgetPage {
    */
     public findWidget(widgetId: string): Widget | boolean {
       this.rows.forEach((row) => {
-        row.regions.forEach((region) => {
+        Object.values(row.regions).forEach((region) => {
           const widget = region.widgets.find(currentWidget => currentWidget.id === widgetId);
           if (widget) return widget;
         })

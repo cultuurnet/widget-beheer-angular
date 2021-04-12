@@ -65,7 +65,7 @@ export class FacetsWidgetWidgetEditComponent extends BaseWidgetEditDirective {
     const searchResultsWidgets = [];
 
     this.widgetBuilderService.widgetPage.rows.forEach((row) => {
-      row.regions.forEach((region) => {
+      Object.values(row.regions).forEach((region) => {
         region.widgets.forEach((widget) => {
           if (widget.type === 'search-results') {
             searchResultsWidgets.push(widget);

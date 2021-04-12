@@ -247,7 +247,7 @@ export class WidgetBuilderService {
     // Get the widget type count
     let numWidgets = 1;
     this.widgetPage.rows.forEach((row) => {
-      row.regions.forEach((region) => {
+      Object.values(row.regions).forEach((region) => {
         region.widgets.forEach((widget) => {
           if (widget.type === widgetType.type) {
             numWidgets++;
