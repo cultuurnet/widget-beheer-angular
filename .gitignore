@@ -40,3 +40,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+.htaccess
+config.json
+widgetbeheer-angular-deploy-config

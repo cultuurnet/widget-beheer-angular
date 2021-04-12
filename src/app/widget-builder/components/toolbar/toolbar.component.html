@@ -17,53 +17,114 @@
   <div class="col-xl-4 col-lg-6 col-sm-5">
     <div class="page-title-edit" *ngIf="!sidebar">
       <div *ngIf="!editingTitle">
-        <span class="page-title"><h4>{{ title }} </h4><a (click)="toggleTitleEditMode()" class="btn btn-pagetitle--edit"> <i class="fa fa-pencil"></i></a></span>
+        <span class="page-title"
+          ><h4>{{ title }}</h4>
+          <a (click)="toggleTitleEditMode()" class="btn btn-pagetitle--edit">
+            <i class="fa fa-pencil-alt"></i></a
+        ></span>
       </div>
-      <div *ngIf="editingTitle" class="editable-controls input-group ">
-
-        <input type="text" class="form-control" [(ngModel)]="title">
+      <div *ngIf="editingTitle" class="editable-controls input-group">
+        <input type="text" class="form-control" [(ngModel)]="title" />
         <span class="input-group-btn input-group-append">
-          <button type="submit" class="btn btn-success" title="Submit" aria-label="Submit" (click)="saveTitle()">
-              <span class="fa fa-check"></span>
-            </button>
+          <button
+            type="submit"
+            class="btn btn-success"
+            title="Submit"
+            aria-label="Submit"
+            (click)="saveTitle()"
+          >
+            <span class="fa fa-check"></span>
+          </button>
         </span>
-           <span class="input-group-btn input-group-append">
-          <button type="button" class="btn btn-danger" title="Cancel" aria-label="Cancel" (click)="cancelTitleEdit()">
+        <span class="input-group-btn input-group-append">
+          <button
+            type="button"
+            class="btn btn-danger"
+            title="Cancel"
+            aria-label="Cancel"
+            (click)="cancelTitleEdit()"
+          >
             <span class="fa fa-times"></span>
           </button>
         </span>
       </div>
     </div>
   </div>
-    <div class="switcher col-xl-4" *ngIf="!sidebar">
-      <div class="device-switcher">
-        <div class="btn-group">
-          <button *ngFor="let viewMode of viewModes" type="button" class="btn btn-default navbar-btn btn--device-switcher" (click)="toggleViewMode($event, viewMode.type)" [ngClass]="{'active': activeViewMode === viewMode.type}">
-            <i class="fa fa-{{ viewMode.type }}" aria-hidden="true"></i>
-            <span>{{ viewMode.label | translate }}</span>
-          </button>
-        </div>
+  <div class="switcher col-xl-4" *ngIf="!sidebar">
+    <div class="device-switcher">
+      <div class="btn-group">
+        <button
+          *ngFor="let viewMode of viewModes"
+          type="button"
+          class="btn btn-default navbar-btn btn--device-switcher"
+          (click)="toggleViewMode($event, viewMode.type)"
+          [ngClass]="{ active: activeViewMode === viewMode.type }"
+        >
+          <i class="fa fa-{{ viewMode.type }}" aria-hidden="true"></i>
+          <span>{{ viewMode.label | translate }}</span>
+        </button>
       </div>
     </div>
-  <div class="col-12"  *ngIf="sidebar">
+  </div>
+  <div class="col-12" *ngIf="sidebar">
     <div class="edit-actions">
-      <button  class="btn btn-default navbar-btn btn--stop-editing" (click)="closeSidebar()" >
-        <i [ngClass]="{'fa-floppy-o': !isSavingDraft, 'fa-spinner fa-spin': isSavingDraft}" class="fa" aria-hidden="true"></i>
+      <button
+        class="btn btn-default navbar-btn btn--stop-editing"
+        (click)="closeSidebar()"
+      >
+        <i
+          [ngClass]="{
+            'fa-floppy-o': !isSavingDraft,
+            'fa-spinner fa-spin': isSavingDraft
+          }"
+          class="fa"
+          aria-hidden="true"
+        ></i>
         {{ "BUTTON_WIDGET_BUILDER_TOOLBAR_STOP_EDITING" | translate }}
       </button>
     </div>
   </div>
   <div class="col-xl-4 col-lg-6 col-sm-7">
-    <div class="page-actions" *ngIf="!sidebar" style="float:right;">
+    <div class="page-actions" *ngIf="!sidebar" style="float: right">
       <div ngbDropdown class="d-inline-block" display="dynamic">
-        <button class="btn btn-outline-secondary mr-2" ngbDropdownToggle><i class="fa fa-paint-brush" aria-hidden="true"></i> <span class="hidden-lg-down">{{ "TOPBAR_STYLES_BUTTON" | translate }}</span></button>
+        <button class="btn btn-outline-secondary mr-2" ngbDropdownToggle>
+          <i class="fa fa-paint-brush" aria-hidden="true"></i>
+          <span class="hidden-lg-down">{{
+            "TOPBAR_STYLES_BUTTON" | translate
+          }}</span>
+        </button>
         <div ngbDropdownMenu class="dropdown-menu">
-            <button ngbDropdownItem class="dropdown-item " (click)="editCss()">{{ "TOPBAR_CSS_BUTTON" | translate }}</button>
-            <button ngbDropdownItem class="dropdown-item " (click)="editTheme()">{{ "TOPBAR_THEMES_BUTTON" | translate }}</button>
+          <button ngbDropdownItem class="dropdown-item" (click)="editCss()">
+            {{ "TOPBAR_CSS_BUTTON" | translate }}
+          </button>
+          <button ngbDropdownItem class="dropdown-item" (click)="editTheme()">
+            {{ "TOPBAR_THEMES_BUTTON" | translate }}
+          </button>
         </div>
       </div>
-      <button *ngIf="widgetPage.draft" class="btn btn-outline-secondary mr-2" (click)="revertDraft()"><i class="fa fa-undo" aria-hidden="true"></i> <span class="hidden-lg-down">{{ "TOPBAR_REVERT_BUTTON" | translate }}</span></button>
-      <button class="btn btn-default btn--publishing" (click)="publishPage()">  <i class="fa" [ngClass]="{'fa-cloud-upload': !publishing, 'fa-spinner fa-spin': publishing}" aria-hidden="true"></i><span class="hidden-lg-down">  {{ "TOPBAR_PUBLISH_BUTTON" | translate }} </span></button>
+      <button
+        *ngIf="widgetPage.draft"
+        class="btn btn-outline-secondary mr-2"
+        (click)="revertDraft()"
+      >
+        <i class="fa fa-undo" aria-hidden="true"></i>
+        <span class="hidden-lg-down">{{
+          "TOPBAR_REVERT_BUTTON" | translate
+        }}</span>
+      </button>
+      <button class="btn btn-default btn--publishing" (click)="publishPage()">
+        <i
+          class="fa"
+          [ngClass]="{
+            'fa-cloud-upload': !publishing,
+            'fa-spinner fa-spin': publishing
+          }"
+          aria-hidden="true"
+        ></i
+        ><span class="hidden-lg-down">
+          {{ "TOPBAR_PUBLISH_BUTTON" | translate }}
+        </span>
+      </button>
     </div>
   </div>
 </div>
