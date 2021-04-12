@@ -6,7 +6,7 @@ import { AbstractLayoutDirective } from '../../../../core/layout/components/abst
  */
 @Component({
   'selector': 'app-3-col-tripple-layout',
-  'template': './3col-tripple.component.html'
+  'templateUrl': './3col-tripple.component.html'
 })
 export class ThreeColTrippleLayoutComponent extends AbstractLayoutDirective {
 }

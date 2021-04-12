@@ -11,7 +11,7 @@ import { Widget } from '../../../core/widget/widget';
  */
 @Component({
   'selector': 'app-row-preview',
-  'template': './row-preview.component.html'
+  'templateUrl': './row-preview.component.html'
 })
 export class RowPreviewComponent implements OnInit, OnDestroy {
 

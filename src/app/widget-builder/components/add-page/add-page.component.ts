@@ -64,7 +64,7 @@ export class AddPageComponent implements OnInit {
         id: key,
         label: this.pageTemplateRegistry.pageTemplates[key].label,
         description: this.pageTemplateRegistry.pageTemplates[key].description,
-        templateUrl: this.pageTemplateRegistry.pageTemplates[key]
+        template: this.pageTemplateRegistry.pageTemplates[key]
       });
     }
 

@@ -6,7 +6,7 @@ import { AbstractLayoutDirective } from '../../../../core/layout/components/abst
  */
 @Component({
   'selector': 'app-2-col-sidebar-right-layout',
-  'template': './2col-sidebar-right.component.html'
+  'templateUrl': './2col-sidebar-right.component.html'
 })
 export class TwoColSidebarRightLayoutComponent extends AbstractLayoutDirective {
 }
