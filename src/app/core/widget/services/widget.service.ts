@@ -156,9 +156,9 @@ export class WidgetService {
   public getWidgetPages(projectId: string, reset: boolean = false): Observable<Array<WidgetPage>> {
     if (!reset) {
       const widgetPages = [];
-      const widgetPageIds = this.cache.get('widgetPageList', [projectId], false);
+      const widgetPageIds = this.cache.get('widgetPageList', [projectId], []);
 
-      if (widgetPageIds) {
+      if (widgetPageIds.length > 0) {
         // Get all the widgetPage objects from the widgetPage cache
         for (const widgetPageId of widgetPageIds) {
           const widgetPage = this.cache.get('widgetPage', [widgetPageId]);
