@@ -12,7 +12,7 @@ These elements are tied together by registering the widget in the widgetTypeRegi
  The widget class must at least implement the `Widget` (core/widget/widgets/widget.ts) interface. If no custom implementation of the widget is needed, extending the abstract `AbstractWidget` class is the easy way to go forward.
  
 ## Widget edit component
- Every widget needs an edit form component. This can be easily done by creating an new Angular component in the `widget-builder/components/widgets` directory and extending the `AbstractWidgetEditComponent` component class.
+ Every widget needs an edit form component. This can be easily done by creating an new Angular component in the `widget-builder/components/widgets` directory and extending the `AbstractWidgetEditDirective` component class.
  This component should provide the form via the Angular form builder in the buildForm method. By overriding the applyValuesToModel method, you gain control over how the form changes are applied back to the (widget) model.
 
 ## Icon

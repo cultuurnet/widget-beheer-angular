@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { Layout } from '../layout';
-import { AbstractLayoutComponent } from '../components/abstract-layout.component';
+import { AbstractLayoutDirective } from '../components/abstract-layout.component';
 
 @Injectable()
 export class LayoutTypeRegistry {
@@ -14,7 +14,7 @@ export class LayoutTypeRegistry {
    * @param layoutType
    * @param layoutComponent
    */
-  public register(id, label, layoutType: Type<Layout>, layoutComponent: Type<AbstractLayoutComponent>) {
+  public register(id, label, layoutType: Type<Layout>, layoutComponent: Type<AbstractLayoutDirective>) {
     this.layoutTypes[id] = {
       label: label,
       layout: layoutType,

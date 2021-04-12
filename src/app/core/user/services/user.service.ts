@@ -77,7 +77,7 @@ export class UserService {
 
   /**
    * Logout the current user
-   * @return {Observable<Object>}
+   * @return {Observable<unknown>}
    */
   public logout() {
     return this.http.get(environment.apiUrl + this.apiPath + 'logout').pipe(

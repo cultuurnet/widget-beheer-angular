@@ -44,7 +44,7 @@ export class JsonEditComponent implements OnInit {
   /**
    * Open the JSON edit modal to start editing
    */
-  public editJson() {
+  public async editJson() {
     // Show the confirmation modal (disable keyboard and background dismiss)
     const modal = this.modalService.open(JsonEditModalComponent, {
       size: 'lg',
@@ -55,19 +55,18 @@ export class JsonEditComponent implements OnInit {
     const modalInstance = modal.componentInstance;
     modalInstance.widget = this.widget;
 
-    modal.result.then((result) => {
-      if (result) {
-        // Update the widget JSON
-        this.json = JSON.stringify(this.widget.settings, undefined, 4);
+    const result = await modal.result;
+    if (result) {
+      // Update the widget JSON
+      this.json = JSON.stringify(this.widget.settings, undefined, 4);
 
-        // Notify the parent of the JSON change
-        this.jsonChanged.emit();
-        this.toastyService.success(this.translateService.instant('WIDGET_JSON_EDIT_SUCCESS_NOTIFICATION'));
+      // Notify the parent of the JSON change
+      this.jsonChanged.emit();
+      this.toastyService.success(this.translateService.instant('WIDGET_JSON_EDIT_SUCCESS_NOTIFICATION'));
 
-        // Render the widget
-        this.widgetBuilderService.renderWidget(this.widget.id);
-      }
-    }, () => {});
+      // Render the widget
+      this.widgetBuilderService.renderWidget(this.widget.id);
+    }
   }
   /**
    * @inheritDoc

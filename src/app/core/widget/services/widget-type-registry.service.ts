@@ -1,6 +1,6 @@
 import { Injectable, Type } from '@angular/core';
 import { Widget } from '../widget';
-import { AbstractWidgetEditComponent } from '../components/abstract-widget-edit-component';
+import { AbstractWidgetEditDirective } from '../components/abstract-widget-edit-component';
 import * as deepmerge from 'deepmerge';
 import * as _ from 'lodash';
 
@@ -23,7 +23,7 @@ export class WidgetTypeRegistry {
    * @param widgetType
    * @param editComponent
    */
-  public register(id, label: string, widgetType: Type<Widget>, editComponent: Type<AbstractWidgetEditComponent>) {
+  public register(id, label: string, widgetType: Type<Widget>, editComponent: Type<AbstractWidgetEditDirective>) {
     this.widgetTypes[id] = {
       widget: widgetType,
       label: label,

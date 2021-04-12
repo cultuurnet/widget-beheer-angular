@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import * as _ from 'lodash';
-import { BaseWidgetEditComponent } from '../base-widget-edit.component';
+import { BaseWidgetEditDirective } from '../base-widget-edit.component';
 import { QueryStringService } from "app/widget-builder/services/query-string.service";
 
 /**
@@ -12,7 +12,7 @@ import { QueryStringService } from "app/widget-builder/services/query-string.ser
   templateUrl: './tips-widget-edit.component.html',
   providers: [QueryStringService]
 })
-export class TipsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
+export class TipsWidgetWidgetEditComponent extends BaseWidgetEditDirective {
 
   /**
    * The available image positions for the list items

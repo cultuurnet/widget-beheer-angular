@@ -1,13 +1,13 @@
-import { Input, OnDestroy, OnInit } from '@angular/core';
+import { Input, OnDestroy, OnInit, Directive } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Widget } from '../widget';
-import { NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 /**
  * Abstract implementation of a widget edit component
  */
-export class AbstractWidgetEditComponent implements OnInit, OnDestroy {
+@Directive()
+export class AbstractWidgetEditDirective implements OnInit, OnDestroy {
 
   /**
    * The widget edit form
@@ -30,7 +30,7 @@ export class AbstractWidgetEditComponent implements OnInit, OnDestroy {
   protected formSubscription: Subscription;
 
   /**
-   * AbstractWidgetEditComponent constructor
+   * AbstractWidgetEditDirective constructor
    */
   constructor(public formBuilder: FormBuilder) {
   }
@@ -79,10 +79,4 @@ export class AbstractWidgetEditComponent implements OnInit, OnDestroy {
       }
     }
   }
-
-  /**
-   * Handles the widget name change
-   */
-  public handleWidgetNameChanged(name: string) {}
-
 }

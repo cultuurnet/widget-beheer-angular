@@ -15,7 +15,7 @@ export class QueryStringService{
     if(!query){
       return;
     }
-    var lineBreakRegex = new RegExp(/\r?\n|\r/g);
+    const lineBreakRegex = new RegExp(/\r?\n|\r/g);
     return query.replace(lineBreakRegex, '');
   }
 

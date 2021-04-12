@@ -3,7 +3,7 @@ import { FormBuilder, FormArray } from '@angular/forms';
 import { ckeditorConfig } from '../../../constants/ckeditor-config';
 import * as _ from 'lodash';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
-import { BaseWidgetEditComponent } from '../base-widget-edit.component';
+import { BaseWidgetEditDirective } from '../base-widget-edit.component';
 import { QueryStringService } from 'app/widget-builder/services/query-string.service';
 import { environment } from 'environments/environment';
 
@@ -15,7 +15,7 @@ import { environment } from 'environments/environment';
   providers: [QueryStringService]
 })
 
-export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
+export class SearchResultsWidgetEditComponent extends BaseWidgetEditDirective {
 
   /**
    * Config for the ckdeditor in this component
@@ -271,7 +271,7 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
   }
 
   publishersArray(pageType, prop) {
-    return <FormArray> this.widgetEditForm.get(`${pageType}.${prop}.publishers`);
+    return <FormArray> this.widgetEditForm.get(`${pageType as string}.${prop as string}.publishers`);
   }
 
   /**

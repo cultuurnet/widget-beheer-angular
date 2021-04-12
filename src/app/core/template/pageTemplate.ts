@@ -16,7 +16,7 @@ export interface PageTemplate {
   /**
    * Template configuration object
    */
-  configuration: object;
+  configuration: Record<string, unknown>;
 
   /**
    * Indicates if this template has a preview available

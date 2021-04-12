@@ -8,7 +8,7 @@ import { ProjectService } from '../../project/services/project.service';
  * Attempts to resolve a "project" from the route
  */
 @Injectable()
-export class ProjectResolver implements Resolve<Object> {
+export class ProjectResolver implements Resolve<unknown> {
 
   /**
    * ProjectResolver constructor.
@@ -23,11 +23,11 @@ export class ProjectResolver implements Resolve<Object> {
 
     return this.projectService.getProject(id).pipe(map(project => {
       return project;
-    }), catchError(e => {
+    }), catchError(async e => {
       if (e.status === 403) {
-          this.router.navigate(['/project-no-access']);
+          await this.router.navigate(['/project-no-access']);
       } else {
-          this.router.navigate(['']);
+          await this.router.navigate(['']);
       }
       return observableOf(false);
     }));

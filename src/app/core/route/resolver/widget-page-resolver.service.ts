@@ -9,7 +9,7 @@ import { WidgetPage } from '../../widget/widget-page';
  * Attempts to resolve a "WidgetPage" from the route
  */
 @Injectable()
-export class WidgetPageResolver implements Resolve<Object> {
+export class WidgetPageResolver implements Resolve<unknown> {
 
   /**
    * WidgetPageResolver constructor.
@@ -25,8 +25,8 @@ export class WidgetPageResolver implements Resolve<Object> {
 
     return this.widgetService.getWidgetPage(project_id, page_id).pipe(map((widgetPage: WidgetPage) => {
       return widgetPage;
-    })).pipe(catchError(() => {
-      this.router.navigate(['/']);
+    })).pipe(catchError(async () => {
+      await this.router.navigate(['/']);
       return observableOf(false);
     }));
   }

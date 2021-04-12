@@ -96,7 +96,7 @@ export class ThemeEditModalComponent implements OnInit {
    * Get the CSS from the selected theme
    */
   public getCSSfromTheme() {
-    return this.http.get(`assets/themes/${this.selectedTheme.stylesheet}`, {responseType: 'text'});
+    return this.http.get(`assets/themes/${this.selectedTheme.stylesheet as string}`, {responseType: 'text'});
   }
 
   /**

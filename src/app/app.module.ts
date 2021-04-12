@@ -38,7 +38,6 @@ import { UitPasPageTemplate } from './core/template/page-templates/uitpas-page-t
 import { WidgetService } from './core/widget/services/widget.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ToastyConfig, ToastyModule } from 'ng2-toasty';
-import { ProjectNoAccessComponent } from './core/route/components/project-no-access.component';
 
 /**
  * AoT requires an exported function for factories
@@ -137,7 +136,7 @@ export class AppModule {
   private loadWidgetDefaultSettings() {
     this.widgetService.getWidgetDefaultSettings().subscribe(
       defaultSettings => {
-        for (const widgetType in defaultSettings) {
+        for (const widgetType in defaultSettings as any) {
           if (defaultSettings.hasOwnProperty(widgetType) &&  this.widgetTypeRegistry.widgetTypes.hasOwnProperty(widgetType)) {
             this.widgetTypeRegistry.widgetTypes[widgetType].defaultSettings = defaultSettings[widgetType];
           }

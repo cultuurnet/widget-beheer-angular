@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WidgetPage } from '../../../core/widget/widget-page';
@@ -11,7 +12,6 @@ import { LanguagePageModalComponent } from '../modal/language-page-modal.compone
 import { ToastyService } from 'ng2-toasty';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
-import { UserService } from '../../../core/user/services/user.service';
 import { TopbarService } from '../../../core/topbar/services/topbar.service';
 import { BackButton } from 'app/core/topbar/back-button';
 
@@ -90,12 +90,12 @@ export class PageListComponent implements OnInit {
 
     // Remove the widgetPage id
     clone.id = '';
-    clone.title = clone.title + ' (' + this.translateService.instant('DUPLICATE_WIDGET_PAGE_COPY') + ')';
+    clone.title = clone.title + ' (' + (this.translateService.instant('DUPLICATE_WIDGET_PAGE_COPY').toString() as string) + ')';
 
     // Save the widget page and redirect
-    this.widgetService.saveWidgetPage(clone).subscribe(widgetSaveResponse => {
+    this.widgetService.saveWidgetPage(clone).toPromise().then(async widgetSaveResponse => {
       if (widgetSaveResponse.widgetPage) {
-        this.router.navigate(['/project', this.project.id, 'page', widgetSaveResponse.widgetPage.id, 'edit']);
+        await this.router.navigate(['/project', this.project.id, 'page', widgetSaveResponse.widgetPage.id, 'edit']);
       }
     }, () => {
       this.toastyService.error(this.translateService.instant('DUPLICATE_WIDGET_PAGE_FAILED_NOTIFICATION'));
@@ -170,7 +170,7 @@ export class PageListComponent implements OnInit {
 
     modal.result.then((result) => {
       if (result) {
-        this.toastyService.success(`${widgetPage.language} ` + this.translateService.instant('WIDGET_PAGE_LANGUAGE_MODAL_SUCCESS_NOTIFICATION'));
+        this.toastyService.success(`${widgetPage.language} ` + (this.translateService.instant('WIDGET_PAGE_LANGUAGE_MODAL_SUCCESS_NOTIFICATION').toString() as string));
       }
     }, () => {});
   }

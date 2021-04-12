@@ -23,7 +23,7 @@ export class ClipboardButtonComponent {
    * React on clipboard copy success
    * @param $event
    */
-  public cbCopySuccess($event) {
+  public cbCopySuccess($event): void {
     const _self = this;
     this.copySuccess = true;
 

@@ -76,7 +76,7 @@ export class AddPageComponent implements OnInit {
    * Add a widget page to the current project
    * @param pageTemplate
    */
-  public addPage(pageTemplate: any) {
+  public async addPage(pageTemplate: any) {
     // Merge the project id on the template configuration
     const config = pageTemplate.template.configuration;
 
@@ -87,10 +87,11 @@ export class AddPageComponent implements OnInit {
     const widgetPage = this.widgetPageFactory.create(templateConfig);
 
     // Save the newly created widget page
-    this.widgetService.saveWidgetPage(widgetPage).subscribe(widgetSaveResponse => {
+    await this.widgetService.saveWidgetPage(widgetPage).toPromise().then(async (widgetSaveResponse) => {
       // Redirect to the widget builder
-      this.router.navigate(['/project', this.project.id, 'page', widgetSaveResponse.widgetPage.id, 'edit']);
-    });
+      await this.router.navigate(['/project', this.project.id, 'page', widgetSaveResponse.widgetPage.id, 'edit']);
+    })
+
   }
 
   /**
@@ -105,9 +106,9 @@ export class AddPageComponent implements OnInit {
     modalInstance.templateId = pageTemplate.id;
     modalInstance.title = pageTemplate.label;
 
-    modal.result.then(() => {
+    modal.result.then(async () => {
       // Add the page
-      this.addPage(pageTemplate);
+      await this.addPage(pageTemplate);
     }, () => {});
   }
 

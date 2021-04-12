@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import * as _ from 'lodash';
 import { ckeditorConfig } from '../../../constants/ckeditor-config';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
-import { BaseWidgetEditComponent } from '../base-widget-edit.component';
+import { BaseWidgetEditDirective } from '../base-widget-edit.component';
 import { QueryStringService } from "app/widget-builder/services/query-string.service";
 
 /**
@@ -13,7 +13,7 @@ import { QueryStringService } from "app/widget-builder/services/query-string.ser
   templateUrl: './search-form-widget-edit.component.html',
   providers: [QueryStringService]
 })
-export class SearchFormWidgetEditComponent extends BaseWidgetEditComponent {
+export class SearchFormWidgetEditComponent extends BaseWidgetEditDirective {
 
   /**
    * Config for the ckdeditor in this component

@@ -4,7 +4,7 @@ import { DragulaService } from 'ng2-dragula';
 import { WidgetBuilderService } from './services/widget-builder.service';
 import { WidgetTypeRegistry } from '../core/widget/services/widget-type-registry.service';
 import { Widget } from 'app/core/widget/widget';
-import { AbstractWidgetEditComponent } from '../core/widget/components/abstract-widget-edit-component';
+import { AbstractWidgetEditDirective } from '../core/widget/components/abstract-widget-edit-component';
 import * as autoScroll from 'dom-autoscroller';
 import { WidgetPage } from '../core/widget/widget-page';
 import { Subscription } from 'rxjs';
@@ -190,7 +190,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
       const componentFactory = this._componentFactoryResolver.resolveComponentFactory(widgetType.editComponent);
 
       const componentRef = viewContainerRef.createComponent(componentFactory);
-      (<AbstractWidgetEditComponent>componentRef.instance).widget = widget;
+      (<AbstractWidgetEditDirective>componentRef.instance).widget = widget;
     }
   }
 

@@ -221,7 +221,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
 
     // Get all event emitters and subscribe to them, so we can have the events bubble of through the topbar service
     const componentInstance = dynamicComponent.instance;
-    for (const key in componentInstance) {
+    for (const key in (componentInstance as any)) {
       if (componentInstance.hasOwnProperty(key)) {
         // Subscribe to all event emitters
         if (componentInstance[key] instanceof EventEmitter) {

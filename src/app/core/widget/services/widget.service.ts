@@ -9,7 +9,6 @@ import { WidgetPageFactory } from '../factories/widget-page.factory';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MemoryCache } from '../../memory-cache';
 import { RenderedWidget } from '../rendered-widget';
-import { CssStats } from "../css-stats";
 import * as URI from 'urijs';
 
 /**
@@ -157,9 +156,9 @@ export class WidgetService {
   public getWidgetPages(projectId: string, reset: boolean = false): Observable<Array<WidgetPage>> {
     if (!reset) {
       const widgetPages = [];
-      const widgetPageIds = this.cache.get('widgetPageList', [projectId], false);
+      const widgetPageIds = this.cache.get('widgetPageList', [projectId], []);
 
-      if (widgetPageIds) {
+      if (widgetPageIds.length > 0) {
         // Get all the widgetPage objects from the widgetPage cache
         for (const widgetPageId of widgetPageIds) {
           const widgetPage = this.cache.get('widgetPage', [widgetPageId]);
@@ -231,9 +230,9 @@ export class WidgetService {
   /**
    * Get the default settings for the given widget types.
    * @param reset
-   * @return {Observable<Object>}
+   * @return {Observable<unknown>}
    */
-  public getWidgetDefaultSettings(reset: boolean = false): Observable<Object> {
+  public getWidgetDefaultSettings(reset: boolean = false): Observable<unknown> {
     if (!reset) {
       const defaultSettings = this.cache.get('widgetDefaultSettings', ['settings'], false);
 
@@ -250,9 +249,9 @@ export class WidgetService {
   /**
    * Revert a draft widget page back to the published version.
    * @param widgetPage
-   * @return {Observable<Object>}
+   * @return {Observable<unknown>}
    */
-  public revertWidgetPage(widgetPage: WidgetPage): Observable<Object> {
+  public revertWidgetPage(widgetPage: WidgetPage): Observable<unknown> {
     return this.http.post(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id + '/revert', {}).pipe(
         tap(res => {
           // Clear the widgetPageList cache for the given project
