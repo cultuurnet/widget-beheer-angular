@@ -9,7 +9,7 @@ import { QueryStringService } from 'app/widget-builder/services/query-string.ser
  * Facets widget edit form component.
  */
 @Component({
-  template: './facets-widget-edit.component.html',
+  templateUrl: './facets-widget-edit.component.html',
   providers: [QueryStringService]
 })
 export class FacetsWidgetWidgetEditComponent extends BaseWidgetEditDirective {

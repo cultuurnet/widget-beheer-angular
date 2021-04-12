@@ -11,7 +11,7 @@ import { themes } from './themes';
  */
 @Component({
   selector: 'app-theme-edit-modal',
-  template: './theme-edit-modal.component.html'
+  templateUrl: './theme-edit-modal.component.html'
 })
 export class ThemeEditModalComponent implements OnInit {
 

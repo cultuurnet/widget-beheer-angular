@@ -20,7 +20,7 @@ import { BackButton } from 'app/core/topbar/back-button';
  */
 @Component({
   selector: 'app-page-list',
-  template: './page-list.component.html',
+  templateUrl: './page-list.component.html',
 })
 export class PageListComponent implements OnInit {
 

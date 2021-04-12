@@ -11,7 +11,7 @@ import { QueryStringService } from "app/widget-builder/services/query-string.ser
  */
 @Component({
   selector: 'app-widget-facility-filters-edit',
-  template: './widget-facility-filters-edit.component.html',
+  templateUrl: './widget-facility-filters-edit.component.html',
   providers: [QueryStringService]
 })
 export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {

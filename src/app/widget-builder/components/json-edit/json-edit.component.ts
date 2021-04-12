@@ -11,7 +11,7 @@ import { ToastyService } from 'ng2-toasty';
  */
 @Component({
   selector: 'app-json-edit',
-  template: './json-edit.component.html'
+  templateUrl: './json-edit.component.html'
 })
 export class JsonEditComponent implements OnInit {
 

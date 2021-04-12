@@ -10,7 +10,7 @@ import { validJson } from '../../../core/form/validators/json.directive';
  */
 @Component({
   selector: 'app-json-edit-modal',
-  template: './json-edit-modal.component.html'
+  templateUrl: './json-edit-modal.component.html'
 })
 export class JsonEditModalComponent implements OnInit {
 

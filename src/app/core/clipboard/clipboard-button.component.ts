@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
  */
 @Component({
   selector: 'app-clipboard-button',
-  template: './clipboard-button.component.html',
+  templateUrl: './clipboard-button.component.html',
 })
 export class ClipboardButtonComponent {
 

@@ -22,7 +22,7 @@ import { ConfirmationModalComponent } from '../../../core/modal/components/confi
  */
 @Component({
   selector: 'app-widgetbuilder-toolbar',
-  template: './toolbar.component.html',
+  templateUrl: './toolbar.component.html',
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
 

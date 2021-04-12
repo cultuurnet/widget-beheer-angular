@@ -9,7 +9,7 @@ import { QueryStringService } from "app/widget-builder/services/query-string.ser
  * Tips widget edit form component.
  */
 @Component({
-  template: './tips-widget-edit.component.html',
+  templateUrl: './tips-widget-edit.component.html',
   providers: [QueryStringService]
 })
 export class TipsWidgetWidgetEditComponent extends BaseWidgetEditDirective {

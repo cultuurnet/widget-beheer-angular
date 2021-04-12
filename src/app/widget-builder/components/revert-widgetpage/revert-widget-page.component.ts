@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
  */
 @Component({
   selector: 'app-revert-widget-page',
-  template: './revert-widget-page.component.html'
+  templateUrl: './revert-widget-page.component.html'
 })
 export class RevertWidgetPageComponent implements OnInit {
 

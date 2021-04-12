@@ -6,7 +6,7 @@ import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
-  template: './app.component.html',
+  templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
 

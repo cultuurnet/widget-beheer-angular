@@ -8,7 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
  */
 @Component({
   selector: 'app-row-edit',
-  template: './row-edit.component.html',
+  templateUrl: './row-edit.component.html',
 })
 export class RowEditComponent {
 

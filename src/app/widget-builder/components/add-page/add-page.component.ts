@@ -15,7 +15,7 @@ import { BackButton } from '../../../core/topbar/back-button';
  */
 @Component({
   selector: 'app-add-page',
-  template: './add-page.component.html',
+  templateUrl: './add-page.component.html',
 })
 export class AddPageComponent implements OnInit {
 
@@ -64,7 +64,7 @@ export class AddPageComponent implements OnInit {
         id: key,
         label: this.pageTemplateRegistry.pageTemplates[key].label,
         description: this.pageTemplateRegistry.pageTemplates[key].description,
-        template: this.pageTemplateRegistry.pageTemplates[key]
+        templateUrl: this.pageTemplateRegistry.pageTemplates[key]
       });
     }
 

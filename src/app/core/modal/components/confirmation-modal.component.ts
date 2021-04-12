@@ -6,7 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
  */
 @Component({
   selector: 'app-confirmation-modal',
-  template: './confirmation-modal.component.html'
+  templateUrl: './confirmation-modal.component.html'
 })
 export class ConfirmationModalComponent {
 

@@ -8,7 +8,7 @@ import { WidgetService } from '../../../core/widget/services/widget.service';
  */
 @Component({
   selector: 'app-publish-page-confirmation-modal',
-  template: './publish-page-confirmation-modal.component.html'
+  templateUrl: './publish-page-confirmation-modal.component.html'
 })
 export class PublishPageConfirmationModalComponent implements OnInit {
 

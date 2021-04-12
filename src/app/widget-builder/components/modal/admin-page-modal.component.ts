@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
  */
 @Component({
   selector: 'app-admin-page-modal',
-  template: './admin-page-modal.component.html'
+  templateUrl: './admin-page-modal.component.html'
 })
 export class AdminPageModalComponent implements OnInit {
 

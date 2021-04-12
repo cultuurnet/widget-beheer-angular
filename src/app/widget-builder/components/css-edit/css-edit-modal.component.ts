@@ -13,7 +13,7 @@ import * as URI from 'urijs';
  */
 @Component({
   selector: 'app-css-edit-modal',
-  template: './css-edit-modal.component.html'
+  templateUrl: './css-edit-modal.component.html'
 })
 export class CssEditModalComponent implements OnInit {
 
