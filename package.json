@@ -32,7 +32,7 @@
     "debounce-promise": "^3.0.1",
     "deepmerge": "^1.5.0",
     "dom-autoscroller": "^2.3.3",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "ng2-ckeditor": "^1.1.9",
     "ng2-dragula": "^1.5.0",
     "ng2-toasty": "^4.0.3",
