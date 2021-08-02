@@ -1,7 +1,7 @@
 <div class="component" [ngClass]="{ 'selected' : widget === activeWidget, 'component--preview-throbber' : isRendering }" (click)="selectWidget($event, widget)">
     <div class="actions-bar actions-bar--component"  *ngIf="!sidebar">
         <ul class="actions-list">
-            <li class="move"><button class="btn btn-default btn-sm bnt-cnw-action--drag"><i class="fa fa-arrows drag" aria-hidden="true"></i><span>{{ "LABEL_DRAG" | translate}}</span></button></li>
+            <li class="move"><button class="btn btn-default btn-sm bnt-cnw-action--drag"><i class="fas fa-arrows-alt drag" aria-hidden="true"></i><span>{{ "LABEL_DRAG" | translate}}</span></button></li>
             <li><button (click)="removeWidget(widget)" class="btn btn-default btn-sm bnt-cnw-action--remove"><i class="fa fa-trash"></i><span>{{ "LABEL_REMOVE_WIDGET" | translate }}</span></button></li>
             <li><button (click)="editWidget($event, widget)" class="btn btn-default btn-sm bnt-cnw-action--instellingen"><i class="fa fa-cogs"></i><span>{{ "LABEL_INSTELLINGEN" | translate }}</span></button></li>
         </ul>
