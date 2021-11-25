@@ -219,7 +219,7 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
           position: [_.get(this.widget.settings, 'detail_page.image.position', '')]
         }),
         videos: this.formBuilder.group({
-          enabled: [_.get(this.widget.settings, 'items.videos.enabled', '')]
+          enabled: [_.get(this.widget.settings, 'detail_page.videos.enabled', '')]
         }),
         labels: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.labels.enabled', '')],
