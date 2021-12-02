@@ -12,7 +12,7 @@
         <fieldset>
             <div class="form-group" >              
               <div *ngFor="let lang of languages">                
-                <input [id]="'radio' + lang.value" class="mr-1" type="radio" [value]="lang.value" [name]="'language'" [formControlName]="'language'">
+                <input [id]="'radio' + lang.value" class="mr-1" type="radio" [value]="lang.value" name="language" formControlName="language">
                 <label [for]="'radio' + lang.value">
                   <span>{{ lang.translationKey | translate }}</span>
                 </label>
