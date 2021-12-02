@@ -3,6 +3,13 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { WidgetPage } from '../../../core/widget/widget-page';
 import { WidgetService } from '../../../core/widget/services/widget.service';
 import { FormBuilder, FormGroup} from '@angular/forms';
+
+interface Language {
+  value: string;
+  translationKey: string;
+}
+
+
 /**
  * Confirmation modal component.
  */
@@ -34,7 +41,26 @@ export class LanguagePageModalComponent implements OnInit {
    */
   public widgetPage: WidgetPage;
 
-  public language;
+  public language;  
+
+  public languages: Language[] = [
+    {
+      value: 'nl',
+      translationKey: 'WIDGET_PAGE_LANGUAGE_MODAL_NL'
+    },
+    {
+      value: 'fr',
+      translationKey: 'WIDGET_PAGE_LANGUAGE_MODAL_FR'
+    },
+    {
+      value: 'en',
+      translationKey: 'WIDGET_PAGE_LANGUAGE_MODAL_EN'
+    },
+    {
+      value: 'de',
+      translationKey: 'WIDGET_PAGE_LANGUAGE_MODAL_DE'
+    }
+  ];
 
   /**
    * AdminPageModalComponent constructor.
