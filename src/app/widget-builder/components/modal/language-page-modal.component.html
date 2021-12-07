@@ -10,23 +10,11 @@
 
     <form [formGroup]="languageForm" novalidate>
         <fieldset>
-            <div class="form-group">
-              <div>
-                <label>
-                  <input class="mr-1" type="radio" value="nl" name="language" formControlName="language">
-                  <span>{{ "WIDGET_PAGE_LANGUAGE_MODAL_NL" | translate }}</span>
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input class="mr-1" type="radio" value="fr" name="language" formControlName="language">
-                  <span>{{ "WIDGET_PAGE_LANGUAGE_MODAL_FR" | translate }}</span>
-                </label>
-              </div>
-              <div>
-                <label>
-                  <input class="mr-1" type="radio" value="en" name="language" formControlName="language">
-                  <span>{{ "WIDGET_PAGE_LANGUAGE_MODAL_ENG" | translate }}</span>
+            <div class="form-group" >              
+              <div *ngFor="let lang of languages">                
+                <input [id]="'radio' + lang.value" class="mr-1" type="radio" [value]="lang.value" name="language" formControlName="language">
+                <label [for]="'radio' + lang.value">
+                  <span>{{ lang.translationKey | translate }}</span>
                 </label>
               </div>
             </div>
