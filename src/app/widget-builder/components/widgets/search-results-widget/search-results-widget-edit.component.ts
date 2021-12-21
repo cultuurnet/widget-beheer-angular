@@ -51,7 +51,16 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditComponent {
     super(formBuilder, widgetBuilderService, queryStringService);
   }
 
-
+  public getPublisherLabel(publisher: string): string {
+    switch (publisher.toLowerCase()) {
+      case "uit":
+        return "UiTinVlaanderen";
+      case "uitmetvlieg":
+        return "Vlieg";
+      default:
+        return publisher;
+    }
+  }
 
   /**
    * @inheritDoc

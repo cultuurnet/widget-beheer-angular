@@ -143,7 +143,9 @@
                         <div *ngIf="settings.items.editorial_label.limit_publishers" class="ml-4">
                             <div class="publisher-option" *ngFor="let publisher of publishersArray('items', 'editorial_label').controls;let i=index">
                               <input id="publisher{{i}}" type="checkbox" [formControl]="publisher" (change)="updateSelectedPublishers('items', 'editorial_label')">
-                              <label for="publisher{{i}}">{{ publishers[i] }}</label>
+                              <label for="publisher{{i}}">{{
+                                getPublisherLabel(publishers[i])
+                              }}</label>
                             </div>
                         </div>
                     </div>
