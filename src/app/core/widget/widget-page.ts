@@ -6,7 +6,6 @@ import { Widget } from './widget';
  * containing rows with regions and widgets.
  */
 export class WidgetPage {
-
   /**
    * The widget page id
    */
@@ -38,18 +37,18 @@ export class WidgetPage {
   public selectedTheme: any;
 
   /**
-  * The widget page mobile setting
-  */
+   * The widget page mobile setting
+   */
   public mobile: boolean;
 
   /**
-  * The widget page jquery setting
-  */
+   * The widget page jquery setting
+   */
   public jquery: boolean;
 
   /**
-  * The widget page language setting
-  */
+   * The widget page language setting
+   */
   public language: string;
 
   /**
@@ -125,18 +124,19 @@ export class WidgetPage {
     return isRemoved;
   }
 
-   /**
+  /**
    * Find a widget by id in the page
    * @param widgetId
    */
-    public findWidget(widgetId: string): Widget | boolean {
-      this.rows.forEach((row) => {
-        Object.values(row.regions).forEach((region) => {
-          const widget = region.widgets.find(currentWidget => currentWidget.id === widgetId);
-          if (widget) return widget;
-        })
-      })
-      return false;
-    }
-  
+  public findWidget(widgetId: string): Widget | boolean {
+    this.rows.forEach((row) => {
+      Object.values(row.regions).forEach((region) => {
+        const widget = region.widgets.find(
+          (currentWidget) => currentWidget.id === widgetId
+        );
+        return widget;
+      });
+    });
+    return false;
+  }
 }
