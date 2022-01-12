@@ -51,7 +51,16 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditDirective {
     super(formBuilder, widgetBuilderService, queryStringService);
   }
 
-
+  public getPublisherLabel(publisher: string): string {
+    switch (publisher.toLowerCase()) {
+      case "uit":
+        return "UiTinVlaanderen";
+      case "uitmetvlieg":
+        return "Vlieg";
+      default:
+        return publisher;
+    }
+  }
 
   /**
    * @inheritDoc
@@ -217,6 +226,9 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditDirective {
             type: [_.get(this.widget.settings, 'detail_page.image.default_image.type', '')]
           }),
           position: [_.get(this.widget.settings, 'detail_page.image.position', '')]
+        }),
+        videos: this.formBuilder.group({
+          enabled: [_.get(this.widget.settings, 'detail_page.videos.enabled', '')]
         }),
         labels: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'detail_page.labels.enabled', '')],

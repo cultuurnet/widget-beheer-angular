@@ -127,7 +127,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     // Set the dragula options
     this.dragulaService.setOptions(this.dragulaContainer, {
       moves: function (el, container, handle) {
-        return handle.classList.contains('drag') || handle.classList.contains('bnt-cnw-action--drag');
+        return handle.classList.contains('fa-arrows-alt') || handle.classList.contains('bnt-cnw-action--drag');
       }
     });
 

@@ -50,14 +50,17 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   public viewModes: any = [
     {
       type: 'desktop',
+      class: 'fa-desktop',
       label: 'Desktop',
     },
     {
       type: 'tablet',
+      class: 'fa-tablet-alt',
       label: 'Tablet',
     },
     {
       type: 'mobile',
+      class: 'fa-mobile-alt',
       label: 'Mobile',
     }
   ];
