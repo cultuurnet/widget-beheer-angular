@@ -313,7 +313,7 @@ export class WidgetBuilderService {
           this.prefixCssStyleRule(rule, '.widget-preview');
         }
 
-        sheet.addRule(rule.cssText);
+        sheet.insertRule(rule.cssText);
       }
     } catch (err) {
       return false;
