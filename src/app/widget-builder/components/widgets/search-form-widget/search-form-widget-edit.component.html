@@ -13,12 +13,10 @@
   </div>
 </div>
 
-<ul ngbNav class="nav-tabs">
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
   <li ngbNavItem>
-    <ng-template ngbTabTitle>{{
-      'TITLE_EDIT_FORM_PROPERTIES' | translate
-    }}</ng-template>
-    <ng-template ngbTabContent>
+    <a ngbNavLink>{{ 'TITLE_EDIT_FORM_PROPERTIES' | translate }}</a>
+    <ng-template ngbNavContent>
       <form [formGroup]="widgetEditForm" novalidate>
         <ngb-accordion [closeOthers]="true">
           <ngb-panel id="general" formGroupName="general">
@@ -445,10 +443,8 @@
     </ng-template>
   </li>
   <li ngbNavItem>
-    <ng-template ngbTabTitle>{{
-      'TITLE_EDIT_FORM_JSON' | translate
-    }}</ng-template>
-    <ng-template ngbTabContent>
+    <a ngbNavLink>{{ 'TITLE_EDIT_FORM_JSON' | translate }}</a>
+    <ng-template ngbNavContent>
       <app-json-edit
         [widget]="widget"
         (jsonChanged)="handleJsonChanged()"
@@ -456,3 +452,4 @@
     </ng-template>
   </li>
 </ul>
+<div [ngbNavOutlet]="nav"></div>
