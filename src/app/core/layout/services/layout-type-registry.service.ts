@@ -4,7 +4,6 @@ import { AbstractLayoutDirective } from '../components/abstract-layout.component
 
 @Injectable()
 export class LayoutTypeRegistry {
-
   public layoutTypes = {};
 
   /**
@@ -14,11 +13,16 @@ export class LayoutTypeRegistry {
    * @param layoutType
    * @param layoutComponent
    */
-  public register(id, label, layoutType: Type<Layout>, layoutComponent: Type<AbstractLayoutDirective>) {
+  public register(
+    id,
+    label,
+    layoutType: Type<Layout>,
+    layoutComponent: Type<AbstractLayoutDirective>
+  ) {
     this.layoutTypes[id] = {
       label: label,
       layout: layoutType,
-      component: layoutComponent
+      component: layoutComponent,
     };
   }
 

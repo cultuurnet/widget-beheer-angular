@@ -5,8 +5,7 @@ import { AbstractLayoutDirective } from '../../../../core/layout/components/abst
  * Provides a 3 col with double sidebar layout component.
  */
 @Component({
-  'selector': 'app-3-col-tripple-layout',
-  'templateUrl': './3col-tripple.component.html'
+  selector: 'app-3-col-tripple-layout',
+  templateUrl: './3col-tripple.component.html',
 })
-export class ThreeColTrippleLayoutComponent extends AbstractLayoutDirective {
-}
+export class ThreeColTrippleLayoutComponent extends AbstractLayoutDirective {}

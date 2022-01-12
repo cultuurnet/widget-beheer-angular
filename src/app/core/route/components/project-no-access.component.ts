@@ -6,5 +6,4 @@ import { Component, Input } from '@angular/core';
 @Component({
   templateUrl: './project-no-access.component.html',
 })
-export class ProjectNoAccessComponent {
-}
+export class ProjectNoAccessComponent {}

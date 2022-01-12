@@ -6,7 +6,6 @@
   box-shadow: 5px 3px 8px 1px #646c73;
 }
 .preview {
-
   .cnw_form {
     //border:1px solid blue;
     div[class*='cnw_col-'],
@@ -45,7 +44,6 @@
       max-width: 100%;
     }
   }
-
 }
 
 html .preview .cnw_sideCol {
@@ -66,10 +64,10 @@ html .preview .cnw_sideCol {
 }
 
 h2.cnw_card-title {
-  overflow-wrap: break-word
+  overflow-wrap: break-word;
 }
 
 p.cnw_card-description {
- // padding: 15px;
+  // padding: 15px;
   width: 100%;
 }

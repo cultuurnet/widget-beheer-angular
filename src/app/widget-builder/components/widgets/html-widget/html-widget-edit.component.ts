@@ -6,16 +6,14 @@ import { FormBuilder } from '@angular/forms';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import { QueryStringService } from 'app/widget-builder/services/query-string.service';
 
-
 /**
  * Html widget edit form component.
  */
 @Component({
   templateUrl: './html-widget-edit.component.html',
-  providers: [QueryStringService]
+  providers: [QueryStringService],
 })
 export class HtmlWidgetWidgetEditComponent extends BaseWidgetEditDirective {
-
   /**
    * Config for the ckdeditor in this component
    */
@@ -24,7 +22,11 @@ export class HtmlWidgetWidgetEditComponent extends BaseWidgetEditDirective {
   /**
    * HtmlWidgetWidgetEditComponent constructor
    */
-  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService, public queryStringService: QueryStringService) {
+  constructor(
+    public formBuilder: FormBuilder,
+    public widgetBuilderService: WidgetBuilderService,
+    public queryStringService: QueryStringService
+  ) {
     super(formBuilder, widgetBuilderService, queryStringService);
   }
 
@@ -35,7 +37,7 @@ export class HtmlWidgetWidgetEditComponent extends BaseWidgetEditDirective {
     this.widgetEditForm = this.formBuilder.group({
       content: this.formBuilder.group({
         body: [_.get(this.settings, 'content.body', '')],
-      })
+      }),
     });
   }
 
@@ -56,5 +58,4 @@ export class HtmlWidgetWidgetEditComponent extends BaseWidgetEditDirective {
   public handleWidgetNameChanged(name: string) {
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
   }
-
 }

@@ -23,7 +23,6 @@ import { BackButton } from 'app/core/topbar/back-button';
   templateUrl: './page-list.component.html',
 })
 export class PageListComponent implements OnInit {
-
   /**
    * The widget page to edit
    */
@@ -62,19 +61,20 @@ export class PageListComponent implements OnInit {
     private router: Router,
     private translateService: TranslateService,
     private topbarService: TopbarService
-  ) { }
+  ) {}
 
   /**
    * @inheritDoc
    */
   ngOnInit() {
-    this.route.data
-      .subscribe((data: { widgetPages: Array<WidgetPage>, project: Project }) => {
+    this.route.data.subscribe(
+      (data: { widgetPages: Array<WidgetPage>; project: Project }) => {
         this.buildWidgetPageList(data.widgetPages);
 
         // Get the project from the current route
         this.project = data.project;
-      });
+      }
+    );
 
     // Init the topbar
     this.initTopbar();
@@ -86,20 +86,42 @@ export class PageListComponent implements OnInit {
    */
   public duplicateWidgetPage(widgetPage: WidgetPage) {
     // Clone the widget page
-    const clone =  _.cloneDeep(widgetPage);
+    const clone = _.cloneDeep(widgetPage);
 
     // Remove the widgetPage id
     clone.id = '';
-    clone.title = clone.title + ' (' + (this.translateService.instant('DUPLICATE_WIDGET_PAGE_COPY').toString() as string) + ')';
+    clone.title =
+      clone.title +
+      ' (' +
+      (this.translateService
+        .instant('DUPLICATE_WIDGET_PAGE_COPY')
+        .toString() as string) +
+      ')';
 
     // Save the widget page and redirect
-    this.widgetService.saveWidgetPage(clone).toPromise().then(async widgetSaveResponse => {
-      if (widgetSaveResponse.widgetPage) {
-        await this.router.navigate(['/project', this.project.id, 'page', widgetSaveResponse.widgetPage.id, 'edit']);
-      }
-    }, () => {
-      this.toastyService.error(this.translateService.instant('DUPLICATE_WIDGET_PAGE_FAILED_NOTIFICATION'));
-    });
+    this.widgetService
+      .saveWidgetPage(clone)
+      .toPromise()
+      .then(
+        async (widgetSaveResponse) => {
+          if (widgetSaveResponse.widgetPage) {
+            await this.router.navigate([
+              '/project',
+              this.project.id,
+              'page',
+              widgetSaveResponse.widgetPage.id,
+              'edit',
+            ]);
+          }
+        },
+        () => {
+          this.toastyService.error(
+            this.translateService.instant(
+              'DUPLICATE_WIDGET_PAGE_FAILED_NOTIFICATION'
+            )
+          );
+        }
+      );
   }
 
   /**
@@ -113,26 +135,42 @@ export class PageListComponent implements OnInit {
     modalInstance.title = 'REMOVE_WIDGET_PAGE_MODAL_TITLE';
     modalInstance.message = 'REMOVE_WIDGET_PAGE_MODAL_MESSAGE';
 
-    modal.result.then((result) => {
-      this.widgetService.deleteWidgetPage(widgetPage).subscribe(() => {
-        // Remove the widget from the corresponding array, so the model gets updated
-        let widgetPages = this.widgetPages;
-        if (widgetPage.version < Number(environment.widgetApi_currentVersion)) {
-          widgetPages = this.legacyWidgetPages;
-        }
+    modal.result.then(
+      (result) => {
+        this.widgetService.deleteWidgetPage(widgetPage).subscribe(
+          () => {
+            // Remove the widget from the corresponding array, so the model gets updated
+            let widgetPages = this.widgetPages;
+            if (
+              widgetPage.version < Number(environment.widgetApi_currentVersion)
+            ) {
+              widgetPages = this.legacyWidgetPages;
+            }
 
-        const index = widgetPages.indexOf(widgetPage);
-        if (index > -1) {
-          widgetPages.splice(index, 1);
-        }
+            const index = widgetPages.indexOf(widgetPage);
+            if (index > -1) {
+              widgetPages.splice(index, 1);
+            }
 
-        this.toastyService.success(this.translateService.instant('REMOVE_WIDGET_PAGE_SUCCESS_NOTIFICATION'));
-      }, () => {
-        this.toastyService.error(this.translateService.instant('REMOVE_WIDGET_PAGE_FAILED_NOTIFICATION'));
-      });
-    }, (reason) => {
-      // Do nothing on modal close
-    });
+            this.toastyService.success(
+              this.translateService.instant(
+                'REMOVE_WIDGET_PAGE_SUCCESS_NOTIFICATION'
+              )
+            );
+          },
+          () => {
+            this.toastyService.error(
+              this.translateService.instant(
+                'REMOVE_WIDGET_PAGE_FAILED_NOTIFICATION'
+              )
+            );
+          }
+        );
+      },
+      (reason) => {
+        // Do nothing on modal close
+      }
+    );
   }
 
   /**
@@ -142,17 +180,24 @@ export class PageListComponent implements OnInit {
   public adminWidgetPage(widgetPage: WidgetPage) {
     const modal = this.modalService.open(AdminPageModalComponent, {
       backdrop: 'static',
-      keyboard: false
+      keyboard: false,
     });
 
     const modalInstance = modal.componentInstance;
     modalInstance.widgetPage = widgetPage;
 
-    modal.result.then((result) => {
-      if (result) {
-        this.toastyService.success(this.translateService.instant('WIDGET_PAGE_ADMIN_MODAL_SUCCESS_NOTIFICATION'));
-      }
-    }, () => {});
+    modal.result.then(
+      (result) => {
+        if (result) {
+          this.toastyService.success(
+            this.translateService.instant(
+              'WIDGET_PAGE_ADMIN_MODAL_SUCCESS_NOTIFICATION'
+            )
+          );
+        }
+      },
+      () => {}
+    );
   }
 
   /**
@@ -162,44 +207,63 @@ export class PageListComponent implements OnInit {
   public languageWidgetPage(widgetPage: WidgetPage) {
     const modal = this.modalService.open(LanguagePageModalComponent, {
       backdrop: 'static',
-      keyboard: false
+      keyboard: false,
     });
 
     const modalInstance = modal.componentInstance;
     modalInstance.widgetPage = widgetPage;
 
-    modal.result.then((result) => {
-      if (result) {
-        this.toastyService.success(`${widgetPage.language} ` + (this.translateService.instant('WIDGET_PAGE_LANGUAGE_MODAL_SUCCESS_NOTIFICATION').toString() as string));
-      }
-    }, () => {});
+    modal.result.then(
+      (result) => {
+        if (result) {
+          this.toastyService.success(
+            `${widgetPage.language} ` +
+              (this.translateService
+                .instant('WIDGET_PAGE_LANGUAGE_MODAL_SUCCESS_NOTIFICATION')
+                .toString() as string)
+          );
+        }
+      },
+      () => {}
+    );
   }
-
 
   /**
    * Upgrade a widget page to latest version.
    * @param widgetPage
    */
   public upgradeWidgetPage(widgetPage: WidgetPage) {
-
     const modal = this.modalService.open(ConfirmationModalComponent);
     const modalInstance = modal.componentInstance;
 
     modalInstance.title = 'UPGRADE_WIDGET_PAGE_MODAL_TITLE';
     modalInstance.message = 'UPGRADE_WIDGET_PAGE_MODAL_MESSAGE';
 
-    modal.result.then((result) => {
-      this.widgetService.upgradeWidgetPage(widgetPage).subscribe(() => {
+    modal.result.then(
+      (result) => {
+        this.widgetService.upgradeWidgetPage(widgetPage).subscribe(
+          () => {
+            this.reloadWidgetPageList();
 
-        this.reloadWidgetPageList();
-
-        this.toastyService.success(this.translateService.instant('UPGRADE_WIDGET_PAGE_SUCCESS_NOTIFICATION'));
-      }, () => {
-        this.toastyService.error(this.translateService.instant('UPGRADE_WIDGET_PAGE_FAILED_NOTIFICATION'));
-      });
-    }, (reason) => {
-      // Do nothing on modal close
-    });
+            this.toastyService.success(
+              this.translateService.instant(
+                'UPGRADE_WIDGET_PAGE_SUCCESS_NOTIFICATION'
+              )
+            );
+          },
+          () => {
+            this.toastyService.error(
+              this.translateService.instant(
+                'UPGRADE_WIDGET_PAGE_FAILED_NOTIFICATION'
+              )
+            );
+          }
+        );
+      },
+      (reason) => {
+        // Do nothing on modal close
+      }
+    );
   }
 
   /**
@@ -208,20 +272,29 @@ export class PageListComponent implements OnInit {
    * @param tags
    * @param forceCurrentVersion
    */
-  public getWidgetPageUrl(widgetPage: WidgetPage, tags: boolean = false, forceCurrentVersion: boolean = false) {
-    return this.widgetService.getWidgetPageEmbedUrl(widgetPage, tags, forceCurrentVersion);
+  public getWidgetPageUrl(
+    widgetPage: WidgetPage,
+    tags: boolean = false,
+    forceCurrentVersion: boolean = false
+  ) {
+    return this.widgetService.getWidgetPageEmbedUrl(
+      widgetPage,
+      tags,
+      forceCurrentVersion
+    );
   }
 
   /**
    * Reload the current widget page list.
    */
   private reloadWidgetPageList() {
-
-    this.widgetService.getWidgetPages(this.project.id).subscribe((widgetPages: Array<WidgetPage>) => {
-      this.widgetPages = [];
-      this.legacyWidgetPages = [];
-      this.buildWidgetPageList(widgetPages);
-    });
+    this.widgetService
+      .getWidgetPages(this.project.id)
+      .subscribe((widgetPages: Array<WidgetPage>) => {
+        this.widgetPages = [];
+        this.legacyWidgetPages = [];
+        this.buildWidgetPageList(widgetPages);
+      });
   }
 
   /**
@@ -230,7 +303,6 @@ export class PageListComponent implements OnInit {
   private buildWidgetPageList(widgetPages: Array<WidgetPage>) {
     // Separate legacy and current widgets
     for (const widgetPage of widgetPages) {
-
       if (widgetPage.version >= Number(environment.widgetApi_currentVersion)) {
         this.widgetPages.push(widgetPage);
       } else {
@@ -244,11 +316,12 @@ export class PageListComponent implements OnInit {
    */
   private initTopbar() {
     // Add a back button
-    this.topbarService.setBackButton(new BackButton(
-      BackButton.TYPE_LINK,
-      'TOPBAR_BACK_BUTTON_LABEL_PROJECTAANVRAGEN',
-      environment.projectaanvraagDashboardUrl
-    ));
+    this.topbarService.setBackButton(
+      new BackButton(
+        BackButton.TYPE_LINK,
+        'TOPBAR_BACK_BUTTON_LABEL_PROJECTAANVRAGEN',
+        environment.projectaanvraagDashboardUrl
+      )
+    );
   }
-
 }

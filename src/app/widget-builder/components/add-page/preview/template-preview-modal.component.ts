@@ -6,10 +6,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
  */
 @Component({
   selector: 'app-template-preview-modal',
-  templateUrl: './template-preview-modal.component.html'
+  templateUrl: './template-preview-modal.component.html',
 })
 export class TemplatePreviewModalComponent {
-
   /**
    * The template id
    */
@@ -24,7 +23,5 @@ export class TemplatePreviewModalComponent {
    * TemplatePreviewModalComponent constructor.
    * @param activeModal
    */
-  constructor(public activeModal: NgbActiveModal) {
-  }
-
+  constructor(public activeModal: NgbActiveModal) {}
 }

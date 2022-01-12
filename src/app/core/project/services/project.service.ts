@@ -11,14 +11,12 @@ import { MemoryCache } from '../../memory-cache';
  */
 @Injectable()
 export class ProjectService {
-
   /**
    * ProjectService constructor.
    * @param http
    * @param cache
    */
-  constructor (private http: HttpClient, private cache: MemoryCache) {
-  }
+  constructor(private http: HttpClient, private cache: MemoryCache) {}
 
   /**
    * Get a project
@@ -33,11 +31,11 @@ export class ProjectService {
     }
 
     return this.http.get(environment.apiUrl + 'project/' + id).pipe(
-      map(project => new Project(project)),
-      tap(project => {
+      map((project) => new Project(project)),
+      tap((project) => {
         // Cache the response
         this.cache.put('project', [id], project);
-      }));
+      })
+    );
   }
-
 }

@@ -1,4 +1,11 @@
-import { Component, ComponentFactoryResolver, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { RowLayoutDirective } from '../../directives/row-layout.directive';
 import { AbstractLayoutDirective } from '../../../core/layout/components/abstract-layout.component';
 import { LayoutTypeRegistry } from '../../../core/layout/services/layout-type-registry.service';
@@ -10,11 +17,10 @@ import { Widget } from '../../../core/widget/widget';
  * Provides a row preview component.
  */
 @Component({
-  'selector': 'app-row-preview',
-  'templateUrl': './row-preview.component.html'
+  selector: 'app-row-preview',
+  templateUrl: './row-preview.component.html',
 })
 export class RowPreviewComponent implements OnInit, OnDestroy {
-
   /**
    * The row Layout preview
    */
@@ -58,9 +64,10 @@ export class RowPreviewComponent implements OnInit, OnDestroy {
     private layoutTypeRegistry: LayoutTypeRegistry,
     private widgetBuilderService: WidgetBuilderService
   ) {
-    this.widgetSelectedSubscription = widgetBuilderService.widgetSelected$.subscribe(widget => {
-      this.activeWidget = widget;
-    });
+    this.widgetSelectedSubscription =
+      widgetBuilderService.widgetSelected$.subscribe((widget) => {
+        this.activeWidget = widget;
+      });
   }
 
   /**
@@ -68,7 +75,10 @@ export class RowPreviewComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     const componentType = this.layoutTypeRegistry.getLayoutType(this.row.type);
-    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(componentType.component);
+    const componentFactory =
+      this._componentFactoryResolver.resolveComponentFactory(
+        componentType.component
+      );
     const viewContainerRef = this.preview.viewContainerRef;
     viewContainerRef.clear();
 
@@ -94,15 +104,18 @@ export class RowPreviewComponent implements OnInit, OnDestroy {
     if (change.action === 'remove') {
       // If the active widget is in the current row we are removing, deselect it
       Object.values(this.row.regions).forEach((region) => {
-        const found = !!this.activeWidget && region.widgets.find(currentWidget => currentWidget.id === this.activeWidget.id)
+        const found =
+          !!this.activeWidget &&
+          region.widgets.find(
+            (currentWidget) => currentWidget.id === this.activeWidget.id
+          );
         if (found) {
           this.widgetBuilderService.selectWidget();
         }
-      })
+      });
     }
 
     // Save the widget page
     this.widgetBuilderService.saveWidgetPage();
   }
-
 }

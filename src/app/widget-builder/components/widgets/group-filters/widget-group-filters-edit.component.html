@@ -1,73 +1,179 @@
 <div class="widget-group-filters-edit">
-<form [formGroup]="groupFilterForm" novalidate >
+  <form [formGroup]="groupFilterForm" novalidate>
     <label>
-        <input type="checkbox" formControlName="enabled" (change)="handleStatusUpdate($event)"> <span>{{ "LABEL_CHECKBOX_EXTRA_GROUP_FILTERS" | translate }}</span>
+      <input
+        type="checkbox"
+        formControlName="enabled"
+        (change)="handleStatusUpdate($event)"
+      />
+      <span>{{ 'LABEL_CHECKBOX_EXTRA_GROUP_FILTERS' | translate }}</span>
     </label>
     <fieldset *ngIf="groupFilters.enabled">
-        <legend>{{ "LABEL_GROUP_FILTERS_GROUPS" | translate }}</legend>
-        <!-- list of groupFilters -->
-        <div formArrayName="filters">
-            <div *ngFor="let groupFilter of groupFilterForm['controls'].filters.controls; let i=index">
-                <div [formGroupName]="i">
-                    <div>
-                        <app-row-edit [rows]="groupFilterForm['controls'].filters.controls" [index]="i" [modalTitle]="'GROUP_FILTER_REMOVE_MODAL_TITLE'" [modalMessage]="'GROUP_FILTER_REMOVE_MODAL_MESSAGE'" (rowChanged)="handleRowChanged($event)"></app-row-edit>
-                        <div class="widget-group-filters-group-edit">
-                            <div class="form-group">
-                                <label>{{ "LABEL_GROUP_FILTER_LABEL" | translate }}</label>
-                                <input type="text" formControlName="label" class="form-control">
-                            </div>
-                            <div *ngIf="!hidePlaceholder" class="form-group">
-                                <label>{{ "LABEL_GROUP_FILTER_PLACEHOLDER" | translate }}</label>
-                                <input type="text" formControlName="placeholder" class="form-control">
-                            </div>
-                            <div *ngIf="!hideType">
-                                <label>{{ "LABEL_GROUP_FILTER_TYPE" | translate }}</label>
-                                <div class="form-check">
-                                    <label *ngFor="let filterType of filterTypes" class="form-check-label">
-                                        <input type="radio" [value]="filterType.type" formControlName="type">
-                                        <span>{{ filterType.label | translate }}</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div formArrayName="options" class="widget-group-filters-group-option-edit component">
-                                <div [formGroupName]="j" *ngFor="let option of groupFilter['controls'].options['controls']; let j=index">
-                                    <div>
-                                        <app-row-edit [index]="j" [rows]="groupFilter['controls'].options['controls']" [modalTitle]="'GROUP_FILTER_OPTION_REMOVE_MODAL_TITLE'" [modalMessage]="'GROUP_FILTER_OPTION_REMOVE_MODAL_MESSAGE'" (rowChanged)="handleRowChanged($event)"></app-row-edit>
-                                        <div class="form-group">
-                                            <label>{{ "LABEL_GROUP_FILTER_OPTION_LABEL" | translate }}</label>
-                                            <input type="text" formControlName="label" class="form-control">
-                                            <small  class="form-text text-muted">{{ "LABEL_GROUP_FILTER_OPTION_LABEL_INFO" | translate }}</small>
-                                        </div>
-                                        <div>
-                                            <label>{{ "LABEL_GROUP_FILTER_OPTION_QUERY" | translate }} </label>
-                                            <textarea rows="1" formControlName="query" class="form-control"></textarea>
-                                            <small  class="form-text text-muted">{{ "LABEL_GROUP_FILTER_OPTION_QUERY_INFO" | translate }}. {{ "SAPI3_SYNTAX" | translate }} <a href='{{ "SAPI3_DOC_URL" | translate }}' target='_blank'>{{ "SAPI3_DOC_LINK" | translate }} </a></small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button class="btn btn-primary btn-sm btn-cnw-filtergroup--add" type="button" (click)="addGroupFilterOptionItem(groupFilter['controls'].options)" [disabled]="groupFilter['controls'].options.invalid">
-                                <i aria-hidden="true" class="fa fa-plus-square-o fa-1x"></i>
-                                {{ "BUTTON_ADD_GROUP_FILTER_FILTER_OPTION" | translate }}
-                            </button>
-
-                            <div *ngIf="!hideDefaultOption && groupFilter['controls'].type.value != 'select_multiple'" >
-                                <label>{{ "LABEL_GROUP_FILTER_DEFAULT_OPTION" | translate }}</label>
-                                <select formControlName="default_option" class="form-control">
-                                    <option [value]="">{{ groupFilter['controls'].placeholder.value }}</option>
-                                    <option *ngFor="let option of groupFilter['controls'].options['controls'];" [value]="option['controls'].label.value">{{ option['controls'].label.value }}</option>
-                                </select>
-                            </div>
-
-                        </div>
-                    </div>
+      <legend>{{ 'LABEL_GROUP_FILTERS_GROUPS' | translate }}</legend>
+      <!-- list of groupFilters -->
+      <div formArrayName="filters">
+        <div
+          *ngFor="
+            let groupFilter of groupFilterForm['controls'].filters.controls;
+            let i = index
+          "
+        >
+          <div [formGroupName]="i">
+            <div>
+              <app-row-edit
+                [rows]="groupFilterForm['controls'].filters.controls"
+                [index]="i"
+                [modalTitle]="'GROUP_FILTER_REMOVE_MODAL_TITLE'"
+                [modalMessage]="'GROUP_FILTER_REMOVE_MODAL_MESSAGE'"
+                (rowChanged)="handleRowChanged($event)"
+              ></app-row-edit>
+              <div class="widget-group-filters-group-edit">
+                <div class="form-group">
+                  <label>{{ 'LABEL_GROUP_FILTER_LABEL' | translate }}</label>
+                  <input
+                    type="text"
+                    formControlName="label"
+                    class="form-control"
+                  />
                 </div>
+                <div *ngIf="!hidePlaceholder" class="form-group">
+                  <label>{{
+                    'LABEL_GROUP_FILTER_PLACEHOLDER' | translate
+                  }}</label>
+                  <input
+                    type="text"
+                    formControlName="placeholder"
+                    class="form-control"
+                  />
+                </div>
+                <div *ngIf="!hideType">
+                  <label>{{ 'LABEL_GROUP_FILTER_TYPE' | translate }}</label>
+                  <div class="form-check">
+                    <label
+                      *ngFor="let filterType of filterTypes"
+                      class="form-check-label"
+                    >
+                      <input
+                        type="radio"
+                        [value]="filterType.type"
+                        formControlName="type"
+                      />
+                      <span>{{ filterType.label | translate }}</span>
+                    </label>
+                  </div>
+                </div>
+                <div
+                  formArrayName="options"
+                  class="widget-group-filters-group-option-edit component"
+                >
+                  <div
+                    [formGroupName]="j"
+                    *ngFor="
+                      let option of groupFilter['controls'].options['controls'];
+                      let j = index
+                    "
+                  >
+                    <div>
+                      <app-row-edit
+                        [index]="j"
+                        [rows]="groupFilter['controls'].options['controls']"
+                        [modalTitle]="'GROUP_FILTER_OPTION_REMOVE_MODAL_TITLE'"
+                        [modalMessage]="
+                          'GROUP_FILTER_OPTION_REMOVE_MODAL_MESSAGE'
+                        "
+                        (rowChanged)="handleRowChanged($event)"
+                      ></app-row-edit>
+                      <div class="form-group">
+                        <label>{{
+                          'LABEL_GROUP_FILTER_OPTION_LABEL' | translate
+                        }}</label>
+                        <input
+                          type="text"
+                          formControlName="label"
+                          class="form-control"
+                        />
+                        <small class="form-text text-muted">{{
+                          'LABEL_GROUP_FILTER_OPTION_LABEL_INFO' | translate
+                        }}</small>
+                      </div>
+                      <div>
+                        <label
+                          >{{ 'LABEL_GROUP_FILTER_OPTION_QUERY' | translate }}
+                        </label>
+                        <textarea
+                          rows="1"
+                          formControlName="query"
+                          class="form-control"
+                        ></textarea>
+                        <small class="form-text text-muted"
+                          >{{
+                            'LABEL_GROUP_FILTER_OPTION_QUERY_INFO' | translate
+                          }}. {{ 'SAPI3_SYNTAX' | translate }}
+                          <a
+                            href="{{ 'SAPI3_DOC_URL' | translate }}"
+                            target="_blank"
+                            >{{ 'SAPI3_DOC_LINK' | translate }}
+                          </a></small
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  class="btn btn-primary btn-sm btn-cnw-filtergroup--add"
+                  type="button"
+                  (click)="
+                    addGroupFilterOptionItem(groupFilter['controls'].options)
+                  "
+                  [disabled]="groupFilter['controls'].options.invalid"
+                >
+                  <i aria-hidden="true" class="fa fa-plus-square-o fa-1x"></i>
+                  {{ 'BUTTON_ADD_GROUP_FILTER_FILTER_OPTION' | translate }}
+                </button>
+
+                <div
+                  *ngIf="
+                    !hideDefaultOption &&
+                    groupFilter['controls'].type.value != 'select_multiple'
+                  "
+                >
+                  <label>{{
+                    'LABEL_GROUP_FILTER_DEFAULT_OPTION' | translate
+                  }}</label>
+                  <select formControlName="default_option" class="form-control">
+                    <option [value]="">
+                      {{ groupFilter['controls'].placeholder.value }}
+                    </option>
+                    <option
+                      *ngFor="
+                        let option of groupFilter['controls'].options[
+                          'controls'
+                        ]
+                      "
+                      [value]="option['controls'].label.value"
+                    >
+                      {{ option['controls'].label.value }}
+                    </option>
+                  </select>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-        <button class="btn btn-primary btn-sm btn-cnw-filtergroup--add" type="button" (click)="addGroupFilterItem()" [disabled]="groupFilterForm.invalid && groupFilterForm['controls'].filters.controls.length">
-            <i aria-hidden="true" class="fa fa-plus-square-o fa-1x"></i>
-            {{ "BUTTON_ADD_GROUP_FILTER" | translate }}</button>
+      </div>
+      <button
+        class="btn btn-primary btn-sm btn-cnw-filtergroup--add"
+        type="button"
+        (click)="addGroupFilterItem()"
+        [disabled]="
+          groupFilterForm.invalid &&
+          groupFilterForm['controls'].filters.controls.length
+        "
+      >
+        <i aria-hidden="true" class="fa fa-plus-square-o fa-1x"></i>
+        {{ 'BUTTON_ADD_GROUP_FILTER' | translate }}
+      </button>
     </fieldset>
-</form>
+  </form>
 </div>

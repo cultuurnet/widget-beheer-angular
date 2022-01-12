@@ -1,4 +1,3 @@
-
 .components-add,
 .layouts-add {
   margin-top: 40px;
@@ -20,9 +19,9 @@
   height: 30px;
   width: 30px;
   border-radius: 15px;
-  background-color: #004F94;
-  color: #FFF;
-  border: 0px solid #FFF;
+  background-color: #004f94;
+  color: #fff;
+  border: 0px solid #fff;
   position: relative;
   transition: all 0.5s ease;
   outline: 0;
@@ -36,9 +35,9 @@
 
 .btn-layout {
   border-radius: 15px;
-  background-color: #004F94;
-  color: #FFF;
-  border: 0px solid #FFF;
+  background-color: #004f94;
+  color: #fff;
+  border: 0px solid #fff;
   position: relative;
   transition: all 0.5s ease;
   outline: 0;
@@ -51,7 +50,6 @@
 }
 
 @mixin addWidgetComponentButton() {
-
   .btn {
     width: 100%;
 
@@ -62,7 +60,8 @@
 
     padding: 1rem 0.5rem 0.8rem 1rem;
     line-height: 2rem;
-    &:focus, &.focus {
+    &:focus,
+    &.focus {
       outline: none;
       box-shadow: none;
     }
@@ -98,7 +97,6 @@
         border-color: #bcc8d0;
         color: #dde2e6;
         cursor: not-allowed;
-
       }
 
       .fa {
@@ -120,12 +118,11 @@
       width: 100%;
       top: inherit;
       margin-bottom: 1rem;
-
     }
 
     .dropup.show {
       .dropdown-item {
-        border-bottom: 1px solid #EDEDED;
+        border-bottom: 1px solid #ededed;
         &:last-child {
           border: 0;
         }
@@ -143,19 +140,20 @@
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         margin-top: 0;
-        bottom: 205%
+        bottom: 205%;
       }
 
-      .btn, .btn-primary:focus, .btn-primary.focus {
+      .btn,
+      .btn-primary:focus,
+      .btn-primary.focus {
         outline: none;
         box-shadow: none;
       }
-
     }
 
     .dropdown.show {
       .dropdown-item {
-        border-bottom: 1px solid #EDEDED;
+        border-bottom: 1px solid #ededed;
         &:last-child {
           border: 0;
         }
@@ -174,7 +172,5 @@
         margin-top: 0;
       }
     }
-
   }
-
 }

@@ -9,13 +9,13 @@ const routes: Routes = [
     component: ProjectNoAccessComponent,
   },
   {
-      path: '**',
-      component: PageNotFoundComponent
-  }
+    path: '**',
+    component: PageNotFoundComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

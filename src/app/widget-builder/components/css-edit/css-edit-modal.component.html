@@ -1,77 +1,157 @@
 <div class="modal-header">
-    <h4 class="modal-title">{{ "WIDGET_PAGE_CSS_EDIT_MODAL_TITLE" | translate }}</h4>
-    <button type="button" class="close" (click)="activeModal.dismiss('cancel')" [disabled]="isSaving">
-        <span aria-hidden="true">&times;</span>
-    </button>
+  <h4 class="modal-title">
+    {{ 'WIDGET_PAGE_CSS_EDIT_MODAL_TITLE' | translate }}
+  </h4>
+  <button
+    type="button"
+    class="close"
+    (click)="activeModal.dismiss('cancel')"
+    [disabled]="isSaving"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 <div class="modal-body modal-css-edit">
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="form-group">
-                <form [formGroup]="cssEditForm" novalidate>
-                    <div *ngIf="error" class="alert alert-danger" role="alert">
-                        {{ "WIDGET_PAGE_CSS_EDIT_SAVE_FAILED" | translate }}
-                    </div>
-                    <p *ngIf="widgetPage.selectedTheme">{{ "WIDGET_PAGE_CSS_EDIT_MODAL_ACTIVE_THEME" | translate }} <strong>{{widgetPage.selectedTheme}}</strong></p>
-                    <textarea class="code-edit" formControlName="css" rows="20"></textarea>
-                </form>
-            </div>
-        </div>
-        <div *ngIf="!cssStats" class="col-sm-4">
-            <h3>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_TITLE" | translate }}</h3>
-            <p>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_DESCRIPTION" | translate }}</p>
-            <p>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_DESCRIPTION_2" | translate }}</p>
-            <form [formGroup]="cssScrapeForm" (submit)="getCssStats()" novalidate>
-                <div class="form-group">
-                    <label class="css-edit--websiteurl">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_LABEL" | translate }}</label>
-                    <input [attr.disabled]="isScraping?'':null"  type="text" formControlName="url" [placeholder]="'WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_PLACEHOLDER' | translate" class="form-control"/>
-                    <div *ngIf="isInvalidUrl">
-                        <p>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_ERROR" | translate }}</p>
-                    </div>
-                    <div>
-                        <p *ngIf="scrapeError" class="text-danger">{{ "WIDGET_PAGE_CSS_EDIT_SCRAPE_STATS_FAILED_ERROR" | translate }}</p>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-outline-secondary" [disabled]="cssScrapeForm.invalid || isScraping"><i *ngIf="isScraping" class="fa fa-spinner fa-spin"></i> {{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_SCRAPE_BUTTON" | translate}}</button>
-            </form>
-        </div>
-        <div *ngIf="cssStats" class="col-sm-4 state-results">
-            <h3>{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_TITLE" | translate }}</h3>
-            <p *ngIf="cssStats.colors.length || cssStats.font_families.length">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_FOUND_STYLES_DESCRIPTION" | translate }} "{{ getCleanOriginUrl(cssStats.origin) }}" </p>
-            <button class="btn btn-outline-secondary" (click)="resetScrapedStyles()">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL" | translate }}</button>
-            <p *ngIf="!cssStats.colors.length && !cssStats.font_families.length">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_NO_FOUND_STYLES_DESCRIPTION" | translate }} "{{ getCleanOriginUrl(cssStats.origin) }}" (<button class="btn btn-link" (click)="resetScrapedStyles()">{{ "WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL" | translate }}</button>)</p>
-            <section class="styleresults">
-                <section *ngIf="cssStats.colors.length">
-
-                    <h4>{{ "WIDGET_PAGE_CSS_EDIT_CSS_STATS_COLORS_TITLE" | translate }}</h4>
-                    <ul>
-                        <li *ngFor="let color of (cssStats.colors ? cssStats.colors: [])">
-                            <div class="css-stat-info">
-                                <span class="colour-bg" [ngStyle]="{'background-color': color.value}"></span>
-                                <span class="colour-text" [ngStyle]="{'color': color.value}">Aa</span>
-                                <span class="colour-code">{{ color.value }}</span>
-                            </div>
-                            <app-clipboard-button [content]="color.value"></app-clipboard-button>
-                        </li>
-                    </ul>
-                </section>
-                <section *ngIf="cssStats.font_families.length">
-
-                    <h4>{{ "WIDGET_PAGE_CSS_EDIT_CSS_STATS_FONT_FAMILIES_TITLE" | translate }}</h4>
-                    <ul>
-                        <li *ngFor="let font of (cssStats.font_families ? cssStats.font_families: [])">
-                            <div class="css-stat-info">
-                                <span>{{ font.value }}</span>
-                            </div>
-                            <app-clipboard-button [content]="font.value"></app-clipboard-button>
-                        </li>
-                    </ul>
-                </section>
-            </section>
-        </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <form [formGroup]="cssEditForm" novalidate>
+          <div *ngIf="error" class="alert alert-danger" role="alert">
+            {{ 'WIDGET_PAGE_CSS_EDIT_SAVE_FAILED' | translate }}
+          </div>
+          <p *ngIf="widgetPage.selectedTheme">
+            {{ 'WIDGET_PAGE_CSS_EDIT_MODAL_ACTIVE_THEME' | translate }}
+            <strong>{{ widgetPage.selectedTheme }}</strong>
+          </p>
+          <textarea
+            class="code-edit"
+            formControlName="css"
+            rows="20"
+          ></textarea>
+        </form>
+      </div>
     </div>
+    <div *ngIf="!cssStats" class="col-sm-4">
+      <h3>{{ 'WIDGET_PAGE_CSS_EDIT_STYLE_HELP_TITLE' | translate }}</h3>
+      <p>{{ 'WIDGET_PAGE_CSS_EDIT_STYLE_HELP_DESCRIPTION' | translate }}</p>
+      <p>{{ 'WIDGET_PAGE_CSS_EDIT_STYLE_HELP_DESCRIPTION_2' | translate }}</p>
+      <form [formGroup]="cssScrapeForm" (submit)="getCssStats()" novalidate>
+        <div class="form-group">
+          <label class="css-edit--websiteurl">{{
+            'WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_LABEL' | translate
+          }}</label>
+          <input
+            [attr.disabled]="isScraping ? '' : null"
+            type="text"
+            formControlName="url"
+            [placeholder]="
+              'WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_PLACEHOLDER' | translate
+            "
+            class="form-control"
+          />
+          <div *ngIf="isInvalidUrl">
+            <p>{{ 'WIDGET_PAGE_CSS_EDIT_STYLE_HELP_URL_ERROR' | translate }}</p>
+          </div>
+          <div>
+            <p *ngIf="scrapeError" class="text-danger">
+              {{ 'WIDGET_PAGE_CSS_EDIT_SCRAPE_STATS_FAILED_ERROR' | translate }}
+            </p>
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-outline-secondary"
+          [disabled]="cssScrapeForm.invalid || isScraping"
+        >
+          <i *ngIf="isScraping" class="fa fa-spinner fa-spin"></i>
+          {{ 'WIDGET_PAGE_CSS_EDIT_STYLE_HELP_SCRAPE_BUTTON' | translate }}
+        </button>
+      </form>
+    </div>
+    <div *ngIf="cssStats" class="col-sm-4 state-results">
+      <h3>{{ 'WIDGET_PAGE_CSS_EDIT_STYLE_HELP_TITLE' | translate }}</h3>
+      <p *ngIf="cssStats.colors.length || cssStats.font_families.length">
+        {{ 'WIDGET_PAGE_CSS_EDIT_STYLE_FOUND_STYLES_DESCRIPTION' | translate }}
+        "{{ getCleanOriginUrl(cssStats.origin) }}"
+      </p>
+      <button class="btn btn-outline-secondary" (click)="resetScrapedStyles()">
+        {{ 'WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL' | translate }}
+      </button>
+      <p *ngIf="!cssStats.colors.length && !cssStats.font_families.length">
+        {{
+          'WIDGET_PAGE_CSS_EDIT_STYLE_NO_FOUND_STYLES_DESCRIPTION' | translate
+        }}
+        "{{ getCleanOriginUrl(cssStats.origin) }}" (<button
+          class="btn btn-link"
+          (click)="resetScrapedStyles()"
+        >
+          {{ 'WIDGET_PAGE_CSS_EDIT_STYLE_HELP_CHANGE_URL' | translate }}</button
+        >)
+      </p>
+      <section class="styleresults">
+        <section *ngIf="cssStats.colors.length">
+          <h4>
+            {{ 'WIDGET_PAGE_CSS_EDIT_CSS_STATS_COLORS_TITLE' | translate }}
+          </h4>
+          <ul>
+            <li *ngFor="let color of cssStats.colors ? cssStats.colors : []">
+              <div class="css-stat-info">
+                <span
+                  class="colour-bg"
+                  [ngStyle]="{ 'background-color': color.value }"
+                ></span>
+                <span class="colour-text" [ngStyle]="{ color: color.value }"
+                  >Aa</span
+                >
+                <span class="colour-code">{{ color.value }}</span>
+              </div>
+              <app-clipboard-button
+                [content]="color.value"
+              ></app-clipboard-button>
+            </li>
+          </ul>
+        </section>
+        <section *ngIf="cssStats.font_families.length">
+          <h4>
+            {{
+              'WIDGET_PAGE_CSS_EDIT_CSS_STATS_FONT_FAMILIES_TITLE' | translate
+            }}
+          </h4>
+          <ul>
+            <li
+              *ngFor="
+                let font of cssStats.font_families ? cssStats.font_families : []
+              "
+            >
+              <div class="css-stat-info">
+                <span>{{ font.value }}</span>
+              </div>
+              <app-clipboard-button
+                [content]="font.value"
+              ></app-clipboard-button>
+            </li>
+          </ul>
+        </section>
+      </section>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="save()" [disabled]="isSaving"><i *ngIf="isSaving" class="fa fa-spinner" aria-hidden="true"></i> {{ "WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_SAVE" | translate }}</button>
-    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel')" [disabled]="isSaving">{{ "WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_CANCEL" | translate }}</button>
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="save()"
+    [disabled]="isSaving"
+  >
+    <i *ngIf="isSaving" class="fa fa-spinner" aria-hidden="true"></i>
+    {{ 'WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_SAVE' | translate }}
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-secondary"
+    (click)="activeModal.dismiss('cancel')"
+    [disabled]="isSaving"
+  >
+    {{ 'WIDGET_PAGE_CSS_EDIT_MODAL_BUTTON_CANCEL' | translate }}
+  </button>
 </div>

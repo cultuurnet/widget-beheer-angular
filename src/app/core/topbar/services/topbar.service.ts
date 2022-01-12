@@ -1,8 +1,5 @@
-
-import {filter} from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-
-
 
 import { BackButton } from '../back-button';
 import { Subject } from 'rxjs';
@@ -12,7 +9,6 @@ import { Subject } from 'rxjs';
  */
 @Injectable()
 export class TopbarService {
-
   /**
    * Observable backButton source
    */
@@ -61,18 +57,25 @@ export class TopbarService {
    * @param inputs
    * @param index
    */
-  public addComponent(id: string, component: any, inputs: any = {}, index: number = null) {
+  public addComponent(
+    id: string,
+    component: any,
+    inputs: any = {},
+    index: number = null
+  ) {
     this.dynamicComponentsSource.next({
       action: 'add',
       data: {
         id: id,
         component: component,
         inputs: inputs,
-        index: index
-      }
+        index: index,
+      },
     });
 
-    return this.dynamicComponentsEvents$.pipe(filter(event => event.id === id));
+    return this.dynamicComponentsEvents$.pipe(
+      filter((event) => event.id === id)
+    );
   }
 
   /**
@@ -91,8 +94,8 @@ export class TopbarService {
     this.dynamicComponentsSource.next({
       action: 'remove',
       data: {
-        id: id
-      }
+        id: id,
+      },
     });
   }
 
@@ -103,8 +106,8 @@ export class TopbarService {
     this.dynamicComponentsSource.next({
       action: 'hide',
       data: {
-        ids: ids
-      }
+        ids: ids,
+      },
     });
   }
 
@@ -115,16 +118,15 @@ export class TopbarService {
     this.dynamicComponentsSource.next({
       action: 'show',
       data: {
-        ids: ids
-      }
+        ids: ids,
+      },
     });
   }
 
   /**
    * Dispatch an event from a dynamic component
    */
-  public dispatchEvent(event: {id: any, output: string, value: any }) {
+  public dispatchEvent(event: { id: any; output: string; value: any }) {
     this.dynamicComponentsEvents.next(event);
   }
-
 }

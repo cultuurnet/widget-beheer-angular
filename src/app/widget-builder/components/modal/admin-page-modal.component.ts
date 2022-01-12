@@ -9,10 +9,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
  */
 @Component({
   selector: 'app-admin-page-modal',
-  templateUrl: './admin-page-modal.component.html'
+  templateUrl: './admin-page-modal.component.html',
 })
 export class AdminPageModalComponent implements OnInit {
-
   /**
    * The CSS edit form
    */
@@ -49,16 +48,15 @@ export class AdminPageModalComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private widgetService: WidgetService
-  ) { }
+  ) {}
 
   /**
    * @inheritDoc
    */
   public ngOnInit() {
-
     this.adminPageForm = this.formBuilder.group({
       mobile: this.widgetPage.mobile,
-      jquery: this.widgetPage.jquery
+      jquery: this.widgetPage.jquery,
     });
   }
 
@@ -66,23 +64,27 @@ export class AdminPageModalComponent implements OnInit {
     this.isSaving = true;
     this.publishing = true;
 
-
     // Apply the css to the widgetpage model
     this.widgetPage.mobile = this.adminPageForm.controls.mobile.value;
     this.widgetPage.jquery = this.adminPageForm.controls.jquery.value;
 
     // Save the widget page (will trigger a render for the current widget)
-    this.widgetService.saveWidgetPage(this.widgetPage).subscribe(() => {
+    this.widgetService.saveWidgetPage(this.widgetPage).subscribe(
+      () => {
         this.isSaving = false;
-        this.widgetService.publishWidgetPage(this.widgetPage).subscribe(() => {
-          this.activeModal.close(true);
-          this.publishing = false;
-        }, () => {
-          this.publishing = false;
-        });
-      }, () => {
+        this.widgetService.publishWidgetPage(this.widgetPage).subscribe(
+          () => {
+            this.activeModal.close(true);
+            this.publishing = false;
+          },
+          () => {
+            this.publishing = false;
+          }
+        );
+      },
+      () => {
         this.isSaving = false;
-    });
+      }
+    );
   }
-
 }

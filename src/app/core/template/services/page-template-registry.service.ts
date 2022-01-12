@@ -7,7 +7,6 @@ import { PageTemplate } from '../pageTemplate';
  */
 @Injectable()
 export class PageTemplateRegistry {
-
   /**
    * Collection of registered page templates.
    * @type any
@@ -34,5 +33,4 @@ export class PageTemplateRegistry {
 
     return false;
   }
-
 }

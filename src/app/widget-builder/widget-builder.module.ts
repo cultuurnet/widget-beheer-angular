@@ -5,7 +5,11 @@ import { WidgetEditDirective } from './directives/widget-edit.directive';
 import { WidgetBuilderComponent } from './widget-builder.component';
 import { CommonModule } from '@angular/common';
 import { AddWidgetComponent } from './components/add-widget/add-widget.component';
-import { NgbAccordionModule, NgbDropdownModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbAccordionModule,
+  NgbDropdownModule,
+  NgbToastModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { RowPreviewComponent } from './components/row-preview/row-preview.component';
 import { RowLayoutDirective } from 'app/widget-builder/directives/row-layout.directive';
 import { WidgetBuilderService } from './services/widget-builder.service';
@@ -74,11 +78,9 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     JsonEditModalComponent,
     RevertWidgetPageComponent,
     CssEditModalComponent,
-    ThemeEditModalComponent
+    ThemeEditModalComponent,
   ],
-  exports: [
-    WidgetBuilderComponent
-  ],
+  exports: [WidgetBuilderComponent],
   imports: [
     CoreModule,
     WidgetBuilderRoutingModule,
@@ -91,10 +93,8 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     NgbAccordionModule,
     NgbToastModule,
     ReactiveFormsModule,
-    CKEditorModule
+    CKEditorModule,
   ],
   providers: [WidgetBuilderService],
 })
-
-export class WidgetBuilderModule {
-}
+export class WidgetBuilderModule {}

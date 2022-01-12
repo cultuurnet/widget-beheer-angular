@@ -2,7 +2,6 @@
  * Defines a User
  */
 export class User {
-
   /**
    * The user id
    */
@@ -56,5 +55,4 @@ export class User {
 
     this.displayName = values.givenName || values.nick;
   }
-
 }

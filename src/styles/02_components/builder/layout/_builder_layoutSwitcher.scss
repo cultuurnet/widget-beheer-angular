@@ -1,4 +1,3 @@
-
 .preview-col {
   float: left;
   position: relative;
@@ -8,19 +7,24 @@
 }
 
 .lg {
-  width: 100%; }
+  width: 100%;
+}
 
 .md-2 {
-  width: 70%; }
+  width: 70%;
+}
 
 .sm-2 {
-  width: 30%; }
+  width: 30%;
+}
 
 .xs-3 {
-  width: 25%; }
+  width: 25%;
+}
 
 .md-3 {
-  width: 50%; }
+  width: 50%;
+}
 
 .tripple {
   width: 33.33%;
@@ -32,34 +36,33 @@
   }
 }
 
-  .mobile {
-    .preview-inner {
-      width: 320px;
-    }
+.mobile {
+  .preview-inner {
+    width: 320px;
   }
+}
 
-  .tablet {
-    .preview-inner {
-      width: 768px;
-    }
+.tablet {
+  .preview-inner {
+    width: 768px;
   }
+}
 
-  .mobile {
-    .xs,
-    .sm,
-    .md,
-    .lg,
-    .md-2,
-    .sm-2,
-    .xs-3,
-    .md-3,
-    .tripple {
-      width: 100%; }
+.mobile {
+  .xs,
+  .sm,
+  .md,
+  .lg,
+  .md-2,
+  .sm-2,
+  .xs-3,
+  .md-3,
+  .tripple {
+    width: 100%;
   }
-
+}
 
 .builder--edit-modus {
-
   .builder--wrapper {
     overflow: hidden;
   }

@@ -8,7 +8,6 @@ import { Widget } from '../widget';
  */
 @Directive()
 export class AbstractWidgetEditDirective implements OnInit, OnDestroy {
-
   /**
    * The widget edit form
    */
@@ -32,8 +31,7 @@ export class AbstractWidgetEditDirective implements OnInit, OnDestroy {
   /**
    * AbstractWidgetEditDirective constructor
    */
-  constructor(public formBuilder: FormBuilder) {
-  }
+  constructor(public formBuilder: FormBuilder) {}
 
   /**
    * @inheritDoc
@@ -46,10 +44,12 @@ export class AbstractWidgetEditDirective implements OnInit, OnDestroy {
     this.buildForm();
 
     // Subscribe to changes in the form and reflect them on the widget model
-    this.formSubscription = this.widgetEditForm.valueChanges.subscribe(values => {
-      // Apply the values to the model
-      this.applyValuesToModel(values);
-    });
+    this.formSubscription = this.widgetEditForm.valueChanges.subscribe(
+      (values) => {
+        // Apply the values to the model
+        this.applyValuesToModel(values);
+      }
+    );
   }
 
   /**

@@ -11,7 +11,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './row-edit.component.html',
 })
 export class RowEditComponent {
-
   public static readonly ROW_DIRECTION_UP = -1;
   public static readonly ROW_DIRECTION_DOWN = 1;
 
@@ -45,8 +44,7 @@ export class RowEditComponent {
    * RowEditComponent constructor.
    * @param modalService
    */
-  constructor(private modalService: NgbModal) {
-  }
+  constructor(private modalService: NgbModal) {}
 
   /**
    * Remove the current row from the rows.
@@ -65,21 +63,24 @@ export class RowEditComponent {
     // This is needed here so we can stop the widget from being deselected
     this.rowChanged.emit({
       action: 'confirm',
-      originalEvent: $event
+      originalEvent: $event,
     });
 
-    modal.result.then((result) => {
-      // Remove the current row from the rows
-      this.rows.splice(index, 1);
+    modal.result.then(
+      (result) => {
+        // Remove the current row from the rows
+        this.rows.splice(index, 1);
 
-      // Emit the change (remove) event
-      this.rowChanged.emit({
-        action: 'remove',
-        originalEvent: $event
-      });
-    }, (reason) => {
-      // Do nothing on dismiss, because the row hasn't changed
-    });
+        // Emit the change (remove) event
+        this.rowChanged.emit({
+          action: 'remove',
+          originalEvent: $event,
+        });
+      },
+      (reason) => {
+        // Do nothing on dismiss, because the row hasn't changed
+      }
+    );
   }
 
   /**
@@ -88,13 +89,17 @@ export class RowEditComponent {
    * @param $originalEvent
    * @param direction
    */
-  public moveRow(index: number, $originalEvent, direction: number = RowEditComponent.ROW_DIRECTION_UP) {
+  public moveRow(
+    index: number,
+    $originalEvent,
+    direction: number = RowEditComponent.ROW_DIRECTION_UP
+  ) {
     this.rows.splice(index + direction, 0, this.rows.splice(index, 1)[0]);
 
     // Emit the change (move) event
     this.rowChanged.emit({
       action: 'move',
-      originalEvent: $originalEvent
+      originalEvent: $originalEvent,
     });
   }
 
@@ -115,5 +120,4 @@ export class RowEditComponent {
   public moveRowDown($event, index: number) {
     this.moveRow(index, $event, RowEditComponent.ROW_DIRECTION_DOWN);
   }
-
 }

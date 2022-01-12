@@ -2,7 +2,6 @@
  * Represents a Project
  */
 export class Project {
-
   /**
    * The project Id
    */
@@ -69,5 +68,4 @@ export class Project {
       }
     }
   }
-
 }

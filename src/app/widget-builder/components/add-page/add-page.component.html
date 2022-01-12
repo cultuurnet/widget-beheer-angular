@@ -4,22 +4,40 @@
 </ng-template>
 
 <div class="container page-template">
-
   <div class="page-list--header">
-    <h1>{{ "ADD_PAGE_TITLE" | translate }}</h1>
-    <p class="cnw_lead">{{ "ADD_PAGE_INTRO" | translate }}</p>
+    <h1>{{ 'ADD_PAGE_TITLE' | translate }}</h1>
+    <p class="cnw_lead">{{ 'ADD_PAGE_INTRO' | translate }}</p>
   </div>
 
   <div class="row">
-    <div *ngFor="let pageTemplate of pageTemplates" class="col-md-6 col-sm-12 col-xs-12">
+    <div
+      *ngFor="let pageTemplate of pageTemplates"
+      class="col-md-6 col-sm-12 col-xs-12"
+    >
       <div class="card template">
         <div class="card-body row">
-          <div class="col-lg-3 col-sm-4">  <img src="/assets/page-templates/{{ pageTemplate.id }}.svg" class="img-responsive "/></div>
-          <div class="col-lg-9 col-sm-8 align-self-center"><h4>{{ pageTemplate.label }}</h4><p class="page-template--info">{{ pageTemplate.description }}</p></div>
+          <div class="col-lg-3 col-sm-4">
+            <img
+              src="/assets/page-templates/{{ pageTemplate.id }}.svg"
+              class="img-responsive"
+            />
+          </div>
+          <div class="col-lg-9 col-sm-8 align-self-center">
+            <h4>{{ pageTemplate.label }}</h4>
+            <p class="page-template--info">{{ pageTemplate.description }}</p>
+          </div>
         </div>
         <div class="card-footer">
-          <button class="btn btn-primary mr-1" (click)="addPage(pageTemplate)">{{ "ADD_PAGE_SELECT_TEMPLATE_BUTTON" | translate }}</button>
-          <button *ngIf="pageTemplate.template.preview" class="btn btn-link" (click)="preview(pageTemplate)">{{ "ADD_PAGE_PREVIEW_BUTTON" | translate }}</button>
+          <button class="btn btn-primary mr-1" (click)="addPage(pageTemplate)">
+            {{ 'ADD_PAGE_SELECT_TEMPLATE_BUTTON' | translate }}
+          </button>
+          <button
+            *ngIf="pageTemplate.template.preview"
+            class="btn btn-link"
+            (click)="preview(pageTemplate)"
+          >
+            {{ 'ADD_PAGE_PREVIEW_BUTTON' | translate }}
+          </button>
         </div>
       </div>
     </div>

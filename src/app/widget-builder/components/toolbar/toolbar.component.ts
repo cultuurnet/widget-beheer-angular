@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { WidgetService } from '../../../core/widget/services/widget.service';
 import { ToastyService } from 'ng2-toasty';
 import { TranslateService } from '@ngx-translate/core';
@@ -25,7 +32,6 @@ import { ConfirmationModalComponent } from '../../../core/modal/components/confi
   templateUrl: './toolbar.component.html',
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
-
   /**
    * View mode changed event emitter.
    * @type {EventEmitter}
@@ -62,7 +68,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       type: 'mobile',
       class: 'fa-mobile-alt',
       label: 'Mobile',
-    }
+    },
   ];
 
   /**
@@ -123,7 +129,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     private translateService: TranslateService,
     private modalService: NgbModal,
     private router: Router
-  ) { }
+  ) {}
 
   /**
    * @inheritDoc
@@ -133,19 +139,20 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.viewModeChanged.emit(this.activeViewMode);
     this.title = this.widgetPage.title;
 
-    this.sidebarSubscription = this.widgetBuilderService.sidebarStatus$.subscribe(status => {
-      this.sidebar = status;
-    });
+    this.sidebarSubscription =
+      this.widgetBuilderService.sidebarStatus$.subscribe((status) => {
+        this.sidebar = status;
+      });
 
     // Subscribe to the widget preview observable
-    this.widgetSaveSubscription = this.widgetBuilderService.widgetSave$.subscribe(savedWidget => {
+    this.widgetSaveSubscription =
+      this.widgetBuilderService.widgetSave$.subscribe((savedWidget) => {
         if (savedWidget.saving) {
-            this.isSavingDraft = true;
+          this.isSavingDraft = true;
         } else {
-            this.isSavingDraft = false;
+          this.isSavingDraft = false;
         }
-    });
-
+      });
   }
 
   /**
@@ -203,14 +210,21 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       this.widgetPage.title = this.title;
 
       // Save the page
-      this.widgetService.saveWidgetPage(this.widgetPage).subscribe((widgetSaveResponse) => {
-        // Draft state
-        this.widgetPage.draft = widgetSaveResponse.widgetPage.draft;
-      }, () => {
-        // Revert to the old title
-        this.widgetPage.title = oldTitle;
-        this.toastyService.error(this.translateService.instant('WIDGET_PAGE_TITLE_EDIT_FAILED_NOTIFICATION'));
-      });
+      this.widgetService.saveWidgetPage(this.widgetPage).subscribe(
+        (widgetSaveResponse) => {
+          // Draft state
+          this.widgetPage.draft = widgetSaveResponse.widgetPage.draft;
+        },
+        () => {
+          // Revert to the old title
+          this.widgetPage.title = oldTitle;
+          this.toastyService.error(
+            this.translateService.instant(
+              'WIDGET_PAGE_TITLE_EDIT_FAILED_NOTIFICATION'
+            )
+          );
+        }
+      );
     }
 
     // Close the form
@@ -230,9 +244,18 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     modalInstance.confirmButtonText = 'REVERT_WIDGET_PAGE_MODAL_BUTTON_CONFIRM';
 
     // Remove row on confirmation
-    modal.result.then(async () => {
-      await this.router.navigate(['/project', this.widgetPage.project_id, 'page', this.widgetPage.id, 'revert']);
-    }, () => {});
+    modal.result.then(
+      async () => {
+        await this.router.navigate([
+          '/project',
+          this.widgetPage.project_id,
+          'page',
+          this.widgetPage.id,
+          'revert',
+        ]);
+      },
+      () => {}
+    );
   }
 
   /**
@@ -240,19 +263,28 @@ export class ToolbarComponent implements OnInit, OnDestroy {
    */
   public publishPage() {
     this.publishing = true;
-    this.widgetService.publishWidgetPage(this.widgetPage).subscribe(() => {
-      // After publishing, the widgetpage is no longer in draft
-      this.widgetPage.draft = false;
-      this.publishing = false;
+    this.widgetService.publishWidgetPage(this.widgetPage).subscribe(
+      () => {
+        // After publishing, the widgetpage is no longer in draft
+        this.widgetPage.draft = false;
+        this.publishing = false;
 
-      // Show the confirmation modal
-      const modal = this.modalService.open(PublishPageConfirmationModalComponent);
-      const modalInstance = modal.componentInstance;
-      modalInstance.widgetPage = this.widgetPage;
-    }, () => {
-      this.publishing = false;
-      this.toastyService.error(this.translateService.instant('WIDGET_PAGE_PUBLISH_FAILED_NOTIFICATION'));
-    });
+        // Show the confirmation modal
+        const modal = this.modalService.open(
+          PublishPageConfirmationModalComponent
+        );
+        const modalInstance = modal.componentInstance;
+        modalInstance.widgetPage = this.widgetPage;
+      },
+      () => {
+        this.publishing = false;
+        this.toastyService.error(
+          this.translateService.instant(
+            'WIDGET_PAGE_PUBLISH_FAILED_NOTIFICATION'
+          )
+        );
+      }
+    );
   }
 
   /**
@@ -262,17 +294,24 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     const modal = this.modalService.open(CssEditModalComponent, {
       size: 'lg',
       backdrop: 'static',
-      keyboard: false
+      keyboard: false,
     });
 
     const modalInstance = modal.componentInstance;
     modalInstance.widgetPage = this.widgetPage;
 
-    modal.result.then((result) => {
-      if (result) {
-        this.toastyService.success(this.translateService.instant('WIDGET_PAGE_CSS_EDIT_SUCCESS_NOTIFICATION'));
-      }
-    }, () => {});
+    modal.result.then(
+      (result) => {
+        if (result) {
+          this.toastyService.success(
+            this.translateService.instant(
+              'WIDGET_PAGE_CSS_EDIT_SUCCESS_NOTIFICATION'
+            )
+          );
+        }
+      },
+      () => {}
+    );
   }
 
   /**
@@ -282,17 +321,21 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     const modal = this.modalService.open(ThemeEditModalComponent, {
       size: 'lg',
       backdrop: 'static',
-      keyboard: false
+      keyboard: false,
     });
 
     const modalInstance = modal.componentInstance;
     modalInstance.widgetPage = this.widgetPage;
 
-    modal.result.then((result) => {
-      if (result) {
-        this.toastyService.success(`Thema: ${this.widgetPage.selectedTheme as string} ingesteld`);
-      }
-    }, () => {});
+    modal.result.then(
+      (result) => {
+        if (result) {
+          this.toastyService.success(
+            `Thema: ${this.widgetPage.selectedTheme as string} ingesteld`
+          );
+        }
+      },
+      () => {}
+    );
   }
-
 }

@@ -1,5 +1,4 @@
 export interface CssStats {
-
   /**
    * The url the styles originate from
    */
@@ -14,5 +13,4 @@ export interface CssStats {
    * Fonts
    */
   font_families: Array<Record<string, unknown>>;
-
 }

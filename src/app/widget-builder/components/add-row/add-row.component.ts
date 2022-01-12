@@ -11,7 +11,6 @@ import { WidgetBuilderService } from '../../services/widget-builder.service';
   templateUrl: './add-row.component.html',
 })
 export class AddRowComponent implements OnInit {
-
   /**
    * The Layout types registered in the application
    * @type {Array}
@@ -28,8 +27,10 @@ export class AddRowComponent implements OnInit {
    * @param layoutTypeRegistry
    * @param widgetBuilderService
    */
-  constructor(private layoutTypeRegistry: LayoutTypeRegistry, private widgetBuilderService: WidgetBuilderService) {
-  }
+  constructor(
+    private layoutTypeRegistry: LayoutTypeRegistry,
+    private widgetBuilderService: WidgetBuilderService
+  ) {}
 
   /**
    * @inheritDoc
@@ -39,7 +40,7 @@ export class AddRowComponent implements OnInit {
     for (const key of keys) {
       this.layoutTypes.push({
         label: this.layoutTypeRegistry.layoutTypes[key].label,
-        type: key
+        type: key,
       });
     }
   }
@@ -68,5 +69,4 @@ export class AddRowComponent implements OnInit {
   public dropToggleClick($event) {
     $event.stopWidgetDeselect = true;
   }
-
 }

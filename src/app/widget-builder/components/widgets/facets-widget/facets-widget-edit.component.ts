@@ -10,10 +10,9 @@ import { QueryStringService } from 'app/widget-builder/services/query-string.ser
  */
 @Component({
   templateUrl: './facets-widget-edit.component.html',
-  providers: [QueryStringService]
+  providers: [QueryStringService],
 })
 export class FacetsWidgetWidgetEditComponent extends BaseWidgetEditDirective {
-
   /**x
    * Array of search results widgets in the page
    * @type {Array}
@@ -23,7 +22,11 @@ export class FacetsWidgetWidgetEditComponent extends BaseWidgetEditDirective {
   /**
    * FacetsWidgetWidgetEditComponent constructor
    */
-  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService, public queryStringService: QueryStringService) {
+  constructor(
+    public formBuilder: FormBuilder,
+    public widgetBuilderService: WidgetBuilderService,
+    public queryStringService: QueryStringService
+  ) {
     super(formBuilder, widgetBuilderService, queryStringService);
   }
 
@@ -70,11 +73,10 @@ export class FacetsWidgetWidgetEditComponent extends BaseWidgetEditDirective {
           if (widget.type === 'search-results') {
             searchResultsWidgets.push(widget);
           }
-        })
-      })
-    })
+        });
+      });
+    });
 
     return searchResultsWidgets;
   }
-
 }

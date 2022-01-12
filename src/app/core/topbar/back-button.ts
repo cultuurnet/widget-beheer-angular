@@ -2,7 +2,6 @@
  * Provides a back button.
  */
 export class BackButton {
-
   static TYPE_LINK = 'link';
   static TYPE_ROUTE = 'route';
 
@@ -33,11 +32,15 @@ export class BackButton {
    * @param url
    * @param route
    */
-  constructor(type: string, label: string, url: string = null, route: Array<string> = []) {
+  constructor(
+    type: string,
+    label: string,
+    url: string = null,
+    route: Array<string> = []
+  ) {
     this.type = type;
     this.label = label;
     this.url = url;
     this.route = route;
   }
-
 }

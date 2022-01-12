@@ -1,6 +1,13 @@
 import {
-  Component, ComponentFactoryResolver, ComponentRef, EventEmitter, OnDestroy, OnInit, ReflectiveInjector, ViewChild,
-  ViewContainerRef
+  Component,
+  ComponentFactoryResolver,
+  ComponentRef,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  ReflectiveInjector,
+  ViewChild,
+  ViewContainerRef,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastyService } from 'ng2-toasty';
@@ -22,11 +29,14 @@ import { environment } from '../../../../environments/environment';
   templateUrl: './topbar.component.html',
 })
 export class TopbarComponent implements OnInit, OnDestroy {
-
   /**
    * The dynamic component container
    */
-  @ViewChild(DynamicComponentDirective, { read: ViewContainerRef, static: true }) dynamicComponentContainer: ViewContainerRef;
+  @ViewChild(DynamicComponentDirective, {
+    read: ViewContainerRef,
+    static: true,
+  })
+  dynamicComponentContainer: ViewContainerRef;
 
   /**
    * The back button
@@ -62,14 +72,14 @@ export class TopbarComponent implements OnInit, OnDestroy {
    * @param topbarService
    * @param resolver
    */
-  constructor (
+  constructor(
     private userService: UserService,
     private router: Router,
     private translateService: TranslateService,
     private toastyService: ToastyService,
     private topbarService: TopbarService,
     private resolver: ComponentFactoryResolver
-  ) { }
+  ) {}
 
   /**
    * @inheritDoc
@@ -77,18 +87,24 @@ export class TopbarComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     // Subscribe to the back button
     const backButtonSubscription = this.topbarService.backButton$.subscribe(
-      backButton => {
+      (backButton) => {
         this.backButton = backButton;
-      });
+      }
+    );
 
     this.subscriptions.push(backButtonSubscription);
 
     // Subscribe to the back button
-    const dynamicComponentSubscription = this.topbarService.dynamicComponents$.subscribe(
-      res => {
+    const dynamicComponentSubscription =
+      this.topbarService.dynamicComponents$.subscribe((res) => {
         switch (res.action) {
           case 'add':
-            this.addDynamicComponent(res.data.id, res.data.component, res.data.inputs, res.data.index);
+            this.addDynamicComponent(
+              res.data.id,
+              res.data.component,
+              res.data.inputs,
+              res.data.index
+            );
             break;
           case 'clear':
             this.clearDynamicComponents();
@@ -127,12 +143,17 @@ export class TopbarComponent implements OnInit, OnDestroy {
    * Logout the current user
    */
   public logout() {
-    this.userService.logout().subscribe(() => {
-      window.location.href = environment.projectaanvraagDashboardUrl;
-    }, () => {
-      // Failed logging out
-      this.toastyService.error(this.translateService.instant('LOGOUT_FAILED_NOTIFICATION'));
-    });
+    this.userService.logout().subscribe(
+      () => {
+        window.location.href = environment.projectaanvraagDashboardUrl;
+      },
+      () => {
+        // Failed logging out
+        this.toastyService.error(
+          this.translateService.instant('LOGOUT_FAILED_NOTIFICATION')
+        );
+      }
+    );
   }
 
   /**
@@ -140,7 +161,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
    */
   public back() {
     if (this.backButton.type === BackButton.TYPE_LINK) {
-      return window.location.href = this.backButton.url;
+      return (window.location.href = this.backButton.url);
     } else {
       return this.router.navigate(this.backButton.route);
     }
@@ -150,7 +171,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
    * Redirect the user to zendesk.
    */
   public goToZendesk() {
-      window.open(environment.zendeskUrl, '_blank');
+    window.open(environment.zendeskUrl, '_blank');
   }
 
   /**
@@ -195,7 +216,10 @@ export class TopbarComponent implements OnInit, OnDestroy {
     }
 
     // Remove the subscriptions
-    this.dynamicComponentSubscriptions = _.omit(this.dynamicComponentSubscriptions, [id]);
+    this.dynamicComponentSubscriptions = _.omit(
+      this.dynamicComponentSubscriptions,
+      [id]
+    );
 
     // Remove the component
     if (this.dynamicComponents.hasOwnProperty(id)) {
@@ -212,16 +236,24 @@ export class TopbarComponent implements OnInit, OnDestroy {
    * @param inputs
    * @param index
    */
-  private addDynamicComponent(id: string, component: any, inputs: any = {}, index: number = null) {
+  private addDynamicComponent(
+    id: string,
+    component: any,
+    inputs: any = {},
+    index: number = null
+  ) {
     // Create factory out of the component we want to create
     const componentFactory = this.resolver.resolveComponentFactory(component);
 
     // Insert the component into the dom container
-    const dynamicComponent = this.dynamicComponentContainer.createComponent(componentFactory, index);
+    const dynamicComponent = this.dynamicComponentContainer.createComponent(
+      componentFactory,
+      index
+    );
 
     // Get all event emitters and subscribe to them, so we can have the events bubble of through the topbar service
     const componentInstance = dynamicComponent.instance;
-    for (const key in (componentInstance as any)) {
+    for (const key in componentInstance as any) {
       if (componentInstance.hasOwnProperty(key)) {
         // Subscribe to all event emitters
         if (componentInstance[key] instanceof EventEmitter) {
@@ -229,7 +261,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
             this.topbarService.dispatchEvent({
               id: id,
               output: key,
-              value: value
+              value: value,
             });
           });
 
@@ -282,5 +314,4 @@ export class TopbarComponent implements OnInit, OnDestroy {
       }
     }
   }
-
 }

@@ -1,6 +1,10 @@
 <div class="outer-row">
-    <app-row-edit [rows]="rows" [index]="index" (rowChanged)="handleRowChanged($event)"></app-row-edit>
-    <div class="row layout--preview">
-        <ng-template appRowLayout></ng-template>
-    </div>
+  <app-row-edit
+    [rows]="rows"
+    [index]="index"
+    (rowChanged)="handleRowChanged($event)"
+  ></app-row-edit>
+  <div class="row layout--preview">
+    <ng-template appRowLayout></ng-template>
+  </div>
 </div>

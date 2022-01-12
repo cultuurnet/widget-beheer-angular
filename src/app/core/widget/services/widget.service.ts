@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of as observableOf,  Observable } from 'rxjs';
+import { of as observableOf, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { WidgetPage } from '../widget-page';
 import * as _ from 'lodash';
@@ -17,7 +17,6 @@ import * as URI from 'urijs';
  */
 @Injectable()
 export class WidgetService {
-
   /**
    * The widget API path
    * @type {string}
@@ -30,8 +29,11 @@ export class WidgetService {
    * @param widgetPageFactory
    * @param cache
    */
-  constructor (private http: HttpClient, private widgetPageFactory: WidgetPageFactory, private cache: MemoryCache) {
-  }
+  constructor(
+    private http: HttpClient,
+    private widgetPageFactory: WidgetPageFactory,
+    private cache: MemoryCache
+  ) {}
 
   /**
    * Performs a save of the widget page.
@@ -43,10 +45,12 @@ export class WidgetService {
    * @param widgetId
    * @return {Observable<WidgetSaveResponse>}
    */
-  public saveWidgetPage(widgetPage: WidgetPage, widgetId?: string): Observable<WidgetSaveResponse> {
-
+  public saveWidgetPage(
+    widgetPage: WidgetPage,
+    widgetId?: string
+  ): Observable<WidgetSaveResponse> {
     const requestOptions = {
-      params: new HttpParams()
+      params: new HttpParams(),
     };
 
     if (widgetId) {
@@ -56,22 +60,42 @@ export class WidgetService {
     // Invalidate the widgetPageList cache for the given project id
     this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
-    return this.http.put(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page', widgetPage, requestOptions).pipe(
-      tap<WidgetSaveResponse>(widgetSaveReponse => {
-        if (widgetSaveReponse.widgetPage) {
-          // Parse the widget page
-          const parsedWidgetPage = this.widgetPageFactory.create(widgetSaveReponse.widgetPage);
-          widgetSaveReponse.widgetPage = parsedWidgetPage;
+    return this.http
+      .put(
+        environment.apiUrl +
+          this.widgetApiPath +
+          'project/' +
+          widgetPage.project_id +
+          '/widget-page',
+        widgetPage,
+        requestOptions
+      )
+      .pipe(
+        tap<WidgetSaveResponse>((widgetSaveReponse) => {
+          if (widgetSaveReponse.widgetPage) {
+            // Parse the widget page
+            const parsedWidgetPage = this.widgetPageFactory.create(
+              widgetSaveReponse.widgetPage
+            );
+            widgetSaveReponse.widgetPage = parsedWidgetPage;
 
-          // Cache the response
-          this.cache.put('widgetPage', [widgetSaveReponse.widgetPage.id], parsedWidgetPage);
-        }
+            // Cache the response
+            this.cache.put(
+              'widgetPage',
+              [widgetSaveReponse.widgetPage.id],
+              parsedWidgetPage
+            );
+          }
 
-        // Cache the render response if available
-        if (widgetSaveReponse.preview && widgetId) {
-          this.cache.put('renderedWidgets', [widgetPage.id, widgetId], {widgetId: widgetId, data: widgetSaveReponse.preview});
-        }
-      }));
+          // Cache the render response if available
+          if (widgetSaveReponse.preview && widgetId) {
+            this.cache.put('renderedWidgets', [widgetPage.id, widgetId], {
+              widgetId: widgetId,
+              data: widgetSaveReponse.preview,
+            });
+          }
+        })
+      );
   }
 
   /**
@@ -80,14 +104,26 @@ export class WidgetService {
    * @param widgetPage
    */
   public publishWidgetPage(widgetPage: WidgetPage) {
-    return this.http.post(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id + '/publish', {}).pipe(
-      tap(res => {
-        // Clear the widgetPageList cache for the given project
-        this.cache.clear('widgetPageList', [widgetPage.project_id]);
+    return this.http
+      .post(
+        environment.apiUrl +
+          this.widgetApiPath +
+          'project/' +
+          widgetPage.project_id +
+          '/widget-page/' +
+          widgetPage.id +
+          '/publish',
+        {}
+      )
+      .pipe(
+        tap((res) => {
+          // Clear the widgetPageList cache for the given project
+          this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
-        // Remove the widgetPage object from the cache
-        this.cache.remove('widgetPage', [widgetPage.id]);
-      }));
+          // Remove the widgetPage object from the cache
+          this.cache.remove('widgetPage', [widgetPage.id]);
+        })
+      );
   }
 
   /**
@@ -98,7 +134,11 @@ export class WidgetService {
    * @param reset
    * @return {Observable<WidgetPage>}
    */
-  public getWidgetPage(project_id: string, pageId: string, reset: boolean = false): Observable<WidgetPage> {
+  public getWidgetPage(
+    project_id: string,
+    pageId: string,
+    reset: boolean = false
+  ): Observable<WidgetPage> {
     if (!reset) {
       const widgetPage = this.cache.get('widgetPage', [pageId], false);
 
@@ -107,11 +147,21 @@ export class WidgetService {
       }
     }
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'project/' + project_id + '/widget-page/' + pageId).pipe(
-      map(widgetPage => this.widgetPageFactory.create(widgetPage)),
-      tap(widgetPage => {
-        this.cache.put('widgetPage', [pageId], widgetPage);
-      }));
+    return this.http
+      .get(
+        environment.apiUrl +
+          this.widgetApiPath +
+          'project/' +
+          project_id +
+          '/widget-page/' +
+          pageId
+      )
+      .pipe(
+        map((widgetPage) => this.widgetPageFactory.create(widgetPage)),
+        tap((widgetPage) => {
+          this.cache.put('widgetPage', [pageId], widgetPage);
+        })
+      );
   }
 
   /**
@@ -120,14 +170,24 @@ export class WidgetService {
    * @param widgetPage
    */
   public deleteWidgetPage(widgetPage: WidgetPage) {
-    return this.http.delete(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id).pipe(
-      tap(reponse => {
-        // Clear the widgetPageList cache for the given project
-        this.cache.clear('widgetPageList', [widgetPage.project_id]);
+    return this.http
+      .delete(
+        environment.apiUrl +
+          this.widgetApiPath +
+          'project/' +
+          widgetPage.project_id +
+          '/widget-page/' +
+          widgetPage.id
+      )
+      .pipe(
+        tap((reponse) => {
+          // Clear the widgetPageList cache for the given project
+          this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
-        // Remove the widgetPage object from the cache
-        this.cache.remove('widgetPage', [widgetPage.id]);
-      }));
+          // Remove the widgetPage object from the cache
+          this.cache.remove('widgetPage', [widgetPage.id]);
+        })
+      );
   }
 
   /**
@@ -136,14 +196,26 @@ export class WidgetService {
    * @param widgetPage
    */
   public upgradeWidgetPage(widgetPage: WidgetPage) {
-    return this.http.post(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id + '/upgrade', {}).pipe(
-        tap(reponse => {
+    return this.http
+      .post(
+        environment.apiUrl +
+          this.widgetApiPath +
+          'project/' +
+          widgetPage.project_id +
+          '/widget-page/' +
+          widgetPage.id +
+          '/upgrade',
+        {}
+      )
+      .pipe(
+        tap((reponse) => {
           // Clear the widgetPageList cache for the given project
           this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
           // Remove the widgetPage object from the cache
           this.cache.clear('widgetPage', [widgetPage.id]);
-        }));
+        })
+      );
   }
 
   /**
@@ -153,7 +225,10 @@ export class WidgetService {
    * @param reset
    * @return {Observable<Array<WidgetPage>>}
    */
-  public getWidgetPages(projectId: string, reset: boolean = false): Observable<Array<WidgetPage>> {
+  public getWidgetPages(
+    projectId: string,
+    reset: boolean = false
+  ): Observable<Array<WidgetPage>> {
     if (!reset) {
       const widgetPages = [];
       const widgetPageIds = this.cache.get('widgetPageList', [projectId], []);
@@ -174,29 +249,44 @@ export class WidgetService {
       }
     }
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'project/' + projectId + '/widget-page').pipe(
-      map(widgetPages => {
-        const pages = [];
-        for (const id in widgetPages) {
-          if (widgetPages.hasOwnProperty(id)) {
-            const widgetPage: WidgetPage = this.widgetPageFactory.create(widgetPages[id]);
-            if (widgetPage) {
-              pages.push(widgetPage);
+    return this.http
+      .get(
+        environment.apiUrl +
+          this.widgetApiPath +
+          'project/' +
+          projectId +
+          '/widget-page'
+      )
+      .pipe(
+        map((widgetPages) => {
+          const pages = [];
+          for (const id in widgetPages) {
+            if (widgetPages.hasOwnProperty(id)) {
+              const widgetPage: WidgetPage = this.widgetPageFactory.create(
+                widgetPages[id]
+              );
+              if (widgetPage) {
+                pages.push(widgetPage);
+              }
             }
           }
-        }
 
-        return pages;
-      }),
-      tap(widgetPages => {
-        // Store only the keys in the widgetPageList cache
-        this.cache.put('widgetPageList', [projectId], _.map(widgetPages, 'id'));
+          return pages;
+        }),
+        tap((widgetPages) => {
+          // Store only the keys in the widgetPageList cache
+          this.cache.put(
+            'widgetPageList',
+            [projectId],
+            _.map(widgetPages, 'id')
+          );
 
-        // Store all pages in the widgetPage cache
-        for (const widgetPage of widgetPages) {
-          this.cache.put('widgetPage', [widgetPage.id], widgetPage);
-        }
-      }));
+          // Store all pages in the widgetPage cache
+          for (const widgetPage of widgetPages) {
+            this.cache.put('widgetPage', [widgetPage.id], widgetPage);
+          }
+        })
+      );
   }
 
   /**
@@ -206,25 +296,48 @@ export class WidgetService {
    * @param widgetId
    * @param reset
    */
-  public renderWidget(widgetPageId: string, widgetId: string, reset: boolean = false): Observable<RenderedWidget> {
+  public renderWidget(
+    widgetPageId: string,
+    widgetId: string,
+    reset: boolean = false
+  ): Observable<RenderedWidget> {
     if (!reset) {
-      const renderedWidget = this.cache.get('renderedWidgets', [widgetPageId, widgetId], false);
+      const renderedWidget = this.cache.get(
+        'renderedWidgets',
+        [widgetPageId, widgetId],
+        false
+      );
       if (renderedWidget) {
         return observableOf(renderedWidget);
       }
     }
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'render/' + widgetPageId + '/' + widgetId + '/draft').pipe(
-      map(response => {
-        return {
-          widgetId: widgetId,
-          data: response['data']
-        };
-      }),
-      tap(renderedWidget => {
-      // Cache the rendered widget
-      this.cache.put('renderedWidgets', [widgetPageId, widgetId], renderedWidget);
-    }));
+    return this.http
+      .get(
+        environment.apiUrl +
+          this.widgetApiPath +
+          'render/' +
+          widgetPageId +
+          '/' +
+          widgetId +
+          '/draft'
+      )
+      .pipe(
+        map((response) => {
+          return {
+            widgetId: widgetId,
+            data: response['data'],
+          };
+        }),
+        tap((renderedWidget) => {
+          // Cache the rendered widget
+          this.cache.put(
+            'renderedWidgets',
+            [widgetPageId, widgetId],
+            renderedWidget
+          );
+        })
+      );
   }
 
   /**
@@ -234,16 +347,28 @@ export class WidgetService {
    */
   public getWidgetDefaultSettings(reset: boolean = false): Observable<unknown> {
     if (!reset) {
-      const defaultSettings = this.cache.get('widgetDefaultSettings', ['settings'], false);
+      const defaultSettings = this.cache.get(
+        'widgetDefaultSettings',
+        ['settings'],
+        false
+      );
 
       if (defaultSettings) {
         return observableOf(defaultSettings);
       }
     }
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'widget-types').pipe(tap(defaultSettings => {
-      this.cache.put('widgetDefaultSettings', ['settings'], defaultSettings);
-    }));
+    return this.http
+      .get(environment.apiUrl + this.widgetApiPath + 'widget-types')
+      .pipe(
+        tap((defaultSettings) => {
+          this.cache.put(
+            'widgetDefaultSettings',
+            ['settings'],
+            defaultSettings
+          );
+        })
+      );
   }
 
   /**
@@ -252,14 +377,26 @@ export class WidgetService {
    * @return {Observable<unknown>}
    */
   public revertWidgetPage(widgetPage: WidgetPage): Observable<unknown> {
-    return this.http.post(environment.apiUrl + this.widgetApiPath + 'project/' + widgetPage.project_id + '/widget-page/' + widgetPage.id + '/revert', {}).pipe(
-        tap(res => {
+    return this.http
+      .post(
+        environment.apiUrl +
+          this.widgetApiPath +
+          'project/' +
+          widgetPage.project_id +
+          '/widget-page/' +
+          widgetPage.id +
+          '/revert',
+        {}
+      )
+      .pipe(
+        tap((res) => {
           // Clear the widgetPageList cache for the given project
           this.cache.clear('widgetPageList', [widgetPage.project_id]);
 
           // Remove the widgetPage object from the cache
           this.cache.remove('widgetPage', [widgetPage.id]);
-        }));
+        })
+      );
   }
 
   /**
@@ -271,10 +408,17 @@ export class WidgetService {
    * @param forceCurrentVersion
    *  Force the embed url to the current version
    */
-  public getWidgetPageEmbedUrl(widgetPage: WidgetPage, scriptTags: boolean = false, forceCurrentVersion: boolean = false): string {
+  public getWidgetPageEmbedUrl(
+    widgetPage: WidgetPage,
+    scriptTags: boolean = false,
+    forceCurrentVersion: boolean = false
+  ): string {
     let embedUrl = environment.widgetApi_embedUrl_current;
 
-    if (widgetPage.version !== Number(environment.widgetApi_currentVersion) && forceCurrentVersion) {
+    if (
+      widgetPage.version !== Number(environment.widgetApi_currentVersion) &&
+      forceCurrentVersion
+    ) {
       embedUrl = environment.widgetApi_embedUrl_forceCurrent;
     }
 
@@ -310,15 +454,20 @@ export class WidgetService {
 
     // Request options
     const requestOptions = {
-      params: new HttpParams()
+      params: new HttpParams(),
     };
 
     requestOptions.params = requestOptions.params.set('url', url);
 
-    return this.http.get(environment.apiUrl + this.widgetApiPath + 'css-stats', requestOptions).pipe(
-      tap(cssStats => {
-        this.cache.put('cssStats', [cacheKey], cssStats);
-      }));
+    return this.http
+      .get(
+        environment.apiUrl + this.widgetApiPath + 'css-stats',
+        requestOptions
+      )
+      .pipe(
+        tap((cssStats) => {
+          this.cache.put('cssStats', [cacheKey], cssStats);
+        })
+      );
   }
-
 }

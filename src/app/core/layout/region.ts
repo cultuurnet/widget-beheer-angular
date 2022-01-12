@@ -1,7 +1,6 @@
 import { Widget } from '../widget/widget';
 
 export class Region {
-
   widgets: Array<Widget>;
 
   /**
@@ -19,5 +18,4 @@ export class Region {
   addWidget(widget: Widget) {
     this.widgets.push(widget);
   }
-
 }

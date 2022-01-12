@@ -4,7 +4,6 @@ import { PageTemplate } from '../pageTemplate';
  * Tips page template
  */
 export class TipsPageTemplate implements PageTemplate {
-
   /**
    * The template label
    */
@@ -13,7 +12,8 @@ export class TipsPageTemplate implements PageTemplate {
   /**
    * The template description
    */
-  public description = 'Je plaatst enkele evenementen in de kijker en gidst zo de surfer door de agenda.';
+  public description =
+    'Je plaatst enkele evenementen in de kijker en gidst zo de surfer door de agenda.';
 
   /**
    * Preview available
@@ -24,23 +24,22 @@ export class TipsPageTemplate implements PageTemplate {
    * The template configuration
    */
   public configuration = {
-    'title': 'Mijn tipspagina',
-    'rows': [
+    title: 'Mijn tipspagina',
+    rows: [
       {
-        'type': 'one-col',
-        'regions': {
-          'content': {
-            'widgets': [
+        type: 'one-col',
+        regions: {
+          content: {
+            widgets: [
               {
-                'name': 'tips-1',
-                'type': 'tips'
-              }
-            ]
-          }
-        }
-      }
+                name: 'tips-1',
+                type: 'tips',
+              },
+            ],
+          },
+        },
+      },
     ],
-    'styling': {}
+    styling: {},
   };
-
 }

@@ -5,10 +5,8 @@ import { Input, Directive } from '@angular/core';
  */
 @Directive()
 export abstract class AbstractLayoutDirective {
-
   /**
    * The Layout regions
    */
   @Input() regions: any;
-
 }

@@ -40,7 +40,7 @@
   transition: all 0.5s ease;
   position: absolute;
   z-index: 980;
-  background-color: #004F94;
+  background-color: #004f94;
   width: 300px;
   margin: 0 auto;
   left: 50%;
@@ -63,7 +63,6 @@
   padding: 0 5px;
 }
 .inner-preview-rendering {
-
   text-align: center;
   color: #818181;
   span {
@@ -72,10 +71,9 @@
     font-style: italic;
   }
   .fa {
-    color:#6baf3a;
+    color: #6baf3a;
   }
 }
-
 
 .selected {
   background-color: white;
@@ -93,14 +91,9 @@
   }*/
 }
 
-
 .selected .selector {
   height: 0;
 }
-
-
-
-
 
 .slide-in-br {
 }
@@ -126,20 +119,18 @@
   }
 }
 
-
 .builder--edit-modus .selected {
-
-  background-color:#9da5ad;
+  background-color: #9da5ad;
 
   background-image: linear-gradient(white 2px, transparent 2px),
-  linear-gradient(90deg, white 2px, transparent 2px),
-  linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
-  background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
-  background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    linear-gradient(90deg, white 2px, transparent 2px),
+    linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
   border: 1px solid $cnw_color-blueLight;
 
-  animation: slide-in-br 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-in-br 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 
   position: fixed !important;
   box-shadow: -1px -1px 17px 1px #d4d4d4;

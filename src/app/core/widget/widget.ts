@@ -1,5 +1,4 @@
 export interface Widget {
-
   /**
    * The widget id (uuid)
    */
@@ -19,5 +18,4 @@ export interface Widget {
    * The widget settings
    */
   settings: any;
-
 }

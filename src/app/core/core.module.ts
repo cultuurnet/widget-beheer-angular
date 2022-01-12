@@ -45,7 +45,7 @@ import { ProjectNoAccessComponent } from './route/components/project-no-access.c
     ProjectResolver,
     WidgetPageResolver,
     AuthGuard,
-    TopbarService
+    TopbarService,
   ],
   imports: [
     BrowserModule,
@@ -53,13 +53,13 @@ import { ProjectNoAccessComponent } from './route/components/project-no-access.c
     NgbDropdownModule,
     NgbModalModule,
     TranslateModule,
-    ClipboardModule
+    ClipboardModule,
   ],
   exports: [
     ConfirmationModalComponent,
     ClipboardButtonComponent,
     TopbarComponent,
-    SafeHTMLPipe
+    SafeHTMLPipe,
   ],
   declarations: [
     ConfirmationModalComponent,
@@ -68,8 +68,7 @@ import { ProjectNoAccessComponent } from './route/components/project-no-access.c
     DynamicComponentDirective,
     SafeHTMLPipe,
     PageNotFoundComponent,
-    ProjectNoAccessComponent
-  ]
+    ProjectNoAccessComponent,
+  ],
 })
-
 export class CoreModule {}

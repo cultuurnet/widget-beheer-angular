@@ -1,72 +1,119 @@
-<div class="selected-element ">
-  <p>{{ "LABEL_SELECTED_ELEMENT" | translate }}: </p>
+<div class="selected-element">
+  <p>{{ 'LABEL_SELECTED_ELEMENT' | translate }}:</p>
   <div class="input-group">
     <div class="input-group-prepend">
       <span class="input-group-text"><i class="fa fa-crosshairs"></i></span>
     </div>
-    <input type="text" class="form-control" [(ngModel)]="widget.name"
-      (ngModelChange)="handleWidgetNameChanged($event)" />
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="widget.name"
+      (ngModelChange)="handleWidgetNameChanged($event)"
+    />
   </div>
 </div>
 <ul ngbNav class="nav-tabs">
   <li ngbNavItem>
-    <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
+    <ng-template ngbTabTitle>{{
+      'TITLE_EDIT_FORM_PROPERTIES' | translate
+    }}</ng-template>
     <ng-template ngbTabContent>
       <form [formGroup]="widgetEditForm" novalidate>
         <ngb-accordion [closeOthers]="true" [activeIds]="'general'">
           <ngb-panel id="general">
-            <ng-template ngbPanelTitle>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_PANEL_TITLE_GENERAL" | translate }}
+            <ng-template ngbPanelTitle
+              >{{
+                'LABEL_FACETS_WIDGET_EDIT_FORM_PANEL_TITLE_GENERAL' | translate
+              }}
             </ng-template>
             <ng-template ngbPanelContent>
               <div *ngIf="!searchResultsWidgets.length">
                 <div class="alert alert-danger">
-                  {{ "FACETS_WIDGET_EDIT_FORM_MISSING_SEARCH_RESULTS_WIDGETS_WARNING" | translate }}
+                  {{
+                    'FACETS_WIDGET_EDIT_FORM_MISSING_SEARCH_RESULTS_WIDGETS_WARNING'
+                      | translate
+                  }}
                 </div>
               </div>
               <div *ngIf="searchResultsWidgets.length" class="form-group">
-                <label>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_SEARCH_RESULTS" | translate }}</label>
+                <label>{{
+                  'LABEL_FACETS_WIDGET_EDIT_FORM_SEARCH_RESULTS' | translate
+                }}</label>
                 <select formControlName="search_results" class="form-control">
-                  <option [value]="''">{{ "FACETS_WIDGET_EDIT_FORM_SEARCH_RESULTS_EMPTY_OPTION" | translate }} </option>
-                  <option *ngFor="let searchResult of searchResultsWidgets" [value]="searchResult.id">
-                    {{ searchResult.name }}</option>
+                  <option [value]="''">
+                    {{
+                      'FACETS_WIDGET_EDIT_FORM_SEARCH_RESULTS_EMPTY_OPTION'
+                        | translate
+                    }}
+                  </option>
+                  <option
+                    *ngFor="let searchResult of searchResultsWidgets"
+                    [value]="searchResult.id"
+                  >
+                    {{ searchResult.name }}
+                  </option>
                 </select>
                 <div *ngIf="!settings.search_results">
                   <div class="alert alert-warning">
-                    {{ "FACETS_WIDGET_EDIT_FORM_SEARCH_RESULTS_REQUIRED" | translate }}
+                    {{
+                      'FACETS_WIDGET_EDIT_FORM_SEARCH_RESULTS_REQUIRED'
+                        | translate
+                    }}
                   </div>
                 </div>
               </div>
               <fieldset>
-                <legend>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS" | translate }}</legend>
+                <legend>
+                  {{
+                    'LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS' | translate
+                  }}
+                </legend>
                 <div formGroupName="filters">
                   <div>
                     <label>
                       <input type="checkbox" formControlName="when" />
-                      <span>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_WHEN" | translate }}</span>
+                      <span>{{
+                        'LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_WHEN'
+                          | translate
+                      }}</span>
                     </label>
                   </div>
                   <div>
                     <label>
                       <input type="checkbox" formControlName="where" />
-                      <span>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_WHERE" | translate }}</span>
+                      <span>{{
+                        'LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_WHERE'
+                          | translate
+                      }}</span>
                     </label>
                   </div>
                   <div>
                     <label>
                       <input type="checkbox" formControlName="what" />
-                      <span>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_WHAT" | translate }}</span>
+                      <span>{{
+                        'LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_WHAT'
+                          | translate
+                      }}</span>
                     </label>
                   </div>
                   <div>
                     <label>
                       <input type="checkbox" formControlName="facilities" />
-                      <span>{{ "LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_FACILITIES" | translate }}</span>
+                      <span>{{
+                        'LABEL_FACETS_WIDGET_EDIT_FORM_GENERAL_ELEMENTS_FACILITIES'
+                          | translate
+                      }}</span>
                     </label>
                   </div>
                   <div *ngIf="settings.group_filters">
-                    <app-widget-group-filters-edit (groupFiltersChanged)="handleGroupFiltersChanged()"
-                      [groupFilters]="settings.group_filters" [type]="'link'" [hideType]="true" [hidePlaceholder]="true"
-                      [hideDefaultOption]="true"></app-widget-group-filters-edit>
+                    <app-widget-group-filters-edit
+                      (groupFiltersChanged)="handleGroupFiltersChanged()"
+                      [groupFilters]="settings.group_filters"
+                      [type]="'link'"
+                      [hideType]="true"
+                      [hidePlaceholder]="true"
+                      [hideDefaultOption]="true"
+                    ></app-widget-group-filters-edit>
                   </div>
                 </div>
               </fieldset>
@@ -77,9 +124,14 @@
     </ng-template>
   </li>
   <li ngbNavItem>
-    <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_JSON" | translate }}</ng-template>
+    <ng-template ngbTabTitle>{{
+      'TITLE_EDIT_FORM_JSON' | translate
+    }}</ng-template>
     <ng-template ngbTabContent>
-      <app-json-edit (jsonChanged)="handleJsonChanged()" [widget]="widget"></app-json-edit>
+      <app-json-edit
+        (jsonChanged)="handleJsonChanged()"
+        [widget]="widget"
+      ></app-json-edit>
     </ng-template>
   </li>
 </ul>

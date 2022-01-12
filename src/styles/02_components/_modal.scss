@@ -5,11 +5,10 @@
 }
 
 .modal-open .modal-fullscreen {
-  .modal-dialog{
+  .modal-dialog {
     width: 75%;
   }
 }
-
 
 @media (min-width: 992px) {
   .modal-dialog.modal-lg {
@@ -22,4 +21,3 @@
     width: 100%;
   }
 }
-

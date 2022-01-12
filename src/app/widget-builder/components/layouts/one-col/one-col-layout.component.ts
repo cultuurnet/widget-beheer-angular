@@ -5,8 +5,7 @@ import { AbstractLayoutDirective } from '../../../../core/layout/components/abst
  * Provides a one col layout component.
  */
 @Component({
-  'selector': 'app-one-col-layout',
-  'templateUrl': './one-col.component.html'
+  selector: 'app-one-col-layout',
+  templateUrl: './one-col.component.html',
 })
-export class OneColLayoutComponent extends AbstractLayoutDirective {
-}
+export class OneColLayoutComponent extends AbstractLayoutDirective {}

@@ -1,13 +1,29 @@
 <div class="modal-header">
-    <h4 class="modal-title">{{ title | translate }}</h4>
-    <button type="button" class="close" (click)="activeModal.dismiss('cancelled')">
-        <span aria-hidden="true">&times;</span>
-    </button>
+  <h4 class="modal-title">{{ title | translate }}</h4>
+  <button
+    type="button"
+    class="close"
+    (click)="activeModal.dismiss('cancelled')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 <div class="modal-body">
-    <p>{{ message | translate }}</p>
+  <p>{{ message | translate }}</p>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-danger" (click)="activeModal.close('confirmed')">{{ confirmButtonText | translate }}</button>
-    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancelled')">{{ dismissButtonText | translate }}</button>
+  <button
+    type="button"
+    class="btn btn-danger"
+    (click)="activeModal.close('confirmed')"
+  >
+    {{ confirmButtonText | translate }}
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-secondary"
+    (click)="activeModal.dismiss('cancelled')"
+  >
+    {{ dismissButtonText | translate }}
+  </button>
 </div>
