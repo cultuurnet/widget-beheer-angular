@@ -8,6 +8,7 @@ import { AddWidgetComponent } from './components/add-widget/add-widget.component
 import {
   NgbAccordionModule,
   NgbDropdownModule,
+  NgbNavModule,
   NgbToastModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { RowPreviewComponent } from './components/row-preview/row-preview.component';
@@ -88,6 +89,7 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     CommonModule,
     FormsModule,
     DragulaModule,
+    NgbNavModule,
     NgbDropdownModule,
     TranslateModule,
     NgbAccordionModule,
