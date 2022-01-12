@@ -108,16 +108,21 @@ export class WidgetPage {
    * @returns {boolean}
    */
   public removeWidget(widget: Widget): boolean {
-    this.rows.forEach((row, rowIndex) => {
-      Object.values(row.regions).forEach((region, regionIndex) => {
-        const foundIndex = region.widgets.findIndex(currentWidget => currentWidget.id === widget.id)
-        if (foundIndex > -1) {
-          this.rows[rowIndex].regions[regionIndex].widgets.splice(foundIndex, 1);
+    let isRemoved = false;
+
+    this.rows = this.rows.map((row) => {
+      row.regions.content.widgets = row.regions.content.widgets.filter(
+        (currentWidget) => {
+          if (currentWidget.id === widget.id) return false;
+          isRemoved = true;
           return true;
         }
-      })
-    })
-    return false;
+      );
+
+      return row;
+    });
+
+    return isRemoved;
   }
 
    /**
