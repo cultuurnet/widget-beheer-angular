@@ -7,7 +7,9 @@
     "start": "ng serve",
     "build": "ng build",
     "format": "prettier . --write --ignore-path .gitignore",
-    "lint": "eslint . --fix --ignore-path .gitignore --quiet"
+    "format:check": "prettier . --ignore-path .gitignore",
+    "lint": "eslint . --fix --ignore-path .gitignore --quiet",
+    "lint:check": "eslint . --ignore-path .gitignore --quiet"
   },
   "private": true,
   "dependencies": {
