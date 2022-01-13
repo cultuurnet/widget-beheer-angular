@@ -10,8 +10,7 @@ import { QueryStringService } from 'app/widget-builder/services/query-string.ser
 @Directive()
 export class BaseWidgetEditDirective
   extends AbstractWidgetEditDirective
-  implements OnInit, OnDestroy
-{
+  implements OnInit, OnDestroy {
   /**
    * BaseWidgetEditDirective constructor
    */
