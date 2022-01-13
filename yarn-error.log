@@ -16,7 +16,6 @@ Platform:
 Trace: 
   Error: https://registry.yarnpkg.com/@angular-eslint: Request "https://registry.yarnpkg.com/@angular-eslint" returned a 405
       at Request.params.callback [as _callback] (/Users/simondebruijn/.nvm/versions/node/v14.16.0/lib/node_modules/yarn/lib/cli.js:66997:18)
-      at Request.self.callback (/Users/simondebruijn/.nvm/versions/node/v14.16.0/lib/node_modules/yarn/lib/cli.js:140662:22)
       at Request.emit (events.js:315:20)
       at Request.<anonymous> (/Users/simondebruijn/.nvm/versions/node/v14.16.0/lib/node_modules/yarn/lib/cli.js:141634:10)
       at Request.emit (events.js:315:20)

@@ -8,9 +8,12 @@ import { QueryStringService } from 'app/widget-builder/services/query-string.ser
  * Base widget edit component.
  */
 @Directive()
+/* eslint-disable */
 export class BaseWidgetEditDirective
   extends AbstractWidgetEditDirective
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy
+{
+  /* eslint-enable */
   /**
    * BaseWidgetEditDirective constructor
    */
