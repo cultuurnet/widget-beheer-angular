@@ -1,11 +1,17 @@
-
 <div class="row">
-    <div class="lg preview-col one-col">
-        <div class="cnw_w">
-            <div [dragula]='"widget-container"' class="layout--region" [dragulaModel]='regions.content.widgets'>
-                <app-widget-preview [widget]="widget" *ngFor="let widget of regions.content.widgets"></app-widget-preview>
-            </div>
-            <app-add-widget [region]="regions.content"></app-add-widget>
+  <div class="lg preview-col one-col">
+    <div class="cnw_w">
+      <div
+        [dragula]="'widget-container'"
+        class="layout--region"
+        [dragulaModel]="regions.content.widgets"
+      >
+        <app-widget-preview
+          [widget]="widget"
+          *ngFor="let widget of regions.content.widgets"
+        ></app-widget-preview>
+      </div>
+      <app-add-widget [region]="regions.content"></app-add-widget>
     </div>
-    </div>
+  </div>
 </div>

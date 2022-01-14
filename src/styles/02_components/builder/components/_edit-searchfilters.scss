@@ -1,6 +1,6 @@
 .sidebar {
   .selected-element {
-    padding:1rem;
+    padding: 1rem;
   }
   legend {
     margin-top: 2em;
@@ -8,7 +8,7 @@
     line-height: 1.2em;
     padding-bottom: 0.75em;
     margin-bottom: 0.5em;
-    border-bottom: 1px solid #E3E6E2;
+    border-bottom: 1px solid #e3e6e2;
     text-transform: uppercase;
     color: #c3c3c3;
 
@@ -27,7 +27,6 @@
       font-weight: 200;
     }
   }
-
 }
 .edit-searchfilters--selectgroup {
   border-bottom: 1px dotted #ccc;
@@ -40,12 +39,9 @@
   .form-check-label {
     padding: 0;
   }
-
 }
 
-
 .edit-searchfilters--group {
-
   @include dottedBorder();
   padding: 0.5rem;
   margin-bottom: 2.5rem;
@@ -66,7 +62,6 @@
     display: block;
     width: 100%;
   }
-
 }
 
 .widget-group-filters-group-option-edit {

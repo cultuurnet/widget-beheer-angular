@@ -5,7 +5,12 @@ import { WidgetEditDirective } from './directives/widget-edit.directive';
 import { WidgetBuilderComponent } from './widget-builder.component';
 import { CommonModule } from '@angular/common';
 import { AddWidgetComponent } from './components/add-widget/add-widget.component';
-import { NgbAccordionModule, NgbDropdownModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbAccordionModule,
+  NgbDropdownModule,
+  NgbNavModule,
+  NgbToastModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { RowPreviewComponent } from './components/row-preview/row-preview.component';
 import { RowLayoutDirective } from 'app/widget-builder/directives/row-layout.directive';
 import { WidgetBuilderService } from './services/widget-builder.service';
@@ -74,11 +79,9 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     JsonEditModalComponent,
     RevertWidgetPageComponent,
     CssEditModalComponent,
-    ThemeEditModalComponent
+    ThemeEditModalComponent,
   ],
-  exports: [
-    WidgetBuilderComponent
-  ],
+  exports: [WidgetBuilderComponent],
   imports: [
     CoreModule,
     WidgetBuilderRoutingModule,
@@ -86,38 +89,14 @@ import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert
     CommonModule,
     FormsModule,
     DragulaModule,
+    NgbNavModule,
     NgbDropdownModule,
     TranslateModule,
     NgbAccordionModule,
-    NgbTabsetModule,
+    NgbToastModule,
     ReactiveFormsModule,
-    CKEditorModule
+    CKEditorModule,
   ],
   providers: [WidgetBuilderService],
-  entryComponents: [
-    SearchFormWidgetEditComponent,
-    SearchResultsWidgetEditComponent,
-    TwoColSidebarLeftLayoutComponent,
-    TwoColSidebarRightLayoutComponent,
-    ThreeColDoubleSidebarLayoutComponent,
-    ThreeColTrippleLayoutComponent,
-    OneColLayoutComponent,
-    WidgetPreviewComponent,
-    WidgetGroupFiltersEditComponent,
-    WidgetFacilityFiltersEditComponent,
-    HtmlWidgetWidgetEditComponent,
-    TipsWidgetWidgetEditComponent,
-    FacetsWidgetWidgetEditComponent,
-    TemplatePreviewModalComponent,
-    ToolbarComponent,
-    PublishPageConfirmationModalComponent,
-    JsonEditModalComponent,
-    CssEditModalComponent,
-    ThemeEditModalComponent,
-    AdminPageModalComponent,
-    LanguagePageModalComponent
-  ]
 })
-
-export class WidgetBuilderModule {
-}
+export class WidgetBuilderModule {}

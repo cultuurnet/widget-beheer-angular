@@ -5,7 +5,7 @@ import * as cssbeautify from 'cssbeautify';
 import { WidgetPage } from '../../../core/widget/widget-page';
 import { WidgetService } from '../../../core/widget/services/widget.service';
 import { WidgetBuilderService } from '../../services/widget-builder.service';
-import { CssStats } from "../../../core/widget/css-stats";
+import { CssStats } from '../../../core/widget/css-stats';
 import * as URI from 'urijs';
 
 /**
@@ -13,10 +13,9 @@ import * as URI from 'urijs';
  */
 @Component({
   selector: 'app-css-edit-modal',
-  templateUrl: './css-edit-modal.component.html'
+  templateUrl: './css-edit-modal.component.html',
 })
 export class CssEditModalComponent implements OnInit {
-
   /**
    * The CSS edit form
    */
@@ -51,17 +50,17 @@ export class CssEditModalComponent implements OnInit {
   /**
    * Indicates if the application is busy scraping
    */
-  public isScraping: boolean = false;
+  public isScraping = false;
 
   /**
    * Indicates if a scrape error occurred
    */
-  public scrapeError: boolean = false;
+  public scrapeError = false;
 
   /**
    * Indicates if the current url is invalid.
    */
-  public isInvalidUrl: boolean = false;
+  public isInvalidUrl = false;
 
   /**
    * CssEditModalComponent constructor.
@@ -75,7 +74,7 @@ export class CssEditModalComponent implements OnInit {
     private formBuilder: FormBuilder,
     private widgetService: WidgetService,
     private widgetBuilderService: WidgetBuilderService
-  ) { }
+  ) {}
 
   /**
    * @inheritDoc
@@ -86,7 +85,7 @@ export class CssEditModalComponent implements OnInit {
     // Format the css
     if (this.widgetPage.css) {
       css = cssbeautify(this.widgetPage.css, {
-        autosemicolon: true
+        autosemicolon: true,
       });
     }
 
@@ -97,7 +96,7 @@ export class CssEditModalComponent implements OnInit {
 
     // Scrape form
     this.cssScrapeForm = this.formBuilder.group({
-      url: ['', [Validators.required]]
+      url: ['', [Validators.required]],
     });
   }
 
@@ -109,9 +108,11 @@ export class CssEditModalComponent implements OnInit {
     this.isScraping = true;
     this.scrapeError = false;
 
-    let url = this.cssScrapeForm.get('url').value;
+    let url: string = this.cssScrapeForm.get('url').value.toString();
 
-    var regex = new RegExp('^(http[s]?:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?');
+    const regex = new RegExp(
+      '^(http[s]?:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?'
+    );
     if (!regex.test(url)) {
       this.isScraping = false;
       this.isInvalidUrl = true;
@@ -122,17 +123,20 @@ export class CssEditModalComponent implements OnInit {
 
     // Try to add protocol if it's missing
     if (!/^(f|ht)tps?:\/\//i.test(url)) {
-      url = "http://" + url;
+      url = 'http://' + url;
     }
 
-    this.widgetService.getCssStats(url).subscribe((cssStats: CssStats) => {
-      this.cssStats = cssStats;
-      this.isScraping = false;
-    }, () => {
-      // Show error
-      this.isScraping = false;
-      this.scrapeError = true;
-    });
+    this.widgetService.getCssStats(url).subscribe(
+      (cssStats: CssStats) => {
+        this.cssStats = cssStats;
+        this.isScraping = false;
+      },
+      () => {
+        // Show error
+        this.isScraping = false;
+        this.scrapeError = true;
+      }
+    );
   }
 
   /**
@@ -154,21 +158,24 @@ export class CssEditModalComponent implements OnInit {
     this.widgetPage.css = this.cssEditForm.get('css').value;
 
     // Save the widget page (will trigger a render for the current widget)
-    this.widgetService.saveWidgetPage(this.widgetPage).subscribe(() => {
-      // Apply the widgetPage css to the DOM
-      if (this.widgetBuilderService.attachCss(this.widgetPage.css)) {
-        // Close the modal
-        this.activeModal.close(true);
-      } else {
-        this.error = true;
+    this.widgetService.saveWidgetPage(this.widgetPage).subscribe(
+      () => {
+        // Apply the widgetPage css to the DOM
+        if (this.widgetBuilderService.attachCss(this.widgetPage.css)) {
+          // Close the modal
+          this.activeModal.close(true);
+        } else {
+          this.error = true;
+          this.isSaving = false;
+        }
+      },
+      () => {
         this.isSaving = false;
-      }
-    }, () => {
-      this.isSaving = false;
 
-      // Show error message in the modal
-      this.error = true;
-    });
+        // Show error message in the modal
+        this.error = true;
+      }
+    );
   }
 
   /**
@@ -179,5 +186,4 @@ export class CssEditModalComponent implements OnInit {
     const originURI = URI(url);
     return originURI.hostname();
   }
-
 }

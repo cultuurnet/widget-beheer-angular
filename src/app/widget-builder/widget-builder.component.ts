@@ -1,10 +1,16 @@
-import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { WidgetEditDirective } from './directives/widget-edit.directive';
 import { DragulaService } from 'ng2-dragula';
 import { WidgetBuilderService } from './services/widget-builder.service';
 import { WidgetTypeRegistry } from '../core/widget/services/widget-type-registry.service';
 import { Widget } from 'app/core/widget/widget';
-import { AbstractWidgetEditComponent } from '../core/widget/components/abstract-widget-edit-component';
+import { AbstractWidgetEditDirective } from '../core/widget/components/abstract-widget-edit-component';
 import * as autoScroll from 'dom-autoscroller';
 import { WidgetPage } from '../core/widget/widget-page';
 import { Subscription } from 'rxjs';
@@ -22,11 +28,11 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
   templateUrl: './widget-builder.component.html',
 })
 export class WidgetBuilderComponent implements OnInit, OnDestroy {
-
   /**
    * Widget edit form
    */
-  @ViewChild(WidgetEditDirective, { static: true }) editForm: WidgetEditDirective;
+  @ViewChild(WidgetEditDirective, { static: true })
+  editForm: WidgetEditDirective;
 
   /**
    * The currently active widget
@@ -99,36 +105,42 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     private widgetBuilderService: WidgetBuilderService,
     private route: ActivatedRoute,
     private topbarService: TopbarService
-  ) {  }
+  ) {}
 
   /**
    * @inheritDoc
    */
   ngOnInit() {
-    this.route.data
-      .subscribe((data: { project: Project, widgetPage: WidgetPage }) => {
+    this.route.data.subscribe(
+      (data: { project: Project; widgetPage: WidgetPage }) => {
         this.project = data.project;
         this.editingPage = data.widgetPage;
 
         // Set the current page on the widget builder service
         this.widgetBuilderService.widgetPage = this.editingPage;
-      });
+      }
+    );
 
     // Subscribe to the selected widget
-    this.widgetSelectedSubscription = this.widgetBuilderService.widgetSelected$.subscribe(widget => {
-      this.editWidget(widget);
-    });
+    this.widgetSelectedSubscription =
+      this.widgetBuilderService.widgetSelected$.subscribe((widget) => {
+        this.editWidget(widget);
+      });
 
     // Subscribe to sidebar status
-    this.sidebarSubscription = this.widgetBuilderService.sidebarStatus$.subscribe(status => {
-      this.showSidebar = status;
-    });
+    this.sidebarSubscription =
+      this.widgetBuilderService.sidebarStatus$.subscribe((status) => {
+        this.showSidebar = status;
+      });
 
     // Set the dragula options
     this.dragulaService.setOptions(this.dragulaContainer, {
       moves: function (el, container, handle) {
-        return handle.classList.contains('fa-arrows-alt') || handle.classList.contains('bnt-cnw-action--drag');
-      }
+        return (
+          handle.classList.contains('fa-arrows-alt') ||
+          handle.classList.contains('bnt-cnw-action--drag')
+        );
+      },
     });
 
     // Get a reference to the widget-container drake
@@ -143,13 +155,15 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
       // Only scroll when drake is dragging
       autoScroll: function () {
         return this.down && drake.drake.dragging;
-      }
+      },
     });
 
     // Subscribe to the drop event
-    this.dragulaDropSubscription = this.dragulaService.drop.subscribe((value) => {
-      this.onDragulaDrop(value);
-    });
+    this.dragulaDropSubscription = this.dragulaService.drop.subscribe(
+      (value) => {
+        this.onDragulaDrop(value);
+      }
+    );
 
     // Init the topbar
     this.initTopbar();
@@ -187,10 +201,13 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     // Render the widget edit component
     if (widget) {
       const widgetType = this.widgetTypeRegistry.getWidgetType(widget.type);
-      const componentFactory = this._componentFactoryResolver.resolveComponentFactory(widgetType.editComponent);
+      const componentFactory =
+        this._componentFactoryResolver.resolveComponentFactory(
+          widgetType.editComponent
+        );
 
       const componentRef = viewContainerRef.createComponent(componentFactory);
-      (<AbstractWidgetEditComponent>componentRef.instance).widget = widget;
+      (<AbstractWidgetEditDirective>componentRef.instance).widget = widget;
     }
   }
 
@@ -225,16 +242,19 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    */
   private initTopbar() {
     // Add a back button
-    this.topbarService.setBackButton(new BackButton(
-      BackButton.TYPE_ROUTE,
-      this.project.name,
-      null,
-      ['/project', this.project.id]
-    ));
+    this.topbarService.setBackButton(
+      new BackButton(BackButton.TYPE_ROUTE, this.project.name, null, [
+        '/project',
+        this.project.id,
+      ])
+    );
 
     // Add the toolbar component and subscribe to it's events
-    this.topbarService.addComponent('toolbar', ToolbarComponent, {widgetPage: this.editingPage})
-      .subscribe(event => {
+    this.topbarService
+      .addComponent('toolbar', ToolbarComponent, {
+        widgetPage: this.editingPage,
+      })
+      .subscribe((event) => {
         switch (event.output) {
           case 'viewModeChanged':
             this.viewMode = event.value;

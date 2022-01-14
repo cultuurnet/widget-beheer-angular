@@ -6,10 +6,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
  */
 @Component({
   selector: 'app-confirmation-modal',
-  templateUrl: './confirmation-modal.component.html'
+  templateUrl: './confirmation-modal.component.html',
 })
 export class ConfirmationModalComponent {
-
   /**
    * The confirmation modal title
    */
@@ -34,7 +33,5 @@ export class ConfirmationModalComponent {
    * ConfirmationModalComponent constructor.
    * @param activeModal
    */
-  constructor(public activeModal: NgbActiveModal) {
-  }
-
+  constructor(public activeModal: NgbActiveModal) {}
 }

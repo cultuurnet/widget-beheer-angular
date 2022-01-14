@@ -1,6 +1,13 @@
-import { Component, ComponentFactoryResolver, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { RowLayoutDirective } from '../../directives/row-layout.directive';
-import { AbstractLayoutComponent } from '../../../core/layout/components/abstract-layout.component';
+import { AbstractLayoutDirective } from '../../../core/layout/components/abstract-layout.component';
 import { LayoutTypeRegistry } from '../../../core/layout/services/layout-type-registry.service';
 import { Layout } from '../../../core/layout/layout';
 import { WidgetBuilderService } from '../../services/widget-builder.service';
@@ -10,11 +17,10 @@ import { Widget } from '../../../core/widget/widget';
  * Provides a row preview component.
  */
 @Component({
-  'selector': 'app-row-preview',
-  'templateUrl': './row-preview.component.html'
+  selector: 'app-row-preview',
+  templateUrl: './row-preview.component.html',
 })
 export class RowPreviewComponent implements OnInit, OnDestroy {
-
   /**
    * The row Layout preview
    */
@@ -58,9 +64,10 @@ export class RowPreviewComponent implements OnInit, OnDestroy {
     private layoutTypeRegistry: LayoutTypeRegistry,
     private widgetBuilderService: WidgetBuilderService
   ) {
-    this.widgetSelectedSubscription = widgetBuilderService.widgetSelected$.subscribe(widget => {
-      this.activeWidget = widget;
-    });
+    this.widgetSelectedSubscription =
+      widgetBuilderService.widgetSelected$.subscribe((widget) => {
+        this.activeWidget = widget;
+      });
   }
 
   /**
@@ -68,12 +75,15 @@ export class RowPreviewComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     const componentType = this.layoutTypeRegistry.getLayoutType(this.row.type);
-    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(componentType.component);
+    const componentFactory =
+      this._componentFactoryResolver.resolveComponentFactory(
+        componentType.component
+      );
     const viewContainerRef = this.preview.viewContainerRef;
     viewContainerRef.clear();
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
-    (<AbstractLayoutComponent>componentRef.instance).regions = this.row.regions;
+    (<AbstractLayoutDirective>componentRef.instance).regions = this.row.regions;
   }
 
   /**
@@ -93,17 +103,19 @@ export class RowPreviewComponent implements OnInit, OnDestroy {
 
     if (change.action === 'remove') {
       // If the active widget is in the current row we are removing, deselect it
-      for (const regionId in this.row.regions) {
-        if (this.row.regions.hasOwnProperty(regionId)) {
-          if (this.row.regions[regionId].widgets.indexOf(this.activeWidget) > -1) {
-            this.widgetBuilderService.selectWidget();
-          }
+      Object.values(this.row.regions).forEach((region) => {
+        const found =
+          !!this.activeWidget &&
+          region.widgets.find(
+            (currentWidget) => currentWidget.id === this.activeWidget.id
+          );
+        if (found) {
+          this.widgetBuilderService.selectWidget();
         }
-      }
+      });
     }
 
     // Save the widget page
     this.widgetBuilderService.saveWidgetPage();
   }
-
 }

@@ -1,24 +1,24 @@
 // overrule default bootstrap styling
-.btn-outline-secondary{
+.btn-outline-secondary {
   background-color: $white;
   border-color: #ccc;
   color: #292b2c;
 }
 
-.btn-outline-secondary:hover{
+.btn-outline-secondary:hover {
   color: #292b2c;
   background-color: #e6e5e5;
   border-color: #adadad;
 }
 
 .btn--publishing,
-.btn--stop-editing{
-  &:hover{
+.btn--stop-editing {
+  &:hover {
     color: $white;
   }
 }
 
-.btn-success{
+.btn-success {
   background-color: #5cb85c;
   border-color: #5cb85c;
 }

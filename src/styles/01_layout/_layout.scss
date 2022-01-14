@@ -4,7 +4,11 @@ body {
 }
 
 // disable all scroll
-html, body {margin: 0; height: 100%; }
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
 
 body.gu-unselectable {
   .layout--region {

@@ -6,7 +6,6 @@ import * as _ from 'lodash';
  * Provide an abstract widget.
  */
 export abstract class AbstractWidget implements Widget {
-
   /**
    * @inheritDoc
    */
@@ -43,5 +42,4 @@ export abstract class AbstractWidget implements Widget {
       this.id = UUID.UUID();
     }
   }
-
 }

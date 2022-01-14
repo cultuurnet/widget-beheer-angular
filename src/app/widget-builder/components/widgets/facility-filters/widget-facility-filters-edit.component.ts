@@ -1,10 +1,17 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { group_filter_types } from 'app/widget-builder/constants/group-filters';
 import { Widget } from '../../../../core/widget/widget';
 import { TranslateService } from '@ngx-translate/core';
-import { QueryStringService } from "app/widget-builder/services/query-string.service";
+import { QueryStringService } from 'app/widget-builder/services/query-string.service';
 
 /**
  * Widget facility filters edit component.
@@ -12,10 +19,9 @@ import { QueryStringService } from "app/widget-builder/services/query-string.ser
 @Component({
   selector: 'app-widget-facility-filters-edit',
   templateUrl: './widget-facility-filters-edit.component.html',
-  providers: [QueryStringService]
+  providers: [QueryStringService],
 })
 export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
-
   /**
    * The facility filters model
    */
@@ -62,12 +68,14 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
    */
   private formSubscription: Subscription;
 
-
   /**
    * WidgetFacilityFiltersFilterEditComponent constructor
    */
-  constructor(private formBuilder: FormBuilder, private translateService: TranslateService, private queryStringService: QueryStringService) {
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private translateService: TranslateService,
+    private queryStringService: QueryStringService
+  ) {}
 
   /**
    * @inheritDoc
@@ -77,20 +85,23 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
     this.buildForm();
 
     // Subscribe to changes in the form and reflect them on the widget facilityFilters model
-    this.formSubscription = this.facilityFilterForm.valueChanges.subscribe(values => {
-      for (const key in values) {
-
-        if (values.hasOwnProperty(key)) {
-          this.facilityFilters[key] = values[key];
+    this.formSubscription = this.facilityFilterForm.valueChanges.subscribe(
+      (values) => {
+        for (const key in values) {
+          if (values.hasOwnProperty(key)) {
+            this.facilityFilters[key] = values[key];
+          }
         }
+
+        // Sanitize facilityFilters
+        this.facilityFilters.filters = this.queryStringService.sanitizeFilters(
+          this.facilityFilters.filters
+        );
+
+        // Notify watchers
+        this.facilityFiltersChanged.emit();
       }
-
-      // Sanitize facilityFilters
-     this.facilityFilters.filters = this.queryStringService.sanitizeFilters(this.facilityFilters.filters);
-
-      // Notify watchers
-      this.facilityFiltersChanged.emit();
-    });
+    );
 
     this.filterTypes = group_filter_types;
   }
@@ -111,27 +122,33 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
     // Create the facility edit form components for the facility filters already on the model
     if (this.facilityFilters.hasOwnProperty('filters')) {
       for (const facilityFilter of this.facilityFilters.filters) {
-        items.push(this.buildFacilityFilterItem(
+        items.push(
+          this.buildFacilityFilterItem(
             facilityFilter.type,
             facilityFilter.label,
             facilityFilter.placeholder,
             facilityFilter.options,
             facilityFilter.default_option
-        ));
+          )
+        );
       }
     }
 
     // Add an empty option if needed
     if (!items.length) {
-      items.push(this.buildFacilityFilterItem('', this.translateService.instant('GROUP_FILTERS_DEFAULT_LABEL')));
+      items.push(
+        this.buildFacilityFilterItem(
+          '',
+          this.translateService.instant('GROUP_FILTERS_DEFAULT_LABEL')
+        )
+      );
     }
 
     // Initialize the form
     this.facilityFilterForm = this.formBuilder.group({
       enabled: this.facilityFilters.enabled,
-      filters: this.formBuilder.array(items)
+      filters: this.formBuilder.array(items),
     });
-
   }
 
   /**
@@ -143,12 +160,20 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
    * @param default_option
    * @returns {FormGroup}
    */
-  private buildFacilityFilterItem(type?: string, label: string = '', placeholder: string = '', options: any = [], default_option: string = '') {
+  private buildFacilityFilterItem(
+    type?: string,
+    label: string = '',
+    placeholder: string = '',
+    options: any = [],
+    default_option: string = ''
+  ) {
     const filterOptions = [];
 
     // Create the filter options form components
     for (const option of options) {
-      filterOptions.push(this.buildFilterOptionItem(option.label, option.query));
+      filterOptions.push(
+        this.buildFilterOptionItem(option.label, option.query)
+      );
     }
 
     // Add empty options form if needed
@@ -163,7 +188,9 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
         type = this.type;
       } else {
         // Fall back to the default
-        const defaultFieldType = group_filter_types.find(filterType => filterType.default === true);
+        const defaultFieldType = group_filter_types.find(
+          (filterType) => filterType.default === true
+        );
         if (defaultFieldType) {
           type = defaultFieldType.type;
         }
@@ -173,9 +200,12 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
     const formGroup = {
       label: [label, Validators.required],
       type: [type, this.hideType ? [] : Validators.required],
-      placeholder: [placeholder, this.hidePlaceholder ? [] : Validators.required],
+      placeholder: [
+        placeholder,
+        this.hidePlaceholder ? [] : Validators.required,
+      ],
       options: this.formBuilder.array(filterOptions),
-      default_option: [default_option]
+      default_option: [default_option],
     };
 
     return this.formBuilder.group(formGroup);
@@ -190,7 +220,7 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
   private buildFilterOptionItem(label: string = '', query: string = '') {
     return this.formBuilder.group({
       label: [label, Validators.required],
-      query: [query, Validators.required]
+      query: [query, Validators.required],
     });
   }
 
@@ -199,7 +229,12 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
    */
   public addFacilityFilterItem() {
     const control = <FormArray>this.facilityFilterForm.controls['filters'];
-    control.push(this.buildFacilityFilterItem(this.type, this.translateService.instant('GROUP_FILTERS_DEFAULT_LABEL')));
+    control.push(
+      this.buildFacilityFilterItem(
+        this.type,
+        this.translateService.instant('GROUP_FILTERS_DEFAULT_LABEL')
+      )
+    );
   }
 
   /**
@@ -241,5 +276,4 @@ export class WidgetFacilityFiltersEditComponent implements OnInit, OnDestroy {
   public handleStatusUpdate(event: any) {
     this.facilityFiltersChanged.emit();
   }
-
 }

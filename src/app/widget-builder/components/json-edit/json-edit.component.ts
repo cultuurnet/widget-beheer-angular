@@ -11,10 +11,9 @@ import { ToastyService } from 'ng2-toasty';
  */
 @Component({
   selector: 'app-json-edit',
-  templateUrl: './json-edit.component.html'
+  templateUrl: './json-edit.component.html',
 })
 export class JsonEditComponent implements OnInit {
-
   /**
    * The widget being edited
    */
@@ -39,35 +38,36 @@ export class JsonEditComponent implements OnInit {
     private modalService: NgbModal,
     private translateService: TranslateService,
     private toastyService: ToastyService
-  ) { }
+  ) {}
 
   /**
    * Open the JSON edit modal to start editing
    */
-  public editJson() {
+  public async editJson() {
     // Show the confirmation modal (disable keyboard and background dismiss)
     const modal = this.modalService.open(JsonEditModalComponent, {
       size: 'lg',
       backdrop: 'static',
-      keyboard: false
+      keyboard: false,
     });
 
     const modalInstance = modal.componentInstance;
     modalInstance.widget = this.widget;
 
-    modal.result.then((result) => {
-      if (result) {
-        // Update the widget JSON
-        this.json = JSON.stringify(this.widget.settings, undefined, 4);
+    const result = await modal.result;
+    if (result) {
+      // Update the widget JSON
+      this.json = JSON.stringify(this.widget.settings, undefined, 4);
 
-        // Notify the parent of the JSON change
-        this.jsonChanged.emit();
-        this.toastyService.success(this.translateService.instant('WIDGET_JSON_EDIT_SUCCESS_NOTIFICATION'));
+      // Notify the parent of the JSON change
+      this.jsonChanged.emit();
+      this.toastyService.success(
+        this.translateService.instant('WIDGET_JSON_EDIT_SUCCESS_NOTIFICATION')
+      );
 
-        // Render the widget
-        this.widgetBuilderService.renderWidget(this.widget.id);
-      }
-    }, () => {});
+      // Render the widget
+      this.widgetBuilderService.renderWidget(this.widget.id);
+    }
   }
   /**
    * @inheritDoc
@@ -75,5 +75,4 @@ export class JsonEditComponent implements OnInit {
   public ngOnInit() {
     this.json = JSON.stringify(this.widget.settings, undefined, 4);
   }
-
 }

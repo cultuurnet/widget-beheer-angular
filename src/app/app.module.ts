@@ -38,7 +38,6 @@ import { UitPasPageTemplate } from './core/template/page-templates/uitpas-page-t
 import { WidgetService } from './core/widget/services/widget.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ToastyConfig, ToastyModule } from 'ng2-toasty';
-import { ProjectNoAccessComponent } from './core/route/components/project-no-access.component';
 
 /**
  * AoT requires an exported function for factories
@@ -48,9 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -59,23 +56,19 @@ export function HttpLoaderFactory(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
     CoreModule,
     WidgetBuilderModule,
     AppRoutingModule,
     NgbModule,
-    ToastyModule.forRoot()
+    ToastyModule.forRoot(),
   ],
-  exports: [
-    TranslateModule
-  ],
+  exports: [TranslateModule],
   bootstrap: [AppComponent],
 })
-
 export class AppModule {
-
   /**
    * AppModule constructor.
    * @param widgetTypeRegistry
@@ -92,18 +85,68 @@ export class AppModule {
     private toastyConfig: ToastyConfig
   ) {
     // Register widget types
-    widgetTypeRegistry.register('search-form', 'Search form', SearchFormWidget, SearchFormWidgetEditComponent);
-    widgetTypeRegistry.register('search-results', 'Search results', SearchResultsWidget, SearchResultsWidgetEditComponent);
-    widgetTypeRegistry.register('facets', 'Facets', FacetsWidget, FacetsWidgetWidgetEditComponent);
-    widgetTypeRegistry.register('html', 'HTML', HtmlWidget, HtmlWidgetWidgetEditComponent);
-    widgetTypeRegistry.register('tips', 'Tips', TipsWidget, TipsWidgetWidgetEditComponent);
+    widgetTypeRegistry.register(
+      'search-form',
+      'Search form',
+      SearchFormWidget,
+      SearchFormWidgetEditComponent
+    );
+    widgetTypeRegistry.register(
+      'search-results',
+      'Search results',
+      SearchResultsWidget,
+      SearchResultsWidgetEditComponent
+    );
+    widgetTypeRegistry.register(
+      'facets',
+      'Facets',
+      FacetsWidget,
+      FacetsWidgetWidgetEditComponent
+    );
+    widgetTypeRegistry.register(
+      'html',
+      'HTML',
+      HtmlWidget,
+      HtmlWidgetWidgetEditComponent
+    );
+    widgetTypeRegistry.register(
+      'tips',
+      'Tips',
+      TipsWidget,
+      TipsWidgetWidgetEditComponent
+    );
 
     // Register layouts
-    layoutTypeRegistry.register('one-col', 'Full width', OneCollLayout, OneColLayoutComponent);
-    layoutTypeRegistry.register('2col-sidebar-left', 'Two col sidebar left', TwoColSidebarLeftLayout, TwoColSidebarLeftLayoutComponent);
-    layoutTypeRegistry.register('2col-sidebar-right', 'Two col sidebar right', TwoColSidebarRightayout, TwoColSidebarRightLayoutComponent);
-    layoutTypeRegistry.register('3col-double-sidebar', 'Three col double sidebar', ThreeColDoubleSidebarLayout, ThreeColDoubleSidebarLayoutComponent);
-    layoutTypeRegistry.register('3col-tripple', 'Three col tripple', ThreeColTrippleLayout, ThreeColTrippleLayoutComponent);
+    layoutTypeRegistry.register(
+      'one-col',
+      'Full width',
+      OneCollLayout,
+      OneColLayoutComponent
+    );
+    layoutTypeRegistry.register(
+      '2col-sidebar-left',
+      'Two col sidebar left',
+      TwoColSidebarLeftLayout,
+      TwoColSidebarLeftLayoutComponent
+    );
+    layoutTypeRegistry.register(
+      '2col-sidebar-right',
+      'Two col sidebar right',
+      TwoColSidebarRightayout,
+      TwoColSidebarRightLayoutComponent
+    );
+    layoutTypeRegistry.register(
+      '3col-double-sidebar',
+      'Three col double sidebar',
+      ThreeColDoubleSidebarLayout,
+      ThreeColDoubleSidebarLayoutComponent
+    );
+    layoutTypeRegistry.register(
+      '3col-tripple',
+      'Three col tripple',
+      ThreeColTrippleLayout,
+      ThreeColTrippleLayoutComponent
+    );
 
     // Register page templates
     pageTemplateRegistry.register('empty', new EmptyPageTemplate());
@@ -135,15 +178,18 @@ export class AppModule {
    * Load the widget default settings onto the registered widgets
    */
   private loadWidgetDefaultSettings() {
-    this.widgetService.getWidgetDefaultSettings().subscribe(
-      defaultSettings => {
-        for (const widgetType in defaultSettings) {
-          if (defaultSettings.hasOwnProperty(widgetType) &&  this.widgetTypeRegistry.widgetTypes.hasOwnProperty(widgetType)) {
-            this.widgetTypeRegistry.widgetTypes[widgetType].defaultSettings = defaultSettings[widgetType];
+    this.widgetService
+      .getWidgetDefaultSettings()
+      .subscribe((defaultSettings) => {
+        for (const widgetType in defaultSettings as any) {
+          if (
+            defaultSettings.hasOwnProperty(widgetType) &&
+            this.widgetTypeRegistry.widgetTypes.hasOwnProperty(widgetType)
+          ) {
+            this.widgetTypeRegistry.widgetTypes[widgetType].defaultSettings =
+              defaultSettings[widgetType];
           }
         }
-      },
-    );
+      });
   }
-
 }

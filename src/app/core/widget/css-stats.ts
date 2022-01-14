@@ -1,5 +1,4 @@
 export interface CssStats {
-
   /**
    * The url the styles originate from
    */
@@ -8,11 +7,10 @@ export interface CssStats {
   /**
    * Color codes
    */
-  colors: Array<object>;
+  colors: Array<Record<string, unknown>>;
 
   /**
    * Fonts
    */
-  font_families: Array<object>;
-
+  font_families: Array<Record<string, unknown>>;
 }

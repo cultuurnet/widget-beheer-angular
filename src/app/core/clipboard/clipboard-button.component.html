@@ -1,5 +1,13 @@
-<button class="btn btn-copy-clipboard" [ngClass]="{'btn-success' : copySuccess}" ngxClipboard [cbContent]="content" (cbOnSuccess)="cbCopySuccess($event)" [title]="'BUTTON_COPY_TO_CLIPBOARD_TITLE' | translate"><i class="fa fa-clipboard" aria-hidden="true"></i>
-    <span ng-if="copySuccess">
-    {{ copySuccess ? ("BUTTON_COPY_TO_CLIPBOARD_SUCCESS" | translate) : "" }}
-    </span>
+<button
+  class="btn btn-copy-clipboard"
+  [ngClass]="{ 'btn-success': copySuccess }"
+  ngxClipboard
+  [cbContent]="content"
+  (cbOnSuccess)="cbCopySuccess($event)"
+  [title]="'BUTTON_COPY_TO_CLIPBOARD_TITLE' | translate"
+>
+  <i class="fa fa-clipboard" aria-hidden="true"></i>
+  <span ng-if="copySuccess">
+    {{ copySuccess ? ('BUTTON_COPY_TO_CLIPBOARD_SUCCESS' | translate) : '' }}
+  </span>
 </button>

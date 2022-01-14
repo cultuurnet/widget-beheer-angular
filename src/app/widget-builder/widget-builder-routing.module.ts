@@ -8,7 +8,7 @@ import { WidgetPageResolver } from '../core/route/resolver/widget-page-resolver.
 import { CoreModule } from '../core/core.module';
 import { WidgetPageListResolver } from './route/resolver/widget-page-list-resolver.service';
 import { AuthGuard } from '../core/route/guard/auth-guard.service';
-import { RevertWidgetPageComponent } from "./components/revert-widgetpage/revert-widget-page.component";
+import { RevertWidgetPageComponent } from './components/revert-widgetpage/revert-widget-page.component';
 
 const widgetBuilderRoutes: Routes = [
   {
@@ -17,7 +17,7 @@ const widgetBuilderRoutes: Routes = [
     canActivate: [AuthGuard],
     resolve: {
       project: ProjectResolver,
-      widgetPages: WidgetPageListResolver
+      widgetPages: WidgetPageListResolver,
     },
   },
   {
@@ -25,8 +25,8 @@ const widgetBuilderRoutes: Routes = [
     component: AddPageComponent,
     canActivate: [AuthGuard],
     resolve: {
-      project: ProjectResolver
-    }
+      project: ProjectResolver,
+    },
   },
   {
     path: 'project/:project_id/page/:page_id/edit',
@@ -34,8 +34,8 @@ const widgetBuilderRoutes: Routes = [
     canActivate: [AuthGuard],
     resolve: {
       widgetPage: WidgetPageResolver,
-      project: ProjectResolver
-    }
+      project: ProjectResolver,
+    },
   },
   {
     path: 'project/:project_id/page/:page_id/revert',
@@ -43,21 +43,14 @@ const widgetBuilderRoutes: Routes = [
     canActivate: [AuthGuard],
     resolve: {
       widgetPage: WidgetPageResolver,
-      project: ProjectResolver
-    }
-  }
+      project: ProjectResolver,
+    },
+  },
 ];
 
 @NgModule({
-  providers: [
-    WidgetPageListResolver
-  ],
-  imports: [
-    CoreModule,
-    RouterModule.forChild(widgetBuilderRoutes)
-  ],
-  exports: [
-    RouterModule
-  ]
+  providers: [WidgetPageListResolver],
+  imports: [CoreModule, RouterModule.forChild(widgetBuilderRoutes)],
+  exports: [RouterModule],
 })
-export class WidgetBuilderRoutingModule { }
+export class WidgetBuilderRoutingModule {}

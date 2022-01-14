@@ -8,7 +8,6 @@ import { Component, Input } from '@angular/core';
   templateUrl: './clipboard-button.component.html',
 })
 export class ClipboardButtonComponent {
-
   /**
    * The content to copy to the clipboard
    */
@@ -23,13 +22,12 @@ export class ClipboardButtonComponent {
    * React on clipboard copy success
    * @param $event
    */
-  public cbCopySuccess($event) {
+  public cbCopySuccess($event): void {
     const _self = this;
     this.copySuccess = true;
 
-    setTimeout(function() {
+    setTimeout(function () {
       _self.copySuccess = false;
     }, 1500);
   }
-
 }

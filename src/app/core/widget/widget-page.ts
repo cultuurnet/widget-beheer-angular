@@ -6,7 +6,6 @@ import { Widget } from './widget';
  * containing rows with regions and widgets.
  */
 export class WidgetPage {
-
   /**
    * The widget page id
    */
@@ -38,18 +37,18 @@ export class WidgetPage {
   public selectedTheme: any;
 
   /**
-  * The widget page mobile setting
-  */
+   * The widget page mobile setting
+   */
   public mobile: boolean;
 
   /**
-  * The widget page jquery setting
-  */
+   * The widget page jquery setting
+   */
   public jquery: boolean;
 
   /**
-  * The widget page language setting
-  */
+   * The widget page language setting
+   */
   public language: string;
 
   /**
@@ -107,45 +106,37 @@ export class WidgetPage {
    * @param widget
    * @returns {boolean}
    */
-  public removeWidget(widget: Widget) {
-    // Loop the rows (layouts)
-    for (const rowKey in this.rows) {
-      if (this.rows.hasOwnProperty(rowKey)) {
+  public removeWidget(widget: Widget): boolean {
+    let isRemoved = false;
 
-        // Loop the regions
-        for (const regionId in this.rows[rowKey].regions) {
-          if (this.rows[rowKey].regions.hasOwnProperty(regionId)) {
-            const index = this.rows[rowKey].regions[regionId].widgets.indexOf(widget);
-            if (index > -1) {
-              this.rows[rowKey].regions[regionId].widgets.splice(index, 1);
-              return true;
-            }
-          }
+    this.rows = this.rows.map((row) => {
+      row.regions.content.widgets = row.regions.content.widgets.filter(
+        (currentWidget) => {
+          if (currentWidget.id === widget.id) return false;
+          isRemoved = true;
+          return true;
         }
-      }
-    }
+      );
 
-    return false;
+      return row;
+    });
+
+    return isRemoved;
   }
 
   /**
    * Find a widget by id in the page
    * @param widgetId
    */
-  public findWidget(widgetId: string) {
-    for (const rowKey in this.rows) {
-      if (this.rows.hasOwnProperty(rowKey)) {
-        for (const regionId in this.rows[rowKey].regions) {
-          if (this.rows[rowKey].regions.hasOwnProperty(regionId)) {
-            const widget = this.rows[rowKey].regions[regionId].widgets.find(widget => widget.id === widgetId);
-            if (widget !== undefined) {
-              return widget;
-            }
-          }
-        }
-      }
-    }
-
+  public findWidget(widgetId: string): Widget | boolean {
+    this.rows.forEach((row) => {
+      Object.values(row.regions).forEach((region) => {
+        const widget = region.widgets.find(
+          (currentWidget) => currentWidget.id === widgetId
+        );
+        return widget;
+      });
+    });
     return false;
   }
 }

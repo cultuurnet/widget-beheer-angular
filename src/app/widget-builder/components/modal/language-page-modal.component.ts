@@ -2,23 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { WidgetPage } from '../../../core/widget/widget-page';
 import { WidgetService } from '../../../core/widget/services/widget.service';
-import { FormBuilder, FormGroup} from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 interface Language {
   value: string;
   translationKey: string;
 }
 
-
 /**
  * Confirmation modal component.
  */
 @Component({
   selector: 'app-language-page-modal',
-  templateUrl: './language-page-modal.component.html'
+  templateUrl: './language-page-modal.component.html',
 })
 export class LanguagePageModalComponent implements OnInit {
-
   /**
    * The language edit form
    */
@@ -41,25 +39,25 @@ export class LanguagePageModalComponent implements OnInit {
    */
   public widgetPage: WidgetPage;
 
-  public language;  
+  public language;
 
   public languages: Language[] = [
     {
       value: 'nl',
-      translationKey: 'WIDGET_PAGE_LANGUAGE_MODAL_NL'
+      translationKey: 'WIDGET_PAGE_LANGUAGE_MODAL_NL',
     },
     {
       value: 'fr',
-      translationKey: 'WIDGET_PAGE_LANGUAGE_MODAL_FR'
+      translationKey: 'WIDGET_PAGE_LANGUAGE_MODAL_FR',
     },
     {
       value: 'en',
-      translationKey: 'WIDGET_PAGE_LANGUAGE_MODAL_EN'
+      translationKey: 'WIDGET_PAGE_LANGUAGE_MODAL_EN',
     },
     {
       value: 'de',
-      translationKey: 'WIDGET_PAGE_LANGUAGE_MODAL_DE'
-    }
+      translationKey: 'WIDGET_PAGE_LANGUAGE_MODAL_DE',
+    },
   ];
 
   /**
@@ -72,15 +70,14 @@ export class LanguagePageModalComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private widgetService: WidgetService
-  ) { }
-
+  ) {}
 
   /**
    * @inheritDoc
    */
   public ngOnInit() {
     this.languageForm = this.formBuilder.group({
-      language: this.widgetPage.language
+      language: this.widgetPage.language,
     });
   }
 
@@ -92,17 +89,22 @@ export class LanguagePageModalComponent implements OnInit {
     this.widgetPage.language = this.languageForm.controls.language.value;
 
     // Save the widget page (will trigger a render for the current widget)
-    this.widgetService.saveWidgetPage(this.widgetPage).subscribe(() => {
+    this.widgetService.saveWidgetPage(this.widgetPage).subscribe(
+      () => {
         this.isSaving = false;
-        this.widgetService.publishWidgetPage(this.widgetPage).subscribe(() => {
-          this.activeModal.close(true);
-          this.publishing = false;
-        }, () => {
-          this.publishing = false;
-        });
-      }, () => {
+        this.widgetService.publishWidgetPage(this.widgetPage).subscribe(
+          () => {
+            this.activeModal.close(true);
+            this.publishing = false;
+          },
+          () => {
+            this.publishing = false;
+          }
+        );
+      },
+      () => {
         this.isSaving = false;
-    });
+      }
+    );
   }
-
 }

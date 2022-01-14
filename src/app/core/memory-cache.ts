@@ -6,7 +6,6 @@ import * as _ from 'lodash';
  */
 @Injectable()
 export class MemoryCache {
-
   /**
    * The cache object
    */
@@ -62,7 +61,7 @@ export class MemoryCache {
       if (path) {
         path.unshift(bin);
         _.set(this.cache, path, {});
-      }else {
+      } else {
         // Clear the bin
         _.set(this.cache, bin, {});
       }
@@ -71,5 +70,4 @@ export class MemoryCache {
       this.cache = {};
     }
   }
-
 }

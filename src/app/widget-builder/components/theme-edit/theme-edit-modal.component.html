@@ -1,21 +1,34 @@
 <div class="modal-header">
-    <h4 class="modal-title">{{ "WIDGET_PAGE_THEME_EDIT_MODAL_TITLE" | translate }}</h4>
-    <button type="button" class="close" (click)="activeModal.dismiss('cancel')" [disabled]="isSaving">
-        <span aria-hidden="true">&times;</span>
-    </button>
+  <h4 class="modal-title">
+    {{ 'WIDGET_PAGE_THEME_EDIT_MODAL_TITLE' | translate }}
+  </h4>
+  <button
+    type="button"
+    class="close"
+    (click)="activeModal.dismiss('cancel')"
+    [disabled]="isSaving"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 
 <div class="modal-body modal-css-edit">
   <div class="row">
     <div class="col-md-4 col-sm-12">
-      <h3>{{ "WIDGET_PAGE_THEME_EDIT_MODAL_SUBTITLE" | translate }}</h3>
-      <p>{{ "WIDGET_PAGE_THEME_EDIT_MODAL_INTRO" | translate }}</p>
+      <h3>{{ 'WIDGET_PAGE_THEME_EDIT_MODAL_SUBTITLE' | translate }}</h3>
+      <p>{{ 'WIDGET_PAGE_THEME_EDIT_MODAL_INTRO' | translate }}</p>
       <fieldset>
         <div class="form-group">
           <div *ngFor="let option of themeOptions">
             <label>
-              <input class="mr-1" type="radio" [value]="option" name="selectedTheme" [checked]="isActiveTheme(option)"
-                (change)="selectTheme(option)">
+              <input
+                class="mr-1"
+                type="radio"
+                [value]="option"
+                name="selectedTheme"
+                [checked]="isActiveTheme(option)"
+                (change)="selectTheme(option)"
+              />
               <span>{{ option.name }}</span>
               <p class="form-text text-muted">{{ option.description }}</p>
             </label>
@@ -24,13 +37,32 @@
       </fieldset>
     </div>
     <div class="col-md-8 col-sm-12">
-      <img *ngIf="selectedTheme" style="width:100%;" src="/assets/themes/preview/{{ selectedTheme.preview }}"
-        alt="{{ selectedTheme.name }}">
+      <img
+        *ngIf="selectedTheme"
+        style="width: 100%"
+        src="/assets/themes/preview/{{ selectedTheme.preview }}"
+        alt="{{ selectedTheme.name }}"
+      />
     </div>
   </div>
 </div>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="save()" [disabled]="isSaving"><i *ngIf="isSaving" class="fa fa-spinner" aria-hidden="true"></i> {{ "WIDGET_PAGE_THEME_EDIT_MODAL_BUTTON_SAVE" | translate }}</button>
-    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel')" [disabled]="isSaving">{{ "WIDGET_PAGE_THEME_EDIT_MODAL_BUTTON_CANCEL" | translate }}</button>
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="save()"
+    [disabled]="isSaving"
+  >
+    <i *ngIf="isSaving" class="fa fa-spinner" aria-hidden="true"></i>
+    {{ 'WIDGET_PAGE_THEME_EDIT_MODAL_BUTTON_SAVE' | translate }}
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-secondary"
+    (click)="activeModal.dismiss('cancel')"
+    [disabled]="isSaving"
+  >
+    {{ 'WIDGET_PAGE_THEME_EDIT_MODAL_BUTTON_CANCEL' | translate }}
+  </button>
 </div>

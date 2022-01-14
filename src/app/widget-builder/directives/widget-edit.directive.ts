@@ -7,12 +7,9 @@ import { Directive, ViewContainerRef } from '@angular/core';
   selector: '[appWidgetEdit]',
 })
 export class WidgetEditDirective {
-
   /**
    * WidgetEditDirective constructor
    * @param viewContainerRef
    */
-  constructor(public viewContainerRef: ViewContainerRef) {
-  }
-
+  constructor(public viewContainerRef: ViewContainerRef) {}
 }

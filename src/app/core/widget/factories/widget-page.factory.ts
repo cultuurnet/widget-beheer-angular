@@ -5,13 +5,11 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class WidgetPageFactory {
-
   /**
    * WidgetPageFactory constructor.
    * @param layoutFactory
    */
-  constructor(private layoutFactory: LayoutFactory) {
-  }
+  constructor(private layoutFactory: LayoutFactory) {}
 
   /**
    * Create a WidgetPage object.
@@ -38,5 +36,4 @@ export class WidgetPageFactory {
 
     return widgetPage;
   }
-
 }

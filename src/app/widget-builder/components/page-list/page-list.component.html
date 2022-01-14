@@ -7,14 +7,14 @@
         [routerLink]="['/project', project.id, 'page', 'add']"
       >
         <i class="fa fa-plus-circle" aria-hidden="true"></i>
-        {{ "WIDGET_PAGE_LIST_ADD_NEW_WIDGET_BUTTON" | translate }}
+        {{ 'WIDGET_PAGE_LIST_ADD_NEW_WIDGET_BUTTON' | translate }}
       </button>
     </div>
   </div>
 
   <div class="row">
     <div *ngIf="!widgetPages.length && !legacyWidgetPages.length">
-      <p>{{ "WIDGET_PAGE_LIST_NO_PAGES_FOUND" | translate }}</p>
+      <p>{{ 'WIDGET_PAGE_LIST_NO_PAGES_FOUND' | translate }}</p>
     </div>
     <div *ngIf="widgetPages.length" class="col">
       <div *ngFor="let widgetPage of widgetPages" class="card">
@@ -33,7 +33,7 @@
                 class="btn btn-outline-secondary"
               >
                 <i class="fa fa-pencil-alt" aria-hidden="true"></i>
-                {{ "WIDGET_PAGE_LIST_EDIT_WIDGET_BUTTON" | translate }}
+                {{ 'WIDGET_PAGE_LIST_EDIT_WIDGET_BUTTON' | translate }}
               </button>
               <div
                 class="btn-group"
@@ -52,7 +52,7 @@
                     class="dropdown-item"
                   >
                     <i class="fa fa-copy" aria-hidden="true"></i>
-                    {{ "WIDGET_PAGE_LIST_DUPLICATE_WIDGET_BUTTON" | translate }}
+                    {{ 'WIDGET_PAGE_LIST_DUPLICATE_WIDGET_BUTTON' | translate }}
                   </button>
                   <button
                     ngbDropdownItem
@@ -67,7 +67,7 @@
                     class="dropdown-item"
                   >
                     <i class="fa fa-globe" aria-hidden="true"></i>
-                    {{ "WIDGET_PAGE_LANGUAGE_SETTING_BUTTON" | translate }}
+                    {{ 'WIDGET_PAGE_LANGUAGE_SETTING_BUTTON' | translate }}
                   </button>
                   <button
                     ngbDropdownItem
@@ -75,7 +75,7 @@
                     class="dropdown-item"
                   >
                     <i class="fa fa-trash" aria-hidden="true"></i>
-                    {{ "WIDGET_PAGE_LIST_DELETE_WIDGET_BUTTON" | translate }}
+                    {{ 'WIDGET_PAGE_LIST_DELETE_WIDGET_BUTTON' | translate }}
                   </button>
                 </div>
               </div>
@@ -100,8 +100,8 @@
     </div>
     <div *ngIf="legacyWidgetPages.length">
       <div class="page-list--legacy-widgets col">
-        <h2>{{ "TITLE_WIDGET_PAGE_LEGACY_WIDGETS_LIST" | translate }}</h2>
-        <p>{{ "WIDGET_PAGE_LIST_LEGACY_WIDGETS_INFO" | translate }}</p>
+        <h2>{{ 'TITLE_WIDGET_PAGE_LEGACY_WIDGETS_LIST' | translate }}</h2>
+        <p>{{ 'WIDGET_PAGE_LIST_LEGACY_WIDGETS_INFO' | translate }}</p>
         <div class="page-list">
           <div *ngFor="let widgetPage of legacyWidgetPages" class="card">
             <div class="card-header">
@@ -114,21 +114,21 @@
                   class="btn btn-link btn-link--remove"
                 >
                   <i class="fa fa-trash" aria-hidden="true"></i>
-                  {{ "WIDGET_PAGE_LIST_DELETE_WIDGET_BUTTON" | translate }}
+                  {{ 'WIDGET_PAGE_LIST_DELETE_WIDGET_BUTTON' | translate }}
                 </button>
               </div>
             </div>
             <div class="card-body">
               <div class="page-list--legacy-widgets--item-header clearfix">
                 <h4 class="float-left">
-                  {{ "TITLE_WIDGET_PAGE_LIST_LEGACY_VERSION" | translate }}
+                  {{ 'TITLE_WIDGET_PAGE_LIST_LEGACY_VERSION' | translate }}
                 </h4>
                 <button
                   (click)="upgradeWidgetPage(widgetPage)"
                   class="btn btn-outline-secondary float-right"
                 >
                   {{
-                    "WIDGET_PAGE_LIST_WIDGET_REQUEST_UPGRADE_BUTTON" | translate
+                    'WIDGET_PAGE_LIST_WIDGET_REQUEST_UPGRADE_BUTTON' | translate
                   }}
                 </button>
               </div>
@@ -146,7 +146,7 @@
               </div>
               <div class="page-list--legacy-widgets--item-header clearfix">
                 <h4 class="title-new-version float-left">
-                  {{ "TITLE_WIDGET_PAGE_LIST_NEW_VERSION" | translate }}
+                  {{ 'TITLE_WIDGET_PAGE_LIST_NEW_VERSION' | translate }}
                 </h4>
                 <button
                   [routerLink]="[
@@ -159,7 +159,7 @@
                   class="btn btn-outline-secondary float-right"
                 >
                   <i class="fa fa-pencil-alt" aria-hidden="true"></i>
-                  {{ "WIDGET_PAGE_LIST_EDIT_WIDGET_BUTTON" | translate }}
+                  {{ 'WIDGET_PAGE_LIST_EDIT_WIDGET_BUTTON' | translate }}
                 </button>
               </div>
               <div class="input-group clipboard-group">

@@ -4,30 +4,35 @@
   cursor: grab;
   float: left;
   padding: 0 15px;
-  text-align: center; }
+  text-align: center;
+}
 
 .blocks {
   margin-top: 15px;
   margin-left: -15px;
   margin-right: -15px;
-  padding: 0; }
+  padding: 0;
+}
 
 .blocks li a {
-  background-color: #FFF;
+  background-color: #fff;
   border: 1px solid #ccc;
   display: block;
   overflow: hidden;
   margin-bottom: 1em;
-  padding: 0.5em; }
+  padding: 0.5em;
+}
 
 .blocks li a:hover {
   text-decoration: none;
-  background-color: #EFEFEF; }
+  background-color: #efefef;
+}
 
 .blocks li a .fa {
   display: block;
   font-size: 1.2em;
-  margin-bottom: 0.25em; }
+  margin-bottom: 0.25em;
+}
 
 .blocks li.divider {
   width: 100%;
@@ -35,5 +40,5 @@
   clear: both;
   text-align: left;
   margin-bottom: 1em;
-  color: #777; }
-
+  color: #777;
+}

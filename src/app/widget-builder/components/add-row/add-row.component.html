@@ -1,19 +1,35 @@
 <div class="row-add">
   <span class="dropdown" ngbDropdown display="static" placement="bottom-left">
-    <button class="btn btn-default btn-sm dropdown-toggle" type="button" ngbDropdownToggle (click)="dropToggleClick($event)">
-      <i class="fa fa-plus-square-o fa-2x" aria-hidden="true"></i> <span class="dropdown-toggle--text"> {{ "BUTTON_ADD_ROW" | translate}}</span>
+    <button
+      class="btn btn-default btn-sm dropdown-toggle"
+      type="button"
+      ngbDropdownToggle
+      (click)="dropToggleClick($event)"
+    >
+      <i class="fa fa-plus-square-o fa-2x" aria-hidden="true"></i>
+      <span class="dropdown-toggle--text">
+        {{ 'BUTTON_ADD_ROW' | translate }}</span
+      >
     </button>
     <div ngbDropdownMenu class="dropdown-menu">
-        <a *ngFor="let layoutType of layoutTypes" ngbDropdownItem (click)="addRow($event, layoutType)" class="dropdown-item">
-          <div class="media">
-            <div class="media-left">
-              <img src="/assets/layouts/{{ layoutType.type }}.svg" class="component-icon">
-            </div>
-            <div class="media-body">
-              <p class="component-label">{{ layoutType.label | translate }}</p>
-            </div>
+      <a
+        *ngFor="let layoutType of layoutTypes"
+        ngbDropdownItem
+        (click)="addRow($event, layoutType)"
+        class="dropdown-item"
+      >
+        <div class="media">
+          <div class="media-left">
+            <img
+              src="/assets/layouts/{{ layoutType.type }}.svg"
+              class="component-icon"
+            />
           </div>
-        </a>
+          <div class="media-body">
+            <p class="component-label">{{ layoutType.label | translate }}</p>
+          </div>
+        </div>
+      </a>
     </div>
   </span>
 </div>

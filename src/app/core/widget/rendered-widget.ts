@@ -1,5 +1,4 @@
 export interface RenderedWidget {
-
   /**
    * The widget id (uuid)
    */
@@ -9,5 +8,4 @@ export interface RenderedWidget {
    * The rendered widget data
    */
   data: string;
-
 }

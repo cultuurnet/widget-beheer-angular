@@ -1,16 +1,26 @@
 <div class="modal-header">
-    <h4 class="modal-title">{{ "WIDGET_PAGE_PUBLISHED_MODAL_TITLE" | translate }}</h4>
-    <button type="button" class="close" (click)="activeModal.dismiss('closed')">
-        <span aria-hidden="true">&times;</span>
-    </button>
+  <h4 class="modal-title">
+    {{ 'WIDGET_PAGE_PUBLISHED_MODAL_TITLE' | translate }}
+  </h4>
+  <button type="button" class="close" (click)="activeModal.dismiss('closed')">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 <div class="modal-body">
-    <p>{{ "WIDGET_PAGE_PUBLISHED_MODAL_MESSAGE" | translate }}</p>
-    <div class="input-group clipboard-group">
-        <span class="input-group-btn"><app-clipboard-button [content]="embedCode"></app-clipboard-button></span>
-        <input type="text" value="{{ embedCode }}" class="form-control" >
-    </div>
+  <p>{{ 'WIDGET_PAGE_PUBLISHED_MODAL_MESSAGE' | translate }}</p>
+  <div class="input-group clipboard-group">
+    <span class="input-group-btn"
+      ><app-clipboard-button [content]="embedCode"></app-clipboard-button
+    ></span>
+    <input type="text" value="{{ embedCode }}" class="form-control" />
+  </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('closed')">{{ "WIDGET_PAGE_PUBLISHED_MODAL_CONFIRM" | translate }}</button>
+  <button
+    type="button"
+    class="btn btn-outline-secondary"
+    (click)="activeModal.dismiss('closed')"
+  >
+    {{ 'WIDGET_PAGE_PUBLISHED_MODAL_CONFIRM' | translate }}
+  </button>
 </div>

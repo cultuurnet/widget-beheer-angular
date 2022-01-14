@@ -1,18 +1,27 @@
 import { FormBuilder } from '@angular/forms';
-import { AbstractWidgetEditComponent } from '../../../core/widget/components/abstract-widget-edit-component';
+import { AbstractWidgetEditDirective } from '../../../core/widget/components/abstract-widget-edit-component';
 import { WidgetBuilderService } from '../../services/widget-builder.service';
-import { OnDestroy, OnInit } from '@angular/core';
+import { OnDestroy, OnInit, Directive } from '@angular/core';
 import { QueryStringService } from 'app/widget-builder/services/query-string.service';
 
 /**
  * Base widget edit component.
  */
-export class BaseWidgetEditComponent extends AbstractWidgetEditComponent implements OnInit, OnDestroy {
-
+@Directive()
+/* eslint-disable */
+export class BaseWidgetEditDirective
+  extends AbstractWidgetEditDirective
+  implements OnInit, OnDestroy
+{
+  /* eslint-enable */
   /**
-   * BaseWidgetEditComponent constructor
+   * BaseWidgetEditDirective constructor
    */
-  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService, public queryStringService: QueryStringService) {
+  constructor(
+    public formBuilder: FormBuilder,
+    public widgetBuilderService: WidgetBuilderService,
+    public queryStringService: QueryStringService
+  ) {
     super(formBuilder);
   }
 
@@ -27,18 +36,25 @@ export class BaseWidgetEditComponent extends AbstractWidgetEditComponent impleme
     this.buildForm();
 
     // Subscribe to changes in the form and reflect them on the widget model
-    this.formSubscription = this.widgetEditForm.valueChanges.subscribe(values => {
-      // Remove Line breaks from search results and tips widget
-      if(values.search_params && values.search_params.query){
-        values.search_params.query = this.queryStringService.removeLineBreaks(values.search_params.query)
+    this.formSubscription = this.widgetEditForm.valueChanges.subscribe(
+      (values) => {
+        // Remove Line breaks from search results and tips widget
+        if (values.search_params && values.search_params.query) {
+          values.search_params.query = this.queryStringService.removeLineBreaks(
+            values.search_params.query
+          );
+        }
+        // Remove line breaks from search box
+        if (values.general && values.general.search_query) {
+          values.general.search_query =
+            this.queryStringService.removeLineBreaks(
+              values.general.search_query
+            );
+        }
+        // Apply the values to the model
+        this.applyValuesToModel(values);
       }
-      // Remove line breaks from search box
-      if(values.general && values.general.search_query){
-        values.general.search_query = this.queryStringService.removeLineBreaks(values.general.search_query);
-      }
-      // Apply the values to the model
-      this.applyValuesToModel(values);
-    });
+    );
   }
 
   /**
@@ -69,10 +85,11 @@ export class BaseWidgetEditComponent extends AbstractWidgetEditComponent impleme
     this.buildForm();
 
     // Subscribe to changes in the form and reflect them on the widget model
-    this.formSubscription = this.widgetEditForm.valueChanges.subscribe(values => {
-      // Apply the values to the model
-      this.applyValuesToModel(values);
-    });
+    this.formSubscription = this.widgetEditForm.valueChanges.subscribe(
+      (values) => {
+        // Apply the values to the model
+        this.applyValuesToModel(values);
+      }
+    );
   }
-
 }

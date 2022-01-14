@@ -11,10 +11,9 @@ import { themes } from './themes';
  */
 @Component({
   selector: 'app-theme-edit-modal',
-  templateUrl: './theme-edit-modal.component.html'
+  templateUrl: './theme-edit-modal.component.html',
 })
 export class ThemeEditModalComponent implements OnInit {
-
   /**
    * The themeOptions
    */
@@ -25,7 +24,7 @@ export class ThemeEditModalComponent implements OnInit {
    */
   public selectedTheme: any;
 
-    /**
+  /**
    * The themeOptions
    */
   public cssTheme: any;
@@ -58,9 +57,7 @@ export class ThemeEditModalComponent implements OnInit {
     private widgetService: WidgetService,
     private widgetBuilderService: WidgetBuilderService,
     private http: HttpClient
-  ) { }
-
-
+  ) {}
 
   /**
    * @inheritDoc
@@ -69,7 +66,9 @@ export class ThemeEditModalComponent implements OnInit {
     this.themeOptions = themes;
 
     if (this.widgetPage.selectedTheme) {
-      this.selectedTheme = this.themeOptions.find( item => item.name ===  this.widgetPage.selectedTheme);
+      this.selectedTheme = this.themeOptions.find(
+        (item) => item.name === this.widgetPage.selectedTheme
+      );
     }
   }
 
@@ -96,7 +95,10 @@ export class ThemeEditModalComponent implements OnInit {
    * Get the CSS from the selected theme
    */
   public getCSSfromTheme() {
-    return this.http.get(`assets/themes/${this.selectedTheme.stylesheet}`, {responseType: 'text'});
+    return this.http.get(
+      `assets/themes/${this.selectedTheme.stylesheet as string}`,
+      { responseType: 'text' }
+    );
   }
 
   /**
@@ -105,27 +107,28 @@ export class ThemeEditModalComponent implements OnInit {
   public save() {
     this.isSaving = true;
     this.error = false;
-    this.getCSSfromTheme()
-    .subscribe(data => {
+    this.getCSSfromTheme().subscribe((data) => {
       this.widgetPage.css = data;
       this.widgetPage.selectedTheme = this.selectedTheme.name;
       // Save the widget page (will trigger a render for the current widget)
-      this.widgetService.saveWidgetPage(this.widgetPage).subscribe(() => {
-        // Save the selectedTheme
-        if (this.widgetBuilderService.attachCss(this.widgetPage.css)) {
-          // Close the modal
-          this.activeModal.close(true);
-        } else {
-          this.error = true;
+      this.widgetService.saveWidgetPage(this.widgetPage).subscribe(
+        () => {
+          // Save the selectedTheme
+          if (this.widgetBuilderService.attachCss(this.widgetPage.css)) {
+            // Close the modal
+            this.activeModal.close(true);
+          } else {
+            this.error = true;
+            this.isSaving = false;
+          }
+        },
+        () => {
           this.isSaving = false;
+
+          // Show error message in the modal
+          this.error = true;
         }
-      }, () => {
-        this.isSaving = false;
-
-        // Show error message in the modal
-        this.error = true;
-      });
-    })
+      );
+    });
   }
-
 }

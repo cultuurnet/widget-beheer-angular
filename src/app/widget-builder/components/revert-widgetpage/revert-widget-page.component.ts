@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { WidgetPage } from "../../../core/widget/widget-page";
-import { WidgetService } from "../../../core/widget/services/widget.service";
-import { Project } from "../../../core/project/project";
-import { ActivatedRoute, Router } from "@angular/router";
+import { WidgetPage } from '../../../core/widget/widget-page';
+import { WidgetService } from '../../../core/widget/services/widget.service';
+import { Project } from '../../../core/project/project';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastyService } from 'ng2-toasty';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -12,10 +12,9 @@ import { TranslateService } from '@ngx-translate/core';
  */
 @Component({
   selector: 'app-revert-widget-page',
-  templateUrl: './revert-widget-page.component.html'
+  templateUrl: './revert-widget-page.component.html',
 })
 export class RevertWidgetPageComponent implements OnInit {
-
   /**
    * The widgetpage to revert
    */
@@ -38,17 +37,18 @@ export class RevertWidgetPageComponent implements OnInit {
     private router: Router,
     private toastyService: ToastyService,
     private translateService: TranslateService
-  ) { }
+  ) {}
 
   /**
    * @inheritDoc
    */
   ngOnInit() {
-    this.route.data
-      .subscribe((data: { project: Project, widgetPage: WidgetPage }) => {
+    this.route.data.subscribe(
+      (data: { project: Project; widgetPage: WidgetPage }) => {
         this.project = data.project;
         this.widgetPage = data.widgetPage;
-      });
+      }
+    );
 
     this.revertWidgetPage();
   }
@@ -57,13 +57,38 @@ export class RevertWidgetPageComponent implements OnInit {
    * Revert the loaded widget page to its published state and redirect to the builder
    */
   revertWidgetPage() {
-    this.widgetService.revertWidgetPage(this.widgetPage).subscribe(() => {
-      this.router.navigate(['/project', this.project.id, 'page', this.widgetPage.id, 'edit']);
-      this.toastyService.success(this.translateService.instant('REVERT_WIDGET_PAGE_SUCCESS_NOTIFICATION'));
-    }, () => {
-      this.router.navigate(['/project', this.project.id, 'page', this.widgetPage.id, 'edit']);
-      this.toastyService.error(this.translateService.instant('REVERT_WIDGET_PAGE_FAILED_NOTIFICATION'));
-    });
+    this.widgetService
+      .revertWidgetPage(this.widgetPage)
+      .toPromise()
+      .then(
+        async () => {
+          await this.router.navigate([
+            '/project',
+            this.project.id,
+            'page',
+            this.widgetPage.id,
+            'edit',
+          ]);
+          this.toastyService.success(
+            this.translateService.instant(
+              'REVERT_WIDGET_PAGE_SUCCESS_NOTIFICATION'
+            )
+          );
+        },
+        async () => {
+          await this.router.navigate([
+            '/project',
+            this.project.id,
+            'page',
+            this.widgetPage.id,
+            'edit',
+          ]);
+          this.toastyService.error(
+            this.translateService.instant(
+              'REVERT_WIDGET_PAGE_FAILED_NOTIFICATION'
+            )
+          );
+        }
+      );
   }
-
 }

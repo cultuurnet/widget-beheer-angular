@@ -4,7 +4,6 @@ import { PageTemplate } from '../pageTemplate';
  * Empty page template
  */
 export class EmptyPageTemplate implements PageTemplate {
-
   /**
    * The template label
    */
@@ -13,7 +12,8 @@ export class EmptyPageTemplate implements PageTemplate {
   /**
    * The template description
    */
-  public description = 'Je begint met een lege lay-out en bouwt zo alles op je eigen maat.';
+  public description =
+    'Je begint met een lege lay-out en bouwt zo alles op je eigen maat.';
 
   /**
    * Preview available
@@ -24,10 +24,8 @@ export class EmptyPageTemplate implements PageTemplate {
    * The template configuration
    */
   public configuration = {
-    'title': 'Mijn pagina',
-    'rows': [
-    ],
-    'styling': {}
+    title: 'Mijn pagina',
+    rows: [],
+    styling: {},
   };
-
 }

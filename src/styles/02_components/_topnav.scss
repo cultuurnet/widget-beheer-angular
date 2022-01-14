@@ -16,7 +16,8 @@
 
 .topnav-acties {
   margin-right: 1rem;
-  a, .btn {
+  a,
+  .btn {
     color: $cnw_color-blueHeader;
   }
   .btn {
@@ -27,10 +28,9 @@
       text-decoration: none;
     }
   }
-
 }
 
-.btn.topnav-acties--user{
+.btn.topnav-acties--user {
   border: 1px solid #d5dde4;
   background-color: white;
 }
@@ -40,7 +40,6 @@
 }
 
 .page-title-edit {
-
   h4 {
     margin-bottom: 0;
     float: left;
@@ -48,7 +47,7 @@
     line-height: 2.2rem;
     font-size: 1rem;
     @include media-breakpoint-down(lg) {
-    //line-height: 1rem;
+      //line-height: 1rem;
       max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -56,11 +55,9 @@
     }
   }
 
-  .page-title  {
-
-
+  .page-title {
     .btn {
-      color: #FFF;
+      color: #fff;
 
       border-radius: 50%;
       background-color: #b6c4d0;
@@ -71,17 +68,15 @@
       width: 1.6rem;
       height: 1.6rem;
 
-
       &:hover {
         box-shadow: 1px 1px 1px 1px #d4d4d4;
         cursor: pointer;
-
       }
       .fa {
-        color: white;}
+        color: white;
+      }
     }
   }
-
 }
 
 .builder--edit-modus .btn--css {

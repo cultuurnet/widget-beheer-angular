@@ -10,10 +10,9 @@ import { validJson } from '../../../core/form/validators/json.directive';
  */
 @Component({
   selector: 'app-json-edit-modal',
-  templateUrl: './json-edit-modal.component.html'
+  templateUrl: './json-edit-modal.component.html',
 })
 export class JsonEditModalComponent implements OnInit {
-
   /**
    * The JSON edit form
    */
@@ -45,14 +44,17 @@ export class JsonEditModalComponent implements OnInit {
     public activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private widgetBuilderService: WidgetBuilderService
-  ) { }
+  ) {}
 
   /**
    * @inheritDoc
    */
   public ngOnInit() {
     this.jsonEditForm = this.formBuilder.group({
-      json: [JSON.stringify(this.widget.settings, undefined, 4), [Validators.required, validJson]],
+      json: [
+        JSON.stringify(this.widget.settings, undefined, 4),
+        [Validators.required, validJson],
+      ],
     });
   }
 
@@ -64,14 +66,19 @@ export class JsonEditModalComponent implements OnInit {
     this.showError = false;
 
     // Save the widget page (will trigger a render for the current widget)
-    this.widgetBuilderService.saveWidgetSettings(this.widget.id, JSON.parse(this.jsonEditForm.get('json').value)).then(() => {
-      this.activeModal.close(true);
-    }).catch(() => {
-      this.isSaving = false;
+    this.widgetBuilderService
+      .saveWidgetSettings(
+        this.widget.id,
+        JSON.parse(this.jsonEditForm.get('json').value)
+      )
+      .then(() => {
+        this.activeModal.close(true);
+      })
+      .catch(() => {
+        this.isSaving = false;
 
-      // Show error message in the modal
-      this.showError = true;
-    });
+        // Show error message in the modal
+        this.showError = true;
+      });
   }
-
 }

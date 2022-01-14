@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { WidgetBuilderService } from '../../../services/widget-builder.service';
 import * as _ from 'lodash';
-import { BaseWidgetEditComponent } from '../base-widget-edit.component';
+import { BaseWidgetEditDirective } from '../base-widget-edit.component';
 import { QueryStringService } from 'app/widget-builder/services/query-string.service';
 
 /**
@@ -10,10 +10,9 @@ import { QueryStringService } from 'app/widget-builder/services/query-string.ser
  */
 @Component({
   templateUrl: './facets-widget-edit.component.html',
-  providers: [QueryStringService]
+  providers: [QueryStringService],
 })
-export class FacetsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
-
+export class FacetsWidgetWidgetEditComponent extends BaseWidgetEditDirective {
   /**x
    * Array of search results widgets in the page
    * @type {Array}
@@ -23,7 +22,11 @@ export class FacetsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
   /**
    * FacetsWidgetWidgetEditComponent constructor
    */
-  constructor(public formBuilder: FormBuilder, public widgetBuilderService: WidgetBuilderService, public queryStringService: QueryStringService) {
+  constructor(
+    public formBuilder: FormBuilder,
+    public widgetBuilderService: WidgetBuilderService,
+    public queryStringService: QueryStringService
+  ) {
     super(formBuilder, widgetBuilderService, queryStringService);
   }
 
@@ -64,21 +67,16 @@ export class FacetsWidgetWidgetEditComponent extends BaseWidgetEditComponent {
   private getSearchResultsWidgets() {
     const searchResultsWidgets = [];
 
-    for (const rowKey in this.widgetBuilderService.widgetPage.rows) {
-      if (this.widgetBuilderService.widgetPage.rows.hasOwnProperty(rowKey)) {
-        for (const regionId in this.widgetBuilderService.widgetPage.rows[rowKey].regions) {
-          if (this.widgetBuilderService.widgetPage.rows[rowKey].regions.hasOwnProperty(regionId)) {
-            for (const widget of this.widgetBuilderService.widgetPage.rows[rowKey].regions[regionId].widgets) {
-              if (widget.type === 'search-results') {
-                searchResultsWidgets.push(widget);
-              }
-            }
+    this.widgetBuilderService.widgetPage.rows.forEach((row) => {
+      Object.values(row.regions).forEach((region) => {
+        region.widgets.forEach((widget) => {
+          if (widget.type === 'search-results') {
+            searchResultsWidgets.push(widget);
           }
-        }
-      }
-    }
+        });
+      });
+    });
 
     return searchResultsWidgets;
   }
-
 }

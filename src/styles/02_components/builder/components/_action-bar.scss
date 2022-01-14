@@ -22,7 +22,6 @@
     opacity: 1;
     transform: translate(0, 0);
     height: inherit;
-
   }
 }
 
@@ -51,7 +50,6 @@
   width: 75%;
   text-align: right;
 }
-
 
 //  OUTER ROW //
 .outer-row {
@@ -89,12 +87,12 @@
 .actions-bar--row .btn,
 .actions-bar--component .btn {
   background-color: $cnw_color-blueLight;
-  color: #FFF;
+  color: #fff;
   padding: 0;
   margin: 6px;
   border-radius: 50%;
   background-color: #b6c4d0;
-  color: #FFF;
+  color: #fff;
 
   padding: 0;
   margin: 5px;
@@ -110,24 +108,19 @@
   &.bnt-cnw-action--instellingen {
     background-color: #66addc;
     color: white;
-
   }
 
   &.bnt-cnw-action--loading {
     background-color: transparent;
   }
 
-
   &.bnt-cnw-action--drag {
     cursor: grab;
-
   }
 
   &:hover {
     box-shadow: 1px 1px 1px 1px #d4d4d4;
-
   }
-
 }
 
 .actions-bar--row li,

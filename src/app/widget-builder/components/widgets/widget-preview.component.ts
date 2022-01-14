@@ -12,14 +12,13 @@ import { Subscription } from 'rxjs';
  */
 @Component({
   selector: 'app-widget-preview',
-  templateUrl: './widget-preview.component.html'
+  templateUrl: './widget-preview.component.html',
 })
 
 /**
  * Component used for previewing a widget
  */
 export class WidgetPreviewComponent implements OnInit, OnDestroy {
-
   /**
    * The widget being previewed
    */
@@ -66,39 +65,44 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
    * @param widgetBuilderService
    * @param modalService
    */
-  constructor(private widgetBuilderService: WidgetBuilderService, private modalService: NgbModal) {
-  }
+  constructor(
+    private widgetBuilderService: WidgetBuilderService,
+    private modalService: NgbModal
+  ) {}
 
   /**
    * Temp on init code for the preview.
    */
   ngOnInit(): void {
     // Subscribe to the selected widget
-    this.widgetSelectedSubscription = this.widgetBuilderService.widgetSelected$.subscribe(widget => {
-      this.activeWidget = widget;
-    });
+    this.widgetSelectedSubscription =
+      this.widgetBuilderService.widgetSelected$.subscribe((widget) => {
+        this.activeWidget = widget;
+      });
 
     // Set the current active widget
     this.activeWidget = this.widgetBuilderService.getActiveWidget();
 
     // Subscribe to the widget preview observable
-    this.widgetPreviewSubscription = this.widgetBuilderService.widgetPreview$.subscribe(renderedWidget => {
-      if (renderedWidget.widgetId === this.widget.id) {
-        // If the content is empty, show the throbber and leave the old content (if any) as-is
-        if (_.isEmpty(renderedWidget.data)) {
-          this.isRendering = true;
-        } else {
-          // Rendering done, replace the content
-          this.widgetPreview = renderedWidget.data;
-          this.isRendering = false;
+    this.widgetPreviewSubscription =
+      this.widgetBuilderService.widgetPreview$.subscribe((renderedWidget) => {
+        if (renderedWidget.widgetId === this.widget.id) {
+          // If the content is empty, show the throbber and leave the old content (if any) as-is
+          if (_.isEmpty(renderedWidget.data)) {
+            this.isRendering = true;
+          } else {
+            // Rendering done, replace the content
+            this.widgetPreview = renderedWidget.data;
+            this.isRendering = false;
+          }
         }
-      }
-    });
+      });
 
     // Subscribe to the widgetbuilder sidebar status
-    this.sidebarSubscription = this.widgetBuilderService.sidebarStatus$.subscribe(status => {
-      this.sidebar = status;
-    });
+    this.sidebarSubscription =
+      this.widgetBuilderService.sidebarStatus$.subscribe((status) => {
+        this.sidebar = status;
+      });
 
     // Render the current widget
     this.widgetBuilderService.renderWidget(this.widget.id);
@@ -133,7 +137,6 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
     }
   }
 
-
   /**
    * Remove a widget from the page.
    * @param widget
@@ -146,16 +149,19 @@ export class WidgetPreviewComponent implements OnInit, OnDestroy {
     modalInstance.message = 'REMOVE_WIDGET_MODAL_MESSAGE';
 
     // Remove row on confirmation
-    modal.result.then(() => {
-      this.widgetBuilderService.widgetPage.removeWidget(widget);
+    modal.result.then(
+      () => {
+        this.widgetBuilderService.widgetPage.removeWidget(widget);
 
-      // Deselect active widget
-      this.widgetBuilderService.selectWidget();
+        // Deselect active widget
+        this.widgetBuilderService.selectWidget();
 
-      // Save the widget page
-      this.widgetBuilderService.saveWidgetPage();
-    }, (reason) => {
-      // Do nothing on dismiss, because the row hasn't changed
-    });
+        // Save the widget page
+        this.widgetBuilderService.saveWidgetPage();
+      },
+      (reason) => {
+        // Do nothing on dismiss, because the row hasn't changed
+      }
+    );
   }
 }

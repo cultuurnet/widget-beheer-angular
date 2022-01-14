@@ -7,7 +7,7 @@ import * as debouncePromise from 'debounce-promise';
 import { TranslateService } from '@ngx-translate/core';
 import { RenderedWidget } from '../../core/widget/rendered-widget';
 import * as _ from 'lodash';
-import { SavedWidget } from "../../core/widget/saved-widget";
+import { SavedWidget } from '../../core/widget/saved-widget';
 import { MemoryCache } from '../../core/memory-cache';
 
 /**
@@ -16,7 +16,6 @@ import { MemoryCache } from '../../core/memory-cache';
  */
 @Injectable()
 export class WidgetBuilderService {
-
   /**
    * The active widget page
    */
@@ -81,9 +80,16 @@ export class WidgetBuilderService {
    * @param widgetService
    * @param translateService
    */
-  constructor(private widgetService: WidgetService, private translateService: TranslateService, private cache: MemoryCache) {
+  constructor(
+    private widgetService: WidgetService,
+    private translateService: TranslateService,
+    private cache: MemoryCache
+  ) {
     // Debounce all widgetpage save calls for 500ms
-    this.debounceWidgetPageSave = debouncePromise(this.widgetPageSaveDebounced, 500);
+    this.debounceWidgetPageSave = debouncePromise(
+      this.widgetPageSaveDebounced,
+      500
+    );
   }
 
   /**
@@ -114,16 +120,16 @@ export class WidgetBuilderService {
   public saveWidgetSettings(widgetId: string, settings: any): Promise<any> {
     return new Promise((resolve, reject) => {
       // Clone the currently active widget page and apply the widget settings
-      const widgetPageClone =  _.cloneDeep(this.widgetPage);
+      const widgetPageClone = _.cloneDeep(this.widgetPage);
       const widget = widgetPageClone.findWidget(widgetId);
 
       // Apply the settings to the cloned widget
       if (widget) {
-        widget.settings = settings;
+        (widget as Widget).settings = settings;
       }
 
       this.widgetService.saveWidgetPage(widgetPageClone, widgetId).subscribe(
-        response => {
+        (response) => {
           // Replace the widget settings with the settings from the response
           const responseWidget = response.widgetPage.findWidget(widgetId);
           const originalWidget = this.widgetPage.findWidget(widgetId);
@@ -135,14 +141,15 @@ export class WidgetBuilderService {
           if (responseWidget && originalWidget) {
             for (const key in responseWidget.settings) {
               if (responseWidget.settings.hasOwnProperty(key)) {
-                originalWidget.settings[key] = responseWidget.settings[key];
+                (originalWidget as Widget).settings[key] =
+                  responseWidget.settings[key];
               }
             }
           }
 
           resolve(response);
         },
-        error => {
+        (error) => {
           reject(error);
         }
       );
@@ -161,30 +168,32 @@ export class WidgetBuilderService {
     const _self = this;
 
     if (widgetId) {
-        this.widgetSave.next({
-            widgetId: widgetId,
-            saving: true
-        });
+      this.widgetSave.next({
+        widgetId: widgetId,
+        saving: true,
+      });
     }
 
-    this.debounceWidgetPageSave(this.widgetPage, widgetId).then(response => {
-      // Set the draft state
-      this.widgetPage.draft = response.widgetPage.draft;
+    this.debounceWidgetPageSave(this.widgetPage, widgetId)
+      .then((response) => {
+        // Set the draft state
+        this.widgetPage.draft = response.widgetPage.draft;
 
-      // Update the widget preview with the new render response
-      if (widgetId) {
+        // Update the widget preview with the new render response
+        if (widgetId) {
           this.widgetSave.next({
-              widgetId: widgetId,
-              saving: false
+            widgetId: widgetId,
+            saving: false,
           });
-        _self.widgetPreview.next({
-          widgetId: widgetId,
-          data: response.preview
-        });
-      }
-    }).catch((ex) => {
-      console.error('Error saving the widget page', ex);
-    });
+          _self.widgetPreview.next({
+            widgetId: widgetId,
+            data: response.preview,
+          });
+        }
+      })
+      .catch((ex) => {
+        console.error('Error saving the widget page', ex);
+      });
   }
 
   /**
@@ -197,10 +206,10 @@ export class WidgetBuilderService {
     return new Promise((resolve, reject) => {
       // Debounce the widget page save
       this.widgetService.saveWidgetPage(widgetPage, widgetId).subscribe(
-        response => {
+        (response) => {
           resolve(response);
         },
-        error => console.error('Error saving the widget page', error)
+        (error) => console.error('Error saving the widget page', error)
       );
     });
   }
@@ -214,16 +223,20 @@ export class WidgetBuilderService {
     const _self = this;
     this.lockWidgetPreview(widgetId);
     const cachedLanguage = this.cache.get('currentLanguage', [widgetId], false);
-    const currentLanguage = (this.widgetPage.language) ? this.widgetPage.language : 'nl';
+    const currentLanguage = this.widgetPage.language
+      ? this.widgetPage.language
+      : 'nl';
     const resetCache = currentLanguage !== cachedLanguage;
     if (resetCache) {
       this.cache.put('currentLanguage', [widgetId], currentLanguage);
     }
     // Render the widget
-    this.widgetService.renderWidget(this.widgetPage.id, widgetId, resetCache).subscribe(widgetPreview => {
-      // Update the widget preview with the new render response
-      _self.widgetPreview.next(widgetPreview);
-    });
+    this.widgetService
+      .renderWidget(this.widgetPage.id, widgetId, resetCache)
+      .subscribe((widgetPreview) => {
+        // Update the widget preview with the new render response
+        _self.widgetPreview.next(widgetPreview);
+      });
   }
 
   /**
@@ -246,21 +259,23 @@ export class WidgetBuilderService {
   public generateWidgetName(widgetType: any) {
     // Get the widget type count
     let numWidgets = 1;
-    for (const rowKey in this.widgetPage.rows) {
-      if (this.widgetPage.rows.hasOwnProperty(rowKey)) {
-        for (const regionId in this.widgetPage.rows[rowKey].regions) {
-          if (this.widgetPage.rows[rowKey].regions.hasOwnProperty(regionId)) {
-            for (const widget of this.widgetPage.rows[rowKey].regions[regionId].widgets) {
-              if (widget.type === widgetType.type) {
-                numWidgets++;
-              }
-            }
+    this.widgetPage.rows.forEach((row) => {
+      Object.values(row.regions).forEach((region) => {
+        region.widgets.forEach((widget) => {
+          if (widget.type === widgetType.type) {
+            numWidgets++;
           }
-        }
-      }
-    }
+        });
+      });
+    });
 
-    return this.translateService.instant(widgetType.label).replace(/\s+/g, '-').toLowerCase() + '-' + numWidgets;
+    return (
+      (this.translateService.instant(widgetType.label) as string)
+        .replace(/\s+/g, '-')
+        .toLowerCase() +
+      '-' +
+      numWidgets.toString()
+    );
   }
 
   /**
@@ -288,7 +303,7 @@ export class WidgetBuilderService {
 
       // Append the style element to the DOM
       document.head.appendChild(styleElement);
-      const sheet = <CSSStyleSheet>styleElement.sheet;
+      const sheet = styleElement.sheet;
 
       // Create a dummy document and element for parsing purposes
       const doc = document.implementation.createHTMLDocument('');
@@ -300,7 +315,7 @@ export class WidgetBuilderService {
       // Iterate the CSS rules, prefix and add them to the styles
       const rules = dummyElement.sheet['cssRules'];
 
-      for (let i = 0 ; i < rules.length; i++) {
+      for (let i = 0; i < rules.length; i++) {
         const rule = rules[i];
 
         // Media rules
@@ -319,8 +334,7 @@ export class WidgetBuilderService {
 
         sheet.insertRule(rule.cssText);
       }
-    }
-    catch (err) {
+    } catch (err) {
       return false;
     }
 
@@ -361,5 +375,4 @@ export class WidgetBuilderService {
       document.head.removeChild(styleSheets[i]);
     }
   }
-
 }

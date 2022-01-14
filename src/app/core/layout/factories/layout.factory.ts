@@ -8,14 +8,15 @@ import { LayoutTypeRegistry } from '../services/layout-type-registry.service';
  */
 @Injectable()
 export class LayoutFactory {
-
   /**
    * LayoutFactory constructor.
    * @param widgetTypeRegistry
    * @param layoutTypeRegistry
    */
-  constructor(private widgetTypeRegistry: WidgetTypeRegistry, private layoutTypeRegistry: LayoutTypeRegistry) {
-  }
+  constructor(
+    private widgetTypeRegistry: WidgetTypeRegistry,
+    private layoutTypeRegistry: LayoutTypeRegistry
+  ) {}
 
   /**
    * Create a Layout object.
@@ -31,11 +32,15 @@ export class LayoutFactory {
         if (jsonObject.regions.hasOwnProperty(regionId)) {
           // Parse widgets and add to the region
           for (const item in jsonObject.regions[regionId].widgets) {
-            if (jsonObject.regions[regionId].widgets.hasOwnProperty(item) && layout.regions.hasOwnProperty(regionId)) {
+            if (
+              jsonObject.regions[regionId].widgets.hasOwnProperty(item) &&
+              layout.regions.hasOwnProperty(regionId)
+            ) {
               layout.regions[regionId].addWidget(
                 this.widgetTypeRegistry.getInstance(
-                  jsonObject.regions[regionId].widgets[item]),
-                  jsonObject.regions[regionId].widgets[item].id
+                  jsonObject.regions[regionId].widgets[item]
+                ),
+                jsonObject.regions[regionId].widgets[item].id
               );
             }
           }
@@ -45,5 +50,4 @@ export class LayoutFactory {
 
     return layout;
   }
-
 }

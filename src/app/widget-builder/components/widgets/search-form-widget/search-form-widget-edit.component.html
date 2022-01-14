@@ -1,234 +1,455 @@
-<div class="selected-element ">
-  <p>{{ "LABEL_SELECTED_ELEMENT" | translate }}: </p>
+<div class="selected-element">
+  <p>{{ 'LABEL_SELECTED_ELEMENT' | translate }}:</p>
   <div class="input-group">
-      <div class="input-group-prepend">
-          <span class="input-group-text"><i class="fa fa-crosshairs"></i></span>
-      </div>
-      <input type="text" class="form-control" [(ngModel)]="widget.name" (ngModelChange)="handleWidgetNameChanged($event)" />
+    <div class="input-group-prepend">
+      <span class="input-group-text"><i class="fa fa-crosshairs"></i></span>
+    </div>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="widget.name"
+      (ngModelChange)="handleWidgetNameChanged($event)"
+    />
   </div>
 </div>
 
-<ngb-tabset>
-  <ngb-tab>
-    <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_PROPERTIES" | translate }}</ng-template>
-    <ng-template ngbTabContent>
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+  <li ngbNavItem>
+    <a ngbNavLink>{{ 'TITLE_EDIT_FORM_PROPERTIES' | translate }}</a>
+    <ng-template ngbNavContent>
       <form [formGroup]="widgetEditForm" novalidate>
         <ngb-accordion [closeOthers]="true">
           <ngb-panel id="general" formGroupName="general">
-            <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_GENERAL" | translate }}
+            <ng-template ngbPanelTitle
+              >{{
+                'LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_GENERAL' | translate
+              }}
             </ng-template>
             <ng-template ngbPanelContent>
               <fieldset>
-                <legend>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_GENERAL_RESULT_PAGE" | translate }}</legend>
+                <legend>
+                  {{
+                    'LABEL_SEARCH_WIDGET_EDIT_FORM_GENERAL_RESULT_PAGE'
+                      | translate
+                  }}
+                </legend>
                 <div class="form-group">
-                  <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_GENERAL_RESULT_PAGE_URL" | translate }}</label>
-                  <input type="text" formControlName="destination" class="form-control">
+                  <label>{{
+                    'LABEL_SEARCH_WIDGET_EDIT_FORM_GENERAL_RESULT_PAGE_URL'
+                      | translate
+                  }}</label>
+                  <input
+                    type="text"
+                    formControlName="destination"
+                    class="form-control"
+                  />
                 </div>
                 <label>
-                  <input type="checkbox" formControlName="new_window">
-                  <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_GENERAL_NEW_WINDOW" | translate }}</span>
+                  <input type="checkbox" formControlName="new_window" />
+                  <span>{{
+                    'LABEL_SEARCH_WIDGET_EDIT_FORM_GENERAL_NEW_WINDOW'
+                      | translate
+                  }}</span>
                 </label>
                 <div class="form-group">
-                  <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_GENERAL_SEARCH_BUTTON_LABEL" | translate }}</label>
-                  <input type="text" formControlName="button_label" class="form-control">
+                  <label>{{
+                    'LABEL_SEARCH_WIDGET_EDIT_FORM_GENERAL_SEARCH_BUTTON_LABEL'
+                      | translate
+                  }}</label>
+                  <input
+                    type="text"
+                    formControlName="button_label"
+                    class="form-control"
+                  />
                 </div>
               </fieldset>
             </ng-template>
           </ngb-panel>
           <ngb-panel id="header" formGroupName="header">
-            <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_HEADER" | translate }}</ng-template>
+            <ng-template ngbPanelTitle>{{
+              'LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_HEADER' | translate
+            }}</ng-template>
             <ng-template ngbPanelContent>
-              <ckeditor formControlName="body" [config]="ckeditorConfig.basic_html"></ckeditor>
+              <ckeditor
+                formControlName="body"
+                [config]="ckeditorConfig.basic_html"
+              ></ckeditor>
             </ng-template>
           </ngb-panel>
           <ngb-panel id="type" formGroupName="type">
-            <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_TYPE" | translate }}</ng-template>
+            <ng-template ngbPanelTitle>{{
+              'LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_TYPE' | translate
+            }}</ng-template>
             <ng-template ngbPanelContent>
               <fieldset formGroupName="keyword_search">
-                <legend>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TYPE_KEYWORD_SEARCH" | translate }}</legend>
+                <legend>
+                  {{
+                    'LABEL_SEARCH_WIDGET_EDIT_FORM_TYPE_KEYWORD_SEARCH'
+                      | translate
+                  }}
+                </legend>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" formControlName="enabled" class="form-check-input">
-                    <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TYPE_KEYWORD_SEARCH_SEARCH_BY_TERM" | translate }}</span>
+                    <input
+                      type="checkbox"
+                      formControlName="enabled"
+                      class="form-check-input"
+                    />
+                    <span>{{
+                      'LABEL_SEARCH_WIDGET_EDIT_FORM_TYPE_KEYWORD_SEARCH_SEARCH_BY_TERM'
+                        | translate
+                    }}</span>
                   </label>
                 </div>
                 <div *ngIf="settings.fields.type.keyword_search.enabled">
-
                   <div class="form-group">
-                    <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TYPE_KEYWORD_SEARCH_LABEL" | translate }}</label>
-                    <input type="text" formControlName="label" class="form-control">
+                    <label>{{
+                      'LABEL_SEARCH_WIDGET_EDIT_FORM_TYPE_KEYWORD_SEARCH_LABEL'
+                        | translate
+                    }}</label>
+                    <input
+                      type="text"
+                      formControlName="label"
+                      class="form-control"
+                    />
                   </div>
                   <div class="form-group">
-                    <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TYPE_KEYWORD_SEARCH_PLACEHOLDER" | translate }}</label>
-                    <input type="text" formControlName="placeholder" class="form-control">
+                    <label>{{
+                      'LABEL_SEARCH_WIDGET_EDIT_FORM_TYPE_KEYWORD_SEARCH_PLACEHOLDER'
+                        | translate
+                    }}</label>
+                    <input
+                      type="text"
+                      formControlName="placeholder"
+                      class="form-control"
+                    />
                   </div>
                 </div>
               </fieldset>
               <fieldset *ngIf="settings.fields.type.group_filters">
-                <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
-                <app-widget-group-filters-edit (groupFiltersChanged)="handleGroupFiltersChanged()"
-                  [groupFilters]="settings.fields.type.group_filters"></app-widget-group-filters-edit>
+                <legend>{{ 'LABEL_GROUP_FILTERS' | translate }}</legend>
+                <app-widget-group-filters-edit
+                  (groupFiltersChanged)="handleGroupFiltersChanged()"
+                  [groupFilters]="settings.fields.type.group_filters"
+                ></app-widget-group-filters-edit>
               </fieldset>
             </ng-template>
           </ngb-panel>
           <ngb-panel id="location" formGroupName="location">
-            <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_PLACE" | translate }}</ng-template>
+            <ng-template ngbPanelTitle>{{
+              'LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_PLACE' | translate
+            }}</ng-template>
             <ng-template ngbPanelContent>
               <fieldset formGroupName="keyword_search">
-                <legend>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH" | translate }}</legend>
+                <legend>
+                  {{
+                    'LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH'
+                      | translate
+                  }}
+                </legend>
                 <label>
-                  <input type="checkbox" formControlName="enabled">
-                  <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH_SEARCH_BY_LOCATION" | translate }}</span>
+                  <input type="checkbox" formControlName="enabled" />
+                  <span>{{
+                    'LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH_SEARCH_BY_LOCATION'
+                      | translate
+                  }}</span>
                 </label>
 
                 <div *ngIf="settings.fields.location.keyword_search.enabled">
                   <div class="form-group">
-                    <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH_LABEL" | translate }}</label>
-                    <input type="text" formControlName="label" class="form-control">
+                    <label>{{
+                      'LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH_LABEL'
+                        | translate
+                    }}</label>
+                    <input
+                      type="text"
+                      formControlName="label"
+                      class="form-control"
+                    />
                   </div>
                   <div class="form-group">
-                    <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH_PLACEHOLDER" | translate }}</label>
-                    <input type="text" formControlName="placeholder" class="form-control">
+                    <label>{{
+                      'LABEL_SEARCH_WIDGET_EDIT_FORM_PLACE_KEYWORD_SEARCH_PLACEHOLDER'
+                        | translate
+                    }}</label>
+                    <input
+                      type="text"
+                      formControlName="placeholder"
+                      class="form-control"
+                    />
                   </div>
                 </div>
               </fieldset>
               <fieldset *ngIf="settings.fields.location.group_filters">
-                <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
-                <app-widget-group-filters-edit (groupFiltersChanged)="handleGroupFiltersChanged()"
-                  [groupFilters]="settings.fields.location.group_filters"></app-widget-group-filters-edit>
+                <legend>{{ 'LABEL_GROUP_FILTERS' | translate }}</legend>
+                <app-widget-group-filters-edit
+                  (groupFiltersChanged)="handleGroupFiltersChanged()"
+                  [groupFilters]="settings.fields.location.group_filters"
+                ></app-widget-group-filters-edit>
               </fieldset>
             </ng-template>
           </ngb-panel>
           <ngb-panel id="time" formGroupName="time">
-            <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_TIME" | translate }}</ng-template>
+            <ng-template ngbPanelTitle>{{
+              'LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_TIME' | translate
+            }}</ng-template>
             <ng-template ngbPanelContent>
               <fieldset formGroupName="date_search">
-                <legend>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL" | translate }}</legend>
+                <legend>
+                  {{ 'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL' | translate }}
+                </legend>
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input type="checkbox" formControlName="enabled" class="form-check-input">
-                    <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE" | translate }}</span>
+                    <input
+                      type="checkbox"
+                      formControlName="enabled"
+                      class="form-check-input"
+                    />
+                    <span>{{
+                      'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE'
+                        | translate
+                    }}</span>
                   </label>
                 </div>
                 <div *ngIf="settings.fields.time.date_search.enabled">
                   <div class="form-group">
-                    <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_LABEL" | translate }}</label>
-                    <input type="text" formControlName="label" class="form-control">
+                    <label>{{
+                      'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_LABEL'
+                        | translate
+                    }}</label>
+                    <input
+                      type="text"
+                      formControlName="label"
+                      class="form-control"
+                    />
                   </div>
                   <div class="form-group">
-                    <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_PLACEHOLDER" | translate }}</label>
-                    <input type="text" formControlName="placeholder" class="form-control">
+                    <label>{{
+                      'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_PLACEHOLDER'
+                        | translate
+                    }}</label>
+                    <input
+                      type="text"
+                      formControlName="placeholder"
+                      class="form-control"
+                    />
                   </div>
                   <div formGroupName="options">
-                    <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS" | translate }}</label>
+                    <label>{{
+                      'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS'
+                        | translate
+                    }}</label>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" formControlName="today" class="form-check-input" />
-                        <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_TODAY" | translate }}</span>
+                        <input
+                          type="checkbox"
+                          formControlName="today"
+                          class="form-check-input"
+                        />
+                        <span>{{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_TODAY'
+                            | translate
+                        }}</span>
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" formControlName="tomorrow" class="form-check-input" />
-                        <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_TOMORROW" | translate }}</span>
+                        <input
+                          type="checkbox"
+                          formControlName="tomorrow"
+                          class="form-check-input"
+                        />
+                        <span>{{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_TOMORROW'
+                            | translate
+                        }}</span>
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" formControlName="weekend" class="form-check-input" />
-                        <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_WEEKEND" | translate }}</span>
+                        <input
+                          type="checkbox"
+                          formControlName="weekend"
+                          class="form-check-input"
+                        />
+                        <span>{{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_WEEKEND'
+                            | translate
+                        }}</span>
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" formControlName="days_7" class="form-check-input" />
-                        <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_7" | translate }}</span>
+                        <input
+                          type="checkbox"
+                          formControlName="days_7"
+                          class="form-check-input"
+                        />
+                        <span>{{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_7'
+                            | translate
+                        }}</span>
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" formControlName="days_14" class="form-check-input" />
-                        <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_14" | translate }}</span>
+                        <input
+                          type="checkbox"
+                          formControlName="days_14"
+                          class="form-check-input"
+                        />
+                        <span>{{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_14'
+                            | translate
+                        }}</span>
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" formControlName="days_30" class="form-check-input" />
-                        <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_30" | translate }}</span>
+                        <input
+                          type="checkbox"
+                          formControlName="days_30"
+                          class="form-check-input"
+                        />
+                        <span>{{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_30'
+                            | translate
+                        }}</span>
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" formControlName="custom_date" class="form-check-input" />
-                        <span>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_CUSTOM_DATE" | translate }}</span>
+                        <input
+                          type="checkbox"
+                          formControlName="custom_date"
+                          class="form-check-input"
+                        />
+                        <span>{{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_CUSTOM_DATE'
+                            | translate
+                        }}</span>
                       </label>
                     </div>
                   </div>
                   <div>
-                    <label>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_DEFAULT_OPTION" | translate }}</label>
-                    <select formControlName="default_option" class="form-control">
-                      <option value="placeholder">{{ settings.fields.time.date_search.placeholder }}</option>
+                    <label>{{
+                      'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_DEFAULT_OPTION'
+                        | translate
+                    }}</label>
+                    <select
+                      formControlName="default_option"
+                      class="form-control"
+                    >
+                      <option value="placeholder">
+                        {{ settings.fields.time.date_search.placeholder }}
+                      </option>
                       <option value="today">
-                        {{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_TODAY" | translate }}
+                        {{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_TODAY'
+                            | translate
+                        }}
                       </option>
                       <option value="tomorrow">
-                        {{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_TOMORROW" | translate }}
+                        {{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_TOMORROW'
+                            | translate
+                        }}
                       </option>
                       <option value="weekend">
-                        {{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_WEEKEND" | translate }}
+                        {{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_WEEKEND'
+                            | translate
+                        }}
                       </option>
                       <option value="days_7">
-                        {{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_7" | translate }}
+                        {{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_7'
+                            | translate
+                        }}
                       </option>
                       <option value="days_14">
-                        {{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_14" | translate }}
+                        {{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_14'
+                            | translate
+                        }}
                       </option>
                       <option value="days_30">
-                        {{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_30" | translate }}
+                        {{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_DAYS_30'
+                            | translate
+                        }}
                       </option>
                       <option value="custom_date">
-                        {{ "LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_CUSTOM_DATE" | translate }}
+                        {{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS_OPTION_CUSTOM_DATE'
+                            | translate
+                        }}
                       </option>
                     </select>
                   </div>
                 </div>
               </fieldset>
               <fieldset *ngIf="settings.fields.time.group_filters">
-                <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
-                <app-widget-group-filters-edit (groupFiltersChanged)="handleGroupFiltersChanged()"
-                  [groupFilters]="settings.fields.time.group_filters"></app-widget-group-filters-edit>
+                <legend>{{ 'LABEL_GROUP_FILTERS' | translate }}</legend>
+                <app-widget-group-filters-edit
+                  (groupFiltersChanged)="handleGroupFiltersChanged()"
+                  [groupFilters]="settings.fields.time.group_filters"
+                ></app-widget-group-filters-edit>
               </fieldset>
             </ng-template>
           </ngb-panel>
           <ngb-panel id="extra">
-            <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_EXTRA_OPTIONS" | translate }}
+            <ng-template ngbPanelTitle
+              >{{
+                'LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_EXTRA_OPTIONS'
+                  | translate
+              }}
             </ng-template>
             <ng-template ngbPanelContent>
-              <fieldset *ngIf="settings.fields.extra.group_filters || settings.fields.extra.facility_filters">
-                <legend>{{ "LABEL_GROUP_FILTERS" | translate }}</legend>
-                <app-widget-group-filters-edit (groupFiltersChanged)="handleGroupFiltersChanged()"
-                  [groupFilters]="settings.fields.extra.group_filters"></app-widget-group-filters-edit>
-                <app-widget-facility-filters-edit (facilityFiltersChanged)="handleGroupFiltersChanged()"
-                  [facilityFilters]="settings.fields.facility_filters"></app-widget-facility-filters-edit>
+              <fieldset
+                *ngIf="
+                  settings.fields.extra.group_filters ||
+                  settings.fields.extra.facility_filters
+                "
+              >
+                <legend>{{ 'LABEL_GROUP_FILTERS' | translate }}</legend>
+                <app-widget-group-filters-edit
+                  (groupFiltersChanged)="handleGroupFiltersChanged()"
+                  [groupFilters]="settings.fields.extra.group_filters"
+                ></app-widget-group-filters-edit>
+                <app-widget-facility-filters-edit
+                  (facilityFiltersChanged)="handleGroupFiltersChanged()"
+                  [facilityFilters]="settings.fields.facility_filters"
+                ></app-widget-facility-filters-edit>
               </fieldset>
             </ng-template>
           </ngb-panel>
 
           <ngb-panel id="footer" formGroupName="footer">
-            <ng-template ngbPanelTitle>{{ "LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_FOOTER" | translate }}
+            <ng-template ngbPanelTitle
+              >{{
+                'LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_FOOTER' | translate
+              }}
             </ng-template>
             <ng-template ngbPanelContent>
-              <ckeditor formControlName="body" [config]="ckeditorConfig.basic_html"></ckeditor>
+              <ckeditor
+                formControlName="body"
+                [config]="ckeditorConfig.basic_html"
+              ></ckeditor>
             </ng-template>
           </ngb-panel>
         </ngb-accordion>
       </form>
     </ng-template>
-  </ngb-tab>
-  <ngb-tab>
-    <ng-template ngbTabTitle>{{ "TITLE_EDIT_FORM_JSON" | translate }}</ng-template>
-    <ng-template ngbTabContent>
-      <app-json-edit [widget]="widget" (jsonChanged)="handleJsonChanged()"></app-json-edit>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink>{{ 'TITLE_EDIT_FORM_JSON' | translate }}</a>
+    <ng-template ngbNavContent>
+      <app-json-edit
+        [widget]="widget"
+        (jsonChanged)="handleJsonChanged()"
+      ></app-json-edit>
     </ng-template>
-  </ngb-tab>
-</ngb-tabset>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav"></div>

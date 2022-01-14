@@ -18,7 +18,6 @@ import { BackButton } from '../../../core/topbar/back-button';
   templateUrl: './add-page.component.html',
 })
 export class AddPageComponent implements OnInit {
-
   /**
    * The current project
    */
@@ -39,7 +38,7 @@ export class AddPageComponent implements OnInit {
    * @param router
    * @param topbarService
    */
-  constructor (
+  constructor(
     private pageTemplateRegistry: PageTemplateRegistry,
     private widgetPageFactory: WidgetPageFactory,
     private widgetService: WidgetService,
@@ -47,16 +46,15 @@ export class AddPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private topbarService: TopbarService
-  ) { }
+  ) {}
 
   /**
    * @inheritDoc
    */
   ngOnInit(): void {
-    this.route.data
-      .subscribe((data: { project: Project }) => {
-        this.project = data.project;
-      });
+    this.route.data.subscribe((data: { project: Project }) => {
+      this.project = data.project;
+    });
 
     const keys = Object.keys(this.pageTemplateRegistry.pageTemplates);
     for (const key of keys) {
@@ -64,7 +62,7 @@ export class AddPageComponent implements OnInit {
         id: key,
         label: this.pageTemplateRegistry.pageTemplates[key].label,
         description: this.pageTemplateRegistry.pageTemplates[key].description,
-        template: this.pageTemplateRegistry.pageTemplates[key]
+        template: this.pageTemplateRegistry.pageTemplates[key],
       });
     }
 
@@ -76,7 +74,7 @@ export class AddPageComponent implements OnInit {
    * Add a widget page to the current project
    * @param pageTemplate
    */
-  public addPage(pageTemplate: any) {
+  public async addPage(pageTemplate: any) {
     // Merge the project id on the template configuration
     const config = pageTemplate.template.configuration;
 
@@ -87,10 +85,19 @@ export class AddPageComponent implements OnInit {
     const widgetPage = this.widgetPageFactory.create(templateConfig);
 
     // Save the newly created widget page
-    this.widgetService.saveWidgetPage(widgetPage).subscribe(widgetSaveResponse => {
-      // Redirect to the widget builder
-      this.router.navigate(['/project', this.project.id, 'page', widgetSaveResponse.widgetPage.id, 'edit']);
-    });
+    await this.widgetService
+      .saveWidgetPage(widgetPage)
+      .toPromise()
+      .then(async (widgetSaveResponse) => {
+        // Redirect to the widget builder
+        await this.router.navigate([
+          '/project',
+          this.project.id,
+          'page',
+          widgetSaveResponse.widgetPage.id,
+          'edit',
+        ]);
+      });
   }
 
   /**
@@ -99,16 +106,21 @@ export class AddPageComponent implements OnInit {
    */
   public preview(pageTemplate: any) {
     // Show the confirmation modal
-    const modal = this.modalService.open(TemplatePreviewModalComponent, {windowClass: 'modal-fullscreen'});
+    const modal = this.modalService.open(TemplatePreviewModalComponent, {
+      windowClass: 'modal-fullscreen',
+    });
     const modalInstance = modal.componentInstance;
 
     modalInstance.templateId = pageTemplate.id;
     modalInstance.title = pageTemplate.label;
 
-    modal.result.then(() => {
-      // Add the page
-      this.addPage(pageTemplate);
-    }, () => {});
+    modal.result.then(
+      async () => {
+        // Add the page
+        await this.addPage(pageTemplate);
+      },
+      () => {}
+    );
   }
 
   /**
@@ -116,12 +128,11 @@ export class AddPageComponent implements OnInit {
    */
   private initTopbar() {
     // Add a back button
-    this.topbarService.setBackButton(new BackButton(
-      BackButton.TYPE_ROUTE,
-      this.project.name,
-      null,
-      ['/project', this.project.id]
-    ));
+    this.topbarService.setBackButton(
+      new BackButton(BackButton.TYPE_ROUTE, this.project.name, null, [
+        '/project',
+        this.project.id,
+      ])
+    );
   }
-
 }

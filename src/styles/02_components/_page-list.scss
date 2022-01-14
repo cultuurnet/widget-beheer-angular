@@ -1,7 +1,5 @@
-
 .page-template,
 .page-list {
-
   .page-list--header {
     margin: 2rem 0;
     h1 {
@@ -12,7 +10,6 @@
   }
 
   .page-list--legacy-widgets {
-
     &--item-header {
       padding: 0.75rem 0;
     }
@@ -23,15 +20,12 @@
     }
 
     h4 {
-
       font-size: 1rem;
 
       &.title-new-version {
         margin-top: 10px;
       }
-
     }
-
   }
 
   .card-header {
@@ -44,7 +38,6 @@
     color: #292b2c;
     font-size: 1.2em;
     font-weight: 400;
-
   }
 
   .card {
@@ -57,35 +50,31 @@
   }
 
   .btn {
-
     &.btn-primary {
       color: #fff;
-      border: 1px solid #004F94;
+      border: 1px solid #004f94;
       text-decoration: none;
       border-radius: 2px;
 
       &:hover {
         border-color: #00192e;
-        background-color: #004F94;
-        color: #FFF;
-        transition: all .15s ease-out;
+        background-color: #004f94;
+        color: #fff;
+        transition: all 0.15s ease-out;
         cursor: pointer;
         text-decoration: none;
-
       }
     }
 
     &.btn-link--remove {
-      color:$red;
-      border-color:$red;
+      color: $red;
+      border-color: $red;
       &:hover {
         background-color: $red;
         color: white;
       }
     }
   }
-
-
 }
 
 .clipboard-group {
@@ -98,11 +87,11 @@
     border-color: #dadada;
     color: #dadada;
     .fa {
-      color: #004F92;
+      color: #004f92;
     }
 
     &:hover {
-      background-color: #004F94;
+      background-color: #004f94;
       .fa {
         color: #fff;
       }
@@ -118,7 +107,6 @@
     }
   }
 }
-
 
 .page-template {
   h4 {

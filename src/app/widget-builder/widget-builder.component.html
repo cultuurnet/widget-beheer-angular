@@ -1,23 +1,42 @@
-<div class="global-builder--wrapper " [ngClass]="{ 'builder--edit-modus showbar--show' : showSidebar}">
-    <div class="builder--wrapper">
-        <div class="builder" [ngClass]="{ 'no-sidebar' : !showSidebar, 'builder--edit-modus' : showSidebar }">
-            <div (click)="deselectWidget($event)" id="widget-builder-preview" class='preview {{ viewMode }}'>
-                <div class="preview-inner">
-                    <div class="page">
-                        <div *ngIf="editingPage" class="page-inner">
-                            <app-row-preview *ngFor="let row of editingPage.rows; let i = index" [rows]="editingPage.rows" [index]="i" [row]="row" (widgetSelected)="editWidget($event)"></app-row-preview>
-                            <app-add-row [page]="editingPage"></app-add-row>
-                        </div>
-                    </div>
-                </div>
+<div
+  class="global-builder--wrapper"
+  [ngClass]="{ 'builder--edit-modus showbar--show': showSidebar }"
+>
+  <div class="builder--wrapper">
+    <div
+      class="builder"
+      [ngClass]="{
+        'no-sidebar': !showSidebar,
+        'builder--edit-modus': showSidebar
+      }"
+    >
+      <div
+        (click)="deselectWidget($event)"
+        id="widget-builder-preview"
+        class="preview {{ viewMode }}"
+      >
+        <div class="preview-inner">
+          <div class="page">
+            <div *ngIf="editingPage" class="page-inner">
+              <app-row-preview
+                *ngFor="let row of editingPage.rows; let i = index"
+                [rows]="editingPage.rows"
+                [index]="i"
+                [row]="row"
+                (widgetSelected)="editWidget($event)"
+              ></app-row-preview>
+              <app-add-row [page]="editingPage"></app-add-row>
             </div>
-            <div class="sidebar ">
-                <div class="sidebar-inner">
-                    <div [ngClass]="{ 'hidden' : !activeWidget }">
-                        <ng-template appWidgetEdit></ng-template>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="sidebar">
+        <div class="sidebar-inner">
+          <div [ngClass]="{ hidden: !activeWidget }">
+            <ng-template appWidgetEdit></ng-template>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

@@ -8,10 +8,9 @@ import { WidgetService } from '../../../core/widget/services/widget.service';
  */
 @Component({
   selector: 'app-publish-page-confirmation-modal',
-  templateUrl: './publish-page-confirmation-modal.component.html'
+  templateUrl: './publish-page-confirmation-modal.component.html',
 })
 export class PublishPageConfirmationModalComponent implements OnInit {
-
   /**
    * The widgetpage that was published
    */
@@ -27,14 +26,18 @@ export class PublishPageConfirmationModalComponent implements OnInit {
    * @param activeModal
    * @param widgetService
    */
-  constructor(public activeModal: NgbActiveModal, private widgetService: WidgetService) {
-  }
+  constructor(
+    public activeModal: NgbActiveModal,
+    private widgetService: WidgetService
+  ) {}
 
   /**
    * @inheritDoc
    */
   public ngOnInit() {
-    this.embedCode = this.widgetService.getWidgetPageEmbedUrl(this.widgetPage, true);
+    this.embedCode = this.widgetService.getWidgetPageEmbedUrl(
+      this.widgetPage,
+      true
+    );
   }
-
 }
