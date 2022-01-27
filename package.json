@@ -45,7 +45,6 @@
     "ngx-clipboard": "14.0.2",
     "rxjs": "6.6.7",
     "rxjs-compat": "^6.5.2",
-    "tslib": "^2.0.0",
     "urijs": "^1.18.10",
     "zone.js": "~0.11.4"
   },
@@ -64,14 +63,12 @@
     "@typescript-eslint/eslint-plugin": "4.16.1",
     "@typescript-eslint/parser": "4.16.1",
     "codelyzer": "^6.0.0",
+    "depcheck": "^1.4.3",
     "eslint": "^7.6.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsdoc": "30.7.6",
     "eslint-plugin-prefer-arrow": "1.2.2",
-    "handlebars": "^4.5.3",
     "prettier": "^2.5.1",
-    "ts-node": "~2.0.0",
-    "tslint": "~6.1.0",
     "typescript": "4.5.5"
   }
 }
