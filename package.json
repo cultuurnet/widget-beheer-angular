@@ -9,6 +9,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "types:check": "tsc --noEmit",
     "format": "prettier . --write --ignore-path .gitignore",
     "format:check": "prettier . --check --ignore-path .gitignore",
     "lint": "eslint . --fix --ignore-path .gitignore",
