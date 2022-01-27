@@ -274,8 +274,8 @@ export class PageListComponent implements OnInit {
    */
   public getWidgetPageUrl(
     widgetPage: WidgetPage,
-    tags: boolean = false,
-    forceCurrentVersion: boolean = false
+    tags = false,
+    forceCurrentVersion = false
   ) {
     return this.widgetService.getWidgetPageEmbedUrl(
       widgetPage,

@@ -137,7 +137,7 @@ export class WidgetService {
   public getWidgetPage(
     project_id: string,
     pageId: string,
-    reset: boolean = false
+    reset = false
   ): Observable<WidgetPage> {
     if (!reset) {
       const widgetPage = this.cache.get('widgetPage', [pageId], false);
@@ -227,7 +227,7 @@ export class WidgetService {
    */
   public getWidgetPages(
     projectId: string,
-    reset: boolean = false
+    reset = false
   ): Observable<Array<WidgetPage>> {
     if (!reset) {
       const widgetPages = [];
@@ -299,7 +299,7 @@ export class WidgetService {
   public renderWidget(
     widgetPageId: string,
     widgetId: string,
-    reset: boolean = false
+    reset = false
   ): Observable<RenderedWidget> {
     if (!reset) {
       const renderedWidget = this.cache.get(
@@ -345,7 +345,7 @@ export class WidgetService {
    * @param reset
    * @return {Observable<unknown>}
    */
-  public getWidgetDefaultSettings(reset: boolean = false): Observable<unknown> {
+  public getWidgetDefaultSettings(reset = false): Observable<unknown> {
     if (!reset) {
       const defaultSettings = this.cache.get(
         'widgetDefaultSettings',
@@ -410,8 +410,8 @@ export class WidgetService {
    */
   public getWidgetPageEmbedUrl(
     widgetPage: WidgetPage,
-    scriptTags: boolean = false,
-    forceCurrentVersion: boolean = false
+    scriptTags = false,
+    forceCurrentVersion = false
   ): string {
     let embedUrl = environment.widgetApi_embedUrl_current;
 
@@ -439,7 +439,7 @@ export class WidgetService {
    * @param reset
    * @return {Observable<CssStats>}
    */
-  public getCssStats(url: string, reset: boolean = false): Observable<any> {
+  public getCssStats(url: string, reset = false): Observable<any> {
     // Cache per origin
     const scrapeURI = URI(url);
     const cacheKey = scrapeURI.origin();
