@@ -135,7 +135,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
 
     // Set the dragula options
     this.dragulaService.setOptions(this.dragulaContainer, {
-      moves: function (el, container, handle) {
+      moves: function (_el, _container, handle) {
         return (
           handle.classList.contains('fa-arrows-alt') ||
           handle.classList.contains('bnt-cnw-action--drag')
@@ -159,11 +159,9 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
     });
 
     // Subscribe to the drop event
-    this.dragulaDropSubscription = this.dragulaService.drop.subscribe(
-      (value) => {
-        this.onDragulaDrop(value);
-      }
-    );
+    this.dragulaDropSubscription = this.dragulaService.drop.subscribe(() => {
+      this.onDragulaDrop();
+    });
 
     // Init the topbar
     this.initTopbar();
@@ -192,7 +190,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
    * Start editing the given widget.
    * @param widget
    */
-  public editWidget(widget?: Widget) {
+  public editWidget(widget?: any) {
     this.activeWidget = widget;
 
     const viewContainerRef = this.editForm.viewContainerRef;
@@ -233,7 +231,7 @@ export class WidgetBuilderComponent implements OnInit, OnDestroy {
   /**
    * React to the dragula drop event
    */
-  private onDragulaDrop(args) {
+  private onDragulaDrop() {
     this.widgetBuilderService.saveWidgetPage();
   }
 

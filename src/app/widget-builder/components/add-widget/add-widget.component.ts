@@ -50,7 +50,7 @@ export class AddWidgetComponent implements OnInit {
    * @param widgetType
    */
   public addWidget(
-    $event: { stopWidgetDeselect: boolean },
+    $event: MouseEvent & { stopWidgetDeselect?: boolean },
     widgetType: any
   ): void {
     $event.stopWidgetDeselect = true;
@@ -77,7 +77,9 @@ export class AddWidgetComponent implements OnInit {
    * Catch the click on the droptoggle
    * @param $event
    */
-  public dropToggleClick($event: { stopWidgetDeselect: boolean }) {
+  public dropToggleClick(
+    $event: MouseEvent & { stopWidgetDeselect?: boolean }
+  ) {
     $event.stopWidgetDeselect = true;
   }
 }

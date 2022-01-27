@@ -7,10 +7,10 @@ export interface CssStats {
   /**
    * Color codes
    */
-  colors: Array<Record<string, unknown>>;
+  colors: Array<Record<string, string>>;
 
   /**
    * Fonts
    */
-  font_families: Array<Record<string, unknown>>;
+  font_families: Array<Record<string, string>>;
 }

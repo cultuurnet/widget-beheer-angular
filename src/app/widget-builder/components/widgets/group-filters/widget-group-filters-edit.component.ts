@@ -9,7 +9,6 @@ import {
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { group_filter_types } from 'app/widget-builder/constants/group-filters';
-import { Widget } from '../../../../core/widget/widget';
 import { TranslateService } from '@ngx-translate/core';
 import { QueryStringService } from 'app/widget-builder/services/query-string.service';
 
@@ -161,10 +160,10 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    */
   private buildGroupFilterItem(
     type?: string,
-    label: string = '',
-    placeholder: string = '',
+    label = '',
+    placeholder = '',
     options: any = [],
-    default_option: string = ''
+    default_option = ''
   ) {
     const filterOptions = [];
 
@@ -216,7 +215,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
    * @param query
    * @returns {FormGroup}
    */
-  private buildFilterOptionItem(label: string = '', query: string = '') {
+  private buildFilterOptionItem(label = '', query = '') {
     return this.formBuilder.group({
       label: [label, Validators.required],
       query: [query, Validators.required],
@@ -272,7 +271,7 @@ export class WidgetGroupFiltersEditComponent implements OnInit, OnDestroy {
   /**
    * Handle a status update of group filters.
    */
-  public handleStatusUpdate(event: any) {
+  public handleStatusUpdate() {
     this.groupFiltersChanged.emit();
   }
 }

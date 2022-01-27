@@ -4,7 +4,7 @@
       <input
         type="checkbox"
         formControlName="enabled"
-        (change)="handleStatusUpdate($event)"
+        (change)="handleStatusUpdate()"
       />
       <span>{{ 'LABEL_CHECKBOX_EXTRA_FACILITY_FILTERS' | translate }}</span>
     </label>
@@ -14,15 +14,16 @@
       <div formArrayName="filters">
         <div
           *ngFor="
-            let facilityFilter of facilityFilterForm['controls'].filters
-              .controls;
+            let facilityFilter of facilityFilterForm['controls'].filters[
+              'controls'
+            ];
             let i = index
           "
         >
           <div [formGroupName]="i">
             <div>
               <app-row-edit
-                [rows]="facilityFilterForm['controls'].filters.controls"
+                [rows]="facilityFilterForm['controls'].filters['controls']"
                 [index]="i"
                 [modalTitle]="'GROUP_FILTER_REMOVE_MODAL_TITLE'"
                 [modalMessage]="'GROUP_FILTER_REMOVE_MODAL_MESSAGE'"
@@ -140,7 +141,7 @@
                 <div
                   *ngIf="
                     !hideDefaultOption &&
-                    facilityFilter['controls'].type.value != 'select_multiple'
+                    facilityFilter['controls'].type.value !== 'select_multiple'
                   "
                 >
                   <label>{{
@@ -173,7 +174,7 @@
         (click)="addFacilityFilterItem()"
         [disabled]="
           facilityFilterForm.invalid &&
-          facilityFilterForm['controls'].filters.controls.length
+          facilityFilterForm['controls'].filters['controls'].length
         "
       >
         <i aria-hidden="true" class="fa fa-plus-square-o fa-1x"></i>
