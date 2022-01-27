@@ -12,6 +12,7 @@
     "experimentalDecorators": true,
     "target": "ES5",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["ESNext", "dom"]
+    "lib": ["ESNext", "dom"],
+    "skipLibCheck": true
   }
 }
