@@ -245,11 +245,10 @@ export class TopbarComponent implements OnInit, OnDestroy {
     // Create factory out of the component we want to create
     const componentFactory = this.resolver.resolveComponentFactory(component);
 
+    const viewContainerRef = this.dynamicComponentContainer;
+
     // Insert the component into the dom container
-    const dynamicComponent = this.dynamicComponentContainer.createComponent(
-      componentFactory,
-      index
-    );
+    const dynamicComponent = viewContainerRef.createComponent(component);
 
     // Get all event emitters and subscribe to them, so we can have the events bubble of through the topbar service
     const componentInstance = dynamicComponent.instance;
