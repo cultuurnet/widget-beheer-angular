@@ -203,7 +203,7 @@ export class WidgetBuilderService {
    * @param widgetId
    */
   private widgetPageSaveDebounced(widgetPage: WidgetPage, widgetId?: string) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       // Debounce the widget page save
       this.widgetService.saveWidgetPage(widgetPage, widgetId).subscribe(
         (response) => {

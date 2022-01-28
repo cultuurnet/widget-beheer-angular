@@ -1,11 +1,9 @@
 import {
   Component,
   ComponentFactoryResolver,
-  ComponentRef,
   EventEmitter,
   OnDestroy,
   OnInit,
-  ReflectiveInjector,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
@@ -102,8 +100,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
             this.addDynamicComponent(
               res.data.id,
               res.data.component,
-              res.data.inputs,
-              res.data.index
+              res.data.inputs
             );
             break;
           case 'clear':
@@ -236,20 +233,11 @@ export class TopbarComponent implements OnInit, OnDestroy {
    * @param inputs
    * @param index
    */
-  private addDynamicComponent(
-    id: string,
-    component: any,
-    inputs: any = {},
-    index: number = null
-  ) {
-    // Create factory out of the component we want to create
-    const componentFactory = this.resolver.resolveComponentFactory(component);
+  private addDynamicComponent(id: string, component: any, inputs: any = {}) {
+    const viewContainerRef = this.dynamicComponentContainer;
 
     // Insert the component into the dom container
-    const dynamicComponent = this.dynamicComponentContainer.createComponent(
-      componentFactory,
-      index
-    );
+    const dynamicComponent = viewContainerRef.createComponent(component);
 
     // Get all event emitters and subscribe to them, so we can have the events bubble of through the topbar service
     const componentInstance = dynamicComponent.instance;

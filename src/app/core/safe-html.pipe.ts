@@ -18,7 +18,7 @@ export class SafeHTMLPipe implements PipeTransform {
    * @param exponent
    * @return {SafeHtml}
    */
-  transform(html: string, exponent: string): SafeHtml {
+  transform(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 }

@@ -265,7 +265,7 @@
                         <input
                           id="publisher{{ i }}"
                           type="checkbox"
-                          [formControl]="publisher"
+                          [formControl]="$any(publisher)"
                           (change)="
                             updateSelectedPublishers('items', 'editorial_label')
                           "
@@ -1187,7 +1187,7 @@
                         <input
                           id="publisher{{ i }}"
                           type="checkbox"
-                          [formControl]="publisher"
+                          [formControl]="$any(publisher)"
                           (change)="
                             updateSelectedPublishers('detail_page', 'articles')
                           "

@@ -11,7 +11,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -25,7 +24,13 @@
               "urijs",
               "rxjs/Subject",
               "ng2-dragula"
-            ]
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -39,7 +44,6 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "fileReplacements": [
@@ -60,7 +64,6 @@
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "fileReplacements": [
@@ -69,22 +72,26 @@
                   "with": "src/environments/environment.jenkins.ts"
                 }
               ]
-            }
-          }
+            },
+            "development": {}
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "angular:build"
-          },
+          "options": {},
           "configurations": {
             "production": {
               "browserTarget": "angular:build:production"
             },
             "jenkins": {
               "browserTarget": "angular:build:jenkins"
+            },
+            "development": {
+              "browserTarget": "angular:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -110,14 +117,8 @@
           "options": {
             "protractorConfig": "./protractor.conf.js",
             "devServerTarget": "angular:serve"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**/*"]
-          }
+          },
+          "configurations": {}
         }
       }
     }
