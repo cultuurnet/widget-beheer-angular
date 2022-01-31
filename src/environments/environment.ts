@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 export const environment = {
   production: process.env.NG_APP_PRODUCTION,
   apiUrl: process.env.NG_APP_API_URL,
