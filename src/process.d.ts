@@ -1,4 +1,4 @@
-declare let process: {
+declare const process: {
   env: {
     NG_APP_ENV: string;
 
