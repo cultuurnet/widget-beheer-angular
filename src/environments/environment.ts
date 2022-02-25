@@ -1,18 +1,14 @@
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 
 export const environment = {
-  production: false,
-  apiUrl: 'https://projectaanvraag-api.uitdatabank.dev/',
-  widgetApi_currentVersion: 3,
-  widgetApi_embedUrl_current:
-    'http://projectaanvraag-api.uitdatabank.dev/widgets/layout/:page_id.js',
+  production: process.env.NG_APP_PRODUCTION,
+  apiUrl: process.env.NG_APP_API_URL,
+  widgetApi_currentVersion: process.env.NG_APP_WIDGET_API_CURRENT_VERSION,
+  widgetApi_embedUrl_current: process.env.NG_APP_WIDGET_API_EMBED_URL_CURRENT,
   widgetApi_embedUrl_forceCurrent:
-    'https://projectaanvraag-api.uitdatabank.dev/widgets/layout/v3/:page_id.js',
-  projectaanvraagDashboardUrl: 'https://projectaanvraag.uitdatabank.dev/',
-  zendeskUrl: 'http://www.zendesk.com',
-  publishers:
-    'BRUZZ,Gazet van Antwerpen,Indiestyle,UiTX,UiT,UiTMetVlieg,NXTPOP',
+    process.env.NG_APP_WIDGET_API_EMBEDURL_FORCE_CURRENT,
+  projectaanvraagDashboardUrl: process.env.NG_APP_PROJECTAANVRAAG_DASHBOARD_URL,
+  zendeskUrl: process.env.NG_APP_ZENDESK_URL,
+  publishers: process.env.NG_APP_PUBLISHERS,
 };
