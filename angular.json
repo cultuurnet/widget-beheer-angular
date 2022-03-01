@@ -9,8 +9,11 @@
       "projectType": "application",
       "architect": {
         "build": {
-          "builder": "@ngx-env/builder:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "extra-webpack.config.js"
+            },
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -66,20 +69,10 @@
           "defaultConfiguration": ""
         },
         "serve": {
-          "builder": "@ngx-env/builder:dev-server",
-          "options": {},
-          "configurations": {
-            "production": {
-              "browserTarget": "angular:build:production"
-            },
-            "jenkins": {
-              "browserTarget": "angular:build:jenkins"
-            },
-            "development": {
-              "browserTarget": "angular:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "browserTarget": "angular:build"
+          }
         },
         "extract-i18n": {
           "builder": "@ngx-env/builder:extract-i18n",
