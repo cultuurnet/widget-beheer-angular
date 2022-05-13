@@ -43,7 +43,6 @@ testem.log
 Thumbs.db
 
 .htaccess
-config.json
 widgetbeheer-angular-deploy-config
 
 .env
