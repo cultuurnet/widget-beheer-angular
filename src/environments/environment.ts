@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 const getConfig = async () => {
   try {
     const data = await fetch('/assets/config.json');
