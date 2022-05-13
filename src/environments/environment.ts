@@ -2,8 +2,19 @@
 // @ts-nocheck
 import config from '../assets/config.json';
 
-export const environment = {
-  production: config.NG_APP_API_URL,
+type Environment = {
+  production: boolean;
+  apiUrl: string;
+  widgetApi_currentVersion: string;
+  widgetApi_embedUrl_current: string;
+  widgetApi_embedUrl_forceCurrent: string;
+  projectaanvraagDashboardUrl: string;
+  zendeskUrl: string;
+  publishers: string;
+};
+
+export const environment: Environment = {
+  production: config.NG_APP_PRODUCTION,
   apiUrl: config.NG_APP_API_URL,
   widgetApi_currentVersion: config.NG_APP_WIDGET_API_CURRENT_VERSION,
   widgetApi_embedUrl_current: config.NG_APP_WIDGET_API_EMBED_URL_CURRENT,
