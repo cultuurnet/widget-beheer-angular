@@ -22,6 +22,7 @@ export class ApiRequestInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const requestURI = URI(req.url);
+    console.log(environment.apiUrl);
     const apiURI = URI(environment.apiUrl);
 
     // Only act on widget API requests
