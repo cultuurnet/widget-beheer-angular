@@ -14,12 +14,7 @@ const main = async () => {
     enableProdMode();
   }
 
-  platformBrowserDynamic()
-    .bootstrapModule(AppModule)
-    .then(
-      () => {},
-      () => {}
-    );
+  await platformBrowserDynamic().bootstrapModule(AppModule);
 };
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
