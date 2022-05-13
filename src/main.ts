@@ -2,15 +2,25 @@ import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
+import {
+  environment,
+  setEnvironmentFromConfig,
+} from './environments/environment';
 
-if (environment.production) {
-  enableProdMode();
-}
+const main = async () => {
+  await setEnvironmentFromConfig();
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .then(
-    () => {},
-    () => {}
-  );
+  if (environment.production) {
+    enableProdMode();
+  }
+
+  platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .then(
+      () => {},
+      () => {}
+    );
+};
+
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+main();
