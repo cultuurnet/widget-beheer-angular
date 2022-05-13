@@ -23,7 +23,7 @@ type Environment = {
 
 export let environment: Environment;
 
-export const setEnvironmentFromConfig = async () => {
+export const setEnvironmentToConfig = async () => {
   const config = await getConfig();
 
   environment = {

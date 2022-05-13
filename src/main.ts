@@ -4,11 +4,11 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import {
   environment,
-  setEnvironmentFromConfig,
+  setEnvironmentToConfig,
 } from './environments/environment';
 
 const main = async () => {
-  await setEnvironmentFromConfig();
+  await setEnvironmentToConfig();
 
   if (environment.production) {
     enableProdMode();
