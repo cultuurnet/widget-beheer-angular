@@ -1,10 +1,10 @@
 {
-  "NG_APP_PRODUCTION": true,
-  "NG_APP_API_URL": "https://projectaanvraag-api.uitdatabank.dev/",
-  "NG_APP_WIDGET_API_CURRENT_VERSION": "3",
-  "NG_APP_WIDGET_API_EMBED_URL_CURRENT": "https://projectaanvraag-api.uitdatabank.dev/widgets/layout/:page_id.js",
-  "NG_APP_WIDGET_API_EMBEDURL_FORCE_CURRENT": "https://projectaanvraag-api.uitdatabank.dev/widgets/layout/v3/:page_id.js",
-  "NG_APP_PROJECTAANVRAAG_DASHBOARD_URL": "https://projectaanvraag.uitdatabank.dev/",
-  "NG_APP_ZENDESK_URL": "https://www.zendesk.com",
-  "NG_APP_PUBLISHERS": "BRUZZ,Gazet van Antwerpen,Indiestyle,UiTX,UiT,UiTMetVlieg,NXTPOP"
+  "production": true,
+  "apiUrl": "https://projectaanvraag-api.uitdatabank.dev/",
+  "widgetApi_currentVersion": "3",
+  "widgetApi_embedUrl_current": "https://projectaanvraag-api.uitdatabank.dev/widgets/layout/:page_id.js",
+  "widgetApi_embedUrl_forceCurrent": "https://projectaanvraag-api.uitdatabank.dev/widgets/layout/v3/:page_id.js",
+  "projectaanvraagDashboardUrl": "https://projectaanvraag.uitdatabank.dev/",
+  "zendeskUrl": "https://www.zendesk.com",
+  "publishers": "BRUZZ,Gazet van Antwerpen,Indiestyle,UiTX,UiT,UiTMetVlieg,NXTPOP"
 }
