@@ -13,7 +13,10 @@
     "target": "ES5",
     "typeRoots": ["node_modules/@types"],
     "lib": ["ESNext", "dom"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
   "angularCompilerOptions": {
     "strictTemplates": true
