@@ -29,7 +29,6 @@ pipeline {
                 stage('Build') {
                     steps {
                         sh label: 'Build binaries', script: 'bundle exec rake widgetbeheer-frontend:build'
-                        /* sh label: 'Minimize dependencies', script: 'bundle exec rake uit-frontend:minimize_dependencies' */
                     }
                 }
                 stage('Build artifact') {
