@@ -15,8 +15,6 @@ namespace 'widgetbeheer-frontend' do
     FileUtils.mkdir_p('pkg')
 
     system("fpm -s dir -t deb -n #{artifact_name} -v #{version} -a all -p pkg \
-      -x '.git*' -x pkg -x vendor -x lib -x Rakefile -x Gemfile -x Gemfile.lock \
-      -x .bundle -x 'Jenkinsfile.*' \
       --prefix /var/www/widgetbeheer-frontend --deb-no-default-config-files \
       -C dist \
       --deb-user www-data --deb-group www-data \
