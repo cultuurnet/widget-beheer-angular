@@ -11,6 +11,7 @@ namespace 'widgetbeheer-frontend' do
     license        = 'Apache-2.0'
     description    = 'Widgetbeheer Frontend'
     source         = 'https://github.com/cultuurnet/widget-beheer-angular'
+    build_url      = ENV['JOB_DISPLAY_URL'].nil? ? "" : ENV['JOB_DISPLAY_URL']
 
     FileUtils.mkdir_p('pkg')
 
@@ -22,6 +23,7 @@ namespace 'widgetbeheer-frontend' do
       --license '#{license}' -m '#{maintainer}' \
       --deb-field 'Pipeline-Version: #{calver_version}' \
       --deb-field 'Git-Ref: #{git_short_ref}' \
+      --deb-field 'Build-Url: #{build_url}' \
       ."
     ) or exit 1
   end
