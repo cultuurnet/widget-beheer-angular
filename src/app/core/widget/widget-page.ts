@@ -108,20 +108,12 @@ export class WidgetPage {
    */
   public removeWidget(widget: Widget): boolean {
     let isRemoved = false;
-
-    this.rows = this.rows.map((row) => {
-      row.regions.content.widgets = row.regions.content.widgets.filter(
-        (currentWidget) => {
-          if (currentWidget.id === widget.id) return false;
-          isRemoved = true;
+    this.rows.forEach((row, rowIndex) => {
           return true;
         }
-      );
-
-      return row;
+      });
     });
-
-    return isRemoved;
+    return false;
   }
 
   /**
