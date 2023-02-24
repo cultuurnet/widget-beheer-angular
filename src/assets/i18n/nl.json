@@ -339,6 +339,6 @@
   "PAGE_NOT_FOUND_MESSAGE": "De opgevraagde pagina werd niet gevonden.",
   "SAPI3_SYNTAX": "Deze query stel je op aan de hand van Sapi3-syntax. Werk met 'Advanced Queries'.",
   "SAPI3_DOC_LINK": "Meer info",
-  "SAPI3_DOC_URL": "https://documentatie.uitdatabank.be/content/search_api_3/latest/start.html",
+  "SAPI3_DOC_URL": "https://docs.publiq.be/docs/uitdatabank/search-api/advanced-queries",
   "SAPI_EXAMPLE_QUERY": "Bv. terms.id:\"0.7.0.0.0\""
 }
