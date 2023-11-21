@@ -1,7 +1,6 @@
 version: "3.5"
 
 services:
-
   node:
     build: docker/node
     hostname: 'widget-beheer.local'
