@@ -12,6 +12,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends nodejs
 
 RUN npm install -g @angular/cli
 
-RUN npm i
-
 ENTRYPOINT ["tail", "-f", "/dev/null"]
