@@ -320,7 +320,7 @@ export class PageListComponent implements OnInit {
       new BackButton(
         BackButton.TYPE_LINK,
         'TOPBAR_BACK_BUTTON_LABEL_PROJECTAANVRAGEN',
-        environment.projectaanvraagDashboardUrl
+        environment.platformUrl
       )
     );
   }
