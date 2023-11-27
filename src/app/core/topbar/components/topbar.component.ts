@@ -142,7 +142,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
   public logout() {
     this.userService.logout().subscribe(
       () => {
-        window.location.href = environment.projectaanvraagDashboardUrl;
+        window.location.href = environment.platformLogoutUrl;
       },
       () => {
         // Failed logging out
