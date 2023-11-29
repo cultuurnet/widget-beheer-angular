@@ -1,10 +1,12 @@
 {
   "production": true,
-  "apiUrl": "https://projectaanvraag-api.uitdatabank.dev/",
+  "apiUrl": "http://host.docker.internal/",
   "widgetApi_currentVersion": "3",
-  "widgetApi_embedUrl_current": "https://projectaanvraag-api.uitdatabank.dev/widgets/layout/:page_id.js",
-  "widgetApi_embedUrl_forceCurrent": "https://projectaanvraag-api.uitdatabank.dev/widgets/layout/v3/:page_id.js",
-  "projectaanvraagDashboardUrl": "https://projectaanvraag.uitdatabank.dev/",
+  "widgetApi_embedUrl_current": "http://host.docker.internal/widgets/layout/:page_id.js",
+  "widgetApi_embedUrl_forceCurrent": "http://host.docker.internal/widgets/layout/v3/:page_id.js",
+  "projectaanvraagDashboardUrl": "http://host.docker.internal:9999",
+  "platformUrl": "http://localhost:81/admin",
   "zendeskUrl": "https://www.zendesk.com",
-  "publishers": "BRUZZ,Gazet van Antwerpen,Indiestyle,UiTX,UiT,UiTMetVlieg,NXTPOP"
+  "publishers": "BRUZZ,Gazet van Antwerpen,Indiestyle,UiTX,UiT,UiTMetVlieg,NXTPOP",
+  "platformIsLive": true
 }
