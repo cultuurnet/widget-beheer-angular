@@ -5,7 +5,7 @@
   "widgetApi_embedUrl_current": "http://host.docker.internal/widgets/layout/:page_id.js",
   "widgetApi_embedUrl_forceCurrent": "http://host.docker.internal/widgets/layout/v3/:page_id.js",
   "projectaanvraagDashboardUrl": "http://host.docker.internal:9999",
-  "platformUrl": "http://localhost:81/admin",
+  "platformUrl": "http://localhost:81/nl/integraties",
   "zendeskUrl": "https://www.zendesk.com",
   "publishers": "BRUZZ,Gazet van Antwerpen,Indiestyle,UiTX,UiT,UiTMetVlieg,NXTPOP",
   "platformIsLive": true
