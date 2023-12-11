@@ -320,7 +320,7 @@ export class PageListComponent implements OnInit {
       new BackButton(
         BackButton.TYPE_LINK,
         environment.platformIsLive
-          ? 'TOPBAR_BACK_BUTTON_LABEL_INTEGRATIES'
+          ? 'TOPBAR_BACK_BUTTON_LABEL_PUBLIQ_PLATFORM'
           : 'TOPBAR_BACK_BUTTON_LABEL_PROJECTAANVRAGEN',
         environment.platformIsLive
           ? environment.platformUrl
