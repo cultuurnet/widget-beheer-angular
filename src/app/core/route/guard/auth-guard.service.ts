@@ -30,11 +30,15 @@ export class AuthGuard implements CanActivate {
           return true;
         },
         () => {
-          window.location.href = environment.projectaanvraagDashboardUrl;
+          window.location.href = environment.platformIsLive
+            ? environment.platformUrl
+            : environment.projectaanvraagDashboardUrl;
         }
       ),
       catchError((error) => {
-        window.location.href = environment.projectaanvraagDashboardUrl;
+        window.location.href = environment.platformIsLive
+          ? environment.platformUrl
+          : environment.projectaanvraagDashboardUrl;
         return observableOf(false);
       })
     );
