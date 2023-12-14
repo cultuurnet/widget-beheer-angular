@@ -15,8 +15,10 @@ type Environment = {
   widgetApi_embedUrl_current: string;
   widgetApi_embedUrl_forceCurrent: string;
   projectaanvraagDashboardUrl: string;
+  platformUrl: string;
   zendeskUrl: string;
   publishers: string;
+  platformIsLive: boolean;
 };
 
 export let environment: Environment;
@@ -31,7 +33,9 @@ export const setEnvironmentToConfig = async () => {
     widgetApi_embedUrl_current: config.widgetApi_embedUrl_current,
     widgetApi_embedUrl_forceCurrent: config.widgetApi_embedUrl_forceCurrent,
     projectaanvraagDashboardUrl: config.projectaanvraagDashboardUrl,
+    platformUrl: config.platformUrl,
     zendeskUrl: config.zendeskUrl,
     publishers: config.publishers,
+    platformIsLive: config.platformIsLive,
   };
 };
