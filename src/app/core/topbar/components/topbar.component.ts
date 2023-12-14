@@ -61,7 +61,6 @@ export class TopbarComponent implements OnInit, OnDestroy {
    */
   private dynamicComponentSubscriptions: any = {};
 
-
   private platformIsLive: boolean = environment.platformIsLive;
 
   /**

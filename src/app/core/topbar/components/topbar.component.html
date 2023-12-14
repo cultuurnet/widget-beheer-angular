@@ -29,7 +29,11 @@
         <button class="btn btn-outline-secondary" ngbDropdownToggle>
           <span class="hidden-lg-down"> {{ user.displayName }}</span>
         </button>
-        <div *ngIf="platformIsLive" ngbDropdownMenu class="dropdown-menu dropdown-menu-right">
+        <div
+          *ngIf="platformIsLive"
+          ngbDropdownMenu
+          class="dropdown-menu dropdown-menu-right"
+        >
           <button ngbDropdownItem class="dropdown-item" (click)="logout()">
             {{ 'TOPBAR_USER_MENU_BUTTON_LOGOUT' | translate }}
           </button>
