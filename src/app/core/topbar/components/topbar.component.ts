@@ -48,7 +48,6 @@ export class TopbarComponent implements OnInit, OnDestroy {
 
   public platformIsLive: boolean = environment.platformIsLive;
 
-
   /**
    * Array of subscriptions
    */
