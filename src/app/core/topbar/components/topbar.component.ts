@@ -46,6 +46,9 @@ export class TopbarComponent implements OnInit, OnDestroy {
    */
   public user: User;
 
+  public platformIsLive: boolean = environment.platformIsLive;
+
+
   /**
    * Array of subscriptions
    */
@@ -60,8 +63,6 @@ export class TopbarComponent implements OnInit, OnDestroy {
    * Keep track of all subscriptions for each dynamic component
    */
   private dynamicComponentSubscriptions: any = {};
-
-  private platformIsLive: boolean = environment.platformIsLive;
 
   /**
    * TopbarComponent constructor
