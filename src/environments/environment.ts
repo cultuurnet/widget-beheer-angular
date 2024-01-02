@@ -17,6 +17,8 @@ type Environment = {
   projectaanvraagDashboardUrl: string;
   zendeskUrl: string;
   publishers: string;
+  platformUrl: string;
+  platformIsLive: boolean;
 };
 
 export let environment: Environment;
@@ -33,5 +35,7 @@ export const setEnvironmentToConfig = async () => {
     projectaanvraagDashboardUrl: config.projectaanvraagDashboardUrl,
     zendeskUrl: config.zendeskUrl,
     publishers: config.publishers,
+    platformUrl: config.platformUrl,
+    platformIsLive: config.platformIsLive,
   };
 };
