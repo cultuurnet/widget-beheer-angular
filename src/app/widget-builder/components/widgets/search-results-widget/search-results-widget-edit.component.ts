@@ -116,9 +116,7 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditDirective {
           ],
         }),
         icon_uitx: this.formBuilder.group({
-          enabled: [
-            _.get(this.widget.settings, 'items.icon_uitx.enabled', ''),
-          ],
+          enabled: [_.get(this.widget.settings, 'items.icon_uitx.enabled', '')],
         }),
         description: this.formBuilder.group({
           enabled: [
@@ -292,11 +290,7 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditDirective {
         }),
         icon_uitx: this.formBuilder.group({
           enabled: [
-            _.get(
-              this.widget.settings,
-              'detail_page.icon_uitx.enabled',
-              ''
-            ),
+            _.get(this.widget.settings, 'detail_page.icon_uitx.enabled', ''),
           ],
         }),
         description: this.formBuilder.group({

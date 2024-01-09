@@ -85,9 +85,7 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditDirective {
           ],
         }),
         icon_uitx: this.formBuilder.group({
-          enabled: [
-            _.get(this.widget.settings, 'items.icon_uitx.enabled', ''),
-          ],
+          enabled: [_.get(this.widget.settings, 'items.icon_uitx.enabled', '')],
         }),
         description: this.formBuilder.group({
           enabled: [
