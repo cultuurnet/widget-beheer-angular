@@ -42,6 +42,10 @@
                   "show": true,
                   "label": "Museumpas"
                 },
+                "icon_uitx": {
+                  "show": true,
+                  "label": "UiTX"
+                },
                 "description": {
                   "show": true,
                   "characters": 200
@@ -101,6 +105,10 @@
                 "icon_museumpass": {
                   "show": true,
                   "label": "Museumpas"
+                },
+                "icon_uitx": {
+                  "show": true,
+                  "label": "UiTX"
                 },
                 "description": {
                   "show": true,
