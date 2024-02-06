@@ -43,7 +43,7 @@
                   "label": "Museumpas"
                 },
                 "icon_uitx": {
-                  "show": true,
+                  "show": false,
                   "label": "UiTX"
                 },
                 "description": {
@@ -107,7 +107,7 @@
                   "label": "Museumpas"
                 },
                 "icon_uitx": {
-                  "show": true,
+                  "show": false,
                   "label": "UiTX"
                 },
                 "description": {

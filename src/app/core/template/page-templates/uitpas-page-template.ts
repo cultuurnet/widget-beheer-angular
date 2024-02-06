@@ -153,7 +153,7 @@ export class UitPasPageTemplate implements PageTemplate {
                       enabled: true,
                     },
                     icon_uitx: {
-                      enabled: true,
+                      enabled: false,
                     },
                     description: {
                       enabled: true,
@@ -223,7 +223,7 @@ export class UitPasPageTemplate implements PageTemplate {
                       enabled: true,
                     },
                     icon_uitx: {
-                      enabled: true,
+                      enabled: false,
                     },
                     when: {
                       enabled: true,
