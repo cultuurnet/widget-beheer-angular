@@ -319,8 +319,12 @@ export class PageListComponent implements OnInit {
     this.topbarService.setBackButton(
       new BackButton(
         BackButton.TYPE_LINK,
-        'TOPBAR_BACK_BUTTON_LABEL_PROJECTAANVRAGEN',
-        environment.projectaanvraagDashboardUrl
+        environment.platformIsLive
+          ? 'TOPBAR_BACK_BUTTON_LABEL_PUBLIQ_PLATFORM'
+          : 'TOPBAR_BACK_BUTTON_LABEL_PROJECTAANVRAGEN',
+        environment.platformIsLive
+          ? environment.platformUrl
+          : environment.projectaanvraagDashboardUrl
       )
     );
   }

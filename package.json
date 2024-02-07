@@ -8,6 +8,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:docker": "ng serve --host 0.0.0.0 --disable-host-check",
     "build": "ng build",
     "types:check": "tsc --noEmit",
     "format": "prettier . --write --ignore-path .gitignore",
