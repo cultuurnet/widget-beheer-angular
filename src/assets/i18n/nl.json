@@ -270,7 +270,7 @@
   "BUTTON_COPY_TO_CLIPBOARD": "Scripttag kopiëren",
   "BUTTON_COPY_TO_CLIPBOARD_TITLE": "Kopiëren",
   "BUTTON_COPY_TO_CLIPBOARD_SUCCESS": "Scripttag gekopieerd",
-  "BUTTON_BACK_TO_PROJECTAANVRAAG_DASHBOARD": "Projectaanvragen",
+  "BUTTON_BACK_TO_PROJECTAANVRAAG_DASHBOARD": "Integratieoverzicht",
   "WIDGET_PAGE_LIST_NO_PAGES_FOUND": "Geen widgets gevonden. Klik op \"Nieuwe widget maken\" om van start te gaan.",
   "TITLE_WIDGET_PAGE_LEGACY_WIDGETS_LIST": "Widgets aangemaakt vòòr 2018",
   "WIDGET_PAGE_LIST_LEGACY_WIDGETS_INFO": "Deze pagina's zijn aangemaakt met de vorige versie van de widgetbouwer. De embed-code blijft werken. Wil je aanpassingen doen, moet je upgraden.",
