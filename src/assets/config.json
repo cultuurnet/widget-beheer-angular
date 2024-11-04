@@ -7,6 +7,5 @@
   "projectaanvraagDashboardUrl": "http://host.docker.internal:9999",
   "platformUrl": "http://localhost:81/nl/integraties",
   "zendeskUrl": "https://www.zendesk.com",
-  "publishers": "BRUZZ,Gazet van Antwerpen,Indiestyle,UiTX,UiT,UiTMetVlieg,NXTPOP",
-  "platformIsLive": true
+  "publishers": "BRUZZ,Gazet van Antwerpen,Indiestyle,UiTX,UiT,UiTMetVlieg,NXTPOP"
 }
