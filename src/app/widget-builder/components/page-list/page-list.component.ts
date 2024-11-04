@@ -54,13 +54,13 @@ export class PageListComponent implements OnInit {
    * @param topbarService
    */
   constructor(
-    private widgetService: WidgetService,
-    private modalService: NgbModal,
-    private toastyService: ToastyService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private translateService: TranslateService,
-    private topbarService: TopbarService
+      private widgetService: WidgetService,
+      private modalService: NgbModal,
+      private toastyService: ToastyService,
+      private route: ActivatedRoute,
+      private router: Router,
+      private translateService: TranslateService,
+      private topbarService: TopbarService
   ) {}
 
   /**
@@ -68,12 +68,12 @@ export class PageListComponent implements OnInit {
    */
   ngOnInit() {
     this.route.data.subscribe(
-      (data: { widgetPages: Array<WidgetPage>; project: Project }) => {
-        this.buildWidgetPageList(data.widgetPages);
+        (data: { widgetPages: Array<WidgetPage>; project: Project }) => {
+          this.buildWidgetPageList(data.widgetPages);
 
-        // Get the project from the current route
-        this.project = data.project;
-      }
+          // Get the project from the current route
+          this.project = data.project;
+        }
     );
 
     // Init the topbar
@@ -91,37 +91,37 @@ export class PageListComponent implements OnInit {
     // Remove the widgetPage id
     clone.id = '';
     clone.title =
-      clone.title +
-      ' (' +
-      (this.translateService
-        .instant('DUPLICATE_WIDGET_PAGE_COPY')
-        .toString() as string) +
-      ')';
+        clone.title +
+        ' (' +
+        (this.translateService
+            .instant('DUPLICATE_WIDGET_PAGE_COPY')
+            .toString() as string) +
+        ')';
 
     // Save the widget page and redirect
     this.widgetService
-      .saveWidgetPage(clone)
-      .toPromise()
-      .then(
-        async (widgetSaveResponse) => {
-          if (widgetSaveResponse.widgetPage) {
-            await this.router.navigate([
-              '/project',
-              this.project.id,
-              'page',
-              widgetSaveResponse.widgetPage.id,
-              'edit',
-            ]);
-          }
-        },
-        () => {
-          this.toastyService.error(
-            this.translateService.instant(
-              'DUPLICATE_WIDGET_PAGE_FAILED_NOTIFICATION'
-            )
-          );
-        }
-      );
+        .saveWidgetPage(clone)
+        .toPromise()
+        .then(
+            async (widgetSaveResponse) => {
+              if (widgetSaveResponse.widgetPage) {
+                await this.router.navigate([
+                  '/project',
+                  this.project.id,
+                  'page',
+                  widgetSaveResponse.widgetPage.id,
+                  'edit',
+                ]);
+              }
+            },
+            () => {
+              this.toastyService.error(
+                  this.translateService.instant(
+                      'DUPLICATE_WIDGET_PAGE_FAILED_NOTIFICATION'
+                  )
+              );
+            }
+        );
   }
 
   /**
@@ -136,40 +136,40 @@ export class PageListComponent implements OnInit {
     modalInstance.message = 'REMOVE_WIDGET_PAGE_MODAL_MESSAGE';
 
     modal.result.then(
-      (result) => {
-        this.widgetService.deleteWidgetPage(widgetPage).subscribe(
-          () => {
-            // Remove the widget from the corresponding array, so the model gets updated
-            let widgetPages = this.widgetPages;
-            if (
-              widgetPage.version < Number(environment.widgetApi_currentVersion)
-            ) {
-              widgetPages = this.legacyWidgetPages;
-            }
+        (result) => {
+          this.widgetService.deleteWidgetPage(widgetPage).subscribe(
+              () => {
+                // Remove the widget from the corresponding array, so the model gets updated
+                let widgetPages = this.widgetPages;
+                if (
+                    widgetPage.version < Number(environment.widgetApi_currentVersion)
+                ) {
+                  widgetPages = this.legacyWidgetPages;
+                }
 
-            const index = widgetPages.indexOf(widgetPage);
-            if (index > -1) {
-              widgetPages.splice(index, 1);
-            }
+                const index = widgetPages.indexOf(widgetPage);
+                if (index > -1) {
+                  widgetPages.splice(index, 1);
+                }
 
-            this.toastyService.success(
-              this.translateService.instant(
-                'REMOVE_WIDGET_PAGE_SUCCESS_NOTIFICATION'
-              )
-            );
-          },
-          () => {
-            this.toastyService.error(
-              this.translateService.instant(
-                'REMOVE_WIDGET_PAGE_FAILED_NOTIFICATION'
-              )
-            );
-          }
-        );
-      },
-      (reason) => {
-        // Do nothing on modal close
-      }
+                this.toastyService.success(
+                    this.translateService.instant(
+                        'REMOVE_WIDGET_PAGE_SUCCESS_NOTIFICATION'
+                    )
+                );
+              },
+              () => {
+                this.toastyService.error(
+                    this.translateService.instant(
+                        'REMOVE_WIDGET_PAGE_FAILED_NOTIFICATION'
+                    )
+                );
+              }
+          );
+        },
+        (reason) => {
+          // Do nothing on modal close
+        }
     );
   }
 
@@ -187,16 +187,16 @@ export class PageListComponent implements OnInit {
     modalInstance.widgetPage = widgetPage;
 
     modal.result.then(
-      (result) => {
-        if (result) {
-          this.toastyService.success(
-            this.translateService.instant(
-              'WIDGET_PAGE_ADMIN_MODAL_SUCCESS_NOTIFICATION'
-            )
-          );
-        }
-      },
-      () => {}
+        (result) => {
+          if (result) {
+            this.toastyService.success(
+                this.translateService.instant(
+                    'WIDGET_PAGE_ADMIN_MODAL_SUCCESS_NOTIFICATION'
+                )
+            );
+          }
+        },
+        () => {}
     );
   }
 
@@ -214,17 +214,17 @@ export class PageListComponent implements OnInit {
     modalInstance.widgetPage = widgetPage;
 
     modal.result.then(
-      (result) => {
-        if (result) {
-          this.toastyService.success(
-            `${widgetPage.language} ` +
-              (this.translateService
-                .instant('WIDGET_PAGE_LANGUAGE_MODAL_SUCCESS_NOTIFICATION')
-                .toString() as string)
-          );
-        }
-      },
-      () => {}
+        (result) => {
+          if (result) {
+            this.toastyService.success(
+                `${widgetPage.language} ` +
+                (this.translateService
+                    .instant('WIDGET_PAGE_LANGUAGE_MODAL_SUCCESS_NOTIFICATION')
+                    .toString() as string)
+            );
+          }
+        },
+        () => {}
     );
   }
 
@@ -240,29 +240,29 @@ export class PageListComponent implements OnInit {
     modalInstance.message = 'UPGRADE_WIDGET_PAGE_MODAL_MESSAGE';
 
     modal.result.then(
-      (result) => {
-        this.widgetService.upgradeWidgetPage(widgetPage).subscribe(
-          () => {
-            this.reloadWidgetPageList();
+        (result) => {
+          this.widgetService.upgradeWidgetPage(widgetPage).subscribe(
+              () => {
+                this.reloadWidgetPageList();
 
-            this.toastyService.success(
-              this.translateService.instant(
-                'UPGRADE_WIDGET_PAGE_SUCCESS_NOTIFICATION'
-              )
-            );
-          },
-          () => {
-            this.toastyService.error(
-              this.translateService.instant(
-                'UPGRADE_WIDGET_PAGE_FAILED_NOTIFICATION'
-              )
-            );
-          }
-        );
-      },
-      (reason) => {
-        // Do nothing on modal close
-      }
+                this.toastyService.success(
+                    this.translateService.instant(
+                        'UPGRADE_WIDGET_PAGE_SUCCESS_NOTIFICATION'
+                    )
+                );
+              },
+              () => {
+                this.toastyService.error(
+                    this.translateService.instant(
+                        'UPGRADE_WIDGET_PAGE_FAILED_NOTIFICATION'
+                    )
+                );
+              }
+          );
+        },
+        (reason) => {
+          // Do nothing on modal close
+        }
     );
   }
 
@@ -273,14 +273,14 @@ export class PageListComponent implements OnInit {
    * @param forceCurrentVersion
    */
   public getWidgetPageUrl(
-    widgetPage: WidgetPage,
-    tags = false,
-    forceCurrentVersion = false
+      widgetPage: WidgetPage,
+      tags = false,
+      forceCurrentVersion = false
   ) {
     return this.widgetService.getWidgetPageEmbedUrl(
-      widgetPage,
-      tags,
-      forceCurrentVersion
+        widgetPage,
+        tags,
+        forceCurrentVersion
     );
   }
 
@@ -289,12 +289,12 @@ export class PageListComponent implements OnInit {
    */
   private reloadWidgetPageList() {
     this.widgetService
-      .getWidgetPages(this.project.id)
-      .subscribe((widgetPages: Array<WidgetPage>) => {
-        this.widgetPages = [];
-        this.legacyWidgetPages = [];
-        this.buildWidgetPageList(widgetPages);
-      });
+        .getWidgetPages(this.project.id)
+        .subscribe((widgetPages: Array<WidgetPage>) => {
+          this.widgetPages = [];
+          this.legacyWidgetPages = [];
+          this.buildWidgetPageList(widgetPages);
+        });
   }
 
   /**
@@ -317,15 +317,11 @@ export class PageListComponent implements OnInit {
   private initTopbar() {
     // Add a back button
     this.topbarService.setBackButton(
-      new BackButton(
-        BackButton.TYPE_LINK,
-        environment.platformIsLive
-          ? 'TOPBAR_BACK_BUTTON_LABEL_PUBLIQ_PLATFORM'
-          : 'TOPBAR_BACK_BUTTON_LABEL_PROJECTAANVRAGEN',
-        environment.platformIsLive
-          ? environment.platformUrl
-          : environment.projectaanvraagDashboardUrl
-      )
+        new BackButton(
+            BackButton.TYPE_LINK,
+            'TOPBAR_BACK_BUTTON_LABEL_PROJECTAANVRAGEN',
+            environment.projectaanvraagDashboardUrl
+        )
     );
   }
 }
