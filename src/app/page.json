@@ -76,6 +76,9 @@
                   "show": true,
                   "label": "Lees verder"
                 },
+                "faq": {
+                  "show": true
+                },
                 "allowed_labels": "Label 1, Label 2"
               }
             }
@@ -139,6 +142,9 @@
                 "read_more": {
                   "show": true,
                   "label": "Lees verder"
+                },
+                "faq": {
+                  "show": true
                 },
                 "allowed_labels": "Label 1, Label 2"
               }
