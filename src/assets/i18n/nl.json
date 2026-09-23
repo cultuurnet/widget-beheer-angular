@@ -5,6 +5,8 @@
   "REMOVE_WIDGET_MODAL_MESSAGE": "Ben je zeker dat je deze widget wil verwijderen?",
   "REMOVE_ROW_DEFAULT_MODAL_TITLE": "Rij verwijderen",
   "REMOVE_ROW_DEFAULT_MODAL_MESSAGE": "Ben je zeker dat je deze rij definitief wilt verwijderen? Deze rij bevat mogelijks meerdere blokken. Je kan deze actie niet ongedaan maken.",
+  "LABEL_EDIT_FORM_ELEMENTS_GROUP_BADGES": "Badges",
+  "LABEL_EDIT_FORM_ELEMENTS_GROUP_LOGOS": "Logo's",
   "LABEL_CHECKBOX_EXTRA_GROUP_FILTERS": "Extra groepfilters",
   "LABEL_CHECKBOX_EXTRA_FACILITY_FILTERS": "Toegankelijkheid",
   "LABEL_GROUP_FILTERS_GROUPS": "Groepen",
