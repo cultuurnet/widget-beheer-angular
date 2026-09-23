@@ -406,6 +406,11 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditDirective {
             _.get(this.widget.settings, 'detail_page.facilities.label', ''),
           ],
         }),
+        faq: this.formBuilder.group({
+          enabled: [
+            _.get(this.widget.settings, 'detail_page.faq.enabled', true),
+          ],
+        }),
         articles: this.formBuilder.group({
           enabled: [
             _.get(this.widget.settings, 'detail_page.articles.enabled', true),
