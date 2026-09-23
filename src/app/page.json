@@ -62,6 +62,9 @@
                   "show": true,
                   "label": "Leeftijd"
                 },
+                "children_only": {
+                  "show": true
+                },
                 "language_icons": {
                   "show": true
                 },
@@ -128,6 +131,9 @@
                 "age": {
                   "show": true,
                   "label": "Leeftijd"
+                },
+                "children_only": {
+                  "show": true
                 },
                 "language_icons": {
                   "show": true

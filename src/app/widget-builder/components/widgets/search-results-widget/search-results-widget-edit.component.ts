@@ -100,6 +100,11 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditDirective {
         theme: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.theme.enabled', '')],
         }),
+        children_only: this.formBuilder.group({
+          enabled: [
+            _.get(this.widget.settings, 'items.children_only.enabled', false),
+          ],
+        }),
         icon_vlieg: this.formBuilder.group({
           enabled: [
             _.get(this.widget.settings, 'items.icon_vlieg.enabled', ''),
@@ -235,6 +240,15 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditDirective {
         theme: this.formBuilder.group({
           enabled: [
             _.get(this.widget.settings, 'detail_page.theme.enabled', ''),
+          ],
+        }),
+        children_only: this.formBuilder.group({
+          enabled: [
+            _.get(
+              this.widget.settings,
+              'detail_page.children_only.enabled',
+              false
+            ),
           ],
         }),
         map: [_.get(this.widget.settings, 'detail_page.map', '')],
