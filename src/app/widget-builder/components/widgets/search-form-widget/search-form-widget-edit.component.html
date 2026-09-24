@@ -398,7 +398,7 @@
               </fieldset>
             </ng-template>
           </ngb-panel>
-          <ngb-panel id="extra">
+          <ngb-panel id="extra" formGroupName="extra">
             <ng-template ngbPanelTitle
               >{{
                 'LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_EXTRA_OPTIONS'
@@ -406,18 +406,26 @@
               }}
             </ng-template>
             <ng-template ngbPanelContent>
-              <fieldset
-                *ngIf="
-                  settings.fields.extra.group_filters ||
-                  settings.fields.extra.facility_filters
-                "
-              >
+              <fieldset>
                 <legend>{{ 'LABEL_GROUP_FILTERS' | translate }}</legend>
                 <app-widget-group-filters-edit
+                  *ngIf="settings.fields.extra.group_filters"
                   (groupFiltersChanged)="handleGroupFiltersChanged()"
                   [groupFilters]="settings.fields.extra.group_filters"
                 ></app-widget-group-filters-edit>
+                <div
+                  class="widget-group-filters-edit"
+                  formGroupName="age_filter"
+                >
+                  <label>
+                    <input type="checkbox" formControlName="enabled" />
+                    <span>{{
+                      'LABEL_CHECKBOX_EXTRA_AGE_FILTER' | translate
+                    }}</span>
+                  </label>
+                </div>
                 <app-widget-facility-filters-edit
+                  *ngIf="settings.fields.facility_filters"
                   (facilityFiltersChanged)="handleGroupFiltersChanged()"
                   [facilityFilters]="settings.fields.facility_filters"
                 ></app-widget-facility-filters-edit>
