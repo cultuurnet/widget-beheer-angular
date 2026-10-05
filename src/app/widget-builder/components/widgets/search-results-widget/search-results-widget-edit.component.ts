@@ -420,6 +420,15 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditDirective {
             _.get(this.widget.settings, 'detail_page.facilities.label', ''),
           ],
         }),
+        departure_places: this.formBuilder.group({
+          enabled: [
+            _.get(
+              this.widget.settings,
+              'detail_page.departure_places.enabled',
+              true
+            ),
+          ],
+        }),
         faq: this.formBuilder.group({
           enabled: [
             _.get(this.widget.settings, 'detail_page.faq.enabled', true),
