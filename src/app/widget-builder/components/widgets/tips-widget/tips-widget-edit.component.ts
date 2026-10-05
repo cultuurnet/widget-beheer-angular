@@ -69,6 +69,11 @@ export class TipsWidgetWidgetEditComponent extends BaseWidgetEditDirective {
         theme: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.theme.enabled', '')],
         }),
+        children_only: this.formBuilder.group({
+          enabled: [
+            _.get(this.widget.settings, 'items.children_only.enabled', false),
+          ],
+        }),
         icon_vlieg: this.formBuilder.group({
           enabled: [
             _.get(this.widget.settings, 'items.icon_vlieg.enabled', ''),

@@ -110,69 +110,6 @@
               'LABEL_TIPS_EDIT_FORM_PANEL_TITLE_ELEMENTS' | translate
             }}</ng-template>
             <ng-template ngbPanelContent>
-              <div class="edit-searchfilters--selectgroup" formGroupName="type">
-                <label>
-                  <input type="checkbox" formControlName="enabled" />
-                  <span>{{
-                    'LABEL_TIPS_EDIT_FORM_ELEMENTS_TYPE' | translate
-                  }}</span>
-                </label>
-              </div>
-              <div
-                class="edit-searchfilters--selectgroup"
-                formGroupName="theme"
-              >
-                <label>
-                  <input type="checkbox" formControlName="enabled" />
-                  <span>{{
-                    'LABEL_TIPS_EDIT_FORM_ELEMENTS_THEME' | translate
-                  }}</span>
-                </label>
-              </div>
-              <div
-                class="edit-searchfilters--selectgroup"
-                formGroupName="icon_vlieg"
-              >
-                <label>
-                  <input type="checkbox" formControlName="enabled" />
-                  <span>{{
-                    'LABEL_TIPS_EDIT_FORM_ELEMENTS_ICON_VLIEG' | translate
-                  }}</span>
-                </label>
-              </div>
-              <div
-                class="edit-searchfilters--selectgroup"
-                formGroupName="icon_uitpas"
-              >
-                <label>
-                  <input type="checkbox" formControlName="enabled" />
-                  <span>{{
-                    'LABEL_TIPS_EDIT_FORM_ELEMENTS_ICON_UITPAS' | translate
-                  }}</span>
-                </label>
-              </div>
-              <div
-                class="edit-searchfilters--selectgroup"
-                formGroupName="icon_museumpass"
-              >
-                <label>
-                  <input type="checkbox" formControlName="enabled" />
-                  <span>{{
-                    'LABEL_TIPS_EDIT_FORM_ELEMENTS_ICON_MUSEUMPASS' | translate
-                  }}</span>
-                </label>
-              </div>
-              <div
-                class="edit-searchfilters--selectgroup"
-                formGroupName="icon_uitx"
-              >
-                <label>
-                  <input type="checkbox" formControlName="enabled" />
-                  <span>{{
-                    'LABEL_TIPS_EDIT_FORM_ELEMENTS_ICON_UITX' | translate
-                  }}</span>
-                </label>
-              </div>
               <div
                 class="edit-searchfilters--selectgroup"
                 formGroupName="description"
@@ -503,6 +440,94 @@
                   />
                 </div>
               </div>
+              <fieldset class="edit-searchfilters--elementgroup">
+                <legend>
+                  {{ 'LABEL_EDIT_FORM_ELEMENTS_GROUP_BADGES' | translate }}
+                </legend>
+                <div
+                  class="edit-searchfilters--selectgroup"
+                  formGroupName="type"
+                >
+                  <label>
+                    <input type="checkbox" formControlName="enabled" />
+                    <span>{{
+                      'LABEL_TIPS_EDIT_FORM_ELEMENTS_TYPE' | translate
+                    }}</span>
+                  </label>
+                </div>
+                <div
+                  class="edit-searchfilters--selectgroup"
+                  formGroupName="theme"
+                >
+                  <label>
+                    <input type="checkbox" formControlName="enabled" />
+                    <span>{{
+                      'LABEL_TIPS_EDIT_FORM_ELEMENTS_THEME' | translate
+                    }}</span>
+                  </label>
+                </div>
+                <div
+                  class="edit-searchfilters--selectgroup"
+                  formGroupName="children_only"
+                >
+                  <label>
+                    <input type="checkbox" formControlName="enabled" />
+                    <span>{{
+                      'LABEL_TIPS_EDIT_FORM_ELEMENTS_CHILDREN_ONLY' | translate
+                    }}</span>
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset class="edit-searchfilters--elementgroup">
+                <legend>
+                  {{ 'LABEL_EDIT_FORM_ELEMENTS_GROUP_LOGOS' | translate }}
+                </legend>
+                <div
+                  class="edit-searchfilters--selectgroup"
+                  formGroupName="icon_vlieg"
+                >
+                  <label>
+                    <input type="checkbox" formControlName="enabled" />
+                    <span>{{
+                      'LABEL_TIPS_EDIT_FORM_ELEMENTS_ICON_VLIEG' | translate
+                    }}</span>
+                  </label>
+                </div>
+                <div
+                  class="edit-searchfilters--selectgroup"
+                  formGroupName="icon_uitpas"
+                >
+                  <label>
+                    <input type="checkbox" formControlName="enabled" />
+                    <span>{{
+                      'LABEL_TIPS_EDIT_FORM_ELEMENTS_ICON_UITPAS' | translate
+                    }}</span>
+                  </label>
+                </div>
+                <div
+                  class="edit-searchfilters--selectgroup"
+                  formGroupName="icon_museumpass"
+                >
+                  <label>
+                    <input type="checkbox" formControlName="enabled" />
+                    <span>{{
+                      'LABEL_TIPS_EDIT_FORM_ELEMENTS_ICON_MUSEUMPASS'
+                        | translate
+                    }}</span>
+                  </label>
+                </div>
+                <div
+                  class="edit-searchfilters--selectgroup"
+                  formGroupName="icon_uitx"
+                >
+                  <label>
+                    <input type="checkbox" formControlName="enabled" />
+                    <span>{{
+                      'LABEL_TIPS_EDIT_FORM_ELEMENTS_ICON_UITX' | translate
+                    }}</span>
+                  </label>
+                </div>
+              </fieldset>
             </ng-template>
           </ngb-panel>
           <ngb-panel id="extra_parameters">
