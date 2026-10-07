@@ -79,6 +79,9 @@
                   "show": true,
                   "label": "Lees verder"
                 },
+                "departure_places": {
+                  "show": true
+                },
                 "faq": {
                   "show": true
                 },
@@ -148,6 +151,9 @@
                 "read_more": {
                   "show": true,
                   "label": "Lees verder"
+                },
+                "departure_places": {
+                  "show": true
                 },
                 "faq": {
                   "show": true
