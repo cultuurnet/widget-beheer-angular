@@ -33,7 +33,8 @@ pipeline {
                     steps {
                         sh label: 'Install node modules', script: 'yarn install --frozen-lockfile'
                         sh label: 'Build project', script: 'yarn build --configuration=jenkins'
-                        stash name: 'dist', includes: 'dist/**'
+                        sh label: 'Archive build', script: 'tar czf dist.tgz dist'
+                        stash name: 'dist', includes: 'dist.tgz'
                     }
                     post {
                         cleanup {
@@ -51,6 +52,7 @@ pipeline {
                     steps {
                         sh label: 'Install rubygems', script: 'bundle install --deployment'
                         unstash 'dist'
+                        sh label: 'Extract build', script: 'tar xzf dist.tgz && rm dist.tgz'
                         sh label: 'Build artifact', script: "bundle exec rake build_artifact ARTIFACT_VERSION=${env.ARTIFACT_VERSION}"
                         archiveArtifacts artifacts: "pkg/*${env.ARTIFACT_VERSION}*.deb", onlyIfSuccessful: true
                     }
