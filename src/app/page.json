@@ -65,6 +65,9 @@
                 "children_only": {
                   "show": true
                 },
+                "overnight": {
+                  "show": true
+                },
                 "language_icons": {
                   "show": true
                 },
@@ -136,6 +139,9 @@
                   "label": "Leeftijd"
                 },
                 "children_only": {
+                  "show": true
+                },
+                "overnight": {
                   "show": true
                 },
                 "language_icons": {
