@@ -17,6 +17,13 @@
                 "search_query": "q='extra search'",
                 "header": {
                   "body": "Header text"
+                },
+                "fields": {
+                  "extra": {
+                    "age_filter": {
+                      "enabled": false
+                    }
+                  }
                 }
               }
             }
