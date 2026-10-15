@@ -55,12 +55,12 @@ This is the list the build actually uses, and it contains no IE.
 
 Verified with `core-js-compat` (already present in `node_modules` as a dependency of `@babel/preset-env`), run against the fourteen module groups that `src/polyfills.ts` imports and the Angular target list above. Only four modules come back as still required:
 
-| Module                     | Flagged for                            |
-| -------------------------- | -------------------------------------- |
-| `es.array.at`              | Safari 14, iOS 14                      |
-| `es.string.at-alternative` | Safari 14, iOS 14                      |
-| `es.object.has-own`        | Firefox 91 ESR, Safari 14, iOS 14      |
-| `es.array.includes`        | Firefox 91 ESR                         |
+| Module                     | Flagged for                       |
+| -------------------------- | --------------------------------- |
+| `es.array.at`              | Safari 14, iOS 14                 |
+| `es.string.at-alternative` | Safari 14, iOS 14                 |
+| `es.object.has-own`        | Firefox 91 ESR, Safari 14, iOS 14 |
+| `es.array.includes`        | Firefox 91 ESR                    |
 
 Two things to note about that result:
 
@@ -104,9 +104,9 @@ There is also no test target in `angular.json` and no `.spec.ts` file in `src/`,
 
 Measured against the last production build in `dist/`:
 
-| File                                | Raw     | Gzipped |
-| ----------------------------------- | ------- | ------- |
-| `dist/polyfills.0c4a28eef3865329.js` | 134 KB  | 46 KB   |
+| File                                 | Raw    | Gzipped |
+| ------------------------------------ | ------ | ------- |
+| `dist/polyfills.0c4a28eef3865329.js` | 134 KB | 46 KB   |
 
 That bundle contains three things: `@angular/localize/init`, `zone.js`, and core-js. `zone.js`'s own minified bundle (`node_modules/zone.js/fesm2015/zone.min.js`) is 44.5 KB and `@angular/localize/init` is small, which puts core-js at roughly **85 KB raw** — the majority of the file. Grepping the bundle for `__core-js_shared__` confirms it is in there.
 
