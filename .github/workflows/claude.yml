@@ -32,12 +32,12 @@ jobs:
           prompt: |
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ github.event.pull_request.number || github.event.issue.number }}
-            
+
             Review this pull request following the guidelines in the REVIEW.md file in the root of this repository.
             You can find general information about the project and its code in the CLAUDE.md file in the root of this repository.
-            
+
             How to share your feedback:
-            
+
             1.  Start a review: Use `mcp__github__create_pending_pull_request_review` to start a pending review.
             2.  Get diff information: Use `mcp__github__get_pull_request_diff` to see the code changes and line numbers.
                 - If the pull request has many changes, paginate the diff using the `page` and `per_page` parameters.
