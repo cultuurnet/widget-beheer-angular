@@ -105,6 +105,11 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditDirective {
             _.get(this.widget.settings, 'items.children_only.enabled', false),
           ],
         }),
+        overnight: this.formBuilder.group({
+          enabled: [
+            _.get(this.widget.settings, 'items.overnight.enabled', false),
+          ],
+        }),
         icon_vlieg: this.formBuilder.group({
           enabled: [
             _.get(this.widget.settings, 'items.icon_vlieg.enabled', ''),
@@ -249,6 +254,11 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditDirective {
               'detail_page.children_only.enabled',
               false
             ),
+          ],
+        }),
+        overnight: this.formBuilder.group({
+          enabled: [
+            _.get(this.widget.settings, 'detail_page.overnight.enabled', false),
           ],
         }),
         map: [_.get(this.widget.settings, 'detail_page.map', '')],
