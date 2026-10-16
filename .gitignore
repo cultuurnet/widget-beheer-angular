@@ -51,3 +51,7 @@ Thumbs.db
 widgetbeheer-angular-deploy-config
 
 .env
+
+# playwright
+/e2e/test-results
+/e2e/playwright-report
