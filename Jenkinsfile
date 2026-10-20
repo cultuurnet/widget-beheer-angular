@@ -49,6 +49,7 @@ pipeline {
                     environment {
                         GIT_SHORT_COMMIT = util.shortCommitRef()
                         ARTIFACT_VERSION = "${env.PIPELINE_VERSION}" + '+sha.' + "${env.GIT_SHORT_COMMIT}"
+                        HOME = "${env.WORKSPACE}"
                     }
                     steps {
                         sh label: 'Install rubygems', script: 'bundle config set --local deployment true && bundle install'
