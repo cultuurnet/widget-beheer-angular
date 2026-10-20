@@ -80,6 +80,9 @@ export class SearchFormWidgetEditComponent extends BaseWidgetEditDirective {
           placeholder: [
             _.get(this.settings, 'fields.time.date_search.placeholder', ''),
           ],
+          type: [
+            _.get(this.settings, 'fields.time.date_search.type', 'select'),
+          ],
           options: this.formBuilder.group({
             today: [
               _.get(this.settings, 'fields.time.date_search.options.today', ''),
