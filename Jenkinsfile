@@ -51,7 +51,7 @@ pipeline {
                         ARTIFACT_VERSION = "${env.PIPELINE_VERSION}" + '+sha.' + "${env.GIT_SHORT_COMMIT}"
                     }
                     steps {
-                        sh label: 'Install rubygems', script: 'bundle install --deployment'
+                        sh label: 'Install rubygems', script: 'bundle config set --local deployment true && bundle install'
                         sh label: 'Build artifact', script: "bundle exec rake build_artifact ARTIFACT_VERSION=${env.ARTIFACT_VERSION}"
                         archiveArtifacts artifacts: "pkg/*${env.ARTIFACT_VERSION}*.deb", onlyIfSuccessful: true
                     }
