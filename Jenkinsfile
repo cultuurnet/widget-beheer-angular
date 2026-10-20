@@ -28,6 +28,7 @@ pipeline {
                             reuseNode true
                         }
                     }
+                    options { skipDefaultCheckout() }
                     environment {
                         YARN_CACHE_FOLDER = '/tmp/.yarn-cache'
                     }
@@ -44,6 +45,7 @@ pipeline {
                             reuseNode true
                         }
                     }
+                    options { skipDefaultCheckout() }
                     environment {
                         GIT_SHORT_COMMIT = util.shortCommitRef()
                         ARTIFACT_VERSION = "${env.PIPELINE_VERSION}" + '+sha.' + "${env.GIT_SHORT_COMMIT}"
