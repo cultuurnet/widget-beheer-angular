@@ -136,10 +136,10 @@ export class SearchFormWidgetEditComponent extends BaseWidgetEditDirective {
           ],
         }),
       }),
-      extra: this.formBuilder.group({
+      age: this.formBuilder.group({
         age_filter: this.formBuilder.group({
           enabled: [
-            _.get(this.settings, 'fields.extra.age_filter.enabled', false),
+            _.get(this.settings, 'fields.age.age_filter.enabled', false),
           ],
         }),
       }),
@@ -174,8 +174,8 @@ export class SearchFormWidgetEditComponent extends BaseWidgetEditDirective {
     );
     _.set(
       this.settings,
-      'fields.extra.age_filter.enabled',
-      _.get(values, 'extra.age_filter.enabled', false)
+      'fields.age.age_filter.enabled',
+      _.get(values, 'age.age_filter.enabled', false)
     );
     _.set(this.settings, 'footer', _.get(values, 'footer', {}));
 
