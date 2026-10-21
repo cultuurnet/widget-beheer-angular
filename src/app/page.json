@@ -19,8 +19,11 @@
                   "body": "Header text"
                 },
                 "fields": {
-                  "extra": {
+                  "age": {
                     "age_filter": {
+                      "enabled": false
+                    },
+                    "group_filters": {
                       "enabled": false
                     }
                   }
