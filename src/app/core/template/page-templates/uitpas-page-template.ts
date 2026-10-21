@@ -69,6 +69,7 @@ export class UitPasPageTemplate implements PageTemplate {
                         enabled: true,
                         label: 'Wanneer',
                         placeholder: 'Kies een periode',
+                        type: 'select',
                         options: {
                           today: true,
                           tomorrow: true,
