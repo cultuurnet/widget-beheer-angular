@@ -278,6 +278,24 @@
                   </div>
                   <div
                     *ngIf="
+                      settings.fields.time.date_search.type === 'date_picker'
+                    "
+                    class="form-check"
+                  >
+                    <label class="form-check-label">
+                      <input
+                        type="checkbox"
+                        formControlName="school_holidays"
+                        class="form-check-input"
+                      />
+                      <span>{{
+                        'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_SCHOOL_HOLIDAYS'
+                          | translate
+                      }}</span>
+                    </label>
+                  </div>
+                  <div
+                    *ngIf="
                       settings.fields.time.date_search.type !== 'date_picker'
                     "
                     formGroupName="options"

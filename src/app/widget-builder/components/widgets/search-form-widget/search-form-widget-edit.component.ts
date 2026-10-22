@@ -83,6 +83,13 @@ export class SearchFormWidgetEditComponent extends BaseWidgetEditDirective {
           type: [
             _.get(this.settings, 'fields.time.date_search.type', 'select'),
           ],
+          school_holidays: [
+            _.get(
+              this.settings,
+              'fields.time.date_search.school_holidays',
+              false
+            ),
+          ],
           options: this.formBuilder.group({
             today: [
               _.get(this.settings, 'fields.time.date_search.options.today', ''),
