@@ -19,6 +19,11 @@
                   "body": "Header text"
                 },
                 "fields": {
+                  "time": {
+                    "date_search": {
+                      "type": "select"
+                    }
+                  },
                   "age": {
                     "age_filter": {
                       "enabled": false

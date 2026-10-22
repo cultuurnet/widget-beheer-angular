@@ -234,7 +234,72 @@
                       class="form-control"
                     />
                   </div>
-                  <div formGroupName="options">
+                  <div class="form-group">
+                    <label>{{
+                      'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_TYPE'
+                        | translate
+                    }}</label>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input
+                          type="radio"
+                          formControlName="type"
+                          value="date_picker"
+                          class="form-check-input"
+                        />
+                        <span>{{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_TYPE_DATE_PICKER'
+                            | translate
+                        }}</span>
+                      </label>
+                      <small class="form-text text-muted">{{
+                        'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_TYPE_DATE_PICKER_DESCRIPTION'
+                          | translate
+                      }}</small>
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input
+                          type="radio"
+                          formControlName="type"
+                          value="select"
+                          class="form-check-input"
+                        />
+                        <span>{{
+                          'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_TYPE_SELECT'
+                            | translate
+                        }}</span>
+                      </label>
+                      <small class="form-text text-muted">{{
+                        'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_TYPE_SELECT_DESCRIPTION'
+                          | translate
+                      }}</small>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="
+                      settings.fields.time.date_search.type === 'date_picker'
+                    "
+                    class="form-check"
+                  >
+                    <label class="form-check-label">
+                      <input
+                        type="checkbox"
+                        formControlName="school_holidays"
+                        class="form-check-input"
+                      />
+                      <span>{{
+                        'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_SCHOOL_HOLIDAYS'
+                          | translate
+                      }}</span>
+                    </label>
+                  </div>
+                  <div
+                    *ngIf="
+                      settings.fields.time.date_search.type !== 'date_picker'
+                    "
+                    formGroupName="options"
+                  >
                     <label>{{
                       'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_OPTIONS'
                         | translate
@@ -331,7 +396,11 @@
                       </label>
                     </div>
                   </div>
-                  <div>
+                  <div
+                    *ngIf="
+                      settings.fields.time.date_search.type !== 'date_picker'
+                    "
+                  >
                     <label>{{
                       'LABEL_SEARCH_WIDGET_EDIT_FORM_TIME_GENERAL_SEARCH_BY_DATE_DEFAULT_OPTION'
                         | translate
