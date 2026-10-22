@@ -421,7 +421,7 @@
                   </label>
                 </div>
               </fieldset>
-              <fieldset *ngIf="settings.fields.age.group_filters">
+              <fieldset *ngIf="settings.fields.age?.group_filters">
                 <legend>{{ 'LABEL_GROUP_FILTERS' | translate }}</legend>
                 <app-widget-group-filters-edit
                   (groupFiltersChanged)="handleGroupFiltersChanged()"

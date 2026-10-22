@@ -139,7 +139,11 @@ export class SearchFormWidgetEditComponent extends BaseWidgetEditDirective {
       age: this.formBuilder.group({
         age_filter: this.formBuilder.group({
           enabled: [
-            _.get(this.settings, 'fields.age.age_filter.enabled', false),
+            _.get(
+              this.settings,
+              'fields.age.age_filter.enabled',
+              _.get(this.settings, 'fields.extra.age_filter.enabled', false)
+            ),
           ],
         }),
       }),
@@ -177,6 +181,7 @@ export class SearchFormWidgetEditComponent extends BaseWidgetEditDirective {
       'fields.age.age_filter.enabled',
       _.get(values, 'age.age_filter.enabled', false)
     );
+    _.unset(this.settings, 'fields.extra.age_filter');
     _.set(this.settings, 'footer', _.get(values, 'footer', {}));
 
     this.widgetBuilderService.saveWidgetPage(this.widget.id);
