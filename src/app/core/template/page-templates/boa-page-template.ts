@@ -140,6 +140,10 @@ export class BoaPageTemplate implements PageTemplate {
                     organizer: {
                       enabled: false,
                     },
+                    age: {
+                      enabled: true,
+                      label: 'Leeftijd',
+                    },
                     description: {
                       enabled: false,
                     },
