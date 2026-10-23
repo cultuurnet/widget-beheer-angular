@@ -35,6 +35,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AgendaPageTemplate } from './core/template/page-templates/agenda-page-template';
 import { TipsPageTemplate } from './core/template/page-templates/tips-page-template';
 import { UitPasPageTemplate } from './core/template/page-templates/uitpas-page-template';
+import { BoaPageTemplate } from './core/template/page-templates/boa-page-template';
 import { WidgetService } from './core/widget/services/widget.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ToastyConfig, ToastyModule } from 'ng2-toasty';
@@ -153,6 +154,7 @@ export class AppModule {
     pageTemplateRegistry.register('agenda', new AgendaPageTemplate());
     pageTemplateRegistry.register('tips', new TipsPageTemplate());
     pageTemplateRegistry.register('uitpas', new UitPasPageTemplate());
+    pageTemplateRegistry.register('boa', new BoaPageTemplate());
 
     // Invoke the afterInit method
     this.afterInit();
