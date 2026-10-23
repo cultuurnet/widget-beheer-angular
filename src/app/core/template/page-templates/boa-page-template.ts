@@ -175,6 +175,9 @@ export class BoaPageTemplate implements PageTemplate {
                       enabled: true,
                     },
                   },
+                  search_params: {
+                    query: 'childrenOnly:true',
+                  },
                 },
               },
             ],
