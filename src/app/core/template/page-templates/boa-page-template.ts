@@ -82,7 +82,7 @@ export class BoaPageTemplate implements PageTemplate {
                           },
                           {
                             label: 'Voor UiTPAS en Paspartoe',
-                            query: 'uitpas:true',
+                            query: 'labels:uitpas* OR labels:paspartoe',
                           },
                           {
                             label: 'Met overnachting',
