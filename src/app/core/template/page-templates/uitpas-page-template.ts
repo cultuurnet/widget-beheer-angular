@@ -85,6 +85,14 @@ export class UitPasPageTemplate implements PageTemplate {
                         enabled: false,
                       },
                     },
+                    age: {
+                      age_filter: {
+                        enabled: false,
+                      },
+                      group_filters: {
+                        enabled: false,
+                      },
+                    },
                     extra: {
                       group_filters: {
                         enabled: true,

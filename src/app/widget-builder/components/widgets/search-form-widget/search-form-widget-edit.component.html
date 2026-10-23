@@ -467,7 +467,39 @@
               </fieldset>
             </ng-template>
           </ngb-panel>
-          <ngb-panel id="extra" formGroupName="extra">
+          <ngb-panel id="age" formGroupName="age">
+            <ng-template ngbPanelTitle>{{
+              'LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_AGE' | translate
+            }}</ng-template>
+            <ng-template ngbPanelContent>
+              <fieldset formGroupName="age_filter">
+                <legend>
+                  {{ 'LABEL_SEARCH_WIDGET_EDIT_FORM_AGE_GENERAL' | translate }}
+                </legend>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input
+                      type="checkbox"
+                      formControlName="enabled"
+                      class="form-check-input"
+                    />
+                    <span>{{
+                      'LABEL_SEARCH_WIDGET_EDIT_FORM_AGE_GENERAL_SEARCH_BY_AGE'
+                        | translate
+                    }}</span>
+                  </label>
+                </div>
+              </fieldset>
+              <fieldset *ngIf="settings.fields.age?.group_filters">
+                <legend>{{ 'LABEL_GROUP_FILTERS' | translate }}</legend>
+                <app-widget-group-filters-edit
+                  (groupFiltersChanged)="handleGroupFiltersChanged()"
+                  [groupFilters]="settings.fields.age.group_filters"
+                ></app-widget-group-filters-edit>
+              </fieldset>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel id="extra">
             <ng-template ngbPanelTitle
               >{{
                 'LABEL_SEARCH_WIDGET_EDIT_FORM_PANEL_TITLE_EXTRA_OPTIONS'
@@ -482,17 +514,6 @@
                   (groupFiltersChanged)="handleGroupFiltersChanged()"
                   [groupFilters]="settings.fields.extra.group_filters"
                 ></app-widget-group-filters-edit>
-                <div
-                  class="widget-group-filters-edit"
-                  formGroupName="age_filter"
-                >
-                  <label>
-                    <input type="checkbox" formControlName="enabled" />
-                    <span>{{
-                      'LABEL_CHECKBOX_EXTRA_AGE_FILTER' | translate
-                    }}</span>
-                  </label>
-                </div>
                 <app-widget-facility-filters-edit
                   *ngIf="settings.fields.facility_filters"
                   (facilityFiltersChanged)="handleGroupFiltersChanged()"

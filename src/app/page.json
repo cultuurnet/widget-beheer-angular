@@ -24,8 +24,11 @@
                       "type": "select"
                     }
                   },
-                  "extra": {
+                  "age": {
                     "age_filter": {
+                      "enabled": false
+                    },
+                    "group_filters": {
                       "enabled": false
                     }
                   }
