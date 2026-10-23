@@ -152,6 +152,9 @@ export class BoaPageTemplate implements PageTemplate {
                     },
                   },
                   detail_page: {
+                    overnight: {
+                      enabled: true,
+                    },
                     when: {
                       enabled: true,
                       label: 'Wanneer',
