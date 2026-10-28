@@ -69,6 +69,7 @@ export class UitPasPageTemplate implements PageTemplate {
                         enabled: true,
                         label: 'Wanneer',
                         placeholder: 'Kies een periode',
+                        type: 'select',
                         options: {
                           today: true,
                           tomorrow: true,
@@ -79,6 +80,14 @@ export class UitPasPageTemplate implements PageTemplate {
                           custom_date: true,
                         },
                         default_option: 'placeholder',
+                      },
+                      group_filters: {
+                        enabled: false,
+                      },
+                    },
+                    age: {
+                      age_filter: {
+                        enabled: false,
                       },
                       group_filters: {
                         enabled: false,

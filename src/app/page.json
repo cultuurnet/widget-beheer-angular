@@ -17,6 +17,21 @@
                 "search_query": "q='extra search'",
                 "header": {
                   "body": "Header text"
+                },
+                "fields": {
+                  "time": {
+                    "date_search": {
+                      "type": "select"
+                    }
+                  },
+                  "age": {
+                    "age_filter": {
+                      "enabled": false
+                    },
+                    "group_filters": {
+                      "enabled": false
+                    }
+                  }
                 }
               }
             }
@@ -62,6 +77,12 @@
                   "show": true,
                   "label": "Leeftijd"
                 },
+                "children_only": {
+                  "show": true
+                },
+                "overnight": {
+                  "show": true
+                },
                 "language_icons": {
                   "show": true
                 },
@@ -75,6 +96,12 @@
                 "read_more": {
                   "show": true,
                   "label": "Lees verder"
+                },
+                "departure_places": {
+                  "show": true
+                },
+                "faq": {
+                  "show": true
                 },
                 "allowed_labels": "Label 1, Label 2"
               }
@@ -126,6 +153,12 @@
                   "show": true,
                   "label": "Leeftijd"
                 },
+                "children_only": {
+                  "show": true
+                },
+                "overnight": {
+                  "show": true
+                },
                 "language_icons": {
                   "show": true
                 },
@@ -139,6 +172,12 @@
                 "read_more": {
                   "show": true,
                   "label": "Lees verder"
+                },
+                "departure_places": {
+                  "show": true
+                },
+                "faq": {
+                  "show": true
                 },
                 "allowed_labels": "Label 1, Label 2"
               }

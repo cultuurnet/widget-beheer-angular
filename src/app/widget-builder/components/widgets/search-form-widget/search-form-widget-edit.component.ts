@@ -80,6 +80,16 @@ export class SearchFormWidgetEditComponent extends BaseWidgetEditDirective {
           placeholder: [
             _.get(this.settings, 'fields.time.date_search.placeholder', ''),
           ],
+          type: [
+            _.get(this.settings, 'fields.time.date_search.type', 'select'),
+          ],
+          school_holidays: [
+            _.get(
+              this.settings,
+              'fields.time.date_search.school_holidays',
+              false
+            ),
+          ],
           options: this.formBuilder.group({
             today: [
               _.get(this.settings, 'fields.time.date_search.options.today', ''),
@@ -136,6 +146,17 @@ export class SearchFormWidgetEditComponent extends BaseWidgetEditDirective {
           ],
         }),
       }),
+      age: this.formBuilder.group({
+        age_filter: this.formBuilder.group({
+          enabled: [
+            _.get(
+              this.settings,
+              'fields.age.age_filter.enabled',
+              _.get(this.settings, 'fields.extra.age_filter.enabled', false)
+            ),
+          ],
+        }),
+      }),
       footer: this.formBuilder.group({
         body: [_.get(this.settings, 'footer.body', '')],
       }),
@@ -165,6 +186,12 @@ export class SearchFormWidgetEditComponent extends BaseWidgetEditDirective {
       'fields.time.date_search',
       _.get(values, 'time.date_search', {})
     );
+    _.set(
+      this.settings,
+      'fields.age.age_filter.enabled',
+      _.get(values, 'age.age_filter.enabled', false)
+    );
+    _.unset(this.settings, 'fields.extra.age_filter');
     _.set(this.settings, 'footer', _.get(values, 'footer', {}));
 
     this.widgetBuilderService.saveWidgetPage(this.widget.id);

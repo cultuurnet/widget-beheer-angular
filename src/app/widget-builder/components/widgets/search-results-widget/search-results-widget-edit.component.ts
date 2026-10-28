@@ -100,6 +100,16 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditDirective {
         theme: this.formBuilder.group({
           enabled: [_.get(this.widget.settings, 'items.theme.enabled', '')],
         }),
+        children_only: this.formBuilder.group({
+          enabled: [
+            _.get(this.widget.settings, 'items.children_only.enabled', false),
+          ],
+        }),
+        overnight: this.formBuilder.group({
+          enabled: [
+            _.get(this.widget.settings, 'items.overnight.enabled', false),
+          ],
+        }),
         icon_vlieg: this.formBuilder.group({
           enabled: [
             _.get(this.widget.settings, 'items.icon_vlieg.enabled', ''),
@@ -235,6 +245,20 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditDirective {
         theme: this.formBuilder.group({
           enabled: [
             _.get(this.widget.settings, 'detail_page.theme.enabled', ''),
+          ],
+        }),
+        children_only: this.formBuilder.group({
+          enabled: [
+            _.get(
+              this.widget.settings,
+              'detail_page.children_only.enabled',
+              false
+            ),
+          ],
+        }),
+        overnight: this.formBuilder.group({
+          enabled: [
+            _.get(this.widget.settings, 'detail_page.overnight.enabled', false),
           ],
         }),
         map: [_.get(this.widget.settings, 'detail_page.map', '')],
@@ -404,6 +428,20 @@ export class SearchResultsWidgetEditComponent extends BaseWidgetEditDirective {
           ],
           label: [
             _.get(this.widget.settings, 'detail_page.facilities.label', ''),
+          ],
+        }),
+        departure_places: this.formBuilder.group({
+          enabled: [
+            _.get(
+              this.widget.settings,
+              'detail_page.departure_places.enabled',
+              true
+            ),
+          ],
+        }),
+        faq: this.formBuilder.group({
+          enabled: [
+            _.get(this.widget.settings, 'detail_page.faq.enabled', true),
           ],
         }),
         articles: this.formBuilder.group({

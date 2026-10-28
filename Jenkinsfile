@@ -1,8 +1,12 @@
 pipeline {
+    options {
+        disableRestartFromStage()
+    }
+
     agent none
 
     environment {
-        PIPELINE_VERSION = build.pipelineVersion()
+        PIPELINE_VERSION = util.pipelineVersion()
         REPOSITORY_NAME  = 'widgetbeheer-frontend'
     }
 
@@ -15,32 +19,48 @@ pipeline {
         }
 
         stage('Setup and build') {
-            agent { label 'ubuntu && 20.04 && nodejs16' }
-            environment {
-                GIT_SHORT_COMMIT = build.shortCommitRef()
-                ARTIFACT_VERSION = "${env.PIPELINE_VERSION}" + '+sha.' + "${env.GIT_SHORT_COMMIT}"
-            }
             stages {
-                stage('Setup') {
+                stage('Build project') {
+                    agent {
+                        docker {
+                            image 'base_images/node:16'
+                            label 'docker'
+                        }
+                    }
+                    environment {
+                        YARN_CACHE_FOLDER = '/tmp/.yarn-cache'
+                    }
+                    steps {
+                        sh label: 'Install node modules', script: 'yarn install --frozen-lockfile'
+                        sh label: 'Build project', script: 'yarn build --configuration=jenkins'
+                        sh label: 'Archive build', script: 'tar czf dist.tgz dist'
+                        stash name: 'dist', includes: 'dist.tgz'
+                    }
+                    post {
+                        cleanup {
+                            cleanWs()
+                        }
+                    }
+                }
+
+                stage('Build artifact') {
+                    agent { label 'ubuntu && 20.04' }
+                    environment {
+                        GIT_SHORT_COMMIT = util.shortCommitRef()
+                        ARTIFACT_VERSION = "${env.PIPELINE_VERSION}" + '+sha.' + "${env.GIT_SHORT_COMMIT}"
+                    }
                     steps {
                         sh label: 'Install rubygems', script: 'bundle install --deployment'
-                    }
-                }
-                stage('Build') {
-                    steps {
-                        sh label: 'Build binaries', script: 'bundle exec rake build'
-                    }
-                }
-                stage('Build artifact') {
-                    steps {
+                        unstash 'dist'
+                        sh label: 'Extract build', script: 'tar xzf dist.tgz && rm dist.tgz'
                         sh label: 'Build artifact', script: "bundle exec rake build_artifact ARTIFACT_VERSION=${env.ARTIFACT_VERSION}"
                         archiveArtifacts artifacts: "pkg/*${env.ARTIFACT_VERSION}*.deb", onlyIfSuccessful: true
                     }
-                }
-            }
-            post {
-                cleanup {
-                    cleanWs()
+                    post {
+                        cleanup {
+                            cleanWs()
+                        }
+                    }
                 }
             }
         }
@@ -111,6 +131,8 @@ pipeline {
         }
 
         stage('Tag release') {
+            options { skipDefaultCheckout() }
+
             agent any
             steps {
                 copyArtifacts filter: 'pkg/*.deb', projectName: env.JOB_NAME, flatten: true, selector: specific(env.BUILD_NUMBER)
