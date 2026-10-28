@@ -19,48 +19,48 @@ pipeline {
         }
 
         stage('Setup and build') {
+            agent { label 'docker' }
             stages {
                 stage('Build project') {
                     agent {
                         docker {
                             image 'base_images/node:16'
-                            label 'docker'
+                            reuseNode true
                         }
                     }
+                    options { skipDefaultCheckout() }
                     environment {
                         YARN_CACHE_FOLDER = '/tmp/.yarn-cache'
                     }
                     steps {
                         sh label: 'Install node modules', script: 'yarn install --frozen-lockfile'
                         sh label: 'Build project', script: 'yarn build --configuration=jenkins'
-                        sh label: 'Archive build', script: 'tar czf dist.tgz dist'
-                        stash name: 'dist', includes: 'dist.tgz'
-                    }
-                    post {
-                        cleanup {
-                            cleanWs()
-                        }
                     }
                 }
 
                 stage('Build artifact') {
-                    agent { label 'ubuntu && 20.04' }
+                    agent {
+                        docker {
+                            image 'base_images/ruby:2.7'
+                            reuseNode true
+                        }
+                    }
+                    options { skipDefaultCheckout() }
                     environment {
                         GIT_SHORT_COMMIT = util.shortCommitRef()
                         ARTIFACT_VERSION = "${env.PIPELINE_VERSION}" + '+sha.' + "${env.GIT_SHORT_COMMIT}"
+                        HOME = "${env.WORKSPACE}"
                     }
                     steps {
-                        sh label: 'Install rubygems', script: 'bundle install --deployment'
-                        unstash 'dist'
-                        sh label: 'Extract build', script: 'tar xzf dist.tgz && rm dist.tgz'
+                        sh label: 'Install rubygems', script: 'bundle config set --local deployment true && bundle install'
                         sh label: 'Build artifact', script: "bundle exec rake build_artifact ARTIFACT_VERSION=${env.ARTIFACT_VERSION}"
                         archiveArtifacts artifacts: "pkg/*${env.ARTIFACT_VERSION}*.deb", onlyIfSuccessful: true
                     }
-                    post {
-                        cleanup {
-                            cleanWs()
-                        }
-                    }
+                }
+            }
+            post {
+                cleanup {
+                    cleanWs()
                 }
             }
         }
