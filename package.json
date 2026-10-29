@@ -9,11 +9,13 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "types:check": "tsc --noEmit",
+    "types:check": "tsc --noEmit && tsc --noEmit -p e2e",
     "format": "prettier . --write --ignore-path .gitignore",
     "format:check": "prettier . --check --ignore-path .gitignore",
     "lint": "eslint . --fix --ignore-path .gitignore",
-    "lint:check": "eslint . --ignore-path .gitignore"
+    "lint:check": "eslint . --ignore-path .gitignore",
+    "e2e": "playwright test -c e2e",
+    "e2e:ui": "playwright test -c e2e --ui"
   },
   "private": true,
   "dependencies": {
@@ -58,6 +60,7 @@
     "@angular/cli": "^13.2.0",
     "@angular/compiler-cli": "^13.2.0",
     "@ngx-env/builder": "^2.0.2",
+    "@playwright/test": "^1.64.1",
     "@types/ckeditor": "^4.9.10",
     "@types/lodash": "4.14.136",
     "@types/node": "^12.11.1",
