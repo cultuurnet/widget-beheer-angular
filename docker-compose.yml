@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+  node:
+    build: docker/node
+    hostname: 'widget-beheer.local'
+    volumes:
+      - .:/var/www/html:cached
+    working_dir: /var/www/html
+    container_name: node.widgetbeheer
+    ports:
+      - '4200:4200'
+    networks:
+      - widgetbeheer
+
+networks:
+  widgetbeheer:
+    driver: bridge
