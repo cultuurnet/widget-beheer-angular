@@ -1,0 +1,17 @@
+# Worktrunk project config — see `wt config --help`
+# Lets several worktrees run the Docker setup side by side.
+
+# pre-start runs as a pipeline: port must run after deps, which also copies
+# the primary worktree's .env.
+[[pre-start]]
+# Reuse node_modules and build caches from the primary worktree.
+deps = "wt step copy-ignored"
+
+[[pre-start]]
+# Give each worktree its own dev server port (read by docker-compose.yml).
+port = "echo 'PORT={{ branch | hash_port }}' > .env"
+
+# Stops this worktree's container. Only when .env carries the worktrunk PORT,
+# and never blocks removing the worktree.
+[pre-remove]
+docker = "grep -q '^PORT=' .env && docker compose down || true"
