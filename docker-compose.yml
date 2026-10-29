@@ -5,9 +5,8 @@ services:
     volumes:
       - .:/var/www/html:cached
     working_dir: /var/www/html
-    container_name: node.widgetbeheer
     ports:
-      - '4200:4200'
+      - '${PORT:-4200}:4200'
     networks:
       - widgetbeheer
 

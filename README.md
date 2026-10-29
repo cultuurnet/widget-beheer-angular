@@ -26,11 +26,40 @@ Start the container
 Install dependencies
 `make install`
 
-Serve widgetbeheer on http://localhost:4200
+Serve widgetbeheer
 `make serve`
+
+The app runs on http://localhost:4200, unless `.env` sets a different `PORT`.
 
 Open a shell in the container
 `make bash`
 
 Stop the container
 `make down`
+
+## Working in parallel with worktrees
+
+[Worktrunk](https://worktrunk.dev) (`wt`) lets you check out several branches side by side, each in its own directory with its own container and port. The project hooks live in `.config/wt.toml`.
+
+When a worktree is created, worktrunk:
+
+- copies `node_modules` and other gitignored files from the main checkout
+- writes a `PORT` for that branch to `.env`
+
+Before a worktree is removed, it stops that worktree's container.
+
+Create a worktree for a new branch
+`make worktree BRANCH=<branch>`
+
+Or, to also move your shell into it
+`wt switch -c <branch>`
+
+In the new worktree, run `make up` and `make serve`. The URL uses the `PORT` from that worktree's `.env`.
+
+List worktrees
+`wt list`
+
+Remove the current worktree
+`wt remove`
+
+The first time you create a worktree, worktrunk asks you to approve the project hooks.
