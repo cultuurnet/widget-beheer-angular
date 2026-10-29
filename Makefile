@@ -1,0 +1,16 @@
+.PHONY: up down bash install serve
+
+up:
+	docker compose up -d
+
+down:
+	docker compose down
+
+bash:
+	docker compose exec node bash
+
+install:
+	docker compose exec node yarn install
+
+serve:
+	docker compose exec node yarn start:docker

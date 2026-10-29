@@ -17,3 +17,20 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Docker setup
+
+Start the container
+`make up`
+
+Install dependencies
+`make install`
+
+Serve widgetbeheer on http://localhost:4200
+`make serve`
+
+Open a shell in the container
+`make bash`
+
+Stop the container
+`make down`
