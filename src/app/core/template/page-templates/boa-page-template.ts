@@ -21,7 +21,7 @@ export class BoaPageTemplate implements PageTemplate {
                 type: 'search-form',
                 settings: {
                   header: {
-                    body: "<h2><img alt='' loading='eager' src='https://projectaanvraag-api.uitdatabank.be/assets/images/vlieg-vliegje.svg' style='height:36px;' />&nbsp;Op zoek naar een hobby, kamp of opvang voor kinderen in <strong>jouw gemeente</strong>?</h2>",
+                    body: "<h2><img alt='' src='https://projectaanvraag-api.uitdatabank.be/assets/images/vlieg-vliegje.svg' style='height:36px;' />&nbsp;Op zoek naar een hobby, kamp of opvang voor kinderen in <strong>jouw gemeente</strong>?</h2>",
                   },
                   fields: {
                     type: {
