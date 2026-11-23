@@ -142,7 +142,7 @@ export class BoaPageTemplate implements PageTemplate {
                 type: 'html',
                 settings: {
                   content: {
-                    body: "<p>Organiseer je zelf opvang of activiteiten voor kinderen? Voeg je aanbod toe aan deze agenda via <a href='https://www.uitdatabank.be'>www.uitdatabank.be</a></p>",
+                    body: "<p>Organiseer je zelf opvang of activiteiten voor kinderen? Voeg je aanbod toe aan deze agenda via <a href='https://www.uitdatabank.be' target='_blank'>www.uitdatabank.be</a></p>",
                   },
                 },
               },
