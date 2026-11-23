@@ -49,6 +49,35 @@ export class BoaPageTemplate implements PageTemplate {
                         enabled: false,
                       },
                     },
+                    extra: {
+                      group_filters: {
+                        enabled: true,
+                        filters: [
+                          {
+                            label: 'Type activiteit',
+                            placeholder: '',
+                            type: 'select_multiple',
+                            default_option: '',
+                            options: [
+                              {
+                                label: "Hobby's en activiteiten",
+                                query:
+                                  'terms.id:(8aRjN4dGsXuE6tBkM1pVwQ OR 0.3.2.0.0 OR 0.3.1.0.0 OR 0.3.1.0.1 OR 0.59.0.0.0)',
+                              },
+                              {
+                                label: 'Opvang',
+                                query:
+                                  'terms.id:(K7mPx3nQrT9bWfH2zL5cYv OR hZ5fCyL9nKqW3xDvTrJ2gP)',
+                              },
+                              {
+                                label: 'Kampen',
+                                query: 'terms.id:0.57.0.0.0',
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    },
                   },
                 },
               },
