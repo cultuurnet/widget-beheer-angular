@@ -134,7 +134,7 @@ export class BoaPageTemplate implements PageTemplate {
                 type: 'html',
                 settings: {
                   content: {
-                    body: "<p class='cultuurnet-logo-uiv-baseline'>Meer inspiratie voor jong &eacute;n oud vind je op <a href='http://www.uitinvlaanderen.be' target='_blank'>uitinvlaanderen.be</a></p>\n\n<p><a alt='Meer tips op UiTinVlaanderen.be' class='cultuurnet-logo-uiv-link' href='http://www.uitinvlaanderen.be' target='_blank'><img alt='Meer tips op UiTinVlaanderen.be' float='left' height='60' src='https://projectaanvraag-api.uitdatabank.be/assets/images/uitinvlaanderen-logo.svg' width='208' /></a></p>",
+                    body: "<p class='cultuurnet-logo-uiv-baseline' style='margin-bottom:0;text-align:center;'>Meer inspiratie voor jong &eacute;n oud vind je op <a href='http://www.uitinvlaanderen.be' target='_blank'>uitinvlaanderen.be</a></p><a class='cultuurnet-logo-uiv-link' href='http://www.uitinvlaanderen.be' target='_blank'><img src='https://projectaanvraag-api.uitdatabank.be/assets/images/uitinvlaanderen-logo.svg' width='208' height='60' alt='Meer tips op UiTinVlaanderen.be'></a>",
                   },
                 },
               },
