@@ -134,7 +134,15 @@ export class BoaPageTemplate implements PageTemplate {
                 type: 'html',
                 settings: {
                   content: {
-                    body: "<p class='cultuurnet-logo-uiv-baseline' style='margin-bottom:0;text-align:center;'>Meer inspiratie voor vrije tijd? Ga naar <a href='http://www.uitinvlaanderen.be' target='_blank'>uitinvlaanderen.be</a></p><a class='cultuurnet-logo-uiv-link' href='http://www.uitinvlaanderen.be' target='_blank' alt='Meer tips op UiTinVlaanderen.be'><img src='https://projectaanvraag-api.uitdatabank.be/assets/images/uitinvlaanderen-logo.svg' width='208' height='60' alt='Meer tips op UiTinVlaanderen.be'></a>",
+                    body: "<p class='cultuurnet-logo-uiv-baseline'>Meer inspiratie voor jong &eacute;n oud vind je op <a href='http://www.uitinvlaanderen.be' target='_blank'>uitinvlaanderen.be</a></p>\n\n<p><a alt='Meer tips op UiTinVlaanderen.be' class='cultuurnet-logo-uiv-link' href='http://www.uitinvlaanderen.be' target='_blank'><img alt='Meer tips op UiTinVlaanderen.be' float='left' height='60' src='https://projectaanvraag-api.uitdatabank.be/assets/images/uitinvlaanderen-logo.svg' width='208' /></a></p>",
+                  },
+                },
+              },
+              {
+                type: 'html',
+                settings: {
+                  content: {
+                    body: "<p>Organiseer je zelf opvang of activiteiten voor kinderen? Voeg je aanbod toe aan deze agenda via <a href='https://www.uitdatabank.be'>www.uitdatabank.be</a></p>",
                   },
                 },
               },
@@ -153,7 +161,7 @@ export class BoaPageTemplate implements PageTemplate {
                     },
                   },
                   footer: {
-                    body: "<p>Organiseer je zelf opvang of activiteiten voor kinderen? Voeg je aanbod toe aan deze agenda via <a href='http://www.uitdatabank.be'>www.UiTdatabank.be</a></p>",
+                    body: '',
                   },
                   items: {
                     overnight: {
