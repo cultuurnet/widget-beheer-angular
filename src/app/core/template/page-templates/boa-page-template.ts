@@ -20,6 +20,9 @@ export class BoaPageTemplate implements PageTemplate {
                 name: 'zoekformulier-1',
                 type: 'search-form',
                 settings: {
+                  header: {
+                    body: "<h2><img alt='' src='https://projectaanvraag-api.uitdatabank.be/assets/images/vlieg-vliegje.svg' style='height:36px;' />&nbsp;Op zoek naar een hobby, kamp of opvang voor kinderen in <strong>jouw gemeente</strong>?</h2>",
+                  },
                   fields: {
                     type: {
                       keyword_search: {
@@ -44,6 +47,35 @@ export class BoaPageTemplate implements PageTemplate {
                       },
                       group_filters: {
                         enabled: false,
+                      },
+                    },
+                    extra: {
+                      group_filters: {
+                        enabled: true,
+                        filters: [
+                          {
+                            label: 'Type activiteit',
+                            placeholder: '',
+                            type: 'select_multiple',
+                            default_option: '',
+                            options: [
+                              {
+                                label: "Hobby's en activiteiten",
+                                query:
+                                  'terms.id:(8aRjN4dGsXuE6tBkM1pVwQ OR 0.3.2.0.0 OR 0.3.1.0.0 OR 0.3.1.0.1 OR 0.59.0.0.0)',
+                              },
+                              {
+                                label: 'Opvang',
+                                query:
+                                  'terms.id:(K7mPx3nQrT9bWfH2zL5cYv OR hZ5fCyL9nKqW3xDvTrJ2gP)',
+                              },
+                              {
+                                label: 'Kampen',
+                                query: 'terms.id:0.57.0.0.0',
+                              },
+                            ],
+                          },
+                        ],
                       },
                     },
                   },
@@ -102,7 +134,15 @@ export class BoaPageTemplate implements PageTemplate {
                 type: 'html',
                 settings: {
                   content: {
-                    body: "<p class='cultuurnet-logo-uiv-baseline' style='margin-bottom:0;text-align:center;'>Meer inspiratie voor vrije tijd? Ga naar <a href='http://www.uitinvlaanderen.be' target='_blank'>uitinvlaanderen.be</a></p><a class='cultuurnet-logo-uiv-link' href='http://www.uitinvlaanderen.be' target='_blank' alt='Meer tips op UiTinVlaanderen.be'><img src='https://projectaanvraag-api.uitdatabank.be/assets/images/uitinvlaanderen-logo.svg' width='208' height='60' alt='Meer tips op UiTinVlaanderen.be'></a>",
+                    body: "<p class='cultuurnet-logo-uiv-baseline' style='margin-bottom:0;text-align:center;'>Meer inspiratie voor jong &eacute;n oud vind je op <a href='http://www.uitinvlaanderen.be' target='_blank'>uitinvlaanderen.be</a></p><a class='cultuurnet-logo-uiv-link' href='http://www.uitinvlaanderen.be' target='_blank'><img src='https://projectaanvraag-api.uitdatabank.be/assets/images/uitinvlaanderen-logo.svg' width='208' height='60' alt='Meer tips op UiTinVlaanderen.be'></a>",
+                  },
+                },
+              },
+              {
+                type: 'html',
+                settings: {
+                  content: {
+                    body: "<p>Organiseer je zelf opvang of activiteiten voor kinderen? Voeg je aanbod toe aan deze agenda via <a href='https://www.uitdatabank.be' target='_blank'>www.uitdatabank.be</a></p>",
                   },
                 },
               },
@@ -121,7 +161,7 @@ export class BoaPageTemplate implements PageTemplate {
                     },
                   },
                   footer: {
-                    body: "<p>Organiseer je zelf opvang of activiteiten voor kinderen? Voeg je aanbod toe aan deze agenda via <a href='http://www.uitdatabank.be'>www.UiTdatabank.be</a></p>",
+                    body: '',
                   },
                   items: {
                     overnight: {
